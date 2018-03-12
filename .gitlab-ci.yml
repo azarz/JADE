@@ -1,15 +1,15 @@
-image: java:8-jdk
+image: gradle:8-jdk
 
 # To parallelise actions
 stages:
   - compile
   - unitTests
+  - clean
   - pack
 
 # To implement the different stages
 gradle-compileJava:
   when: on_success
-  image: java:8-jdk
   stage: compile
   script: 
     - echo "Compilation"
@@ -17,11 +17,17 @@ gradle-compileJava:
 
 gradle-test:
   when: on_success
-  image: java:8-jdk
   stage: unitTests
   script: 
     - echo "Unit Tests"
     - "gradle test"
+    
+gradle-clean:
+  when: on_fail
+  stage: clean
+  script: 
+    - echo "Cleaning"
+    - "gradle clean"
 
 gradle-jar:
   when: on_success
