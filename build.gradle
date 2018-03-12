@@ -20,15 +20,13 @@ dependencies {
     compile fileTree(dir: 'lib/ffjoystick', include: '*.jar')
     compile fileTree(dir: 'lib/jasperreports', include: '*.jar')
     compile fileTree(dir: 'lib/oculusrift', include: '*.jar')
-
-    runtime fileTree(dir: 'assets/Textures/Logo', include: '*.png')
 }
 
 
 sourceSets {
   main {
     java.srcDirs = ['src']
-    resources.srcDirs = ['assets']
+    resources.srcDirs = ['assets/Textures/Logo']
   }
 }
 
