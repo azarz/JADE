@@ -23,7 +23,7 @@ gradle-test:
     - "gradle test"
     
 gradle-clean:
-  when: on_fail
+  when: on_failure
   stage: clean
   script: 
     - echo "Cleaning"
