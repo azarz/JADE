@@ -1,0 +1,48 @@
+image: java:8-jdk
+
+# To parallelise actions
+stages:
+  - compile
+  - unitTests
+  - pack
+  - doc
+
+# To implement the different stages
+gradle-compileJava:
+  when: on_success
+  image: java:8-jdk
+  stage: compile
+  script: 
+    - echo "Compilation"
+    - "gradle compileJava"
+
+gradle-test:
+  when: on_success
+  image: java:8-jdk
+  stage: unitTests
+  script: 
+    - echo "Unit Tests"
+    - "gradle test"
+
+gradle-jar:
+  when: on_success
+  stage: pack
+  script: 
+    - echo "Jar"
+    - "gradle jar"
+  artifacts:
+    untracked: true
+    paths:
+      - binaries/
+      - target/*.jar
+
+gradle-javadoc:
+  when: on_success
+  stage: doc
+  script: 
+    - echo "Documentation"
+    - "gradle javadoc"
+  artifacts:
+    untracked: true
+    paths:
+      - doc/*.html
