@@ -1,10 +1,9 @@
-image: gradle:8-jdk
+image: gradle:4.6-jdk8
 
 # To parallelise actions
 stages:
   - compile
   - unitTests
-  - clean
   - pack
 
 # To implement the different stages
@@ -22,13 +21,6 @@ gradle-test:
     - echo "Unit Tests"
     - "gradle test"
     
-gradle-clean:
-  when: on_failure
-  stage: clean
-  script: 
-    - echo "Cleaning"
-    - "gradle clean"
-
 gradle-jar:
   when: on_success
   stage: pack
