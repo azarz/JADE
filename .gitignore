@@ -1,0 +1,23 @@
+# Compiled source
+*.class
+*.so
+
+# Log file
+*.log
+
+# Package Files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+#IDE file
+*.idea
+*.project
+*.eclipse
+
+# Keep external libs
+!lib/**
+!opt/**

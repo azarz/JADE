@@ -1,1 +1,0 @@
-java -jar multidriver_server.jar
