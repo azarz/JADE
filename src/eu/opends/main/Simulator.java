@@ -717,13 +717,13 @@ public class Simulator extends SimulationBasics
     		// load logger configuration file
     		PropertyConfigurator.configure("assets/JasperReports/log4j/log4j.properties");
     		
-    		
+    		/*
     		logger.debug("Sample debug message");
     		logger.info("Sample info message");
     		logger.warn("Sample warn message");
     		logger.error("Sample error message");
     		logger.fatal("Sample fatal message");
-    		
+    		*/
     		
     		oculusRiftAttached = OculusRift.initialize();
     		

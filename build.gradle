@@ -1,5 +1,5 @@
 group 'eu.ensg'
-version '1.0-SNAPSHOT'
+version '1.0'
 
 apply plugin: 'java'
 
@@ -7,31 +7,30 @@ sourceCompatibility = 1.8
 
 
 repositories {
-  mavenCentral()
-  mavenLocal()
-  jcenter()
+	mavenCentral()
+	jcenter()
 }
+
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
-    compile fileTree(dir: 'lib', include: '*.jar')
-    compile fileTree(dir: 'lib/jme3.1', include: '*.jar')
-    compile fileTree(dir: 'lib/ffjoystick', include: '*.jar')
-    compile fileTree(dir: 'lib/jasperreports', include: '*.jar')
-    compile fileTree(dir: 'lib/oculusrift', include: '*.jar')
+    compile fileTree(dir: 'lib', include: '**/*.jar')
+
 }
 
 
 sourceSets {
   main {
     java.srcDirs = ['src']
-    resources.srcDirs = ['assets/Textures/Logo']
+    resources.srcDirs = ['assets/Textures/Logo', 'assets/JasperReports/log4j']
   }
 }
 
+
 jar {
    manifest {
-      attributes 'Main-Class': 'eu.opends.main.Simulator'
+      attributes 'Main-Class': 'eu.opends.main.Simulator',
+      'Implementation-Title': 'Jade', 'Implementation-Version': version
    }
 }

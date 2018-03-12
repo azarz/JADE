@@ -1,6 +1,8 @@
 # Compiled source
 *.class
 *.so
+/build/
+/bin/
 
 # Log file
 *.log
@@ -16,8 +18,11 @@
 #IDE file
 *.idea
 *.project
+*.classpath
 *.eclipse
+/.settings/
+/.gradle/
 
 # Keep external libs
 !lib/**
-!opt/**
+
