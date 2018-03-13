@@ -1,7 +1,7 @@
 /**
  * 
  */
-package eu.ensg.jade.sceneGeneration.geometricsObjects;
+package eu.ensg.jade.geometricObject;
 
 /**
  * @author amoutou

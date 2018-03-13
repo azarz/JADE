@@ -1,7 +1,7 @@
 /**
  * 
  */
-package eu.ensg.jade.sceneGeneration.scene;
+package eu.ensg.jade.scene;
 
 /**
  * @author amoutou
