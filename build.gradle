@@ -8,14 +8,10 @@ sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+    maven { name = "osgeo"; url = "http://download.osgeo.org/webdav/geotools/" }
 	jcenter()
 }
 
-repositories {
-    
-    maven { name = "osgeo"; url = "http://download.osgeo.org/webdav/geotools/" }
-   
-}
 
 dependencies {
     compile "org.geotools:gt-shapefile:12.0"
