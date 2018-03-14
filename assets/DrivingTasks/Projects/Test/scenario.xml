@@ -22,7 +22,7 @@
       <engine profile="">
         <engineOn>true</engineOn>
         <minSpeed>0</minSpeed>
-        <maxSpeed>180</maxSpeed>
+        <maxSpeed>140</maxSpeed>
         <acceleration>3.3</acceleration>
         <minRPM>750</minRPM>
         <maxRPM>7500</maxRPM>
@@ -50,8 +50,8 @@
         <frictionSlip>50</frictionSlip>
       </wheel>
       <brake profile="">
-        <decelerationFreeWheel>2.0</decelerationFreeWheel>
-        <decelerationBrake>8.7</decelerationBrake>
+        <decelerationFreeWheel>5.0</decelerationFreeWheel>
+        <decelerationBrake>9.0</decelerationBrake>
       </brake>
     </car>
   </driver>
