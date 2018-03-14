@@ -6,9 +6,11 @@ package eu.ensg.jade.semantic;
 import eu.ensg.jade.geometricObject.Point;
 
 /**
- * @author amoutou
+ * Vegetation is the class implementing 
+ * 
+ * @author JADE
  *
  */
-public class StreetFurniture extends Point {
+public class Vegetation extends Point {
 
 }
