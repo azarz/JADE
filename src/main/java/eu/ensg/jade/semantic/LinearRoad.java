@@ -17,7 +17,7 @@ public class LinearRoad {
 	/**
 	 * Road width as defined in the RGE
 	 */
-	private float width;
+	private double width;
 	/**
 	 * The road number of ways
 	 */
@@ -25,24 +25,26 @@ public class LinearRoad {
 	/**
 	 * The elevation at the initial road summit
 	 */
-	private float z_ini;
+	private double z_ini;
 	/**
 	 * The elevation at the final road summit
 	 */
-	private float z_fin;
+	private double z_fin;
 	/**
 	 * The way driving direction
 	 */
-	private string direction;
+
+	private String direction;
 	/**
 	 * The Geometry
 	 */
 	private MultiLineString geom;
+
 	/**
 	 * This method allows to access the road width
 	 * @return the road width
 	 */
-	public float getWidth() {
+	public double getWidth() {
 		return width;
 	}
 	
@@ -50,7 +52,7 @@ public class LinearRoad {
 	 * This method allows to set the road width
 	 * @param width the width to be attributed to the road
 	 */
-	public void setWidth(float width) {
+	public void setWidth(double width) {
 		this.width = width;
 	}
 	
@@ -74,7 +76,7 @@ public class LinearRoad {
 	 * This method allows to access the elevation at the road initial summit
 	 * @return the elevation at the road initial summit
 	 */
-	public float getZ_ini() {
+	public double getZ_ini() {
 		return z_ini;
 	}
 	
@@ -82,7 +84,7 @@ public class LinearRoad {
 	 * This method allows to set the elevation at the road initial summit
 	 * @param z_ini the elevation to be attributed to the road initial summit
 	 */
-	public void setZ_ini(float z_ini) {
+	public void setZ_ini(double z_ini) {
 		this.z_ini = z_ini;
 	}
 	
@@ -90,7 +92,7 @@ public class LinearRoad {
 	 * This method allows to access the elevation at the road final summit
 	 * @return the elevation at the final road summit
 	 */
-	public float getZ_fin() {
+	public double getZ_fin() {
 		return z_fin;
 	}
 	
@@ -98,7 +100,7 @@ public class LinearRoad {
 	 * This method allows to set the elevation at the road final summit
 	 * @param z_fin the elevation to be attributed to the road final summit
 	 */
-	public void setZ_fin(float z_fin) {
+	public void setZ_fin(double z_fin) {
 		this.z_fin = z_fin;
 	}
 
@@ -122,7 +124,7 @@ public class LinearRoad {
 	 * This method allows to access the road driving direction
 	 * @return the road driving direction
 	 */
-	public string getDirection() {
+	public String getDirection() {
 		return direction;
 	}
 	
@@ -130,7 +132,7 @@ public class LinearRoad {
 	 * This method allows to set the road driving direction
 	 * @param direction the driving direction to be attributed to the road
 	 */	
-	public void setDirection(string direction) {
+	public void setDirection(String direction) {
 		this.direction = direction;
 	}
 	

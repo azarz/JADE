@@ -18,17 +18,21 @@ public class Vegetation extends Point {
 	/**
 	 * The furniture nature (stop, pedestrian crossing...)
 	 */
-	private string nature;
+	private String nature;
 	
 	/**
 	 * The minimum vegetation elevation
 	 */
-	private float z_min;
+	private double z_min;
 	
 	/**
 	 * The maximum vegetation elevation
 	 */
-	private float z_max;
+	private double z_max;
+	/**
+	 * The tree geometry
+	 */
+	private string geometry;
 	
 	/**
 	 * This method will have a return that will soon be specified
