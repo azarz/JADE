@@ -114,10 +114,23 @@ public class LinearRoad {
 	}
 	
 	/**
-	 * This method allows to enlarge
+	 * This method enlarges the current road
+	 * 
+	 * @return the surfacic road creates
 	 */
-	public void enlarge(){
+	public SurfacicRoad enlarge(){
+		return null;
 		
+	}
+	
+	/**
+	 * This method smoothes the surfacic road previously created
+	 * 
+	 * @return the surfacic smoothed road
+	 */
+	public SurfacicRoad smooth(){
+		SurfacicRoad surf = this.enlarge();
+		return null;
 	}
 	
 	
