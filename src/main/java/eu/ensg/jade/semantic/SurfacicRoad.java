@@ -38,6 +38,11 @@ public class SurfacicRoad implements ISurfacicObject {
 	 * The linear road that has been enlarged to create this road
 	 */
 	private LinearRoad linearRoad;
+	/**
+	 * The surfacic road geometry
+	 */
+	private string geometry;
+	
 	
 	/**
 	 * This method allows to access the road width

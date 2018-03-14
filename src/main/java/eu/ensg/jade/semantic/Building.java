@@ -3,6 +3,8 @@
  */
 package eu.ensg.jade.semantic;
 
+import com.jme3.app.R.string;
+
 import eu.ensg.jade.geometricObject.ISurfacicObject;
 
 /**
@@ -25,6 +27,10 @@ public class Building implements ISurfacicObject {
 	 * the building maximum elevation
 	 */
 	private double z_max;
+	/**
+	 * The building geometry
+	 */
+	private string geometry;
 	
 	
 	/**

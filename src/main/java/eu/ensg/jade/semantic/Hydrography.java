@@ -31,6 +31,11 @@ public class Hydrography implements ISurfacicObject {
 	 * The water surface maximum elevation
 	 */
 	private double z_max;
+	/**
+	 * The water surface geometry
+	 */
+	private string geometry;
+	
 
 	/**
 	 * This method allows to access the water surface nature (lake, water fall...)

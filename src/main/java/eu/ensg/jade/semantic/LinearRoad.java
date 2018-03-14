@@ -32,6 +32,11 @@ public class LinearRoad {
 	 * The way driving direction
 	 */
 	private string direction;
+	/**
+	 * The linear road geometry
+	 */
+	private string geometry;
+	
 	
 	/**
 	 * This method allows to access the road width

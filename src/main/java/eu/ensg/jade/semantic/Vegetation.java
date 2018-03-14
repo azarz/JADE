@@ -29,6 +29,10 @@ public class Vegetation extends Point {
 	 * The maximum vegetation elevation
 	 */
 	private double z_max;
+	/**
+	 * The tree geometry
+	 */
+	private string geometry;
 	
 	/**
 	 * This method will have a return that will soon be specified

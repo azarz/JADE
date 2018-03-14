@@ -21,6 +21,11 @@ public class StreetFurniture extends Point {
 	private string nature;
 	
 	/**
+	 * The furniture geometry
+	 */
+	private string geometry;
+	
+	/**
 	 * This method will have a return that will soon be specified
 	 */
 	public void toOBJ(){
