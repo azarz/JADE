@@ -18,7 +18,7 @@ public class StreetFurniture extends Point {
 	/**
 	 * The furniture nature (stop, pedestrian crossing...)
 	 */
-	private string nature;
+	private String nature;
 	
 	/**
 	 * This method will have a return that will soon be specified
