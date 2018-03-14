@@ -24,8 +24,11 @@ dependencies {
 
 sourceSets {
   main {
-    java.srcDirs = ['src/main/java','src/test/java']
+    java.srcDirs = ['src/main/java']
     resources.srcDirs = ['assets/Textures/Logo', 'assets/JasperReports/log4j']
+  }
+  test {
+  	java.srcDirs = ['src/test/java']
   }
 }
 

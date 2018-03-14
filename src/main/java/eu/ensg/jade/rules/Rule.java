@@ -4,9 +4,12 @@
 package eu.ensg.jade.rules;
 
 /**
- * @author amoutou
+ * Rule is the class implementing the rules that are used to place a punctual object
+ * 
+ * @author JADE
  *
  */
 public class Rule {
 
+	
 }
