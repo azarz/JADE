@@ -22,7 +22,7 @@
       <engine profile="">
         <engineOn>true</engineOn>
         <minSpeed>0</minSpeed>
-        <maxSpeed>180</maxSpeed>
+        <maxSpeed>140</maxSpeed>
         <acceleration>3.3</acceleration>
         <minRPM>750</minRPM>
         <maxRPM>7500</maxRPM>
@@ -50,8 +50,8 @@
         <frictionSlip>50</frictionSlip>
       </wheel>
       <brake profile="">
-        <decelerationFreeWheel>2.0</decelerationFreeWheel>
-        <decelerationBrake>8.7</decelerationBrake>
+        <decelerationFreeWheel>5.0</decelerationFreeWheel>
+        <decelerationBrake>9.0</decelerationBrake>
       </brake>
     </car>
   </driver>
@@ -72,7 +72,8 @@
       <pathIsVisible>true</pathIsVisible>
       <startWayPoint>WayPoint_5</startWayPoint>
       <wayPoints>
-        <wayPoint id="WayPoint_5"><translation><vector jtype="java_lang_Float" size="3"><entry>239</entry><entry>137</entry><entry>34</entry></vector></translation><speed>10</speed></wayPoint>
+        <wayPoint id="WayPoint_5">
+        <translation><vector jtype="java_lang_Float" size="3"><entry>239</entry><entry>137</entry><entry>34</entry></vector></translation><speed>10</speed></wayPoint>
         <wayPoint id="WayPoint_6"><translation><vector jtype="java_lang_Float" size="3"><entry>249</entry><entry>137</entry><entry>34</entry></vector></translation><speed>5</speed></wayPoint>
         <wayPoint id="WayPoint_7"><translation><vector jtype="java_lang_Float" size="3"><entry>249</entry><entry>137</entry><entry>44</entry></vector></translation><speed>10</speed></wayPoint>
         <wayPoint id="WayPoint_8"><translation><vector jtype="java_lang_Float" size="3"><entry>239</entry><entry>137</entry><entry>44</entry></vector></translation><speed>5</speed></wayPoint>
