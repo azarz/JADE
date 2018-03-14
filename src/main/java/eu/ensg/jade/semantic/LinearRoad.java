@@ -45,7 +45,7 @@ public class LinearRoad {
 	 * This method allows to set the road width
 	 * @param width the width to be attributed to the road
 	 */
-	public void setWidth(float width) {
+	public void setWidth(double width) {
 		this.width = width;
 	}
 	

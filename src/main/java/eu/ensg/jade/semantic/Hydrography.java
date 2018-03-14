@@ -61,7 +61,7 @@ public class Hydrography implements ISurfacicObject {
 	 * This method allows to set the water surface height
 	 * @param height the height to be attributed 
 	 */
-	public void setHeight(float height) {
+	public void setHeight(double height) {
 		this.height = height;
 	}
 
@@ -77,7 +77,7 @@ public class Hydrography implements ISurfacicObject {
 	 * This method allows to set the water surface minimum elevation
 	 * @param z_min the minimum elevation to be attributed 
 	 */
-	public void setZ_min(float z_min) {
+	public void setZ_min(double z_min) {
 		this.z_min = z_min;
 	}
 
@@ -93,7 +93,7 @@ public class Hydrography implements ISurfacicObject {
 	 * This method allows to set the water surface maximum elevation
 	 * @param z_max the maximum elevation to be attributed 
 	 */
-	public void setZ_max(float z_max) {
+	public void setZ_max(double z_max) {
 		this.z_max = z_max;
 	}
 

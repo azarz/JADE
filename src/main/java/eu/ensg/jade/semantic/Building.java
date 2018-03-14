@@ -27,6 +27,7 @@ public class Building implements ISurfacicObject {
 	 * the building maximum elevation
 	 */
 	private double z_max;
+
 	/**
 	 * the building coordinates
 	 */
