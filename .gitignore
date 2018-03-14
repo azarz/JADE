@@ -4,9 +4,11 @@
 /build/
 /bin/
 
-# Log file
+# Log file & directory
 *.log
 joystickDump.txt
+changelog.txt
+/analyzerData/
 
 # Package Files
 *.jar
