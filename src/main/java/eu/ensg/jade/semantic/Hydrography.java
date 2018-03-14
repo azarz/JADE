@@ -22,15 +22,15 @@ public class Hydrography implements ISurfacicObject {
 	/**
 	 * The water surface height
 	 */
-	private float height;
+	private double height;
 	/**
 	 * The water surface minimum elevation
 	 */
-	private float z_min;
+	private double z_min;
 	/** 
 	 * The water surface maximum elevation
 	 */
-	private float z_max;
+	private double z_max;
 
 	/**
 	 * This method allows to access the water surface nature (lake, water fall...)
@@ -53,7 +53,7 @@ public class Hydrography implements ISurfacicObject {
 	 * This method allows to access the water surface height
 	 * @return the water surface height
 	 */
-	public float getHeight() {
+	public double getHeight() {
 		return height;
 	}
 
@@ -61,7 +61,7 @@ public class Hydrography implements ISurfacicObject {
 	 * This method allows to set the water surface height
 	 * @param height the height to be attributed 
 	 */
-	public void setHeight(float height) {
+	public void setHeight(double height) {
 		this.height = height;
 	}
 
@@ -69,7 +69,7 @@ public class Hydrography implements ISurfacicObject {
 	 * This method allows to access the water surface minimum elevation
 	 * @return the water surface minimum elevation
 	 */
-	public float getZ_min() {
+	public double getZ_min() {
 		return z_min;
 	}
 
@@ -77,7 +77,7 @@ public class Hydrography implements ISurfacicObject {
 	 * This method allows to set the water surface minimum elevation
 	 * @param z_min the minimum elevation to be attributed 
 	 */
-	public void setZ_min(float z_min) {
+	public void setZ_min(double z_min) {
 		this.z_min = z_min;
 	}
 
@@ -85,7 +85,7 @@ public class Hydrography implements ISurfacicObject {
 	 * This method allows to access the water surface maximum elevation
 	 * @return the water surface maximum elevation
 	 */
-	public float getZ_max() {
+	public double getZ_max() {
 		return z_max;
 	}
 
@@ -93,7 +93,7 @@ public class Hydrography implements ISurfacicObject {
 	 * This method allows to set the water surface maximum elevation
 	 * @param z_max the maximum elevation to be attributed 
 	 */
-	public void setZ_max(float z_max) {
+	public void setZ_max(double z_max) {
 		this.z_max = z_max;
 	}
 

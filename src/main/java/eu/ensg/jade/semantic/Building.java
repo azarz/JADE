@@ -16,15 +16,15 @@ public class Building implements ISurfacicObject {
 	/**
 	 * The building height
 	 */
-	private float height;
+	private double height;
 	/**
 	 * The building minimum elevation
 	 */
-	private float z_min;
+	private double z_min;
 	/**
 	 * the building maximum elevation
 	 */
-	private float z_max;
+	private double z_max;
 	
 	
 	/**
