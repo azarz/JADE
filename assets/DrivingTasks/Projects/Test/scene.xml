@@ -20,9 +20,9 @@
       <collisionShape>meshShape</collisionShape>
       <scale>
         <vector jtype="java_lang_Float" size="3">
-          <entry>0.7</entry>
-          <entry>0.7</entry>
-          <entry>0.7</entry>
+          <entry>1</entry>
+          <entry>1</entry>
+          <entry>1</entry>
         </vector>
       </scale>
       <rotation quaternion="false">
