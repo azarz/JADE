@@ -4,6 +4,8 @@
 package eu.ensg.jade.semantic;
 
 import com.jme3.app.R.string;
+import com.vividsolutions.jts.geom.MultiLineString;
+import com.vividsolutions.jts.geom.Polygon;
 
 /**
  * LinearRoad is the class implementing the linear roads from the RGE
@@ -32,7 +34,10 @@ public class LinearRoad {
 	 * The way driving direction
 	 */
 	private string direction;
-	
+	/**
+	 * The Geometry
+	 */
+	private MultiLineString geom;
 	/**
 	 * This method allows to access the road width
 	 * @return the road width
@@ -96,6 +101,22 @@ public class LinearRoad {
 	public void setZ_fin(float z_fin) {
 		this.z_fin = z_fin;
 	}
+
+	/**
+	 * This method allows to access the road driving direction
+	 * @return the road driving direction
+	 */
+	public MultiLineString getGeom() {
+		return geom;
+	}
+	
+	/**
+	 * This method allows to set the road driving direction
+	 * @param direction the driving direction to be attributed to the road
+	 */	
+	public void setDirection(MultiLineString geom) {
+		this.geom = geom;
+	}
 	
 	/**
 	 * This method allows to access the road driving direction
@@ -119,7 +140,15 @@ public class LinearRoad {
 	 * @return the surfacic road creates
 	 */
 	public SurfacicRoad enlarge(){
-		return null;
+		SurfacicRoad surfacicRoad= new SurfacicRoad();
+		surfacicRoad.setDirection(direction);
+		surfacicRoad.setLinearRoad(this);
+		surfacicRoad.setWayNumber(wayNumber);
+		surfacicRoad.setWidth(width);
+		surfacicRoad.setZ_fin(z_fin);
+		surfacicRoad.setZ_ini(z_ini);
+		surfacicRoad.setGeom((Polygon) geom.buffer(width/2));
+		return surfacicRoad;
 		
 	}
 	

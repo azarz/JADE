@@ -4,6 +4,8 @@
 package eu.ensg.jade.semantic;
 
 import com.jme3.app.R.string;
+import com.vividsolutions.jts.geom.MultiLineString;
+import com.vividsolutions.jts.geom.Polygon;
 
 import eu.ensg.jade.geometricObject.ISurfacicObject;
 
@@ -34,6 +36,10 @@ public class SurfacicRoad implements ISurfacicObject {
 	 * The way driving direction
 	 */
 	private string direction;
+	/**
+	 * The Geometry
+	 */
+	private Polygon geom;
 	/**
 	 * The linear road that has been enlarged to create this road
 	 */
@@ -119,6 +125,22 @@ public class SurfacicRoad implements ISurfacicObject {
 		this.direction = direction;
 	}
 
+	/**
+	 * This method allows to access the geometry of the road
+	 * @return the road original linear road
+	 */
+	public Polygon getGeom() {
+		return geom;
+	}
+
+	/**
+	 * This method allows to set the geometry related to the current road
+	 * @param Polygon the polygon to be attributed to the road
+	 */
+	public void setGeom(Polygon geom) {
+		this.geom = geom;
+	}
+	
 	/**
 	 * This method allows to access the current road original linear road
 	 * @return the road original linear road
