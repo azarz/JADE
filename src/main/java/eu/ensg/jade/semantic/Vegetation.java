@@ -18,7 +18,7 @@ public class Vegetation extends Point {
 	/**
 	 * The furniture nature (stop, pedestrian crossing...)
 	 */
-	private string nature;
+	private String nature;
 	
 	/**
 	 * The minimum vegetation elevation

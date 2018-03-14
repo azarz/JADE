@@ -31,7 +31,7 @@ public class LinearRoad {
 	/**
 	 * The way driving direction
 	 */
-	private string direction;
+	private String direction;
 	/**
 	 * The linear road geometry
 	 */
@@ -106,7 +106,7 @@ public class LinearRoad {
 	 * This method allows to access the road driving direction
 	 * @return the road driving direction
 	 */
-	public string getDirection() {
+	public String getDirection() {
 		return direction;
 	}
 	
@@ -114,7 +114,7 @@ public class LinearRoad {
 	 * This method allows to set the road driving direction
 	 * @param direction the driving direction to be attributed to the road
 	 */	
-	public void setDirection(string direction) {
+	public void setDirection(String direction) {
 		this.direction = direction;
 	}
 	
