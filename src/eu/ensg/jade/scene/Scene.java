@@ -1,7 +1,5 @@
-/**
- * 
- */
 package eu.ensg.jade.scene;
+
 
 import java.util.List;
 
@@ -11,6 +9,13 @@ import eu.ensg.jade.semantic.Hydrography;
 import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfacicRoad;
 import eu.ensg.jade.semantic.Vegetation;
+
+
+/*
+import eu.ensg.jade.input.OutputRGE;
+import eu.ensg.jade.input.ReaderContext;
+import eu.ensg.jade.input.ReaderFactory;
+*/
 
 /**
  * Scene is the class implementing the scene and its elements to be created in OpenDS
@@ -189,5 +194,22 @@ public class Scene {
 		this.streetFurniture.add(newFurniture);
 
 	}
+
+	
+	
+	
+	/*
+	public static void main(String args[]){
+		
+		String buildingPath = "...";
+	
+		// We get the data 
+		// Building
+		ReaderContext readerContx = new ReaderContext();
+		ReaderFactory readerFact = new ReaderFactory();
+		readerContx.setIReaderStrategy(readerFact.createReader(1));
+		OutputRGE buildingRGE = readerContx.createOutPutRGE(buildingPath);
+	
+	}*/
 
 }

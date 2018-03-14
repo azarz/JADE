@@ -113,18 +113,10 @@ public class LinearRoad {
 		this.direction = direction;
 	}
 	
-	
 	/**
-	 * This method allows to add an height to a road. It is defines by a elevation to its extremity (z_ini and z_fin)
+	 * This method allows to enlarge
 	 */
-	public void addHeight(){
-		
-	}
-	
-	/**
-	 * This method will have a return that will soon be specified
-	 */
-	public void toOBJ(){
+	public void enlarge(){
 		
 	}
 	
