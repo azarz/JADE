@@ -48,7 +48,6 @@ public class Building implements ISurfacicObject {
 		this.z_min = z_min;
 		this.z_max = z_max;
 		this.vertices = vertices;
-		deleteLastVertex();
 	}
 	
 // ========================== GETTERS/SETTERS ======================	
@@ -83,18 +82,84 @@ public class Building implements ISurfacicObject {
 	}
 	
 	/**
-	 * Deletes the last vertex of the polygon 
-	 * (since it's used to close the surface in the shapefile)
+	 * Calculates the distance between 2 3D points
+	 * 
+	 * @param p1 3D point as double[3]
+	 * @param p2 3D point as double[3]
+	 * @return distance between p1 and p2
 	 */
-	private void deleteLastVertex() {
-		vertices.remove(vertices.size() - 1);
+	private static double getDistance(double[] p1, double[] p2) {
+	    return Math.sqrt(Math.pow(p1[0] - p2[0], 2) +
+	    		Math.pow(p1[1] - p2[1], 2) + 
+	    		Math.pow(p1[2] - p2[2], 2));
 	}
-	
+
 	/**
 	 * This method will have a return that will soon be specified
 	 */
-	public void toOBJ(){
+	public void toOBJ(int vertexIndexOffset, int textureIndexOffset, int normalIndexOffset){	
+		String vertexCoords = "";
+		String uvCoords     = "";
+		String normalCoords = "";
 		
+		String faces = "";
+		
+		// Adding the vertex coords as in a obj file
+		for (int i = 0; i < vertices.size(); i++) {
+			vertexCoords += "v " + vertices.get(i)[0] + " "
+							     + vertices.get(i)[2] + " "
+							     + vertices.get(i)[1] + "\n";
+			
+		}
+		
+		for (int i = 0; i < vertices.size()/2 - 1; i++) {
+			// Calculating the texture coordinates
+			uvCoords += "vt 0 0" + "\n";
+			uvCoords += "vt " + getDistance(vertices.get(i), vertices.get(i+1)) + " 0" + "\n";
+			uvCoords += "vt " + getDistance(vertices.get(i), vertices.get(i+1)) + " " + height/3 + "\n";
+			uvCoords += "vt 0 " + height/3 + "\n";
+			
+			// Calculating the differences between 3 points of th face to calculate the normal vector
+			double diff1_x = vertices.get(i+1)[0] - vertices.get(i)[0];
+			double diff1_y = vertices.get(i+1)[2] - vertices.get(i)[2];
+			double diff1_z = vertices.get(i+1)[1] - vertices.get(i)[1];
+			
+			double diff2_x = vertices.get(i + vertices.size()/2 )[0] - vertices.get(i)[0];
+			double diff2_y = vertices.get(i + vertices.size()/2 )[2] - vertices.get(i)[2];
+			double diff2_z = vertices.get(i + vertices.size()/2 )[1] - vertices.get(i)[1];
+			
+			double normal_x = (diff1_y * diff2_z) - (diff1_z * diff2_y);
+			double normal_y = (diff1_z * diff2_x) - (diff1_x * diff2_z);
+			double normal_z = (diff1_x * diff2_y) - (diff1_y * diff2_x);
+			
+			normalCoords += "vn " + normal_x + " " + normal_y + " " + normal_z + "\n";
+
+			// Calculating the face corresponding indices
+			faces += "f " + (i + vertexIndexOffset) + "/" + 
+								(4*i + textureIndexOffset) + "/" + 
+								(i+normalIndexOffset) + " "
+								
+						  + (i+1 + vertexIndexOffset) + "/" + 
+								(4*i+1 + textureIndexOffset) + "/" + 
+								(i+normalIndexOffset) + " "
+								
+						  + (i+1 + vertices.size()/2 + vertexIndexOffset) + "/" + 
+								(4*i+3 + textureIndexOffset) + "/" + 
+								(i+normalIndexOffset) + " "
+								
+						  + (i + vertices.size()/2 + vertexIndexOffset) + "/" + 
+								(4*i+2 + textureIndexOffset) + "/" + 
+								(i+normalIndexOffset) + "\n";
+		}
+		
+		vertexIndexOffset  += vertices.size();
+		textureIndexOffset += 4*vertices.size();
+		normalIndexOffset  += vertices.size()/2 - 1;
+		
+		System.out.println(vertexCoords);
+		System.out.println(uvCoords);
+		System.out.println(normalCoords);
+		System.out.println(faces);
 	}
 
 }
