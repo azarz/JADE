@@ -1,5 +1,14 @@
 image: gradle:4.6-jdk8
 
+before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+
+# To cache gradle dependencies
+cache:
+  paths:
+     - .gradle/wrapper
+     - .gradle/caches
+
 # To parallelise actions
 stages:
   - compile
