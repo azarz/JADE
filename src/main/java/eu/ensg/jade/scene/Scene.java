@@ -216,7 +216,9 @@ public class Scene {
 	public static void main(String args[]) throws IOException{
 		
 		String buildingPath = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
+		String hydroPath = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
 		String roadPath = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
+		//String vegetPath = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
 		String dtmPath = "matriceTest.asc";
 	
 		//--------------------------------
@@ -231,9 +233,17 @@ public class Scene {
 		readerContx.setIReaderStrategy(readerFact.createReader(1));
 		OutputRGE buildingRGE = readerContx.createOutPutRGE(buildingPath);
 		
+		// Hydro
+		readerContx.setIReaderStrategy(readerFact.createReader(2));
+		OutputRGE hydroRGE = readerContx.createOutPutRGE(hydroPath);
+		
 		// Roads
 		readerContx.setIReaderStrategy(readerFact.createReader(3));
 		OutputRGE roadRGE = readerContx.createOutPutRGE(roadPath);
+		
+		// Veget
+		//readerContx.setIReaderStrategy(readerFact.createReader(4));
+		//OutputRGE vegetRGE = readerContx.createOutPutRGE(vegetPath);
 		
 		//DTM
 		readerContx.setIReaderStrategy(readerFact.createReader(5));

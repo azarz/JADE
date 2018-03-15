@@ -1,9 +1,6 @@
 package eu.ensg.jade.semantic;
 
-import java.util.List;
-
-import com.jme3.app.R.string;
-import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.geom.MultiPolygon;
 
 import eu.ensg.jade.geometricObject.ISurfacicObject;
 
@@ -29,7 +26,7 @@ public class Hydrography implements ISurfacicObject {
 	/**
 	 * The water surface geometry
 	 */
-	private Polygon geometry;
+	private MultiPolygon geometry;
 	
 		
 	// ========================== CONSTRUCTORS =========================	
@@ -41,7 +38,7 @@ public class Hydrography implements ISurfacicObject {
 		 * @param z_average
 		 * @param geometry
 		 */
-		public Hydrography(String nature,double z_average, Polygon geometry) {
+		public Hydrography(String nature,double z_average, MultiPolygon geometry) {
 			this.nature = nature;
 			this.z_average = z_average;
 			this.geometry = geometry;
@@ -82,7 +79,7 @@ public class Hydrography implements ISurfacicObject {
 	 * 
 	 * @param z_min the average elevation to be attributed 
 	 */
-	public void setZ_average(double z_min) {
+	public void setZ_average(double z_average) {
 		this.z_average = z_average;
 	}
 
@@ -91,7 +88,7 @@ public class Hydrography implements ISurfacicObject {
 	 * 
 	 * @return the water surface maximum elevation
 	 */
-	public Polygon get_geometry() {
+	public MultiPolygon get_geometry() {
 		return geometry;
 	}
 
@@ -100,7 +97,7 @@ public class Hydrography implements ISurfacicObject {
 	 * 
 	 * @param z_max the maximum elevation to be attributed 
 	 */
-	public void set_geometry(Polygon geometry) {
+	public void set_geometry(MultiPolygon geometry) {
 		this.geometry = geometry;
 	}
 
