@@ -215,7 +215,7 @@ public class Scene {
 	 */
 	public static void main(String args[]) throws IOException{
 		
-		String buildingPath = "matriceTest.asc";
+		String dtmPath = "matriceTest.asc";
 	
 		
 		// We get the data 
@@ -229,7 +229,7 @@ public class Scene {
 		
 		//DTM
 		readerContx.setIReaderStrategy(readerFact.createReader(5));
-		OutputRGE buildingRGE = readerContx.createOutPutRGE(buildingPath);
+		OutputRGE dtmRGE = readerContx.createOutPutRGE(dtmPath);
 		
 	}
 

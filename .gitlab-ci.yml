@@ -28,7 +28,7 @@ gradle-test:
   stage: unitTests
   script: 
     - echo "Unit Tests"
-    - "gradle test"
+    - "gradle test --stacktrace"
     
 gradle-jar:
   when: on_success

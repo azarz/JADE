@@ -22,7 +22,7 @@ public class PointVegetation extends Point {
 	/**
 	 * The tree geometry
 	 */
-	private string geometry;
+	private String geometry;
 
 // ========================== METHODS ==============================
 	
