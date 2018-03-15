@@ -215,21 +215,44 @@ public class Scene {
 	 */
 	public static void main(String args[]) throws IOException{
 		
+		String buildingPath = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
+		String roadPath = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
 		String dtmPath = "matriceTest.asc";
 	
+		//--------------------------------
+		// Gets the data from the files
+		//--------------------------------
 		
-		// We get the data 
-		// Buildind
+		// Factory/Strategy Generation
 		ReaderContext readerContx = new ReaderContext();
 		ReaderFactory readerFact = new ReaderFactory();
-		/*
+		
+		// Buildings
 		readerContx.setIReaderStrategy(readerFact.createReader(1));
 		OutputRGE buildingRGE = readerContx.createOutPutRGE(buildingPath);
-		*/
+		
+		// Roads
+		readerContx.setIReaderStrategy(readerFact.createReader(3));
+		OutputRGE roadRGE = readerContx.createOutPutRGE(roadPath);
 		
 		//DTM
 		readerContx.setIReaderStrategy(readerFact.createReader(5));
 		OutputRGE dtmRGE = readerContx.createOutPutRGE(dtmPath);
+		
+		//--------------------------------
+		// Adds vegetation and urban furnitures
+		//--------------------------------
+				
+		
+		//--------------------------------
+		// Transforms objects to obj
+		//--------------------------------
+		
+		
+		
+		//--------------------------------
+		// Puts obj in xml files
+		//--------------------------------
 		
 	}
 

@@ -1,6 +1,7 @@
 package eu.ensg.jade.semantic;
 
 import com.vividsolutions.jts.geom.LineString;
+import com.vividsolutions.jts.geom.MultiLineString;
 import com.vividsolutions.jts.geom.Polygon;
 
 /**
@@ -37,7 +38,7 @@ public class LinearRoad {
 	 * The Geometry
 	 */
 
-	private LineString geom;
+	private MultiLineString geom;
 
 	/**
 	 * Constructor using all fields
@@ -49,7 +50,7 @@ public class LinearRoad {
 	 * @param direction
 	 * @param geom
 	 */
-	public LinearRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, LineString geom) {
+	public LinearRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, MultiLineString geom) {
 		this.width = width;
 		this.wayNumber = wayNumber;
 		this.z_ini = z_ini;
@@ -112,7 +113,7 @@ public class LinearRoad {
 	 * 
 	 * @return the road driving direction
 	 */
-	public LineString getGeom() {
+	public MultiLineString getGeom() {
 		return geom;
 	}
 	
