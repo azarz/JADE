@@ -10,7 +10,7 @@ import eu.ensg.jade.geometricObject.Point;
  * @author JADE
  */
 
-public class Vegetation extends Point {
+public class PointVegetation extends Point {
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -19,15 +19,6 @@ public class Vegetation extends Point {
 	 */
 	private String nature;
 	
-	/**
-	 * The minimum vegetation elevation
-	 */
-	private double z_min;
-	
-	/**
-	 * The maximum vegetation elevation
-	 */
-	private double z_max;
 	/**
 	 * The tree geometry
 	 */
