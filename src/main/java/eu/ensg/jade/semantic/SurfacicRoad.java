@@ -1,6 +1,3 @@
-/**
- * 
- */
 package eu.ensg.jade.semantic;
 
 import com.jme3.app.R.string;
@@ -13,9 +10,12 @@ import eu.ensg.jade.geometricObject.ISurfacicObject;
  * SurfacicRoad is the class implementing a surfacic road object
  * 
  * @author JADE
- *
  */
+
 public class SurfacicRoad implements ISurfacicObject {
+	
+// ========================== ATTRIBUTES ===========================
+
 	/**
 	 * Road width as defined in the RGE
 	 */
@@ -49,9 +49,11 @@ public class SurfacicRoad implements ISurfacicObject {
 	 */
 	private string geometry;
 	
+// ========================== GETTERS/SETTERS ======================
 	
 	/**
-	 * This method allows to access the road width
+	 * Allows to access the road width
+	 * 
 	 * @return the road width
 	 */
 	public double getWidth() {
@@ -59,7 +61,8 @@ public class SurfacicRoad implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to set the road width
+	 * Allows to set the road width
+	 * 
 	 * @param width the width to be attributed to the road
 	 */
 	public void setWidth(double width) {
@@ -67,7 +70,8 @@ public class SurfacicRoad implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to access the road number of ways
+	 * Allows to access the road number of ways
+	 * 
 	 * @return the road number of ways
 	 */
 	public int getWayNumber() {
@@ -75,7 +79,8 @@ public class SurfacicRoad implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to set the number of ways
+	 * Allows to set the number of ways
+	 * 
 	 * @param width the way number to be attributed to the road
 	 */
 	public void setWayNumber(int wayNumber) {
@@ -83,7 +88,8 @@ public class SurfacicRoad implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to access the elevation at the road initial summit
+	 * Allows to access the elevation at the road initial summit
+	 * 
 	 * @return the elevation at the road initial summit
 	 */
 	public double getZ_ini() {
@@ -91,7 +97,8 @@ public class SurfacicRoad implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to set the elevation at the road initial summit
+	 * Allows to set the elevation at the road initial summit
+	 * 
 	 * @param z_ini the elevation to be attributed to the road initial summit
 	 */
 	public void setZ_ini(double z_ini) {
@@ -99,7 +106,8 @@ public class SurfacicRoad implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to access the elevation at the road final summit
+	 * Allows to access the elevation at the road final summit
+	 * 
 	 * @return the elevation at the final road summit
 	 */
 	public double getZ_fin() {
@@ -107,7 +115,8 @@ public class SurfacicRoad implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to set the elevation at the road final summit
+	 * Allows to set the elevation at the road final summit
+	 * 
 	 * @param z_fin the elevation to be attributed to the road final summit
 	 */
 	public void setZ_fin(double z_fin) {
@@ -115,7 +124,8 @@ public class SurfacicRoad implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to access the road driving direction
+	 * Allows to access the road driving direction
+	 * 
 	 * @return the road driving direction
 	 */
 	public String getDirection() {
@@ -123,7 +133,8 @@ public class SurfacicRoad implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to set the road driving direction
+	 * Allows to set the road driving direction
+	 * 
 	 * @param direction the driving direction to be attributed to the road
 	 */	
 	public void setDirection(String direction) {
@@ -131,7 +142,8 @@ public class SurfacicRoad implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to access the geometry of the road
+	 * Allows to access the geometry of the road
+	 * 
 	 * @return the road original linear road
 	 */
 	public Polygon getGeom() {
@@ -139,7 +151,8 @@ public class SurfacicRoad implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to set the geometry related to the current road
+	 * Allows to set the geometry related to the current road
+	 * 
 	 * @param Polygon the polygon to be attributed to the road
 	 */
 	public void setGeom(Polygon geom) {
@@ -147,7 +160,8 @@ public class SurfacicRoad implements ISurfacicObject {
 	}
 	
 	/**
-	 * This method allows to access the current road original linear road
+	 * Allows to access the current road original linear road
+	 * 
 	 * @return the road original linear road
 	 */
 	public LinearRoad getLinearRoad() {
@@ -155,16 +169,18 @@ public class SurfacicRoad implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to set the linear road related to the current road
+	 * Allows to set the linear road related to the current road
+	 * 
 	 * @param linearRoad the linear road to be attributed to the road
 	 */
 	public void setLinearRoad(LinearRoad linearRoad) {
 		this.linearRoad = linearRoad;
 	}
 
+// ========================== METHODS ==============================
 
 	/**
-	 * This method allows to add an height to a road. It is defines by a elevation to its extremity (z_ini and z_fin)
+	 * Allows to add an height to a road. It is defines by a elevation to its extremity (z_ini and z_fin)
 	 */
 	public void addHeight(){
 		

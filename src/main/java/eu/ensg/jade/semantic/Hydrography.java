@@ -1,6 +1,3 @@
-/**
- * 
- */
 package eu.ensg.jade.semantic;
 
 import com.jme3.app.R.string;
@@ -11,9 +8,12 @@ import eu.ensg.jade.geometricObject.ISurfacicObject;
  * Hydrography is the class implementing a water surface object from the RGE
  * 
  * @author JADE
- *
  */
+
 public class Hydrography implements ISurfacicObject {
+	
+
+// ========================== ATTRIBUTES ===========================
 
 	/**
 	 * The water surface nature
@@ -35,10 +35,12 @@ public class Hydrography implements ISurfacicObject {
 	 * The water surface geometry
 	 */
 	private string geometry;
-	
+
+// ========================== GETTERS/SETTERS ======================
 
 	/**
-	 * This method allows to access the water surface nature (lake, water fall...)
+	 * Allows to access the water surface nature (lake, water fall...)
+	 * 
 	 * @return the water surface nature
 	 */
 	public String getNature() {
@@ -46,7 +48,8 @@ public class Hydrography implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to set the water surface nature
+	 * Allows to set the water surface nature
+	 * 
 	 * @param nature the nature to be attributed 
 	 */
 	public void setNature(String nature) {
@@ -55,7 +58,8 @@ public class Hydrography implements ISurfacicObject {
 
 
 	/**
-	 * This method allows to access the water surface height
+	 * Allows to access the water surface height
+	 * 
 	 * @return the water surface height
 	 */
 	public double getHeight() {
@@ -63,7 +67,8 @@ public class Hydrography implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to set the water surface height
+	 * Allows to set the water surface height
+	 * 
 	 * @param height the height to be attributed 
 	 */
 	public void setHeight(double height) {
@@ -71,7 +76,8 @@ public class Hydrography implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to access the water surface minimum elevation
+	 * Allows to access the water surface minimum elevation
+	 * 
 	 * @return the water surface minimum elevation
 	 */
 	public double getZ_min() {
@@ -79,7 +85,8 @@ public class Hydrography implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to set the water surface minimum elevation
+	 * Allows to set the water surface minimum elevation
+	 * 
 	 * @param z_min the minimum elevation to be attributed 
 	 */
 	public void setZ_min(double z_min) {
@@ -87,7 +94,8 @@ public class Hydrography implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to access the water surface maximum elevation
+	 * Allows to access the water surface maximum elevation
+	 * 
 	 * @return the water surface maximum elevation
 	 */
 	public double getZ_max() {
@@ -95,21 +103,22 @@ public class Hydrography implements ISurfacicObject {
 	}
 
 	/**
-	 * This method allows to set the water surface maximum elevation
+	 * Allows to set the water surface maximum elevation
+	 * 
 	 * @param z_max the maximum elevation to be attributed 
 	 */
 	public void setZ_max(double z_max) {
 		this.z_max = z_max;
 	}
 
+// ========================== METHODS ==============================
 
 	/**
-	 * This method allows to add an elevation to a water surface
+	 * Allows to add an elevation to a water surface
 	 */
 	@Override
 	public void addHeight() {
 
-		
 	}
 	
 	/**

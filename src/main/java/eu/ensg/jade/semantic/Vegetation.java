@@ -1,6 +1,3 @@
-/**
- * 
- */
 package eu.ensg.jade.semantic;
 
 import com.jme3.app.R.string;
@@ -11,9 +8,11 @@ import eu.ensg.jade.geometricObject.Point;
  * Vegetation is the class implementing the vegetation to be added to the scene
  * 
  * @author JADE
- *
  */
+
 public class Vegetation extends Point {
+	
+// ========================== ATTRIBUTES ===========================
 	
 	/**
 	 * The furniture nature (stop, pedestrian crossing...)
@@ -33,6 +32,8 @@ public class Vegetation extends Point {
 	 * The tree geometry
 	 */
 	private string geometry;
+
+// ========================== METHODS ==============================
 	
 	/**
 	 * This method will have a return that will soon be specified
