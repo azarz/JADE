@@ -3,7 +3,7 @@
  */
 package eu.ensg.jade.semantic;
 
-import com.jme3.app.R.string;
+import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.MultiLineString;
 import com.vividsolutions.jts.geom.Polygon;
 
@@ -33,12 +33,31 @@ public class LinearRoad {
 	/**
 	 * The way driving direction
 	 */
-
 	private String direction;
 	/**
 	 * The Geometry
 	 */
-	private MultiLineString geom;
+	private LineString geom;
+
+	/**
+	 * Constructor using all fields
+	 * 
+	 * @param width
+	 * @param wayNumber
+	 * @param z_ini
+	 * @param z_fin
+	 * @param direction
+	 * @param geom
+	 */
+	public LinearRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, LineString geom) {
+		super();
+		this.width = width;
+		this.wayNumber = wayNumber;
+		this.z_ini = z_ini;
+		this.z_fin = z_fin;
+		this.direction = direction;
+		this.geom = geom;
+	}
 
 	/**
 	 * This method allows to access the road width
@@ -108,7 +127,7 @@ public class LinearRoad {
 	 * This method allows to access the road driving direction
 	 * @return the road driving direction
 	 */
-	public MultiLineString getGeom() {
+	public LineString getGeom() {
 		return geom;
 	}
 	
@@ -116,7 +135,7 @@ public class LinearRoad {
 	 * This method allows to set the road driving direction
 	 * @param direction the driving direction to be attributed to the road
 	 */	
-	public void setDirection(MultiLineString geom) {
+	public void setDirection(LineString geom) {
 		this.geom = geom;
 	}
 	
