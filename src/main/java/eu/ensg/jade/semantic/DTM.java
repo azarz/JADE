@@ -1,5 +1,7 @@
 package eu.ensg.jade.semantic;
 
+import java.util.List;
+
 import eu.ensg.jade.geometricObject.ISurfacicObject;
 
 /**
@@ -9,6 +11,24 @@ import eu.ensg.jade.geometricObject.ISurfacicObject;
  */
 
 public class DTM implements ISurfacicObject {
+	
+// ========================== ATTRIBUTES ===========================
+	
+	/**
+	 * The table associates to the DTM
+	 */
+	private double[][] tabDTM;
+	
+// ========================== CONSTRUCTORS =========================	
+
+	/**
+	 * Constructor using all fields
+	 * 
+	 * @param tabDTM the table associates to the DTM
+	 */
+	public DTM(double[][] tabDTM) {
+		this.tabDTM = tabDTM;
+	}
 
 // ========================== METHODS ==============================
 
