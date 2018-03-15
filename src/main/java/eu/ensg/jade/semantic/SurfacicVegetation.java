@@ -13,7 +13,7 @@ import eu.ensg.jade.geometricObject.Point;
  * @author JADE
  */
 
-public class SurfaceVegetation implements ISurfacicObject {
+public class SurfacicVegetation implements ISurfacicObject {
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -37,7 +37,7 @@ public class SurfaceVegetation implements ISurfacicObject {
 	 * 
 	 **/
 
-	public SurfaceVegetation(MultiPolygon geometry, String nature) {
+	public SurfacicVegetation(MultiPolygon geometry, String nature) {
 		this.nature = nature;
 		this.geometry = geometry;
 	}
