@@ -50,7 +50,6 @@ public class LinearRoad {
 	 * @param geom
 	 */
 	public LinearRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, LineString geom) {
-		super();
 		this.width = width;
 		this.wayNumber = wayNumber;
 		this.z_ini = z_ini;
@@ -72,30 +71,12 @@ public class LinearRoad {
 	}
 	
 	/**
-	 * Allows to set the road width
-	 * 
-	 * @param width the width to be attributed to the road
-	 */
-	public void setWidth(double width) {
-		this.width = width;
-	}
-	
-	/**
 	 * Allows to access the road number of ways
 	 * 
 	 * @return the road number of ways
 	 */
 	public int getWayNumber() {
 		return wayNumber;
-	}
-	
-	/**
-	 * Allows to set the number of ways
-	 * 
-	 * @param width the way number to be attributed to the road
-	 */
-	public void setWayNumber(int wayNumber) {
-		this.wayNumber = wayNumber;
 	}
 	
 	/**
@@ -125,14 +106,6 @@ public class LinearRoad {
 		return z_fin;
 	}
 	
-	/**
-	 * Allows to set the elevation at the road final summit
-	 * 
-	 * @param z_fin the elevation to be attributed to the road final summit
-	 */
-	public void setZ_fin(double z_fin) {
-		this.z_fin = z_fin;
-	}
 
 	/**
 	 * Allows to access the road driving direction
@@ -143,14 +116,6 @@ public class LinearRoad {
 		return geom;
 	}
 	
-	/**
-	 * Allows to set the road driving direction
-	 * 
-	 * @param direction the driving direction to be attributed to the road
-	 */	
-	public void setDirection(LineString geom) {
-		this.geom = geom;
-	}
 	
 	/**
 	 * Allows to access the road driving direction
@@ -161,14 +126,6 @@ public class LinearRoad {
 		return direction;
 	}
 	
-	/**
-	 * Allows to set the road driving direction
-	 * 
-	 * @param direction the driving direction to be attributed to the road
-	 */	
-	public void setDirection(String direction) {
-		this.direction = direction;
-	}
 	
 // ========================== METHODS ==============================
 	
@@ -178,14 +135,10 @@ public class LinearRoad {
 	 * @return the surfacic road creates
 	 */
 	public SurfacicRoad enlarge(){
-		SurfacicRoad surfacicRoad= new SurfacicRoad();
-		surfacicRoad.setDirection(direction);
-		surfacicRoad.setLinearRoad(this);
-		surfacicRoad.setWayNumber(wayNumber);
-		surfacicRoad.setWidth(width);
-		surfacicRoad.setZ_fin(z_fin);
-		surfacicRoad.setZ_ini(z_ini);
-		surfacicRoad.setGeom((Polygon) geom.buffer(width/2));
+		Polygon geometry =  (Polygon) geom.buffer(width/2);
+		
+		SurfacicRoad surfacicRoad = new SurfacicRoad(width, wayNumber, z_ini, z_fin, direction, geometry, this);
+		
 		return surfacicRoad;
 		
 	}

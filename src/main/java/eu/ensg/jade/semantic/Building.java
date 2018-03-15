@@ -48,6 +48,18 @@ public class Building implements ISurfacicObject {
 		this.z_min = z_min;
 		this.z_max = z_max;
 		this.vertices = vertices;
+		deleteLastVertex();
+	}
+	
+// ========================== GETTERS/SETTERS ======================	
+	
+	/**
+	 * Gets the building vertices
+	 * 
+	 * @return building vertices
+	 */
+	public List<double[]> getVertices() {
+		return vertices;
 	}
 	
 // ========================== METHODS ==============================
@@ -57,7 +69,25 @@ public class Building implements ISurfacicObject {
 	 */
 	@Override
 	public void addHeight() {
-		
+		// Getting the initial number of vertices
+		int size = vertices.size();
+		// Going through the list
+		for (int i = 0; i < size; i++) {
+			// Copying the coordinates of the vertex
+			double[] coords = vertices.get(i).clone();
+			// Adding the height
+			coords[2] += height;
+			// Adding the computed vertex to the list
+			vertices.add(coords);
+		}
+	}
+	
+	/**
+	 * Deletes the last vertex of the polygon 
+	 * (since it's used to close the surface in the shapefile)
+	 */
+	private void deleteLastVertex() {
+		vertices.remove(vertices.size() - 1);
 	}
 	
 	/**

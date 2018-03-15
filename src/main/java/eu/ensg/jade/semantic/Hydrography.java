@@ -1,6 +1,7 @@
 package eu.ensg.jade.semantic;
 
 import com.jme3.app.R.string;
+import com.vividsolutions.jts.geom.Polygon;
 
 import eu.ensg.jade.geometricObject.ISurfacicObject;
 
@@ -34,7 +35,7 @@ public class Hydrography implements ISurfacicObject {
 	/**
 	 * The water surface geometry
 	 */
-	private string geometry;
+	private Polygon geometry;
 
 // ========================== GETTERS/SETTERS ======================
 
