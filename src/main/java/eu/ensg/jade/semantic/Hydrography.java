@@ -1,5 +1,7 @@
 package eu.ensg.jade.semantic;
 
+import java.util.List;
+
 import com.jme3.app.R.string;
 import com.vividsolutions.jts.geom.Polygon;
 
@@ -20,22 +22,31 @@ public class Hydrography implements ISurfacicObject {
 	 * The water surface nature
 	 */
 	private String nature;
-	/**
-	 * The water surface height
-	 */
-	private double height;
-	/**
-	 * The water surface minimum elevation
-	 */
-	private double z_min;
 	/** 
-	 * The water surface maximum elevation
+	 * The water surface average elevation
 	 */
-	private double z_max;
+	private double z_average;
 	/**
 	 * The water surface geometry
 	 */
 	private Polygon geometry;
+	
+		
+	// ========================== CONSTRUCTORS =========================	
+
+		/**
+		 * Constructor using all fields
+		 * 
+		 * @param nature
+		 * @param z_average
+		 * @param geometry
+		 */
+		public Hydrography(String nature,double z_average, Polygon geometry) {
+			this.nature = nature;
+			this.z_average = z_average;
+			this.geometry = geometry;
+		}
+		
 
 // ========================== GETTERS/SETTERS ======================
 
@@ -57,41 +68,22 @@ public class Hydrography implements ISurfacicObject {
 		this.nature = nature;
 	}
 
-
 	/**
-	 * Allows to access the water surface height
+	 * Allows to access the water surface average elevation
 	 * 
-	 * @return the water surface height
+	 * @return the water surface average elevation
 	 */
-	public double getHeight() {
-		return height;
+	public double getZ_avrage() {
+		return z_average;
 	}
 
 	/**
-	 * Allows to set the water surface height
+	 * Allows to set the water surface average elevation
 	 * 
-	 * @param height the height to be attributed 
+	 * @param z_min the average elevation to be attributed 
 	 */
-	public void setHeight(double height) {
-		this.height = height;
-	}
-
-	/**
-	 * Allows to access the water surface minimum elevation
-	 * 
-	 * @return the water surface minimum elevation
-	 */
-	public double getZ_min() {
-		return z_min;
-	}
-
-	/**
-	 * Allows to set the water surface minimum elevation
-	 * 
-	 * @param z_min the minimum elevation to be attributed 
-	 */
-	public void setZ_min(double z_min) {
-		this.z_min = z_min;
+	public void setZ_average(double z_min) {
+		this.z_average = z_average;
 	}
 
 	/**
@@ -99,8 +91,8 @@ public class Hydrography implements ISurfacicObject {
 	 * 
 	 * @return the water surface maximum elevation
 	 */
-	public double getZ_max() {
-		return z_max;
+	public Polygon get_geometry() {
+		return geometry;
 	}
 
 	/**
@@ -108,8 +100,8 @@ public class Hydrography implements ISurfacicObject {
 	 * 
 	 * @param z_max the maximum elevation to be attributed 
 	 */
-	public void setZ_max(double z_max) {
-		this.z_max = z_max;
+	public void set_geometry(Polygon geometry) {
+		this.geometry = geometry;
 	}
 
 // ========================== METHODS ==============================
