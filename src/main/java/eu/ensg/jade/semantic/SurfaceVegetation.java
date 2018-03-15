@@ -1,6 +1,7 @@
 package eu.ensg.jade.semantic;
 
 import com.jme3.app.R.string;
+import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Polygon;
 
 import eu.ensg.jade.geometricObject.ISurfacicObject;
@@ -24,7 +25,7 @@ public class SurfaceVegetation implements ISurfacicObject {
 	/**
 	 * The tree geometry
 	 */
-	private Polygon geometry;
+	private MultiPolygon geometry;
 
 // ========================== CONSTRUCTORS =========================	
 
@@ -36,7 +37,7 @@ public class SurfaceVegetation implements ISurfacicObject {
 	 * 
 	 **/
 
-	public SurfaceVegetation(Polygon geometry, String nature) {
+	public SurfaceVegetation(MultiPolygon geometry, String nature) {
 		this.nature = nature;
 		this.geometry = geometry;
 	}
