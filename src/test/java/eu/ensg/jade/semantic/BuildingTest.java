@@ -1,9 +1,9 @@
 package eu.ensg.jade.semantic;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -21,11 +21,17 @@ public class BuildingTest {
 		
 		OutputRGE allBuildings = buildingShp.getRGE(shpPath);
 		
-		Building building = allBuildings.getBuildings().get(10);
+		List<Building> buildings = allBuildings.getBuildings();
 		
-		building.addHeight();
+		List<Integer> offsets = new ArrayList<Integer>();
+		offsets.add(1);
+		offsets.add(1);
+		offsets.add(1);
 		
-		building.toOBJ(1, 1, 1);
+		for (int i = 1000; i < 1020; i++) {
+			buildings.get(i).addHeight();
+			buildings.get(i).toOBJ(offsets);
+		}
 	}
 
 }

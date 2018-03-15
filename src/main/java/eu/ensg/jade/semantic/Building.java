@@ -1,6 +1,8 @@
 package eu.ensg.jade.semantic;
 
 import com.jme3.app.R.string;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import eu.ensg.jade.geometricObject.ISurfacicObject;
@@ -97,7 +99,13 @@ public class Building implements ISurfacicObject {
 	/**
 	 * This method will have a return that will soon be specified
 	 */
-	public void toOBJ(int vertexIndexOffset, int textureIndexOffset, int normalIndexOffset){	
+	public void toOBJ(List<Integer> offsets){
+		
+		// Fetching the offsets from the offsets parameter
+		int vertexIndexOffset  = offsets.get(0);
+		int textureIndexOffset = offsets.get(1);
+		int normalIndexOffset  = offsets.get(2);
+		
 		String vertexCoords = "";
 		String uvCoords     = "";
 		String normalCoords = "";
@@ -152,14 +160,29 @@ public class Building implements ISurfacicObject {
 								(i+normalIndexOffset) + "\n";
 		}
 		
+		normalIndexOffset  += vertices.size()/2 - 1;
+		
+		normalCoords += "vn 0 1 0\n";
+		
+		faces += "f";
+		for (int i = vertices.size()/2; i < vertices.size(); i++) {
+			faces += " " + (i + vertexIndexOffset) + "//" + normalIndexOffset;	
+		}
+		faces += "\n";
+		
 		vertexIndexOffset  += vertices.size();
 		textureIndexOffset += 4*vertices.size();
-		normalIndexOffset  += vertices.size()/2 - 1;
+		normalIndexOffset++;
 		
 		System.out.println(vertexCoords);
 		System.out.println(uvCoords);
 		System.out.println(normalCoords);
 		System.out.println(faces);
+
+		// Updating the offsets
+		offsets.set(0, vertexIndexOffset);
+		offsets.set(1, textureIndexOffset);
+		offsets.set(2, normalIndexOffset);
 	}
 
 }
