@@ -1,19 +1,18 @@
-/**
- * 
- */
 package eu.ensg.jade.semantic;
 
 import com.vividsolutions.jts.geom.LineString;
-import com.vividsolutions.jts.geom.MultiLineString;
 import com.vividsolutions.jts.geom.Polygon;
 
 /**
  * LinearRoad is the class implementing the linear roads from the RGE
  * 
  * @author JADE
- *
  */
+
 public class LinearRoad {
+	
+// ========================== ATTRIBUTES ===========================
+
 	/**
 	 * Road width as defined in the RGE
 	 */
@@ -37,6 +36,7 @@ public class LinearRoad {
 	/**
 	 * The Geometry
 	 */
+
 	private LineString geom;
 
 	/**
@@ -59,8 +59,12 @@ public class LinearRoad {
 		this.geom = geom;
 	}
 
+	
+// ========================== GETTERS/SETTERS ======================
+
 	/**
-	 * This method allows to access the road width
+	 * Allows to access the road width
+	 * 
 	 * @return the road width
 	 */
 	public double getWidth() {
@@ -68,7 +72,8 @@ public class LinearRoad {
 	}
 	
 	/**
-	 * This method allows to set the road width
+	 * Allows to set the road width
+	 * 
 	 * @param width the width to be attributed to the road
 	 */
 	public void setWidth(double width) {
@@ -76,7 +81,8 @@ public class LinearRoad {
 	}
 	
 	/**
-	 * This method allows to access the road number of ways
+	 * Allows to access the road number of ways
+	 * 
 	 * @return the road number of ways
 	 */
 	public int getWayNumber() {
@@ -84,7 +90,8 @@ public class LinearRoad {
 	}
 	
 	/**
-	 * This method allows to set the number of ways
+	 * Allows to set the number of ways
+	 * 
 	 * @param width the way number to be attributed to the road
 	 */
 	public void setWayNumber(int wayNumber) {
@@ -92,7 +99,8 @@ public class LinearRoad {
 	}
 	
 	/**
-	 * This method allows to access the elevation at the road initial summit
+	 * Allows to access the elevation at the road initial summit
+	 * 
 	 * @return the elevation at the road initial summit
 	 */
 	public double getZ_ini() {
@@ -100,7 +108,8 @@ public class LinearRoad {
 	}
 	
 	/**
-	 * This method allows to set the elevation at the road initial summit
+	 * Allows to set the elevation at the road initial summit
+	 * 
 	 * @param z_ini the elevation to be attributed to the road initial summit
 	 */
 	public void setZ_ini(double z_ini) {
@@ -108,7 +117,8 @@ public class LinearRoad {
 	}
 	
 	/**
-	 * This method allows to access the elevation at the road final summit
+	 * Allows to access the elevation at the road final summit
+	 * 
 	 * @return the elevation at the final road summit
 	 */
 	public double getZ_fin() {
@@ -116,7 +126,8 @@ public class LinearRoad {
 	}
 	
 	/**
-	 * This method allows to set the elevation at the road final summit
+	 * Allows to set the elevation at the road final summit
+	 * 
 	 * @param z_fin the elevation to be attributed to the road final summit
 	 */
 	public void setZ_fin(double z_fin) {
@@ -124,7 +135,8 @@ public class LinearRoad {
 	}
 
 	/**
-	 * This method allows to access the road driving direction
+	 * Allows to access the road driving direction
+	 * 
 	 * @return the road driving direction
 	 */
 	public LineString getGeom() {
@@ -132,7 +144,8 @@ public class LinearRoad {
 	}
 	
 	/**
-	 * This method allows to set the road driving direction
+	 * Allows to set the road driving direction
+	 * 
 	 * @param direction the driving direction to be attributed to the road
 	 */	
 	public void setDirection(LineString geom) {
@@ -140,7 +153,8 @@ public class LinearRoad {
 	}
 	
 	/**
-	 * This method allows to access the road driving direction
+	 * Allows to access the road driving direction
+	 * 
 	 * @return the road driving direction
 	 */
 	public String getDirection() {
@@ -148,15 +162,18 @@ public class LinearRoad {
 	}
 	
 	/**
-	 * This method allows to set the road driving direction
+	 * Allows to set the road driving direction
+	 * 
 	 * @param direction the driving direction to be attributed to the road
 	 */	
 	public void setDirection(String direction) {
 		this.direction = direction;
 	}
 	
+// ========================== METHODS ==============================
+	
 	/**
-	 * This method enlarges the current road
+	 * Enlarges the current road
 	 * 
 	 * @return the surfacic road creates
 	 */
@@ -174,7 +191,7 @@ public class LinearRoad {
 	}
 	
 	/**
-	 * This method smoothes the surfacic road previously created
+	 * Smoothes the surfacic road previously created
 	 * 
 	 * @return the surfacic smoothed road
 	 */
@@ -182,6 +199,5 @@ public class LinearRoad {
 		SurfacicRoad surf = this.enlarge();
 		return null;
 	}
-	
 	
 }

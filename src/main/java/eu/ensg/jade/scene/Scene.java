@@ -1,6 +1,5 @@
 package eu.ensg.jade.scene;
 
-
 import java.io.IOException;
 import java.util.List;
 
@@ -15,14 +14,17 @@ import eu.ensg.jade.input.OutputRGE;
 import eu.ensg.jade.input.ReaderContext;
 import eu.ensg.jade.input.ReaderFactory;
 
-
 /**
  * Scene is the class implementing the scene and its elements to be created in OpenDS
  * 
  * @author JADE
- *
  */
+
 public class Scene {
+	
+	
+// ========================== ATTRIBUTES ===========================
+
 	/**
 	 * List of surfacic roads to create {@link SurfacicRoad}
 	 */
@@ -47,10 +49,12 @@ public class Scene {
 	 * The DTM associated to the scene {@link DTM}
 	 */
 	private DTM dtm;
-	
-	
+
+// ========================== GETTERS/SETTERS ======================
+
 	/**
-	 * This method allows to access the list of surfacic roads in the scene
+	 * Allows to access the list of surfacic roads in the scene
+	 * 
 	 * @return the scene surfacic roads
 	 */
 	public List<SurfacicRoad> getRoads() {
@@ -58,7 +62,8 @@ public class Scene {
 	}
 
 	/**
-	 * This method allow to set the scene surfacic roads
+	 * Allow to set the scene surfacic roads
+	 * 
 	 * @param roads the list of surfacic roads to be assigned
 	 */
 	public void setRoads(List<SurfacicRoad> roads) {
@@ -66,7 +71,8 @@ public class Scene {
 	}
 	
 	/**
-	 * This method allows to access the list of buildings in the scene
+	 * Allows to access the list of buildings in the scene
+	 * 
 	 * @return the scene buildings
 	 */
 	public List<Building> getBuildings() {
@@ -74,7 +80,8 @@ public class Scene {
 	}
 
 	/**
-	 * This method allow to set the scene buildings
+	 * Allows to set the scene buildings
+	 * 
 	 * @param buildings the list of buildings to be assigned
 	 */
 	public void setBuildings(List<Building> buildings) {
@@ -82,7 +89,8 @@ public class Scene {
 	}
 
 	/**
-	 * This method allows to access the list of water surfaces in the scene
+	 * Allows to access the list of water surfaces in the scene
+	 * 
 	 * @return the scene water surfaces
 	 */
 	public List<Hydrography> getHydrography() {
@@ -90,7 +98,8 @@ public class Scene {
 	}
 
 	/**
-	 * This method allow to set the scene water surfaces
+	 * Allows to set the scene water surfaces
+	 * 
 	 * @param hydrography the list of water surfaces to be assigned
 	 */
 	public void setHydrography(List<Hydrography> hydrography) {
@@ -98,7 +107,8 @@ public class Scene {
 	}
 
 	/**
-	 * This method allows to access the list of trees in the scene
+	 * Allows to access the list of trees in the scene
+	 * 
 	 * @return the scene threes
 	 */
 	public List<Vegetation> getVegetation() {
@@ -106,7 +116,8 @@ public class Scene {
 	}
 
 	/**
-	 * This method allow to set the scene vegetation (isolated trees)
+	 * Allows to set the scene vegetation (isolated trees)
+	 * 
 	 * @param vegetation the list of trees to be assigned
 	 */
 	public void setVegetation(List<Vegetation> vegetation) {
@@ -114,7 +125,8 @@ public class Scene {
 	}
 
 	/**
-	 * This method allows to access the list of street furniture in the scene
+	 * Allows to access the list of street furniture in the scene
+	 * 
 	 * @return the scene street furniture
 	 */
 	public List<StreetFurniture> getStreetFurniture() {
@@ -122,7 +134,8 @@ public class Scene {
 	}
 
 	/**
-	 * This method allow to set the scene street furniture
+	 * Allows to set the scene street furniture
+	 * 
 	 * @param streetFurniture the list of street furniture to be assigned
 	 */
 	public void setStreetFurniture(List<StreetFurniture> streetFurniture) {
@@ -130,7 +143,8 @@ public class Scene {
 	}
 
 	/**
-	 * This method allows to access the scene DTM
+	 * Allows to access the scene DTM
+	 * 
 	 * @return the scene DTM
 	 */
 	public DTM getDtm() {
@@ -138,15 +152,18 @@ public class Scene {
 	}
 
 	/**
-	 * This method allow to set the scene DTM
+	 * Allows to set the scene DTM
+	 * 
 	 * @param dtm the DTM to be assigned
 	 */
 	public void setDtm(DTM dtm) {
 		this.dtm = dtm;
 	}
 
+// ========================== METHODS ==============================
+
 	/**
-	 * Add a new road to the existing list of roads
+	 * Adds a new road to the existing list of roads
 	 * 
 	 * @param newRoad the Road to be added
 	 */
@@ -155,7 +172,7 @@ public class Scene {
 	}
 	
 	/**
-	 * Add a new buiding to the existing list of buildings
+	 * Adds a new buiding to the existing list of buildings
 	 * 
 	 * @param newBuilding the Building to be added
 	 */
@@ -164,7 +181,7 @@ public class Scene {
 	}
 	
 	/**
-	 * Add a new water surface to the existing list hydrography
+	 * Adds a new water surface to the existing list hydrography
 	 * 
 	 * @param newWaterSurface the Hydrography to be added
 	 */
@@ -173,9 +190,8 @@ public class Scene {
 
 	}
 	
-	
 	/**
-	 * Add a new tree to the existing list of vegetation
+	 * Adds a new tree to the existing list of vegetation
 	 * 
 	 * @param newTree the three to be added
 	 */
@@ -185,7 +201,7 @@ public class Scene {
 	}
 	
 	/**
-	 * Add a new street furniture to the existing list of furnitures
+	 * Adds a new street furniture to the existing list of furnitures
 	 * 
 	 * @param newFurniture the furniture to be added
 	 */
@@ -194,10 +210,9 @@ public class Scene {
 
 	}
 
-	
-	
-	
-	
+	/**
+	 * Testing main to read files ==> exemple de lecture pour la factory/strategy
+	 */
 	public static void main(String args[]) throws IOException{
 		
 		String buildingPath = "matriceTest.asc";
@@ -215,9 +230,6 @@ public class Scene {
 		//DTM
 		readerContx.setIReaderStrategy(readerFact.createReader(5));
 		OutputRGE buildingRGE = readerContx.createOutPutRGE(buildingPath);
-		
-		
-		
 		
 	}
 

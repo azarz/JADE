@@ -1,18 +1,17 @@
-/**
- * 
- */
 package eu.ensg.jade.geometricObject;
 
 /**
- * ISurfacicObject is the class implementing the surfacic objects interface
+ * ISurfacicObject is the interface implementing the surfacic objects interface
  * 
  * @author JADE
- *
  */
+
 public interface ISurfacicObject {
 
+// ========================== METHODS ==============================
+	
 	/**
-	 * This abstract method allows to add an height to a surfacic object
+	 * Allows to add an height to a surfacic object
 	 */
 	public void addHeight();
 }

@@ -1,12 +1,25 @@
-/**
- * 
- */
 package eu.ensg.jade.semantic;
 
 /**
- * @author amoutou
- *
+ * Arc is the class implementing 
+ * 
+ * @author JADE
  */
+
 public class Arc {
+	
+
+// ========================== ATTRIBUTES ===========================
+
+
+// ========================== CONSTRUCTORS =========================	
+
+
+// ========================== GETTERS/SETTERS ======================
+
+
+// ========================== METHODS ==============================
+
+
 
 }

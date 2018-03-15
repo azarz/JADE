@@ -1,6 +1,3 @@
-/**
- * 
- */
 package eu.ensg.jade.semantic;
 
 import com.jme3.app.R.string;
@@ -12,9 +9,11 @@ import eu.ensg.jade.geometricObject.ISurfacicObject;
  * Building is the class implementing a building from the RGE
  * 
  * @author JADE
- *
  */
+
 public class Building implements ISurfacicObject {
+	
+// ========================== ATTRIBUTES ===========================
 
 	/**
 	 * The building height
@@ -29,14 +28,16 @@ public class Building implements ISurfacicObject {
 	 */
 	private double z_max;
 
-
 	/**
 	 * the building coordinates
 	 */
 	private List<double[]> vertices;
-	
+
+// ========================== CONSTRUCTORS =========================	
+
 	/**
 	 * Constructor using all fields
+	 * 
 	 * @param height
 	 * @param z_min
 	 * @param z_max
@@ -48,9 +49,11 @@ public class Building implements ISurfacicObject {
 		this.z_max = z_max;
 		this.vertices = vertices;
 	}
+	
+// ========================== METHODS ==============================
 
 	/**
-	 * This methods adds an elevation to a building
+	 * Adds an elevation to a building
 	 */
 	@Override
 	public void addHeight() {

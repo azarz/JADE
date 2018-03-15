@@ -1,12 +1,24 @@
-/**
- * 
- */
 package eu.ensg.jade.semantic;
 
 /**
- * @author amoutou
- *
+ * Intersection is the class implementing
+ * 
+ * @author JADE
  */
+
 public class Intersection {
+	
+
+// ========================== ATTRIBUTES ===========================
+
+
+// ========================== CONSTRUCTORS =========================	
+
+
+// ========================== GETTERS/SETTERS ======================
+
+
+// ========================== METHODS ==============================
+
 
 }
