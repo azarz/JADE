@@ -31,7 +31,7 @@ public class Vegetation extends Point {
 	/**
 	 * The tree geometry
 	 */
-	private string geometry;
+	private String geometry;
 
 // ========================== METHODS ==============================
 	

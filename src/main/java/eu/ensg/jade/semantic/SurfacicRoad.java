@@ -44,11 +44,20 @@ public class SurfacicRoad implements ISurfacicObject {
 	 * The linear road that has been enlarged to create this road
 	 */
 	private LinearRoad linearRoad;
-	/**
-	 * The surfacic road geometry
-	 */
-	private string geometry;
 	
+	
+	public SurfacicRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, Polygon geom,
+			LinearRoad linearRoad) {
+		this.width = width;
+		this.wayNumber = wayNumber;
+		this.z_ini = z_ini;
+		this.z_fin = z_fin;
+		this.direction = direction;
+		this.geom = geom;
+		this.linearRoad = linearRoad;
+	}
+
+
 // ========================== GETTERS/SETTERS ======================
 	
 	/**
@@ -60,14 +69,6 @@ public class SurfacicRoad implements ISurfacicObject {
 		return width;
 	}
 
-	/**
-	 * Allows to set the road width
-	 * 
-	 * @param width the width to be attributed to the road
-	 */
-	public void setWidth(double width) {
-		this.width = width;
-	}
 
 	/**
 	 * Allows to access the road number of ways
@@ -79,15 +80,6 @@ public class SurfacicRoad implements ISurfacicObject {
 	}
 
 	/**
-	 * Allows to set the number of ways
-	 * 
-	 * @param width the way number to be attributed to the road
-	 */
-	public void setWayNumber(int wayNumber) {
-		this.wayNumber = wayNumber;
-	}
-
-	/**
 	 * Allows to access the elevation at the road initial summit
 	 * 
 	 * @return the elevation at the road initial summit
@@ -96,14 +88,6 @@ public class SurfacicRoad implements ISurfacicObject {
 		return z_ini;
 	}
 
-	/**
-	 * Allows to set the elevation at the road initial summit
-	 * 
-	 * @param z_ini the elevation to be attributed to the road initial summit
-	 */
-	public void setZ_ini(double z_ini) {
-		this.z_ini = z_ini;
-	}
 
 	/**
 	 * Allows to access the elevation at the road final summit
@@ -112,15 +96,6 @@ public class SurfacicRoad implements ISurfacicObject {
 	 */
 	public double getZ_fin() {
 		return z_fin;
-	}
-
-	/**
-	 * Allows to set the elevation at the road final summit
-	 * 
-	 * @param z_fin the elevation to be attributed to the road final summit
-	 */
-	public void setZ_fin(double z_fin) {
-		this.z_fin = z_fin;
 	}
 
 	/**
@@ -133,30 +108,12 @@ public class SurfacicRoad implements ISurfacicObject {
 	}
 
 	/**
-	 * Allows to set the road driving direction
-	 * 
-	 * @param direction the driving direction to be attributed to the road
-	 */	
-	public void setDirection(String direction) {
-		this.direction = direction;
-	}
-
-	/**
 	 * Allows to access the geometry of the road
 	 * 
 	 * @return the road original linear road
 	 */
 	public Polygon getGeom() {
 		return geom;
-	}
-
-	/**
-	 * Allows to set the geometry related to the current road
-	 * 
-	 * @param Polygon the polygon to be attributed to the road
-	 */
-	public void setGeom(Polygon geom) {
-		this.geom = geom;
 	}
 	
 	/**
@@ -166,15 +123,6 @@ public class SurfacicRoad implements ISurfacicObject {
 	 */
 	public LinearRoad getLinearRoad() {
 		return linearRoad;
-	}
-
-	/**
-	 * Allows to set the linear road related to the current road
-	 * 
-	 * @param linearRoad the linear road to be attributed to the road
-	 */
-	public void setLinearRoad(LinearRoad linearRoad) {
-		this.linearRoad = linearRoad;
 	}
 
 // ========================== METHODS ==============================
