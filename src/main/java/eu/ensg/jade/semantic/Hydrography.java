@@ -84,18 +84,18 @@ public class Hydrography implements ISurfacicObject {
 	}
 
 	/**
-	 * Allows to access the water surface maximum elevation
+	 * Allows to access the water surface geometry
 	 * 
-	 * @return the water surface maximum elevation
+	 * @return the water surface geometry
 	 */
 	public MultiPolygon get_geometry() {
 		return geometry;
 	}
 
 	/**
-	 * Allows to set the water surface maximum elevation
+	 * Allows to set the water surface geometry
 	 * 
-	 * @param z_max the maximum elevation to be attributed 
+	 * @param geometry the geometry to be attributed 
 	 */
 	public void set_geometry(MultiPolygon geometry) {
 		this.geometry = geometry;
