@@ -5,6 +5,11 @@ import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import org.junit.Test;
 
@@ -14,7 +19,7 @@ import eu.ensg.jade.input.OutputRGE;
 public class BuildingTest {
 
 	@Test
-	public void toObjTest() throws IOException {
+	public void toObjTest() throws IOException, InterruptedException, ExecutionException {
 		URL url = Thread.currentThread().getContextClassLoader().getResource("RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP");
 		String shpPath = url.getPath();
 		
@@ -31,16 +36,42 @@ public class BuildingTest {
 		
 		String parisBuildingsObj = "";
 		
-		for (int i = 0; i < buildings.size(); i++) {
-			buildings.get(i).addHeight();
-			String buildingObj = buildings.get(i).toOBJ(offsets);
-			
-			parisBuildingsObj += "o Building_" + i + "\n";
-			parisBuildingsObj += buildingObj;
-			System.out.println(i);
-			System.out.println(buildings.size());
-			System.out.println(100* i / buildings.size() + "%");
+		ExecutorService exec = Executors.newFixedThreadPool(4);
+		List<Callable<String>> tasks = new ArrayList<Callable<String>>();
+		
+		System.out.println("start " + System.currentTimeMillis());
+		for (Building building: buildings) {
+			Callable<String> c = new Callable<String>() {
+				
+				@Override
+		        public String call() throws Exception {
+					System.out.println("exec " + System.currentTimeMillis());
+					String parisBuildingsObjTemp = "";
+					
+					building.addHeight();
+					String buildingObj = building.toOBJ(offsets);
+					
+					parisBuildingsObjTemp += "o Building\n";
+					parisBuildingsObjTemp += buildingObj;
+		            return parisBuildingsObjTemp;
+		        }
+				
+			};
+			tasks.add(c);
+			System.out.println(System.currentTimeMillis());
 		}
+		
+		List<Future<String>> results = exec.invokeAll(tasks);
+
+		
+		for (Future<String> fr : results) {
+			System.out.println("append " + System.currentTimeMillis());
+			parisBuildingsObj += fr.get();
+		}
+
+
+		
+		exec.shutdown();
 		
 		PrintWriter out = new PrintWriter("/home/prof/paris.obj");
 		

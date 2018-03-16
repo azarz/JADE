@@ -134,7 +134,7 @@ public class Building implements ISurfacicObject {
 			uvCoords += "vt " + getDistance(vertices.get(i), vertices.get(i+1)) + " " + height/3 + "\n";
 			uvCoords += "vt 0 " + height/3 + "\n";
 			
-			// Calculating the differences between 3 points of th face to calculate the normal vector
+			// Calculating the differences between 3 points of the face to calculate the normal vector
 			double diff1_x = vertices.get(i+1)[0] - vertices.get(i)[0];
 			double diff1_y = vertices.get(i+1)[2] - vertices.get(i)[2];
 			double diff1_z = vertices.get(i+1)[1] - vertices.get(i)[1];
