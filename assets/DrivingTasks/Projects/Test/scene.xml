@@ -95,7 +95,7 @@
       <translation>
         <vector jtype="java_lang_Float" size="3">
           <entry>0</entry>
-          <entry>-0.2</entry>
+          <entry>-0.3</entry>
           <entry>0</entry>
         </vector>
       </translation>
@@ -163,9 +163,9 @@
       <visible>true</visible>
       <collisionShape>meshShape</collisionShape>
       <scale><vector jtype="java_lang_Float" size="3">
-        <entry>0.7</entry>
-        <entry>0.7</entry>
-        <entry>0.7</entry>
+        <entry>0.75</entry>
+        <entry>0.75</entry>
+        <entry>0.75</entry>
       </vector></scale>
       <rotation quaternion="false">
         <vector jtype="java_lang_Float" size="3">
@@ -176,36 +176,9 @@
       </rotation>
       <translation>
         <vector jtype="java_lang_Float" size="3">
-          <entry>-267.61935</entry>
-          <entry>-0.6849897</entry>
-          <entry>189.70506</entry>
-        </vector>
-      </translation>
-    </model> -->
-
-    <!-- <model id="TrafficLight_2" key="Models/TrafficLight/trafficlight.scene" ref="">
-      <mass>0</mass>
-      <visible>true</visible>
-      <collisionShape>meshShape</collisionShape>
-      <scale>
-        <vector jtype="java_lang_Float" size="3">
-          <entry>0.7</entry>
-          <entry>0.7</entry>
-          <entry>0.7</entry>
-        </vector>
-      </scale>
-      <rotation quaternion="false">
-        <vector jtype="java_lang_Float" size="3">
-          <entry>0</entry>
-          <entry>87.08894</entry>
-          <entry>0</entry>
-        </vector>
-      </rotation>
-      <translation>
-        <vector jtype="java_lang_Float" size="3">
-          <entry>-266.3965</entry>
-          <entry>-0.8088537</entry>
-          <entry>181.70226</entry>
+          <entry>-2</entry>
+          <entry>-0.6</entry>
+          <entry>-15</entry>
         </vector>
       </translation>
     </model> -->
@@ -224,20 +197,20 @@
       <rotation quaternion="false">
         <vector jtype="java_lang_Float" size="3">
           <entry>0</entry>
-          <entry>-133.09236</entry>
+          <entry>15</entry>
           <entry>0</entry>
         </vector>
       </rotation>
       <translation>
         <vector jtype="java_lang_Float" size="3">
-          <entry>-538.22473</entry>
-          <entry>19.692575</entry>
-          <entry>-671.4367</entry>
+          <entry>2</entry>
+          <entry>-0.6</entry>
+          <entry>-10</entry>
         </vector>
       </translation>
     </model> -->
 
-    <!-- <model id="BusStop_1" key="Models/RoadSigns/otherSigns/BusStop/BusStop.scene">
+    <!-- <model id="Roundabout_1" key="Models/RoadSigns/blueMandatories/Roundabout/Roundabout.scene">
       <mass>0</mass>
       <visible>true</visible>
       <collisionShape>meshShape</collisionShape>
@@ -251,30 +224,57 @@
       <rotation quaternion="false">
         <vector jtype="java_lang_Float" size="3">
           <entry>0</entry>
-          <entry>-142.51706</entry>
+          <entry>0</entry>
           <entry>0</entry>
         </vector>
       </rotation>
       <translation>
         <vector jtype="java_lang_Float" size="3">
-          <entry>-13.033506</entry>
-          <entry>19.732111</entry>
-          <entry>-6.035781</entry>
+          <entry>4</entry>
+          <entry>-0.6</entry>
+          <entry>-12</entry>
         </vector>
       </translation>
     </model> -->
+
+    <model id="Snowman" key="Kenney/snowmanFancy.obj">
+      <mass>500</mass>
+      <visible>true</visible>
+      <collisionShape>meshShape</collisionShape>
+      <scale>
+        <vector jtype="java_lang_Float" size="3">
+          <entry>0.5</entry>
+          <entry>0.5</entry>
+          <entry>0.5</entry>
+        </vector>
+      </scale>
+      <rotation quaternion="false">
+        <vector jtype="java_lang_Float" size="3">
+          <entry>0</entry>
+          <entry>0</entry>
+          <entry>0</entry>
+        </vector>
+      </rotation>
+      <translation>
+        <vector jtype="java_lang_Float" size="3">
+          <entry>4</entry>
+          <entry>-1</entry>
+          <entry>-12</entry>
+        </vector>
+      </translation>
+    </model>
 
 
   </models>
 
 
-  <geometries>
+  <!-- <geometries>
     <terrain id="myTerrain">
       <imageBasedHeightMap key="Textures/Terrain/mountains512.png" heightScale="0.1" />
       <smoothing percentage="0.9" radius="1" />
       <lod patchSize="65" totalSize="513" distanceFactor="2.7" />
     </terrain>
-  </geometries>
+  </geometries> -->
 
 
   <lights>
@@ -348,6 +348,6 @@
     </directionalLight>
   </lights>
 
-  <skyTexture>Textures/Sky/Bright/cloudtop.dds</skyTexture>
+  <skyTexture>Textures/Sky/Dark/darkgloom.dds</skyTexture>
 
 </scene>

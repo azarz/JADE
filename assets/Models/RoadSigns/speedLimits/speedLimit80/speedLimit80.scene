@@ -9,7 +9,7 @@
   </nodes>
   <externals>
     <item type="material">
-      <file name="Scene.material"/>
+      <file name="speedLimit80.material"/>
     </item>
   </externals>
   <environment>

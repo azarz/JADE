@@ -9,8 +9,8 @@
       <rainingPercentage>-1</rainingPercentage>
       <fogPercentage>-1</fogPercentage>
     </weather>
-    <useBloomFilter>false</useBloomFilter>
-    <useShadowFilter>false</useShadowFilter>
+    <useBloomFilter>true</useBloomFilter>
+    <useShadowFilter>true</useShadowFilter>
   </environment>
 
   <driver>
