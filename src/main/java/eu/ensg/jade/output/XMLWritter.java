@@ -29,16 +29,26 @@ import org.xml.sax.SAXException;
  * 
  * @author JADE
  */
-
 public class XMLWritter extends SceneVisitor{
 	
-	private DocumentBuilder docBuilder;
-	private Transformer transformer;
-	
 // ========================== ATTRIBUTES ===========================
+	
+	/**
+	 * Generic object to create new XML document
+	 */
+	private DocumentBuilder docBuilder;
+	
+	/**
+	 * Generic object to save XML document
+	 */
+	private Transformer transformer;
 
 
-// ========================== CONSTRUCTORS =========================	
+// ========================== CONSTRUCTORS =========================
+	
+	/**
+	 * Default class constructor
+	 */
 	public XMLWritter() {
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -57,12 +67,26 @@ public class XMLWritter extends SceneVisitor{
 
 // ========================== METHODS ==============================
 	
+	
+	/**
+	 * Specialization of the visitor design pattern.
+	 * Take as input a SurfacicObject and <string>sould</strong> build the corresponding XML
+	 * 
+	 * @see eu.ensg.jade.output.SceneVisitor#visit()
+	 */
 	@Override
 	public void visit() {
 		// TODO Do something for the visitor pattern
-		
 	}
 	
+	
+	/**
+	 * Write all the previously gathered data as a new OpenDs Driving Task, in the 'RGE' folder
+	 * 
+	 * <strong>WARNING:</strong> this method might change a lot, do <em>not</em> use
+	 * 
+	 * @param parameters A Map containing the parameters of the XML files
+	 */
 	public void writeAll(Map<String, String> parameters) {
 		String fileInteraction = parameters.get("FileInteraction");
 		String fileScenario = parameters.get("FileScenario");
@@ -79,6 +103,14 @@ public class XMLWritter extends SceneVisitor{
 		this.createSettingsXml(fileSettings);
 	}
 	
+	/**
+	 * Create the main XML file, which is the entry point of the driving task
+	 * 
+	 * @param fileInteraction A custom name for the interaction file, or null
+	 * @param fileScenario A custom name for the scenario file, or null
+	 * @param fileScene A custom name for the scene file, or null
+	 * @param fileSettings A custom name for the settings file, or null
+	 */
 	private void createMainXml(String fileInteraction, String fileScenario, String fileScene, String fileSettings) {
 		try {
 			Document doc = this.importXml("assets/DrivingTasks/Template/main.xml");
@@ -109,6 +141,12 @@ public class XMLWritter extends SceneVisitor{
 		}
 	}
 	
+	/**
+	 * Create the interaction XML file, which define actions triggered by specific events.
+	 * Nothing useful to change here
+	 * 
+	 * @param fileName The name used for the new file
+	 */
 	private void createInteractionXml(String fileName) {
 		try {
 			Document doc = this.importXml("assets/DrivingTasks/Template/interaction.xml");
@@ -122,6 +160,11 @@ public class XMLWritter extends SceneVisitor{
 		}
 	}
 	
+	/**
+	 * Create the scene XML file, which define every object populating the world in OpenDS
+	 * 
+	 * @param fileName The name used for the new file
+	 */
 	private void createSceneXml(String fileName) {
 		try {
 			Document doc = this.importXml("assets/DrivingTasks/Template/scene.xml");
@@ -135,6 +178,20 @@ public class XMLWritter extends SceneVisitor{
 		}
 	}
 	
+	/**
+	 * Create the scenario XML file, which contains information about the world configuration such as:
+	 * <ul>
+	 * <li>the weather</li>
+	 * <li>the car physic parameters</li>
+	 * <li>the automated traffic</li>
+	 * <li>traffic light triggers</li>
+	 * </ul>
+	 * 
+	 * @param fileName The name used for the new file
+	 * @param snowCoeff The percentage of snow, in the range [0,100] (or -1 for none)
+	 * @param rainCoeff The percentage of rain, in the range [0,100] (or -1 for none)
+	 * @param fogCoeff The percentage of fog, in the range [0,100] (or -1 for none)
+	 */
 	private void createScenarioXml(String fileName, double snowCoeff, double rainCoeff, double fogCoeff) {
 		try {
 			Document doc = this.importXml("assets/DrivingTasks/Template/scenario.xml");
@@ -150,6 +207,12 @@ public class XMLWritter extends SceneVisitor{
 		}
 	}
 	
+	/**
+	 * Create the settings XML file, used by OpenDS for various server configuration.
+	 * Nothing useful to change here
+	 * 
+	 * @param fileName The name used for the new file
+	 */
 	private void createSettingsXml(String fileName) {
 		try {
 			Document doc = this.importXml("assets/DrivingTasks/Template/settings.xml");
@@ -163,6 +226,12 @@ public class XMLWritter extends SceneVisitor{
 		}
 	}
 	
+	/**
+	 * Utility method that loads a XML file and build a Document object with it
+	 * 
+	 * @param filePath
+	 * @return
+	 */
 	private Document importXml(String filePath) {
 		Document doc = this.docBuilder.newDocument();
 		try {
@@ -174,6 +243,12 @@ public class XMLWritter extends SceneVisitor{
 		return doc;
 	}
 	
+	/**
+	 * Utility method that save a XML file from a Document object
+	 * 
+	 * @param filePath
+	 * @param xml
+	 */
 	private void exportXml(String filePath, Document xml) {
 		try {
 			DOMSource source = new DOMSource(xml);

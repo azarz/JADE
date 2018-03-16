@@ -19,7 +19,7 @@ import eu.ensg.jade.input.OutputRGE;
 public class BuildingTest {
 
 	@Test
-	public void toObjTest() throws IOException, InterruptedException, ExecutionException {
+	public void toObjTest() throws IOException {
 		URL url = Thread.currentThread().getContextClassLoader().getResource("RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP");
 		String shpPath = url.getPath();
 		
@@ -36,43 +36,18 @@ public class BuildingTest {
 		
 		String parisBuildingsObj = "";
 		
-		ExecutorService exec = Executors.newFixedThreadPool(4);
-		List<Callable<String>> tasks = new ArrayList<Callable<String>>();
-		
-		System.out.println("start " + System.currentTimeMillis());
-		for (Building building: buildings) {
-			Callable<String> c = new Callable<String>() {
-				
-				@Override
-		        public String call() throws Exception {
-					System.out.println("exec " + System.currentTimeMillis());
-					String parisBuildingsObjTemp = "";
-					
-					building.addHeight();
-					String buildingObj = building.toOBJ(offsets);
-					
-					parisBuildingsObjTemp += "o Building\n";
-					parisBuildingsObjTemp += buildingObj;
-		            return parisBuildingsObjTemp;
-		        }
-				
-			};
-			tasks.add(c);
-			System.out.println(System.currentTimeMillis());
+		for (int i = 0; i < buildings.size(); i++) {
+			
+			System.out.println(100*i/buildings.size() + "%");
+			
+			Building building = buildings.get(i);
+			building.addHeight();
+			String buildingObj = building.toOBJ(offsets);
+			
+			parisBuildingsObj += "o Building_" + i + "\n";
+			parisBuildingsObj += buildingObj;
 		}
-		
-		List<Future<String>> results = exec.invokeAll(tasks);
-
-		
-		for (Future<String> fr : results) {
-			System.out.println("append " + System.currentTimeMillis());
-			parisBuildingsObj += fr.get();
-		}
-
-
-		
-		exec.shutdown();
-		
+				
 		PrintWriter out = new PrintWriter("/home/prof/paris.obj");
 		
 		out.println(parisBuildingsObj);
