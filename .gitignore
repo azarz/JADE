@@ -23,6 +23,7 @@ changelog.txt
 *.project
 *.classpath
 *.eclipse
+/.settings/
 /.gradle/
 
 # Keep external libs

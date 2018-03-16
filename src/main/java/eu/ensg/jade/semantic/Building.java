@@ -54,6 +54,34 @@ public class Building implements ISurfacicObject {
 	
 // ========================== GETTERS/SETTERS ======================	
 	
+
+	/**
+	 * Gets the building height
+	 * 
+	 * @return the height
+	 */
+	public double getHeight() {
+		return height;
+	}
+
+	/**
+	 * Gets the building minimum elevation
+	 * 
+	 * @return the z_min
+	 */
+	public double getZ_min() {
+		return z_min;
+	}
+
+	/**
+	 * Gets the building maximum elevation
+	 * 
+	 * @return the z_max
+	 */
+	public double getZ_max() {
+		return z_max;
+	}
+	
 	/**
 	 * Gets the building vertices
 	 * 
