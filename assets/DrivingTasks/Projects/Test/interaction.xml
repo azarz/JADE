@@ -22,7 +22,7 @@
     </activity>
     <activity id="activity02">
       <action id="sendMessage" delay="0" repeat="4">
-        <parameter name="text" value="Rafael" />
+        <parameter name="text" value="Foobar" />
         <parameter name="duration" value="3" />
       </action>
     </activity>

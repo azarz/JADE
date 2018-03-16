@@ -14,12 +14,12 @@
 		<port>2111</port>
 	</HMI>
 
-<!--
+
   <objectLocator>
 		<enable>false</enable>
-		<fileName>trafficObjects.txt</fileName>
+		<fileName>objPosition.txt</fileName>
 	</objectLocator>
- -->
+
 
 
   <controllers>
