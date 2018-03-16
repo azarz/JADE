@@ -97,20 +97,27 @@ public class Building implements ISurfacicObject {
 	}
 
 	/**
-	 * This method will have a return that will soon be specified
+	 * Converts a Building into a string corresponding to the .obj description of it
+	 * 
+	 * @param indexOffsets a list of 3 integers wich correspond to the offset of
+	 * 			- vertex index
+	 * 			- uv coordinates index
+	 * 			- normal coordinates indexs
+	 * in the file
+	 * @return A string corresponding to the .obj description of the Building
 	 */
-	public void toOBJ(List<Integer> offsets){
+	public String toOBJ(List<Integer> indexOffsets){
 		
 		// Fetching the offsets from the offsets parameter
-		int vertexIndexOffset  = offsets.get(0);
-		int textureIndexOffset = offsets.get(1);
-		int normalIndexOffset  = offsets.get(2);
+		int vertexIndexOffset  = indexOffsets.get(0);
+		int textureIndexOffset = indexOffsets.get(1);
+		int normalIndexOffset  = indexOffsets.get(2);
 		
 		String vertexCoords = "";
 		String uvCoords     = "";
 		String normalCoords = "";
 		
-		String faces = "";
+		String faces = "usemtl Wall\n";
 		
 		// Adding the vertex coords as in a obj file
 		for (int i = 0; i < vertices.size(); i++) {
@@ -164,25 +171,27 @@ public class Building implements ISurfacicObject {
 		
 		normalCoords += "vn 0 1 0\n";
 		
+		// Adding the roof to the building
+		faces += "usemtl Roof\n";
 		faces += "f";
 		for (int i = vertices.size()/2; i < vertices.size(); i++) {
 			faces += " " + (i + vertexIndexOffset) + "//" + normalIndexOffset;	
 		}
 		faces += "\n";
 		
+		// Updating the offsets
 		vertexIndexOffset  += vertices.size();
 		textureIndexOffset += 4*vertices.size();
 		normalIndexOffset++;
-		
-		System.out.println(vertexCoords);
-		System.out.println(uvCoords);
-		System.out.println(normalCoords);
-		System.out.println(faces);
 
-		// Updating the offsets
-		offsets.set(0, vertexIndexOffset);
-		offsets.set(1, textureIndexOffset);
-		offsets.set(2, normalIndexOffset);
+		indexOffsets.set(0, vertexIndexOffset);
+		indexOffsets.set(1, textureIndexOffset);
+		indexOffsets.set(2, normalIndexOffset);
+		
+		// Filling the output string
+		String outputString = vertexCoords + uvCoords + normalCoords + faces;
+		
+		return outputString;
 	}
 
 }
