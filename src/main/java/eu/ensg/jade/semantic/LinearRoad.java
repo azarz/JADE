@@ -1,8 +1,7 @@
 package eu.ensg.jade.semantic;
 
-import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.MultiLineString;
-import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.geom.MultiPolygon;
 
 /**
  * LinearRoad is the class implementing the linear roads from the RGE
@@ -136,7 +135,7 @@ public class LinearRoad {
 	 * @return the surfacic road creates
 	 */
 	public SurfacicRoad enlarge(){
-		Polygon geometry =  (Polygon) geom.buffer(width/2);
+		MultiPolygon geometry =  (MultiPolygon) geom.buffer(width/2);
 		
 		SurfacicRoad surfacicRoad = new SurfacicRoad(width, wayNumber, z_ini, z_fin, direction, geometry, this);
 		
