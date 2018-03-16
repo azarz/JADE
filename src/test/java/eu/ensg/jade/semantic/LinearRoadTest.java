@@ -21,8 +21,8 @@ public class LinearRoadTest {
 	@Test
 	public void testEnlarge() {
 
-		MultiLineString geom=new MultiLineString(null, null);
-		LinearRoad linearRoad=new LinearRoad(1, 0, 0, 0, null, geom);
+		//MultiLineString geom = new MultiLineString();
+		//LinearRoad linearRoad = new LinearRoad(1, 0, 0, 0, null, geom);
 		//Comment créer une geom? voir la mocker?
 
 	}
