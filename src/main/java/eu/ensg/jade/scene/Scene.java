@@ -6,9 +6,9 @@ import java.util.List;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.Hydrography;
+import eu.ensg.jade.semantic.PointVegetation;
 import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfacicRoad;
-import eu.ensg.jade.semantic.Vegetation;
 
 import eu.ensg.jade.input.OutputRGE;
 import eu.ensg.jade.input.ReaderContext;
@@ -40,7 +40,7 @@ public class Scene {
 	/**
 	 * List of trees to create {@link Vegetation}
 	 */
-	private List<Vegetation> vegetation;
+	private List<PointVegetation> vegetation;
 	/**
 	 * List of street furniture to create {@link StreetFurniture}
 	 */
@@ -111,7 +111,7 @@ public class Scene {
 	 * 
 	 * @return the scene threes
 	 */
-	public List<Vegetation> getVegetation() {
+	public List<PointVegetation> getVegetation() {
 		return vegetation;
 	}
 
@@ -120,7 +120,7 @@ public class Scene {
 	 * 
 	 * @param vegetation the list of trees to be assigned
 	 */
-	public void setVegetation(List<Vegetation> vegetation) {
+	public void setVegetation(List<PointVegetation> vegetation) {
 		this.vegetation = vegetation;
 	}
 
@@ -195,7 +195,7 @@ public class Scene {
 	 * 
 	 * @param newTree the three to be added
 	 */
-	public void addVege(Vegetation newTree){
+	public void addVege(PointVegetation newTree){
 		this.vegetation.add(newTree);
 
 	}
@@ -215,21 +215,54 @@ public class Scene {
 	 */
 	public static void main(String args[]) throws IOException{
 		
-		String buildingPath = "matriceTest.asc";
+		String buildingPath = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
+		String hydroPath = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
+		String roadPath = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
+		//String vegetPath = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
+		String dtmPath = "matriceTest.asc";
 	
+		//--------------------------------
+		// Gets the data from the files
+		//--------------------------------
 		
-		// We get the data 
-		// Buildind
+		// Factory/Strategy Generation
 		ReaderContext readerContx = new ReaderContext();
 		ReaderFactory readerFact = new ReaderFactory();
-		/*
+		
+		// Buildings
 		readerContx.setIReaderStrategy(readerFact.createReader(1));
 		OutputRGE buildingRGE = readerContx.createOutPutRGE(buildingPath);
-		*/
+		
+		// Hydro
+		readerContx.setIReaderStrategy(readerFact.createReader(2));
+		OutputRGE hydroRGE = readerContx.createOutPutRGE(hydroPath);
+		
+		// Roads
+		readerContx.setIReaderStrategy(readerFact.createReader(3));
+		OutputRGE roadRGE = readerContx.createOutPutRGE(roadPath);
+		
+		// Veget
+		//readerContx.setIReaderStrategy(readerFact.createReader(4));
+		//OutputRGE vegetRGE = readerContx.createOutPutRGE(vegetPath);
 		
 		//DTM
 		readerContx.setIReaderStrategy(readerFact.createReader(5));
-		OutputRGE buildingRGE = readerContx.createOutPutRGE(buildingPath);
+		OutputRGE dtmRGE = readerContx.createOutPutRGE(dtmPath);
+		
+		//--------------------------------
+		// Adds vegetation and urban furnitures
+		//--------------------------------
+				
+		
+		//--------------------------------
+		// Transforms objects to obj
+		//--------------------------------
+		
+		
+		
+		//--------------------------------
+		// Puts obj in xml files
+		//--------------------------------
 		
 	}
 
