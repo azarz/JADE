@@ -42,6 +42,23 @@ public class SurfacicVegetation implements ISurfacicObject {
 		this.geometry = geometry;
 	}
 	
+// ========================== GETTERS AND SETTERS ==============================
+	
+	/**
+	 * @return the nature
+	 */
+	public String getNature() {
+		return nature;
+	}
+
+	/**
+	 * @return the geometry
+	 */
+	public MultiPolygon getGeometry() {
+		return geometry;
+	}
+	
+	
 // ========================== METHODS ==============================
 	
 	/**
@@ -52,6 +69,7 @@ public class SurfacicVegetation implements ISurfacicObject {
 	}
 
 	
+
 
 	@Override
 	public void addHeight() {

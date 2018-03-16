@@ -218,8 +218,8 @@ public class Scene {
 		String buildingPath = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
 		String hydroPath = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
 		String roadPath = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
-		//String vegetPath = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
-		String dtmPath = "matriceTest.asc";
+		String vegetPath = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
+		String dtmPath = "src/test/resources/inputTest/matriceTest.asc";
 	
 		//--------------------------------
 		// Gets the data from the files
@@ -242,8 +242,8 @@ public class Scene {
 		OutputRGE roadRGE = readerContx.createOutPutRGE(roadPath);
 		
 		// Veget
-		//readerContx.setIReaderStrategy(readerFact.createReader(4));
-		//OutputRGE vegetRGE = readerContx.createOutPutRGE(vegetPath);
+		readerContx.setIReaderStrategy(readerFact.createReader(4));
+		OutputRGE vegetRGE = readerContx.createOutPutRGE(vegetPath);
 		
 		//DTM
 		readerContx.setIReaderStrategy(readerFact.createReader(5));

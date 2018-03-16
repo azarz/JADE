@@ -1,6 +1,5 @@
 package eu.ensg.jade.semantic;
 
-import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.MultiLineString;
 import com.vividsolutions.jts.geom.Polygon;
 
