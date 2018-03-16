@@ -32,20 +32,19 @@ public class Hydrography implements ISurfacicObject {
 			
 // ========================== CONSTRUCTORS =========================	
 
-		/**
-		 * Constructor using all fields
-		 * 
-		 * @param nature
-		 * @param z_average
-		 * @param geometry
-		 */
-		public Hydrography(String nature,double z_average, MultiPolygon geometry) {
-			this.nature = nature;
-			this.z_average = z_average;
-			this.geometry = geometry;
-		}
+	/**
+	 * Constructor using all fields
+	 * 
+	 * @param nature
+	 * @param z_average
+	 * @param geometry
+	 */
+	public Hydrography(String nature,double z_average, MultiPolygon geometry) {
+		this.nature = nature;
+		this.z_average = z_average;
+		this.geometry = geometry;
+	}
 		
-
 // ========================== GETTERS/SETTERS ======================
 
 	/**
@@ -69,9 +68,9 @@ public class Hydrography implements ISurfacicObject {
 
 
 	/**
-	 * Allows to access the water surface maximum elevation
+	 * Allows to access the water surface geometry
 	 * 
-	 * @return the water surface maximum elevation
+	 * @return the water surface geometry
 	 */
 	public MultiPolygon getGeometry() {
 		return geometry;
