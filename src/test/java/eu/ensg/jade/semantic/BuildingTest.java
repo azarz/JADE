@@ -1,10 +1,12 @@
 package eu.ensg.jade.semantic;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,9 @@ public class BuildingTest {
 		offsets.add(1);
 		offsets.add(1);
 		
+		File file = new File("paris.obj");
+		Files.deleteIfExists(file.toPath());
+		
 		try(FileWriter fw = new FileWriter("paris.obj", true);
 			    BufferedWriter bw = new BufferedWriter(fw);
 			    PrintWriter out = new PrintWriter(bw)){
@@ -47,7 +52,7 @@ public class BuildingTest {
 				out.print(buildingObj);
 			}
 		} catch (IOException e) {
-			System.out.println("file error");
+			e.printStackTrace();
 		}
 				
 	}

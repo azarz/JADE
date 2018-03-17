@@ -209,7 +209,7 @@ public class Building implements ISurfacicObject {
 		
 		// Updating the offsets
 		vertexIndexOffset  += vertices.size();
-		textureIndexOffset += 4*vertices.size();
+		textureIndexOffset += 4*(vertices.size()/2 - 1);
 		normalIndexOffset++;
 
 		indexOffsets.set(0, vertexIndexOffset);
