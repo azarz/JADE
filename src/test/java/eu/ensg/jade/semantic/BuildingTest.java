@@ -40,6 +40,7 @@ public class BuildingTest {
 				BufferedWriter bw = new BufferedWriter(fw);
 				PrintWriter out = new PrintWriter(bw)){
 		
+			out.print("mtllib paris.mtl\n");
 			for (int i = 0; i < buildings.size(); i++) {
 				
 				System.out.println(100*i/buildings.size() + "%");

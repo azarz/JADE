@@ -2,6 +2,12 @@ package eu.ensg.jade.semantic;
 
 import java.util.List;
 
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.GeometryCollection;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.polytriangulate.EarClipper;
+
 import eu.ensg.jade.geometricObject.WorldObject;
 
 /**
@@ -145,9 +151,9 @@ public class Building extends WorldObject {
 		
 		// Adding the vertex coords as in a obj file
 		for (int i = 0; i < vertices.size(); i++) {
-			vertexCoords += "v " + vertices.get(i)[0] + " "
+			vertexCoords += "v " + (vertices.get(i)[0]-655686.55) + " "
 							     + vertices.get(i)[2] + " "
-							     + vertices.get(i)[1] + "\n";
+							     + -1*(vertices.get(i)[1]-6861084.26) + "\n";
 			
 		}
 		
@@ -175,11 +181,11 @@ public class Building extends WorldObject {
 
 			// Calculating the face corresponding indices
 			faces += "f " + (i + vertexIndexOffset) + "/" + 
-								(4*i + textureIndexOffset) + "/" + 
+								(4*i+1 + textureIndexOffset) + "/" + 
 								(i+normalIndexOffset) + " "
 								
 						  + (i+1 + vertexIndexOffset) + "/" + 
-								(4*i+1 + textureIndexOffset) + "/" + 
+								(4*i + textureIndexOffset) + "/" + 
 								(i+normalIndexOffset) + " "
 								
 						  + (i+1 + vertices.size()/2 + vertexIndexOffset) + "/" + 
@@ -197,14 +203,51 @@ public class Building extends WorldObject {
 		
 		// Adding the roof to the building
 		faces += "usemtl Roof\n";
-		faces += "f";
+		Coordinate[] roofCoords = new Coordinate[vertices.size()/2 + 1];
 		for (int i = vertices.size()/2; i < vertices.size(); i++) {
-			faces += " " + (i + vertexIndexOffset) + "//" + normalIndexOffset;	
+			double[] vertex = vertices.get(i);
+			roofCoords[i-vertices.size()/2] = new Coordinate(vertex[0], vertex[1], vertex[2]);	
 		}
-		faces += "\n";
+		roofCoords[vertices.size()/2] = roofCoords[0];
+				
+		GeometryFactory geometryFactory = new GeometryFactory();
+		Polygon polygon = geometryFactory.createPolygon(roofCoords);
+
+		int newVertexOffset = vertices.size();
+		
+		try {
+			// Using the class from https://github.com/dhtong to triangulate the polygon
+			EarClipper earClipper = new EarClipper(polygon);
+			GeometryCollection triangles = (GeometryCollection) earClipper.getResult();
+			
+			int numTriangles = triangles.getNumGeometries();
+
+			for (int tri = 0; tri < numTriangles; tri++) {
+				
+				Polygon triangle = (Polygon) triangles.getGeometryN(tri);
+				
+				Coordinate[] coords = triangle.getCoordinates();
+				
+				faces += "f";
+				
+				// Adding the vertex coords as in a obj file
+				for (int i = 0; i < coords.length - 1; i++) {
+					vertexCoords += "v " + (coords[i].x-655686.55) + " "
+									     + coords[i].z + " "
+									     + -1*(coords[i].y-6861084.26) + "\n";
+					
+					faces += " " + (i + vertexIndexOffset + newVertexOffset) + "//" + normalIndexOffset;
+				}
+				
+				faces += "\n";
+				newVertexOffset += 3;
+			}
+		} catch (IllegalStateException e){
+			System.out.println("unable to create roof");
+		}
 		
 		// Updating the offsets
-		vertexIndexOffset  += vertices.size();
+		vertexIndexOffset  += newVertexOffset;
 		textureIndexOffset += 4*(vertices.size()/2 - 1);
 		normalIndexOffset++;
 

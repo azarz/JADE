@@ -7,7 +7,7 @@
     </sounds>
 		
 	<models>
-		<model id="grassPlane" key="Scenes/grassPlane/Scene.j3o">
+		<!-- <model id="grassPlane" key="Scenes/grassPlane/Scene.j3o">
 			<mass>0</mass>
 			<visible>true</visible>
 			<collisionShape>meshShape</collisionShape>
@@ -29,12 +29,12 @@
 
 			<translation>
 				<vector jtype="java_lang_Float" size="3">
-					<entry>655686.55</entry>
 					<entry>0</entry>
-					<entry>6861084.26</entry>
+					<entry>0</entry>
+					<entry>0</entry>
 				</vector>
 			</translation>
-		</model>
+		</model> -->
          
 		<model id="driverCar" key="Models/Cars/drivingCars/bmw1/Car.j3o">
 			<mass>800</mass>
@@ -60,9 +60,9 @@
 	
 			<translation>
 				<vector jtype="java_lang_Float" size="3">
-					<entry>655686.55</entry>
-					<entry>1.0</entry>
-					<entry>6861084.26</entry>
+					<entry>0</entry>
+					<entry>80.0</entry>
+					<entry>0</entry>
 				</vector>
 			</translation>
 	
@@ -84,7 +84,7 @@
 			<rotation quaternion="false">
 				<vector jtype="java_lang_Float" size="3">
 					<entry>0</entry>
-					<entry>90</entry>
+					<entry>0</entry>
 					<entry>0</entry>
 				</vector>
 			</rotation>
@@ -97,7 +97,49 @@
 				</vector>
 			</translation>
 		</model>
+
+
+		<model id="terrain" key="" ref="myTerrain">
+	      <mass>0</mass>
+	      <material key="Materials/parisTerrain.j3m" />
+	      <visible>true</visible>
+	      <collisionShape>meshShape</collisionShape>
+	      <scale>
+	        <vector jtype="java_lang_Float" size="3">
+	          <entry>25</entry>
+	          <entry>1</entry>
+	          <entry>25</entry>
+	        </vector>
+	      </scale>
+
+	      <rotation quaternion="false">
+	        <vector jtype="java_lang_Float" size="3">
+	          <entry>0</entry>
+	          <entry>0</entry>
+	          <entry>0</entry>
+	        </vector>
+	      </rotation>
+
+	      <translation>
+	        <vector jtype="java_lang_Float" size="3">
+	          <entry>0</entry>
+	          <entry>0</entry>
+	          <entry>0</entry>
+	        </vector>
+	      </translation>
+
+	      <shadowMode>Receive</shadowMode>
+    	</model>
+
 	</models>
+
+	<geometries>
+	    <terrain id="myTerrain">
+	      <imageBasedHeightMap key="Textures/Terrain/paris.png" heightScale="0.33" />
+	      <smoothing percentage="0.9" radius="1" />
+	      <lod patchSize="65" totalSize="513" distanceFactor="1" />
+	    </terrain>
+  	</geometries>
     
     <gravity>9.81</gravity>
     

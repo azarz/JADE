@@ -94,6 +94,7 @@ public class EarClipper {
     }
 
     private void computeEars() {
+    	int counter = 0;
         boolean finished = false;
         boolean foundEar = false;
         int cornerCount = 0;
@@ -130,6 +131,11 @@ public class EarClipper {
                 cornerCount = 0;
             } else {
                 polyShell.nextCorner(true);
+            }
+            counter++;
+            System.out.println(counter);
+            if (counter > 20) {
+            	finished = true;
             }
             cornerCandidate = polyShell.getCornerCandidateVertices();
         } while (!finished);
