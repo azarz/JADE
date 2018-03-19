@@ -1,4 +1,4 @@
-package eu.ensg.jade.semantic;
+	package eu.ensg.jade.semantic;
 
 import com.jme3.app.R.string;
 

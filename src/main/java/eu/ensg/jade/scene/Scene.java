@@ -6,9 +6,9 @@ import java.util.List;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.Hydrography;
-import eu.ensg.jade.semantic.PointVegetation;
+import eu.ensg.jade.semantic.VegetationPoint;
 import eu.ensg.jade.semantic.StreetFurniture;
-import eu.ensg.jade.semantic.SurfacicRoad;
+import eu.ensg.jade.semantic.ArealRoad;
 
 import eu.ensg.jade.input.OutputRGE;
 import eu.ensg.jade.input.ReaderContext;
@@ -26,9 +26,9 @@ public class Scene {
 // ========================== ATTRIBUTES ===========================
 
 	/**
-	 * List of surfacic roads to create {@link SurfacicRoad}
+	 * List of surfacic roads to create {@link ArealRoad}
 	 */
-	private List<SurfacicRoad> roads;
+	private List<ArealRoad> roads;
 	/**
 	 * List of buildings to create {@link Building}
 	 */
@@ -40,7 +40,7 @@ public class Scene {
 	/**
 	 * List of trees to create {@link Vegetation}
 	 */
-	private List<PointVegetation> vegetation;
+	private List<VegetationPoint> vegetation;
 	/**
 	 * List of street furniture to create {@link StreetFurniture}
 	 */
@@ -57,7 +57,7 @@ public class Scene {
 	 * 
 	 * @return the scene surfacic roads
 	 */
-	public List<SurfacicRoad> getRoads() {
+	public List<ArealRoad> getRoads() {
 		return roads;
 	}
 
@@ -66,7 +66,7 @@ public class Scene {
 	 * 
 	 * @param roads the list of surfacic roads to be assigned
 	 */
-	public void setRoads(List<SurfacicRoad> roads) {
+	public void setRoads(List<ArealRoad> roads) {
 		this.roads = roads;
 	}
 	
@@ -111,7 +111,7 @@ public class Scene {
 	 * 
 	 * @return the scene threes
 	 */
-	public List<PointVegetation> getVegetation() {
+	public List<VegetationPoint> getVegetation() {
 		return vegetation;
 	}
 
@@ -120,7 +120,7 @@ public class Scene {
 	 * 
 	 * @param vegetation the list of trees to be assigned
 	 */
-	public void setVegetation(List<PointVegetation> vegetation) {
+	public void setVegetation(List<VegetationPoint> vegetation) {
 		this.vegetation = vegetation;
 	}
 
@@ -167,7 +167,7 @@ public class Scene {
 	 * 
 	 * @param newRoad the Road to be added
 	 */
-	public void addRoad(SurfacicRoad newRoad){
+	public void addRoad(ArealRoad newRoad){
 		this.roads.add(newRoad);
 	}
 	
@@ -195,7 +195,7 @@ public class Scene {
 	 * 
 	 * @param newTree the three to be added
 	 */
-	public void addVege(PointVegetation newTree){
+	public void addVegetation(VegetationPoint newTree){
 		this.vegetation.add(newTree);
 
 	}

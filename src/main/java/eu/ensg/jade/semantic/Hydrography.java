@@ -1,5 +1,7 @@
 package eu.ensg.jade.semantic;
 
+import java.util.List;
+
 import com.vividsolutions.jts.geom.MultiPolygon;
 
 import eu.ensg.jade.geometricObject.WorldObject;
@@ -84,12 +86,16 @@ public class Hydrography extends WorldObject {
 	public void addHeight() {
 
 	}
-	
+
 	/**
 	 * This method will have a return that will soon be specified
+	 * 
+	 * @see eu.ensg.jade.geometricObject.WorldObject#toOBJ(java.util.List)
 	 */
-	public void toOBJ(){
-		
+	@Override
+	public String toOBJ(List<Integer> indexOffsets) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

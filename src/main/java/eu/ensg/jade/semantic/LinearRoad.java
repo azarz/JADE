@@ -57,13 +57,13 @@ public class LinearRoad extends Road{
 	/**
 	 * Enlarges the current road
 	 * 
-	 * @return the surfacic road creates
+	 * @return the road area created
 	 */
-	public SurfacicRoad enlarge(){
+	public ArealRoad enlarge(){
 		
 		Polygon geometry =  (Polygon) this.geometry.buffer(width/2);
 		
-		SurfacicRoad surfacicRoad = new SurfacicRoad(width, wayNumber, z_ini, z_fin, direction, geometry);
+		ArealRoad surfacicRoad = new ArealRoad(width, wayNumber, z_ini, z_fin, direction, geometry);
 		
 		return surfacicRoad;
 		
@@ -74,8 +74,8 @@ public class LinearRoad extends Road{
 	 * 
 	 * @return the surfacic smoothed road
 	 */
-	public SurfacicRoad smooth(){
-		SurfacicRoad surf = this.enlarge();
+	public ArealRoad smooth(){
+		ArealRoad surf = this.enlarge();
 		return null;
 	}
 	

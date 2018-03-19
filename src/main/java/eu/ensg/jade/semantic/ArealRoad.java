@@ -16,7 +16,7 @@ import eu.ensg.jade.geometricObject.Road;
  * @author JADE
  */
 
-public class SurfacicRoad extends Road {
+public class ArealRoad extends Road {
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -38,7 +38,7 @@ public class SurfacicRoad extends Road {
 	 * @param direction
 	 * @param geometry
 	 */
-	public SurfacicRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, Polygon geometry) {
+	public ArealRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, Polygon geometry) {
 		super(width, wayNumber, z_ini, z_fin, direction);
 		this.geometry = geometry;
 	}
@@ -48,7 +48,7 @@ public class SurfacicRoad extends Road {
 	 * @param width the width used as a buffer around the LinearRoad
 	 * @param lineRoad the original LinearRoad
 	 */
-	public SurfacicRoad(double width, LinearRoad lineRoad) {
+	public ArealRoad(double width, LinearRoad lineRoad) {
 		super(width, lineRoad.getWayNumber(), lineRoad.getZ_ini(), lineRoad.getZ_fin(), lineRoad.getDirection());
 		this.geometry =  (Polygon) lineRoad.getGeom().buffer(width/2);
 	}
