@@ -6,7 +6,7 @@ import java.util.List;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.Hydrography;
-import eu.ensg.jade.semantic.PointVegetation;
+import eu.ensg.jade.semantic.VegetationPoint;
 import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.ArealRoad;
 
@@ -40,7 +40,7 @@ public class Scene {
 	/**
 	 * List of trees to create {@link Vegetation}
 	 */
-	private List<PointVegetation> vegetation;
+	private List<VegetationPoint> vegetation;
 	/**
 	 * List of street furniture to create {@link StreetFurniture}
 	 */
@@ -111,7 +111,7 @@ public class Scene {
 	 * 
 	 * @return the scene threes
 	 */
-	public List<PointVegetation> getVegetation() {
+	public List<VegetationPoint> getVegetation() {
 		return vegetation;
 	}
 
@@ -120,7 +120,7 @@ public class Scene {
 	 * 
 	 * @param vegetation the list of trees to be assigned
 	 */
-	public void setVegetation(List<PointVegetation> vegetation) {
+	public void setVegetation(List<VegetationPoint> vegetation) {
 		this.vegetation = vegetation;
 	}
 
@@ -195,7 +195,7 @@ public class Scene {
 	 * 
 	 * @param newTree the three to be added
 	 */
-	public void addVegetation(PointVegetation newTree){
+	public void addVegetation(VegetationPoint newTree){
 		this.vegetation.add(newTree);
 
 	}
