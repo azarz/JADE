@@ -37,8 +37,8 @@ public class BuildingTest {
 		Files.deleteIfExists(file.toPath());
 		
 		try(FileWriter fw = new FileWriter("paris.obj", true);
-			    BufferedWriter bw = new BufferedWriter(fw);
-			    PrintWriter out = new PrintWriter(bw)){
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter out = new PrintWriter(bw)){
 		
 			for (int i = 0; i < buildings.size(); i++) {
 				

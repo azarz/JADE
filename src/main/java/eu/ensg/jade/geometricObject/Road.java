@@ -1,6 +1,9 @@
 package eu.ensg.jade.geometricObject;
 
-import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.MultiPolygon;
+
+import eu.ensg.jade.semantic.LinearRoad;
+import eu.ensg.jade.semantic.SurfacicRoad;
 
 /**
  * Road is the super-class for roads
@@ -33,10 +36,8 @@ public class Road {
 		 */
 		protected String direction;
 		
-		/**
-		 * The Geometry
-		 */
-		protected Geometry geom;
+		
+// ========================== CONSTRUCTORS =========================
 		
 		/**
 		 * Constructor using all fields
@@ -47,13 +48,12 @@ public class Road {
 		 * @param z_fin
 		 * @param direction
 		 */
-		public Road(double width, int wayNumber, double z_ini, double z_fin, String direction, Geometry geom) {
+		public Road(double width, int wayNumber, double z_ini, double z_fin, String direction) {
 			this.width = width;
 			this.wayNumber = wayNumber;
 			this.z_ini = z_ini;
 			this.z_fin = z_fin;
 			this.direction = direction;
-			this.geom=geom;
 		}
 		
 		
@@ -105,15 +105,22 @@ public class Road {
 		public String getDirection() {
 			return direction;
 		}
-
+		
+		
+		
 		/**
-		 * Allows to access the geometry of the road
+		 * Create a new polygonal road from a line road
 		 * 
-		 * @return the road original linear road
+		 * @param lineRoad the entry LineRoad to enlarge
+		 * @param width the new width of the road
+		 * @return a new SurfacicRoad
 		 */
-		public Geometry getGeom() {
-			return geom;
-		}		
+		public static SurfacicRoad enlarge(LinearRoad lineRoad, double width) {
+			MultiPolygon geometry =  (MultiPolygon) lineRoad.getGeom().buffer(width/2);
+			
+			return new SurfacicRoad(width, lineRoad.getWayNumber(), lineRoad.getZ_ini(), 
+					lineRoad.getZ_fin(), lineRoad.getDirection(), geometry);
+		}
 		
 }
 

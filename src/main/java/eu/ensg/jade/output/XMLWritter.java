@@ -2,6 +2,7 @@ package eu.ensg.jade.output;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -20,6 +21,12 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import eu.ensg.jade.geometricObject.WorldObject;
+import eu.ensg.jade.semantic.Building;
+import eu.ensg.jade.semantic.Hydrography;
+import eu.ensg.jade.semantic.PointVegetation;
+import eu.ensg.jade.semantic.StreetFurniture;
+import eu.ensg.jade.semantic.SurfacicRoad;
+import eu.ensg.jade.semantic.SurfacicVegetation;
 
 /**
  * XMLWriter is the class implementing the writing of the XML file defining the scene
@@ -68,19 +75,6 @@ public class XMLWritter extends ObjectVisitor{
 
 
 // ========================== METHODS ==============================
-	
-	
-	/**
-	 * Specialization of the visitor design pattern.
-	 * Take as input a SurfacicObject and <strong>should</strong> build the corresponding XML
-	 * 
-	 * @see eu.ensg.jade.output.ObjectVisitor#visit(eu.ensg.jade.geometricObject.Point)
-	 */
-	@Override
-	public void visit(WorldObject e) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	/**
 	 * Write all the previously gathered data as a new OpenDs Driving Task, in the 'RGE' folder
@@ -264,6 +258,57 @@ public class XMLWritter extends ObjectVisitor{
 		} catch (TransformerException e) {
 			e.printStackTrace();
 		}
+	}
+
+
+
+	@Override
+	public void visit(Building building) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void visit(SurfacicRoad road) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void visit(Hydrography hydro) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void visit(StreetFurniture object) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void visit(SurfacicVegetation vegetation) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void visit(PointVegetation vegetation) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void visit(List<WorldObject> objList) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 
