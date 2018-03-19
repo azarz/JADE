@@ -250,6 +250,7 @@ public class Scene {
 		OutputRGE dtmRGE = readerContx.createOutPutRGE(dtmPath);
 		
 		dtmRGE.getDTM().toPNG();
+		
 		//--------------------------------
 		// Adds vegetation and urban furnitures
 		//--------------------------------

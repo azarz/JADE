@@ -1,6 +1,7 @@
 package eu.ensg.jade.semantic;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
@@ -73,10 +74,11 @@ public class DTM {
 	public void toPNG() throws IOException{
 		
 		BufferedImage bufferImageDTM = new BufferedImage(this.headerDTM.get("ncols").intValue(),this.headerDTM.get("nrows").intValue(), BufferedImage.TYPE_BYTE_GRAY);
-	    for(int y = 0; y < this.headerDTM.get("nrows").intValue() ; y++){
+		WritableRaster wr = bufferImageDTM.getRaster() ;
+		for(int y = 0; y < this.headerDTM.get("nrows").intValue() ; y++){
 	        for(int x = 0; x < this.headerDTM.get("ncols").intValue() ; x++){
-	        	System.out.println("value "+(int) this.tabDTM[y][x]);
-	        	bufferImageDTM.setRGB(x, y, (int) this.tabDTM[y][x]);
+	        	//bufferImageDTM.setRGB(x, y, (int) this.tabDTM[y][x]);
+	        	wr.setSample(x, y, 0, (int) this.tabDTM[y][x]) ;
 	        }
 	    }
 	    File outputfile = new File("src/test/resources/imageDTM.png");
