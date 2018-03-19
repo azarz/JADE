@@ -19,6 +19,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import eu.ensg.jade.geometricObject.WorldObject;
+
 /**
  * XMLWriter is the class implementing the writing of the XML file defining the scene
  * 
@@ -29,7 +31,7 @@ import org.xml.sax.SAXException;
  * 
  * @author JADE
  */
-public class XMLWritter extends SceneVisitor{
+public class XMLWritter extends ObjectVisitor{
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -69,16 +71,14 @@ public class XMLWritter extends SceneVisitor{
 	
 	
 	/**
-	 * Specialization of the visitor design pattern.
-	 * Take as input a SurfacicObject and <string>sould</strong> build the corresponding XML
-	 * 
-	 * @see eu.ensg.jade.output.SceneVisitor#visit()
+	 * @see eu.ensg.jade.output.ObjectVisitor#visit(eu.ensg.jade.geometricObject.Point)
 	 */
 	@Override
-	public void visit() {
-		// TODO Do something for the visitor pattern
+	public void visit(WorldObject e) {
+		// TODO Auto-generated method stub
+		
 	}
-	
+
 	
 	/**
 	 * Write all the previously gathered data as a new OpenDs Driving Task, in the 'RGE' folder
