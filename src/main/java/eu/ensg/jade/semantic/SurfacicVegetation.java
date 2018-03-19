@@ -1,11 +1,8 @@
 package eu.ensg.jade.semantic;
 
-import com.jme3.app.R.string;
 import com.vividsolutions.jts.geom.MultiPolygon;
-import com.vividsolutions.jts.geom.Polygon;
 
-import eu.ensg.jade.geometricObject.ISurfacicObject;
-import eu.ensg.jade.geometricObject.Point;
+import eu.ensg.jade.geometricObject.WorldObject;
 
 /**
  * Vegetation is the class implementing the vegetation to be added to the scene
@@ -13,7 +10,7 @@ import eu.ensg.jade.geometricObject.Point;
  * @author JADE
  */
 
-public class SurfacicVegetation implements ISurfacicObject {
+public class SurfacicVegetation extends WorldObject {
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -70,8 +67,6 @@ public class SurfacicVegetation implements ISurfacicObject {
 
 	
 
-
-	@Override
 	public void addHeight() {
 		// TODO Auto-generated method stub
 		
