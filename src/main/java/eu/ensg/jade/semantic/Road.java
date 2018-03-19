@@ -22,9 +22,9 @@ public class Road extends WorldObject {
 		 */
 		protected double width;
 		/**
-		 * The road number of ways
+		 * The number of lane
 		 */
-		protected int wayNumber;
+		protected int laneNumber;
 		/**
 		 * The elevation at the initial road summit
 		 */
@@ -52,9 +52,9 @@ public class Road extends WorldObject {
 		 * @param z_fin
 		 * @param direction
 		 */
-		public Road(double width, int wayNumber, double z_ini, double z_fin, String direction, Geometry geom) {
+		public Road(double width, int laneNumber, double z_ini, double z_fin, String direction, Geometry geom) {
 			this.width = width;
-			this.wayNumber = wayNumber;
+			this.laneNumber = laneNumber;
 			this.z_ini = z_ini;
 			this.z_fin = z_fin;
 			this.direction = direction;
@@ -79,8 +79,8 @@ public class Road extends WorldObject {
 		 * 
 		 * @return the road number of ways
 		 */
-		public int getWayNumber() {
-			return wayNumber;
+		public int getLaneNumber() {
+			return laneNumber;
 		}
 
 		/**

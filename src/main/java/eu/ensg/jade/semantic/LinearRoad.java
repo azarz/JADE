@@ -57,7 +57,7 @@ public class LinearRoad extends Road{
 	/**
 	 * Enlarges the current road
 	 * 
-	 * @return the surfacic road creates
+	 * @return the road area created
 	 */
 	public ArealRoad enlarge(){
 		

@@ -59,13 +59,6 @@ public class VegetationArea extends WorldObject {
 	
 	
 // ========================== METHODS ==============================
-	
-	/**
-	 * This method will have a return that will soon be specified
-	 */
-	public void toOBJ(){
-		
-	}
 
 	public void addHeight() {
 		// TODO Auto-generated method stub
