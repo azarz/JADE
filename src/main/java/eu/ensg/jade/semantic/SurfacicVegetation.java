@@ -65,8 +65,6 @@ public class SurfacicVegetation extends WorldObject {
 		
 	}
 
-	
-
 	public void addHeight() {
 		// TODO Auto-generated method stub
 		

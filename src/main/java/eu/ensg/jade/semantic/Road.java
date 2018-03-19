@@ -3,13 +3,15 @@ package eu.ensg.jade.semantic;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.MultiPolygon;
 
+import eu.ensg.jade.geometricObject.WorldObject;
+
 /**
  * Road is the super-class for roads
  * 
  * @author JADE
  */
 
-public class Road {	
+public class Road extends WorldObject {	
 	
 // ========================== ATTRIBUTES ===========================
 
