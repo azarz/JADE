@@ -2,7 +2,6 @@ package eu.ensg.jade.semantic;
 
 import java.util.Map;
 
-import eu.ensg.jade.geometricObject.ISurfacicObject;
 
 /**
  * DTM is the class implementing a DTM
@@ -10,7 +9,7 @@ import eu.ensg.jade.geometricObject.ISurfacicObject;
  * @author JADE
  */
 
-public class DTM implements ISurfacicObject {
+public class DTM {
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -65,7 +64,6 @@ public class DTM implements ISurfacicObject {
 	/**
 	 * Allows to add an elevation to a flat ground
 	 */
-	@Override
 	public void addHeight() {
 		
 	}

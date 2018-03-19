@@ -6,15 +6,13 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.MultiPolygon;
 
-import eu.ensg.jade.geometricObject.ISurfacicObject;
-
 /**
  * SurfacicRoad is the class implementing a surfacic road object
  * 
  * @author JADE
  */
 
-public class SurfacicRoad extends Road implements ISurfacicObject {
+public class SurfacicRoad extends Road{
 	
 // ========================== ATTRIBUTES ===========================
 

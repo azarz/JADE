@@ -4,7 +4,6 @@ import com.jme3.app.R.string;
 import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Polygon;
 
-import eu.ensg.jade.geometricObject.ISurfacicObject;
 import eu.ensg.jade.geometricObject.Point;
 
 /**
@@ -13,7 +12,7 @@ import eu.ensg.jade.geometricObject.Point;
  * @author JADE
  */
 
-public class SurfacicVegetation implements ISurfacicObject {
+public class SurfacicVegetation{
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -71,7 +70,7 @@ public class SurfacicVegetation implements ISurfacicObject {
 	
 
 
-	@Override
+
 	public void addHeight() {
 		// TODO Auto-generated method stub
 		
