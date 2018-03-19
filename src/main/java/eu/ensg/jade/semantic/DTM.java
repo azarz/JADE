@@ -1,6 +1,11 @@
 package eu.ensg.jade.semantic;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
 
 import eu.ensg.jade.geometricObject.ISurfacicObject;
 
@@ -61,20 +66,22 @@ public class DTM implements ISurfacicObject {
 
 
 // ========================== METHODS ==============================
-
-	/**
-	 * Allows to add an elevation to a flat ground
-	 */
-	@Override
-	public void addHeight() {
-		
-	}
 	
 	/**
-	 * This method will have a return that will soon be specified
+	 * Transforms a DTM table into a PNG file 
+	 * 
+	 * @throws IOException 
 	 */
-	public void toOBJ(){
+	public void toPNG() throws IOException{
 		
+		BufferedImage bufferImageDTM = new BufferedImage(this.headerDTM.get("ncols").intValue(),this.headerDTM.get("nrows").intValue(), BufferedImage.TYPE_BYTE_GRAY);
+	    for(int y = 0; y < this.headerDTM.get("nrows").intValue() ; y++){
+	        for(int x = 0; x < this.headerDTM.get("ncols").intValue() ; x++){
+	        	bufferImageDTM.setRGB(x, y, (int) this.tabDTM[y][x]);
+	        }
+	    }
+	    File outputfile = new File("src/test/resources/imageDTM.png");
+	    ImageIO.write(bufferImageDTM, "png", outputfile);
 	}
 
 }

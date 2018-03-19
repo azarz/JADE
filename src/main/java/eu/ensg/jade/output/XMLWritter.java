@@ -70,7 +70,7 @@ public class XMLWritter extends SceneVisitor{
 	
 	/**
 	 * Specialization of the visitor design pattern.
-	 * Take as input a SurfacicObject and <string>sould</strong> build the corresponding XML
+	 * Take as input a SurfacicObject and <strong>should</strong> build the corresponding XML
 	 * 
 	 * @see eu.ensg.jade.output.SceneVisitor#visit()
 	 */

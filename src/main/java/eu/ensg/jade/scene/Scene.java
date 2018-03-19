@@ -219,7 +219,7 @@ public class Scene {
 		String hydroPath = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
 		String roadPath = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
 		String vegetPath = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
-		String dtmPath = "src/test/resources/inputTest/matriceTest.asc";
+		String dtmPath = "src/test/resources/RGE/Dpt_75_asc.asc";
 	
 		//--------------------------------
 		// Gets the data from the files
@@ -249,6 +249,7 @@ public class Scene {
 		readerContx.setIReaderStrategy(readerFact.createReader(5));
 		OutputRGE dtmRGE = readerContx.createOutPutRGE(dtmPath);
 		
+		dtmRGE.getDTM().toPNG();
 		//--------------------------------
 		// Adds vegetation and urban furnitures
 		//--------------------------------
