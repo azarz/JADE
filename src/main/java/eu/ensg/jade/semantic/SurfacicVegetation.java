@@ -1,5 +1,7 @@
 package eu.ensg.jade.semantic;
 
+import java.util.List;
+
 import com.vividsolutions.jts.geom.MultiPolygon;
 
 import eu.ensg.jade.geometricObject.WorldObject;
@@ -68,6 +70,17 @@ public class SurfacicVegetation extends WorldObject {
 	public void addHeight() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	/**
+	 * This method will have a return that will soon be specified
+	 * 
+	 * @see eu.ensg.jade.geometricObject.WorldObject#toOBJ(java.util.List)
+	 */
+	@Override
+	public String toOBJ(List<Integer> indexOffsets) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

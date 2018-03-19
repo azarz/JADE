@@ -263,53 +263,11 @@ public class XMLWritter extends ObjectVisitor{
 
 
 	@Override
-	public void visit(Building building) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void visit(SurfacicRoad road) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void visit(Hydrography hydro) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void visit(StreetFurniture object) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void visit(SurfacicVegetation vegetation) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void visit(PointVegetation vegetation) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	@Override
 	public void visit(List<WorldObject> objList) {
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 
 }

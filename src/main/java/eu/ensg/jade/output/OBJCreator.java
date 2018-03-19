@@ -1,14 +1,15 @@
 package eu.ensg.jade.output;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
 import eu.ensg.jade.geometricObject.WorldObject;
-import eu.ensg.jade.semantic.Building;
-import eu.ensg.jade.semantic.Hydrography;
-import eu.ensg.jade.semantic.PointVegetation;
-import eu.ensg.jade.semantic.StreetFurniture;
-import eu.ensg.jade.semantic.SurfacicRoad;
-import eu.ensg.jade.semantic.SurfacicVegetation;
 
 /**
  * OBJCreator is the class implementing the creation of obj files for the objects to be added in the scene
@@ -27,49 +28,35 @@ public class OBJCreator extends ObjectVisitor {
 	public void objCreator(){
 		// TO DO: add a parameter to this function (object type)
 	}
-	
-
-	@Override
-	public void visit(Building building) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void visit(SurfacicRoad road) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void visit(Hydrography hydro) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void visit(StreetFurniture object) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void visit(SurfacicVegetation vegetation) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public void visit(PointVegetation vegetation) {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	@Override
 	public void visit(List<WorldObject> objList) {
 		// TODO Auto-generated method stub
 		
+		List<Integer> offsets = new ArrayList<Integer>();
+		offsets.add(1);
+		offsets.add(1);
+		offsets.add(1);
+		
+		File file = new File("paris.obj");
+		try {
+			Files.deleteIfExists(file.toPath());
+			
+			FileWriter fw = new FileWriter("paris.obj", true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			PrintWriter out = new PrintWriter(bw);
+			
+			
+			for (int i = 0; i < objList.size(); i++) {
+//				System.out.println(100*i/objList.size() + "%");
+				objList.get(i).toOBJ(offsets);
+			}
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
-
+	
 }

@@ -1,10 +1,8 @@
 package eu.ensg.jade.geometricObject;
 
-import eu.ensg.jade.output.ObjectVisitor;
+import java.util.List;
 
-public class WorldObject {
+public abstract class WorldObject {
 	
-	public void acceptVisitor(ObjectVisitor visitor){
-		
-	}
+	public abstract String toOBJ(List<Integer> indexOffsets);
 }
