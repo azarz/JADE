@@ -1,11 +1,8 @@
 package eu.ensg.jade.semantic;
 
-import com.jme3.app.R.string;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import eu.ensg.jade.geometricObject.ISurfacicObject;
+import eu.ensg.jade.geometricObject.WorldObject;
 
 /**
  * Building is the class implementing a building from the RGE
@@ -13,7 +10,7 @@ import eu.ensg.jade.geometricObject.ISurfacicObject;
  * @author JADE
  */
 
-public class Building implements ISurfacicObject {
+public class Building extends WorldObject {
 	
 // ========================== ATTRIBUTES ===========================
 
@@ -96,7 +93,6 @@ public class Building implements ISurfacicObject {
 	/**
 	 * Adds an elevation to a building
 	 */
-	@Override
 	public void addHeight() {
 		// Getting the initial number of vertices
 		int size = vertices.size();
@@ -209,7 +205,7 @@ public class Building implements ISurfacicObject {
 		
 		// Updating the offsets
 		vertexIndexOffset  += vertices.size();
-		textureIndexOffset += 4*vertices.size();
+		textureIndexOffset += 4*(vertices.size()/2 - 1);
 		normalIndexOffset++;
 
 		indexOffsets.set(0, vertexIndexOffset);

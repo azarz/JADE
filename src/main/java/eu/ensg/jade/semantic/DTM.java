@@ -7,15 +7,13 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import eu.ensg.jade.geometricObject.ISurfacicObject;
-
 /**
  * DTM is the class implementing a DTM
  * 
  * @author JADE
  */
 
-public class DTM implements ISurfacicObject {
+public class DTM {
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -66,7 +64,7 @@ public class DTM implements ISurfacicObject {
 
 
 // ========================== METHODS ==============================
-	
+
 	/**
 	 * Transforms a DTM table into a PNG file 
 	 * 

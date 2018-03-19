@@ -2,7 +2,7 @@ package eu.ensg.jade.semantic;
 
 import com.vividsolutions.jts.geom.MultiPolygon;
 
-import eu.ensg.jade.geometricObject.ISurfacicObject;
+import eu.ensg.jade.geometricObject.WorldObject;
 
 /**
  * Hydrography is the class implementing a water surface object from the RGE
@@ -10,7 +10,7 @@ import eu.ensg.jade.geometricObject.ISurfacicObject;
  * @author JADE
  */
 
-public class Hydrography implements ISurfacicObject {
+public class Hydrography extends WorldObject {
 	
 
 // ========================== ATTRIBUTES ===========================
@@ -81,7 +81,6 @@ public class Hydrography implements ISurfacicObject {
 	/**
 	 * Allows to add an elevation to a water surface
 	 */
-	@Override
 	public void addHeight() {
 
 	}
