@@ -45,9 +45,10 @@ public class SurfacicRoadTest {
 				System.out.println(100*i/roads.size() + "%");
 				
 				LinearRoad road = roads.get(i);
-				System.out.println(road.getGeom().getCoordinates()[0].z);
+				//System.out.println(road.getGeom().getCoordinates()[0].z);
 				SurfacicRoad surfRoad = road.enlarge();
-				
+				//System.out.println(surfRoad.getGeom().getCoordinates()[0].z);
+					
 				String buildingObj = surfRoad.toOBJ(offsets);
 				
 				out.print("o Road_" + i + "\n");

@@ -134,17 +134,16 @@ public class SurfacicRoad extends Road {
 				faces += "f";
 				
 				// Adding the vertex coords as in a obj file
-				for (int i = 0; i < coords.length; i++) {
+				for (int i = 0; i < coords.length - 1; i++) {
 					vertexCoords += "v " + coords[i].x + " "
 									     + coords[i].z + " "
 									     + coords[i].y + "\n";
 					
-					faces += " " + (i + vertexIndexOffset) + "//" + normalIndexOffset;
-					
-					newVertexOffset++;
+					faces += " " + (i + vertexIndexOffset + newVertexOffset) + "//" + normalIndexOffset;
 				}
 				
 				faces += "\n";
+				newVertexOffset += 3;
 			}
 		}
 		
