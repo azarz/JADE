@@ -1,6 +1,6 @@
 package eu.ensg.jade.geometricObject;
 
-import com.vividsolutions.jts.geom.MultiPolygon;
+import com.vividsolutions.jts.geom.Polygon;
 
 import eu.ensg.jade.semantic.LinearRoad;
 import eu.ensg.jade.semantic.SurfacicRoad;
@@ -116,7 +116,7 @@ public class Road {
 		 * @return a new SurfacicRoad
 		 */
 		public static SurfacicRoad enlarge(LinearRoad lineRoad, double width) {
-			MultiPolygon geometry =  (MultiPolygon) lineRoad.getGeom().buffer(width/2);
+			Polygon geometry =  (Polygon) lineRoad.getGeom().buffer(width/2);
 			
 			return new SurfacicRoad(width, lineRoad.getWayNumber(), lineRoad.getZ_ini(), 
 					lineRoad.getZ_fin(), lineRoad.getDirection(), geometry);

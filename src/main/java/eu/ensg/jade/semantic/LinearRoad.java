@@ -1,7 +1,7 @@
 package eu.ensg.jade.semantic;
 
 import com.vividsolutions.jts.geom.MultiLineString;
-import com.vividsolutions.jts.geom.MultiPolygon;
+import com.vividsolutions.jts.geom.Polygon;
 
 import eu.ensg.jade.geometricObject.Road;
 
@@ -60,7 +60,8 @@ public class LinearRoad extends Road{
 	 * @return the surfacic road creates
 	 */
 	public SurfacicRoad enlarge(){
-		MultiPolygon geometry =  (MultiPolygon) this.geometry.buffer(width/2);
+		
+		Polygon geometry =  (Polygon) this.geometry.buffer(width/2);
 		
 		SurfacicRoad surfacicRoad = new SurfacicRoad(width, wayNumber, z_ini, z_fin, direction, geometry);
 		
