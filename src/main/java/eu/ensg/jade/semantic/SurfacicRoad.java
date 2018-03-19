@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.MultiPolygon;
+import com.vividsolutions.jts.geom.GeometryCollection;
+import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.polytriangulate.EarClipper;
 
 /**
  * SurfacicRoad is the class implementing a surfacic road object
@@ -32,7 +34,7 @@ public class SurfacicRoad extends Road {
 	 * @param geom
 	 * @param linearRoad
 	 */
-	public SurfacicRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, MultiPolygon geom,
+	public SurfacicRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, Polygon geom,
 			LinearRoad linearRoad) {
 		super(width, wayNumber, z_ini, z_fin, direction,geom);
 		this.linearRoad = linearRoad;
@@ -46,8 +48,8 @@ public class SurfacicRoad extends Road {
 	 * @return the road original linear road
 	 */
 	@Override
-	public MultiPolygon getGeom() {
-		return (MultiPolygon) geom;
+	public Polygon getGeom() {
+		return (Polygon) geom;
 	}
 	
 	/**
@@ -87,47 +89,67 @@ public class SurfacicRoad extends Road {
 		int numGeometries = geom.getNumGeometries();
 		
 		int newVertexOffset = 0;
+		int newNormalIndexOffset = 0;
 		
 		for (int N = 0; N < numGeometries; N++) {
-			Geometry polygon = geom.getGeometryN(N);
-			Coordinate[] coords = polygon.getCoordinates();
+			Polygon polygon = (Polygon) geom.getGeometryN(N);
 			
-			// Calculating the differences between 3 points of the face to calculate the normal vector
-			double diff1_x = coords[1].x - coords[0].x;
-			double diff1_y = coords[1].z - coords[0].z;
-			double diff1_z = coords[1].y - coords[0].y;
+			int numCoords = polygon.getCoordinates().length;
 			
-			double diff2_x = coords[2].x - coords[0].x;
-			double diff2_y = coords[2].z - coords[0].z;
-			double diff2_z = coords[2].y - coords[0].y;
-			
-			double normal_x = (diff1_y * diff2_z) - (diff1_z * diff2_y);
-			double normal_y = (diff1_z * diff2_x) - (diff1_x * diff2_z);
-			double normal_z = (diff1_x * diff2_y) - (diff1_y * diff2_x);
-			
-			normalCoords += "vn " + normal_x + " " + normal_y + " " + normal_z + "\n";
-			
-			faces += "f";
-			
-			// Adding the vertex coords as in a obj file
-			for (int i = 0; i < coords.length; i++) {
-				vertexCoords += "v " + coords[i].x + " "
-								     + coords[i].z + " "
-								     + coords[i].y + "\n";
-				
-				faces += " " + i + vertexIndexOffset + "//" + normalIndexOffset;
-				
-				newVertexOffset++;
+			if(numCoords < 3) {
+				continue;
 			}
 			
-			faces += "\n";
+			// Using the class from https://github.com/dhtong to triangulate the polygon
+			EarClipper earClipper = new EarClipper(polygon);
+			GeometryCollection triangles = (GeometryCollection) earClipper.getResult();
+			
+			int numTriangles = triangles.getNumGeometries();
+			
+			for (int tri = 0; tri < numTriangles; tri++) {
+				
+				Polygon triangle = (Polygon) triangles.getGeometryN(tri);
+				
+				Coordinate[] coords = triangle.getCoordinates();
+				
+				// Calculating the differences between 3 points of the face to calculate the normal vector
+				double diff1_x = coords[1].x - coords[0].x;
+				double diff1_y = coords[1].z - coords[0].z;
+				double diff1_z = coords[1].y - coords[0].y;
+				
+				double diff2_x = coords[2].x - coords[0].x;
+				double diff2_y = coords[2].z - coords[0].z;
+				double diff2_z = coords[2].y - coords[0].y;
+				
+				double normal_x = (diff1_y * diff2_z) - (diff1_z * diff2_y);
+				double normal_y = (diff1_z * diff2_x) - (diff1_x * diff2_z);
+				double normal_z = (diff1_x * diff2_y) - (diff1_y * diff2_x);
+				
+				normalCoords += "vn " + normal_x + " " + normal_y + " " + normal_z + "\n";
+				newNormalIndexOffset++;
+				
+				faces += "f";
+				
+				// Adding the vertex coords as in a obj file
+				for (int i = 0; i < coords.length; i++) {
+					vertexCoords += "v " + coords[i].x + " "
+									     + coords[i].z + " "
+									     + coords[i].y + "\n";
+					
+					faces += " " + (i + vertexIndexOffset) + "//" + normalIndexOffset;
+					
+					newVertexOffset++;
+				}
+				
+				faces += "\n";
+			}
 		}
 		
 		
 		// Updating the offsets
 		vertexIndexOffset  += newVertexOffset;
 		textureIndexOffset += 0;
-		normalIndexOffset++;
+		normalIndexOffset  += newNormalIndexOffset;
 
 		indexOffsets.set(0, vertexIndexOffset);
 		indexOffsets.set(1, textureIndexOffset);
