@@ -3,6 +3,8 @@ package eu.ensg.jade.semantic;
 import com.vividsolutions.jts.geom.MultiLineString;
 import com.vividsolutions.jts.geom.Polygon;
 
+import eu.ensg.jade.geometricObject.Road;
+
 /**
  * LinearRoad is the class implementing the linear roads from the RGE
  * 
@@ -12,6 +14,14 @@ import com.vividsolutions.jts.geom.Polygon;
 public class LinearRoad extends Road{
 	
 // ========================== ATTRIBUTES ===========================
+	
+	/**
+	 * the attribute containing the geometry of the road
+	 */
+	protected MultiLineString geometry;
+	
+	
+// ========================== CONSTRUCTORS =========================
 
 	/**
 	 * Constructor using all fields
@@ -21,10 +31,12 @@ public class LinearRoad extends Road{
 	 * @param z_ini
 	 * @param z_fin
 	 * @param direction
-	 * @param geom
+	 * @param geometry
 	 */
-	public LinearRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, MultiLineString geom) {
-		super(width, wayNumber, z_ini, z_fin, direction,geom);
+	public LinearRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, MultiLineString geometry) {
+		super(width, wayNumber, z_ini, z_fin, direction);
+		
+		this.geometry = geometry;
 	}
 
 	
@@ -36,9 +48,8 @@ public class LinearRoad extends Road{
 	 * 
 	 * @return the road original linear road
 	 */
-	@Override
 	public MultiLineString getGeom() {
-		return (MultiLineString) geom;
+		return this.geometry;
 	}
 	
 // ========================== METHODS ==============================
@@ -49,9 +60,10 @@ public class LinearRoad extends Road{
 	 * @return the surfacic road creates
 	 */
 	public SurfacicRoad enlarge(){
-		Polygon geometry =  (Polygon) geom.buffer(width/2);
 		
-		SurfacicRoad surfacicRoad = new SurfacicRoad(width, wayNumber, z_ini, z_fin, direction, geometry, this);
+		Polygon geometry =  (Polygon) this.geometry.buffer(width/2);
+		
+		SurfacicRoad surfacicRoad = new SurfacicRoad(width, wayNumber, z_ini, z_fin, direction, geometry);
 		
 		return surfacicRoad;
 		

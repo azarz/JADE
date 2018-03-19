@@ -8,6 +8,8 @@ import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.Polygon;
 import com.vividsolutions.jts.polytriangulate.EarClipper;
 
+import eu.ensg.jade.geometricObject.Road;
+
 /**
  * SurfacicRoad is the class implementing a surfacic road object
  * 
@@ -17,12 +19,15 @@ import com.vividsolutions.jts.polytriangulate.EarClipper;
 public class SurfacicRoad extends Road {
 	
 // ========================== ATTRIBUTES ===========================
-
-	/**
-	 * The linear road that has been enlarged to create this road
-	 */
-	private LinearRoad linearRoad;
 	
+	/**
+	 * the attribute containing the geometry of the road
+	 */
+	Polygon geometry;
+	
+	
+// ========================== CONSTRUCTORS =========================
+
 	/**
 	 * Constructor using all fields
 	 * 
@@ -31,13 +36,21 @@ public class SurfacicRoad extends Road {
 	 * @param z_ini
 	 * @param z_fin
 	 * @param direction
-	 * @param geom
-	 * @param linearRoad
+	 * @param geometry
 	 */
-	public SurfacicRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, Polygon geom,
-			LinearRoad linearRoad) {
-		super(width, wayNumber, z_ini, z_fin, direction,geom);
-		this.linearRoad = linearRoad;
+	public SurfacicRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, Polygon geometry) {
+		super(width, wayNumber, z_ini, z_fin, direction);
+		this.geometry = geometry;
+	}
+	
+	/**
+	 * Constructor using a LinearRoad and a specific width
+	 * @param width the width used as a buffer around the LinearRoad
+	 * @param lineRoad the original LinearRoad
+	 */
+	public SurfacicRoad(double width, LinearRoad lineRoad) {
+		super(width, lineRoad.getWayNumber(), lineRoad.getZ_ini(), lineRoad.getZ_fin(), lineRoad.getDirection());
+		this.geometry =  (Polygon) lineRoad.getGeom().buffer(width/2);
 	}
 
 
@@ -47,19 +60,10 @@ public class SurfacicRoad extends Road {
 	 * 
 	 * @return the road original linear road
 	 */
-	@Override
 	public Polygon getGeom() {
-		return (Polygon) geom;
+		return this.geometry;
 	}
 	
-	/**
-	 * Allows to access the current road original linear road
-	 * 
-	 * @return the road original linear road
-	 */
-	public LinearRoad getLinearRoad() {
-		return linearRoad;
-	}
 
 // ========================== METHODS ==============================
 
@@ -86,14 +90,13 @@ public class SurfacicRoad extends Road {
 		
 		String faces = "usemtl Road\n";
 		
-		int numGeometries = geom.getNumGeometries();
+		int numGeometries = geometry.getNumGeometries();
 		
 		int newVertexOffset = 0;
 		int newNormalIndexOffset = 0;
 		
 		for (int N = 0; N < numGeometries; N++) {
-			Polygon polygon = (Polygon) geom.getGeometryN(N);
-			
+			Polygon polygon = (Polygon) geometry.getGeometryN(N);
 			int numCoords = polygon.getCoordinates().length;
 			
 			if(numCoords < 3) {
