@@ -108,7 +108,7 @@ public class DTMTest {
 	 */
 	@Test
 	public void testToPNG() throws IOException {
-		dtmObject.toPNG();
+		dtmObject.toPNG("src/test/resources/imageDTM.png");
 		
 		// Open the file
 		File result = new File("src/test/resources/imageDTM.png");
