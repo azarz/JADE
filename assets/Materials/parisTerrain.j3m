@@ -1,16 +1,16 @@
 Material MyTerrain : Common/MatDefs/Terrain/Terrain.j3md {
   MaterialParameters {
 
-    Alpha : Textures/Terrain/alphamap.png
+    Alpha : Textures/Terrain/alphamapParis.png
     
-    Tex1 : Repeat Textures/Terrain/grass.jpg
-    Tex1Scale : 64
+    Tex1 : Repeat Textures/Terrain/grassParis.jpg
+    Tex1Scale : 32
     
     Tex2 : Repeat Textures/Terrain/dirt.jpg
     Tex2Scale : 32
     
-    Tex3 : Repeat Textures/Terrain/road.jpg
-    Tex3Scale : 128
+    Tex3 : Repeat Textures/Terrain/roadParis.jpg
+    Tex3Scale : 32
 
   }
 }
