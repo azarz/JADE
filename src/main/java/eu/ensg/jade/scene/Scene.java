@@ -10,7 +10,7 @@ import eu.ensg.jade.semantic.VegetationPoint;
 import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.ArealRoad;
 
-import eu.ensg.jade.input.OutputRGE;
+import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
 import eu.ensg.jade.input.ReaderFactory;
 
@@ -231,23 +231,23 @@ public class Scene {
 		
 		// Buildings
 		readerContx.setIReaderStrategy(readerFact.createReader(1));
-		OutputRGE buildingRGE = readerContx.createOutPutRGE(buildingPath);
+		InputRGE buildingRGE = readerContx.createInputRGE(buildingPath);
 		
 		// Hydro
 		readerContx.setIReaderStrategy(readerFact.createReader(2));
-		OutputRGE hydroRGE = readerContx.createOutPutRGE(hydroPath);
+		InputRGE hydroRGE = readerContx.createInputRGE(hydroPath);
 		
 		// Roads
 		readerContx.setIReaderStrategy(readerFact.createReader(3));
-		OutputRGE roadRGE = readerContx.createOutPutRGE(roadPath);
+		InputRGE roadRGE = readerContx.createInputRGE(roadPath);
 		
 		// Veget
 		readerContx.setIReaderStrategy(readerFact.createReader(4));
-		OutputRGE vegetRGE = readerContx.createOutPutRGE(vegetPath);
+		InputRGE vegetRGE = readerContx.createInputRGE(vegetPath);
 		
 		//DTM
 		readerContx.setIReaderStrategy(readerFact.createReader(5));
-		OutputRGE dtmRGE = readerContx.createOutPutRGE(dtmPath);
+		InputRGE dtmRGE = readerContx.createInputRGE(dtmPath);
 		
 		dtmRGE.getDTM().toPNG();
 		
