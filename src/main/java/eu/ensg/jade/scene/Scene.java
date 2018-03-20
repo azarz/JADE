@@ -13,6 +13,7 @@ import eu.ensg.jade.semantic.ArealRoad;
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
 import eu.ensg.jade.input.ReaderFactory;
+import eu.ensg.jade.input.ReaderFactory.READER_METHOD;
 
 /**
  * Scene is the class implementing the scene and its elements to be created in OpenDS
@@ -230,23 +231,23 @@ public class Scene {
 		ReaderFactory readerFact = new ReaderFactory();
 		
 		// Buildings
-		readerContx.setIReaderStrategy(readerFact.createReader("building"));
+		readerContx.setIReaderStrategy(readerFact.createReader(READER_METHOD.BUILDING));
 		InputRGE buildingRGE = readerContx.createInputRGE(buildingPath);
 		
 		// Hydro
-		readerContx.setIReaderStrategy(readerFact.createReader("hydro"));
+		readerContx.setIReaderStrategy(readerFact.createReader(READER_METHOD.HYDRO));
 		InputRGE hydroRGE = readerContx.createInputRGE(hydroPath);
 		
 		// Roads
-		readerContx.setIReaderStrategy(readerFact.createReader("road"));
+		readerContx.setIReaderStrategy(readerFact.createReader(READER_METHOD.BUILDING.ROAD));
 		InputRGE roadRGE = readerContx.createInputRGE(roadPath);
 		
 		// Veget
-		readerContx.setIReaderStrategy(readerFact.createReader("vegetation"));
+		readerContx.setIReaderStrategy(readerFact.createReader(READER_METHOD.BUILDING.VEGETATION));
 		InputRGE vegetRGE = readerContx.createInputRGE(vegetPath);
 		
 		//DTM
-		readerContx.setIReaderStrategy(readerFact.createReader("dtm"));
+		readerContx.setIReaderStrategy(readerFact.createReader(READER_METHOD.DTM));
 		InputRGE dtmRGE = readerContx.createInputRGE(dtmPath);
 		
 		dtmRGE.getDTM().toPNG();

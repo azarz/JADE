@@ -226,7 +226,7 @@ public abstract class CameraFactory
 		outsideCamPos = new Vector3f(outsideCamPosX, outsideCamPosY, outsideCamPosZ);
 		
 		this.frustumNear = settingsLoader.getSetting(Setting.General_frustumNear, 1f);
-		this.frustumFar = settingsLoader.getSetting(Setting.General_frustumFar, 2000f);
+		this.frustumFar = settingsLoader.getSetting(Setting.General_frustumFar, 200000000f);
 		
 		// only render scene node (child of root node)
 		// as root node contains for instance the map marker

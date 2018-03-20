@@ -49,7 +49,7 @@ public class BuildingTest {
 				building.addHeight();
 				String buildingObj = building.toOBJ(offsets);
 				
-				out.print("o Building_" + i + "\n");
+				// out.print("o Building_" + i + "\n");
 				out.print(buildingObj);
 			}
 		} catch (IOException e) {
