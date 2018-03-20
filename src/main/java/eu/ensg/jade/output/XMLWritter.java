@@ -2,8 +2,10 @@ package eu.ensg.jade.output;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -37,14 +39,18 @@ public class XMLWritter extends ObjectVisitor{
 // ========================== ATTRIBUTES ===========================
 	
 	/**
-	 * Generic object to create new XML document
+	 * Generic object to create new XML documents
 	 */
 	private DocumentBuilder docBuilder;
 	
 	/**
-	 * Generic object to save XML document
+	 * Generic object to save XML documents
 	 */
 	private Transformer transformer;
+	
+	private String mainDirectory = "assets/DrivingTasks/Projects/RGE/";
+	
+	private Map<String, String> globalConfig;
 
 
 // ========================== CONSTRUCTORS =========================
@@ -53,6 +59,10 @@ public class XMLWritter extends ObjectVisitor{
 	 * Default class constructor
 	 */
 	public XMLWritter() {
+		this.globalConfig = new HashMap<String, String>();
+		
+		this.initGlobalConfig();
+		
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		try {
@@ -66,65 +76,80 @@ public class XMLWritter extends ObjectVisitor{
 
 
 // ========================== GETTERS/SETTERS ======================
+	
+	public void setMainDirectory(String directory) {
+		this.mainDirectory = directory;
+		
+		if(!this.mainDirectory.endsWith("/")) {
+			this.mainDirectory += "/";
+		}
+	}
+	
+	public String getMainDirectory() {
+		return this.mainDirectory;
+	}
+	
+	
+	public void updateConfig(String key, String value) {
+		this.globalConfig.put(key, value);
+	}
+	
+	public String getConfigValue(String key) {
+		return this.globalConfig.get(key);
+	}
+	
+	public Set<String> getConfigKeys() {
+		return this.globalConfig.keySet();
+	}
 
 
 // ========================== METHODS ==============================
 
 	/**
-	 * Write all the previously gathered data as a new OpenDs Driving Task, in the 'RGE' folder
-	 * 
-	 * <strong>WARNING:</strong> this method might change a lot, do <em>not</em> use
-	 * 
-	 * @param parameters A Map containing the parameters of the XML files
+	 * Write all the XML files to define a new driving task in OpenDS
 	 */
-	public void writeAll(Map<String, String> parameters) {
-		String fileInteraction = parameters.get("FileInteraction");
-		String fileScenario = parameters.get("FileScenario");
-		String fileScene = parameters.get("FileScene");
-		String fileSettings = parameters.get("FileSettings");
-		this.createMainXml(fileInteraction, fileScenario, fileScene, fileSettings);
+	public void createAllXml() {
+		this.createMainXml();
 		
-		this.createInteractionXml(fileInteraction);
+		this.createInteractionXml();
 		
-		this.createSceneXml(fileScene);
+		this.createSceneXml();
 		
-		this.createScenarioXml(fileScenario, 0, 0, 0);
+		this.createScenarioXml();
 		
-		this.createSettingsXml(fileSettings);
+		this.createSettingsXml();
 	}
-	
+
+
+
 	/**
 	 * Create the main XML file, which is the entry point of the driving task
 	 * 
-	 * @param fileInteraction A custom name for the interaction file, or null
-	 * @param fileScenario A custom name for the scenario file, or null
-	 * @param fileScene A custom name for the scene file, or null
-	 * @param fileSettings A custom name for the settings file, or null
 	 */
-	private void createMainXml(String fileInteraction, String fileScenario, String fileScene, String fileSettings) {
+	public void createMainXml() {
 		try {
 			Document doc = this.importXml("assets/DrivingTasks/Template/main.xml");
 			
 			NodeList nodeList = doc.getElementsByTagName("entry");
-			Node node;
+			Node node;			
 			for (int i = 0; i < nodeList.getLength(); i++) {
 				node = nodeList.item(i);
 				
-				if(fileInteraction != null && node.getAttributes().getNamedItem("key").equals("interaction")) {
-					node.setTextContent(fileInteraction);
+				if(node.getAttributes().getNamedItem("key").equals("interaction")) {
+					node.setTextContent(this.globalConfig.get("fileInteractionXML"));
 				}
-				if(fileScenario != null && node.getAttributes().getNamedItem("key").equals("scenario")) {
-					node.setTextContent(fileScenario);
+				else if(node.getAttributes().getNamedItem("key").equals("scenario")) {
+					node.setTextContent(this.globalConfig.get("fileScenarioXML"));
 				}
-				if(fileScene != null && node.getAttributes().getNamedItem("key").equals("scene")) {
-					node.setTextContent(fileScene);
+				else if(node.getAttributes().getNamedItem("key").equals("scene")) {
+					node.setTextContent(this.globalConfig.get("fileSceneXML"));
 				}
-				if(fileSettings != null && node.getAttributes().getNamedItem("key").equals("setting")) {
-					node.setTextContent(fileSettings);
+				else if(node.getAttributes().getNamedItem("key").equals("settings")) {
+					node.setTextContent(this.globalConfig.get("fileSettingsXML"));
 				}
 			}
 			
-			this.exportXml("assets/DrivingTasks/Projects/RGE/main.xml", doc);
+			this.exportXml(this.mainDirectory + this.globalConfig.get("fileMainXML"), doc);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -132,18 +157,16 @@ public class XMLWritter extends ObjectVisitor{
 	}
 	
 	/**
-	 * Create the interaction XML file, which define actions triggered by specific events.
+	 * Create the interaction XML file, which define actions triggered by specific conditions.
 	 * Nothing useful to change here
-	 * 
-	 * @param fileName The name used for the new file
 	 */
-	private void createInteractionXml(String fileName) {
+	public void createInteractionXml() {
 		try {
 			Document doc = this.importXml("assets/DrivingTasks/Template/interaction.xml");
 			
 			// TODO: add the ability to edit the 'interaction.xml' file
 			
-			this.exportXml("assets/DrivingTasks/Projects/RGE/"+fileName, doc);
+			this.exportXml(this.mainDirectory + this.globalConfig.get("fileInteractionXML"), doc);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -152,16 +175,17 @@ public class XMLWritter extends ObjectVisitor{
 	
 	/**
 	 * Create the scene XML file, which define every object populating the world in OpenDS
-	 * 
-	 * @param fileName The name used for the new file
 	 */
-	private void createSceneXml(String fileName) {
+	public void createSceneXml() {
 		try {
 			Document doc = this.importXml("assets/DrivingTasks/Template/scene.xml");
 			
+			doc.getElementsByTagName("gravity").item(0)
+			.setTextContent(this.globalConfig.get("gravity"));
+			
 			// TODO: add the ability to edit the 'scene.xml' file
 			
-			this.exportXml("assets/DrivingTasks/Projects/RGE/"+fileName, doc);
+			this.exportXml(this.mainDirectory + this.globalConfig.get("fileSceneXML"), doc);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -177,20 +201,21 @@ public class XMLWritter extends ObjectVisitor{
 	 * <li>traffic light triggers</li>
 	 * </ul>
 	 * 
-	 * @param fileName The name used for the new file
-	 * @param snowCoeff The percentage of snow, in the range [0,100] (or -1 for none)
-	 * @param rainCoeff The percentage of rain, in the range [0,100] (or -1 for none)
-	 * @param fogCoeff The percentage of fog, in the range [0,100] (or -1 for none)
 	 */
-	private void createScenarioXml(String fileName, double snowCoeff, double rainCoeff, double fogCoeff) {
+	public void createScenarioXml() {
 		try {
 			Document doc = this.importXml("assets/DrivingTasks/Template/scenario.xml");
 			
-			doc.getElementsByTagName("snowingPercentage").item(0).setTextContent(String.valueOf(snowCoeff));
-			doc.getElementsByTagName("rainingPercentage").item(0).setTextContent(String.valueOf(rainCoeff));
-			doc.getElementsByTagName("fogPercentage").item(0).setTextContent(String.valueOf(fogCoeff));
+			doc.getElementsByTagName("snowingPercentage").item(0)
+				.setTextContent(this.globalConfig.get("snowCoefficient"));
 			
-			this.exportXml("assets/DrivingTasks/Projects/RGE/"+fileName, doc);
+			doc.getElementsByTagName("rainingPercentage").item(0)
+				.setTextContent(this.globalConfig.get("rainCoefficient"));
+			
+			doc.getElementsByTagName("fogPercentage").item(0)
+				.setTextContent(this.globalConfig.get("fogCoefficient"));
+			
+			this.exportXml(this.mainDirectory + this.globalConfig.get("fileScenarioXML"), doc);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -200,16 +225,14 @@ public class XMLWritter extends ObjectVisitor{
 	/**
 	 * Create the settings XML file, used by OpenDS for various server configuration.
 	 * Nothing useful to change here
-	 * 
-	 * @param fileName The name used for the new file
 	 */
-	private void createSettingsXml(String fileName) {
+	public void createSettingsXml() {
 		try {
 			Document doc = this.importXml("assets/DrivingTasks/Template/settings.xml");
 			
 			// TODO: add the ability to edit the 'settings.xml' file
 			
-			this.exportXml("assets/DrivingTasks/Projects/RGE/"+fileName, doc);
+			this.exportXml(this.mainDirectory + this.globalConfig.get("fileSettingsXML"), doc);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -220,7 +243,7 @@ public class XMLWritter extends ObjectVisitor{
 	 * Utility method that loads a XML file and build a Document object with it
 	 * 
 	 * @param filePath
-	 * @return
+	 * @return the loaded XML file
 	 */
 	private Document importXml(String filePath) {
 		Document doc = this.docBuilder.newDocument();
@@ -236,8 +259,8 @@ public class XMLWritter extends ObjectVisitor{
 	/**
 	 * Utility method that save a XML file from a Document object
 	 * 
-	 * @param filePath
-	 * @param xml
+	 * @param filePath the path to the XML file
+	 * @param xml the document to write as XMl
 	 */
 	private void exportXml(String filePath, Document xml) {
 		try {
@@ -252,6 +275,27 @@ public class XMLWritter extends ObjectVisitor{
 		} catch (TransformerException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	
+	/**
+	 * Hidden method initializing some primary configuration values
+	 * 
+	 */
+	private void initGlobalConfig() {
+		this.globalConfig.put("fileMainXML", "main.xml");
+		this.globalConfig.put("fileInteractionXML", "interaction.xml");
+		this.globalConfig.put("fileScenarioXML", "scenario.xml");
+		this.globalConfig.put("fileSceneXML", "scene.xml");
+		this.globalConfig.put("fileSettingsXML", "settings.xml");
+		
+		// Settings config
+		this.globalConfig.put("snowCoefficient", "-1");
+		this.globalConfig.put("rainCoefficient", "-1");
+		this.globalConfig.put("fogCoefficient", "-1");
+		
+		// Scene config
+		this.globalConfig.put("gravity", "9.81");
 	}
 
 
