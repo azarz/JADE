@@ -230,23 +230,23 @@ public class Scene {
 		ReaderFactory readerFact = new ReaderFactory();
 		
 		// Buildings
-		readerContx.setIReaderStrategy(readerFact.createReader(1));
+		readerContx.setIReaderStrategy(readerFact.createReader("building"));
 		InputRGE buildingRGE = readerContx.createInputRGE(buildingPath);
 		
 		// Hydro
-		readerContx.setIReaderStrategy(readerFact.createReader(2));
+		readerContx.setIReaderStrategy(readerFact.createReader("hydro"));
 		InputRGE hydroRGE = readerContx.createInputRGE(hydroPath);
 		
 		// Roads
-		readerContx.setIReaderStrategy(readerFact.createReader(3));
+		readerContx.setIReaderStrategy(readerFact.createReader("road"));
 		InputRGE roadRGE = readerContx.createInputRGE(roadPath);
 		
 		// Veget
-		readerContx.setIReaderStrategy(readerFact.createReader(4));
+		readerContx.setIReaderStrategy(readerFact.createReader("vegetation"));
 		InputRGE vegetRGE = readerContx.createInputRGE(vegetPath);
 		
 		//DTM
-		readerContx.setIReaderStrategy(readerFact.createReader(5));
+		readerContx.setIReaderStrategy(readerFact.createReader("dtm"));
 		InputRGE dtmRGE = readerContx.createInputRGE(dtmPath);
 		
 		dtmRGE.getDTM().toPNG();

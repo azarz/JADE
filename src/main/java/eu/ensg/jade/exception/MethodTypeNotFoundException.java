@@ -22,7 +22,7 @@ public class MethodTypeNotFoundException extends Exception{
 	 * 
 	 * @param method the method to verify
 	 */
-	public MethodTypeNotFoundException(int method){
+	public MethodTypeNotFoundException(String method){
 		System.out.println("The method "+method+" is not implemented yet");
 	}
 	
