@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.jme3.app.R.string;
 
-import eu.ensg.jade.output.ObjectVisitor;
-
 /**
  * Point is the class implementing the punctual objects to be added to the scene
  * 

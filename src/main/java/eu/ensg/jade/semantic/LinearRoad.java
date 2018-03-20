@@ -61,7 +61,7 @@ public class LinearRoad extends Road{
 	 */
 	public ArealRoad enlarge(){
 		
-		Polygon geometry =  (Polygon) this.geometry.buffer(width/2);
+		Polygon geometry =  (Polygon) this.geometry.buffer(this.width/2);
 		
 		ArealRoad surfacicRoad = new ArealRoad(width, wayNumber, z_ini, z_fin, direction, geometry);
 		

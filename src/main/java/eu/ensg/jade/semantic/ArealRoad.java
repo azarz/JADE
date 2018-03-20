@@ -48,9 +48,9 @@ public class ArealRoad extends Road {
 	 * @param width the width used as a buffer around the LinearRoad
 	 * @param lineRoad the original LinearRoad
 	 */
-	public ArealRoad(double width, LinearRoad lineRoad) {
-		super(width, lineRoad.getWayNumber(), lineRoad.getZ_ini(), lineRoad.getZ_fin(), lineRoad.getDirection());
-		this.geometry =  (Polygon) lineRoad.getGeom().buffer(width/2);
+	public ArealRoad(LinearRoad lineRoad) {
+		super(lineRoad.getWidth(), lineRoad.getWayNumber(), lineRoad.getZ_ini(), lineRoad.getZ_fin(), lineRoad.getDirection());
+		this.geometry =  (Polygon) lineRoad.getGeom().buffer(this.width/2);
 	}
 
 

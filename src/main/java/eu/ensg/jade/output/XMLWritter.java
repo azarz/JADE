@@ -3,7 +3,6 @@ package eu.ensg.jade.output;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -22,8 +21,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import eu.ensg.jade.geometricObject.WorldObject;
-
 /**
  * XMLWriter is the class implementing the writing of the XML file defining the scene
  * 
@@ -34,7 +31,7 @@ import eu.ensg.jade.geometricObject.WorldObject;
  * 
  * @author JADE
  */
-public class XMLWritter extends ObjectVisitor{
+public class XMLWritter {
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -48,8 +45,14 @@ public class XMLWritter extends ObjectVisitor{
 	 */
 	private Transformer transformer;
 	
+	/**
+	 * Directory used to save the new driving task
+	 */
 	private String mainDirectory = "assets/DrivingTasks/Projects/RGE/";
 	
+	/**
+	 * The HashMap containing the configuration of all XML files
+	 */
 	private Map<String, String> globalConfig;
 
 
@@ -297,15 +300,5 @@ public class XMLWritter extends ObjectVisitor{
 		// Scene config
 		this.globalConfig.put("gravity", "9.81");
 	}
-
-
-
-	@Override
-	public void visit(List<WorldObject> objList) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
 
 }
