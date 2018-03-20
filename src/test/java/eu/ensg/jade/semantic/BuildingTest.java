@@ -13,7 +13,7 @@ import java.util.List;
 import org.junit.Test;
 
 import eu.ensg.jade.input.BuildingSHP;
-import eu.ensg.jade.input.OutputRGE;
+import eu.ensg.jade.input.InputRGE;
 
 public class BuildingTest {
 
@@ -24,7 +24,7 @@ public class BuildingTest {
 		
 		BuildingSHP buildingShp = new BuildingSHP();
 		
-		OutputRGE allBuildings = buildingShp.getRGE(shpPath);
+		InputRGE allBuildings = buildingShp.getRGE(shpPath);
 		
 		List<Building> buildings = allBuildings.getBuildings();
 		

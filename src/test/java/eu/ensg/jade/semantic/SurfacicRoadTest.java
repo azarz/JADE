@@ -12,8 +12,8 @@ import java.util.List;
 
 import org.junit.Test;
 
+import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.LinearRoadSHP;
-import eu.ensg.jade.input.OutputRGE;
 
 public class SurfacicRoadTest {
 
@@ -24,7 +24,7 @@ public class SurfacicRoadTest {
 		
 		LinearRoadSHP linearRoadShp = new LinearRoadSHP();
 		
-		OutputRGE allRoads = linearRoadShp.getRGE(shpPath);
+		InputRGE allRoads = linearRoadShp.getRGE(shpPath);
 		
 		List<LinearRoad> roads = allRoads.getLinearRoads();
 		

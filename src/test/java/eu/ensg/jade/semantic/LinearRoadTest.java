@@ -1,16 +1,8 @@
 package eu.ensg.jade.semantic;
 
-import static org.junit.Assert.*;
-
 import java.io.IOException;
-import java.net.URL;
 
 import org.junit.Test;
-
-import com.vividsolutions.jts.geom.MultiLineString;
-
-import eu.ensg.jade.input.BuildingSHP;
-import eu.ensg.jade.input.OutputRGE;
 
 public class LinearRoadTest {
 
