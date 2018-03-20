@@ -1,5 +1,7 @@
 package eu.ensg.jade.exception;
 
+import eu.ensg.jade.input.ReaderFactory.READER_METHOD;
+
 /**
  * MethodTypeNotFoundException is the class implementing an exception when a method is not available
  * 
@@ -22,7 +24,7 @@ public class MethodTypeNotFoundException extends Exception{
 	 * 
 	 * @param method the method to verify
 	 */
-	public MethodTypeNotFoundException(int method){
+	public MethodTypeNotFoundException(READER_METHOD method){
 		System.out.println("The method "+method+" is not implemented yet");
 	}
 	

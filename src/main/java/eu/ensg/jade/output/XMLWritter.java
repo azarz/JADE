@@ -21,12 +21,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import eu.ensg.jade.geometricObject.WorldObject;
-import eu.ensg.jade.semantic.Building;
-import eu.ensg.jade.semantic.Hydrography;
-import eu.ensg.jade.semantic.VegetationPoint;
-import eu.ensg.jade.semantic.StreetFurniture;
-import eu.ensg.jade.semantic.ArealRoad;
-import eu.ensg.jade.semantic.VegetationArea;
 
 /**
  * XMLWriter is the class implementing the writing of the XML file defining the scene
