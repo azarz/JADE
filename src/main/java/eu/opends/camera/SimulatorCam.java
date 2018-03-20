@@ -219,7 +219,7 @@ public class SimulatorCam extends CameraFactory
 		{
 			// camera detached from car node --> update position and rotation separately
 			Vector3f targetPosition = carNode.localToWorld(new Vector3f(0, 0, 0), null);
-			Vector3f camPos = new Vector3f(targetPosition.x, targetPosition.y + 20000, targetPosition.z);
+			Vector3f camPos = new Vector3f(targetPosition.x, targetPosition.y + 2000, targetPosition.z);
 			frontCameraNode.setLocalTranslation(camPos);
 			
 			float upDirection = 0;

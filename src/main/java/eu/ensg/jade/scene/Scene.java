@@ -250,7 +250,7 @@ public class Scene {
 		readerContx.setIReaderStrategy(readerFact.createReader(READER_METHOD.DTM));
 		InputRGE dtmRGE = readerContx.createInputRGE(dtmPath);
 		
-		dtmRGE.getDTM().toPNG();
+		dtmRGE.getDTM().toPNG("paris.obj");
 		
 		//--------------------------------
 		// Adds vegetation and urban furnitures

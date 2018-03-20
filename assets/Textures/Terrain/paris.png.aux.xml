@@ -1,0 +1,23 @@
+<PAMDataset>
+  <Metadata domain="IMAGE_STRUCTURE">
+    <MDI key="INTERLEAVE">PIXEL</MDI>
+  </Metadata>
+  <PAMRasterBand band="1">
+    <Histograms>
+      <HistItem>
+        <HistMin>26.50476190476191</HistMin>
+        <HistMax>131.4952380952381</HistMax>
+        <BucketCount>105</BucketCount>
+        <IncludeOutOfRange>0</IncludeOutOfRange>
+        <Approximate>0</Approximate>
+        <HistCounts>1|97|301|625|1638|1835|3568|4573|8394|7282|4231|3277|2868|2918|2798|2760|2492|3313|5062|4320|3410|3926|4731|6049|6740|5990|5914|5543|6149|5058|3765|3931|4091|4331|3395|2413|2288|2071|2279|2022|1393|1262|1312|1734|1441|1155|957|877|977|949|769|703|761|781|718|585|533|545|534|486|498|513|536|539|611|555|525|569|627|600|623|634|589|660|804|798|784|815|903|952|825|842|873|1154|1512|1168|1488|1326|1157|1025|1093|1429|905|491|362|175|90|94|93|100|75|55|50|33|10</HistCounts>
+      </HistItem>
+    </Histograms>
+    <Metadata>
+      <MDI key="STATISTICS_MAXIMUM">131</MDI>
+      <MDI key="STATISTICS_MEAN">59.40468734735</MDI>
+      <MDI key="STATISTICS_MINIMUM">27</MDI>
+      <MDI key="STATISTICS_STDDEV">23.424724169854</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>

@@ -71,17 +71,41 @@ public class DTM {
 	 * 
 	 * @throws IOException 
 	 */
-	public void toPNG() throws IOException{
+	public void toPNG(String path) throws IOException{
 		
-		BufferedImage bufferImageDTM = new BufferedImage(this.headerDTM.get("ncols").intValue(),this.headerDTM.get("nrows").intValue(), BufferedImage.TYPE_BYTE_GRAY);
-		WritableRaster wr = bufferImageDTM.getRaster() ;
-		for(int y = 0; y < this.headerDTM.get("nrows").intValue() ; y++){
-	        for(int x = 0; x < this.headerDTM.get("ncols").intValue() ; x++){
-	        	//bufferImageDTM.setRGB(x, y, (int) this.tabDTM[y][x]);
-	        	wr.setSample(x, y, 0, (int) this.tabDTM[y][x]) ;
+		
+		int nrows = this.headerDTM.get("nrows").intValue();
+		int ncols =  this.headerDTM.get("ncols").intValue();
+		BufferedImage bufferImageDTM;
+		
+		if (ncols < nrows) {
+			bufferImageDTM = new BufferedImage(nrows,nrows, BufferedImage.TYPE_BYTE_GRAY);
+			WritableRaster wr = bufferImageDTM.getRaster();
+			for(int y = 0; y < nrows ; y++){
+		        for(int x = 0; x < nrows ; x++){
+		        	wr.setSample(x, y, 0, 0);
+		        }
+		    }
+		} else if (ncols > nrows) {
+			bufferImageDTM = new BufferedImage(ncols,ncols, BufferedImage.TYPE_BYTE_GRAY);
+			WritableRaster wr = bufferImageDTM.getRaster();
+			for(int y = 0; y < ncols ; y++){
+		        for(int x = 0; x < ncols ; x++){
+		        	wr.setSample(x, y, 0, 0);
+		        }
+		    }
+		} else {
+			bufferImageDTM = new BufferedImage(ncols,nrows, BufferedImage.TYPE_BYTE_GRAY);
+		}
+		
+		WritableRaster wr = bufferImageDTM.getRaster();
+		for(int y = 0; y < nrows ; y++){
+	        for(int x = 0; x < ncols ; x++){
+	        	wr.setSample(x, nrows-1 - y, 0, (int) this.tabDTM[y][x]);
 	        }
 	    }
-	    File outputfile = new File("src/test/resources/imageDTM.png");
+		
+	    File outputfile = new File(path);
 	    ImageIO.write(bufferImageDTM, "png", outputfile);
 	}
 
