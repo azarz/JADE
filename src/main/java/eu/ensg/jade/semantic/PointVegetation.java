@@ -8,7 +8,7 @@ import eu.ensg.jade.geometricObject.Point;
  * @author JADE
  */
 
-public class VegetationPoint extends Point {
+public class PointVegetation extends Point {
 	
 // ========================== ATTRIBUTES ===========================
 	

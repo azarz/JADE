@@ -8,12 +8,14 @@ import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
 import eu.ensg.jade.input.ReaderFactory;
 import eu.ensg.jade.input.ReaderFactory.READER_METHOD;
-import eu.ensg.jade.semantic.ArealRoad;
+import eu.ensg.jade.semantic.SurfaceRoad;
+import eu.ensg.jade.semantic.SurfaceVegetation;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.Hydrography;
+import eu.ensg.jade.semantic.LineRoad;
 import eu.ensg.jade.semantic.StreetFurniture;
-import eu.ensg.jade.semantic.VegetationPoint;
+import eu.ensg.jade.semantic.PointVegetation;
 
 /**
  * Scene is the class implementing the scene and its elements to be created in OpenDS
@@ -27,25 +29,40 @@ public class Scene {
 // ========================== ATTRIBUTES ===========================
 
 	/**
-	 * List of surfacic roads to create {@link ArealRoad}
+	 * List of surfacic roads to create {@link SurfaceRoad}
 	 */
-	private List<ArealRoad> roads;
+	private List<SurfaceRoad> roads;
+	
+	/**
+	 * List of linear roads to create {@link LineRoad}
+	 */
+	private List<LineRoad> lineRoads;
+	
 	/**
 	 * List of buildings to create {@link Building}
 	 */
 	private List<Building> buildings;
+	
 	/**
 	 * List of water surfaces to create {@link Hydrography}
 	 */
 	private List<Hydrography> hydrography;
+	
 	/**
 	 * List of trees to create {@link Vegetation}
 	 */
-	private List<VegetationPoint> vegetation;
+	private List<PointVegetation> vegetation;
+	
+	/**
+	 * List of trees area used for tree creation {@link Vegetation}
+	 */
+	private List<SurfaceVegetation> surfaceVegetation;
+	
 	/**
 	 * List of street furniture to create {@link StreetFurniture}
 	 */
 	private List<StreetFurniture> streetFurniture;
+	
 	/**
 	 * The DTM associated to the scene {@link DTM}
 	 */
@@ -56,9 +73,11 @@ public class Scene {
 	
 	public Scene() {
 		this.buildings = new ArrayList<Building>();
-		this.roads = new ArrayList<ArealRoad>();
+		this.roads = new ArrayList<SurfaceRoad>();
+		this.lineRoads = new ArrayList<LineRoad>();
 		this.hydrography = new ArrayList<Hydrography>();
-		this.vegetation = new ArrayList<VegetationPoint>();
+		this.vegetation = new ArrayList<PointVegetation>();
+		this.surfaceVegetation = new ArrayList<SurfaceVegetation>();
 		this.streetFurniture = new ArrayList<StreetFurniture>();
 	}
 	
@@ -70,7 +89,7 @@ public class Scene {
 	 * 
 	 * @return the scene surfacic roads
 	 */
-	public List<ArealRoad> getRoads() {
+	public List<SurfaceRoad> getRoads() {
 		return roads;
 	}
 
@@ -79,7 +98,25 @@ public class Scene {
 	 * 
 	 * @param roads the list of surfacic roads to be assigned
 	 */
-	public void setRoads(List<ArealRoad> roads) {
+	public void setLineRoads(List<LineRoad> roads) {
+		this.lineRoads = roads;
+	}
+	
+	/**
+	 * Allows to access the list of surfacic roads in the scene
+	 * 
+	 * @return the scene surfacic roads
+	 */
+	public List<LineRoad> getLineRoads() {
+		return lineRoads;
+	}
+
+	/**
+	 * Allow to set the scene surfacic roads
+	 * 
+	 * @param roads the list of surfacic roads to be assigned
+	 */
+	public void setRoads(List<SurfaceRoad> roads) {
 		this.roads = roads;
 	}
 	
@@ -124,7 +161,7 @@ public class Scene {
 	 * 
 	 * @return the scene threes
 	 */
-	public List<VegetationPoint> getVegetation() {
+	public List<PointVegetation> getVegetation() {
 		return vegetation;
 	}
 
@@ -133,9 +170,27 @@ public class Scene {
 	 * 
 	 * @param vegetation the list of trees to be assigned
 	 */
-	public void setVegetation(List<VegetationPoint> vegetation) {
+	public void setVegetation(List<PointVegetation> vegetation) {
 		this.vegetation = vegetation;
 	}
+	/**
+	 * Allows to access the list of trees area in the scene
+	 * 
+	 * @return the scene trees area
+	 */
+	public List<SurfaceVegetation> getSurfaceVegetation() {
+		return surfaceVegetation;
+	}
+
+	/**
+	 * Allows to set the scene vegetation area
+	 * 
+	 * @param vegetation the list of tree surface to be assigned
+	 */
+	public void setSurfaceVegetation(List<SurfaceVegetation> vegetation) {
+		this.surfaceVegetation = vegetation;
+	}
+	
 
 	/**
 	 * Allows to access the list of street furniture in the scene
@@ -180,7 +235,7 @@ public class Scene {
 	 * 
 	 * @param newRoad the Road to be added
 	 */
-	public void addRoad(ArealRoad newRoad){
+	public void addRoad(SurfaceRoad newRoad){
 		this.roads.add(newRoad);
 	}
 	
@@ -208,7 +263,7 @@ public class Scene {
 	 * 
 	 * @param newTree the three to be added
 	 */
-	public void addVegetation(VegetationPoint newTree){
+	public void addVegetation(PointVegetation newTree){
 		this.vegetation.add(newTree);
 
 	}

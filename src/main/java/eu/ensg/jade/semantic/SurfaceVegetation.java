@@ -12,7 +12,7 @@ import eu.ensg.jade.geometricObject.WorldObject;
  * @author JADE
  */
 
-public class VegetationArea extends WorldObject {
+public class SurfaceVegetation extends WorldObject {
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -36,7 +36,7 @@ public class VegetationArea extends WorldObject {
 	 * 
 	 **/
 
-	public VegetationArea(MultiPolygon geometry, String nature) {
+	public SurfaceVegetation(MultiPolygon geometry, String nature) {
 		this.nature = nature;
 		this.geometry = geometry;
 	}

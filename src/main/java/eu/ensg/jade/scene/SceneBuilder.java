@@ -30,6 +30,8 @@ public class SceneBuilder {
 			) throws IOException {
 		
 		
+		Scene scene = new Scene();
+		
 		/*
 		 * Extract data from files
 		 */
@@ -37,42 +39,39 @@ public class SceneBuilder {
 		// Factory/Strategy Generation
 		ReaderContext readerContx = new ReaderContext();
 		ReaderFactory readerFact = new ReaderFactory();
+		InputRGE rge = new InputRGE();
 		
-		readerContx.setIReaderStrategy(readerFact.createReader(READER_METHOD.BUILDING));
-		InputRGE buildingRGE = readerContx.createInputRGE(buildingLayer);
+		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.BUILDING), buildingLayer);
+		scene.setBuildings(rge.getBuildings());
 		
-		readerContx.setIReaderStrategy(readerFact.createReader(READER_METHOD.BUILDING.ROAD));
-		InputRGE roadRGE = readerContx.createInputRGE(roadLayer);
+		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.ROAD), roadLayer);
+		scene.setLineRoads(rge.getLineRoads());
 		
-		readerContx.setIReaderStrategy(readerFact.createReader(READER_METHOD.HYDRO));
-		InputRGE hydroRGE = readerContx.createInputRGE(hydroLayer);
+		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.HYDRO), hydroLayer);
+		scene.setHydrography(rge.getHydrography());
 		
-		readerContx.setIReaderStrategy(readerFact.createReader(READER_METHOD.BUILDING.VEGETATION));
-		InputRGE vegetRGE = readerContx.createInputRGE(plantLayer);
+		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.VEGETATION), plantLayer);
+		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
 		
-		readerContx.setIReaderStrategy(readerFact.createReader(READER_METHOD.DTM));
-		InputRGE dtmRGE = readerContx.createInputRGE(dtmLayer);
-		
-		dtmRGE.getDTM().toPNG("paris.obj");
-		
-		URL url = Thread.currentThread().getContextClassLoader().getResource("RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP");
-		String shpPath = url.getPath();
-		
-		/*
-		 * Build the Scene with the data		
-		 */		
-		Scene scene = new Scene();
+		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.DTM), dtmLayer);
+		scene.setDtm(rge.getDTM());		
 		
 		/*
 		 * Add Vegetation and street furniture
 		 */
 		
+		// TODO: add vegetation & street furniture :)
+		
 		/*
-		 * Export to OBJ
+		 * Export to OBJ & PNG
 		 */
 		OBJWritter objWritter = new OBJWritter();
 		
-		objWritter.exportBuildings("buildings.obj", scene.getBuildings());
+		objWritter.exportBuilding("buildings.obj", scene.getBuildings());
+		
+		objWritter.exportRoad("roads.obj", scene.getRoads());
+		
+		scene.getDtm().toPNG("paris.obj");
 		
 		/*
 		 * Write the XML files

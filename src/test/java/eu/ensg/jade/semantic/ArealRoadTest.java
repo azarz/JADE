@@ -13,7 +13,7 @@ import java.util.List;
 import org.junit.Test;
 
 import eu.ensg.jade.input.InputRGE;
-import eu.ensg.jade.input.LinearRoadSHP;
+import eu.ensg.jade.input.LineRoadSHP;
 
 public class ArealRoadTest {
 
@@ -22,11 +22,11 @@ public class ArealRoadTest {
 		URL url = Thread.currentThread().getContextClassLoader().getResource("RGE/BD_TOPO/ROUTE.SHP");
 		String shpPath = url.getPath();
 		
-		LinearRoadSHP linearRoadShp = new LinearRoadSHP();
+		LineRoadSHP linearRoadShp = new LineRoadSHP();
 		
 		InputRGE allRoads = linearRoadShp.getRGE(shpPath);
 		
-		List<LinearRoad> roads = allRoads.getLinearRoads();
+		List<LineRoad> roads = allRoads.getLinearRoads();
 		
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
@@ -44,9 +44,9 @@ public class ArealRoadTest {
 				
 				// System.out.println(100*i/roads.size() + "%");
 				
-				LinearRoad road = roads.get(i);
+				LineRoad road = roads.get(i);
 				//System.out.println(road.getGeom().getCoordinates()[0].z);
-				ArealRoad surfRoad = road.enlarge();
+				SurfaceRoad surfRoad = road.enlarge();
 				//System.out.println(surfRoad.getGeom().getCoordinates()[0].z);
 				
 				String roadObj = surfRoad.toOBJ(offsets);
