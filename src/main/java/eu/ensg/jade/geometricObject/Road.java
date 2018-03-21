@@ -2,8 +2,8 @@ package eu.ensg.jade.geometricObject;
 
 import com.vividsolutions.jts.geom.Polygon;
 
-import eu.ensg.jade.semantic.LinearRoad;
-import eu.ensg.jade.semantic.ArealRoad;
+import eu.ensg.jade.semantic.LineRoad;
+import eu.ensg.jade.semantic.SurfaceRoad;
 
 /**
  * Road is the super-class for roads
@@ -115,10 +115,10 @@ public class Road {
 		 * @param width the new width of the road
 		 * @return a new SurfacicRoad
 		 */
-		public static ArealRoad enlarge(LinearRoad lineRoad, double width) {
+		public static SurfaceRoad enlarge(LineRoad lineRoad, double width) {
 			Polygon geometry =  (Polygon) lineRoad.getGeom().buffer(width/2);
 			
-			return new ArealRoad(width, lineRoad.getWayNumber(), lineRoad.getZ_ini(), 
+			return new SurfaceRoad(width, lineRoad.getWayNumber(), lineRoad.getZ_ini(), 
 					lineRoad.getZ_fin(), lineRoad.getDirection(), geometry);
 		}
 		

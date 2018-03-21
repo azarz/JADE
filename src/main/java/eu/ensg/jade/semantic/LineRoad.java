@@ -19,7 +19,7 @@ import eu.ensg.jade.geometricObject.Road;
  * @author JADE
  */
 
-public class LinearRoad extends Road{
+public class LineRoad extends Road{
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -41,7 +41,7 @@ public class LinearRoad extends Road{
 	 * @param direction
 	 * @param geometry
 	 */
-	public LinearRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, MultiLineString geometry) {
+	public LineRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, MultiLineString geometry) {
 		super(width, wayNumber, z_ini, z_fin, direction);
 		
 		this.geometry = geometry;
@@ -67,7 +67,7 @@ public class LinearRoad extends Road{
 	 * 
 	 * @return the road area created
 	 */
-	public ArealRoad enlarge(){
+	public SurfaceRoad enlarge(){
 		
 		// Getting the buffered geometry (loses Z coordinate...)
 		Polygon newGeometry =  (Polygon) geometry.buffer(this.width/2, 0, BufferParameters.CAP_SQUARE);
@@ -109,7 +109,7 @@ public class LinearRoad extends Road{
 		// Applying the filter
 		newGeometry.apply(filter);
 		
-		ArealRoad surfacicRoad = new ArealRoad(width, wayNumber, z_ini, z_fin, direction, newGeometry);
+		SurfaceRoad surfacicRoad = new SurfaceRoad(width, wayNumber, z_ini, z_fin, direction, newGeometry);
 		
 		return surfacicRoad;
 		
@@ -120,8 +120,8 @@ public class LinearRoad extends Road{
 	 * 
 	 * @return the surfacic smoothed road
 	 */
-	public ArealRoad smooth(){
-		ArealRoad surf = this.enlarge();
+	public SurfaceRoad smooth(){
+		SurfaceRoad surf = this.enlarge();
 		return null;
 	}
 	

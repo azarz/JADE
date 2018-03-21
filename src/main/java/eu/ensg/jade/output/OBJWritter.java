@@ -9,9 +9,8 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
-import eu.ensg.jade.semantic.ArealRoad;
+import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.semantic.Building;
-import eu.ensg.jade.semantic.LinearRoad;
 
 /**
  * OBJCreator is the class implementing the creation of obj files for the objects to be added in the scene
@@ -31,10 +30,10 @@ public class OBJWritter {
 	 * 
 	 */
 	public OBJWritter(){
-		// TODO: add a parameters to the constructor (maybe ?)
+		// TODO: add parameters to the constructor (maybe ?)
 	}
 	
-	public void exportBuildings(String filePath, List<Building> buildings) {
+	public void exportBuilding(String filePath, List<Building> objectList) {
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
 		offsets.add(1);
@@ -48,55 +47,42 @@ public class OBJWritter {
 			Files.deleteIfExists(file.toPath());
 			
 			out.print("mtllib paris.mtl\n");
-			Building building;
-			for (int i = 0; i < buildings.size(); i++) {
-				building = buildings.get(i);
-				building.addHeight();
-				
-//				out.print("o Building_" + i + "\n");
-				out.print(building.toOBJ(offsets));
+
+			for (int i = 0; i < objectList.size(); i++) {				
+				out.print(objectList.get(i).toOBJ(offsets));
 				
 				if(log) {
-					System.out.println(100*i/buildings.size() + "%");
+					System.out.println(100*i/objectList.size() + "%");
 				}
-			}
-			
-			out.close();			
+			}		
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public void exportRoads(String filePath, List<LinearRoad> roads) {
+	public void exportRoad(String filePath, List<SurfaceRoad> objectList) {
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
 		offsets.add(1);
 		offsets.add(1);
 		
-		File file = new File("paris_roads.obj");
-		try (FileWriter fw = new FileWriter(filePath, true);
+		File file = new File(filePath);
+		try(FileWriter fw = new FileWriter(filePath, true);
 				BufferedWriter bw = new BufferedWriter(fw);
 				PrintWriter out = new PrintWriter(bw)) {
 			
 			Files.deleteIfExists(file.toPath());
 			
 			out.print("mtllib paris.mtl\n");
-			ArealRoad road;
-			for (int i = 0; i < roads.size(); i++) {
-				
-				road = new ArealRoad(roads.get(i));
-				
-//				out.print("o Road_" + i + "\n");
-				out.print(road.toOBJ(offsets));
+
+			for (int i = 0; i < objectList.size(); i++) {				
+				out.print(objectList.get(i).toOBJ(offsets));
 				
 				if(log) {
-					System.out.println(100*i/roads.size() + "%");
-					System.out.println(road.getGeom().getCoordinates()[0].z);
+					System.out.println(100*i/objectList.size() + "%");
 				}
-			}
-			
-			out.close();			
+			}		
 			
 		} catch (IOException e) {
 			e.printStackTrace();
