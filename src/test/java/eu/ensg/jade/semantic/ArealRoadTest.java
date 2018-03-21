@@ -26,7 +26,7 @@ public class ArealRoadTest {
 		
 		InputRGE allRoads = linearRoadShp.getRGE(shpPath);
 		
-		List<LineRoad> roads = allRoads.getLinearRoads();
+		List<LineRoad> roads = allRoads.getLineRoads();
 		
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
