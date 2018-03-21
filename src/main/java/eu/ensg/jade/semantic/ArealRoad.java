@@ -135,9 +135,9 @@ public class ArealRoad extends Road {
 				
 				// Adding the vertex coords as in a obj file
 				for (int i = 0; i < coords.length - 1; i++) {
-					vertexCoords += "v " + coords[i].x + " "
+					vertexCoords += "v " + (coords[i].x-655686.55) + " "
 									     + coords[i].z + " "
-									     + coords[i].y + "\n";
+									     + -1*(coords[i].y-6861084.26) + "\n";
 					
 					faces += " " + (i + vertexIndexOffset + newVertexOffset) + "//" + normalIndexOffset;
 				}

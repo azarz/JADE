@@ -7,7 +7,7 @@
     </sounds>
 		
 	<models>
-		<!-- <model id="grassPlane" key="Scenes/grassPlane/Scene.j3o">
+		<model id="roads" key="Scenes/parisTest/paris_road.obj">
 			<mass>0</mass>
 			<visible>true</visible>
 			<collisionShape>meshShape</collisionShape>
@@ -34,7 +34,7 @@
 					<entry>0</entry>
 				</vector>
 			</translation>
-		</model> -->
+		</model>
          
 		<model id="driverCar" key="Models/Cars/drivingCars/bmw1/Car.j3o">
 			<mass>800</mass>
@@ -123,7 +123,7 @@
 	      <translation>
 	        <vector jtype="java_lang_Float" size="3">
 	          <entry>-899.05</entry>
-	          <entry>0</entry>
+	          <entry>-10</entry>
 	          <entry>-3131.24</entry>
 	        </vector>
 	      </translation>
