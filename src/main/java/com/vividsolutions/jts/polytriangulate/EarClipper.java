@@ -133,7 +133,7 @@ public class EarClipper {
                 polyShell.nextCorner(true);
             }
             counter++;
-            System.out.println(counter);
+            // System.out.println(counter);
             if (counter > 20) {
             	finished = true;
             }
