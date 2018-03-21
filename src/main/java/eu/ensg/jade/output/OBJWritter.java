@@ -41,13 +41,13 @@ public class OBJWritter {
 		offsets.add(1);
 		
 		File file = new File(filePath);
-		try {
+		try(FileWriter fw = new FileWriter(filePath, true);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter out = new PrintWriter(bw)) {
+			
 			Files.deleteIfExists(file.toPath());
 			
-			FileWriter fw = new FileWriter(filePath, true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter out = new PrintWriter(bw);
-			
+			out.print("mtllib paris.mtl\n");
 			Building building;
 			for (int i = 0; i < buildings.size(); i++) {
 				building = buildings.get(i);
@@ -74,14 +74,14 @@ public class OBJWritter {
 		offsets.add(1);
 		offsets.add(1);
 		
-		File file = new File("paris.obj");
-		try {
+		File file = new File("paris_roads.obj");
+		try (FileWriter fw = new FileWriter(filePath, true);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter out = new PrintWriter(bw)) {
+			
 			Files.deleteIfExists(file.toPath());
 			
-			FileWriter fw = new FileWriter(filePath, true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter out = new PrintWriter(bw);
-			
+			out.print("mtllib paris.mtl\n");
 			ArealRoad road;
 			for (int i = 0; i < roads.size(); i++) {
 				

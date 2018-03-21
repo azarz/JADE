@@ -15,7 +15,7 @@ import org.junit.Test;
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.LinearRoadSHP;
 
-public class SurfacicRoadTest {
+public class ArealRoadTest {
 
 	@Test
 	public void toObjTest() throws IOException {
@@ -42,16 +42,17 @@ public class SurfacicRoadTest {
 		
 			for (int i = 0; i < roads.size(); i++) {
 				
-				System.out.println(100*i/roads.size() + "%");
+				// System.out.println(100*i/roads.size() + "%");
 				
 				LinearRoad road = roads.get(i);
 				//System.out.println(road.getGeom().getCoordinates()[0].z);
 				ArealRoad surfRoad = road.enlarge();
+				//System.out.println(surfRoad.getGeom().getCoordinates()[0].z);
 				
-				String buildingObj = surfRoad.toOBJ(offsets);
+				String roadObj = surfRoad.toOBJ(offsets);
 				
-				out.print("o Road_" + i + "\n");
-				out.print(buildingObj);
+				// out.print("o Road_" + i + "\n");
+				out.print(roadObj);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
