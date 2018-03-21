@@ -1,19 +1,19 @@
 package eu.ensg.jade.scene;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-
-import eu.ensg.jade.semantic.Building;
-import eu.ensg.jade.semantic.DTM;
-import eu.ensg.jade.semantic.Hydrography;
-import eu.ensg.jade.semantic.VegetationPoint;
-import eu.ensg.jade.semantic.StreetFurniture;
-import eu.ensg.jade.semantic.ArealRoad;
 
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
 import eu.ensg.jade.input.ReaderFactory;
 import eu.ensg.jade.input.ReaderFactory.READER_METHOD;
+import eu.ensg.jade.semantic.ArealRoad;
+import eu.ensg.jade.semantic.Building;
+import eu.ensg.jade.semantic.DTM;
+import eu.ensg.jade.semantic.Hydrography;
+import eu.ensg.jade.semantic.StreetFurniture;
+import eu.ensg.jade.semantic.VegetationPoint;
 
 /**
  * Scene is the class implementing the scene and its elements to be created in OpenDS
@@ -50,6 +50,18 @@ public class Scene {
 	 * The DTM associated to the scene {@link DTM}
 	 */
 	private DTM dtm;
+	
+	
+// ========================== CONSTRUCTORS =========================
+	
+	public Scene() {
+		this.buildings = new ArrayList<Building>();
+		this.roads = new ArrayList<ArealRoad>();
+		this.hydrography = new ArrayList<Hydrography>();
+		this.vegetation = new ArrayList<VegetationPoint>();
+		this.streetFurniture = new ArrayList<StreetFurniture>();
+	}
+	
 
 // ========================== GETTERS/SETTERS ======================
 
