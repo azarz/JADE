@@ -275,7 +275,6 @@ public class Scene {
 	 */
 	public void addStreetFurniture(StreetFurniture newFurniture){
 		this.streetFurniture.add(newFurniture);
-
 	}
 
 }

@@ -3,6 +3,7 @@ package eu.ensg.jade.output;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,6 +21,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import eu.ensg.jade.xml.XMLModel;
+import eu.ensg.jade.xml.XMLGroundModel;
+import eu.ensg.jade.xml.XMLVehicle;
 
 /**
  * XMLWriter is the class implementing the writing of the XML file defining the scene
@@ -54,6 +59,10 @@ public class XMLWritter {
 	 * The HashMap containing the configuration of all XML files
 	 */
 	private Map<String, String> globalConfig;
+	
+	private List<XMLModel> modelList;
+	private List<XMLGroundModel> terrainList;
+	private List<XMLVehicle> vehicleList;
 
 
 // ========================== CONSTRUCTORS =========================
@@ -104,6 +113,7 @@ public class XMLWritter {
 	public Set<String> getConfigKeys() {
 		return this.globalConfig.keySet();
 	}
+
 
 
 // ========================== METHODS ==============================
