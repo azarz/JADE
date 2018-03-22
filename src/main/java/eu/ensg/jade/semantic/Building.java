@@ -118,6 +118,8 @@ public class Building extends WorldObject {
 			// Adding the computed vertex to the list
 			vertices.add(coords);
 		}
+		
+		this.hasHeight = true;
 	}
 	
 	/**
@@ -144,6 +146,7 @@ public class Building extends WorldObject {
 	 * @return A string corresponding to the .obj description of the Building
 	 */
 	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset){
+		// Checking if the height was already calculated
 		if (!hasHeight) {
 			this.addHeight();
 		}
