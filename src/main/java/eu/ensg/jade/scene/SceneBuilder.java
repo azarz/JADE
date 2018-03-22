@@ -75,7 +75,7 @@ public class SceneBuilder {
 		 */
 		OBJWritter objWritter = new OBJWritter();
 		
-		//objWritter.exportBuilding("buildings.obj", scene.getBuildings(), scene.getxCentroid(), scene.getyCentroid());
+		objWritter.exportBuilding("buildings.obj", scene.getBuildings(), scene.getxCentroid(), scene.getyCentroid());
 		
 //		objWritter.exportRoad("roads.obj", scene.getRoads(), scene.getxCentroid(), scene.getyCentroid());
 		

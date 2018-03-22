@@ -37,6 +37,11 @@ public class Building extends WorldObject {
 	 * the building coordinates
 	 */
 	private List<double[]> vertices;
+	
+	/**
+	 * Boolean to know if the height was added or not
+	 */
+	private boolean hasHeight = false;
 
 
 // ========================== CONSTRUCTORS =========================	
@@ -54,6 +59,7 @@ public class Building extends WorldObject {
 		this.z_min = z_min;
 		this.z_max = z_max;
 		this.vertices = vertices;
+		this.hasHeight = false;
 	}
 	
 // ========================== GETTERS/SETTERS ======================	
@@ -138,6 +144,10 @@ public class Building extends WorldObject {
 	 * @return A string corresponding to the .obj description of the Building
 	 */
 	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset){
+		if (!hasHeight) {
+			this.addHeight();
+		}
+		
 		// Fetching the offsets from the offsets parameter
 		int vertexIndexOffset  = indexOffsets.get(0);
 		int textureIndexOffset = indexOffsets.get(1);

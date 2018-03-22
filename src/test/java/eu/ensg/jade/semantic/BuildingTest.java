@@ -46,7 +46,6 @@ public class BuildingTest {
 				System.out.println(100*i/buildings.size() + "%");
 				
 				Building building = buildings.get(i);
-				building.addHeight();
 				String buildingObj = building.toOBJ(offsets, 655686.55, 6861084.26);
 				
 				// out.print("o Building_" + i + "\n");
