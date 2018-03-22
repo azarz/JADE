@@ -42,9 +42,8 @@ public class LineRoad extends Road{
 	 * @param direction
 	 * @param geometry
 	 */
-	public LineRoad(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, int importance, String number,MultiLineString geometry) {
-		super(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, geometry);
-		
+	public LineRoad(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, String importance, String number,MultiLineString geometry) {
+		super(width, laneNumber, z_ini, z_fin, direction, nature, importance, number);
 		this.geometry = geometry;
 	}
 
