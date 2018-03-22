@@ -2,10 +2,6 @@ package eu.ensg.jade.geometricObject;
 
 import java.util.List;
 
-import com.vividsolutions.jts.geom.Geometry;
-
-import eu.ensg.jade.geometricObject.WorldObject;
-
 /**
  * Road is the super-class for roads
  * 

@@ -1,7 +1,5 @@
 	package eu.ensg.jade.semantic;
 
-import com.jme3.app.R.string;
-
 import eu.ensg.jade.geometricObject.Point;
 
 /**
