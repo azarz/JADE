@@ -60,7 +60,7 @@ public class SceneBuilder {
 		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.DTM), dtmLayer);
-		scene.setDtm(rge.getDTM());		
+		scene.setDtm(rge.getDTM());	
 		
 		/*
 		 * Add Vegetation and street furniture
@@ -88,7 +88,6 @@ public class SceneBuilder {
 		xmlWritter.updateConfig("rainCoefficient", "20");
 		
 //		xmlWritter.addBuilding();
-		
 	}
 	
 	public static void buildFromRGE() {
