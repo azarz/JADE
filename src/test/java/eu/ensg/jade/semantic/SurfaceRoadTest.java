@@ -15,7 +15,7 @@ import org.junit.Test;
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.LineRoadSHP;
 
-public class ArealRoadTest {
+public class SurfaceRoadTest {
 
 	@Test
 	public void toObjTest() throws IOException {
@@ -49,7 +49,7 @@ public class ArealRoadTest {
 				SurfaceRoad surfRoad = road.enlarge();
 				//System.out.println(surfRoad.getGeom().getCoordinates()[0].z);
 				
-				String roadObj = surfRoad.toOBJ(offsets);
+				String roadObj = surfRoad.toOBJ(offsets, 655686.55, 6861084.26);
 				
 				// out.print("o Road_" + i + "\n");
 				out.print(roadObj);

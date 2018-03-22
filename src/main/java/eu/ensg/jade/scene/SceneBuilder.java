@@ -49,6 +49,8 @@ public class SceneBuilder {
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.BUILDING), buildingLayer);
 		scene.setBuildings(rge.getBuildings());
+		scene.setxCentroid(rge.getxCentroid());
+		scene.setyCentroid(rge.getyCentroid());
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.ROAD), roadLayer);
 		scene.setLineRoads(rge.getLineRoads());
@@ -73,9 +75,9 @@ public class SceneBuilder {
 		 */
 		OBJWritter objWritter = new OBJWritter();
 		
-		objWritter.exportBuilding("buildings.obj", scene.getBuildings());
+		objWritter.exportBuilding("buildings.obj", scene.getBuildings(), scene.getxCentroid(), scene.getyCentroid());
 		
-		objWritter.exportRoad("roads.obj", scene.getRoads());
+		objWritter.exportRoad("roads.obj", scene.getRoads(), scene.getxCentroid(), scene.getyCentroid());
 		
 		scene.getDtm().toPNG("paris.png");
 		

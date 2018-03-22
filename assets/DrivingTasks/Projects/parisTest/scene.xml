@@ -106,9 +106,9 @@
 	      <collisionShape>meshShape</collisionShape>
 	      <scale>
 	        <vector jtype="java_lang_Float" size="3">
-	          <entry>25</entry>
 	          <entry>1</entry>
-	          <entry>25</entry>
+	          <entry>1</entry>
+	          <entry>1</entry>
 	        </vector>
 	      </scale>
 
@@ -122,9 +122,9 @@
 
 	      <translation>
 	        <vector jtype="java_lang_Float" size="3">
-	          <entry>-899.05</entry>
-	          <entry>-10</entry>
-	          <entry>-3131.24</entry>
+	          <entry>-3495.05</entry>
+	          <entry>0</entry>
+	          <entry>-1727.24</entry>
 	        </vector>
 	      </translation>
 
@@ -137,7 +137,7 @@
 	    <terrain id="myTerrain">
 	      <imageBasedHeightMap key="Textures/Terrain/paris.png" heightScale="1" />
 	      <smoothing percentage="0.9" radius="1" />
-	      <lod patchSize="65" totalSize="1025" distanceFactor="1"/>
+	      <lod patchSize="2049" totalSize="16385" distanceFactor="1"/>
 	    </terrain>
   	</geometries>
     

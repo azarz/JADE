@@ -127,7 +127,7 @@ public class Road extends WorldObject {
 		 * @see eu.ensg.jade.geometricObject.WorldObject#toOBJ(java.util.List)
 		 */
 		@Override
-		public String toOBJ(List<Integer> indexOffsets) {
+		public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {
 			// TODO Auto-generated method stub
 			return null;
 		}		
