@@ -6,7 +6,7 @@ package eu.ensg.jade.rules;
  * @author JADE
  */
 
-public class Rule {
+public class Rule implements IRule{
 
 // ========================== ATTRIBUTES ===========================
 
