@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.vividsolutions.jts.geom.Polygon;
 
-import eu.ensg.jade.semantic.LineRoad;
-import eu.ensg.jade.semantic.SurfaceRoad;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.MultiPolygon;
+
+import eu.ensg.jade.geometricObject.WorldObject;
 
 /**
  * Road is the super-class for roads
@@ -22,9 +24,9 @@ public class Road extends WorldObject {
 		 */
 		protected double width;
 		/**
-		 * The road number of ways
+		 * The number of lane
 		 */
-		protected int wayNumber;
+		protected int laneNumber;
 		/**
 		 * The elevation at the initial road summit
 		 */
@@ -38,8 +40,25 @@ public class Road extends WorldObject {
 		 */
 		protected String direction;
 		
+		/**
+		 * The nature
+		 */
+		protected String nature;
 		
-// ========================== CONSTRUCTORS =========================
+		/**
+		 * The importance
+		 */
+		protected int importance;
+		
+		/**
+		 * The number
+		 */
+		protected String number;
+		
+		/**
+		 * The Geometry
+		 */
+		protected Geometry geom;
 		
 		/**
 		 * Constructor using all fields
@@ -50,17 +69,23 @@ public class Road extends WorldObject {
 		 * @param z_fin
 		 * @param direction
 		 */
-		public Road(double width, int wayNumber, double z_ini, double z_fin, String direction) {
+		public Road(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, int importance, String number,Geometry geom) {
 			this.width = width;
-			this.wayNumber = wayNumber;
+			this.laneNumber = laneNumber;
 			this.z_ini = z_ini;
 			this.z_fin = z_fin;
 			this.direction = direction;
+			this.nature = nature;
+			this.importance = importance;
+			this.number = number;
+			this.geom=geom;
 		}
 		
 		
 // ========================== GETTERS/SETTERS ======================
 		
+
+
 		/**
 		 * Allows to access the road width
 		 * 
@@ -76,8 +101,8 @@ public class Road extends WorldObject {
 		 * 
 		 * @return the road number of ways
 		 */
-		public int getWayNumber() {
-			return wayNumber;
+		public int getLaneNumber() {
+			return laneNumber;
 		}
 
 		/**
@@ -108,29 +133,42 @@ public class Road extends WorldObject {
 			return direction;
 		}
 		
-		
-		
-		/**
-		 * Create a new polygonal road from a line road
-		 * 
-		 * @param lineRoad the entry LineRoad to enlarge
-		 * @param width the new width of the road
-		 * @return a new SurfacicRoad
-		 */
-		public static SurfaceRoad enlarge(LineRoad lineRoad, double width) {
-			Polygon geometry =  (Polygon) lineRoad.getGeom().buffer(width/2);
-			
-			return new SurfaceRoad(width, lineRoad.getWayNumber(), lineRoad.getZ_ini(), 
-					lineRoad.getZ_fin(), lineRoad.getDirection(), geometry);
+		public String getNature() {
+			return nature;
 		}
 
+
+		public int getImportance() {
+			return importance;
+		}
+
+
+		public String getNumber() {
+			return number;
+		}
+
+		/**
+		 * Allows to access the geometry of the road
+		 * 
+		 * @return the road original linear road
+		 */
+		public Geometry getGeom() {
+			return geom;
+		}
+
+
+		/**
+		 * This method will have a return that will soon be specified
+		 * 
+		 * @see eu.ensg.jade.geometricObject.WorldObject#toOBJ(java.util.List)
+		 */
 
 		@Override
 		public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {
 			// TODO Auto-generated method stub
 			return null;
-		}
-		
+		}		
+
 }
 
 

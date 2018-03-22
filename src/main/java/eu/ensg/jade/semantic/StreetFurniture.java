@@ -22,10 +22,74 @@ public class StreetFurniture extends Point {
 	/**
 	 * The furniture geometry
 	 */
-	private string geometry;
+	private Point geometry;
 	
-// ========================== METHODS ==============================
+	/**
+	 * The furniture id
+	 */
+	private String id;
 	
+	private enum type {
+		
+	};
+	
+	
+	
+	// ========================== CONSTRUCTORS =========================			
+	
+	
+	public StreetFurniture() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
+	
+	
+	
+	
+	
+	
+	public StreetFurniture(String nature, Point geometry, String id) {
+			super();
+			this.nature = nature;
+			this.geometry = geometry;
+			this.id = id;
+		}
+
+
+
+
+	// ========================== GETTERS/SETTERS ======================
+
+
+	
+	public String getNature() {
+		return nature;
+	}
+
+
+
+
+
+
+	public Point getGeometry() {
+		return geometry;
+	}
+
+
+
+
+
+
+	public String getId() {
+		return id;
+	}
+
+
+
+
+	// ========================== METHODS ==============================
+
+
 	/**
 	 * This method will have a return that will soon be specified
 	 */
