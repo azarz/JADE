@@ -53,7 +53,7 @@ public class SceneBuilder {
 		scene.setyCentroid(rge.getyCentroid());
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.ROAD), roadLayer);
-		scene.setLineRoads(rge.getLineRoads());
+		scene.setRoads(rge.getRoads());
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.HYDRO), hydroLayer);
 		scene.setHydrography(rge.getHydrography());
