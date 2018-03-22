@@ -1,5 +1,7 @@
 package eu.ensg.jade.semantic;
 
+import java.util.List;
+
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
@@ -28,6 +30,8 @@ public class LineRoad extends Road{
 	 * the attribute containing the geometry of the road
 	 */
 	protected MultiLineString geometry;
+	
+	protected List<StreetFurniture> listSF;
 	
 	
 // ========================== CONSTRUCTORS =========================
