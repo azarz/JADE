@@ -60,9 +60,9 @@
 	
 			<translation>
 				<vector jtype="java_lang_Float" size="3">
-					<entry>0</entry>
+					<entry>1000</entry>
 					<entry>60</entry>
-					<entry>0</entry>
+					<entry>-100</entry>
 				</vector>
 			</translation>
 	
@@ -106,9 +106,9 @@
 	      <collisionShape>meshShape</collisionShape>
 	      <scale>
 	        <vector jtype="java_lang_Float" size="3">
+	          <entry>5</entry>
 	          <entry>1</entry>
-	          <entry>1</entry>
-	          <entry>1</entry>
+	          <entry>5</entry>
 	        </vector>
 	      </scale>
 
@@ -122,9 +122,9 @@
 
 	      <translation>
 	        <vector jtype="java_lang_Float" size="3">
-	          <entry>-3495.05</entry>
+	          <entry>4790.95</entry>
 	          <entry>0</entry>
-	          <entry>-1727.24</entry>
+	          <entry>1558.76</entry>
 	        </vector>
 	      </translation>
 
@@ -137,7 +137,7 @@
 	    <terrain id="myTerrain">
 	      <imageBasedHeightMap key="Textures/Terrain/paris.png" heightScale="1" />
 	      <smoothing percentage="0.9" radius="1" />
-	      <lod patchSize="2049" totalSize="16385" distanceFactor="1"/>
+	      <lod patchSize="513" totalSize="8193" distanceFactor="1"/>
 	    </terrain>
   	</geometries>
     
