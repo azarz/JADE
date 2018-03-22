@@ -1,5 +1,7 @@
 package eu.ensg.jade.geometricObject;
 
+import java.util.List;
+
 import com.vividsolutions.jts.geom.Polygon;
 
 import eu.ensg.jade.semantic.LineRoad;
@@ -11,7 +13,7 @@ import eu.ensg.jade.semantic.SurfaceRoad;
  * @author JADE
  */
 
-public class Road {	
+public class Road extends WorldObject {	
 	
 // ========================== ATTRIBUTES ===========================
 
@@ -120,6 +122,13 @@ public class Road {
 			
 			return new SurfaceRoad(width, lineRoad.getWayNumber(), lineRoad.getZ_ini(), 
 					lineRoad.getZ_fin(), lineRoad.getDirection(), geometry);
+		}
+
+
+		@Override
+		public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 		
 }

@@ -77,7 +77,7 @@ public class SceneBuilder {
 		
 		objWritter.exportBuilding("buildings.obj", scene.getBuildings(), scene.getxCentroid(), scene.getyCentroid());
 		
-		objWritter.exportRoad("roads.obj", scene.getRoads(), scene.getxCentroid(), scene.getyCentroid());
+//		objWritter.exportRoad("roads.obj", scene.getRoads(), scene.getxCentroid(), scene.getyCentroid());
 		
 		scene.getDtm().toPNG("paris.png");
 		
@@ -90,6 +90,8 @@ public class SceneBuilder {
 		xmlWritter.updateConfig("rainCoefficient", "20");
 		
 //		xmlWritter.addBuilding();
+		
+		xmlWritter.createAllXml();
 	}
 	
 	public static void buildFromRGE() {
