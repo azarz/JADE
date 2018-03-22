@@ -3,6 +3,7 @@ package eu.ensg.jade.semantic;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
+import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.MultiLineString;
 import com.vividsolutions.jts.geom.MultiPoint;
@@ -41,8 +42,8 @@ public class LineRoad extends Road{
 	 * @param direction
 	 * @param geometry
 	 */
-	public LineRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, MultiLineString geometry) {
-		super(width, wayNumber, z_ini, z_fin, direction);
+	public LineRoad(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, int importance, String number,MultiLineString geometry) {
+		super(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, geometry);
 		
 		this.geometry = geometry;
 	}
@@ -109,7 +110,7 @@ public class LineRoad extends Road{
 		// Applying the filter
 		newGeometry.apply(filter);
 		
-		SurfaceRoad surfacicRoad = new SurfaceRoad(width, wayNumber, z_ini, z_fin, direction, newGeometry);
+		SurfaceRoad surfacicRoad = new SurfaceRoad(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, newGeometry);
 		
 		return surfacicRoad;
 		

@@ -1,21 +1,19 @@
 package eu.ensg.jade.scene;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import eu.ensg.jade.input.InputRGE;
-import eu.ensg.jade.input.ReaderContext;
-import eu.ensg.jade.input.ReaderFactory;
-import eu.ensg.jade.input.ReaderFactory.READER_METHOD;
-import eu.ensg.jade.semantic.SurfaceRoad;
-import eu.ensg.jade.semantic.SurfaceVegetation;
+import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.Hydrography;
 import eu.ensg.jade.semantic.LineRoad;
-import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.PointVegetation;
+import eu.ensg.jade.semantic.StreetFurniture;
+import eu.ensg.jade.semantic.SurfaceRoad;
+import eu.ensg.jade.semantic.SurfaceVegetation;
 
 /**
  * Scene is the class implementing the scene and its elements to be created in OpenDS
@@ -31,7 +29,7 @@ public class Scene {
 	/**
 	 * List of surfacic roads to create {@link SurfaceRoad}
 	 */
-	private List<SurfaceRoad> roads;
+	private Map <String,Road> roads;
 	
 	/**
 	 * List of linear roads to create {@link LineRoad}
@@ -83,7 +81,7 @@ public class Scene {
 	
 	public Scene() {
 		this.buildings = new ArrayList<Building>();
-		this.roads = new ArrayList<SurfaceRoad>();
+		this.roads = new HashMap<String,Road>();
 		this.lineRoads = new ArrayList<LineRoad>();
 		this.hydrography = new ArrayList<Hydrography>();
 		this.vegetation = new ArrayList<PointVegetation>();
@@ -95,38 +93,20 @@ public class Scene {
 // ========================== GETTERS/SETTERS ======================
 
 	/**
-	 * Allows to access the list of surfacic roads in the scene
+	 * Allows to access the list of roads in the scene
 	 * 
-	 * @return the scene surfacic roads
+	 * @return the scene roads
 	 */
-	public List<SurfaceRoad> getRoads() {
+	public Map<String,Road> getRoads() {
 		return roads;
-	}
-
-	/**
-	 * Allow to set the scene surfacic roads
-	 * 
-	 * @param roads the list of surfacic roads to be assigned
-	 */
-	public void setLineRoads(List<LineRoad> roads) {
-		this.lineRoads = roads;
 	}
 	
 	/**
-	 * Allows to access the list of surfacic roads in the scene
+	 * Allow to set the scene roads
 	 * 
-	 * @return the scene surfacic roads
+	 * @param roads the list of roads to be assigned
 	 */
-	public List<LineRoad> getLineRoads() {
-		return lineRoads;
-	}
-
-	/**
-	 * Allow to set the scene surfacic roads
-	 * 
-	 * @param roads the list of surfacic roads to be assigned
-	 */
-	public void setRoads(List<SurfaceRoad> roads) {
+	public void setRoads(Map<String,Road> roads) {
 		this.roads = roads;
 	}
 	
@@ -281,8 +261,8 @@ public class Scene {
 	 * 
 	 * @param newRoad the Road to be added
 	 */
-	public void addRoad(SurfaceRoad newRoad){
-		this.roads.add(newRoad);
+	public void addRoad(String id, Road newRoad){
+		this.roads.put(id, newRoad);
 	}
 	
 	/**
