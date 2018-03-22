@@ -53,7 +53,7 @@ public class SceneBuilder {
 		scene.setyCentroid(rge.getyCentroid());
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.ROAD), roadLayer);
-		scene.setLineRoads(rge.getLineRoads());
+		scene.setRoads(rge.getRoads());
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.HYDRO), hydroLayer);
 		scene.setHydrography(rge.getHydrography());
@@ -62,7 +62,7 @@ public class SceneBuilder {
 		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.DTM), dtmLayer);
-		scene.setDtm(rge.getDTM());
+		scene.setDtm(rge.getDTM());	
 		
 		/*
 		 * Add Vegetation and street furniture
@@ -77,7 +77,7 @@ public class SceneBuilder {
 		
 		objWritter.exportBuilding("buildings.obj", scene.getBuildings(), scene.getxCentroid(), scene.getyCentroid());
 		
-		objWritter.exportRoad("roads.obj", scene.getRoads(), scene.getxCentroid(), scene.getyCentroid());
+//		objWritter.exportRoad("roads.obj", scene.getRoads(), scene.getxCentroid(), scene.getyCentroid());
 		
 		scene.getDtm().toPNG("paris.png");
 		
@@ -91,6 +91,7 @@ public class SceneBuilder {
 		
 //		xmlWritter.addBuilding();
 		
+		xmlWritter.createAllXml();
 	}
 	
 	public static void buildFromRGE() {
