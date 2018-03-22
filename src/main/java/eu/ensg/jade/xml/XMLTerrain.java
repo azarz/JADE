@@ -3,7 +3,7 @@ package eu.ensg.jade.xml;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLTerrain implements INodeExport {
+public class XMLTerrain implements IXMLExport {
 	
 // ========================== ATTRIBUTES ===========================
 	

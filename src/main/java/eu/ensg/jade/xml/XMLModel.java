@@ -5,7 +5,7 @@ import java.util.Vector;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLModel extends XMLVector implements INodeExport {
+public class XMLModel extends XMLVector implements IXMLExport {
 	
 // ========================== ATTRIBUTES ===========================
 	
