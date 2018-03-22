@@ -49,7 +49,7 @@ public class SurfaceRoadTest {
 				SurfaceRoad surfRoad = road.enlarge();
 				//System.out.println(surfRoad.getGeom().getCoordinates()[0].z);
 				
-				String roadObj = surfRoad.toOBJ(offsets);
+				String roadObj = surfRoad.toOBJ(offsets, 655686.55, 6861084.26);
 				
 				// out.print("o Road_" + i + "\n");
 				out.print(roadObj);
