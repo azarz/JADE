@@ -38,6 +38,7 @@ public class Building extends WorldObject {
 	 */
 	private List<double[]> vertices;
 
+
 // ========================== CONSTRUCTORS =========================	
 
 	/**
@@ -136,8 +137,7 @@ public class Building extends WorldObject {
 	 * in the file
 	 * @return A string corresponding to the .obj description of the Building
 	 */
-	public String toOBJ(List<Integer> indexOffsets){
-		
+	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset){
 		// Fetching the offsets from the offsets parameter
 		int vertexIndexOffset  = indexOffsets.get(0);
 		int textureIndexOffset = indexOffsets.get(1);
@@ -151,9 +151,9 @@ public class Building extends WorldObject {
 		
 		// Adding the vertex coords as in a obj file
 		for (int i = 0; i < vertices.size(); i++) {
-			vertexCoords += "v " + (vertices.get(i)[0]-655686.55) + " "
+			vertexCoords += "v " + (vertices.get(i)[0] - xOffset) + " "
 							     + vertices.get(i)[2] + " "
-							     + -1*(vertices.get(i)[1]-6861084.26) + "\n";
+							     + -1*(vertices.get(i)[1] - yOffset) + "\n";
 			
 		}
 		
@@ -232,9 +232,9 @@ public class Building extends WorldObject {
 				
 				// Adding the vertex coords as in a obj file
 				for (int i = 0; i < coords.length - 1; i++) {
-					vertexCoords += "v " + (coords[i].x-655686.55) + " "
+					vertexCoords += "v " + (coords[i].x - xOffset) + " "
 									     + coords[i].z + " "
-									     + -1*(coords[i].y-6861084.26) + "\n";
+									     + -1*(coords[i].y - yOffset) + "\n";
 					
 					faces += " " + (i + vertexIndexOffset + newVertexOffset) + "//" + normalIndexOffset;
 				}

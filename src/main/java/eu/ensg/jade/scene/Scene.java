@@ -68,6 +68,16 @@ public class Scene {
 	 */
 	private DTM dtm;
 	
+	/**
+	 * The X coordinate of the area centroid
+	 */
+	private double xCentroid = 0;
+	
+	/**
+	 * The Y coordinate of the area centroid
+	 */
+	private double yCentroid = 0;
+	
 	
 // ========================== CONSTRUCTORS =========================
 	
@@ -226,6 +236,42 @@ public class Scene {
 	 */
 	public void setDtm(DTM dtm) {
 		this.dtm = dtm;
+	}
+	
+	/**
+	 * Gets the centroid's X
+	 * 
+	 * @return xCentroid
+	 */
+	public double getxCentroid() {
+		return xCentroid;
+	}
+
+	/**
+	 * Sets the centroid's X
+	 * 
+	 * @param xCentroid
+	 */
+	public void setxCentroid(double xCentroid) {
+		this.xCentroid = xCentroid;
+	}
+
+	/**
+	 * Gets the centroid's Y
+	 * 
+	 * @return yCentroid
+	 */
+	public double getyCentroid() {
+		return yCentroid;
+	}
+
+	/**
+	 * Sets the centroid's Y
+	 * 
+	 * @param yCentroid
+	 */
+	public void setyCentroid(double yCentroid) {
+		this.yCentroid = yCentroid;
 	}
 
 // ========================== METHODS ==============================

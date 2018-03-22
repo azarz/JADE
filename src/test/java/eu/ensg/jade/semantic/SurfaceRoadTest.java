@@ -15,7 +15,7 @@ import org.junit.Test;
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.LineRoadSHP;
 
-public class ArealRoadTest {
+public class SurfaceRoadTest {
 
 	@Test
 	public void toObjTest() throws IOException {

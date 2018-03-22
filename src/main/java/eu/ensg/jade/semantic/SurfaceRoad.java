@@ -68,16 +68,16 @@ public class SurfaceRoad extends Road {
 // ========================== METHODS ==============================
 
 	/**
-	 * Allows to add an height to a road. It is defines by a elevation to its extremity (z_ini and z_fin)
+	 * Converts a SurfaceRoad into a string corresponding to the .obj description of it
+	 * 
+	 * @param indexOffsets a list of 3 integers wich correspond to the offset of
+	 * 			- vertex index
+	 * 			- uv coordinates index
+	 * 			- normal coordinates indexs
+	 * in the file
+	 * @return A string corresponding to the .obj description of the SurfaceRoad
 	 */
-	public void addHeight(){
-		
-	}
-	
-	/**
-	 * This method will have a return that will soon be specified
-	 */
-	public String toOBJ(List<Integer> indexOffsets){
+	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset){
 		
 		// Fetching the offsets from the offsets parameter
 		int vertexIndexOffset  = indexOffsets.get(0);
@@ -135,9 +135,9 @@ public class SurfaceRoad extends Road {
 				
 				// Adding the vertex coords as in a obj file
 				for (int i = 0; i < coords.length - 1; i++) {
-					vertexCoords += "v " + (coords[i].x-655686.55) + " "
+					vertexCoords += "v " + (coords[i].x - xOffset) + " "
 									     + coords[i].z + " "
-									     + -1*(coords[i].y-6861084.26) + "\n";
+									     + -1*(coords[i].y - yOffset) + "\n";
 					
 					faces += " " + (i + vertexIndexOffset + newVertexOffset) + "//" + normalIndexOffset;
 				}

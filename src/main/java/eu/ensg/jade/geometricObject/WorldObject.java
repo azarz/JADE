@@ -4,5 +4,5 @@ import java.util.List;
 
 public abstract class WorldObject {
 	
-	public abstract String toOBJ(List<Integer> indexOffsets);
+	public abstract String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset);
 }
