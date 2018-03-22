@@ -39,6 +39,21 @@ public class Road extends WorldObject {
 		protected String direction;
 		
 		/**
+		 * The nature
+		 */
+		protected String nature;
+		
+		/**
+		 * The importance
+		 */
+		protected int importance;
+		
+		/**
+		 * The number
+		 */
+		protected String number;
+		
+		/**
 		 * The Geometry
 		 */
 		protected Geometry geom;
@@ -52,18 +67,23 @@ public class Road extends WorldObject {
 		 * @param z_fin
 		 * @param direction
 		 */
-		public Road(double width, int laneNumber, double z_ini, double z_fin, String direction, Geometry geom) {
+		public Road(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, int importance, String number,Geometry geom) {
 			this.width = width;
 			this.laneNumber = laneNumber;
 			this.z_ini = z_ini;
 			this.z_fin = z_fin;
 			this.direction = direction;
+			this.nature = nature;
+			this.importance = importance;
+			this.number = number;
 			this.geom=geom;
 		}
 		
 		
 // ========================== GETTERS/SETTERS ======================
 		
+
+
 		/**
 		 * Allows to access the road width
 		 * 
@@ -109,6 +129,20 @@ public class Road extends WorldObject {
 		 */
 		public String getDirection() {
 			return direction;
+		}
+		
+		public String getNature() {
+			return nature;
+		}
+
+
+		public int getImportance() {
+			return importance;
+		}
+
+
+		public String getNumber() {
+			return number;
 		}
 
 		/**
