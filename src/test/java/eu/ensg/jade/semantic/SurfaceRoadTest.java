@@ -9,9 +9,11 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
+import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.LineRoadSHP;
 
@@ -26,7 +28,7 @@ public class SurfaceRoadTest {
 		
 		InputRGE allRoads = linearRoadShp.getRGE(shpPath);
 		
-		List<LineRoad> roads = allRoads.getLineRoads();
+		Map<String,Road> roads = allRoads.getRoads();
 		
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
@@ -40,11 +42,10 @@ public class SurfaceRoadTest {
 			    BufferedWriter bw = new BufferedWriter(fw);
 			    PrintWriter out = new PrintWriter(bw)){
 		
-			for (int i = 0; i < roads.size(); i++) {
-				
+			for (Road value : roads.values()) {
+			    
 				// System.out.println(100*i/roads.size() + "%");
-				
-				LineRoad road = roads.get(i);
+				LineRoad road = (LineRoad) value;
 				//System.out.println(road.getGeom().getCoordinates()[0].z);
 				SurfaceRoad surfRoad = road.enlarge();
 				//System.out.println(surfRoad.getGeom().getCoordinates()[0].z);
@@ -54,6 +55,7 @@ public class SurfaceRoadTest {
 				// out.print("o Road_" + i + "\n");
 				out.print(roadObj);
 			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
