@@ -5,11 +5,9 @@ import java.util.Vector;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLElement implements INodeExport {
+public class XMLVector implements INodeExport {
 	
 // ========================== ATTRIBUTES ===========================
-	
-	protected String id;
 	
 	protected Vector<Double> scale;
 	protected Vector<Double> rotation;
@@ -17,13 +15,13 @@ public class XMLElement implements INodeExport {
 	
 // ========================== CONSTRUCTORS =========================
 	
-	public XMLElement(String id) {
-		this.id = id;
+	public XMLVector() {
+		this.scale = new Vector<>(3);
+		this.rotation = new Vector<>(3);
+		this.translation = new Vector<>(3);
 	}
 	
-	public XMLElement(String id, Vector<Double> scale, Vector<Double> rotation, Vector<Double> translation) {
-		this.id = id;
-		
+	public XMLVector(Vector<Double> scale, Vector<Double> rotation, Vector<Double> translation) {		
 		this.scale = scale;
 		this.rotation = rotation;
 		this.translation = translation;
@@ -58,17 +56,13 @@ public class XMLElement implements INodeExport {
 // ========================== METHODS ==============================
 
 	@Override
-	public Element toNode(Document doc) {
-		Element origin = doc.createElement("origin");
-		
-		Element scale = doc.createElement("scale");
-		Element rotation = doc.createElement("rotation");
-		Element translation = doc.createElement("translation");
+	public Element toXMLElement(Document doc) {
+		Element origin = doc.createElement("origin");		
 	
 		Element vector;
 		
-		
 		// Scale node
+		Element scale = doc.createElement("scale");
 		vector = doc.createElement("vector");
 		vector.setAttribute("jtype", "java_lang_Float");
 		vector.setAttribute("size", "3");
@@ -76,8 +70,10 @@ public class XMLElement implements INodeExport {
 			vector.appendChild(doc.createElement("entry").appendChild(doc.createTextNode(String.valueOf(value))));
 		}
 		scale.appendChild(vector);
+		origin.appendChild(scale);
 		
 		// Rotation node
+		Element rotation = doc.createElement("rotation");
 		vector = doc.createElement("vector");
 		vector.setAttribute("jtype", "java_lang_Float");
 		vector.setAttribute("size", "3");
@@ -86,15 +82,18 @@ public class XMLElement implements INodeExport {
 		}
 		rotation.appendChild(vector);
 		rotation.setAttribute("quaternion", "false");
+		origin.appendChild(rotation);
 		
 		// Translation node
+		Element translation = doc.createElement("translation");
 		vector = doc.createElement("vector");
 		vector.setAttribute("jtype", "java_lang_Float");
 		vector.setAttribute("size", "3");
 		for(Double value: this.translation) {
 			vector.appendChild(doc.createElement("entry").appendChild(doc.createTextNode(String.valueOf(value))));
 		}
-		translation.appendChild(vector);		
+		translation.appendChild(vector);
+		origin.appendChild(translation);
 		
 		return origin;
 	}	

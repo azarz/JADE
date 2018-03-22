@@ -1,6 +1,9 @@
 package eu.ensg.jade.xml;
 
-public class XMLTerrain {
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+public class XMLTerrain implements INodeExport {
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -74,6 +77,32 @@ public class XMLTerrain {
 
 	public void setDistanceFactor(double distanceFactor) {
 		this.distanceFactor = distanceFactor;
+	}
+	
+// ========================== METHODS ==============================
+
+	@Override
+	public Element toXMLElement(Document doc) {
+		Element terrain = doc.createElement("terrain");
+		terrain.setAttribute("id", this.id);
+		
+		Element heightmap = doc.createElement("imageBasedHeightMap");
+		heightmap.setAttribute("key",this.imageHeightmap);
+		heightmap.setAttribute("heightScale", String.valueOf(this.heightScale));
+		terrain.appendChild(heightmap);
+		
+		Element smoothing = doc.createElement("smoothing");
+		smoothing.setAttribute("percentage", String.valueOf(0.9));
+		smoothing.setAttribute("radius", String.valueOf(1));
+		terrain.appendChild(smoothing);
+		
+		Element lod = doc.createElement("lod");
+		lod.setAttribute("patchSize", String.valueOf(this.patchSize));
+		lod.setAttribute("totalSize", String.valueOf(this.totalSize));
+		lod.setAttribute("distanceFactor", String.valueOf(this.distanceFactor));
+		terrain.appendChild(lod);
+		
+		return terrain;
 	}
 	
 

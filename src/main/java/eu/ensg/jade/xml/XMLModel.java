@@ -5,10 +5,11 @@ import java.util.Vector;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-public class XMLModel extends XMLElement implements INodeExport {
+public class XMLModel extends XMLVector implements INodeExport {
 	
 // ========================== ATTRIBUTES ===========================
 	
+	protected String id;
 	protected String key;
 	protected String ref;
 	
@@ -19,7 +20,8 @@ public class XMLModel extends XMLElement implements INodeExport {
 // ========================== CONSTRUCTORS =========================
 	
 	public XMLModel(String id, String key) {
-		super(id);
+		super();
+		this.id = id;
 		this.key = key;
 		this.ref = "";
 		
@@ -29,7 +31,8 @@ public class XMLModel extends XMLElement implements INodeExport {
 	}
 	
 	public XMLModel(String id, String key, Vector<Double> scale, Vector<Double> rotation, Vector<Double> translation) {
-		super(id, scale, rotation, translation);
+		super(scale, rotation, translation);
+		this.id = id;
 		this.key = key;
 		this.ref = "";
 		
@@ -39,6 +42,30 @@ public class XMLModel extends XMLElement implements INodeExport {
 	}
 	
 // ========================== GETTERS/SETTERS ======================
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+	
+	public String getRef() {
+		return ref;
+	}
+
+	public void setRef(String ref) {
+		this.ref = ref;
+	}
 
 	public String getCollision() {
 		return collision;
@@ -62,23 +89,14 @@ public class XMLModel extends XMLElement implements INodeExport {
 
 	public void setMass(double mass) {
 		this.mass = mass;
-	}
-
-	public String getRef() {
-		return ref;
-	}
-
-	public void setRef(String ref) {
-		this.ref = ref;
-	}
-	
+	}	
 	
 	
 // ========================== METHODS ==============================
 
 	@Override
-	public Element toNode(Document doc) {
-		Element model = super.toNode(doc);
+	public Element toXMLElement(Document doc) {
+		Element model = super.toXMLElement(doc);
 		doc.renameNode(model, null, "model");
 		
 		model.setAttribute("id", this.id);
