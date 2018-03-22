@@ -8,8 +8,9 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import eu.ensg.jade.semantic.SurfaceRoad;
+import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Building;
 
 /**
@@ -21,7 +22,7 @@ import eu.ensg.jade.semantic.Building;
 public class OBJWritter {
 	
 // ========================== ATTRIBUTES ===========================
-	public boolean log = false;
+
 	
 // ========================== METHODS ==============================
 	
@@ -50,10 +51,6 @@ public class OBJWritter {
 
 			for (int i = 0; i < objectList.size(); i++) {				
 				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
-				
-				if(log) {
-					System.out.println(100*i/objectList.size() + "%");
-				}
 			}		
 			
 		} catch (IOException e) {
@@ -61,7 +58,7 @@ public class OBJWritter {
 		}
 	}
 	
-	public void exportRoad(String filePath, List<SurfaceRoad> objectList, double xCentroid, double yCentroid) {
+	public void exportRoad(String filePath, Map<String, Road> roads, double xCentroid, double yCentroid) {
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
 		offsets.add(1);
@@ -76,12 +73,8 @@ public class OBJWritter {
 			
 			out.print("mtllib paris.mtl\n");
 
-			for (int i = 0; i < objectList.size(); i++) {				
-				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
-				
-				if(log) {
-					System.out.println(100*i/objectList.size() + "%");
-				}
+			for (Road road: roads.values()) {				
+				out.print(road.toOBJ(offsets, xCentroid, yCentroid));
 			}		
 			
 		} catch (IOException e) {

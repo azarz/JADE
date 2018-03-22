@@ -70,6 +70,9 @@ public class SceneBuilder {
 		
 		// TODO: add vegetation & street furniture :)
 		
+		// TODO: add height to buildings & enlarge roads
+		
+		
 		/*
 		 * Export to OBJ & PNG
 		 */
