@@ -2,7 +2,10 @@ package eu.ensg.jade.xml;
 
 import java.util.Vector;
 
-public class XMLGroundModel extends XMLModel {
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+public class XMLGroundModel extends XMLModel implements INodeExport {
 	
 // ========================== ATTRIBUTES ===========================
 	private String material;
@@ -31,6 +34,20 @@ public class XMLGroundModel extends XMLModel {
 
 	public void setMaterial(String material) {
 		this.material = material;
+	}
+	
+	
+	
+// ========================== METHODS ==============================
+	
+	
+	@Override
+	public Element toNode(Document doc){
+		
+		Element material = doc.createElement("material");
+		material.setAttribute("key", this.material);
+		return null;
+		
 	}
 	
 	

@@ -2,7 +2,10 @@ package eu.ensg.jade.xml;
 
 import java.util.Vector;
 
-public class XMLElement {
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+public class XMLElement implements INodeExport {
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -52,6 +55,48 @@ public class XMLElement {
 		this.translation = translation;
 	}
 	
+// ========================== METHODS ==============================
+
+	@Override
+	public Element toNode(Document doc) {
+		Element origin = doc.createElement("origin");
+		
+		Element scale = doc.createElement("scale");
+		Element rotation = doc.createElement("rotation");
+		Element translation = doc.createElement("translation");
 	
+		Element vector;
+		
+		
+		// Scale node
+		vector = doc.createElement("vector");
+		vector.setAttribute("jtype", "java_lang_Float");
+		vector.setAttribute("size", "3");
+		for(Double value: this.scale) {
+			vector.appendChild(doc.createElement("entry").appendChild(doc.createTextNode(String.valueOf(value))));
+		}
+		scale.appendChild(vector);
+		
+		// Rotation node
+		vector = doc.createElement("vector");
+		vector.setAttribute("jtype", "java_lang_Float");
+		vector.setAttribute("size", "3");
+		for(Double value: this.rotation) {
+			vector.appendChild(doc.createElement("entry").appendChild(doc.createTextNode(String.valueOf(value))));
+		}
+		rotation.appendChild(vector);
+		rotation.setAttribute("quaternion", "false");
+		
+		// Translation node
+		vector = doc.createElement("vector");
+		vector.setAttribute("jtype", "java_lang_Float");
+		vector.setAttribute("size", "3");
+		for(Double value: this.translation) {
+			vector.appendChild(doc.createElement("entry").appendChild(doc.createTextNode(String.valueOf(value))));
+		}
+		translation.appendChild(vector);		
+		
+		return origin;
+	}	
 
 }

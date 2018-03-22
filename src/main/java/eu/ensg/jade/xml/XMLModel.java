@@ -2,7 +2,10 @@ package eu.ensg.jade.xml;
 
 import java.util.Vector;
 
-public class XMLModel extends XMLElement {
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+public class XMLModel extends XMLElement implements INodeExport {
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -72,4 +75,19 @@ public class XMLModel extends XMLElement {
 	
 	
 // ========================== METHODS ==============================
+
+	@Override
+	public Element toNode(Document doc) {
+		Element model = super.toNode(doc);
+		doc.renameNode(model, null, "model");
+		
+		model.setAttribute("id", this.id);
+		model.setAttribute("key", this.key);
+		
+		model.appendChild(doc.createElement("mass").appendChild(doc.createTextNode(String.valueOf(this.mass))));
+		model.appendChild(doc.createElement("visible").appendChild(doc.createTextNode(String.valueOf(this.visible))));
+		model.appendChild(doc.createElement("collisionShape").appendChild(doc.createTextNode(String.valueOf(this.collision))));
+		
+		return model;
+	}
 }
