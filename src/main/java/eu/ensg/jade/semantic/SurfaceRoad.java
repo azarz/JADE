@@ -3,12 +3,12 @@ package eu.ensg.jade.semantic;
 import java.util.List;
 
 import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.Polygon;
 import com.vividsolutions.jts.polytriangulate.EarClipper;
 
 import eu.ensg.jade.geometricObject.Road;
+import eu.ensg.jade.utils.JadeUtils;
 
 /**
  * SurfacicRoad is the class implementing a surfacic road object
@@ -115,20 +115,13 @@ public class SurfaceRoad extends Road {
 				
 				Coordinate[] coords = triangle.getCoordinates();
 				
-				// Calculating the differences between 3 points of the face to calculate the normal vector
-				double diff1_x = coords[1].x - coords[0].x;
-				double diff1_y = coords[1].z - coords[0].z;
-				double diff1_z = coords[1].y - coords[0].y;
+				// Calculating the normal vector
+				double[] normalVector = JadeUtils.getNormalVector(coords[0], 
+						coords[1], coords[2]);
 				
-				double diff2_x = coords[2].x - coords[0].x;
-				double diff2_y = coords[2].z - coords[0].z;
-				double diff2_z = coords[2].y - coords[0].y;
-				
-				double normal_x = (diff1_y * diff2_z) - (diff1_z * diff2_y);
-				double normal_y = (diff1_z * diff2_x) - (diff1_x * diff2_z);
-				double normal_z = (diff1_x * diff2_y) - (diff1_y * diff2_x);
-				
-				normalCoords += "vn " + normal_x + " " + normal_y + " " + normal_z + "\n";
+				normalCoords += "vn " + normalVector[0] + " " + 
+										normalVector[1] + " " + 
+										normalVector[2] + "\n";
 				newNormalIndexOffset++;
 				
 				faces += "f";

@@ -9,6 +9,7 @@ import com.vividsolutions.jts.geom.Polygon;
 import com.vividsolutions.jts.polytriangulate.EarClipper;
 
 import eu.ensg.jade.geometricObject.WorldObject;
+import eu.ensg.jade.utils.JadeUtils;
 
 /**
  * Building is the class implementing a building from the RGE
@@ -121,19 +122,6 @@ public class Building extends WorldObject {
 		
 		this.hasHeight = true;
 	}
-	
-	/**
-	 * Calculates the distance between 2 3D points
-	 * 
-	 * @param p1 3D point as double[3]
-	 * @param p2 3D point as double[3]
-	 * @return distance between p1 and p2
-	 */
-	private static double getDistance(double[] p1, double[] p2) {
-	    return Math.sqrt(Math.pow(p1[0] - p2[0], 2) +
-	    		Math.pow(p1[1] - p2[1], 2) + 
-	    		Math.pow(p1[2] - p2[2], 2));
-	}
 
 	/**
 	 * Converts a Building into a string corresponding to the .obj description of it
@@ -173,24 +161,17 @@ public class Building extends WorldObject {
 		for (int i = 0; i < vertices.size()/2 - 1; i++) {
 			// Calculating the texture coordinates
 			uvCoords += "vt 0 0" + "\n";
-			uvCoords += "vt " + getDistance(vertices.get(i), vertices.get(i+1)) + " 0" + "\n";
-			uvCoords += "vt " + getDistance(vertices.get(i), vertices.get(i+1)) + " " + height/3 + "\n";
+			uvCoords += "vt " + JadeUtils.getDistance(vertices.get(i), vertices.get(i+1)) + " 0" + "\n";
+			uvCoords += "vt " + JadeUtils.getDistance(vertices.get(i), vertices.get(i+1)) + " " + height/3 + "\n";
 			uvCoords += "vt 0 " + height/3 + "\n";
 			
-			// Calculating the differences between 3 points of the face to calculate the normal vector
-			double diff1_x = vertices.get(i+1)[0] - vertices.get(i)[0];
-			double diff1_y = vertices.get(i+1)[2] - vertices.get(i)[2];
-			double diff1_z = vertices.get(i+1)[1] - vertices.get(i)[1];
-			
-			double diff2_x = vertices.get(i + vertices.size()/2 )[0] - vertices.get(i)[0];
-			double diff2_y = vertices.get(i + vertices.size()/2 )[2] - vertices.get(i)[2];
-			double diff2_z = vertices.get(i + vertices.size()/2 )[1] - vertices.get(i)[1];
-			
-			double normal_x = (diff1_y * diff2_z) - (diff1_z * diff2_y);
-			double normal_y = (diff1_z * diff2_x) - (diff1_x * diff2_z);
-			double normal_z = (diff1_x * diff2_y) - (diff1_y * diff2_x);
-			
-			normalCoords += "vn " + normal_x + " " + normal_y + " " + normal_z + "\n";
+			// Calculating the normal vector
+			double[] normalVector = JadeUtils.getNormalVector(vertices.get(i), 
+					vertices.get(i+1), vertices.get(i + vertices.size()/2 ));
+	
+			normalCoords += "vn " + normalVector[0] + " " + 
+									normalVector[1] + " " + 
+									normalVector[2] + "\n";
 
 			// Calculating the face corresponding indices
 			faces += "f " + (i + vertexIndexOffset) + "/" + 
