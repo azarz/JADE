@@ -50,8 +50,8 @@ public class OBJWriter {
 		
 		File file = new File(filePath);
 		try(FileWriter fw = new FileWriter(filePath, true);
-				BufferedWriter bw = new BufferedWriter(fw);
-				PrintWriter out = new PrintWriter(bw)) {
+			BufferedWriter bw = new BufferedWriter(fw);
+			PrintWriter out = new PrintWriter(bw)) {
 			
 			Files.deleteIfExists(file.toPath());
 			

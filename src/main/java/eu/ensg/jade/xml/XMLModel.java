@@ -1,10 +1,15 @@
 package eu.ensg.jade.xml;
 
-import java.util.Vector;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+
+/**
+ * XMLModel is the class which hold data representing any model, as defined in a scene.xml file
+ * 
+ * @author JADE
+ *
+ */
 public class XMLModel extends XMLVector implements IXMLExport {
 	
 // ========================== ATTRIBUTES ===========================
@@ -19,6 +24,12 @@ public class XMLModel extends XMLVector implements IXMLExport {
 	
 // ========================== CONSTRUCTORS =========================
 	
+	/**
+	 * Constructor with basic informations
+	 * 
+	 * @param id the ID used for the model
+	 * @param key the key used for the model (optional)
+	 */
 	public XMLModel(String id, String key) {
 		super();
 		this.id = id;
@@ -30,7 +41,16 @@ public class XMLModel extends XMLVector implements IXMLExport {
 		this.mass = 0;
 	}
 	
-	public XMLModel(String id, String key, Vector<Double> scale, Vector<Double> rotation, Vector<Double> translation) {
+	/**
+	 * Constructor with transformation informations
+	 * 
+	 * @param id the ID used for the model
+	 * @param key the key used for the model (optional)
+	 * @param scale the scale Vector
+	 * @param rotation the rotation Vector
+	 * @param translation the translation Vector
+	 */
+	public XMLModel(String id, String key, double[] scale, double[] rotation, double[] translation) {
 		super(scale, rotation, translation);
 		this.id = id;
 		this.key = key;
@@ -94,6 +114,9 @@ public class XMLModel extends XMLVector implements IXMLExport {
 	
 // ========================== METHODS ==============================
 
+	/**
+	 * @see eu.ensg.jade.xml.XMLVector#toXMLElement(org.w3c.dom.Document)
+	 */
 	@Override
 	public Element toXMLElement(Document doc) {
 		Element model = super.toXMLElement(doc);

@@ -1,27 +1,38 @@
 package eu.ensg.jade.xml;
 
-import java.util.Vector;
+import java.util.Arrays;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * XMLVector is the class which hold data representing a transformation vector.
+ * It is composed of a scaling vector, a rotation vector, and a translation vector
+ * 
+ * @author JADE
+ *
+ */
 public class XMLVector implements IXMLExport {
 	
 // ========================== ATTRIBUTES ===========================
 	
-	protected Vector<Double> scale;
-	protected Vector<Double> rotation;
-	protected Vector<Double> translation;
+	protected double[] scale;
+	protected double[] rotation;
+	protected double[] translation;
 	
 // ========================== CONSTRUCTORS =========================
 	
 	public XMLVector() {
-		this.scale = new Vector<>(3);
-		this.rotation = new Vector<>(3);
-		this.translation = new Vector<>(3);
+		this.scale = new double[3];
+		this.rotation = new double[3];
+		this.translation = new double[3];
+
+		Arrays.fill(this.scale, 0);
+		Arrays.fill(this.rotation, 0);
+		Arrays.fill(this.translation, 0);
 	}
 	
-	public XMLVector(Vector<Double> scale, Vector<Double> rotation, Vector<Double> translation) {		
+	public XMLVector(double[] scale, double[] rotation, double[] translation) {		
 		this.scale = scale;
 		this.rotation = rotation;
 		this.translation = translation;
@@ -29,45 +40,51 @@ public class XMLVector implements IXMLExport {
 	
 // ========================== GETTERS/SETTERS ======================
 
-	public Vector<Double> getScale() {
+	public double[] getScale() {
 		return scale;
 	}
 
-	public void setScale(Vector<Double> scale) {
+	public void setScale(double[] scale) {
 		this.scale = scale;
 	}
 
-	public Vector<Double> getRotation() {
+	public double[] getRotation() {
 		return rotation;
 	}
 
-	public void setRotation(Vector<Double> rotation) {
+	public void setRotation(double[] rotation) {
 		this.rotation = rotation;
 	}
 
-	public Vector<Double> getTranslation() {
+	public double[] getTranslation() {
 		return translation;
 	}
 
-	public void setTranslation(Vector<Double> translation) {
+	public void setTranslation(double[] translation) {
 		this.translation = translation;
 	}
 	
 // ========================== METHODS ==============================
 
+	/**
+	 * @see eu.ensg.jade.xml.IXMLExport#toXMLElement(org.w3c.dom.Document)
+	 */
 	@Override
 	public Element toXMLElement(Document doc) {
 		Element origin = doc.createElement("origin");		
 	
-		Element vector;
+		Element vector; Element entry;
 		
 		// Scale node
 		Element scale = doc.createElement("scale");
 		vector = doc.createElement("vector");
 		vector.setAttribute("jtype", "java_lang_Float");
 		vector.setAttribute("size", "3");
-		for(Double value: this.scale) {
-			vector.appendChild(doc.createElement("entry").appendChild(doc.createTextNode(String.valueOf(value))));
+		
+		for(double value: this.scale) {
+			entry = doc.createElement("entry");
+			entry.appendChild(doc.createTextNode(String.valueOf(value)));
+			vector.appendChild(entry);
 		}
 		scale.appendChild(vector);
 		origin.appendChild(scale);
@@ -77,8 +94,11 @@ public class XMLVector implements IXMLExport {
 		vector = doc.createElement("vector");
 		vector.setAttribute("jtype", "java_lang_Float");
 		vector.setAttribute("size", "3");
-		for(Double value: this.rotation) {
-			vector.appendChild(doc.createElement("entry").appendChild(doc.createTextNode(String.valueOf(value))));
+		
+		for(double value: this.rotation) {
+			entry = doc.createElement("entry");
+			entry.appendChild(doc.createTextNode(String.valueOf(value)));
+			vector.appendChild(entry);
 		}
 		rotation.appendChild(vector);
 		rotation.setAttribute("quaternion", "false");
@@ -89,8 +109,11 @@ public class XMLVector implements IXMLExport {
 		vector = doc.createElement("vector");
 		vector.setAttribute("jtype", "java_lang_Float");
 		vector.setAttribute("size", "3");
-		for(Double value: this.translation) {
-			vector.appendChild(doc.createElement("entry").appendChild(doc.createTextNode(String.valueOf(value))));
+		
+		for(double value: this.translation) {
+			entry = doc.createElement("entry");
+			entry.appendChild(doc.createTextNode(String.valueOf(value)));
+			vector.appendChild(entry);
 		}
 		translation.appendChild(vector);
 		origin.appendChild(translation);

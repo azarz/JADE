@@ -18,40 +18,54 @@ public class Intersection {
 	
 
 // ========================== ATTRIBUTES ===========================
+	
+	/**
+	 * The attribute containing the geometry of the intersection
+	 */
 	private Coordinate geometry;
+	
+	/**
+	 * The attribute containing the list of ID of roads composing the intersection
+	 */
 	private List<String> roadId;
-	private static int idInter = 0;
 
 // ========================== CONSTRUCTORS =========================	
 	
-	public Intersection(Coordinate geometry, List<String> roadId) {
-		this.geometry = geometry;
-		this.roadId = roadId;
-		idInter++;
-	}
-
+	/**
+	 * Constructor using all fields
+	 * 
+	 * @param geometry
+	 */
 	public Intersection(Coordinate geometry) {
 		this.geometry = geometry;
 		this.roadId = new ArrayList<>();
-		idInter++;
 	}
 
+	/**
+	 * Empty constructor
+	 */
 	public Intersection() {
 		
 	}
 
 // ========================== GETTERS/SETTERS ======================
 
+	/**
+	 * Allows to access the intersection geometry
+	 * 
+	 * @return the intersection geometry
+	 */
 	public Coordinate getGeometry() {
 		return geometry;
 	}
 
+	/**
+	 * Allows to access the list of ID of roads composing the intersection 
+	 * 
+	 * @return the list of ID of roads composing the intersection
+	 */
 	public List<String> getRoadId() {
 		return roadId;
-	}
-
-	public int getIdInter() {
-		return idInter;
 	}
 	
 // ========================== METHODS ==============================

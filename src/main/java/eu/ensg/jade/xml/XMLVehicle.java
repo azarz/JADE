@@ -7,6 +7,12 @@ import java.util.Vector;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * XMLVehicle is the class which hold data representing a vehicle, as defined in a scenario.xml file
+ * 
+ * @author JADE
+ *
+ */
 public class XMLVehicle implements IXMLExport {
 	
 // ========================== ATTRIBUTES ===========================
@@ -25,7 +31,7 @@ public class XMLVehicle implements IXMLExport {
 	
 	private double maxDistanceFromPath;
 	
-	private List<Vector<Double>> waypoints;
+	private List<List<Double>> waypoints;
 	
 	private int startWayPoint;
 	
@@ -33,7 +39,7 @@ public class XMLVehicle implements IXMLExport {
 	
 	public XMLVehicle(String id) {
 		this.id = id;
-		this.waypoints = new ArrayList<Vector<Double>>();
+		this.waypoints = new ArrayList<List<Double>>();
 	}
 	
 // ========================== GETTERS/SETTERS ======================
@@ -102,7 +108,7 @@ public class XMLVehicle implements IXMLExport {
 		this.startWayPoint = startWayPoint;
 	}
 	
-	public void addWaypoint(String id, Vector<Double> point) {
+	public void addWaypoint(String id, List<Double> point) {
 		if(point.size() == 3){
 			this.waypoints.add(point);
 		}
@@ -112,6 +118,9 @@ public class XMLVehicle implements IXMLExport {
 	
 	
 
+	/**
+	 * @see eu.ensg.jade.xml.IXMLExport#toXMLElement(org.w3c.dom.Document)
+	 */
 	@Override
 	public Element toXMLElement(Document doc) {
 		Element vehicle = doc.createElement("vehicle");

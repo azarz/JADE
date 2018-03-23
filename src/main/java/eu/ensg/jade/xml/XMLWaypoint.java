@@ -1,10 +1,19 @@
 package eu.ensg.jade.xml;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Vector;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * XMLWaypoint is the class which hold data representing a way point, as defined in a scenario.xml file
+ * 
+ * @author JADE
+ *
+ */
 public class XMLWaypoint implements IXMLExport {
 	
 // ========================== ATTRIBUTES ===========================
@@ -13,17 +22,18 @@ public class XMLWaypoint implements IXMLExport {
 	
 	private double speed;
 	
-	private Vector<Double> translation;
+	private double[] translation;
 	
 // ========================== CONSTRUCTORS =========================
 	
 	public XMLWaypoint(String id) {
 		this.id = id;
 		this.speed = 0;
-		this.translation = new Vector<>(3);
+		this.translation = new double[3];
+		Arrays.fill(this.translation, 0);
 	}
 	
-	public XMLWaypoint(String id, double speed, Vector<Double> translation) {
+	public XMLWaypoint(String id, double speed, double[] translation) {
 		this.id = id;
 		this.speed = speed;
 		this.translation = translation;
@@ -49,6 +59,9 @@ public class XMLWaypoint implements IXMLExport {
 	
 // ========================== METHODS ==============================
 
+	/**
+	 * @see eu.ensg.jade.xml.IXMLExport#toXMLElement(org.w3c.dom.Document)
+	 */
 	@Override
 	public Element toXMLElement(Document doc) {
 		Element waypoint = doc.createElement("wayPoint");

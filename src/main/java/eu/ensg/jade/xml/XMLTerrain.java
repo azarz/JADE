@@ -3,6 +3,13 @@ package eu.ensg.jade.xml;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+
+/**
+ * XMLTerrain is the class which hold data representing a terrain, as defined in a scene.xml file
+ * 
+ * @author JADE
+ *
+ */
 public class XMLTerrain implements IXMLExport {
 	
 // ========================== ATTRIBUTES ===========================
@@ -18,6 +25,12 @@ public class XMLTerrain implements IXMLExport {
 	
 // ========================== CONSTRUCTORS =========================
 	
+	/**
+	 * Constructor with basic informations
+	 * 
+	 * @param id the ID used for the terrain
+	 * @param imageHeightmap the path to the grayscale image used as a heightmap
+	 */
 	public XMLTerrain(String id, String imageHeightmap) {
 		this.id = id;
 		this.imageHeightmap = imageHeightmap;
@@ -81,6 +94,9 @@ public class XMLTerrain implements IXMLExport {
 	
 // ========================== METHODS ==============================
 
+	/**
+	 * @see eu.ensg.jade.xml.IXMLExport#toXMLElement(org.w3c.dom.Document)
+	 */
 	@Override
 	public Element toXMLElement(Document doc) {
 		Element terrain = doc.createElement("terrain");

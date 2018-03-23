@@ -36,10 +36,14 @@ public class SurfaceRoad extends Road {
 	 * @param z_ini
 	 * @param z_fin
 	 * @param direction
+	 * @param nature
+	 * @param importance
+	 * @param number
+	 * @param speed
 	 * @param geometry
 	 */
-	public SurfaceRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, String nature, String importance, String number, Polygon geometry) {
-		super(width, wayNumber, z_ini, z_fin, direction, nature, importance, number);
+	public SurfaceRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, String nature, String importance, String number, String speed, Polygon geometry) {
+		super(width, wayNumber, z_ini, z_fin, direction, nature, importance, number, speed);
 		this.geometry = geometry;
 	}
 	
@@ -49,7 +53,7 @@ public class SurfaceRoad extends Road {
 	 * @param lineRoad the original LinearRoad
 	 */
 	public SurfaceRoad(LineRoad lineRoad) {
-		super(lineRoad.getWidth(), lineRoad.getLaneNumber(), lineRoad.getZ_ini(), lineRoad.getZ_fin(), lineRoad.getDirection(), lineRoad.getNature(), lineRoad.getImportance(), lineRoad.getNumber());
+		super(lineRoad.getWidth(), lineRoad.getLaneNumber(), lineRoad.getZ_ini(), lineRoad.getZ_fin(), lineRoad.getDirection(), lineRoad.getNature(), lineRoad.getImportance(), lineRoad.getNumber(), lineRoad.getSpeed());
 		this.geometry =  (Polygon) lineRoad.getGeom().buffer(this.width/2);
 	}
 

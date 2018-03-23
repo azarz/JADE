@@ -297,7 +297,6 @@ public class XMLWriter {
 		Document doc = this.docBuilder.newDocument();
 		try {
 			doc = docBuilder.parse(filePath);
-			System.out.println("XML imported succefully!");
 		} catch (SAXException | IOException e) {
 			e.printStackTrace();
 		}
@@ -313,12 +312,9 @@ public class XMLWriter {
 	private void exportXml(String filePath, Document xml) {
 		try {
 			DOMSource source = new DOMSource(xml);
-			
 			StreamResult result = new StreamResult(new File(filePath));
-//			StreamResult result = new StreamResult(System.out);	// Output to console for testing
 			
 			this.transformer.transform(source, result);
-			System.out.println("XML exported succefully!");
 			
 		} catch (TransformerException e) {
 			e.printStackTrace();

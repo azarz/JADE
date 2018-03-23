@@ -15,7 +15,11 @@ import eu.ensg.jade.input.ReaderFactory;
 import eu.ensg.jade.input.ReaderFactory.READER_METHOD;
 import eu.ensg.jade.output.OBJWriter;
 import eu.ensg.jade.output.XMLWriter;
+
 import eu.ensg.jade.semantic.Intersection;
+import eu.ensg.jade.xml.XMLGroundModel;
+import eu.ensg.jade.xml.XMLModel;
+import eu.ensg.jade.xml.XMLTerrain;
 
 public class SceneBuilder {
 	
@@ -93,17 +97,27 @@ public class SceneBuilder {
 		
 		scene.getDtm().toPNG("paris.png");
 		
+		
+		
 		/*
 		 * Write the XML files
 		 */
 		XMLWriter xmlWritter = new XMLWriter();
 		
-		xmlWritter.updateConfig("fileMainXML", "test.xml");
+		xmlWritter.updateConfig("fileMainXML", "MAIN_FILE.xml");
 		xmlWritter.updateConfig("rainCoefficient", "20");
 		
-//		xmlWritter.addBuilding();
+		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
+		xmlWritter.addModel(grassPlane);
 		
-		//xmlWritter.createAllXml();
+		XMLModel buildindModel = new XMLModel("Building", "buildings.obj");
+		xmlWritter.addModel(buildindModel);
+		
+		XMLTerrain terrain = new XMLTerrain("terrain", "paris.png");
+		XMLGroundModel ground = new XMLGroundModel("Ground", "Materials/MyTerrain.j3m", terrain);
+		xmlWritter.addTerrain(ground);
+		
+		xmlWritter.createAllXml();
 	}
 	
 	public static void buildFromRGE() {
