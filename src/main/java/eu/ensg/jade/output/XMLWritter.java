@@ -2,6 +2,7 @@ package eu.ensg.jade.output;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,12 +19,13 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import eu.ensg.jade.xml.XMLModel;
 import eu.ensg.jade.xml.XMLGroundModel;
+import eu.ensg.jade.xml.XMLModel;
 import eu.ensg.jade.xml.XMLVehicle;
 
 /**
@@ -75,6 +77,10 @@ public class XMLWritter {
 		
 		this.initGlobalConfig();
 		
+		this.modelList = new ArrayList<>();
+		this.terrainList = new ArrayList<>();
+		this.vehicleList = new ArrayList<>();		
+		
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		try {
@@ -113,6 +119,20 @@ public class XMLWritter {
 	public Set<String> getConfigKeys() {
 		return this.globalConfig.keySet();
 	}
+	
+	
+
+	public void addModel(XMLModel model) {
+		modelList.add(model);
+	}
+	
+	public void addTerrain(XMLGroundModel model) {
+		terrainList.add(model);
+	}
+	
+	public void addVehicle(XMLVehicle vehicle) {
+		vehicleList.add(vehicle);
+	}
 
 
 
@@ -137,7 +157,6 @@ public class XMLWritter {
 
 	/**
 	 * Create the main XML file, which is the entry point of the driving task
-	 * 
 	 */
 	public void createMainXml() {
 		try {
@@ -193,10 +212,26 @@ public class XMLWritter {
 		try {
 			Document doc = this.importXml("assets/DrivingTasks/Template/scene.xml");
 			
-			doc.getElementsByTagName("gravity").item(0)
-			.setTextContent(this.globalConfig.get("gravity"));
+			doc.getElementsByTagName("gravity").item(0).setTextContent(this.globalConfig.get("gravity"));
 			
-			// TODO: add the ability to edit the 'scene.xml' file
+			Node models = doc.getElementsByTagName("models").item(0);
+			Node geometries = doc.getElementsByTagName("geometries").item(0);
+			Element e;
+			
+			// Add every model to the scene
+			for(XMLModel model: modelList) {
+				e = model.toXMLElement(doc);
+				models.appendChild(e);
+			}
+			
+			// Add every terrain + model
+			for(XMLGroundModel model: terrainList) {
+				e = model.toXMLElement(doc);
+				models.appendChild(e);
+				
+				e = model.getTerrain().toXMLElement(doc);
+				geometries.appendChild(e);
+			}
 			
 			this.exportXml(this.mainDirectory + this.globalConfig.get("fileSceneXML"), doc);
 			

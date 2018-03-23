@@ -10,27 +10,21 @@ public class XMLGroundModel extends XMLModel implements IXMLExport {
 // ========================== ATTRIBUTES ===========================
 	private String material;
 	
-	private String terrainId;
+	private XMLTerrain terrain;
 	
 	
 // ========================== CONSTRUCTORS =========================
-	
-	public XMLGroundModel(String id, String material, String terrainId) {
-		super(id, "");
-		this.material = material;
-		this.terrainId = terrainId;
-	}
-	
+
 	public XMLGroundModel(String id, String material, XMLTerrain terrain) {
 		super(id, "");
 		this.material = material;
-		this.terrainId = terrain.getId();
+		this.terrain = terrain;
 	}
 	
-	public XMLGroundModel(String id, String material, String terrainId, Vector<Double> scale, Vector<Double> rotation, Vector<Double> translation) {
+	public XMLGroundModel(String id, String material, XMLTerrain terrain, Vector<Double> scale, Vector<Double> rotation, Vector<Double> translation) {
 		super(id, "", scale, rotation, translation);
 		this.material = material;
-		this.terrainId = terrainId;
+		this.terrain = terrain;
 	}
 	
 // ========================== GETTERS/SETTERS ======================
@@ -41,6 +35,14 @@ public class XMLGroundModel extends XMLModel implements IXMLExport {
 
 	public void setMaterial(String material) {
 		this.material = material;
+	}
+	
+	public XMLTerrain getTerrain() {
+		return terrain;
+	}
+
+	public void setTerrain(XMLTerrain terrain) {
+		this.terrain = terrain;
 	}
 	
 	
@@ -59,7 +61,7 @@ public class XMLGroundModel extends XMLModel implements IXMLExport {
 		model.appendChild(doc.createElement("shadowMode").appendChild(doc.createTextNode("Receive")));
 		
 		// Link model to terrain geometry
-		model.setAttribute("ref", this.terrainId);
+		model.setAttribute("ref", this.terrain.getId());
 		
 		return model;
 	}	
