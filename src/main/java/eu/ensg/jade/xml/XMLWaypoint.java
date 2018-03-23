@@ -5,6 +5,12 @@ import java.util.Vector;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * XMLWaypoint is the class which hold data representing a way point, as defined in a scenario.xml file
+ * 
+ * @author JADE
+ *
+ */
 public class XMLWaypoint implements IXMLExport {
 	
 // ========================== ATTRIBUTES ===========================
@@ -49,6 +55,9 @@ public class XMLWaypoint implements IXMLExport {
 	
 // ========================== METHODS ==============================
 
+	/**
+	 * @see eu.ensg.jade.xml.IXMLExport#toXMLElement(org.w3c.dom.Document)
+	 */
 	@Override
 	public Element toXMLElement(Document doc) {
 		Element waypoint = doc.createElement("wayPoint");

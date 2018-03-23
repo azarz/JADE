@@ -5,6 +5,13 @@ import java.util.Vector;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * XMLVector is the class which hold data representing a transformation vector.
+ * It is composed of a scaling vector, a rotation vector, and a translation vector
+ * 
+ * @author JADE
+ *
+ */
 public class XMLVector implements IXMLExport {
 	
 // ========================== ATTRIBUTES ===========================
@@ -55,6 +62,9 @@ public class XMLVector implements IXMLExport {
 	
 // ========================== METHODS ==============================
 
+	/**
+	 * @see eu.ensg.jade.xml.IXMLExport#toXMLElement(org.w3c.dom.Document)
+	 */
 	@Override
 	public Element toXMLElement(Document doc) {
 		Element origin = doc.createElement("origin");		
