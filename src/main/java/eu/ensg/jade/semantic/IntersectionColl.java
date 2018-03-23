@@ -1,5 +1,7 @@
 package eu.ensg.jade.semantic;
 
+import java.util.HashMap;
+
 import com.sun.javafx.collections.MappingChange.Map;
 
 public class IntersectionColl {
@@ -9,15 +11,16 @@ public class IntersectionColl {
 	/**
 	 * Map of intersections and their IDs
 	 */
-	private Map<String, Intersection> mapIntersection;
+	private HashMap<String, Intersection> mapIntersection;
 
 	// ========================== CONSTRUCTORS =========================	
-	
+
 	/**
 	 * Constructor with all the fields
+	 * 
 	 * @param mapIntersection
 	 */
-	public IntersectionColl(Map<String, Intersection> mapIntersection) {
+	public IntersectionColl(HashMap<String, Intersection> mapIntersection) {
 		super();
 		this.mapIntersection = mapIntersection;
 	}
@@ -27,20 +30,26 @@ public class IntersectionColl {
 	 */
 	public IntersectionColl() {
 		super();
+		this.mapIntersection = new HashMap<String,Intersection>();
 		// TODO Auto-generated constructor stub
 	}
 
-	// ========================== GETTERS/SETTERS ======================
+// ========================== GETTERS/SETTERS ======================
 
 	/**
 	 * Allows to access the map of intersections
 	 * 
 	 * @return the map of intersections
 	 */
-	public Map<String, Intersection> getMapIntersection() {
+	public HashMap<String, Intersection> getMapIntersection() {
 		return mapIntersection;
 	}
 	
+// ========================== METHODS ==============================	
 	
+	public void addIntersection(String id, Intersection inter) {
+		this.mapIntersection.put(id, inter);
+		
+	}
 	
 }
