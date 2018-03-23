@@ -71,7 +71,7 @@ public class XMLVector implements IXMLExport {
 	 */
 	@Override
 	public Element toXMLElement(Document doc) {
-		Element origin = doc.createElement("origin");		
+		Element origin = doc.createElement("origin");
 	
 		Element vector; Element entry;
 		

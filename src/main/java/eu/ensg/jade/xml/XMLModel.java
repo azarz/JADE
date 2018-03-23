@@ -10,7 +10,7 @@ import org.w3c.dom.Element;
  * @author JADE
  *
  */
-public class XMLModel extends XMLVector implements IXMLExport {
+public class XMLModel implements IXMLExport {
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -22,6 +22,8 @@ public class XMLModel extends XMLVector implements IXMLExport {
 	protected boolean visible;
 	protected String collision;	
 	
+	protected XMLVector vector;
+	
 // ========================== CONSTRUCTORS =========================
 	
 	/**
@@ -31,7 +33,6 @@ public class XMLModel extends XMLVector implements IXMLExport {
 	 * @param key the key used for the model (optional)
 	 */
 	public XMLModel(String id, String key) {
-		super();
 		this.id = id;
 		this.key = key;
 		this.ref = "";
@@ -39,6 +40,29 @@ public class XMLModel extends XMLVector implements IXMLExport {
 		this.collision = "meshShape";
 		this.visible = true;
 		this.mass = 0;
+		
+		this.vector = new XMLVector();
+	}
+	
+	/**
+	 * Constructor with transformation informations
+	 * 
+	 * @param id the ID used for the model
+	 * @param key the key used for the model (optional)
+	 * @param scale the scale Vector
+	 * @param rotation the rotation Vector
+	 * @param translation the translation Vector
+	 */
+	public XMLModel(String id, String key, XMLVector vector) {
+		this.id = id;
+		this.key = key;
+		this.ref = "";
+		
+		this.collision = "meshShape";
+		this.visible = true;
+		this.mass = 0;
+		
+		this.vector = vector;
 	}
 	
 	/**
@@ -51,7 +75,6 @@ public class XMLModel extends XMLVector implements IXMLExport {
 	 * @param translation the translation Vector
 	 */
 	public XMLModel(String id, String key, double[] scale, double[] rotation, double[] translation) {
-		super(scale, rotation, translation);
 		this.id = id;
 		this.key = key;
 		this.ref = "";
@@ -59,6 +82,8 @@ public class XMLModel extends XMLVector implements IXMLExport {
 		this.collision = "meshShape";
 		this.visible = true;
 		this.mass = 0;
+		
+		this.vector = new XMLVector(scale, rotation, translation);
 	}
 	
 // ========================== GETTERS/SETTERS ======================
@@ -109,7 +134,15 @@ public class XMLModel extends XMLVector implements IXMLExport {
 
 	public void setMass(double mass) {
 		this.mass = mass;
-	}	
+	}
+	
+	public XMLVector getVector() {
+		return vector;
+	}
+	
+	public void setXmlVector(XMLVector vector) {
+		this.vector = vector;
+	}
 	
 	
 // ========================== METHODS ==============================
@@ -119,15 +152,28 @@ public class XMLModel extends XMLVector implements IXMLExport {
 	 */
 	@Override
 	public Element toXMLElement(Document doc) {
-		Element model = super.toXMLElement(doc);
-		doc.renameNode(model, null, "model");
+		Element model = doc.createElement("model");
 		
 		model.setAttribute("id", this.id);
 		model.setAttribute("key", this.key);
 		
-		model.appendChild(doc.createElement("mass").appendChild(doc.createTextNode(String.valueOf(this.mass))));
-		model.appendChild(doc.createElement("visible").appendChild(doc.createTextNode(String.valueOf(this.visible))));
-		model.appendChild(doc.createElement("collisionShape").appendChild(doc.createTextNode(String.valueOf(this.collision))));
+		Element mass = doc.createElement("mass");
+		mass.appendChild(doc.createTextNode(String.valueOf(this.mass)));
+		model.appendChild(mass);
+		
+		Element visible = doc.createElement("visible");
+		visible.appendChild(doc.createTextNode(String.valueOf(this.visible)));
+		model.appendChild(visible);
+		
+		Element collisionShape = doc.createElement("collisionShape");
+		collisionShape.appendChild(doc.createTextNode(String.valueOf(this.collision)));
+		model.appendChild(collisionShape);
+		
+		
+		Element transform = this.vector.toXMLElement(doc);
+		model.appendChild(transform.getElementsByTagName("scale").item(0));
+		model.appendChild(transform.getElementsByTagName("rotation").item(0));
+		model.appendChild(transform.getElementsByTagName("translation").item(0));		
 		
 		return model;
 	}

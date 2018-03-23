@@ -2,6 +2,7 @@ package eu.ensg.jade.output;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,14 +12,15 @@ import java.util.Set;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.DocumentType;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -51,7 +53,7 @@ public class XMLWriter {
 	/**
 	 * Generic object to save XML documents
 	 */
-	private Transformer transformer;
+//	private Transformer transformer;
 	
 	/**
 	 * Directory used to save the new driving task
@@ -83,11 +85,9 @@ public class XMLWriter {
 		this.vehicleList = new ArrayList<>();		
 		
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-		TransformerFactory transformerFactory = TransformerFactory.newInstance();
 		try {
 			this.docBuilder = docFactory.newDocumentBuilder();
-			this.transformer = transformerFactory.newTransformer();
-		} catch (ParserConfigurationException | TransformerConfigurationException e) {
+		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		}
 	}
@@ -311,12 +311,24 @@ public class XMLWriter {
 	 */
 	private void exportXml(String filePath, Document xml) {
 		try {
+			Files.deleteIfExists((new File(filePath)).toPath());
+			
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			
 			DOMSource source = new DOMSource(xml);
 			StreamResult result = new StreamResult(new File(filePath));
 			
-			this.transformer.transform(source, result);
+			DocumentType doctype = xml.getDoctype();
+			if(doctype != null) {
+				transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, doctype.getSystemId());
+			}			
 			
-		} catch (TransformerException e) {
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			
+			transformer.transform(source, result);
+			
+		} catch (IOException | TransformerException e) {
 			e.printStackTrace();
 		}
 	}
