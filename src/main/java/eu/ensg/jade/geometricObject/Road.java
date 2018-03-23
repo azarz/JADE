@@ -129,26 +129,72 @@ public class Road extends WorldObject {
 			return direction;
 		}
 		
+		/**
+		 * Allows to access the road nature
+		 * 
+		 * @return the road nature
+		 */
 		public String getNature() {
 			return nature;
 		}
 
-
+		/**
+		 * Allows to access the road importance
+		 * 
+		 * @return the road importance
+		 */
 		public String getImportance() {
 			return importance;
 		}
 
 
+		/**
+		 * Allows to access the road number
+		 * 
+		 * @return the road number
+		 */
 		public String getNumber() {
 			return number;
 		}
 		
+		/**
+		 * Allows to access the road speed limit
+		 * 
+		 * @return the road speed limit
+		 */
 		public String getSpeed() {
 			return speed;
 		}
+		
+
 
 // ========================== METHODS ==============================
 
+		/**
+		 * Allows to set speed limits regarding the road attributes
+		 */
+		public void setSpeed(){
+			if((this.importance.equals("2") || this.importance.equals("4")) && (this.number.equals("NC"))){
+				this.speed = "50 km/h";
+			}
+			
+			else if((this.importance.equals("4") && this.number.indexOf('D')!=-1) || (this.nature.equals("Bretelle") && this.importance.equals("2"))){
+				this.speed = "70 km/h";
+			}
+			
+			else if(((this.importance.equals("1") || this.importance.equals("2") || this.importance.equals("3")) && this.number.indexOf('D')!=-1) || (this.nature.equals("Bretelle") && this.importance.equals("1")) || (this.importance.equals("1") && this.number.equals("NC"))){
+				this.speed = "90 km/h";
+			}
+			
+			else if(this.number.indexOf('N')!=-1){
+				this.speed = "110 km/h";
+			}
+			
+			else if(this.number.indexOf('A')!=-1){
+				this.speed = "130 km/h";
+			}
+		}
+		
 		/**
 		 * This method will have a return that will soon be specified
 		 * 

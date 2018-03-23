@@ -27,6 +27,10 @@ public class StreetFurniture extends Point {
 	 */
 	private String id;
 	
+	/**
+	 * The different types of street furniture available
+	 *
+	 */
 	private enum type {
 		
 	};
@@ -35,7 +39,9 @@ public class StreetFurniture extends Point {
 	
 	// ========================== CONSTRUCTORS =========================			
 	
-	
+	/**
+	 * Empty constructor
+	 */
 	public StreetFurniture() {
 			super();
 			// TODO Auto-generated constructor stub

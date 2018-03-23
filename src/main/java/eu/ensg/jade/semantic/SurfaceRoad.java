@@ -36,6 +36,10 @@ public class SurfaceRoad extends Road {
 	 * @param z_ini
 	 * @param z_fin
 	 * @param direction
+	 * @param nature
+	 * @param importance
+	 * @param number
+	 * @param speed
 	 * @param geometry
 	 */
 	public SurfaceRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, String nature, String importance, String number, String speed, Polygon geometry) {
