@@ -8,20 +8,21 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import eu.ensg.jade.semantic.SurfaceRoad;
+import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Building;
 
 /**
- * OBJCreator is the class implementing the creation of obj files for the objects to be added in the scene
+ * OBJCreator is the class implementing the creation of obj files.
  * 
  * @author JADE
  */
 
-public class OBJWritter {
+public class OBJWriter {
 	
 // ========================== ATTRIBUTES ===========================
-	public boolean log = false;
+
 	
 // ========================== METHODS ==============================
 	
@@ -29,10 +30,18 @@ public class OBJWritter {
 	 * Default empty constructor
 	 * 
 	 */
-	public OBJWritter(){
+	public OBJWriter(){
 		// TODO: add parameters to the constructor (maybe ?)
 	}
 	
+	/**
+	 * Exports a list of Building object as a single <i>.obj</i> file
+	 * 
+	 * @param filePath the path to the obj file
+	 * @param objectList the list of buildings
+	 * @param xCentroid the centroid x coordinate
+	 * @param yCentroid the centroid y coordinate
+	 */
 	public void exportBuilding(String filePath, List<Building> objectList, double xCentroid, double yCentroid) {
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
@@ -50,10 +59,6 @@ public class OBJWritter {
 
 			for (int i = 0; i < objectList.size(); i++) {				
 				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
-				
-				if(log) {
-					System.out.println(100*i/objectList.size() + "%");
-				}
 			}		
 			
 		} catch (IOException e) {
@@ -61,7 +66,15 @@ public class OBJWritter {
 		}
 	}
 	
-	public void exportRoad(String filePath, List<SurfaceRoad> objectList, double xCentroid, double yCentroid) {
+	/**
+	 * Exports a list of Road (SrufaceRoad) object as a single <i>.obj</i> file
+	 * 
+	 * @param filePath the path to the obj file
+	 * @param objectList the list of roads
+	 * @param xCentroid the centroid x coordinate
+	 * @param yCentroid the centroid y coordinate
+	 */
+	public void exportRoad(String filePath, Map<String, Road> roads, double xCentroid, double yCentroid) {
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
 		offsets.add(1);
@@ -76,12 +89,8 @@ public class OBJWritter {
 			
 			out.print("mtllib paris.mtl\n");
 
-			for (int i = 0; i < objectList.size(); i++) {				
-				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
-				
-				if(log) {
-					System.out.println(100*i/objectList.size() + "%");
-				}
+			for (Road road: roads.values()) {				
+				out.print(road.toOBJ(offsets, xCentroid, yCentroid));
 			}		
 			
 		} catch (IOException e) {

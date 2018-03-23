@@ -2,15 +2,19 @@ package eu.ensg.jade.xml;
 
 import java.util.Vector;
 
-public class XMLGroundModel extends XMLModel {
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
+public class XMLGroundModel extends XMLModel implements IXMLExport {
 	
 // ========================== ATTRIBUTES ===========================
 	private String material;
 	
 	private XMLTerrain terrain;
 	
-// ========================== CONSTRUCTORS =========================
 	
+// ========================== CONSTRUCTORS =========================
+
 	public XMLGroundModel(String id, String material, XMLTerrain terrain) {
 		super(id, "");
 		this.material = material;
@@ -33,6 +37,33 @@ public class XMLGroundModel extends XMLModel {
 		this.material = material;
 	}
 	
+	public XMLTerrain getTerrain() {
+		return terrain;
+	}
+
+	public void setTerrain(XMLTerrain terrain) {
+		this.terrain = terrain;
+	}
 	
+	
+// ========================== METHODS ==============================
+	
+	
+	@Override
+	public Element toXMLElement(Document doc){
+		Element model = super.toXMLElement(doc);
+		
+		// Set the material of the Ground (as a key)
+		Element material = doc.createElement("material");
+		material.setAttribute("key", this.material);
+		model.appendChild(material);
+		
+		model.appendChild(doc.createElement("shadowMode").appendChild(doc.createTextNode("Receive")));
+		
+		// Link model to terrain geometry
+		model.setAttribute("ref", this.terrain.getId());
+		
+		return model;
+	}	
 	
 }
