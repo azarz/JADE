@@ -1,13 +1,21 @@
 package eu.ensg.jade.scene;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
 
+import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
 import eu.ensg.jade.input.ReaderFactory;
 import eu.ensg.jade.input.ReaderFactory.READER_METHOD;
 import eu.ensg.jade.output.OBJWriter;
 import eu.ensg.jade.output.XMLWriter;
+import eu.ensg.jade.semantic.Intersection;
 
 public class SceneBuilder {
 	
@@ -54,6 +62,7 @@ public class SceneBuilder {
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.ROAD), roadLayer);
 		scene.setRoads(rge.getRoads());
+		scene.setCollIntersect(rge.getCollIntersect());
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.HYDRO), hydroLayer);
 		scene.setHydrography(rge.getHydrography());
@@ -100,6 +109,5 @@ public class SceneBuilder {
 	public static void buildFromRGE() {
 		
 	}
-	
 	
 }

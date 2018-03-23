@@ -1,8 +1,12 @@
 package eu.ensg.jade.semantic;
 
+
+
+import java.util.ArrayList;
 import java.util.List;
 
-import eu.ensg.jade.geometricObject.Point;
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Point;
 
 /**
  * Intersection is the class implementing
@@ -14,39 +18,46 @@ public class Intersection {
 	
 
 // ========================== ATTRIBUTES ===========================
-	private Point geometry;
-	private List<SurfaceRoad> roads;
-	private String roadId;
+	private Coordinate geometry;
+	private List<String> roadId;
+	private static int idInter = 0;
 
 // ========================== CONSTRUCTORS =========================	
 	
-	public Intersection(Point geometry, List<SurfaceRoad> roads, String roadId) {
+	public Intersection(Coordinate geometry, List<String> roadId) {
 		this.geometry = geometry;
-		this.roads = roads;
 		this.roadId = roadId;
+		idInter++;
+	}
+
+	public Intersection(Coordinate geometry) {
+		this.geometry = geometry;
+		this.roadId = new ArrayList<>();
+		idInter++;
 	}
 
 	public Intersection() {
 		
 	}
 
-
 // ========================== GETTERS/SETTERS ======================
 
-	public Point getGeometry() {
+	public Coordinate getGeometry() {
 		return geometry;
 	}
 
-	public List<SurfaceRoad> getRoads() {
-		return roads;
-	}
-
-	public String getRoadId() {
+	public List<String> getRoadId() {
 		return roadId;
 	}
-	
 
+	public int getIdInter() {
+		return idInter;
+	}
+	
 // ========================== METHODS ==============================
 
+	public void addRoadID(String ID){
+		this.roadId.add(ID);
+	}
 
 }
