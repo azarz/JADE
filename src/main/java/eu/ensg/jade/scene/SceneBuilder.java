@@ -6,8 +6,8 @@ import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
 import eu.ensg.jade.input.ReaderFactory;
 import eu.ensg.jade.input.ReaderFactory.READER_METHOD;
-import eu.ensg.jade.output.OBJWritter;
-import eu.ensg.jade.output.XMLWritter;
+import eu.ensg.jade.output.OBJWriter;
+import eu.ensg.jade.output.XMLWriter;
 
 public class SceneBuilder {
 	
@@ -76,7 +76,7 @@ public class SceneBuilder {
 		/*
 		 * Export to OBJ & PNG
 		 */
-		OBJWritter objWritter = new OBJWritter();
+		OBJWriter objWritter = new OBJWriter();
 		
 		objWritter.exportBuilding("buildings.obj", scene.getBuildings(), scene.getxCentroid(), scene.getyCentroid());
 		
@@ -87,7 +87,7 @@ public class SceneBuilder {
 		/*
 		 * Write the XML files
 		 */
-		XMLWritter xmlWritter = new XMLWritter();
+		XMLWriter xmlWritter = new XMLWriter();
 		
 		xmlWritter.updateConfig("fileMainXML", "test.xml");
 		xmlWritter.updateConfig("rainCoefficient", "20");

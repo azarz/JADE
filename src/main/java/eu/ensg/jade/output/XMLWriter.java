@@ -29,7 +29,8 @@ import eu.ensg.jade.xml.XMLModel;
 import eu.ensg.jade.xml.XMLVehicle;
 
 /**
- * XMLWriter is the class implementing the writing of the XML file defining the scene
+ * XMLWriter is the class implementing the writing of the XML files,
+ * which define the world inside OpenDS
  * 
  * Info on XML I/O:
  * https://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
@@ -38,7 +39,7 @@ import eu.ensg.jade.xml.XMLVehicle;
  * 
  * @author JADE
  */
-public class XMLWritter {
+public class XMLWriter {
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -70,9 +71,9 @@ public class XMLWritter {
 // ========================== CONSTRUCTORS =========================
 	
 	/**
-	 * Default class constructor
+	 * Default (empty) class constructor
 	 */
-	public XMLWritter() {
+	public XMLWriter() {
 		this.globalConfig = new HashMap<String, String>();
 		
 		this.initGlobalConfig();
@@ -118,8 +119,7 @@ public class XMLWritter {
 	
 	public Set<String> getConfigKeys() {
 		return this.globalConfig.keySet();
-	}
-	
+	}	
 	
 
 	public void addModel(XMLModel model) {
@@ -327,8 +327,7 @@ public class XMLWritter {
 	
 	
 	/**
-	 * Hidden method initializing some primary configuration values
-	 * 
+	 * Method initializing some primary configuration values
 	 */
 	private void initGlobalConfig() {
 		this.globalConfig.put("fileMainXML", "main.xml");
