@@ -1,7 +1,5 @@
 package eu.ensg.jade.xml;
 
-import java.util.Vector;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
@@ -52,7 +50,7 @@ public class XMLModel extends XMLVector implements IXMLExport {
 	 * @param rotation the rotation Vector
 	 * @param translation the translation Vector
 	 */
-	public XMLModel(String id, String key, Vector<Double> scale, Vector<Double> rotation, Vector<Double> translation) {
+	public XMLModel(String id, String key, double[] scale, double[] rotation, double[] translation) {
 		super(scale, rotation, translation);
 		this.id = id;
 		this.key = key;

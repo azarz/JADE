@@ -1,5 +1,8 @@
 package eu.ensg.jade.xml;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Vector;
 
 import org.w3c.dom.Document;
@@ -19,17 +22,18 @@ public class XMLWaypoint implements IXMLExport {
 	
 	private double speed;
 	
-	private Vector<Double> translation;
+	private double[] translation;
 	
 // ========================== CONSTRUCTORS =========================
 	
 	public XMLWaypoint(String id) {
 		this.id = id;
 		this.speed = 0;
-		this.translation = new Vector<>(3);
+		this.translation = new double[3];
+		Arrays.fill(this.translation, 0);
 	}
 	
-	public XMLWaypoint(String id, double speed, Vector<Double> translation) {
+	public XMLWaypoint(String id, double speed, double[] translation) {
 		this.id = id;
 		this.speed = speed;
 		this.translation = translation;

@@ -1,6 +1,6 @@
 package eu.ensg.jade.xml;
 
-import java.util.Vector;
+import java.util.List;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -46,7 +46,7 @@ public class XMLGroundModel extends XMLModel implements IXMLExport {
 	 * @param rotation the rotation Vector
 	 * @param translation the translation Vector
 	 */
-	public XMLGroundModel(String id, String material, XMLTerrain terrain, Vector<Double> scale, Vector<Double> rotation, Vector<Double> translation) {
+	public XMLGroundModel(String id, String material, XMLTerrain terrain, double[] scale, double[] rotation, double[] translation) {
 		super(id, "", scale, rotation, translation);
 		this.material = material;
 		this.terrain = terrain;
