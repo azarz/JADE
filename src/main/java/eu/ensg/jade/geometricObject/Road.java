@@ -56,6 +56,11 @@ public class Road extends WorldObject {
 		 */
 		protected String number;
 		
+		/**
+		 * The number
+		 */
+		protected String speed;
+		
 // ========================== CONSTRUCTORS =========================	
 		
 		/**
@@ -67,7 +72,7 @@ public class Road extends WorldObject {
 		 * @param z_fin
 		 * @param direction
 		 */
-		public Road(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, String importance, String number) {
+		public Road(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, String importance, String number, String speed) {
 			this.width = width;
 			this.laneNumber = laneNumber;
 			this.z_ini = z_ini;
@@ -76,6 +81,7 @@ public class Road extends WorldObject {
 			this.nature = nature;
 			this.importance = importance;
 			this.number = number;
+			this.speed = speed;
 		}
 			
 // ========================== GETTERS/SETTERS ======================
@@ -139,6 +145,10 @@ public class Road extends WorldObject {
 
 		public String getNumber() {
 			return number;
+		}
+		
+		public String getSpeed() {
+			return speed;
 		}
 
 // ========================== METHODS ==============================

@@ -46,8 +46,8 @@ public class LineRoad extends Road{
 	 * @param direction
 	 * @param geometry
 	 */
-	public LineRoad(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, String importance, String number,MultiLineString geometry) {
-		super(width, laneNumber, z_ini, z_fin, direction, nature, importance, number);
+	public LineRoad(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, String importance, String number,String speed, MultiLineString geometry) {
+		super(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, speed);
 		this.geometry = geometry;
 	}
 
@@ -113,7 +113,7 @@ public class LineRoad extends Road{
 		// Applying the filter
 		newGeometry.apply(filter);
 		
-		SurfaceRoad surfacicRoad = new SurfaceRoad(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, newGeometry);
+		SurfaceRoad surfacicRoad = new SurfaceRoad(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, speed, newGeometry);
 		
 		return surfacicRoad;
 		
