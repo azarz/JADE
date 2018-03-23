@@ -7,6 +7,12 @@ import java.util.Vector;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+/**
+ * XMLVehicle is the class which hold data representing a vehicle, as defined in a scenario.xml file
+ * 
+ * @author JADE
+ *
+ */
 public class XMLVehicle implements IXMLExport {
 	
 // ========================== ATTRIBUTES ===========================
@@ -112,6 +118,9 @@ public class XMLVehicle implements IXMLExport {
 	
 	
 
+	/**
+	 * @see eu.ensg.jade.xml.IXMLExport#toXMLElement(org.w3c.dom.Document)
+	 */
 	@Override
 	public Element toXMLElement(Document doc) {
 		Element vehicle = doc.createElement("vehicle");
