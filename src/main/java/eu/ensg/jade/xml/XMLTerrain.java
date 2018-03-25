@@ -35,7 +35,7 @@ public class XMLTerrain implements IXMLExport {
 		this.id = id;
 		this.imageHeightmap = imageHeightmap;
 		
-		this.heightScale = 0.3;
+		this.heightScale = 1;
 		
 		this.patchSize = 65;
 		this.totalSize = 513;

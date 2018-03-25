@@ -98,6 +98,16 @@ public class SceneBuilder {
 //		scene.getDtm().toPNG("paris.png");
 		
 		
+		// Calculating the transformation to apply to the ground model
+		double[] groundScale = new double[3];
+		groundScale[0] = scene.getDtm().getCellsize();
+		groundScale[1] = 1d;
+		groundScale[2] = scene.getDtm().getCellsize();
+		
+		double[] groundRotation = {1,1,1};
+		
+		double[] groundTranslation = new double[3];
+		//int largestDimention = Math.max();
 		
 		/*
 		 * Write the XML files
