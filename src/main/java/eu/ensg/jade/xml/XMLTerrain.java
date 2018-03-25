@@ -42,6 +42,24 @@ public class XMLTerrain implements IXMLExport {
 		this.distanceFactor = 2.7;
 	}
 	
+	/**
+	 * Constructor with basic informations + size of the terrain
+	 * 
+	 * @param id the ID used for the terrain
+	 * @param imageHeightmap the path to the grayscale image used as a heightmap
+	 * @param the terrain's size (which must be a power of 2)
+	 */
+	public XMLTerrain(String id, String imageHeightmap, int terrainSize) {
+		this.id = id;
+		this.imageHeightmap = imageHeightmap;
+		
+		this.heightScale = 1;
+		
+		this.patchSize = 65;
+		this.totalSize = terrainSize + 1;
+		this.distanceFactor = 2.7;
+	}
+	
 // ========================== GETTERS/SETTERS ======================
 	
 	public String getId() {

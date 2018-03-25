@@ -99,15 +99,30 @@ public class SceneBuilder {
 		
 		
 		// Calculating the transformation to apply to the ground model
+		// Scaling according to the DTM metadata
 		double[] groundScale = new double[3];
 		groundScale[0] = scene.getDtm().getCellsize();
 		groundScale[1] = 1d;
 		groundScale[2] = scene.getDtm().getCellsize();
 		
-		double[] groundRotation = {1,1,1};
+		// No rotation
+		double[] groundRotation = {0,0,0};
 		
+		// Ground translation: the most tricky part
 		double[] groundTranslation = new double[3];
-		//int largestDimention = Math.max();
+		// Getting the largest dimension
+		int largestDimension = Math.max(scene.getDtm().getNcols(), scene.getDtm().getNrows());
+		
+		// Calculating the smallest power of 2 above the largest dimension if it isn't a power of 2 itself
+        // using bitwise shift
+		int powerOfTwo = largestDimension;
+        if (Integer.highestOneBit(largestDimension) != Integer.lowestOneBit(largestDimension)) {
+        	powerOfTwo = Integer.highestOneBit(largestDimension << 1) + 1;
+        }
+        
+        groundTranslation[0] = scene.getDtm().getXllcorner() - scene.getxCentroid() + (powerOfTwo/2)*scene.getDtm().getCellsize();
+        groundTranslation[1] = 0;
+        groundTranslation[2] = scene.getxCentroid() - scene.getDtm().getXllcorner() + ((powerOfTwo/2) - largestDimension)*scene.getDtm().getCellsize();
 		
 		/*
 		 * Write the XML files
@@ -117,14 +132,14 @@ public class SceneBuilder {
 		xmlWritter.updateConfig("fileMainXML", "MAIN_FILE.xml");
 		xmlWritter.updateConfig("rainCoefficient", "20");
 		
-		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
-		xmlWritter.addModel(grassPlane);
+//		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
+//		xmlWritter.addModel(grassPlane);
 		
 		XMLModel buildindModel = new XMLModel("Building", "buildings.obj");
 		xmlWritter.addModel(buildindModel);
 		
-		XMLTerrain terrain = new XMLTerrain("terrain", "paris.png");
-		XMLGroundModel ground = new XMLGroundModel("Ground", "Materials/MyTerrain.j3m", terrain);
+		XMLTerrain terrain = new XMLTerrain("terrain", "paris.png", powerOfTwo);
+		XMLGroundModel ground = new XMLGroundModel("Ground", "Materials/MyTerrain.j3m", terrain, groundScale, groundRotation, groundTranslation);
 		xmlWritter.addTerrain(ground);
 		
 		xmlWritter.createAllXml();
