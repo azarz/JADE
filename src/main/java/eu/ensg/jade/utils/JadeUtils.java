@@ -95,12 +95,13 @@ public class JadeUtils {
 		double xllCorner = dtm.getXllcorner();
 		double yllCorner = dtm.getYllcorner();
 		double cellsize = dtm.getCellsize();
+		int nrows = dtm.getNrows();
 		
 		// Calculating the indices of the 4 cells around the point
 		int westIndex = (int) Math.floor((xCoord - xllCorner)/cellsize);
 		int eastIndex = (int) Math.ceil((xCoord - xllCorner)/cellsize);
-		int southIndex = (int) Math.ceil(dtm.getNrows() - ((yCoord - yllCorner)/cellsize));
-		int northIndex = (int) Math.floor(dtm.getNrows() - ((yCoord - yllCorner)/cellsize));
+		int southIndex = (int) Math.ceil(nrows- ((yCoord - yllCorner)/cellsize));
+		int northIndex = (int) Math.floor(nrows - ((yCoord - yllCorner)/cellsize));
 		
 		// Getting the 4 cells values
 		double northWestValue = dtm.getTabDTM()[northIndex][westIndex];
@@ -110,10 +111,10 @@ public class JadeUtils {
 		
 		// Calculating the distances between the point's coordinates
 		// and the corners coordinates
-		double fracWest = xCoord - xllCorner + westIndex*cellsize;
+		double fracWest = xCoord - (xllCorner + westIndex*cellsize);
 		double fracEast = xllCorner + eastIndex*cellsize - xCoord;
-		double fracSouth = yCoord - yllCorner + southIndex*cellsize;
-		double fracNorth = yllCorner + northIndex*cellsize - yCoord;
+		double fracSouth = yCoord - (yllCorner + (nrows - southIndex)*cellsize);
+		double fracNorth = yllCorner + (nrows - northIndex)*cellsize - yCoord;
 		
 		// Calculating the interpolated north value
 		double interpolatedNorthValue = (fracWest * northEastValue 
