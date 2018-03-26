@@ -6,14 +6,14 @@ import com.sun.javafx.collections.MappingChange.Map;
 
 public class IntersectionColl {
 	
-	// ========================== ATTRIBUTES ===========================
+// ========================== ATTRIBUTES ===========================
 
 	/**
 	 * Map of intersections and their IDs
 	 */
 	private HashMap<String, Intersection> mapIntersection;
 
-	// ========================== CONSTRUCTORS =========================	
+// ========================== CONSTRUCTORS =========================	
 
 	/**
 	 * Constructor with all the fields
@@ -47,9 +47,14 @@ public class IntersectionColl {
 	
 // ========================== METHODS ==============================	
 	
+	/**
+	 * Allows to access the map of intersections
+	 * 
+	 * @param id the identifier of the intersection : str(xcoord+ycoord)
+	 * @param inter the intersection to add to the network
+	 */
 	public void addIntersection(String id, Intersection inter) {
 		this.mapIntersection.put(id, inter);
-		
 	}
 	
 }
