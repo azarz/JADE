@@ -122,6 +122,31 @@ public class Building extends WorldObject {
 		
 		this.hasHeight = true;
 	}
+	
+	/**
+	 * Transforms the Z coordinates of the geometry according to a DTM parameter
+	 * @param dtm for the building to match
+	 */
+	public void setZfromDTM(DTM dtm) {
+		if (hasHeight) {
+			for (int i = vertices.size() - 1; i >= vertices.size()/2; i--) {
+				vertices.remove(i);
+			}
+		}
+		
+		for (int i = 0; i < vertices.size(); i++) {
+			// Fetching the points coordinate
+			double xCoord = vertices.get(i)[0];
+			double yCoord = vertices.get(i)[1];
+	
+			// Setting the Z coordinate
+			vertices.get(i)[2] = JadeUtils.interpolatedDtmValue(xCoord, yCoord, dtm);
+		}
+		
+		if (hasHeight) {
+			addHeight();
+		}
+	}
 
 	/**
 	 * Converts a Building into a string corresponding to the .obj description of it

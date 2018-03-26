@@ -184,44 +184,8 @@ public class SurfaceRoad extends Road {
 				double xCoord = seq.getCoordinate(i).x;
 				double yCoord = seq.getCoordinate(i).y;
 				
-				// Fetching the DTM data
-				double xllCorner = dtm.getXllcorner();
-				double yllCorner = dtm.getYllcorner();
-				double cellsize = dtm.getCellsize();
-				
-				// Calculating the indices of the 4 cells around the point
-				int westIndex = (int) Math.floor((xCoord - xllCorner)/cellsize);
-				int eastIndex = (int) Math.ceil((xCoord - xllCorner)/cellsize);
-				int southIndex = (int) Math.ceil(dtm.getNrows() - ((yCoord - yllCorner)/cellsize));
-				int northIndex = (int) Math.floor(dtm.getNrows() - ((yCoord - yllCorner)/cellsize));
-				
-				// Getting the 4 cells values
-				double northWestValue = dtm.getTabDTM()[northIndex][westIndex];
-				double northEastValue = dtm.getTabDTM()[northIndex][eastIndex];
-				double southWestValue = dtm.getTabDTM()[southIndex][westIndex];
-				double southEastValue = dtm.getTabDTM()[southIndex][eastIndex];
-				
-				// Calculating the distances between the point's coordinates
-				// and the corners coordinates
-				double fracWest = xCoord - xllCorner + westIndex*cellsize;
-				double fracEast = xllCorner + eastIndex*cellsize - xCoord;
-				double fracSouth = yCoord - yllCorner + southIndex*cellsize;
-				double fracNorth = yllCorner + northIndex*cellsize - yCoord;
-				
-				// Calculating the interpolated north value
-				double interpolatedNorthValue = (fracWest * northEastValue 
-						+ fracEast * northWestValue)/cellsize;
-				
-				// Calculating the interpolated south value
-				double interpolatedSouthValue = (fracWest * southEastValue 
-						+ fracEast * southWestValue)/cellsize;			
-				
-				// Calculating the final interpolated value
-				double newZ = (fracNorth * interpolatedSouthValue
-						+ fracSouth * interpolatedNorthValue)/cellsize;
-
 				// Setting the Z coordinate
-				seq.getCoordinate(i).z = newZ;
+				seq.getCoordinate(i).z = JadeUtils.interpolatedDtmValue(xCoord, yCoord, dtm);
 			}
 
 			@Override
