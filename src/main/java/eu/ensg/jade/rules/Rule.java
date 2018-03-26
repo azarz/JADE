@@ -1,10 +1,12 @@
 package eu.ensg.jade.rules;
 
+import java.util.List;
 import java.util.Map;
 
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Intersection;
 import eu.ensg.jade.semantic.IntersectionColl;
+import eu.ensg.jade.semantic.SurfaceVegetation;
 
 /**
  * Rule is the class implementing the rules that are used to place a punctual object
@@ -14,12 +16,9 @@ import eu.ensg.jade.semantic.IntersectionColl;
 
 public class Rule implements IRule{
 	
-	
 	/*
 	 * CAS PARTICULIERS : BRETELLE, ROND POINT (ATTENTION,toujours test de sens)
 	 */	
-	
-	
 
 // ========================== ATTRIBUTES ===========================
 
@@ -101,13 +100,30 @@ public class Rule implements IRule{
 	 * 
 	 * Example : pedestrian crossing, speed limitation
 	 * 
-	 * @param interColl the intersections presents in RGE data
+	 * @param roads the roads present in RGE data
 	 */
 	public void roadSigns(Map<String, Road> roads){
 		
 		// We go through all the roads
 		for(Road road : roads.values()){
 			
+		}
+
+	}
+	
+	/**
+	 * Puts vegetation on vegetation area
+	 * 
+	 * @param vegetation the list of surface of vegetation in RGE data
+	 */
+	public void addVegetation(List<SurfaceVegetation> vegetation){
+		
+		// We go through all the surfaces
+		for(int i = 0 ; i < vegetation.size() ; i++){
+			// Test - ou est la surface ? (Bords de route ou parc ?) 
+			//      - dimension de la surface 
+			// = > On place ponctuellement les arbres a espacement réguliers le long des routes 
+			//          OU on fait un fouilli d'arbre sur une grosse zone de forêt
 		}
 
 	}
