@@ -324,7 +324,7 @@ public class XMLWriter {
 				transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, doctype.getSystemId());
 			}			
 			
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+//			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 			
 			transformer.transform(source, result);
 			
