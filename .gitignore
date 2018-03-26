@@ -26,6 +26,11 @@ changelog.txt
 /.settings/
 /.gradle/
 
+#Generated data
+/assets/RGE/
+/assets/DrivingTasks/Projects/RGE
+
 # Keep external libs
 !lib/**
+!.gitkeep
 

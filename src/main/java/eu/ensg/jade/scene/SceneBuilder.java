@@ -19,12 +19,22 @@ import eu.ensg.jade.xml.XMLTerrain;
 
 public class SceneBuilder {
 	
+// ========================== ATTRIBUTES ===========================
+	
 	private Scene scene;
+	
+// ========================== CONSTRUCTORS =========================	
 	
 	public SceneBuilder() {
 		this.scene = new Scene();
 	}
 	
+// ========================== METHODS ==============================
+	
+	/* (non-Javadoc)
+	 * 
+	 * Main method
+	 */
 	
 	public static void main(String[] args) {
 		String buildingLayer = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
@@ -38,6 +48,11 @@ public class SceneBuilder {
 		builder.buildFromData(buildingLayer, roadLayer, hydroLayer, treeLayer, dtmLayer);
 		builder.export();
 	}
+	
+	/* (non-Javadoc)
+	 * 
+	 * Methods to load data
+	 */
 	
 	public void buildFromData(
 			String buildingLayer,
@@ -66,7 +81,10 @@ public class SceneBuilder {
 	}
 	
 	
-	
+	/* (non-Javadoc)
+	 * 
+	 * Public method to export the whole Scene
+	 */
 	
 	public void export() {
 		
@@ -84,7 +102,10 @@ public class SceneBuilder {
 	}
 	
 	
-	
+	/* (non-Javadoc)
+	 * 
+	 * Private utility methods, get the job done
+	 */
 	
 	private Scene loadData(
 			String buildingLayer,
