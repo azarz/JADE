@@ -6,9 +6,11 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import static org.mockito.Matchers.*;
 
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.LineRoad;
@@ -21,7 +23,8 @@ import eu.ensg.jade.semantic.LineRoad;
 @RunWith(MockitoJUnitRunner.class)
 public class OBJWriterTest {
 	
-	private OBJWriter objWriter;
+	private OBJWriter objWriter = new OBJWriter();
+	
 	@Mock
 	private Building building;
 	
@@ -40,11 +43,7 @@ public class OBJWriterTest {
 			objectList.add(building);
 		}
 		
-		List<Integer> indexOffsets = new ArrayList<Integer>();
-		double xOffset = 0;
-		double yOffset = 0;
-		
-		Mockito.when(building.toOBJ(indexOffsets, xOffset, yOffset)).thenReturn("ok");
+		Mockito.when(building.toOBJ(Matchers.<List<Integer>>any(), any(double.class), any(double.class))).thenReturn("ok");
 		
 		objWriter.exportBuilding("src/test/resources/buildings.obj", objectList, 0, 0);
 	}

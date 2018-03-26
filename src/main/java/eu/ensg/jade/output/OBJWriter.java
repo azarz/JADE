@@ -61,7 +61,6 @@ public class OBJWriter {
 			PrintWriter out = new PrintWriter(bw)) {			
 			
 			out.print("mtllib paris.mtl\n");
-
 			for (int i = 0; i < objectList.size(); i++) {
 				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
 			}
