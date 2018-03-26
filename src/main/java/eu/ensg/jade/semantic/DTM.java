@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -146,7 +147,7 @@ public class DTM {
 	 * 
 	 * @throws IOException 
 	 */
-	public void toPNG(String path) throws IOException{
+	public void toPNG(String path) {
 		
 		BufferedImage bufferImageDTM;
 		
@@ -177,8 +178,14 @@ public class DTM {
 	        }
 	    }
 		
-	    File outputfile = new File(path);
-	    ImageIO.write(bufferImageDTM, "png", outputfile);
+		File outputfile = new File(path);
+		
+		try {
+			Files.deleteIfExists(outputfile.toPath());
+			ImageIO.write(bufferImageDTM, "png", outputfile);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 }
