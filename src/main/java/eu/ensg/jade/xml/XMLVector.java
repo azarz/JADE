@@ -27,7 +27,7 @@ public class XMLVector implements IXMLExport {
 		this.rotation = new double[3];
 		this.translation = new double[3];
 
-		Arrays.fill(this.scale, 0);
+		Arrays.fill(this.scale, 1);
 		Arrays.fill(this.rotation, 0);
 		Arrays.fill(this.translation, 0);
 	}
