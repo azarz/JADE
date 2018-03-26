@@ -1,7 +1,9 @@
 package eu.ensg.jade.scene;
 
 import java.io.IOException;
+import java.util.Map;
 
+import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
 import eu.ensg.jade.input.ReaderFactory;
@@ -9,18 +11,30 @@ import eu.ensg.jade.input.ReaderFactory.READER_METHOD;
 import eu.ensg.jade.output.OBJWriter;
 import eu.ensg.jade.output.XMLWriter;
 import eu.ensg.jade.semantic.DTM;
+import eu.ensg.jade.semantic.LineRoad;
+import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.xml.XMLGroundModel;
 import eu.ensg.jade.xml.XMLModel;
 import eu.ensg.jade.xml.XMLTerrain;
 
 public class SceneBuilder {
 	
+// ========================== ATTRIBUTES ===========================
+	
 	private Scene scene;
+	
+// ========================== CONSTRUCTORS =========================	
 	
 	public SceneBuilder() {
 		this.scene = new Scene();
 	}
 	
+// ========================== METHODS ==============================
+	
+	/* (non-Javadoc)
+	 * 
+	 * Main method
+	 */
 	
 	public static void main(String[] args) {
 		String buildingLayer = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
@@ -35,6 +49,11 @@ public class SceneBuilder {
 		builder.export();
 	}
 	
+	/* (non-Javadoc)
+	 * 
+	 * Methods to load data
+	 */
+	
 	public void buildFromData(
 			String buildingLayer,
 			String roadLayer,
@@ -48,17 +67,33 @@ public class SceneBuilder {
 			e.printStackTrace();
 		}
 		
+		
+		
+		Map<String, Road> roads = scene.getRoads();
+		for(String key : roads.keySet()) {
+			roads.put(key, new SurfaceRoad( (LineRoad) roads.get(key) ));
+		}
+
 	}
 	
 	public void buildFromRGE(String rge) {
 		// TODO: implement RGE
 	}
 	
+	
+	/* (non-Javadoc)
+	 * 
+	 * Public method to export the whole Scene
+	 */
+	
 	public void export() {
 		
 		OBJWriter objWritter = new OBJWriter();
 		
 		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getxCentroid(), scene.getyCentroid());
+		
+		System.out.println(  scene.getRoads().values().toArray()[0].getClass().getName() );
+		
 		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getxCentroid(), scene.getyCentroid());
 		
 		scene.getDtm().toPNG("assets/RGE/paris.png");
@@ -66,6 +101,11 @@ public class SceneBuilder {
 		exportXML(scene);
 	}
 	
+	
+	/* (non-Javadoc)
+	 * 
+	 * Private utility methods, get the job done
+	 */
 	
 	private Scene loadData(
 			String buildingLayer,
@@ -126,8 +166,7 @@ public class SceneBuilder {
 		// Getting the largest dimension
 		int largestDimension = Math.max(dtm.getNcols(), dtm.getNrows());
 		
-		// Calculating the smallest power of 2 above the largest dimension if it isn't a power of 2 itself
-        // using bitwise shift
+		// Calculating the smallest power of 2 above the largest dimension if it isn't a power of 2 itself using bitwise shift
 		int powerOfTwo = largestDimension;
         if (Integer.highestOneBit(largestDimension) != Integer.lowestOneBit(largestDimension)) {
         	powerOfTwo = Integer.highestOneBit(largestDimension << 1);
