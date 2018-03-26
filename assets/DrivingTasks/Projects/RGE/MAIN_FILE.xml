@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><properties version="1.0">
-  <comment>Settings file for Carmina Driving Task Data Query Module</comment>
-  <entry key="verbose">false</entry>
-  <entry key="interaction">interaction.xml</entry>
-  <entry key="scenario">scenario.xml</entry>
-  <entry key="settings">settings.xml</entry>
-  <entry key="scene">scene.xml</entry>
-</properties>

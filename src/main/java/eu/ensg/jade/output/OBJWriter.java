@@ -49,11 +49,19 @@ public class OBJWriter {
 		offsets.add(1);
 		
 		File file = new File(filePath);
+
+		try {
+			Files.deleteIfExists(file.toPath());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		
 		try(FileWriter fw = new FileWriter(filePath, true);
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter out = new PrintWriter(bw)) {
 			
-			Files.deleteIfExists(file.toPath());
+			
 			
 			out.print("mtllib paris.mtl\n");
 
@@ -81,11 +89,17 @@ public class OBJWriter {
 		offsets.add(1);
 		
 		File file = new File(filePath);
+		
+		try {
+			Files.deleteIfExists(file.toPath());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		
 		try(FileWriter fw = new FileWriter(filePath, true);
 				BufferedWriter bw = new BufferedWriter(fw);
 				PrintWriter out = new PrintWriter(bw)) {
-			
-			Files.deleteIfExists(file.toPath());
 			
 			out.print("mtllib paris.mtl\n");
 

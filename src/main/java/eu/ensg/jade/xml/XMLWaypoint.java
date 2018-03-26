@@ -1,9 +1,6 @@
 package eu.ensg.jade.xml;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Vector;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -67,12 +64,16 @@ public class XMLWaypoint implements IXMLExport {
 		Element waypoint = doc.createElement("wayPoint");
 		waypoint.setAttribute("id", this.id);
 		
+		Element e;
+		
 		Element translation = doc.createElement("translation");
 		Element vector = doc.createElement("vector");
 		vector.setAttribute("jtype", "java_lang_Float");
 		vector.setAttribute("size", "3");
 		for(Double value: this.translation) {
-			vector.appendChild(doc.createElement("entry").appendChild(doc.createTextNode(String.valueOf(value))));
+			e = doc.createElement("entry");
+			e.appendChild(doc.createTextNode(String.valueOf(value)));
+			vector.appendChild(e);
 		}
 		translation.appendChild(vector);
 		

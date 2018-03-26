@@ -94,11 +94,8 @@ public class DTMTest {
 	 */
 	@Test
 	public void testGetHeaderDTM() {
-		Map<String,Double> result = dtmObject.getHeaderDTM();
-		assertNotNull(result);
-		assertEquals(result.size(),2);
-		assertEquals(result.get("ncols"),3.0,delta);
-		assertEquals(result.get("nrows"),2.0,delta);
+		assertEquals(dtmObject.getNcols(),3.0,delta);
+		assertEquals(dtmObject.getNrows(),2.0,delta);
 	}
 
 	/**

@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
@@ -24,11 +25,29 @@ public class DTM {
 	private double[][] tabDTM;
 	
 	/**
-	 * The header containing the metadata of the DTM (same order as in the ascii file)*
-	 * 
-	 * Header Keys : ncols - nrows - xllcorner - yllcorner - cellsize
+	 * Number of colons
 	 */
-	private Map<String,Double> headerDTM;
+	private int ncols;
+	
+	/**
+	 * Number of rows
+	 */
+	private int nrows;
+	
+	/**
+	 * X coordinate of the leftmost low corner
+	 */
+	private double xllcorner;
+	
+	/**
+	 * Y coordinate of the leftmost low corner
+	 */
+	private double yllcorner;
+	
+	/**
+	 * Size of a cell in meters
+	 */
+	private double cellsize;
 	
 	
 // ========================== CONSTRUCTORS =========================	
@@ -38,9 +57,34 @@ public class DTM {
 	 * 
 	 * @param tabDTM the table associates to the DTM
 	 */
-	public DTM(double[][] tabDTM,Map<String,Double> headerDTM) {
+	public DTM(double[][] tabDTM, Map<String,Double> headerDTM) {
 		this.tabDTM = tabDTM;
-		this.headerDTM = headerDTM;
+		// Getting all the data from the hashmap and putting default values if they are not in the input map
+		try {
+			this.ncols = headerDTM.get("ncols").intValue();
+		} catch (NullPointerException e) {
+			this.ncols = tabDTM[0].length;
+		}
+		try {
+			this.nrows = headerDTM.get("nrows").intValue();
+		} catch (NullPointerException e) {
+			this.nrows = tabDTM.length;
+		}
+		try {
+			this.xllcorner = headerDTM.get("xllcorner");
+		} catch (NullPointerException e) {	
+			this.xllcorner = 0;
+		}
+		try {
+			this.yllcorner = headerDTM.get("yllcorner");
+		} catch (NullPointerException e) {
+			this.yllcorner = 0;
+		}
+		try {
+			this.cellsize = headerDTM.get("cellsize");
+		} catch (NullPointerException e) {
+			this.cellsize = 1;
+		}
 	}
 	
 // ========================== GETTERS/SETTERS ======================
@@ -55,27 +99,56 @@ public class DTM {
 	}
 	
 	/**
-	 * Gets the DTM header
-	 * 
-	 * @return header of the DTM as a KEY/VALUE map
+	 * Gets the number of colons
+	 * @return number of colons
 	 */
-	public Map<String,Double> getHeaderDTM() {
-		return headerDTM;
+	public int getNcols() {
+		return ncols;
+	}
+
+	/**
+	 * Gets the number of rows
+	 * @return number of rows
+	 */
+	public int getNrows() {
+		return nrows;
+	}
+
+	/**
+	 * Gets the X coordinate of the leftmost low corner
+	 * @return X coordinate of the leftmost low corner
+	 */
+	public double getXllcorner() {
+		return xllcorner;
+	}
+
+	/**
+	 * Gets the Y coordinate of the leftmost low corner
+	 * @return Y coordinate of the leftmost low corner
+	 */
+	public double getYllcorner() {
+		return yllcorner;
+	}
+
+	/**
+	 * Gets the size of a cell in meters
+	 * @return Size of a cell in meters
+	 */
+	public double getCellsize() {
+		return cellsize;
 	}
 
 
 // ========================== METHODS ==============================
+
 
 	/**
 	 * Transforms a DTM table into a PNG file 
 	 * 
 	 * @throws IOException 
 	 */
-	public void toPNG(String path) throws IOException{
+	public void toPNG(String path) {
 		
-		
-		int nrows = this.headerDTM.get("nrows").intValue();
-		int ncols =  this.headerDTM.get("ncols").intValue();
 		BufferedImage bufferImageDTM;
 		
 		if (ncols < nrows) {
@@ -105,8 +178,14 @@ public class DTM {
 	        }
 	    }
 		
-	    File outputfile = new File(path);
-	    ImageIO.write(bufferImageDTM, "png", outputfile);
+		File outputfile = new File(path);
+		
+		try {
+			Files.deleteIfExists(outputfile.toPath());
+			ImageIO.write(bufferImageDTM, "png", outputfile);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 }
