@@ -18,7 +18,6 @@ import eu.ensg.jade.semantic.Building;
  * 
  * @author JADE
  */
-
 public class OBJWriter {
 	
 // ========================== ATTRIBUTES ===========================
@@ -59,15 +58,13 @@ public class OBJWriter {
 		
 		try(FileWriter fw = new FileWriter(filePath, true);
 			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter out = new PrintWriter(bw)) {
-			
-			
+			PrintWriter out = new PrintWriter(bw)) {			
 			
 			out.print("mtllib paris.mtl\n");
 
-			for (int i = 0; i < objectList.size(); i++) {				
+			for (int i = 0; i < objectList.size(); i++) {
 				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
-			}		
+			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();

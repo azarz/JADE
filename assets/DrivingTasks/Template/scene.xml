@@ -7,13 +7,10 @@
   </sounds>
 
   <gravity>9.81</gravity>
-
   <time>12:00:00</time>
-
   <date>2018-03-15</date>
 
   <models>
-
     <model id="driverCar" key="Models/Cars/drivingCars/CitroenC4/Car.j3o">
       <mass>800</mass>
       <visible>true</visible>
@@ -40,7 +37,6 @@
         </vector>
       </translation>
     </model>
-
   </models>
 
   <geometries>

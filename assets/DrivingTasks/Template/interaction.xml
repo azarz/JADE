@@ -3,7 +3,6 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://opends.eu/drivingtask/interaction ../../Schema/interaction.xsd">
 
-
   <activities>
     <activity id="activity01">
       <action id="manipulateObject" delay="0" repeat="4">

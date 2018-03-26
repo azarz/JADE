@@ -90,10 +90,7 @@ public class SceneBuilder {
 		
 		OBJWriter objWritter = new OBJWriter();
 		
-		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getxCentroid(), scene.getyCentroid());
-		
-		System.out.println(  scene.getRoads().values().toArray()[0].getClass().getName() );
-		
+		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getxCentroid(), scene.getyCentroid());		
 		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getxCentroid(), scene.getyCentroid());
 		
 		scene.getDtm().toPNG("assets/RGE/paris.png");

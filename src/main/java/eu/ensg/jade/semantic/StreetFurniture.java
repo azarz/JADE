@@ -1,5 +1,7 @@
 	package eu.ensg.jade.semantic;
 
+import java.util.List;
+
 import eu.ensg.jade.geometricObject.Point;
 
 /**
@@ -43,9 +45,9 @@ public class StreetFurniture extends Point {
 	 * Empty constructor
 	 */
 	public StreetFurniture() {
-			super();
-			// TODO Auto-generated constructor stub
-		}
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 	
@@ -53,11 +55,11 @@ public class StreetFurniture extends Point {
 	
 	
 	public StreetFurniture(String nature, Point geometry, String id) {
-			super();
-			this.nature = nature;
-			this.geometry = geometry;
-			this.id = id;
-		}
+		super();
+		this.nature = nature;
+		this.geometry = geometry;
+		this.id = id;
+	}
 
 
 
@@ -95,9 +97,11 @@ public class StreetFurniture extends Point {
 
 
 	/**
-	 * This method will have a return that will soon be specified
+	 * @see eu.ensg.jade.geometricObject.Point#toOBJ(java.util.List, double, double)
 	 */
-	public void toOBJ(){
-		
+	@Override
+	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

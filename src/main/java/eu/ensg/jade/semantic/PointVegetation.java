@@ -1,5 +1,7 @@
 package eu.ensg.jade.semantic;
 
+import java.util.List;
+
 import eu.ensg.jade.geometricObject.Point;
 
 /**
@@ -24,11 +26,14 @@ public class PointVegetation extends Point {
 
 // ========================== METHODS ==============================
 	
+	
 	/**
-	 * This method will have a return that will soon be specified
+	 * @see eu.ensg.jade.geometricObject.Point#toOBJ(java.util.List, double, double)
 	 */
-	public void toOBJ(){
-		
+	@Override
+	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
