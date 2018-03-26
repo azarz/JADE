@@ -89,8 +89,6 @@ public class XMLGroundModel extends XMLModel implements IXMLExport {
 		material.setAttribute("key", this.material);
 		Node scale = model.getElementsByTagName("visible").item(0);
 		model.insertBefore(material, scale);
-//		model.appendChild(material);
-		
 		
 		
 		// Link model to terrain geometry

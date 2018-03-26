@@ -1,22 +1,13 @@
 package eu.ensg.jade.scene;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
 
-import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
 import eu.ensg.jade.input.ReaderFactory;
 import eu.ensg.jade.input.ReaderFactory.READER_METHOD;
 import eu.ensg.jade.output.OBJWriter;
 import eu.ensg.jade.output.XMLWriter;
-
-import eu.ensg.jade.semantic.Intersection;
 import eu.ensg.jade.xml.XMLGroundModel;
 import eu.ensg.jade.xml.XMLModel;
 import eu.ensg.jade.xml.XMLTerrain;
@@ -91,11 +82,11 @@ public class SceneBuilder {
 		 */
 		OBJWriter objWritter = new OBJWriter();
 		
-//		objWritter.exportBuilding("buildings.obj", scene.getBuildings(), scene.getxCentroid(), scene.getyCentroid());
+		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getxCentroid(), scene.getyCentroid());
 		
-//		objWritter.exportRoad("roads.obj", scene.getRoads(), scene.getxCentroid(), scene.getyCentroid());
+		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getxCentroid(), scene.getyCentroid());
 		
-//		scene.getDtm().toPNG("paris.png");
+		scene.getDtm().toPNG("assets/RGE/paris.png");
 		
 		
 		// Calculating the transformation to apply to the ground model
@@ -117,7 +108,7 @@ public class SceneBuilder {
         // using bitwise shift
 		int powerOfTwo = largestDimension;
         if (Integer.highestOneBit(largestDimension) != Integer.lowestOneBit(largestDimension)) {
-        	powerOfTwo = Integer.highestOneBit(largestDimension << 1) + 1;
+        	powerOfTwo = Integer.highestOneBit(largestDimension << 1);
         }
         
         groundTranslation[0] = scene.getDtm().getXllcorner() - scene.getxCentroid() + (powerOfTwo/2)*scene.getDtm().getCellsize();
@@ -130,15 +121,15 @@ public class SceneBuilder {
 		XMLWriter xmlWritter = new XMLWriter();
 		
 		xmlWritter.updateConfig("fileMainXML", "MAIN_FILE.xml");
-		xmlWritter.updateConfig("rainCoefficient", "20");
+		xmlWritter.updateConfig("rainCoefficient", "5");
 		
 //		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
 //		xmlWritter.addModel(grassPlane);
 		
-		XMLModel buildindModel = new XMLModel("Building", "buildings.obj");
-		xmlWritter.addModel(buildindModel);
+//		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
+//		xmlWritter.addModel(buildindModel);
 		
-		XMLTerrain terrain = new XMLTerrain("terrain", "paris.png", powerOfTwo);
+		XMLTerrain terrain = new XMLTerrain("Terrain", "RGE/paris.png", powerOfTwo);
 		XMLGroundModel ground = new XMLGroundModel("Ground", "Materials/MyTerrain.j3m", terrain, groundScale, groundRotation, groundTranslation);
 		xmlWritter.addTerrain(ground);
 		

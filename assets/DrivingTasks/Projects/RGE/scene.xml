@@ -38,68 +38,16 @@
       </translation>
     </model>
 
-  <model id="grassPlane" key="Scenes/grassPlane/Scene.j3o">
-<mass>0.0</mass>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>0.0</entry>
-<entry>0.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>0.0</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>0.0</entry>
-<entry>0.0</entry>
-</vector>
-</translation>
-</model>
-<model id="Building" key="buildings.obj">
-<mass>0.0</mass>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>0.0</entry>
-<entry>0.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>0.0</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>0.0</entry>
-<entry>0.0</entry>
-</vector>
-</translation>
-</model>
-<model id="Ground" key="" ref="terrain">
+  <model id="Ground" key="" ref="Terrain">
 <mass>0.0</mass>
 <material key="Materials/MyTerrain.j3m"/>
 <visible>true</visible>
 <collisionShape>meshShape</collisionShape>
 <scale>
 <vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>0.0</entry>
-<entry>0.0</entry>
+<entry>25.0</entry>
+<entry>1.0</entry>
+<entry>25.0</entry>
 </vector>
 </scale>
 <rotation quaternion="false">
@@ -111,9 +59,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
+<entry>-905.8657833406469</entry>
 <entry>0.0</entry>
-<entry>0.0</entry>
-<entry>0.0</entry>
+<entry>6480.865783340647</entry>
 </vector>
 </translation>
 <shadowMode>Receive</shadowMode>
@@ -121,10 +69,10 @@
 </models>
 
   <geometries>
-  <terrain id="terrain">
-<imageBasedHeightMap heightScale="0.3" key="paris.png"/>
+  <terrain id="Terrain">
+<imageBasedHeightMap heightScale="1.0" key="RGE/paris.png"/>
 <smoothing percentage="0.9" radius="1"/>
-<lod distanceFactor="2.7" patchSize="65" totalSize="513"/>
+<lod distanceFactor="2.7" patchSize="65" totalSize="1025"/>
 </terrain>
 </geometries>
 
