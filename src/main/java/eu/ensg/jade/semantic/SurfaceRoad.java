@@ -3,8 +3,15 @@ package eu.ensg.jade.semantic;
 import java.util.List;
 
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.CoordinateSequence;
+import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
 import com.vividsolutions.jts.geom.GeometryCollection;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.MultiPoint;
+import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.operation.buffer.BufferParameters;
+import com.vividsolutions.jts.operation.distance.DistanceOp;
 import com.vividsolutions.jts.polytriangulate.EarClipper;
 
 import eu.ensg.jade.geometricObject.Road;
@@ -159,5 +166,77 @@ public class SurfaceRoad extends Road {
 		
 		return outputString;
 		
+	}
+	
+	/**
+	 * Transforms the Z coordinates of the geometry according to a DTM parameter
+	 * @param dtm for the road to match
+	 */
+	public void setZfromDTM(DTM dtm) {	
+		// Defining a coordinate filter to set the z according to the DTM
+		// using bilinear interpolation
+		CoordinateSequenceFilter filter = new CoordinateSequenceFilter() {
+			
+			@Override
+			public void filter(CoordinateSequence seq, int i) {
+				
+				// Fetching the points coordinate
+				double xCoord = seq.getCoordinate(i).x;
+				double yCoord = seq.getCoordinate(i).y;
+				
+				// Fetching the DTM data
+				double xllCorner = dtm.getXllcorner();
+				double yllCorner = dtm.getYllcorner();
+				double cellsize = dtm.getCellsize();
+				
+				// Calculating the indices of the 4 cells around the point
+				int westIndex = (int) Math.floor((xCoord - xllCorner)/cellsize);
+				int eastIndex = (int) Math.ceil((xCoord - xllCorner)/cellsize);
+				int southIndex = (int) Math.ceil(dtm.getNrows() - ((yCoord - yllCorner)/cellsize));
+				int northIndex = (int) Math.floor(dtm.getNrows() - ((yCoord - yllCorner)/cellsize));
+				
+				// Getting the 4 cells values
+				double northWestValue = dtm.getTabDTM()[northIndex][westIndex];
+				double northEastValue = dtm.getTabDTM()[northIndex][eastIndex];
+				double southWestValue = dtm.getTabDTM()[southIndex][westIndex];
+				double southEastValue = dtm.getTabDTM()[southIndex][eastIndex];
+				
+				// Calculating the distances between the point's coordinates
+				// and the corners coordinates
+				double fracWest = xCoord - xllCorner + westIndex*cellsize;
+				double fracEast = xllCorner + eastIndex*cellsize - xCoord;
+				double fracSouth = yCoord - yllCorner + southIndex*cellsize;
+				double fracNorth = yllCorner + northIndex*cellsize - yCoord;
+				
+				// Calculating the interpolated north value
+				double interpolatedNorthValue = (fracWest * northEastValue 
+						+ fracEast * northWestValue)/cellsize;
+				
+				// Calculating the interpolated south value
+				double interpolatedSouthValue = (fracWest * southEastValue 
+						+ fracEast * southWestValue)/cellsize;			
+				
+				// Calculating the final interpolated value
+				double newZ = (fracNorth * interpolatedSouthValue
+						+ fracSouth * interpolatedNorthValue)/cellsize;
+
+				// Setting the Z coordinate
+				seq.getCoordinate(i).z = newZ;
+			}
+
+			@Override
+			public boolean isDone() {
+				return false;
+			}
+
+			@Override
+			public boolean isGeometryChanged() {
+				return true;
+			}
+			
+		};
+		
+		// Applying the filter
+		geometry.apply(filter);
 	}
 }
