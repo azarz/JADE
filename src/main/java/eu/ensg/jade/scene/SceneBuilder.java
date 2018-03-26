@@ -10,6 +10,7 @@ import eu.ensg.jade.input.ReaderFactory;
 import eu.ensg.jade.input.ReaderFactory.READER_METHOD;
 import eu.ensg.jade.output.OBJWriter;
 import eu.ensg.jade.output.XMLWriter;
+import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
 import eu.ensg.jade.semantic.SurfaceRoad;
@@ -67,8 +68,6 @@ public class SceneBuilder {
 			e.printStackTrace();
 		}
 		
-		
-		
 		Map<String, Road> roads = scene.getRoads();
 		for(String key : roads.keySet()) {
 			roads.put(key, new SurfaceRoad( (LineRoad) roads.get(key) ));
@@ -87,6 +86,17 @@ public class SceneBuilder {
 	 */
 	
 	public void export() {
+		
+		// Changing the roads and buildings data so it matches the DTM
+		for (Building building : scene.getBuildings()) {
+			building.setZfromDTM(scene.getDtm());
+			building.addHeight();
+		}
+		
+		for (Road road : scene.getRoads().values()) {
+			SurfaceRoad surfRoad = (SurfaceRoad) road;
+			surfRoad.setZfromDTM(scene.getDtm());
+		}
 		
 		OBJWriter objWritter = new OBJWriter();
 		
@@ -145,11 +155,14 @@ public class SceneBuilder {
 		xmlWritter.updateConfig("fileMainXML", "MAIN_FILE.xml");
 		xmlWritter.updateConfig("rainCoefficient", "5");
 		
-		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
-		xmlWritter.addModel(grassPlane);
+//		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
+//		xmlWritter.addModel(grassPlane);
 		
 //		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
 //		xmlWritter.addModel(buildindModel);
+		
+		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
+		xmlWritter.addModel(roadsModel);
 		
 		XMLGroundModel ground = getGroundModelFromScene(scene);
 		xmlWritter.addTerrain(ground);
@@ -158,7 +171,7 @@ public class SceneBuilder {
 	}
 	
 	private XMLGroundModel getGroundModelFromScene(Scene scene){
-		DTM dtm  =scene.getDtm();
+		DTM dtm = scene.getDtm();
 		
 		// Getting the largest dimension
 		int largestDimension = Math.max(dtm.getNcols(), dtm.getNrows());
@@ -182,14 +195,13 @@ public class SceneBuilder {
  		// Ground translation: the most tricky part
  		double[] groundTranslation = new double[3];		
              
-         groundTranslation[0] = scene.getDtm().getXllcorner() - scene.getxCentroid() + (powerOfTwo/2)*scene.getDtm().getCellsize();
-         groundTranslation[1] = 0;
-         groundTranslation[2] = scene.getyCentroid() - scene.getDtm().getYllcorner() + ((powerOfTwo/2) - largestDimension)*scene.getDtm().getCellsize();
+        groundTranslation[0] = scene.getDtm().getXllcorner() - scene.getxCentroid() + (powerOfTwo/2)*scene.getDtm().getCellsize();
+        groundTranslation[1] = 0;
+        groundTranslation[2] = scene.getyCentroid() - scene.getDtm().getYllcorner() + ((powerOfTwo/2) - largestDimension)*scene.getDtm().getCellsize();
      		
         XMLTerrain terrain = new XMLTerrain("Terrain", "RGE/paris.png", powerOfTwo);
 		XMLGroundModel ground = new XMLGroundModel("Ground", "Materials/MyTerrain.j3m", terrain, groundScale, groundRotation, groundTranslation);
-		
-		
+	
 		return ground;
 	}
 	

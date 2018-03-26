@@ -61,7 +61,7 @@ public class SurfaceRoad extends Road {
 	 */
 	public SurfaceRoad(LineRoad lineRoad) {
 		super(lineRoad.getWidth(), lineRoad.getLaneNumber(), lineRoad.getZ_ini(), lineRoad.getZ_fin(), lineRoad.getDirection(), lineRoad.getNature(), lineRoad.getImportance(), lineRoad.getNumber(), lineRoad.getSpeed());
-		this.geometry =  (Polygon) lineRoad.getGeom().buffer(this.width/2);
+		this.geometry =  lineRoad.enlarge().getGeom();
 	}
 
 
