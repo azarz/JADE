@@ -1,4 +1,6 @@
-	package eu.ensg.jade.semantic;
+package eu.ensg.jade.semantic;
+
+import com.vividsolutions.jts.geom.Coordinate;
 
 import eu.ensg.jade.geometricObject.Point;
 
@@ -9,6 +11,15 @@ import eu.ensg.jade.geometricObject.Point;
  */
 
 public class StreetFurniture extends Point {
+	
+// ========================== ENUM ===========================
+
+	/**
+	 * The different types of street furniture available
+	 */
+	private enum type {
+		
+	};
 
 // ========================== ATTRIBUTES ===========================
 
@@ -18,26 +29,16 @@ public class StreetFurniture extends Point {
 	private String nature;
 	
 	/**
-	 * The furniture geometry
+	 * The punctual coordinate of the furniture
 	 */
-	private Point geometry;
+	private Coordinate coord;
 	
 	/**
 	 * The furniture id
 	 */
-	private String id;
+	private String id;	
 	
-	/**
-	 * The different types of street furniture available
-	 *
-	 */
-	private enum type {
-		
-	};
-	
-	
-	
-	// ========================== CONSTRUCTORS =========================			
+// ========================== CONSTRUCTORS =========================			
 	
 	/**
 	 * Empty constructor
@@ -47,52 +48,43 @@ public class StreetFurniture extends Point {
 			// TODO Auto-generated constructor stub
 		}
 	
-	
-	
-	
-	
-	
-	public StreetFurniture(String nature, Point geometry, String id) {
+	public StreetFurniture(String nature, Coordinate coord, String id) {
 			super();
 			this.nature = nature;
-			this.geometry = geometry;
+			this.coord = coord;
 			this.id = id;
 		}
 
-
-
-
-	// ========================== GETTERS/SETTERS ======================
-
-
+// ========================== GETTERS/SETTERS ======================
 	
+	/**
+	 * Gets the Nature of the furniture
+	 * 
+	 * @return the nature of the furniture
+	 */
 	public String getNature() {
 		return nature;
 	}
 
-
-
-
-
-
-	public Point getGeometry() {
-		return geometry;
+	/**
+	 * Gets the coordinates of the furniture
+	 * 
+	 * @return the (x,y,z) coordinate of the punctual object
+	 */
+	public Coordinate getCoord() {
+		return coord;
 	}
 
-
-
-
-
-
+	/**
+	 * Gets the ID of the furniture
+	 * 
+	 * @return the if of the furniture
+	 */
 	public String getId() {
 		return id;
 	}
 
-
-
-
-	// ========================== METHODS ==============================
-
+// ========================== METHODS ==============================
 
 	/**
 	 * This method will have a return that will soon be specified
