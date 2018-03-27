@@ -3,6 +3,7 @@ package eu.ensg.jade.utils;
 import com.vividsolutions.jts.geom.Coordinate;
 
 import eu.ensg.jade.semantic.DTM;
+import eu.ensg.jade.semantic.LineRoad;
 
 /**
  * JadeUtils is an utilitary class used mostly to do 3d calculations
@@ -23,6 +24,19 @@ public class JadeUtils {
 	    return Math.sqrt(Math.pow(p1[0] - p2[0], 2) +
 	    		Math.pow(p1[1] - p2[1], 2) + 
 	    		Math.pow(p1[2] - p2[2], 2));
+	}
+	
+	/**
+	 * Calculates the distance between 2 2D points
+	 * 
+	 * @param p1 3D point as coordinate
+	 * @param p2 3D point as coordinate
+	 * 
+	 * @return distance between p1 and p2 in 2D
+	 */
+	public static double getDistance(Coordinate p1, Coordinate p2) {
+	    return Math.sqrt(Math.pow(p1.x - p2.x, 2) +
+	    		Math.pow(p1.y - p2.y, 2));
 	}
 	
 	/**
@@ -130,4 +144,41 @@ public class JadeUtils {
 		
 		return newZ;
 	}
+	
+	/**
+	 * 
+	 */
+	public static double roadAngle(LineRoad road){
+		
+		// We determine the ends of the roads
+		Coordinate ini = road.getGeom().getCoordinates()[0];
+		Coordinate end = road.getGeom().getCoordinates()[road.getGeom().getCoordinates().length-1];
+		
+		double theta = 0.0;
+		
+		// We determine the angle from horizontal in trigo order
+	    if (ini.x >= end.x){
+			//Top right
+	        if(ini.y >= end.y){
+	            theta = Math.asin((ini.y - end.y)/getDistance(ini,end));
+	        }
+	        //bottom right
+	        else{
+	            theta = 2*Math.PI + Math.asin((ini.y - end.y)/getDistance(ini,end));
+	        }
+	    }
+	    else {
+			//top left
+	        if(ini.y >= end.y){
+	           theta = Math.PI - Math.asin((ini.y-end.y)/getDistance(ini,end));
+	        }
+	        //bottom left
+	        else{
+	            theta = Math.PI - Math.asin((ini.y-end.y)/getDistance(ini, end));
+	        }
+	    }
+		
+		return theta; 
+	}
+
 }

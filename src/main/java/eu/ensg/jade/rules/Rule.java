@@ -185,7 +185,8 @@ public class Rule implements IRule{
 	 */
 	private Coordinate signPosition(){
 		// Calcul de la position du panneau sur le bord de route par rapport au DTM et au buffer
-		// return un objet Coordinate ? 
+		// return un objet Coordinate ?
+		
 		
 		return null;
 	}

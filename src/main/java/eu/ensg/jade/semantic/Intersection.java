@@ -41,6 +41,7 @@ public class Intersection {
 	public Intersection(Coordinate geometry) {
 		this.geometry = geometry;
 		this.roadId = new HashMap<String, Boolean>();
+		roadId.get(getGeometry());
 	}
 
 	/**
