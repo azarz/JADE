@@ -9,6 +9,7 @@ import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.Hydrography;
+import eu.ensg.jade.semantic.IntersectionColl;
 import eu.ensg.jade.semantic.LineRoad;
 import eu.ensg.jade.semantic.PointVegetation;
 import eu.ensg.jade.semantic.StreetFurniture;
@@ -76,9 +77,15 @@ public class Scene {
 	 */
 	private double yCentroid = 0;
 	
+	/**
+	 * The collection of intersections between roads
+	 */
+	private IntersectionColl collIntersect;
+
+	
 	
 // ========================== CONSTRUCTORS =========================
-	
+
 	public Scene() {
 		this.buildings = new ArrayList<Building>();
 		this.roads = new HashMap<String,Road>();
@@ -252,6 +259,22 @@ public class Scene {
 	 */
 	public void setyCentroid(double yCentroid) {
 		this.yCentroid = yCentroid;
+	}
+	
+	
+	/**
+	 * @return the collIntersect
+	 */
+	public IntersectionColl getCollIntersect() {
+		return collIntersect;
+	}
+
+
+	/**
+	 * @param collIntersect the collIntersect to set
+	 */
+	public void setCollIntersect(IntersectionColl collIntersect) {
+		this.collIntersect = collIntersect;
 	}
 
 // ========================== METHODS ==============================

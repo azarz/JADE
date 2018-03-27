@@ -1,6 +1,10 @@
-	package eu.ensg.jade.semantic;
+package eu.ensg.jade.semantic;
 
-import eu.ensg.jade.geometricObject.Point;
+import com.vividsolutions.jts.geom.Coordinate;
+
+import java.util.List;
+
+import eu.ensg.jade.geometricObject.PunctualObject;
 
 /**
  * StreetFurniture is the class implementing the street furniture to be added to the scene
@@ -8,8 +12,20 @@ import eu.ensg.jade.geometricObject.Point;
  * @author JADE
  */
 
-public class StreetFurniture extends Point {
+public class StreetFurniture extends PunctualObject {
+	
+// ========================== ENUM ===========================
 
+	/**
+	 * The different types of street furniture available
+	 */
+	private enum type {
+		
+	}
+
+	private enum nat {
+		
+	}
 // ========================== ATTRIBUTES ===========================
 
 	/**
@@ -18,13 +34,9 @@ public class StreetFurniture extends Point {
 	private String nature;
 	
 	/**
-	 * The furniture geometry
-	 */
-	private Point geometry;
-	
-	/**
 	 * The furniture id
 	 */
+<<<<<<< HEAD
 	private String id;
 	
 	/**
@@ -58,11 +70,25 @@ public class StreetFurniture extends Point {
 	 */
 	public StreetFurniture(String nature, Point geometry, String id) {
 			super();
+=======
+	private static int id=0;	
+	
+// ========================== CONSTRUCTORS =========================			
+
+	public StreetFurniture(Coordinate coord) {
+		super(coord);
+		this.id++;
+	}
+	
+	public StreetFurniture(String nature, Coordinate coord) {
+			super(coord);
+>>>>>>> 3f3d954840c6c1509edaea803b41225f8301b9c7
 			this.nature = nature;
-			this.geometry = geometry;
-			this.id = id;
+			this.coord = coord;
+			this.id++;
 		}
 
+<<<<<<< HEAD
 
 
 
@@ -73,11 +99,20 @@ public class StreetFurniture extends Point {
 	 * Allows to access the street furniture nature
 	 * 
 	 * @return the street furniture nature
+=======
+// ========================== GETTERS/SETTERS ======================
+	
+	/**
+	 * Gets the Nature of the furniture
+	 * 
+	 * @return the nature of the furniture
+>>>>>>> 3f3d954840c6c1509edaea803b41225f8301b9c7
 	 */
 	public String getNature() {
 		return nature;
 	}
 
+<<<<<<< HEAD
 
 	/**
 	 * Allows to access the street furniture geometry
@@ -95,19 +130,25 @@ public class StreetFurniture extends Point {
 	 * @return the street furniture id
 	 */
 	public String getId() {
+=======
+	/**
+	 * Gets the ID of the furniture
+	 * 
+	 * @return the if of the furniture
+	 */
+	public int getId() {
+>>>>>>> 3f3d954840c6c1509edaea803b41225f8301b9c7
 		return id;
 	}
 
-
-
-
-	// ========================== METHODS ==============================
-
+// ========================== METHODS ==============================
 
 	/**
-	 * This method will have a return that will soon be specified
+	 * @see eu.ensg.jade.geometricObject.Point#toOBJ(java.util.List, double, double)
 	 */
-	public void toOBJ(){
-		
+	@Override
+	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

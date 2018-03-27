@@ -1,0 +1,5 @@
+Material OrthoImage : Common/MatDefs/Misc/Unshaded.j3md {
+  MaterialParameters {
+    ColorMap: RGE/window.png
+  }
+}

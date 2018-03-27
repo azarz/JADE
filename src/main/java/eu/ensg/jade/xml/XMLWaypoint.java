@@ -1,6 +1,6 @@
 package eu.ensg.jade.xml;
 
-import java.util.Vector;
+import java.util.Arrays;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -19,17 +19,18 @@ public class XMLWaypoint implements IXMLExport {
 	
 	private double speed;
 	
-	private Vector<Double> translation;
+	private double[] translation;
 	
 // ========================== CONSTRUCTORS =========================
 	
 	public XMLWaypoint(String id) {
 		this.id = id;
 		this.speed = 0;
-		this.translation = new Vector<>(3);
+		this.translation = new double[3];
+		Arrays.fill(this.translation, 0);
 	}
 	
-	public XMLWaypoint(String id, double speed, Vector<Double> translation) {
+	public XMLWaypoint(String id, double speed, double[] translation) {
 		this.id = id;
 		this.speed = speed;
 		this.translation = translation;
@@ -63,12 +64,16 @@ public class XMLWaypoint implements IXMLExport {
 		Element waypoint = doc.createElement("wayPoint");
 		waypoint.setAttribute("id", this.id);
 		
+		Element e;
+		
 		Element translation = doc.createElement("translation");
 		Element vector = doc.createElement("vector");
 		vector.setAttribute("jtype", "java_lang_Float");
 		vector.setAttribute("size", "3");
 		for(Double value: this.translation) {
-			vector.appendChild(doc.createElement("entry").appendChild(doc.createTextNode(String.valueOf(value))));
+			e = doc.createElement("entry");
+			e.appendChild(doc.createTextNode(String.valueOf(value)));
+			vector.appendChild(e);
 		}
 		translation.appendChild(vector);
 		

@@ -14,13 +14,10 @@
 		<port>2111</port>
 	</HMI>
 
-
   <objectLocator>
 		<enable>false</enable>
 		<fileName>objPosition.txt</fileName>
 	</objectLocator>
-
-
 
   <controllers>
 		<joystick>
@@ -49,9 +46,6 @@
 			<scrollSensitivityFactor>5</scrollSensitivityFactor>
 		</mouse>
 	</controllers>
-
-
-
 
   <externalVisualization>
 		<enableConnection>false</enableConnection>

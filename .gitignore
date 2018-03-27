@@ -28,4 +28,5 @@ changelog.txt
 
 # Keep external libs
 !lib/**
+!.gitkeep
 

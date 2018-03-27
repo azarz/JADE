@@ -1,6 +1,10 @@
 package eu.ensg.jade.semantic;
 
-import eu.ensg.jade.geometricObject.Point;
+import java.util.List;
+
+import com.vividsolutions.jts.geom.Coordinate;
+
+import eu.ensg.jade.geometricObject.PunctualObject;
 
 /**
  * Vegetation is the class implementing the vegetation to be added to the scene
@@ -8,27 +12,30 @@ import eu.ensg.jade.geometricObject.Point;
  * @author JADE
  */
 
-public class PointVegetation extends Point {
+public class PointVegetation extends PunctualObject {
 	
 // ========================== ATTRIBUTES ===========================
-	
+
 	/**
-	 * The furniture nature (stop, pedestrian crossing...)
+	 * The furniture nature 
 	 */
 	private String nature;
 	
-	/**
-	 * The tree geometry
-	 */
-	private String geometry;
+// ========================== CONSTRUCTORS ===========================
 
+	public PointVegetation(Coordinate coord) {
+		super(coord);
+	}
 // ========================== METHODS ==============================
 	
+	
 	/**
-	 * This method will have a return that will soon be specified
+	 * @see eu.ensg.jade.geometricObject.Point#toOBJ(java.util.List, double, double)
 	 */
-	public void toOBJ(){
-		
+	@Override
+	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

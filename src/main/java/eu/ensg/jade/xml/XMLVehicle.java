@@ -2,7 +2,6 @@ package eu.ensg.jade.xml;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -31,7 +30,7 @@ public class XMLVehicle implements IXMLExport {
 	
 	private double maxDistanceFromPath;
 	
-	private List<Vector<Double>> waypoints;
+	private List<List<Double>> waypoints;
 	
 	private int startWayPoint;
 	
@@ -39,7 +38,7 @@ public class XMLVehicle implements IXMLExport {
 	
 	public XMLVehicle(String id) {
 		this.id = id;
-		this.waypoints = new ArrayList<Vector<Double>>();
+		this.waypoints = new ArrayList<List<Double>>();
 	}
 	
 // ========================== GETTERS/SETTERS ======================
@@ -108,7 +107,7 @@ public class XMLVehicle implements IXMLExport {
 		this.startWayPoint = startWayPoint;
 	}
 	
-	public void addWaypoint(String id, Vector<Double> point) {
+	public void addWaypoint(String id, List<Double> point) {
 		if(point.size() == 3){
 			this.waypoints.add(point);
 		}

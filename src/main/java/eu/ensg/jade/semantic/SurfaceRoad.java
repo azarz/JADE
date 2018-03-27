@@ -3,8 +3,15 @@ package eu.ensg.jade.semantic;
 import java.util.List;
 
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.CoordinateSequence;
+import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
 import com.vividsolutions.jts.geom.GeometryCollection;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.MultiPoint;
+import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.operation.buffer.BufferParameters;
+import com.vividsolutions.jts.operation.distance.DistanceOp;
 import com.vividsolutions.jts.polytriangulate.EarClipper;
 
 import eu.ensg.jade.geometricObject.Road;
@@ -54,7 +61,7 @@ public class SurfaceRoad extends Road {
 	 */
 	public SurfaceRoad(LineRoad lineRoad) {
 		super(lineRoad.getWidth(), lineRoad.getLaneNumber(), lineRoad.getZ_ini(), lineRoad.getZ_fin(), lineRoad.getDirection(), lineRoad.getNature(), lineRoad.getImportance(), lineRoad.getNumber(), lineRoad.getSpeed());
-		this.geometry =  (Polygon) lineRoad.getGeom().buffer(this.width/2);
+		this.geometry =  lineRoad.enlarge().getGeom();
 	}
 
 
@@ -159,5 +166,41 @@ public class SurfaceRoad extends Road {
 		
 		return outputString;
 		
+	}
+	
+	/**
+	 * Transforms the Z coordinates of the geometry according to a DTM parameter
+	 * @param dtm for the road to match
+	 */
+	public void setZfromDTM(DTM dtm) {	
+		// Defining a coordinate filter to set the z according to the DTM
+		// using bilinear interpolation
+		CoordinateSequenceFilter filter = new CoordinateSequenceFilter() {
+			
+			@Override
+			public void filter(CoordinateSequence seq, int i) {
+				
+				// Fetching the points coordinate
+				double xCoord = seq.getCoordinate(i).x;
+				double yCoord = seq.getCoordinate(i).y;
+				
+				// Setting the Z coordinate
+				seq.getCoordinate(i).z = JadeUtils.interpolatedDtmValue(xCoord, yCoord, dtm);
+			}
+
+			@Override
+			public boolean isDone() {
+				return false;
+			}
+
+			@Override
+			public boolean isGeometryChanged() {
+				return true;
+			}
+			
+		};
+		
+		// Applying the filter
+		geometry.apply(filter);
 	}
 }

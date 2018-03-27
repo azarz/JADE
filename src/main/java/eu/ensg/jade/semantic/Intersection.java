@@ -1,8 +1,12 @@
 package eu.ensg.jade.semantic;
 
+
+
+import java.util.ArrayList;
 import java.util.List;
 
-import eu.ensg.jade.geometricObject.Point;
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Point;
 
 /**
  * Intersection is the class implementing
@@ -14,33 +18,27 @@ public class Intersection {
 	
 
 // ========================== ATTRIBUTES ===========================
+	
 	/**
 	 * The attribute containing the geometry of the intersection
 	 */
-	private Point geometry;
+	private Coordinate geometry;
 	
 	/**
-	 * The attribute containing the list of roads composing the intersection
+	 * The attribute containing the list of ID of roads composing the intersection
 	 */
-	private List<SurfaceRoad> roads;
-	
-	/**
-	 * The attribute containing the road IDs (String ? List ?)
-	 */
-	private String roadId;
+	private List<String> roadId;
 
 // ========================== CONSTRUCTORS =========================	
 	
 	/**
 	 * Constructor using all fields
+	 * 
 	 * @param geometry
-	 * @param roads
-	 * @param roadId
 	 */
-	public Intersection(Point geometry, List<SurfaceRoad> roads, String roadId) {
+	public Intersection(Coordinate geometry) {
 		this.geometry = geometry;
-		this.roads = roads;
-		this.roadId = roadId;
+		this.roadId = new ArrayList<>();
 	}
 
 	/**
@@ -50,7 +48,6 @@ public class Intersection {
 		
 	}
 
-
 // ========================== GETTERS/SETTERS ======================
 
 	/**
@@ -58,30 +55,23 @@ public class Intersection {
 	 * 
 	 * @return the intersection geometry
 	 */
-	public Point getGeometry() {
+	public Coordinate getGeometry() {
 		return geometry;
 	}
 
 	/**
-	 * Allows to access the list of roads composing the intersection 
+	 * Allows to access the list of ID of roads composing the intersection 
 	 * 
-	 * @return the list of roads composing the intersection
+	 * @return the list of ID of roads composing the intersection
 	 */
-	public List<SurfaceRoad> getRoads() {
-		return roads;
-	}
-
-	/**
-	 * Allows to access the intersection roads IDs
-	 * 
-	 * @return the intersection roads IDs
-	 */
-	public String getRoadId() {
+	public List<String> getRoadId() {
 		return roadId;
 	}
 	
-
 // ========================== METHODS ==============================
 
+	public void addRoadID(String ID){
+		this.roadId.add(ID);
+	}
 
 }

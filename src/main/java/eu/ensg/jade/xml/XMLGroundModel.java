@@ -1,9 +1,8 @@
 package eu.ensg.jade.xml;
 
-import java.util.Vector;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 
 /**
@@ -46,7 +45,7 @@ public class XMLGroundModel extends XMLModel implements IXMLExport {
 	 * @param rotation the rotation Vector
 	 * @param translation the translation Vector
 	 */
-	public XMLGroundModel(String id, String material, XMLTerrain terrain, Vector<Double> scale, Vector<Double> rotation, Vector<Double> translation) {
+	public XMLGroundModel(String id, String material, XMLTerrain terrain, double[] scale, double[] rotation, double[] translation) {
 		super(id, "", scale, rotation, translation);
 		this.material = material;
 		this.terrain = terrain;
@@ -81,12 +80,16 @@ public class XMLGroundModel extends XMLModel implements IXMLExport {
 	public Element toXMLElement(Document doc){
 		Element model = super.toXMLElement(doc);
 		
+		Element shadowMode = doc.createElement("shadowMode");
+		shadowMode.appendChild(doc.createTextNode("Receive"));
+		model.appendChild(shadowMode);
+		
 		// Set the material of the Ground (as a key)
 		Element material = doc.createElement("material");
 		material.setAttribute("key", this.material);
-		model.appendChild(material);
+		Node scale = model.getElementsByTagName("visible").item(0);
+		model.insertBefore(material, scale);
 		
-		model.appendChild(doc.createElement("shadowMode").appendChild(doc.createTextNode("Receive")));
 		
 		// Link model to terrain geometry
 		model.setAttribute("ref", this.terrain.getId());
