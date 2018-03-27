@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +18,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamResult;	
 
 import org.w3c.dom.Document;
 import org.w3c.dom.DocumentType;
@@ -142,14 +143,13 @@ public class XMLWriter {
 	 * Write all the XML files to define a new driving task in OpenDS
 	 */
 	public void createAllXml() {
+		// Clean directory
+		Arrays.stream(new File(mainDirectory).listFiles()).forEach(File::delete);
+		
 		this.createMainXml();
-		
 		this.createInteractionXml();
-		
 		this.createSceneXml();
-		
 		this.createScenarioXml();
-		
 		this.createSettingsXml();
 	}
 
