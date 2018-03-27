@@ -4,7 +4,7 @@ import com.vividsolutions.jts.geom.Coordinate;
 
 import java.util.List;
 
-import eu.ensg.jade.geometricObject.Point;
+import eu.ensg.jade.geometricObject.PunctualObject;
 
 /**
  * StreetFurniture is the class implementing the street furniture to be added to the scene
@@ -12,7 +12,7 @@ import eu.ensg.jade.geometricObject.Point;
  * @author JADE
  */
 
-public class StreetFurniture extends Point {
+public class StreetFurniture extends PunctualObject {
 	
 // ========================== ENUM ===========================
 
@@ -21,8 +21,11 @@ public class StreetFurniture extends Point {
 	 */
 	private enum type {
 		
-	};
+	}
 
+	private enum nat {
+		
+	}
 // ========================== ATTRIBUTES ===========================
 
 	/**
@@ -31,30 +34,22 @@ public class StreetFurniture extends Point {
 	private String nature;
 	
 	/**
-	 * The punctual coordinate of the furniture
-	 */
-	private Coordinate coord;
-	
-	/**
 	 * The furniture id
 	 */
-	private String id;	
+	private static int id=0;	
 	
 // ========================== CONSTRUCTORS =========================			
-	
-	/**
-	 * Empty constructor
-	 */
-	public StreetFurniture() {
-		super();
-		// TODO Auto-generated constructor stub
+
+	public StreetFurniture(Coordinate coord) {
+		super(coord);
+		this.id++;
 	}
 	
-	public StreetFurniture(String nature, Coordinate coord, String id) {
-			super();
+	public StreetFurniture(String nature, Coordinate coord) {
+			super(coord);
 			this.nature = nature;
 			this.coord = coord;
-			this.id = id;
+			this.id++;
 		}
 
 // ========================== GETTERS/SETTERS ======================
@@ -69,20 +64,11 @@ public class StreetFurniture extends Point {
 	}
 
 	/**
-	 * Gets the coordinates of the furniture
-	 * 
-	 * @return the (x,y,z) coordinate of the punctual object
-	 */
-	public Coordinate getCoord() {
-		return coord;
-	}
-
-	/**
 	 * Gets the ID of the furniture
 	 * 
 	 * @return the if of the furniture
 	 */
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 

@@ -1,11 +1,14 @@
 package eu.ensg.jade.rules;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Intersection;
 import eu.ensg.jade.semantic.IntersectionColl;
+import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceVegetation;
 
 /**
@@ -31,6 +34,8 @@ public class Rule implements IRule{
 
 // ========================== METHODS ==============================
 
+// ------------------------- INTERFACE -----------------------------
+	
 	/**
 	 * Puts signs on intersections referring to the number of roads in the intersection
 	 * 
@@ -38,7 +43,7 @@ public class Rule implements IRule{
 	 * 
 	 * @param interColl the intersections presents in RGE data
 	 */
-	public void intersectSigns(IntersectionColl interColl){
+	public void intersectSigns(IntersectionColl interColl,Map <String,Road> roads){
 		
 		// We go through all the intersections
 		for (Intersection intersect : interColl.getMapIntersection().values()){
@@ -54,7 +59,10 @@ public class Rule implements IRule{
 				 * 		OUI car on a besoin pour la creation du xml ?? 
 				 * 
 				 * Fct => addDeadEndSign()
+				 * 
 				 */
+				StreetFurniture streetFurniture = addSigns(roads.get(intersect.getRoadId().get(0)),"");
+				addStreetFurniture(streetFurniture);
 			}
 			else if (intersect.getRoadId().size() == 2){
 				/*
@@ -62,20 +70,42 @@ public class Rule implements IRule{
 				 * 		  => Test de sens
 				 *        => ou rien
 				 */
+//				List<Integer> directions = new ArrayList<Integer>();
+//				for(int i = 0; i < intersect.getRoadId().size(); i++){
+//					directions.add(getDirection(intersect, i));						
+//					}
+//				if(Collections.frequency(directions,-1) == 1){
+//					directions.indexOf(-1);
+//					StreetFurniture streetFurniture = addOneWaySign();
+//					addStreetFurniture(streetFurniture);
+//				}
+//				else if(Collections.frequency(directions,1) == 1){
+//					directions.indexOf(1);
+//					StreetFurniture streetFurnitureOw = addOneWaySign();
+//					addStreetFurniture(streetFurnitureOw);
+//					StreetFurniture streetFurnitureFw = addForbiddenWaySign();
+//					addStreetFurniture(streetFurnitureFw);
+//				}
+				Road road1 = roads.get(intersect.getRoadId().get(0));
+				Road road2 = roads.get(intersect.getRoadId().get(1));
+				Road larger = widthComparison(road1,road2);
+				if ( larger != null){
+					addSigns(larger,"");
+				}
+				Map<Integer,Road> sensMap = sensComparison(road1,road2);
+				if (sensMap != null){
+					if(sensMap.containsKey(-1)){
+						addSigns(sensMap.get(-1),"");
+					}
+					if(sensMap.containsKey(1)){
+						addSigns(sensMap.get(1),"");
+					}
+				}
 			}
-			else if (intersect.getRoadId().size() == 3){
+			else if (intersect.getRoadId().size() == 3 || intersect.getRoadId().size() == 4){
 				/*
 				 * - Si 3 => Test Bretelle
 				 *        => Test Rond point
-				 * 		  => Test de sens
-				 * 		  => Test d'importance
-				 * 		  => Test nombre de voies
-				 * 		  => Algo de placement de signalisation en fonction des résultats obtenus
-				 */
-			}
-			else if (intersect.getRoadId().size() == 4){
-				/*
-				 * 	- Si 4 => Test Rond point
 				 * 		  => Test de sens
 				 * 		  => Test d'importance
 				 * 		  => Test nombre de voies
@@ -128,22 +158,45 @@ public class Rule implements IRule{
 
 	}
 	
+//	------------------------- GENERALS -----------------------------
+	
 	/**
 	 * 
+	 * @param intersection
+	 * @param i
+	 * @return -1 if leaving, 0 if double-way, +1 if entering 
 	 */
-	public void signPosition(){
-		// Calcul de la position du panneau sur le bord de route par rapport au DTM et au buffer
-		// return un objet Coordinate ? 
+	private int getDirection(Intersection intersection, int i){
+		//TODO
+		return 0;
 	}
 	
 	/**
 	 * 
 	 */
-	public void addDeadEndSign(){
-		// Ajout du panneau par rapport au début de la route
-		// A quelle distance ? 
-		// NOTE : on est forcement à l'intersection de fin de route 
-		// ==> On doit placer le panneau au debut .. 
-		// ie on doit tester si il y a déjà un panneau pour ne pas causer de conflit ! 
+	private void addStreetFurniture(StreetFurniture streetFurniture){
+		
 	}
+	
+	/**
+	 * 
+	 */
+	private void signPosition(){
+		// Calcul de la position du panneau sur le bord de route par rapport au DTM et au buffer
+		// return un objet Coordinate ? 
+	}
+	
+	private StreetFurniture addSigns(Road road, String folder){
+		return null;
+	}
+// -------------------------- 2-SPECIFIC ---------------------------
+	private Road widthComparison(Road road1, Road road2){
+		return null;
+	}
+	
+	private Map<Integer,Road> sensComparison(Road road1, Road road2){
+		return null;	
+	}
+	
+	
 }
