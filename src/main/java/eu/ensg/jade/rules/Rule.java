@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.vividsolutions.jts.geom.Coordinate;
+
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Intersection;
 import eu.ensg.jade.semantic.IntersectionColl;
@@ -181,13 +183,18 @@ public class Rule implements IRule{
 	/**
 	 * 
 	 */
-	private void signPosition(){
+	private Coordinate signPosition(){
 		// Calcul de la position du panneau sur le bord de route par rapport au DTM et au buffer
 		// return un objet Coordinate ? 
+		
+		return null;
 	}
 	
+	
+	
 	private StreetFurniture addSigns(Road road, String folder){
-		return null;
+		Coordinate coord = null;
+		return new StreetFurniture(folder, coord);
 	}
 // -------------------------- 2-SPECIFIC ---------------------------
 	private Road widthComparison(Road road1, Road road2){

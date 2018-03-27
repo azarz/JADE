@@ -14,63 +14,19 @@ import eu.ensg.jade.geometricObject.PunctualObject;
 
 public class StreetFurniture extends PunctualObject {
 	
-// ========================== ENUM ===========================
 
-	/**
-	 * The different types of street furniture available
-	 */
-	private enum type {
-		
-	}
-
-	private enum nat {
-		
-	}
 // ========================== ATTRIBUTES ===========================
 
+	
 	/**
-	 * The furniture nature (stop, pedestrian crossing...)
+	 * The furniture type (folder path)
 	 */
-	private String nature;
+	private String path;
 	
 	/**
 	 * The furniture id
 	 */
-<<<<<<< HEAD
-	private String id;
-	
-	/**
-	 * The different types of street furniture available
-	 *
-	 */
-	private enum type {
-		
-	};
-	
-	
-	
-	// ========================== CONSTRUCTORS =========================			
-	
-	/**
-	 * Empty constructor
-	 */
-	public StreetFurniture() {
-			super();
-			// TODO Auto-generated constructor stub
-		}
-	
-	
-	
-	
-	/**
-	 * Constructor with every fields
-	 * @param nature
-	 * @param geometry
-	 * @param id
-	 */
-	public StreetFurniture(String nature, Point geometry, String id) {
-			super();
-=======
+
 	private static int id=0;	
 	
 // ========================== CONSTRUCTORS =========================			
@@ -80,64 +36,30 @@ public class StreetFurniture extends PunctualObject {
 		this.id++;
 	}
 	
-	public StreetFurniture(String nature, Coordinate coord) {
+	public StreetFurniture(String path, Coordinate coord) {
 			super(coord);
->>>>>>> 3f3d954840c6c1509edaea803b41225f8301b9c7
-			this.nature = nature;
-			this.coord = coord;
+			this.path = path;
 			this.id++;
 		}
 
-<<<<<<< HEAD
 
-
-
-	// ========================== GETTERS/SETTERS ======================
-
-
-	/**
-	 * Allows to access the street furniture nature
-	 * 
-	 * @return the street furniture nature
-=======
 // ========================== GETTERS/SETTERS ======================
 	
 	/**
 	 * Gets the Nature of the furniture
 	 * 
 	 * @return the nature of the furniture
->>>>>>> 3f3d954840c6c1509edaea803b41225f8301b9c7
 	 */
-	public String getNature() {
-		return nature;
+	public String getPath() {
+		return path;
 	}
 
-<<<<<<< HEAD
-
-	/**
-	 * Allows to access the street furniture geometry
-	 * 
-	 * @return the street furniture geometry
-	 */
-	public Point getGeometry() {
-		return geometry;
-	}
-
-
-	/**
-	 * Allows to access the street furniture id
-	 * 
-	 * @return the street furniture id
-	 */
-	public String getId() {
-=======
 	/**
 	 * Gets the ID of the furniture
 	 * 
 	 * @return the if of the furniture
 	 */
 	public int getId() {
->>>>>>> 3f3d954840c6c1509edaea803b41225f8301b9c7
 		return id;
 	}
 
