@@ -139,6 +139,8 @@ public class SceneBuilder {
 		// Changing the roads and buildings data so it matches the DTM
 		DTM dtm = scene.getDtm();
 		
+		// TODO: add vegetation & street furniture
+		
 		for (Building building : scene.getBuildings()) {
 			building.setZfromDTM(dtm);
 			building.addHeight();
@@ -153,8 +155,6 @@ public class SceneBuilder {
 		scene.setRoads(roads);
 
 		
-		
-		// TODO: add vegetation & street furniture
 	}
 	
 	
