@@ -2,7 +2,6 @@ package eu.ensg.jade.geometricObject;
 
 import java.util.List;
 
-import com.jme3.app.R.string;
 import com.vividsolutions.jts.geom.Coordinate;
 
 /**
@@ -18,7 +17,7 @@ public abstract class PunctualObject extends WorldObject {
 	/** 
 	 * The punctual object nature 
 	 */
-	private string nature;
+	private String nature;
 	
 	/**
 	 * The punctual coordinate of the furniture
