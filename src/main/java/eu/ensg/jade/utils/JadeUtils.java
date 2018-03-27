@@ -50,6 +50,12 @@ public class JadeUtils {
 		result[1] = (diff1_z * diff2_x) - (diff1_x * diff2_z);
 		result[2] = (diff1_x * diff2_y) - (diff1_y * diff2_x);
 		
+		double norm = Math.sqrt(Math.pow(result[0],2) + Math.pow(result[1],2) + Math.pow(result[2],2));
+		
+		result[0] /= norm;
+		result[1] /= norm;
+		result[2] /= norm;
+
 		return result;
 	}
 	
@@ -77,6 +83,12 @@ public class JadeUtils {
 		result[0] = (diff1_y * diff2_z) - (diff1_z * diff2_y);
 		result[1] = (diff1_z * diff2_x) - (diff1_x * diff2_z);
 		result[2] = (diff1_x * diff2_y) - (diff1_y * diff2_x);
+		
+		double norm = Math.sqrt(Math.pow(result[0],2) + Math.pow(result[1],2) + Math.pow(result[2],2));
+		
+		result[0] /= norm;
+		result[1] /= norm;
+		result[2] /= norm;
 		
 		return result;
 	}
