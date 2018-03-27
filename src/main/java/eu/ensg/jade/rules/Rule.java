@@ -2,6 +2,7 @@ package eu.ensg.jade.rules;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -92,7 +93,7 @@ public class Rule implements IRule{
 				if ( larger != null){
 					addSigns(larger,"");
 				}
-				Map<Integer,Road> sensMap = sensComparison(road1,road2);
+				Map<Integer,Road> sensMap = directionVariation(road1,road2,intersect,roads);
 				if (sensMap != null){
 					if(sensMap.containsKey(-1)){
 						addSigns(sensMap.get(-1),"");
@@ -111,6 +112,7 @@ public class Rule implements IRule{
 				 * 		  => Test nombre de voies
 				 * 		  => Algo de placement de signalisation en fonction des résultats obtenus
 				 */
+			
 			}
 			else if (intersect.getRoadId().size() >= 5){
 				/*
@@ -161,12 +163,29 @@ public class Rule implements IRule{
 //	------------------------- GENERALS -----------------------------
 	
 	/**
+	 * Gives the direction of the road compared to the intersection
 	 * 
-	 * @param intersection
-	 * @param i
+	 * @param intersection the intersection
+	 * @param i the index of the road
 	 * @return -1 if leaving, 0 if double-way, +1 if entering 
 	 */
-	private int getDirection(Intersection intersection, int i){
+	private int getDirection(Intersection intersection, int i, Map <String,Road> roads){
+		String roadId = intersection.getRoadId().get(i);
+		Road road= roads.get(roadId);
+		if(road.getDirection()=="Double"){
+			return 0;
+		}
+		return 0;
+	}
+	
+	/**
+	 * Gives the direction of the road compared to the intersection
+	 * 
+	 * @param intersection the intersection
+	 * @param road the considered road
+	 * @return -1 if leaving, 0 if double-way, +1 if entering 
+	 */
+	private int getDirection(Intersection intersection,Road road, Map <String,Road> roads){
 		//TODO
 		return 0;
 	}
@@ -190,13 +209,47 @@ public class Rule implements IRule{
 		return null;
 	}
 // -------------------------- 2-SPECIFIC ---------------------------
+	/**
+	 * Compares the width of two roads and returns the largest one,
+	 * and null if the roads have the same width
+	 * 
+	 * @param road1 first road
+	 * @param road2 second road
+	 * @return the largest road of them both
+	 */
 	private Road widthComparison(Road road1, Road road2){
+		if(road1.getWidth() > road2.getWidth()){
+			return road1;
+		}
+		else if(road1.getWidth() < road2.getWidth()){
+			return road1;
+		}
 		return null;
 	}
 	
-	private Map<Integer,Road> sensComparison(Road road1, Road road2){
-		return null;	
+	/**
+	 * Compares the direction of two roads .
+	 * 
+	 * @param road1 first road
+	 * @param road2 second road
+	 * @return the map with intersections
+	 */
+	private Map<Integer,Road> directionVariation(Road road1, Road road2,Intersection intersection,  Map <String,Road> roads){
+		int dir1 = getDirection(intersection, road1,roads);
+		int dir2 = getDirection(intersection, road2,roads);
+		Map<Integer,Road> map= new HashMap<Integer,Road>();
+		if((dir1 == -1 && dir2 == 0) || (dir1 == 1 && dir2 == 0) ){
+			map.put(dir1, road1);
+			return map;
+		}
+		else if((dir2 == -1 && dir1 == 0) || (dir2 == 1 && dir1 == 0) ){
+			map.put(dir2, road2);
+			return map;
+		}
+		return null;
 	}
+	
+// -------------------------- 3-SPECIFIC ---------------------------
 	
 	
 }
