@@ -6,7 +6,7 @@ import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
 
 /**
- * JadeUtils is an utilitary class used mostly to do 3d calculations
+ * JadeUtils is an utility class used mostly to do 3d calculations
  * 
  * @author JADE
  */
@@ -21,27 +21,17 @@ public class JadeUtils {
 	 * @return distance between p1 and p2
 	 */
 	public static double getDistance(double[] p1, double[] p2) {
-	    return Math.sqrt(Math.pow(p1[0] - p2[0], 2) +
-	    		Math.pow(p1[1] - p2[1], 2) + 
-	    		Math.pow(p1[2] - p2[2], 2));
+	    return Math.sqrt(
+	    		(p1[0]-p2[0]) * (p1[0]-p2[0]) +
+	    		(p1[1] - p2[1]) * (p1[1] - p2[1]) + 
+	    		(p1[2] - p2[2]) * (p1[2] - p2[2])
+	    		);
 	}
-	
-	/**
-	 * Calculates the distance between 2 2D points
-	 * 
-	 * @param p1 3D point as coordinate
-	 * @param p2 3D point as coordinate
-	 * 
-	 * @return distance between p1 and p2 in 2D
-	 */
-	public static double getDistance(Coordinate p1, Coordinate p2) {
-	    return Math.sqrt(Math.pow(p1.x - p2.x, 2) +
-	    		Math.pow(p1.y - p2.y, 2));
-	}
+
 	
 	/**
 	 * Calculates the normal vector of a plan defined by 3 points
-	 * !!CAUTION!! X, Y and Z are the same as in OBJ file (Y point towards the sky)
+	 * <strong>CAUTION!!</strong> X, Y and Z are the same as in OBJ file (Y point towards the sky)
 	 * 
 	 * @param p1 3D point as double[3]
 	 * @param p2 3D point as double[3]
@@ -69,7 +59,7 @@ public class JadeUtils {
 	
 	/**
 	 * Calculates the normal vector of a plan defined by 3 {@link com.vividsolutions.jts.geom.Coordinate}
-	 * !!CAUTION!! X, Y and Z are the same as in OBJ file (Y point towards the sky)
+	 * <strong>CAUTION!!</strong> X, Y and Z are the same as in OBJ file (Y point towards the sky)
 	 * 
 	 * @param p1 3D point as jts Coordinate
 	 * @param p2 3D point as jts Coordinate
@@ -160,21 +150,21 @@ public class JadeUtils {
 	    if (ini.x >= end.x){
 			//Top right
 	        if(ini.y >= end.y){
-	            theta = Math.asin((ini.y - end.y)/getDistance(ini,end));
+	            theta = Math.asin( (ini.y - end.y)/ini.distance(end) );
 	        }
 	        //bottom right
 	        else{
-	            theta = 2*Math.PI + Math.asin((ini.y - end.y)/getDistance(ini,end));
+	            theta = 2*Math.PI + Math.asin( (ini.y - end.y)/ini.distance(end) );
 	        }
 	    }
 	    else {
 			//top left
 	        if(ini.y >= end.y){
-	           theta = Math.PI - Math.asin((ini.y-end.y)/getDistance(ini,end));
+	           theta = Math.PI - Math.asin( (ini.y-end.y)/ini.distance(end) );
 	        }
 	        //bottom left
 	        else{
-	            theta = Math.PI - Math.asin((ini.y-end.y)/getDistance(ini, end));
+	            theta = Math.PI - Math.asin( (ini.y-end.y)/ini.distance(end) );
 	        }
 	    }
 		
