@@ -3,7 +3,9 @@ package eu.ensg.jade.semantic;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Point;
@@ -27,7 +29,7 @@ public class Intersection {
 	/**
 	 * The attribute containing the list of ID of roads composing the intersection
 	 */
-	private List<String> roadId;
+	private Map<String, Boolean> roadId;
 
 // ========================== CONSTRUCTORS =========================	
 	
@@ -38,7 +40,7 @@ public class Intersection {
 	 */
 	public Intersection(Coordinate geometry) {
 		this.geometry = geometry;
-		this.roadId = new ArrayList<>();
+		this.roadId = new HashMap<String, Boolean>();
 	}
 
 	/**
@@ -64,14 +66,14 @@ public class Intersection {
 	 * 
 	 * @return the list of ID of roads composing the intersection
 	 */
-	public List<String> getRoadId() {
+	public Map<String, Boolean> getRoadId() {
 		return roadId;
 	}
 	
 // ========================== METHODS ==============================
 
-	public void addRoadID(String ID){
-		this.roadId.add(ID);
+	public void addRoadID(String ID,Boolean init ){
+		this.roadId.put(ID, init);
 	}
 
 }
