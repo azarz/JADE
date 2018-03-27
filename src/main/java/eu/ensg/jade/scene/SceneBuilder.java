@@ -146,14 +146,11 @@ public class SceneBuilder {
 			building.addHeight();
 		}
 		
-//		for (Road road : scene.getRoads().values()) {
-//			SurfaceRoad surfRoad = (SurfaceRoad) road;
-//			surfRoad.setZfromDTM(dtm);
-//		}
-		
 		Map<String, Road> roads = scene.getRoads();
 		for(String key : roads.keySet()) {
-			roads.put(key, new SurfaceRoad( (LineRoad) roads.get(key) ));
+			SurfaceRoad surfRoad = new SurfaceRoad( (LineRoad) roads.get(key));
+			surfRoad.setZfromDTM(dtm);
+			roads.put(key, surfRoad);
 		}
 		scene.setRoads(roads);
 
