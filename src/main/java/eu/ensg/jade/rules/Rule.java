@@ -2,6 +2,7 @@ package eu.ensg.jade.rules;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -55,57 +56,54 @@ public class Rule implements IRule{
 			// We test how many roads are contained by the intersection
 			if (intersect.getRoadId().size() == 1){
 				/*
-				 * - Si 1 => cul de sac 
-				 * 
-				 * On ajoute le panneau à la route (ID) ? 
-				 * 		OUI car on a besoin pour verifier les conflits
-				 * On ajoute le panneau à la scène (OBject) ? 
-				 * 		OUI car on a besoin pour la creation du xml ?? 
-				 * 
-				 * Fct => addDeadEndSign()
-				 * 
+				 * => DeadEndStreet sign
 				 */
+				
+				// Roads recuperation
 				LineRoad road = (LineRoad) roads.get(intersect.getRoadId().keySet().toArray()[0]);
 				boolean bool = intersect.getRoadId().get(intersect.getRoadId().keySet().toArray()[0]);
 				
+				// DeadEndStreet Sign installation
 				StreetFurniture streetFurniture = addSigns(road,bool,"Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.jpg");
 				addStreetFurniture(streetFurniture);
 			}
+			
 			else if (intersect.getRoadId().size() == 2){
 				/*
-				 * - Si 2 => Rétrécissement
-				 * 		  => Test de sens
-				 *        => ou rien
+				 * => Rétrécissement
+				 * => Test de sens
+				 * => ou rien
 				 */
-//				List<Integer> directions = new ArrayList<Integer>();
-//				for(int i = 0; i < intersect.getRoadId().size(); i++){
-//					directions.add(getDirection(intersect, i));						
-//					}
-//				if(Collections.frequency(directions,-1) == 1){
-//					directions.indexOf(-1);
-//					StreetFurniture streetFurniture = addOneWaySign();
-//					addStreetFurniture(streetFurniture);
-//				}
-//				else if(Collections.frequency(directions,1) == 1){
-//					directions.indexOf(1);
-//					StreetFurniture streetFurnitureOw = addOneWaySign();
-//					addStreetFurniture(streetFurnitureOw);
-//					StreetFurniture streetFurnitureFw = addForbiddenWaySign();
-//					addStreetFurniture(streetFurnitureFw);
-//				}
-				Road road1 = roads.get(intersect.getRoadId().get(0));
-				Road road2 = roads.get(intersect.getRoadId().get(1));
-				Road larger = widthComparison(road1,road2);
-				if ( larger != null){
-					addSigns(larger,"");
+				
+				// Roads recuperation
+				LineRoad[] roadsTab = new LineRoad[2];
+				Boolean[] roadsBoolTab = new Boolean[2];
+				int k = 0;
+				
+				for (String road : intersect.getRoadId().keySet()){
+					roadsTab[k] = (LineRoad) roads.get(road);
+					roadsBoolTab[k] = intersect.getRoadId().get(road);
+					k++;
 				}
-				Map<Integer,Road> sensMap = sensComparison(road1,road2);
+				
+				// "Diminution largeur" sign installation
+				int larger = widthComparison(roadsTab[0],roadsTab[1]);
+				
+				if ( larger != -1){
+					addSigns(roadsTab[larger],roadsBoolTab[larger],"A REMPLIR AVEC LE BON PATH");
+				}
+				
+				// "Sens unique/Sens interdit" sign installation
+				Map<Integer,Integer> sensMap = directionVariation(roadsTab,roadsBoolTab);
+				
 				if (sensMap != null){
+					
 					if(sensMap.containsKey(-1)){
-						addSigns(sensMap.get(-1),"");
+						addSigns(roadsTab[sensMap.get(-1)],roadsBoolTab[sensMap.get(-1)],"A REMPLIR AVEC LE BON PATH");
 					}
+					
 					if(sensMap.containsKey(1)){
-						addSigns(sensMap.get(1),"");
+						addSigns(roadsTab[sensMap.get(1)],roadsBoolTab[sensMap.get(1)],"A REMPLIR AVEC LE BON PATH");
 					}
 				}
 			}
@@ -168,13 +166,19 @@ public class Rule implements IRule{
 //	------------------------- GENERALS -----------------------------
 	
 	/**
+	 * Gives the direction of the road compared to the intersection
 	 * 
-	 * @param intersection
-	 * @param i
+	 * @param intersection the intersection
+	 * @param i the index of the road
+	 * 
 	 * @return -1 if leaving, 0 if double-way, +1 if entering 
 	 */
-	private int getDirection(Intersection intersection, int i){
-		//TODO
+	private int getDirection(Road road, Boolean direction){
+		
+		if(road.getDirection()=="Double"){return 0;}
+		else if(direction) {return -1;}
+		else if(!direction) {return 1;}
+		
 		return 0;
 	}
 	
@@ -187,10 +191,21 @@ public class Rule implements IRule{
 		// Test si sur la route
 		// Ajoute sur la route si non
 		// Ajoute sur la scène
+		
+		
+		/* On ajoute le panneau à la route (ID) ? 
+		 * 		OUI car on a besoin pour verifier les conflits
+		 * On ajoute le panneau à la scène (OBject) ? 
+		 * 		OUI car on a besoin pour la creation du xml ?? 
+		 */
 	}
 	
 	/**
 	 * 
+	 * @param road
+	 * @param left
+	 * 
+	 * @return
 	 */
 	private Coordinate signPosition(LineRoad road, boolean left){
 
@@ -208,6 +223,7 @@ public class Rule implements IRule{
 		double newZ;
 
 		double theta = JadeUtils.roadAngle(road);
+		
 		if(left){
 			if (0<= theta && theta <= Math.PI/2){
 				newX = x + d*Math.cos(theta) - D*Math.sin(theta);
@@ -248,11 +264,17 @@ public class Rule implements IRule{
 		return new Coordinate(newX, newZ, road.getZ_ini());
 	}
 	
-	
-	
+	/**
+	 * 
+	 * @param road
+	 * @param init
+	 * @param folder
+	 * 
+	 * @return
+	 */
 	private StreetFurniture addSigns(LineRoad road, boolean init, String folder){
+		
 		if (init){
-			
 			boolean left = false;
 			// test folder .. pour droite ou gauche ! 
 			
@@ -260,18 +282,60 @@ public class Rule implements IRule{
 			// It is possible to return the sign angle in street furniture
 			return new StreetFurniture(folder, coord);
 		}
+		
 		else{
 			return null;
 		}
 	}
+	
 // -------------------------- 2-SPECIFIC ---------------------------
-	private Road widthComparison(Road road1, Road road2){
+	
+	/**
+	 * Compares the width of two roads and returns the largest one,
+	 * and null if the roads have the same width
+	 * 
+	 * @param road1 first road
+	 * @param road2 second road
+	 * @return the largest road of them both
+	 */
+	private int widthComparison(Road road1, Road road2){
+		
+		if(road1.getWidth() > road2.getWidth()){
+			return 0;
+		}
+		
+		else if(road1.getWidth() < road2.getWidth()){
+			return 1;
+		}
+		
+		return -1;
+	}
+	
+	/**
+	 * Compares the direction of two roads
+	 * 
+	 * @param roadsTab the table of roads
+	 * @param roadsBoolTab the table of boolean to say if the initial point of the orad is on the intersection
+	 * 
+	 * @return the map with intersections
+	 */
+	private Map<Integer,Integer> directionVariation(Road[] roadsTab, Boolean[] roadsBoolTab){
+		
+		int dir1 = getDirection(roadsTab[0],roadsBoolTab[0]);
+		int dir2 = getDirection(roadsTab[1],roadsBoolTab[1]);
+		
+		Map<Integer,Integer> map= new HashMap<Integer,Integer>();
+		
+		if((dir1 == -1 && dir2 == 0) || (dir1 == 1 && dir2 == 0) ){
+			map.put(dir1, 0);
+			return map;
+		}
+		
+		else if((dir2 == -1 && dir1 == 0) || (dir2 == 1 && dir1 == 0) ){
+			map.put(dir2, 1);
+			return map;
+		}
+		
 		return null;
 	}
-	
-	private Map<Integer,Road> sensComparison(Road road1, Road road2){
-		return null;	
-	}
-	
-	
 }
