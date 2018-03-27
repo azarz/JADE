@@ -1,6 +1,7 @@
 package eu.ensg.jade.scene;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import eu.ensg.jade.geometricObject.Road;
@@ -62,21 +63,20 @@ public class SceneBuilder {
 			String treeLayer,
 			String dtmLayer) {
 		
+		// Load shapefiles
 		try {
 			scene = loadData(buildingLayer, roadLayer, hydroLayer, treeLayer, dtmLayer);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		Map<String, Road> roads = scene.getRoads();
-		for(String key : roads.keySet()) {
-			roads.put(key, new SurfaceRoad( (LineRoad) roads.get(key) ));
-		}
-
+		build(scene);
 	}
 	
 	public void buildFromRGE(String rge) {
-		// TODO: implement RGE
+		// TODO: implement RGE loading
+		
+		build(scene);
 	}
 	
 	
@@ -86,18 +86,6 @@ public class SceneBuilder {
 	 */
 	
 	public void export() {
-		
-		// Changing the roads and buildings data so it matches the DTM
-		for (Building building : scene.getBuildings()) {
-			building.setZfromDTM(scene.getDtm());
-			building.addHeight();
-		}
-		
-		for (Road road : scene.getRoads().values()) {
-			SurfaceRoad surfRoad = (SurfaceRoad) road;
-			surfRoad.setZfromDTM(scene.getDtm());
-		}
-		
 		OBJWriter objWritter = new OBJWriter();
 		
 		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getxCentroid(), scene.getyCentroid());		
@@ -149,23 +137,49 @@ public class SceneBuilder {
 	}
 	
 	
+	private void build(Scene scene) {
+		// Changing the roads and buildings data so it matches the DTM
+		DTM dtm = scene.getDtm();
+		
+		for (Building building : scene.getBuildings()) {
+			building.setZfromDTM(dtm);
+			building.addHeight();
+		}
+		
+//		for (Road road : scene.getRoads().values()) {
+//			SurfaceRoad surfRoad = (SurfaceRoad) road;
+//			surfRoad.setZfromDTM(dtm);
+//		}
+		
+		Map<String, Road> roads = scene.getRoads();
+		for(String key : roads.keySet()) {
+			roads.put(key, new SurfaceRoad( (LineRoad) roads.get(key) ));
+		}
+		scene.setRoads(roads);
+
+		
+		
+		// TODO: add vegetation & street furniture
+	}
+	
+	
 	private void exportXML(Scene scene) {
 		XMLWriter xmlWritter = new XMLWriter();
 		
 		xmlWritter.updateConfig("fileMainXML", "MAIN_FILE.xml");
-		xmlWritter.updateConfig("rainCoefficient", "5");
+//		xmlWritter.updateConfig("rainCoefficient", "5");
 		
-//		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
-//		xmlWritter.addModel(grassPlane);
+		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
+		xmlWritter.addModel(grassPlane);
 		
-//		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
-//		xmlWritter.addModel(buildindModel);
+		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
+		xmlWritter.addModel(buildindModel);
 		
-		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
-		xmlWritter.addModel(roadsModel);
+//		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
+//		xmlWritter.addModel(roadsModel);
 		
-		XMLGroundModel ground = getGroundModelFromScene(scene);
-		xmlWritter.addTerrain(ground);
+//		XMLGroundModel ground = getGroundModelFromScene(scene);
+//		xmlWritter.addTerrain(ground);
 		
 		xmlWritter.createAllXml();
 	}

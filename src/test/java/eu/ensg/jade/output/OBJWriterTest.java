@@ -1,7 +1,11 @@
 package eu.ensg.jade.output;
 
+import static org.mockito.Matchers.any;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,10 +14,10 @@ import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
-import static org.mockito.Matchers.*;
 
+import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Building;
-import eu.ensg.jade.semantic.LineRoad;
+import eu.ensg.jade.semantic.SurfaceRoad;
 
 /**
  * OBJWriterTest is the class testing the {@link OBJWriter} class
@@ -29,7 +33,7 @@ public class OBJWriterTest {
 	private Building building;
 	
 	@Mock
-	private LineRoad road;
+	private SurfaceRoad road;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -46,6 +50,18 @@ public class OBJWriterTest {
 		Mockito.when(building.toOBJ(Matchers.<List<Integer>>any(), any(double.class), any(double.class))).thenReturn("ok");
 		
 		objWriter.exportBuilding("src/test/resources/buildings.obj", objectList, 0, 0);
+	}
+	
+	@Test
+	public void testRoadExport() {
+		Map<String, Road> objectList = new HashMap<String, Road>();
+		for(int i=0; i<10; i++) {
+			objectList.put(String.valueOf(i), road);
+		}
+		
+		Mockito.when(road.toOBJ(Matchers.<List<Integer>>any(), any(double.class), any(double.class))).thenReturn("ok");
+		
+		objWriter.exportRoad("src/test/resources/buildings.obj", objectList, 0, 0);
 	}
 
 }

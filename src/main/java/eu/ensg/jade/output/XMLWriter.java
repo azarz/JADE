@@ -82,7 +82,7 @@ public class XMLWriter {
 		
 		this.modelList = new ArrayList<>();
 		this.terrainList = new ArrayList<>();
-		this.vehicleList = new ArrayList<>();		
+		this.vehicleList = new ArrayList<>();
 		
 		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
 		try {
