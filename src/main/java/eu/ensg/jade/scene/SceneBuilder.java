@@ -1,7 +1,6 @@
 package eu.ensg.jade.scene;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 import eu.ensg.jade.geometricObject.Road;
@@ -172,11 +171,11 @@ public class SceneBuilder {
 		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
 		xmlWritter.addModel(buildindModel);
 		
-//		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
-//		xmlWritter.addModel(roadsModel);
+		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
+		xmlWritter.addModel(roadsModel);
 		
-//		XMLGroundModel ground = getGroundModelFromScene(scene);
-//		xmlWritter.addTerrain(ground);
+		XMLGroundModel ground = getGroundModelFromScene(scene);
+		xmlWritter.addTerrain(ground);
 		
 		xmlWritter.createAllXml();
 	}
@@ -211,7 +210,7 @@ public class SceneBuilder {
         groundTranslation[2] = scene.getyCentroid() - scene.getDtm().getYllcorner() + ((powerOfTwo/2) - largestDimension)*scene.getDtm().getCellsize();
      		
         XMLTerrain terrain = new XMLTerrain("Terrain", "RGE/paris.png", powerOfTwo);
-		XMLGroundModel ground = new XMLGroundModel("Ground", "Materials/MyTerrain.j3m", terrain, groundScale, groundRotation, groundTranslation);
+		XMLGroundModel ground = new XMLGroundModel("Ground", "Materials/OrthoImage.j3m", terrain, groundScale, groundRotation, groundTranslation);
 	
 		return ground;
 	}
