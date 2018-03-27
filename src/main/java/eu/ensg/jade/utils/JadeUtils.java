@@ -99,8 +99,8 @@ public class JadeUtils {
 		
 		// Calculating the indices of the 4 cells around the point
 		int westIndex = (int) Math.floor((xCoord - xllCorner)/cellsize);
-		int eastIndex = (int) Math.ceil((xCoord - xllCorner)/cellsize);
-		int southIndex = (int) Math.ceil(nrows- ((yCoord - yllCorner)/cellsize));
+		int eastIndex = 1 + (int) Math.floor((xCoord - xllCorner)/cellsize);
+		int southIndex = 1 + (int) Math.floor(nrows- ((yCoord - yllCorner)/cellsize));
 		int northIndex = (int) Math.floor(nrows - ((yCoord - yllCorner)/cellsize));
 		
 		// Getting the 4 cells values
