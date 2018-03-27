@@ -50,8 +50,12 @@ public class StreetFurniture extends Point {
 	
 	
 	
-	
-	
+	/**
+	 * Constructor with every fields
+	 * @param nature
+	 * @param geometry
+	 * @param id
+	 */
 	public StreetFurniture(String nature, Point geometry, String id) {
 			super();
 			this.nature = nature;
@@ -65,25 +69,31 @@ public class StreetFurniture extends Point {
 	// ========================== GETTERS/SETTERS ======================
 
 
-	
+	/**
+	 * Allows to access the street furniture nature
+	 * 
+	 * @return the street furniture nature
+	 */
 	public String getNature() {
 		return nature;
 	}
 
 
-
-
-
-
+	/**
+	 * Allows to access the street furniture geometry
+	 * 
+	 * @return the street furniture geometry
+	 */
 	public Point getGeometry() {
 		return geometry;
 	}
 
 
-
-
-
-
+	/**
+	 * Allows to access the street furniture id
+	 * 
+	 * @return the street furniture id
+	 */
 	public String getId() {
 		return id;
 	}
