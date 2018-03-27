@@ -87,8 +87,8 @@ public class SceneBuilder {
 	public void export() {
 		OBJWriter objWritter = new OBJWriter();
 		
-		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getxCentroid(), scene.getyCentroid());		
-		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getxCentroid(), scene.getyCentroid());
+		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);		
+		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
 		
 		scene.getDtm().toPNG("assets/RGE/paris.png");
 		
@@ -116,8 +116,7 @@ public class SceneBuilder {
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.BUILDING), buildingLayer);
 		scene.setBuildings(rge.getBuildings());
-		scene.setxCentroid(rge.getxCentroid());
-		scene.setyCentroid(rge.getyCentroid());
+		scene.setBuildingCentroid(rge.getCentroid());
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.ROAD), roadLayer);
 		scene.setRoads(rge.getRoads());
@@ -203,11 +202,14 @@ public class SceneBuilder {
  		double[] groundRotation = {0,0,0};
  		
  		// Ground translation: the most tricky part
- 		double[] groundTranslation = new double[3];		
+ 		double[] groundTranslation = new double[3];
+ 		
+ 		double xCentroid = scene.getBuildingCentroid().x;
+ 		double yCentroid = scene.getBuildingCentroid().y;
              
-        groundTranslation[0] = scene.getDtm().getXllcorner() - scene.getxCentroid() + (powerOfTwo/2)*scene.getDtm().getCellsize();
+        groundTranslation[0] = scene.getDtm().getXllcorner() - xCentroid + (powerOfTwo/2)*dtm.getCellsize();
         groundTranslation[1] = 0;
-        groundTranslation[2] = scene.getyCentroid() - scene.getDtm().getYllcorner() + ((powerOfTwo/2) - largestDimension)*scene.getDtm().getCellsize();
+        groundTranslation[2] = yCentroid - dtm.getYllcorner() + ((powerOfTwo/2) - largestDimension)*dtm.getCellsize();
      		
         XMLTerrain terrain = new XMLTerrain("Terrain", "RGE/paris.png", powerOfTwo);
 		XMLGroundModel ground = new XMLGroundModel("Ground", "Materials/OrthoImage.j3m", terrain, groundScale, groundRotation, groundTranslation);
