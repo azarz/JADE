@@ -108,6 +108,9 @@ public class Building extends WorldObject {
 	 * Adds an elevation to a building
 	 */
 	public void addHeight() {
+		if (height == 0) {
+			height = 10;
+		}
 		// Getting the initial number of vertices
 		int size = vertices.size();
 		// Going through the list

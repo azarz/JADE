@@ -2,6 +2,7 @@ package eu.ensg.jade.semantic;
 
 import java.util.List;
 
+import com.vividsolutions.jts.densify.Densifier;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
@@ -104,7 +105,6 @@ public class SurfaceRoad extends Road {
 		int numGeometries = geometry.getNumGeometries();
 		
 		int newVertexOffset = 0;
-		int newNormalIndexOffset = 0;
 		
 		for (int N = 0; N < numGeometries; N++) {
 			Polygon polygon = (Polygon) geometry.getGeometryN(N);
@@ -130,10 +130,17 @@ public class SurfaceRoad extends Road {
 				double[] normalVector = JadeUtils.getNormalVector(coords[0], 
 						coords[1], coords[2]);
 				
+				// If it is pointing downwards, inverting it
+				if(normalVector[1] < 0){
+					normalVector = JadeUtils.getNormalVector(coords[0], 
+							coords[2], coords[1]);
+				}
+				
+				
 				normalCoords += "vn " + normalVector[0] + " " + 
 										normalVector[1] + " " + 
 										normalVector[2] + "\n";
-				newNormalIndexOffset++;
+				normalIndexOffset++;
 				
 				faces += "f";
 				
@@ -155,7 +162,6 @@ public class SurfaceRoad extends Road {
 		// Updating the offsets
 		vertexIndexOffset  += newVertexOffset;
 		textureIndexOffset += 0;
-		normalIndexOffset  += newNormalIndexOffset;
 
 		indexOffsets.set(0, vertexIndexOffset);
 		indexOffsets.set(1, textureIndexOffset);
@@ -173,6 +179,12 @@ public class SurfaceRoad extends Road {
 	 * @param dtm for the road to match
 	 */
 	public void setZfromDTM(DTM dtm) {	
+		// Densifying the geometry so it has a number of vertices corresponding tO
+		// the DTM
+		if(geometry.getCoordinates().length > 0) {
+			geometry = (Polygon) Densifier.densify(geometry, 1000);
+		}
+		
 		// Defining a coordinate filter to set the z according to the DTM
 		// using bilinear interpolation
 		CoordinateSequenceFilter filter = new CoordinateSequenceFilter() {
