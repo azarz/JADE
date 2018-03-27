@@ -14,28 +14,19 @@ import eu.ensg.jade.geometricObject.PunctualObject;
 
 public class StreetFurniture extends PunctualObject {
 	
-// ========================== ENUM ===========================
 
-	/**
-	 * The different types of street furniture available
-	 */
-	private enum type {
-		
-	}
-
-	private enum nat {
-		
-	}
 // ========================== ATTRIBUTES ===========================
 
+	
 	/**
-	 * The furniture nature (stop, pedestrian crossing...)
+	 * The furniture type (folder path)
 	 */
-	private String nature;
+	private String path;
 	
 	/**
 	 * The furniture id
 	 */
+
 	private static int id=0;	
 	
 // ========================== CONSTRUCTORS =========================			
@@ -45,12 +36,12 @@ public class StreetFurniture extends PunctualObject {
 		this.id++;
 	}
 	
-	public StreetFurniture(String nature, Coordinate coord) {
+	public StreetFurniture(String path, Coordinate coord) {
 			super(coord);
-			this.nature = nature;
-			this.coord = coord;
+			this.path = path;
 			this.id++;
 		}
+
 
 // ========================== GETTERS/SETTERS ======================
 	
@@ -59,8 +50,8 @@ public class StreetFurniture extends PunctualObject {
 	 * 
 	 * @return the nature of the furniture
 	 */
-	public String getNature() {
-		return nature;
+	public String getPath() {
+		return path;
 	}
 
 	/**
