@@ -10,7 +10,7 @@ import com.jme3.app.R.string;
  * @author JADE
  */
 
-public abstract class Point extends WorldObject {
+public abstract class PunctualObject extends WorldObject {
 
 // ========================== ATTRIBUTES ===========================
 	
