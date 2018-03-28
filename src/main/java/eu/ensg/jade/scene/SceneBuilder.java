@@ -170,7 +170,8 @@ public class SceneBuilder {
 		xmlWriter.addModel(grassPlane);
 		
 		// Add driver
-		XMLModel driver = new XMLModel("Driver", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
+		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
+		driver.setMass(800);
 		driver.setTranslation(new double[]{0, 60, 0});
 		xmlWriter.addModel(driver);
 		
