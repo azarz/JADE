@@ -72,37 +72,37 @@ public class XMLModelTest {
 	/**
 	 * Test XML export
 	 */
-//	@Test
-//	public void testXMLElement() {
-//		XMLModel model = new XMLModel("ID", "path/to/model.j3o");
-//		
-//		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-//		try {
-//			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-//			Document doc = docBuilder.newDocument();
-//			
-//			Element element = model.toXMLElement(doc);
-//			
-//			assertNotNull(element.getElementsByTagName("mass"));
-//			assertNotNull(element.getElementsByTagName("visible"));
-//			assertNotNull(element.getElementsByTagName("scale"));
-//			assertNotNull(element.getElementsByTagName("translation"));			
-//			
-//			assertEquals(
-//					element.getElementsByTagName("mass").item(0).getTextContent(), 
-//					String.valueOf(model.getMass()));
-//			
-//			assertEquals(
-//					element.getElementsByTagName("collisionShape").item(0).getTextContent(),
-//					model.getCollision());
-//			
-//			assertEquals(
-//					element.getElementsByTagName("scale").item(0),
-//					model.getVector().toXMLElement(doc).getElementsByTagName("scale").item(0));
-//			
-//		} catch (ParserConfigurationException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	@Test
+	public void testXMLElement() {
+		XMLModel model = new XMLModel("ID", "path/to/model.j3o");
+		
+		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		try {
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+			Document doc = docBuilder.newDocument();
+			
+			Element element = model.toXMLElement(doc);
+			
+			assertNotNull(element.getElementsByTagName("mass"));
+			assertNotNull(element.getElementsByTagName("visible"));
+			assertNotNull(element.getElementsByTagName("scale"));
+			assertNotNull(element.getElementsByTagName("translation"));
+			
+			Element mass = (Element) element.getElementsByTagName("mass").item(0);
+			Element visible = (Element) element.getElementsByTagName("visible").item(0);
+			Element scale = (Element) element.getElementsByTagName("scale").item(0);
+			
+			assertEquals(mass.getTextContent(), String.valueOf(model.getMass()));
+			
+			assertEquals(visible.getTextContent(), String.valueOf(model.isVisible()));
+			
+			assertEquals(
+					((Element) scale.getElementsByTagName("entry").item(0)).getTextContent(),
+					String.valueOf(model.getVector().getScale()[0]));
+			
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
