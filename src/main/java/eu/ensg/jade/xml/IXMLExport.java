@@ -7,6 +7,11 @@ import org.w3c.dom.Element;
 /**
  * Interface for the conversion of an XML related class to a W3C Element class
  * 
+ * Info on XML I/O:
+ * https://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
+ * https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
+ * https://www.mkyong.com/java/how-to-modify-xml-file-in-java-dom-parser/
+ * 
  * @author JADE
  *
  */
