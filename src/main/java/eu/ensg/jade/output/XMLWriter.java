@@ -35,11 +35,6 @@ import eu.ensg.jade.xml.XMLVehicle;
  * XMLWriter is the class implementing the writing of the XML files,
  * which define the world inside OpenDS
  * 
- * Info on XML I/O:
- * https://www.mkyong.com/java/how-to-create-xml-file-in-java-dom/
- * https://www.mkyong.com/java/how-to-read-xml-file-in-java-dom-parser/
- * https://www.mkyong.com/java/how-to-modify-xml-file-in-java-dom-parser/
- * 
  * @author JADE
  */
 public class XMLWriter {

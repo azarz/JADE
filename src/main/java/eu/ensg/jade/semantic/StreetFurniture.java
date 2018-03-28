@@ -1,8 +1,8 @@
 package eu.ensg.jade.semantic;
 
-import com.vividsolutions.jts.geom.Coordinate;
-
 import java.util.List;
+
+import com.vividsolutions.jts.geom.Coordinate;
 
 import eu.ensg.jade.geometricObject.PunctualObject;
 
@@ -26,20 +26,25 @@ public class StreetFurniture extends PunctualObject {
 	/**
 	 * The furniture id
 	 */
-
 	private static int id=0;	
+	
+	/**
+	 * The furniture rotation
+	 */
+	private double rotation;
 	
 // ========================== CONSTRUCTORS =========================			
 
 	public StreetFurniture(Coordinate coord) {
 		super(coord);
-		this.id++;
+		id++;
 	}
 	
-	public StreetFurniture(String path, Coordinate coord) {
+	public StreetFurniture(String path, Coordinate coord, double rotation) {
 			super(coord);
 			this.path = path;
-			this.id++;
+			this.rotation = rotation;
+			id++;
 		}
 
 
@@ -57,10 +62,19 @@ public class StreetFurniture extends PunctualObject {
 	/**
 	 * Gets the ID of the furniture
 	 * 
-	 * @return the if of the furniture
+	 * @return the id of the furniture
 	 */
 	public int getId() {
 		return id;
+	}
+	
+	/**
+	 * Gets the rotation of the furniture
+	 * 
+	 * @return the rotation of the furniture
+	 */
+	public double getRotation() {
+		return rotation;
 	}
 
 // ========================== METHODS ==============================

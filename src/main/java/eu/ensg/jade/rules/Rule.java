@@ -55,7 +55,7 @@ public class Rule implements IRule{
 				boolean bool = intersect.getRoadId().get(intersect.getRoadId().keySet().toArray()[0]);
 				
 				// DeadEndStreet Sign installation
-				StreetFurniture streetFurniture = addSigns(road,bool,"Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.jpg");
+				StreetFurniture streetFurniture = addSigns(road,bool,"Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.scene");
 				addStreetFurniture(streetFurniture, road, scene);
 			}
 			
@@ -80,7 +80,7 @@ public class Rule implements IRule{
 				int larger = widthComparison(roadsTab[0],roadsTab[1]);
 				
 				if ( larger != -1){
-					StreetFurniture streetFurniture = addSigns(roadsTab[larger],roadsBoolTab[larger],"Models/RoadSigns/dangerSigns/RoadNarrows/roadNarrows.jpg");
+					StreetFurniture streetFurniture = addSigns(roadsTab[larger],roadsBoolTab[larger],"Models/RoadSigns/dangerSigns/RoadNarrows/roadNarrows.scene");
 					addStreetFurniture(streetFurniture, roadsTab[larger], scene);
 				}
 				
@@ -90,12 +90,12 @@ public class Rule implements IRule{
 				if (sensMap != null){
 					
 					if(sensMap.containsKey(-1)){
-						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(-1)],roadsBoolTab[sensMap.get(-1)],"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.jpg");
+						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(-1)],roadsBoolTab[sensMap.get(-1)],"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene");
 						addStreetFurniture(streetFurniture, roadsTab[sensMap.get(-1)], scene);
 					}
 					
 					if(sensMap.containsKey(1)){
-						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(1)],roadsBoolTab[sensMap.get(1)],"Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.jpg");
+						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(1)],roadsBoolTab[sensMap.get(1)],"Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.scene");
 						addStreetFurniture(streetFurniture, roadsTab[sensMap.get(1)], scene);
 					}
 				}
@@ -116,6 +116,15 @@ public class Rule implements IRule{
 				// Roads recuperation
 				LineRoad[] roadsTab = new LineRoad[size];
 				Boolean[] roadsBoolTab = new Boolean[size];
+				
+				int k = 0;
+				
+				for (String road : intersect.getRoadId().keySet()){
+					roadsTab[k] = (LineRoad) roads.get(road);
+					roadsBoolTab[k] = intersect.getRoadId().get(road);
+					k++;
+				}
+				
 				
 				//First test for ramp, round about or "normal".
 				Boolean asRamp = isRamp(roadsTab,roadsBoolTab,intersect,size);
@@ -143,13 +152,25 @@ public class Rule implements IRule{
 				 *        => Test de sens 
 				 *        => Cédez le passage et flèches bleu pour modéliser un rond point 
 				 */
+				
+				int size = intersect.getRoadId().size();
+				
+				// Roads recuperation
+
+				LineRoad lineRoad; 
+				boolean roadBool;
+				for (String road : intersect.getRoadId().keySet()){
+					lineRoad = (LineRoad) roads.get(road);
+					roadBool = intersect.getRoadId().get(road);
+					lineRoad.isEntering();
+				}
 			}
 			else{
 				System.out.println("There is no road in this intersection ... ");
 			}
 		}
 	}
-
+	
 	/**
 	 * Puts signs on roads
 	 * 
@@ -193,7 +214,7 @@ public class Rule implements IRule{
 	 * 
 	 * @return -1 if leaving, 0 if double-way, +1 if entering 
 	 */
-	private int getDirection(Road road, Boolean direction){
+	private int isEntering(Road road, Boolean direction){
 		
 		if(road.getDirection()=="Double"){return 0;}
 		int modDirection=1;
@@ -243,7 +264,7 @@ public class Rule implements IRule{
 	 * 
 	 * @return an object Coordinate that give the position of the sign from the intersection
 	 */
-	private Coordinate signPosition(LineRoad road, boolean left, int position){
+	private StreetFurniture signPosition(LineRoad road, boolean left, int position, String folder){
 
 		// Variable 
 		Coordinate[] coord = road.getGeom().getCoordinates();
@@ -258,6 +279,7 @@ public class Rule implements IRule{
 		double D = road.getWidth()/2 + 0.7; // 0.70 meters after the border of the road
 
 		double theta = JadeUtils.roadAngle(road); // Angle between road and horizontal line, in counter clockwise
+		double rotation = 0;
 		
 		if (position != 0){ // if the end of the road is on the intersection
 			theta = theta - Math.PI;
@@ -265,7 +287,8 @@ public class Rule implements IRule{
 		
 		// Determination of the position
 		if(left){
-			
+			rotation = theta;
+
 			// Up-Right quarter
 			if (0<= theta && theta <= Math.PI/2){
 				newX = x + d*Math.cos(theta) - D*Math.sin(theta);
@@ -288,7 +311,8 @@ public class Rule implements IRule{
 			}
 		}
 		else{
-			
+			rotation = Math.PI + theta;
+
 			// Up-Right quarter
 			if (0<= theta && theta <= Math.PI/2){
 				newX = x + d*Math.cos(theta) + D*Math.sin(theta);
@@ -312,7 +336,8 @@ public class Rule implements IRule{
 		}
 		
 		// Be careful y is the vertical axis in OpenDS 
-		return new Coordinate(newX, newZ, road.getZ_ini());
+		Coordinate newCoord = new Coordinate(newX, newZ, road.getZ_ini());
+		return new StreetFurniture(folder, newCoord, rotation);
 	}
 	
 	/**
@@ -327,9 +352,9 @@ public class Rule implements IRule{
 	private StreetFurniture addSigns(LineRoad road, boolean init, String folder){
 		
 		// The signs which has to be on the right of the road 
-		String deadEndStreet = "Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.jpg";
-		String oneWayStreet = "Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.jpg";
-		String doNotEnter = "Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.jpg";
+		String deadEndStreet = "Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.scene";
+		String oneWayStreet = "Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene";
+		String doNotEnter = "Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.scene";
 		
 		// We determine if the sign has to be on the right side or the left side of the road 
 		boolean left = true;
@@ -340,14 +365,12 @@ public class Rule implements IRule{
 		
 		// We create the sign 
 		if (init){
-			Coordinate coord = signPosition(road, left, 0);
 			// It is possible to return the sign angle in street furniture
-			return new StreetFurniture(folder, coord);
+			return signPosition(road, left, 0, folder);
 				
 		}
 		else{
-			Coordinate coord = signPosition(road, left, road.getGeom().getCoordinates().length-1);
-			return new StreetFurniture(folder, coord);
+			return signPosition(road, left, road.getGeom().getCoordinates().length-1, folder);
 		}
 	}
 	
@@ -384,8 +407,8 @@ public class Rule implements IRule{
 	 */
 	private Map<Integer,Integer> directionVariation(Road[] roadsTab, Boolean[] roadsBoolTab){
 		
-		int dir1 = getDirection(roadsTab[0],roadsBoolTab[0]);
-		int dir2 = getDirection(roadsTab[1],roadsBoolTab[1]);
+		int dir1 = isEntering(roadsTab[0],roadsBoolTab[0]);
+		int dir2 = isEntering(roadsTab[1],roadsBoolTab[1]);
 		
 		Map<Integer,Integer> map= new HashMap<Integer,Integer>();
 		
@@ -401,6 +424,7 @@ public class Rule implements IRule{
 		
 		return null;
 	}
+
 
 // -------------------------- 3/4-SPECIFIC ---------------------------
 	/**
