@@ -10,7 +10,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 
 
 /**
@@ -72,38 +71,42 @@ public class XMLTerrainTest {
 	/**
 	 * Test XML export
 	 */
-//	@Test
-//	public void testXMLElement() {
-//		String id = "SuperCoolID";
-//		String imageHeightmap = "starway/to/heaven.png";
-//
-//		XMLTerrain terrain = new XMLTerrain(id, imageHeightmap);
-//		
-//		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-//		try {
-//			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-//			Document doc = docBuilder.newDocument();
-//			
-//			Element element = terrain.toXMLElement(doc);
-//			
-//			assertNotNull(element.getElementsByTagName("imageBasedHeightMap"));
-//			assertNotNull(element.getElementsByTagName("smoothing"));
-//			assertNotNull(element.getElementsByTagName("lod"));
-//			
-//			Node imageNode = element.getElementsByTagName("imageBasedHeightMap").item(0);
-//			Node lodNode = element.getElementsByTagName("lod").item(0);
-//			
-//			
-//			assertEquals(
-//					imageNode.getAttributes().item(0).getTextContent(),
-//					terrain.getImageHeightmap(), DELTA);
-//			
-//			assertEquals(
-//					Double.parseDouble(lodNode.getAttributes().item(2).getTextContent()),
-//					terrain.getDistanceFactor(), DELTA);
-//			
-//		} catch (ParserConfigurationException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	@Test
+	public void testXMLElement() {
+		String id = "SuperCoolID";
+		String imageHeightmap = "starway/to/heaven.png";
+
+		XMLTerrain terrain = new XMLTerrain(id, imageHeightmap);
+		
+		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		try {
+			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+			Document doc = docBuilder.newDocument();
+			
+			Element element = terrain.toXMLElement(doc);
+			
+			assertNotNull(element.getElementsByTagName("imageBasedHeightMap"));
+			assertNotNull(element.getElementsByTagName("smoothing"));
+			assertNotNull(element.getElementsByTagName("lod"));
+			
+			Element imageNode = (Element) element.getElementsByTagName("imageBasedHeightMap").item(0);
+			Element lodNode = (Element) element.getElementsByTagName("lod").item(0);
+			
+			
+			assertEquals(
+					imageNode.getAttributes().getNamedItem("key").getTextContent(),
+					terrain.getImageHeightmap());
+			
+			assertEquals(
+					Double.parseDouble(lodNode.getAttributes().getNamedItem("patchSize").getTextContent()),
+					terrain.getPatchSize(), DELTA);
+			
+			assertEquals(
+					Double.parseDouble(lodNode.getAttributes().getNamedItem("distanceFactor").getTextContent()),
+					terrain.getDistanceFactor(), DELTA);
+			
+		} catch (ParserConfigurationException e) {
+			e.printStackTrace();
+		}
+	}
 }

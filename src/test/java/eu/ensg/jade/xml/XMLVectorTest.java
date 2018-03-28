@@ -78,23 +78,24 @@ public class XMLVectorTest {
 			assertNotNull(element.getElementsByTagName("rotation"));
 			assertNotNull(element.getElementsByTagName("translation"));
 			
-			Node scaleNode = element.getElementsByTagName("scale").item(0);
-			Node rotationNode = element.getElementsByTagName("rotation").item(0);
-			Node translationNode = element.getElementsByTagName("translation").item(0);
+			Element scaleNode = (Element) element.getElementsByTagName("scale").item(0);
+			Element rotationNode = (Element) element.getElementsByTagName("rotation").item(0);
+			Element translationNode = (Element) element.getElementsByTagName("translation").item(0);			
+			
 			
 			assertEquals(
-					Double.parseDouble(scaleNode.getChildNodes().item(0).getFirstChild().getTextContent()),
+					Double.parseDouble(scaleNode.getElementsByTagName("entry").item(0).getTextContent()),
 					vector.getScale()[0], DELTA);
 			
 			assertEquals(
-					Double.parseDouble(rotationNode.getChildNodes().item(1).getFirstChild().getTextContent()),
+					Double.parseDouble(rotationNode.getElementsByTagName("entry").item(1).getTextContent()),
 					vector.getRotation()[1], DELTA);
 			
-//			assertEquals(
-//					Double.parseDouble(translationNode.getChildNodes().item(0).getTextContent()),
-//					vector.getTranslation()[2], DELTA);
+			assertEquals(
+					Double.parseDouble(translationNode.getElementsByTagName("entry").item(2).getTextContent()),
+					vector.getTranslation()[2], DELTA);
 			
-			assertNull(translationNode.getChildNodes().item(15));			
+			assertNull(translationNode.getElementsByTagName("toto").item(0));	
 			
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
