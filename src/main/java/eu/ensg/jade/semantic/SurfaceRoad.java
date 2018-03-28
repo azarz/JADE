@@ -161,7 +161,6 @@ public class SurfaceRoad extends Road {
 		
 		// Filling the output string
 		String outputString = vertexCoords + uvCoords + normalCoords + faces;
-		long end = System.currentTimeMillis();
 		return outputString;
 		
 	}
@@ -174,7 +173,7 @@ public class SurfaceRoad extends Road {
 		// Densifying the geometry so it has a number of vertices corresponding tO
 		// the DTM
 		if(geometry.getCoordinates().length > 0) {
-			//geometry = (Polygon) Densifier.densify(geometry, 5);
+			geometry = (Polygon) Densifier.densify(geometry, 5);
 		}
 		
 		// Defining a coordinate filter to set the z according to the DTM
