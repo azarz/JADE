@@ -144,6 +144,18 @@ public class XMLModel implements IXMLExport {
 		this.vector = vector;
 	}
 	
+	public void setScale(double[] scale) {
+		this.vector.setScale(scale);
+	}
+	
+	public void setRotation(double[] rotation) {
+		this.vector.setRotation(rotation);
+	}
+	
+	public void setTranslation(double[] translation) {
+		this.vector.setTranslation(translation);
+	}
+	
 	
 // ========================== METHODS ==============================
 

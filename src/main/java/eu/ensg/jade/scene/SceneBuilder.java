@@ -159,24 +159,33 @@ public class SceneBuilder {
 	
 	
 	private void exportXML(Scene scene) {
-		XMLWriter xmlWritter = new XMLWriter();
+		XMLWriter xmlWriter = new XMLWriter();
 		
-		xmlWritter.updateConfig("fileMainXML", "MAIN_FILE.xml");
+		xmlWriter.updateConfig("fileMainXML", "MAIN_FILE.xml");
 //		xmlWritter.updateConfig("rainCoefficient", "5");
 		
+		// Add flat ground
 		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
-		xmlWritter.addModel(grassPlane);
+		xmlWriter.addModel(grassPlane);
 		
+		// Add driver
+		XMLModel driver = new XMLModel("Driver", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
+		driver.setTranslation(new double[]{0, 60, 0});
+		xmlWriter.addModel(driver);
+		
+		// Add buildings
 		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
-		xmlWritter.addModel(buildindModel);
+		xmlWriter.addModel(buildindModel);
 		
+		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
-		xmlWritter.addModel(roadsModel);
+		xmlWriter.addModel(roadsModel);
 		
+		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);
-		xmlWritter.addTerrain(ground);
+		xmlWriter.addTerrain(ground);
 		
-		xmlWritter.createAllXml();
+		xmlWriter.createAllXml();
 	}
 	
 	private XMLGroundModel getGroundModelFromScene(Scene scene){

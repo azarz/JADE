@@ -16,25 +16,12 @@ import eu.ensg.jade.semantic.SurfaceVegetation;
 import eu.ensg.jade.utils.JadeUtils;
 
 /**
- * Rule is the class implementing the rules that are used to place a punctual object
+ * Rule is the class implementing the rules that are used to place punctual objects
  * 
  * @author JADE
  */
 
 public class Rule implements IRule{
-	
-	/*
-	 * CAS PARTICULIERS : BRETELLE, ROND POINT (ATTENTION,toujours test de sens)
-	 */	
-
-// ========================== ATTRIBUTES ===========================
-
-
-// ========================== CONSTRUCTORS =========================	
-
-
-// ========================== GETTERS/SETTERS ======================
-
 
 // ========================== METHODS ==============================
 
@@ -45,21 +32,25 @@ public class Rule implements IRule{
 	 * 
 	 * Example : stop, one way, ...
 	 * 
-	 * @param interColl the intersections presents in RGE data
+	 * @param interColl the intersections existing in RGE data
+	 * @param scene the object containing all the elements of the scene
 	 */
 	public void intersectSigns(IntersectionColl interColl, Scene scene){
 		
+		// We get thelist of roads existing in the scene
 		Map <String,Road> roads = scene.getRoads();
+		
 		// We go through all the intersections
 		for (Intersection intersect : interColl.getMapIntersection().values()){
 			
 			// We test how many roads are contained by the intersection
 			if (intersect.getRoadId().size() == 1){
+				
 				/*
 				 * => DeadEndStreet sign
 				 */
 				
-				// Roads recuperation
+				// Roads recovery
 				LineRoad road = (LineRoad) roads.get(intersect.getRoadId().keySet().toArray()[0]);
 				boolean bool = intersect.getRoadId().get(intersect.getRoadId().keySet().toArray()[0]);
 				
@@ -70,12 +61,11 @@ public class Rule implements IRule{
 			
 			else if (intersect.getRoadId().size() == 2){
 				/*
-				 * => Rétrécissement
-				 * => Test de sens
-				 * => ou rien
+				 * => Narrow signs
+				 * => One-way street
 				 */
 				
-				// Roads recuperation
+				// Roads recovery
 				LineRoad[] roadsTab = new LineRoad[2];
 				Boolean[] roadsBoolTab = new Boolean[2];
 				int k = 0;
@@ -86,17 +76,15 @@ public class Rule implements IRule{
 					k++;
 				}
 				
-				// "Diminution largeur" sign installation
+				// Narrow sign installation
 				int larger = widthComparison(roadsTab[0],roadsTab[1]);
 				
 				if ( larger != -1){
-					// Treat the case of road narrowing not being at the beginning of a node
 					StreetFurniture streetFurniture = addSigns(roadsTab[larger],roadsBoolTab[larger],"Models/RoadSigns/dangerSigns/RoadNarrows/roadNarrows.jpg");
 					addStreetFurniture(streetFurniture, roadsTab[larger], scene);
-
 				}
 				
-				// "Sens unique/Sens interdit" sign installation
+				// One-way sign installation
 				Map<Integer,Integer> sensMap = directionVariation(roadsTab,roadsBoolTab);
 				
 				if (sensMap != null){
@@ -112,16 +100,19 @@ public class Rule implements IRule{
 					}
 				}
 			}
+			
 			else if (intersect.getRoadId().size() == 3 || intersect.getRoadId().size() == 4){
 				/*
-				 * - Si 3-4 => Test Bretelle
+				 * Si 3-4 => Test Bretelle
 				 *        => Test Rond point
 				 * 		  => Test de sens
 				 * 		  => Test d'importance
 				 * 		  => Test nombre de voies
 				 * 		  => Algo de placement de signalisation en fonction des résultats obtenus
 				 */
+				
 				int size = intersect.getRoadId().size();
+				
 				// Roads recuperation
 				LineRoad[] roadsTab = new LineRoad[size];
 				Boolean[] roadsBoolTab = new Boolean[size];
@@ -192,7 +183,7 @@ public class Rule implements IRule{
 
 	}
 	
-//	------------------------- GENERALS -----------------------------
+// ------------------------- GENERALS -----------------------------
 	
 	/**
 	 * Gives the direction of the road compared to the intersection
@@ -214,7 +205,11 @@ public class Rule implements IRule{
 	}
 	
 	/**
+	 * Adds street furniture to the associated road and the scene
 	 * 
+	 * @param streetFurniture the furniture to add
+	 * @param road the road on which the furniture is added
+	 * @param scene the object which contains all the elements to add to the simulator
 	 */
 	private void addStreetFurniture(StreetFurniture streetFurniture, LineRoad road, Scene scene){
 
@@ -240,99 +235,116 @@ public class Rule implements IRule{
 	}
 	
 	/**
+	 * Gives the possible position of a new street furniture
 	 * 
-	 * @param road
-	 * @param left
+	 * @param road the road on which the furniture has to be added
+	 * @param left the boolean which allow to know if the sign has to be on the right or on the left of the orad
+	 * @param position the position in the table of coordinate for the point we need to use
 	 * 
-	 * @return
+	 * @return an object Coordinate that give the position of the sign from the intersection
 	 */
 	private Coordinate signPosition(LineRoad road, boolean left, int position){
 
+		// Variable 
 		Coordinate[] coord = road.getGeom().getCoordinates();
 		
 		double x = coord[position].x;
 		double y = coord[position].y;
 		
-		// 5meters after the beginning of the road
-		double d = 5;
-		// 0.70 meters after the border of the road
-		double D = road.getWidth()/2 + 0.7;
-		
 		double newX;
 		double newZ;
+		
+		double d = 5; // 5 meters after the beginning of the road
+		double D = road.getWidth()/2 + 0.7; // 0.70 meters after the border of the road
 
-		double theta = JadeUtils.roadAngle(road);
-		if (position != 0){
+		double theta = JadeUtils.roadAngle(road); // Angle between road and horizontal line, in counter clockwise
+		
+		if (position != 0){ // if the end of the road is on the intersection
 			theta = theta - Math.PI;
 		}
 		
+		// Determination of the position
 		if(left){
+			
+			// Up-Right quarter
 			if (0<= theta && theta <= Math.PI/2){
 				newX = x + d*Math.cos(theta) - D*Math.sin(theta);
 				newZ = y + d*Math.sin(theta) + D*Math.cos(theta);
 			}
+			// Down-Right quarter
 			else if (theta> 3*Math.PI/2 && theta <= 2*Math.PI){
 				newX = x + d*Math.cos(2*Math.PI - theta) + D*Math.sin(2*Math.PI - theta);
 				newZ = y - d*Math.sin(2*Math.PI - theta) + D*Math.cos(2*Math.PI - theta);
 			}
+			// Up-Left quarter
 			else if (theta > Math.PI/2 && theta <= Math.PI){
 				newX = x - d*Math.cos(Math.PI - theta) - D*Math.sin(Math.PI - theta);
 				newZ = y + d*Math.sin(Math.PI - theta) - D*Math.cos(Math.PI - theta);
 			}
+			// Down-Left quarter
 			else{
 				newX = x - d*Math.cos(theta - Math.PI) + D*Math.sin(theta - Math.PI);
 				newZ = y - d*Math.sin(theta - Math.PI) - D*Math.cos(theta - Math.PI);
 			}
 		}
 		else{
+			
+			// Up-Right quarter
 			if (0<= theta && theta <= Math.PI/2){
 				newX = x + d*Math.cos(theta) + D*Math.sin(theta);
 				newZ = y + d*Math.sin(theta) - D*Math.cos(theta);
 			}
+			// Down-Right quarter
 			else if (theta> 3*Math.PI/2 && theta <= 2*Math.PI){
 				newX = x + d*Math.cos(2*Math.PI - theta) - D*Math.sin(2*Math.PI - theta);
 				newZ = y - d*Math.sin(2*Math.PI - theta) - D*Math.cos(2*Math.PI - theta);
 			}
+			// Up-Left quarter
 			else if (theta > Math.PI/2 && theta <= Math.PI){
 				newX = x - d*Math.cos(Math.PI - theta) + D*Math.sin(Math.PI - theta);
 				newZ = y + d*Math.sin(Math.PI - theta) + D*Math.cos(Math.PI - theta);
 			}
+			// Down-Left quarter
 			else{
 				newX = x - d*Math.cos(theta - Math.PI) - D*Math.sin(theta - Math.PI);
 				newZ = y - d*Math.sin(theta - Math.PI) + D*Math.cos(theta - Math.PI);
 			}
 		}
 		
+		// Be careful y is the vertical axis in OpenDS 
 		return new Coordinate(newX, newZ, road.getZ_ini());
 	}
 	
 	/**
+	 * Creates new street furniture
 	 * 
-	 * @param road
-	 * @param init
-	 * @param folder
+	 * @param road the road on which the furniture has to be created
+	 * @param init the boolean to know if the beginning of the road is on the intersection
+	 * @param folder the path toward the right sign
 	 * 
-	 * @return
+	 * @return a street furniture object 
 	 */
 	private StreetFurniture addSigns(LineRoad road, boolean init, String folder){
+		
+		// The signs which has to be on the right of the road 
 		String deadEndStreet = "Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.jpg";
-		String roadNarrows = "Models/RoadSigns/dangerSigns/RoadNarrows/roadNarrows.jpg";
 		String oneWayStreet = "Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.jpg";
 		String doNotEnter = "Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.jpg";
 		
+		// We determine if the sign has to be on the right side or the left side of the road 
 		boolean left = true;
 		
 		if (folder == deadEndStreet || folder == oneWayStreet || folder == doNotEnter){
 			left = false;
 		}
 		
+		// We create the sign 
 		if (init){
 			Coordinate coord = signPosition(road, left, 0);
 			// It is possible to return the sign angle in street furniture
 			return new StreetFurniture(folder, coord);
 				
 		}
-		
 		else{
 			Coordinate coord = signPosition(road, left, road.getGeom().getCoordinates().length-1);
 			return new StreetFurniture(folder, coord);
@@ -342,12 +354,12 @@ public class Rule implements IRule{
 // -------------------------- 2-SPECIFIC ---------------------------
 	
 	/**
-	 * Compares the width of two roads and returns the largest one,
-	 * and null if the roads have the same width
+	 * Compares the width of two roads 
 	 * 
-	 * @param road1 first road
-	 * @param road2 second road
-	 * @return the largest road of them both
+	 * @param road1 the first road
+	 * @param road2 the second road
+	 * 
+	 * @return the index of the largest road if there is one, and null if not
 	 */
 	private int widthComparison(Road road1, Road road2){
 		
@@ -368,7 +380,7 @@ public class Rule implements IRule{
 	 * @param roadsTab the table of roads
 	 * @param roadsBoolTab the table of boolean to say if the initial point of the orad is on the intersection
 	 * 
-	 * @return the map with intersections
+	 * @return the map with the way of the road and the index of it if their is a difference between both, else return null
 	 */
 	private Map<Integer,Integer> directionVariation(Road[] roadsTab, Boolean[] roadsBoolTab){
 		
@@ -390,7 +402,7 @@ public class Rule implements IRule{
 		return null;
 	}
 
-// -------------------------- 2-SPECIFIC ---------------------------
+// -------------------------- 3/4-SPECIFIC ---------------------------
 	/**
 	 * 
 	 * @param roadsTab the table containing the roads
@@ -398,10 +410,13 @@ public class Rule implements IRule{
 	 * @param intersect the intersection considered
 	 * @param size Intersection's size
 	 * @return boolean, true if the intersection is in a ramp
+
 	 */
 	private boolean isRamp(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Intersection intersect, int size){
+		// Si size = 3, on peut faire un test pour retourner autre que false 
 		return false;
 	}
+
 	/**
 	 * 
 	 * @param roadsTab the table containing the roads
@@ -454,7 +469,6 @@ public class Rule implements IRule{
 	 * @param intersect the intersection considered
 	 * @param size Intersection's size
 	 * @param importTab the array of importance
-	 * 
 	 * @return
 	 */
 	private int calcIntersectionType(LineRoad[] roadsTab, Boolean[] roadsBoolTab,
@@ -462,6 +476,7 @@ public class Rule implements IRule{
 									 int[] importTab) {
 		return 0;
 	}
+
 	/**
 	 * 
 	 * @param roadsTab the table containing the roads
@@ -469,13 +484,11 @@ public class Rule implements IRule{
 	 * @param intersect the intersection considered
 	 * @param size Intersection's size
 	 * @param intersectType the type of the intersection
-	 * 
-	 * @return
 	 */
 	private void addMultiSigns(LineRoad[] roadsTab, Boolean[] roadsBoolTab,
 												Intersection intersect,
 												int size, int intersectType) {
-		
+
 	}
 	
 
