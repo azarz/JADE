@@ -159,10 +159,16 @@ public class Rule implements IRule{
 
 				LineRoad lineRoad; 
 				boolean roadBool;
+				int enter = -100; 
+				
 				for (String road : intersect.getRoadId().keySet()){
 					lineRoad = (LineRoad) roads.get(road);
 					roadBool = intersect.getRoadId().get(road);
-					lineRoad.isEntering();
+					enter = isEntering(lineRoad, roadBool);
+				}
+				
+				if (enter == 1){
+					
 				}
 			}
 			else{
