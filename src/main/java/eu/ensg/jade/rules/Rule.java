@@ -133,8 +133,7 @@ public class Rule implements IRule{
 					//Checking Road importance for yield
 					int[] importTab = checkImportance(roadsTab,size);
 					int intersectType = calcIntersectionType(roadsTab,roadsBoolTab,intersect,size,importTab);
-					List<StreetFurniture> signs = addMultiSigns(roadsTab,roadsBoolTab,intersect,size,intersectType);
-					addMultiStreetFurniture(signs);
+					addMultiSigns(roadsTab,roadsBoolTab,intersect,size,intersectType);
 				}
 				
 			}
@@ -405,111 +404,102 @@ public class Rule implements IRule{
 
 // -------------------------- 3/4-SPECIFIC ---------------------------
 	/**
-	 * Checks if .. 
+	 * Check if it is a ramp.
 	 * 
-	 * @param roadsTab
-	 * @param roadsBoolTab
-	 * @param intersect
-	 * @param size
+	 * @param roadsTab the table containing the roads
+	 * @param roadsBoolTab the table containing the roads boolean descritor of direction
+	 * @param intersect the intersection considered
+	 * @param size Intersection's size
 	 * 
-	 * @return
+	 * @return boolean, true if the intersection is in a ramp
 	 */
 	private boolean isRamp(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Intersection intersect, int size){
 		// Si size = 3, on peut faire un test pour retourner autre que false 
 		return false;
 	}
-	
+
 	/**
-	 * Checks if .. 
+	 * Check if it is a roundabout
 	 * 
-	 * @param roadsTab
-	 * @param roadsBoolTab
-	 * @param intersect
-	 * @param size
+	 * @param roadsTab the table containing the roads
+	 * @param roadsBoolTab the table containing the roads boolean descritor of direction
+	 * @param intersect the intersection considered
+	 * @param size Intersection's size
 	 * 
-	 * @return
+	 * @return boolean, true if the intersection is in a roundabout
 	 */
 	private boolean isRoundAbout(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Intersection intersect, int size){
 		return false;
 	}
 	
 	/**
-	 * ...
+	 * Adds signs corresponding to a ramp
 	 * 
-	 * @param roadsTab
-	 * @param roadsBoolTab
-	 * @param intersect
-	 * @param size
+	 * @param roadsTab the table containing the roads
+	 * @param roadsBoolTab the table containing the roads boolean descritor of direction
+	 * @param intersect the intersection considered
+	 * @param size Intersection's size
 	 */
 	private void addRampSigns(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Intersection intersect, int size){
 		
 	}
 	
 	/**
-	 * ...
+	 * Adds signs corresponding to a roundabout
 	 * 
-	 * @param roadsTab
-	 * @param roadsBoolTab
-	 * @param intersect
-	 * @param size
+	 * @param roadsTab the table containing the roads
+	 * @param roadsBoolTab the table containing the roads boolean descritor of direction
+	 * @param intersect the intersection considered
+	 * @param size Intersection's size
 	 */
 	private void addRoundAbout(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Intersection intersect, int size){
 		
 	}
 	
 	/**
-	 * ...
+	 * Check if there is an importance change between roads
 	 * 
-	 * @param roadsTab
+	 * @param roadsTab the table containing the roads
 	 * @param size
 	 * 
-	 * @return
+	 * @return table of int, 1 for bigger, 0 for lesser importance, null if same importance.
 	 */
 	private int[] checkImportance(LineRoad[] roadsTab, int size) {
 		return null;
 	}
 	
 	/**
-	 * ...
+	 * Calculates the intersection type
 	 * 
-	 * @param roadsTab
-	 * @param roadsBoolTab
-	 * @param intersect
-	 * @param size
-	 * @param importTab
+	 * @param roadsTab the table containing the roads
+	 * @param roadsBoolTab the table containing the roads boolean descritor of direction
+	 * @param intersect the intersection considered
+	 * @param size Intersection's size
+	 * @param importTab the array of importance
 	 * 
-	 * @return
+	 * @return int the type of intersection: 0: Traffic Lights, 1: Yield, 2: Break; 3: Priority to the right.
 	 */
 	private int calcIntersectionType(LineRoad[] roadsTab, Boolean[] roadsBoolTab,
 									 Intersection intersect, int size,
 									 int[] importTab) {
+		//Si plus de 3 voies à une route => feux.
 		return 0;
-	}
-	
-	/**
-	 * ...
-	 * 
-	 * @param roadsTab
-	 * @param roadsBoolTab
-	 * @param intersect
-	 * @param size
-	 * @param intersectType
-	 * 
-	 * @return
-	 */
-	private List<StreetFurniture> addMultiSigns(LineRoad[] roadsTab, Boolean[] roadsBoolTab,
-												Intersection intersect,
-												int size, int intersectType) {
-		return null;
 	}
 
 	/**
-	 * ...
+	 * Add multiple signs to the intersections.
 	 * 
-	 * @param signs
+	 * @param roadsTab the table containing the roads
+	 * @param roadsBoolTab the table containing the roads boolean descritor of direction
+	 * @param intersect the intersection considered
+	 * @param size Intersection's size
+	 * @param intersectType the type of the intersection
 	 */
-	private void addMultiStreetFurniture(List<StreetFurniture> signs) {
-		
+	private void addMultiSigns(LineRoad[] roadsTab, Boolean[] roadsBoolTab,
+												Intersection intersect,
+												int size, int intersectType) {
+
 	}
+	
 
 }
