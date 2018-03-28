@@ -114,13 +114,14 @@ public class Rule implements IRule{
 			}
 			else if (intersect.getRoadId().size() == 3 || intersect.getRoadId().size() == 4){
 				/*
-				 * - Si 3 => Test Bretelle
+				 * - Si 3-4 => Test Bretelle
 				 *        => Test Rond point
 				 * 		  => Test de sens
 				 * 		  => Test d'importance
 				 * 		  => Test nombre de voies
 				 * 		  => Algo de placement de signalisation en fonction des résultats obtenus
 				 */
+				
 			}
 			else if (intersect.getRoadId().size() >= 5){
 				/*
