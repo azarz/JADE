@@ -6,9 +6,9 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Polygon;
-import com.vividsolutions.jts.polytriangulate.EarClipper;
 
 import eu.ensg.jade.geometricObject.WorldObject;
+import eu.ensg.jade.utils.JadeTriangulation;
 import eu.ensg.jade.utils.JadeUtils;
 
 /**
@@ -238,9 +238,8 @@ public class Building extends WorldObject {
 		int newVertexOffset = vertices.size();
 		
 		try {
-			// Using the class from https://github.com/dhtong to triangulate the polygon
-			EarClipper earClipper = new EarClipper(polygon);
-			GeometryCollection triangles = (GeometryCollection) earClipper.getResult();
+			// Triangulating the polygon using th utils class
+			GeometryCollection triangles = (GeometryCollection) JadeTriangulation.triangulate(polygon);
 			
 			int numTriangles = triangles.getNumGeometries();
 
