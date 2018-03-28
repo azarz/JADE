@@ -133,7 +133,7 @@ public class Rule implements IRule{
 					//Checking Road importance for yield
 					int[] importTab = checkImportance(roadsTab,size);
 					int intersectType = calcIntersectionType(roadsTab,roadsBoolTab,intersect,size,importTab);
-					addMultiSigns(roadsTab,roadsBoolTab,intersect,size,intersectType);
+					addMultiSigns(roadsTab,roadsBoolTab,intersect,importTab,size,intersectType, scene);
 				}
 				
 			}
@@ -415,6 +415,13 @@ public class Rule implements IRule{
 	 */
 	private boolean isRamp(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Intersection intersect, int size){
 		// Si size = 3, on peut faire un test pour retourner autre que false 
+		if (size !=3){return false;}
+		else {
+			for (LineRoad road : roadsTab){
+				if(road.getNature() == "Bretelle")
+				{return true;}
+			}
+		}
 		return false;
 	}
 
@@ -429,6 +436,10 @@ public class Rule implements IRule{
 	 * @return boolean, true if the intersection is in a roundabout
 	 */
 	private boolean isRoundAbout(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Intersection intersect, int size){
+		for (LineRoad road : roadsTab){
+			if(road.getName().substring(0, 1)==("PL") || road.getName().substring(0, 3) == "RPT")
+			{return true;}
+		}
 		return false;
 	}
 	
@@ -465,6 +476,26 @@ public class Rule implements IRule{
 	 * @return table of int, 1 for bigger, 0 for lesser importance, null if same importance.
 	 */
 	private int[] checkImportance(LineRoad[] roadsTab, int size) {
+		boolean difference = false;
+		int greatest = Integer.parseInt(roadsTab[0].getImportance());
+		for (int i=0; i<size; i++){
+				if (greatest < Integer.parseInt(roadsTab[i].getImportance())){
+					greatest = Integer.parseInt(roadsTab[i].getImportance());
+					difference = true;
+				}
+			}
+		if (difference){
+			int[] tabImp= new int[size];
+			for (int i=0; i<size; i++){
+					if (Integer.parseInt(roadsTab[i].getImportance()) == greatest){
+						tabImp[i]=1;
+					}
+					else{
+						tabImp[i]=0;
+						}
+				}
+			return tabImp;
+			}
 		return null;
 	}
 	
@@ -497,8 +528,30 @@ public class Rule implements IRule{
 	 */
 	private void addMultiSigns(LineRoad[] roadsTab, Boolean[] roadsBoolTab,
 												Intersection intersect,
-												int size, int intersectType) {
-
+												int[] importance,
+												int size, int intersectType, Scene scene) {
+		switch (intersectType) {
+		case 0:
+			for (int i=0; i < size; i++){
+				if (getDirection(roadsTab[i], roadsBoolTab[i]) != -1){
+					StreetFurniture lightRoad = addSigns(roadsTab[i], roadsBoolTab[i], "");
+					addStreetFurniture(lightRoad, roadsTab[i], scene);
+				}
+			}
+			break;
+		case 1:
+			
+			break;
+		case 2:
+				
+			break;
+		case 3:
+			
+			break;
+		default:
+			System.out.println("Intersection de mauvias type");
+			break;
+		}
 	}
 	
 
