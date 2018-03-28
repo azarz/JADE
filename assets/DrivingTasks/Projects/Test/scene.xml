@@ -14,9 +14,9 @@
 
   <models>
 
-    <!-- <model id="grassPlane" key="Scenes/grassPlane/Scene.j3o">
+    <model id="grassPlane" key="Scenes/grassPlane/Scene.j3o">
       <mass>0</mass>
-      <visible>true</visible>
+      <visible>false</visible>
       <collisionShape>meshShape</collisionShape>
       <scale>
         <vector jtype="java_lang_Float" size="3">
@@ -39,38 +39,6 @@
           <entry>0</entry>
         </vector>
       </translation>
-    </model> -->
-
-    <model id="terrain" key="" ref="myTerrain">
-      <mass>0</mass>
-      <material key="Materials/parisTerrain.j3m" />
-      <visible>true</visible>
-      <collisionShape>meshShape</collisionShape>
-      <scale>
-        <vector jtype="java_lang_Float" size="3">
-          <entry>1</entry>
-          <entry>1</entry>
-          <entry>1</entry>
-        </vector>
-      </scale>
-
-      <rotation quaternion="false">
-        <vector jtype="java_lang_Float" size="3">
-          <entry>0</entry>
-          <entry>0</entry>
-          <entry>0</entry>
-        </vector>
-      </rotation>
-
-      <translation>
-        <vector jtype="java_lang_Float" size="3">
-          <entry>0</entry>
-          <entry>20</entry>
-          <entry>0</entry>
-        </vector>
-      </translation>
-
-      <shadowMode>Receive</shadowMode>
     </model>
 
 
@@ -95,130 +63,33 @@
       <translation>
         <vector jtype="java_lang_Float" size="3">
           <entry>0</entry>
-          <entry>80</entry>
+          <entry>2</entry>
           <entry>0</entry>
         </vector>
       </translation>
     </model>
 
-    <model id="Buildings" key="Scenes/parisTest/paris.obj">
-      <mass>0</mass>
-      <visible>true</visible>
-      <collisionShape>meshShape</collisionShape>
-      <scale>
-        <vector jtype="java_lang_Float" size="3">
-          <entry>1</entry>
-          <entry>1</entry>
-          <entry>1</entry>
-        </vector>
-      </scale>
-      <rotation quaternion="false">
-        <vector jtype="java_lang_Float" size="3">
-          <entry>0</entry>
-          <entry>0</entry>
-          <entry>0</entry>
-        </vector>
-      </rotation>
-      <translation>
-        <vector jtype="java_lang_Float" size="3">
-          <entry>0</entry>
-          <entry>0</entry>
-          <entry>0</entry>
-        </vector>
-      </translation>
-    </model>
-
-
-
-    <!-- <model id="TrafficLight_1" key="Models/TrafficLight/trafficlight.scene" ref="">
-      <mass>0</mass>
-      <visible>true</visible>
-      <collisionShape>meshShape</collisionShape>
+    <model id="TrafficLight_0" key="Models/RoadSigns/otherSigns/Stop/Stop.scene" ref="">
+      <mass>0</mass><visible>true</visible><collisionShape>meshShape</collisionShape>
       <scale><vector jtype="java_lang_Float" size="3">
-        <entry>0.75</entry>
-        <entry>0.75</entry>
-        <entry>0.75</entry>
+        <entry>1</entry><entry>1</entry><entry>1</entry>
       </vector></scale>
       <rotation quaternion="false">
         <vector jtype="java_lang_Float" size="3">
-          <entry>0</entry>
-          <entry>3.098126</entry>
-          <entry>0</entry>
+          <entry>0</entry><entry>0</entry><entry>0</entry>
         </vector>
       </rotation>
       <translation>
         <vector jtype="java_lang_Float" size="3">
-          <entry>-2</entry>
-          <entry>-0.6</entry>
-          <entry>-15</entry>
+          <entry>2</entry><entry>-0.6</entry><entry>-2</entry>
         </vector>
       </translation>
-    </model> -->
-
-    <!-- <model id="speedLimit70_1" key="Models/RoadSigns/speedLimits/speedLimit70/speedLimit70.scene">
-      <mass>0</mass>
-      <visible>true</visible>
-      <collisionShape>meshShape</collisionShape>
-      <scale>
-        <vector jtype="java_lang_Float" size="3">
-          <entry>1.0</entry>
-          <entry>1.0</entry>
-          <entry>1.0</entry>
-        </vector>
-      </scale>
-      <rotation quaternion="false">
-        <vector jtype="java_lang_Float" size="3">
-          <entry>0</entry>
-          <entry>15</entry>
-          <entry>0</entry>
-        </vector>
-      </rotation>
-      <translation>
-        <vector jtype="java_lang_Float" size="3">
-          <entry>2</entry>
-          <entry>-0.6</entry>
-          <entry>-10</entry>
-        </vector>
-      </translation>
-    </model> -->
-
-    <!-- <model id="Snowman" key="Kenney/snowmanFancy.obj">
-      <mass>500</mass>
-      <visible>true</visible>
-      <collisionShape>meshShape</collisionShape>
-      <scale>
-        <vector jtype="java_lang_Float" size="3">
-          <entry>0.5</entry>
-          <entry>0.5</entry>
-          <entry>0.5</entry>
-        </vector>
-      </scale>
-      <rotation quaternion="false">
-        <vector jtype="java_lang_Float" size="3">
-          <entry>0</entry>
-          <entry>0</entry>
-          <entry>0</entry>
-        </vector>
-      </rotation>
-      <translation>
-        <vector jtype="java_lang_Float" size="3">
-          <entry>4</entry>
-          <entry>-1</entry>
-          <entry>-12</entry>
-        </vector>
-      </translation>
-    </model> -->
-
+    </model>
 
   </models>
 
 
   <geometries>
-    <terrain id="myTerrain">
-      <imageBasedHeightMap key="Textures/Terrain/paris.png" heightScale="0.2" />
-      <smoothing percentage="0.9" radius="1" />
-      <lod patchSize="65" totalSize="513" distanceFactor="2.7" />
-    </terrain>
   </geometries>
 
 
