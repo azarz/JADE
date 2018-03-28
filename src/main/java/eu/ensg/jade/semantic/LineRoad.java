@@ -56,6 +56,10 @@ public class LineRoad extends Road{
 		super(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, speed, name);
 		this.geometry = geometry;
 	}
+	
+	public LineRoad(){
+		super();
+	}
 
 	
 // ========================== GETTERS/SETTERS ======================
@@ -137,7 +141,7 @@ public class LineRoad extends Road{
 		// Applying the filter
 		newGeometry.apply(filter);
 		
-		SurfaceRoad surfacicRoad = new SurfaceRoad(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, speed, newGeometry);
+		SurfaceRoad surfacicRoad = new SurfaceRoad(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, speed, name, newGeometry);
 		
 		return surfacicRoad;
 		

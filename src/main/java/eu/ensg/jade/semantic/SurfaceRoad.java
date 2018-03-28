@@ -8,9 +8,8 @@ import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.Polygon;
-import com.vividsolutions.jts.polytriangulate.EarClipper;
-
 import eu.ensg.jade.geometricObject.Road;
+import eu.ensg.jade.utils.JadeTriangulation;
 import eu.ensg.jade.utils.JadeUtils;
 
 /**
@@ -85,7 +84,6 @@ public class SurfaceRoad extends Road {
 	 * @return A string corresponding to the .obj description of the SurfaceRoad
 	 */
 	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset){
-		
 		// Fetching the offsets from the offsets parameter
 		int vertexIndexOffset  = indexOffsets.get(0);
 		int textureIndexOffset = indexOffsets.get(1);
@@ -109,10 +107,9 @@ public class SurfaceRoad extends Road {
 				continue;
 			}
 			
-			// Using the class from https://github.com/dhtong to triangulate the polygon
-			EarClipper earClipper = new EarClipper(polygon);
-			GeometryCollection triangles = (GeometryCollection) earClipper.getResult();
-			
+			// Triangulating the polygon using th utils class
+			GeometryCollection triangles = (GeometryCollection) JadeTriangulation.triangulate(polygon);
+				
 			int numTriangles = triangles.getNumGeometries();
 			
 			for (int tri = 0; tri < numTriangles; tri++) {
@@ -164,7 +161,7 @@ public class SurfaceRoad extends Road {
 		
 		// Filling the output string
 		String outputString = vertexCoords + uvCoords + normalCoords + faces;
-		
+		long end = System.currentTimeMillis();
 		return outputString;
 		
 	}
@@ -177,7 +174,7 @@ public class SurfaceRoad extends Road {
 		// Densifying the geometry so it has a number of vertices corresponding tO
 		// the DTM
 		if(geometry.getCoordinates().length > 0) {
-			geometry = (Polygon) Densifier.densify(geometry, 1000);
+			//geometry = (Polygon) Densifier.densify(geometry, 5);
 		}
 		
 		// Defining a coordinate filter to set the z according to the DTM
