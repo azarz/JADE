@@ -238,7 +238,7 @@ public class Building extends WorldObject {
 		int newVertexOffset = vertices.size();
 		
 		try {
-			// Triangulating the polygon using th utils class
+			// Triangulating the polygon using the utils class
 			GeometryCollection triangles = (GeometryCollection) JadeTriangulation.triangulate(polygon);
 			
 			int numTriangles = triangles.getNumGeometries();
@@ -263,7 +263,9 @@ public class Building extends WorldObject {
 				faces += "\n";
 				newVertexOffset += 3;
 			}
-		} catch (IllegalStateException e){
+		} catch (RuntimeException  e){
+			System.out.println("unable to create roof");
+		} catch (StackOverflowError  e){
 			System.out.println("unable to create roof");
 		}
 		

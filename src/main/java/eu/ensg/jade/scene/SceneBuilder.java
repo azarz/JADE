@@ -13,6 +13,7 @@ import eu.ensg.jade.output.XMLWriter;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
+import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.xml.XMLGroundModel;
 import eu.ensg.jade.xml.XMLModel;
@@ -180,6 +181,16 @@ public class SceneBuilder {
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
 		xmlWriter.addModel(roadsModel);
+		
+		
+		// Add street furniture
+		for(StreetFurniture sign : scene.getStreetFurniture()) {
+			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
+			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation(), 0});
+			streetFurnitureModel.setTranslation(new double[] {0, 0, 0});
+			
+			xmlWriter.addModel(streetFurnitureModel);
+		}
 		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);
