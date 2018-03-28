@@ -1,7 +1,5 @@
 package eu.ensg.jade.rules;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -176,8 +174,10 @@ public class Rule implements IRule{
 	private int getDirection(Road road, Boolean direction){
 		
 		if(road.getDirection()=="Double"){return 0;}
-		else if(direction) {return -1;}
-		else if(!direction) {return 1;}
+		int modDirection=1;
+		if (road.getDirection()=="Inverse"){modDirection=-1;}
+		else if(direction) {return -1*modDirection;}
+		else if(!direction) {return 1*modDirection;}
 		
 		return 0;
 	}
