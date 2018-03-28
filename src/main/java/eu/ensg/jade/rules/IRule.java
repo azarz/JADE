@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import eu.ensg.jade.geometricObject.Road;
+import eu.ensg.jade.scene.Scene;
 import eu.ensg.jade.semantic.IntersectionColl;
+import eu.ensg.jade.semantic.LineRoad;
 import eu.ensg.jade.semantic.SurfaceVegetation;
 
 /**
@@ -24,7 +26,7 @@ public interface IRule {
 	 * 
 	 * @param interColl the intersections presents in RGE data
 	 */
-	public void intersectSigns(IntersectionColl interColl,Map <String,Road> roads);
+	public void intersectSigns(IntersectionColl interColl, Scene scene);
 	
 	/**
 	 * Puts signs on roads
