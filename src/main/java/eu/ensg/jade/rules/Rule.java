@@ -121,30 +121,6 @@ public class Rule implements IRule{
 				 * 		  => Test nombre de voies
 				 * 		  => Algo de placement de signalisation en fonction des résultats obtenus
 				 */
-				int size = intersect.getRoadId().size();
-				// Roads recuperation
-				LineRoad[] roadsTab = new LineRoad[size];
-				Boolean[] roadsBoolTab = new Boolean[size];
-				
-				//First test for ramp, round about or "normal".
-				Boolean asRamp = isRamp(roadsTab,roadsBoolTab,intersect,size);
-				Boolean asRoundAbout = isRoundAbout(roadsTab,roadsBoolTab,intersect,size);
-				
-				//Workflow following result
-				
-				if(asRamp){
-					addRampSigns(roadsTab,roadsBoolTab,intersect,size);
-				}
-				else if (asRoundAbout){
-					addRoundAbout(roadsTab,roadsBoolTab,intersect,size);
-				}
-				else {
-					//Checking Road importance for yield
-					int[] importTab = checkImportance(roadsTab,size);
-					int intersectType = calcIntersectionType(roadsTab,roadsBoolTab,intersect,size,importTab);
-					List<StreetFurniture> signs = addMultiSigns(roadsTab,roadsBoolTab,intersect,size,intersectType);
-					addMultiStreetFurniture(signs);
-				}
 				
 			}
 			else if (intersect.getRoadId().size() >= 5){
@@ -159,7 +135,7 @@ public class Rule implements IRule{
 			}
 		}
 	}
-
+	
 	/**
 	 * Puts signs on roads
 	 * 
@@ -389,43 +365,6 @@ public class Rule implements IRule{
 		}
 		
 		return null;
-	}
-
-// -------------------------- 2-SPECIFIC ---------------------------
-	
-	private boolean isRamp(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Intersection intersect, int size){
-		return false;
-	}
-	
-	private boolean isRoundAbout(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Intersection intersect, int size){
-		return false;
-	}
-	
-	private void addRampSigns(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Intersection intersect, int size){
-		
-	}
-	
-	private void addRoundAbout(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Intersection intersect, int size){
-		
-	}
-	
-	private int[] checkImportance(LineRoad[] roadsTab, int size) {
-		return null;
-	}
-	
-	private int calcIntersectionType(LineRoad[] roadsTab, Boolean[] roadsBoolTab,
-									 Intersection intersect, int size,
-									 int[] importTab) {
-		return 0;
-	}
-	
-	private List<StreetFurniture> addMultiSigns(LineRoad[] roadsTab, Boolean[] roadsBoolTab,
-												Intersection intersect,
-												int size, int intersectType) {
-		return null;
-	}
-
-	private void addMultiStreetFurniture(List<StreetFurniture> signs) {
 	}
 
 }
