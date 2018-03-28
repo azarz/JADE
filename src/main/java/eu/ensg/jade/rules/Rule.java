@@ -117,6 +117,15 @@ public class Rule implements IRule{
 				LineRoad[] roadsTab = new LineRoad[size];
 				Boolean[] roadsBoolTab = new Boolean[size];
 				
+				int k = 0;
+				
+				for (String road : intersect.getRoadId().keySet()){
+					roadsTab[k] = (LineRoad) roads.get(road);
+					roadsBoolTab[k] = intersect.getRoadId().get(road);
+					k++;
+				}
+				
+				
 				//First test for ramp, round about or "normal".
 				Boolean asRamp = isRamp(roadsTab,roadsBoolTab,intersect,size);
 				Boolean asRoundAbout = isRoundAbout(roadsTab,roadsBoolTab,intersect,size);
@@ -143,6 +152,18 @@ public class Rule implements IRule{
 				 *        => Test de sens 
 				 *        => Cédez le passage et flèches bleu pour modéliser un rond point 
 				 */
+				
+				int size = intersect.getRoadId().size();
+				
+				// Roads recuperation
+
+				LineRoad lineRoad; 
+				boolean roadBool;
+				for (String road : intersect.getRoadId().keySet()){
+					lineRoad = (LineRoad) roads.get(road);
+					roadBool = intersect.getRoadId().get(road);
+					lineRoad.isEntering();
+				}
 			}
 			else{
 				System.out.println("There is no road in this intersection ... ");
@@ -193,7 +214,7 @@ public class Rule implements IRule{
 	 * 
 	 * @return -1 if leaving, 0 if double-way, +1 if entering 
 	 */
-	private int getDirection(Road road, Boolean direction){
+	private int isEntering(Road road, Boolean direction){
 		
 		if(road.getDirection()=="Double"){return 0;}
 		int modDirection=1;
@@ -386,8 +407,8 @@ public class Rule implements IRule{
 	 */
 	private Map<Integer,Integer> directionVariation(Road[] roadsTab, Boolean[] roadsBoolTab){
 		
-		int dir1 = getDirection(roadsTab[0],roadsBoolTab[0]);
-		int dir2 = getDirection(roadsTab[1],roadsBoolTab[1]);
+		int dir1 = isEntering(roadsTab[0],roadsBoolTab[0]);
+		int dir2 = isEntering(roadsTab[1],roadsBoolTab[1]);
 		
 		Map<Integer,Integer> map= new HashMap<Integer,Integer>();
 		
