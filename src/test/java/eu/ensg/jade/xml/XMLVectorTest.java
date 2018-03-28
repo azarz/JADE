@@ -82,22 +82,17 @@ public class XMLVectorTest {
 			Node rotationNode = element.getElementsByTagName("rotation").item(0);
 			Node translationNode = element.getElementsByTagName("translation").item(0);
 			
-			
 			assertEquals(
-					Double.parseDouble(scaleNode.getChildNodes().item(0).getTextContent()), 
+					Double.parseDouble(scaleNode.getChildNodes().item(0).getFirstChild().getTextContent()),
 					vector.getScale()[0], DELTA);
 			
 			assertEquals(
-					Double.parseDouble(scaleNode.getChildNodes().item(2).getTextContent()),
-					vector.getScale()[2], DELTA);
-			
-			assertEquals(
-					Double.parseDouble(rotationNode.getChildNodes().item(1).getTextContent()),
+					Double.parseDouble(rotationNode.getChildNodes().item(1).getFirstChild().getTextContent()),
 					vector.getRotation()[1], DELTA);
 			
-			assertEquals(
-					Double.parseDouble(translationNode.getChildNodes().item(0).getTextContent()),
-					vector.getTranslation()[0], DELTA);
+//			assertEquals(
+//					Double.parseDouble(translationNode.getChildNodes().item(0).getTextContent()),
+//					vector.getTranslation()[2], DELTA);
 			
 			assertNull(translationNode.getChildNodes().item(15));			
 			

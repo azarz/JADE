@@ -8,7 +8,6 @@ import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.Polygon;
-
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.utils.JadeTriangulation;
 import eu.ensg.jade.utils.JadeUtils;
@@ -45,8 +44,8 @@ public class SurfaceRoad extends Road {
 	 * @param speed
 	 * @param geometry
 	 */
-	public SurfaceRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, String nature, String importance, String number, String speed, Polygon geometry) {
-		super(width, wayNumber, z_ini, z_fin, direction, nature, importance, number, speed);
+	public SurfaceRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, String nature, String importance, String number, String speed, String name, Polygon geometry) {
+		super(width, wayNumber, z_ini, z_fin, direction, nature, importance, number, speed, name);
 		this.geometry = geometry;
 	}
 	
@@ -55,9 +54,9 @@ public class SurfaceRoad extends Road {
 	 * @param width the width used as a buffer around the LinearRoad
 	 * @param lineRoad the original LinearRoad
 	 */
-	public SurfaceRoad(LineRoad lineRoad) {
-		super(lineRoad.getWidth(), lineRoad.getLaneNumber(), lineRoad.getZ_ini(), lineRoad.getZ_fin(), lineRoad.getDirection(), lineRoad.getNature(), lineRoad.getImportance(), lineRoad.getNumber(), lineRoad.getSpeed());
-		this.geometry =  lineRoad.enlarge().getGeom();
+	public SurfaceRoad(LineRoad road) {
+		super(road.getWidth(), road.getLaneNumber(), road.getZ_ini(), road.getZ_fin(), road.getDirection(), road.getNature(), road.getImportance(), road.getNumber(), road.getSpeed(), road.getName());
+		this.geometry =  road.enlarge().getGeom();
 	}
 
 

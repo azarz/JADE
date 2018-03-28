@@ -5,7 +5,6 @@ import java.util.List;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
-import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.MultiLineString;
 import com.vividsolutions.jts.geom.MultiPoint;
@@ -53,9 +52,13 @@ public class LineRoad extends Road{
 	 * @param speed
 	 * @param geometry
 	 */
-	public LineRoad(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, String importance, String number,String speed, MultiLineString geometry) {
-		super(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, speed);
+	public LineRoad(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, String importance, String number,String speed, String name, MultiLineString geometry) {
+		super(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, speed, name);
 		this.geometry = geometry;
+	}
+	
+	public LineRoad(){
+		super();
 	}
 
 	
@@ -71,7 +74,25 @@ public class LineRoad extends Road{
 		return this.geometry;
 	}
 	
+	/**
+	 * Allows to access the road street furniture
+	 * 
+	 * @return the road street furniture
+	 */
+	public List<StreetFurniture> getSF() {
+		return this.listSF;
+	}
+	
+	
 // ========================== METHODS ==============================
+	/**
+	 * Adds a street furniture to the existing list
+	 * 
+	 * @param streetFurniture
+	 */
+	public void addSF(StreetFurniture streetFurniture){
+		this.listSF.add(streetFurniture);
+	}
 	
 	/**
 	 * Enlarges the current road
@@ -120,7 +141,7 @@ public class LineRoad extends Road{
 		// Applying the filter
 		newGeometry.apply(filter);
 		
-		SurfaceRoad surfacicRoad = new SurfaceRoad(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, speed, newGeometry);
+		SurfaceRoad surfacicRoad = new SurfaceRoad(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, speed, name, newGeometry);
 		
 		return surfacicRoad;
 		
@@ -132,7 +153,7 @@ public class LineRoad extends Road{
 	 * @return the surfacic smoothed road
 	 */
 	public SurfaceRoad smooth(){
-		SurfaceRoad surf = this.enlarge();
+//		SurfaceRoad surf = this.enlarge();
 		return null;
 	}
 

@@ -26,6 +26,18 @@ public class PointVegetation extends PunctualObject {
 	public PointVegetation(Coordinate coord) {
 		super(coord);
 	}
+	
+// ========================== GETTERS/SETTERS ======================
+	public String getNature() {
+		return nature;
+	}
+
+
+	public void setNature(String nature) {
+		this.nature = nature;
+	}
+	
+	
 // ========================== METHODS ==============================
 	
 	
@@ -37,5 +49,8 @@ public class PointVegetation extends PunctualObject {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	
 
 }
