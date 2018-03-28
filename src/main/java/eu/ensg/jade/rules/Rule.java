@@ -185,9 +185,12 @@ public class Rule implements IRule{
 	/**
 	 * 
 	 */
-	private void addStreetFurniture(StreetFurniture streetFurniture){
-		//if(not nul..)
+	private void addStreetFurniture(StreetFurniture streetFurniture, Road road){
 		// Test si null
+		
+		if (streetFurniture != null){
+			road.
+		}
 		// Test si sur la route
 		// Ajoute sur la route si non
 		// Ajoute sur la scène
