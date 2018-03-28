@@ -159,7 +159,6 @@ public class Rule implements IRule{
 			}
 		}
 	}
-	
 
 	/**
 	 * Puts signs on roads
@@ -413,4 +412,20 @@ public class Rule implements IRule{
 	private int[] checkImportance(LineRoad[] roadsTab, int size) {
 		return null;
 	}
+	
+	private int calcIntersectionType(LineRoad[] roadsTab, Boolean[] roadsBoolTab,
+									 Intersection intersect, int size,
+									 int[] importTab) {
+		return 0;
+	}
+	
+	private List<StreetFurniture> addMultiSigns(LineRoad[] roadsTab, Boolean[] roadsBoolTab,
+												Intersection intersect,
+												int size, int intersectType) {
+		return null;
+	}
+
+	private void addMultiStreetFurniture(List<StreetFurniture> signs) {
+	}
+
 }
