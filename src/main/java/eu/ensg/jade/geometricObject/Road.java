@@ -85,6 +85,10 @@ public abstract class Road extends WorldObject {
 		this.speed = speed;
 		this.name=name;
 		}
+	
+	public Road(){
+		
+	}
 		
 // ========================== GETTERS/SETTERS ======================
 	

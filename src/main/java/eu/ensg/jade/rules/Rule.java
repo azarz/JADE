@@ -157,7 +157,7 @@ public class Rule implements IRule{
 				
 				// Roads recuperation
 
-				LineRoad lineRoad; 
+				LineRoad lineRoad = new LineRoad(); 
 				boolean roadBool;
 				int enter = -100; 
 				
@@ -165,11 +165,26 @@ public class Rule implements IRule{
 					lineRoad = (LineRoad) roads.get(road);
 					roadBool = intersect.getRoadId().get(road);
 					enter = isEntering(lineRoad, roadBool);
+					
+					if (enter == 1){
+						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.scene");
+						addStreetFurniture(streetFurniture, lineRoad, scene);
+						
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene");
+						addStreetFurniture(streetFurniture2, lineRoad, scene);
+					
+					}
+					else if (enter == -1){
+						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene");
+						addStreetFurniture(streetFurniture, lineRoad, scene);
+					}
+					else if (enter == 0){
+						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene");
+						addStreetFurniture(streetFurniture, lineRoad, scene);
+					}
 				}
 				
-				if (enter == 1){
-					
-				}
+				
 			}
 			else{
 				System.out.println("There is no road in this intersection ... ");
@@ -563,7 +578,7 @@ public class Rule implements IRule{
 		switch (intersectType) {
 		case 0:
 			for (int i=0; i < size; i++){
-				if (getDirection(roadsTab[i], roadsBoolTab[i]) != -1){
+				if (isEntering(roadsTab[i], roadsBoolTab[i]) != -1){
 					StreetFurniture lightRoad = addSigns(roadsTab[i], roadsBoolTab[i], "");
 					addStreetFurniture(lightRoad, roadsTab[i], scene);
 				}
