@@ -186,11 +186,11 @@ public class SceneBuilder {
 		
 		// Add street furniture
 		for(StreetFurniture sign : scene.getStreetFurniture()) {
-			XMLModel StreetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
-			double[] tabrotation = null;
-			tabrotation[1]=sign.getRotation();
-			StreetFurnitureModel.setRotation(tabrotation);
-			xmlWriter.addModel(StreetFurnitureModel);
+			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
+			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation(), 0});
+			streetFurnitureModel.setTranslation(new double[] {0, 0, 0});
+			
+			xmlWriter.addModel(streetFurnitureModel);
 		}
 		
 		// Add DTM

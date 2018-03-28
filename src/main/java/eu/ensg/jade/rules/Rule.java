@@ -140,9 +140,9 @@ public class Rule implements IRule{
 				}
 				else {
 					//Checking Road importance for yield
-					int[] importTab = checkImportance(roadsTab,size);
-					int intersectType = calcIntersectionType(roadsTab,roadsBoolTab,intersect,size,importTab);
-					addMultiSigns(roadsTab,roadsBoolTab,intersect,importTab,size,intersectType, scene);
+					
+					int intersectType = calcIntersectionType(roadsTab,size);
+					addMultiSigns(roadsTab,roadsBoolTab,intersect,size,intersectType, scene);
 				}
 				
 			}
@@ -526,28 +526,20 @@ public class Rule implements IRule{
 	 * 
 	 * @return table of int, 1 for bigger, 0 for lesser importance, null if same importance.
 	 */
-	private int[] checkImportance(LineRoad[] roadsTab, int size) {
-		boolean difference = false;
+	private int hasDiffImportance(LineRoad[] roadsTab, int size) {
 		int greatest = Integer.parseInt(roadsTab[0].getImportance());
+		int lowest = Integer.parseInt(roadsTab[0].getImportance());
+
 		for (int i=0; i<size; i++){
-				if (greatest < Integer.parseInt(roadsTab[i].getImportance())){
-					greatest = Integer.parseInt(roadsTab[i].getImportance());
-					difference = true;
-				}
+			if (greatest < Integer.parseInt(roadsTab[i].getImportance())){
+				greatest = Integer.parseInt(roadsTab[i].getImportance());
 			}
-		if (difference){
-			int[] tabImp= new int[size];
-			for (int i=0; i<size; i++){
-					if (Integer.parseInt(roadsTab[i].getImportance()) == greatest){
-						tabImp[i]=1;
-					}
-					else{
-						tabImp[i]=0;
-						}
-				}
-			return tabImp;
+			else if (lowest > Integer.parseInt(roadsTab[i].getImportance())){
+				lowest = Integer.parseInt(roadsTab[i].getImportance());
+
 			}
-		return null;
+		}
+		return greatest - lowest;
 	}
 	
 	/**
@@ -561,17 +553,32 @@ public class Rule implements IRule{
 	 * 
 	 * @return int the type of intersection: 0: Traffic Lights, 1: Yield, 2: Break; 3: Priority to the right.
 	 */
-	private int calcIntersectionType(LineRoad[] roadsTab, Boolean[] roadsBoolTab,
-									 Intersection intersect, int size,
-									 int[] importTab) {
-		//Si plus de 3 voies à une route => feux.
+	private int calcIntersectionType(LineRoad[] roadsTab, int size) {
+		int diff = hasDiffImportance(roadsTab, size);
+		
 		for(int i=0; i < size; i++){
-			if (roadsTab[i].getLaneNumber()>3){
-				return 0;
+			if ((roadsTab[i].getDirection() == "Double" && roadsTab[i].getLaneNumber() >= 3) 
+					|| ((roadsTab[i].getDirection() == "Inverse" || roadsTab[i].getDirection() == "Direct") && roadsTab[i].getLaneNumber() >= 2)
+					){
+				return 1;
+			}
+			else if(diff == 0){
+				if (roadsTab[i].getSpeed() != ""){
+					return 2;
+				}
+				return 1;
+			}
+			else if (diff == 1){
+				return 3;
+			}
+			else if (diff > 1){
+				return 4;
 			}
 		}
-		return 0;
+		return -1;
 	}
+
+	
 
 	/**
 	 * Add multiple signs to the intersections.
@@ -584,17 +591,8 @@ public class Rule implements IRule{
 	 */
 	private void addMultiSigns(LineRoad[] roadsTab, Boolean[] roadsBoolTab,
 												Intersection intersect,
-												int[] importance,
 												int size, int intersectType, Scene scene) {
 		switch (intersectType) {
-		case 0:
-			for (int i=0; i < size; i++){
-				if (isEntering(roadsTab[i], roadsBoolTab[i]) != -1){
-					StreetFurniture lightRoad = addSigns(roadsTab[i], roadsBoolTab[i], "Models/TrafficLight/trafficlight.scene");
-					addStreetFurniture(lightRoad, roadsTab[i], scene);
-				}
-			}
-			break;
 		case 1:
 			
 			break;
@@ -605,7 +603,7 @@ public class Rule implements IRule{
 			
 			break;
 		default:
-			System.out.println("Intersection de mauvias type");
+			System.out.println("Intersection de mauvais type");
 			break;
 		}
 	}
