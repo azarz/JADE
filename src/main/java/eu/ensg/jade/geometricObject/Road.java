@@ -73,7 +73,7 @@ public abstract class Road extends WorldObject {
 	 * @param z_fin
 	 * @param direction
 	 */
-	public Road(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, String importance, String number, String speed, String name) {
+	public Road(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, String importance, String number, String name) {
 		this.width = width;
 		this.laneNumber = laneNumber;
 		this.z_ini = z_ini;
@@ -82,7 +82,7 @@ public abstract class Road extends WorldObject {
 		this.nature = nature;
 		this.importance = importance;
 		this.number = number;
-		this.speed = speed;
+		setSpeed();
 		this.name=name;
 		}
 	
@@ -209,6 +209,9 @@ public abstract class Road extends WorldObject {
 		
 		else if(this.number.indexOf('A')!=-1){
 			this.speed = "130 km/h";
+		}
+		else{
+			this.speed = "";
 		}
 	}
 
