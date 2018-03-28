@@ -136,7 +136,7 @@ public class Rule implements IRule{
 					addRampSigns(roadsTab,roadsBoolTab,intersect,size);
 				}
 				else if (asRoundAbout){
-					addRoundAbout(roadsTab,roadsBoolTab,intersect,size);
+					addRoundAbout(roadsTab,roadsBoolTab,size,scene);
 				}
 				else {
 					//Checking Road importance for yield
@@ -493,8 +493,14 @@ public class Rule implements IRule{
 	 * @param intersect the intersection considered
 	 * @param size Intersection's size
 	 */
-	private void addRoundAbout(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Intersection intersect, int size){
-		
+	private void addRoundAbout(LineRoad[] roadsTab, Boolean[] roadsBoolTab, int size, Scene scene){
+		for (int i = 0; i < size; i++){
+			LineRoad road = roadsTab[i];
+			if (!(road.getName().substring(0, 1)==("PL") || road.getName().substring(0, 3) == "RPT")){
+				StreetFurniture lightRoad = addSigns(road, roadsBoolTab[i], "Models/RoasSings/otherSigns/Yield/Yield.scene");
+				addStreetFurniture(lightRoad, road, scene);
+			}
+		}
 	}
 	
 	/**
@@ -569,7 +575,7 @@ public class Rule implements IRule{
 		case 0:
 			for (int i=0; i < size; i++){
 				if (isEntering(roadsTab[i], roadsBoolTab[i]) != -1){
-					StreetFurniture lightRoad = addSigns(roadsTab[i], roadsBoolTab[i], "");
+					StreetFurniture lightRoad = addSigns(roadsTab[i], roadsBoolTab[i], "Models/TrafficLight/trafficlight.scene");
 					addStreetFurniture(lightRoad, roadsTab[i], scene);
 				}
 			}
