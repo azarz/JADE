@@ -559,6 +559,11 @@ public class Rule implements IRule{
 									 Intersection intersect, int size,
 									 int[] importTab) {
 		//Si plus de 3 voies à une route => feux.
+		for(int i=0; i < size; i++){
+			if (roadsTab[i].getLaneNumber()>3){
+				return 0;
+			}
+		}
 		return 0;
 	}
 
