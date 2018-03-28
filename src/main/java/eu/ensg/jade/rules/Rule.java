@@ -538,6 +538,11 @@ public class Rule implements IRule{
 									 Intersection intersect, int size,
 									 int[] importTab) {
 		//Si plus de 3 voies à une route => feux.
+		for(int i=0; i < size; i++){
+			if (roadsTab[i].getLaneNumber()>3){
+				return 0;
+			}
+		}
 		return 0;
 	}
 
@@ -557,7 +562,7 @@ public class Rule implements IRule{
 		switch (intersectType) {
 		case 0:
 			for (int i=0; i < size; i++){
-				if (getDirection(roadsTab[i], roadsBoolTab[i]) != -1){
+				if (isEntering(roadsTab[i], roadsBoolTab[i]) != -1){
 					StreetFurniture lightRoad = addSigns(roadsTab[i], roadsBoolTab[i], "");
 					addStreetFurniture(lightRoad, roadsTab[i], scene);
 				}
