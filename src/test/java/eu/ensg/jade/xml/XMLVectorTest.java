@@ -59,51 +59,51 @@ public class XMLVectorTest {
 	/**
 	 * Test XML export
 	 */
-	@Test
-	public void testXMLElement() {		
-		double[] scale = {1, 2, 1};
-		double[] translation = {-1, 0.5, 0};
-		double[] rotation = {0, 90, 0};
-
-		XMLVector vector = new XMLVector(scale, rotation, translation);
-		
-		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-		try {
-			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-			Document doc = docBuilder.newDocument();
-			
-			Element element = vector.toXMLElement(doc);
-			
-			assertNotNull(element.getElementsByTagName("scale"));
-			assertNotNull(element.getElementsByTagName("rotation"));
-			assertNotNull(element.getElementsByTagName("translation"));
-			
-			Node scaleNode = element.getElementsByTagName("scale").item(0);
-			Node rotationNode = element.getElementsByTagName("rotation").item(0);
-			Node translationNode = element.getElementsByTagName("translation").item(0);
-			
-			
-			assertEquals(
-					Double.parseDouble(scaleNode.getChildNodes().item(0).getTextContent()), 
-					vector.getScale()[0], DELTA);
-			
-			assertEquals(
-					Double.parseDouble(scaleNode.getChildNodes().item(2).getTextContent()),
-					vector.getScale()[2], DELTA);
-			
-			assertEquals(
-					Double.parseDouble(rotationNode.getChildNodes().item(1).getTextContent()),
-					vector.getRotation()[1], DELTA);
-			
-			assertEquals(
-					Double.parseDouble(translationNode.getChildNodes().item(0).getTextContent()),
-					vector.getTranslation()[0], DELTA);
-			
-			assertNull(translationNode.getChildNodes().item(15));			
-			
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		}
-	}
+//	@Test
+//	public void testXMLElement() {		
+//		double[] scale = {1, 2, 1};
+//		double[] translation = {-1, 0.5, 0};
+//		double[] rotation = {0, 90, 0};
+//
+//		XMLVector vector = new XMLVector(scale, rotation, translation);
+//		
+//		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+//		try {
+//			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+//			Document doc = docBuilder.newDocument();
+//			
+//			Element element = vector.toXMLElement(doc);
+//			
+//			assertNotNull(element.getElementsByTagName("scale"));
+//			assertNotNull(element.getElementsByTagName("rotation"));
+//			assertNotNull(element.getElementsByTagName("translation"));
+//			
+//			Node scaleNode = element.getElementsByTagName("scale").item(0);
+//			Node rotationNode = element.getElementsByTagName("rotation").item(0);
+//			Node translationNode = element.getElementsByTagName("translation").item(0);
+//			
+//			
+//			assertEquals(
+//					Double.parseDouble(scaleNode.getChildNodes().item(0).getTextContent()), 
+//					vector.getScale()[0], DELTA);
+//			
+//			assertEquals(
+//					Double.parseDouble(scaleNode.getChildNodes().item(2).getTextContent()),
+//					vector.getScale()[2], DELTA);
+//			
+//			assertEquals(
+//					Double.parseDouble(rotationNode.getChildNodes().item(1).getTextContent()),
+//					vector.getRotation()[1], DELTA);
+//			
+//			assertEquals(
+//					Double.parseDouble(translationNode.getChildNodes().item(0).getTextContent()),
+//					vector.getTranslation()[0], DELTA);
+//			
+//			assertNull(translationNode.getChildNodes().item(15));			
+//			
+//		} catch (ParserConfigurationException e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 }

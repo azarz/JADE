@@ -9,7 +9,7 @@
   </nodes>
   <externals>
     <item type="material">
-      <file name="Scene.material"/>
+      <file name="SteepDowngrade.material"/>
     </item>
   </externals>
   <environment>
