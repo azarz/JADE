@@ -90,6 +90,7 @@ public class Rule implements IRule{
 				int larger = widthComparison(roadsTab[0],roadsTab[1]);
 				
 				if ( larger != -1){
+					// Treat the case of road narrowing not being at the beginning of a node
 					StreetFurniture streetFurniture = addSigns(roadsTab[larger],roadsBoolTab[larger],"Models/RoadSigns/dangerSigns/RoadNarrows/roadNarrows.jpg");
 					addStreetFurniture(streetFurniture, roadsTab[larger], scene);
 
@@ -247,12 +248,12 @@ public class Rule implements IRule{
 	 * 
 	 * @return
 	 */
-	private Coordinate signPosition(LineRoad road, boolean left){
+	private Coordinate signPosition(LineRoad road, boolean left, int position){
 
 		Coordinate[] coord = road.getGeom().getCoordinates();
 		
-		double x = coord[0].x;
-		double y = coord[0].y;
+		double x = coord[position].x;
+		double y = coord[position].y;
 		
 		// 5meters after the beginning of the road
 		double d = 5;
@@ -263,6 +264,9 @@ public class Rule implements IRule{
 		double newZ;
 
 		double theta = JadeUtils.roadAngle(road);
+		if (position != 0){
+			theta = theta - Math.PI;
+		}
 		
 		if(left){
 			if (0<= theta && theta <= Math.PI/2){
@@ -313,18 +317,27 @@ public class Rule implements IRule{
 	 * @return
 	 */
 	private StreetFurniture addSigns(LineRoad road, boolean init, String folder){
+		String deadEndStreet = "Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.jpg";
+		String roadNarrows = "Models/RoadSigns/dangerSigns/RoadNarrows/roadNarrows.jpg";
+		String oneWayStreet = "Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.jpg";
+		String doNotEnter = "Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.jpg";
+		
+		boolean left = true;
+		
+		if (folder == deadEndStreet || folder == oneWayStreet || folder == doNotEnter){
+			left = false;
+		}
 		
 		if (init){
-			boolean left = false;
-			// test folder .. pour droite ou gauche ! 
-			
-			Coordinate coord = signPosition(road, left);
+			Coordinate coord = signPosition(road, left, 0);
 			// It is possible to return the sign angle in street furniture
 			return new StreetFurniture(folder, coord);
+				
 		}
 		
 		else{
-			return null;
+			Coordinate coord = signPosition(road, left, road.getGeom().getCoordinates().length-1);
+			return new StreetFurniture(folder, coord);
 		}
 	}
 	
