@@ -71,7 +71,25 @@ public class LineRoad extends Road{
 		return this.geometry;
 	}
 	
+	/**
+	 * Allows to access the road street furniture
+	 * 
+	 * @return the road street furniture
+	 */
+	public List<StreetFurniture> getSF() {
+		return this.listSF;
+	}
+	
+	
 // ========================== METHODS ==============================
+	/**
+	 * Adds a street furniture to the existing list
+	 * 
+	 * @param streetFurniture
+	 */
+	public void addSF(StreetFurniture streetFurniture){
+		this.listSF.add(streetFurniture);
+	}
 	
 	/**
 	 * Enlarges the current road

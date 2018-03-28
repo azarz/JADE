@@ -7,6 +7,7 @@ import java.util.Map;
 import com.vividsolutions.jts.geom.Coordinate;
 
 import eu.ensg.jade.geometricObject.Road;
+import eu.ensg.jade.scene.Scene;
 import eu.ensg.jade.semantic.Intersection;
 import eu.ensg.jade.semantic.IntersectionColl;
 import eu.ensg.jade.semantic.LineRoad;
@@ -46,8 +47,9 @@ public class Rule implements IRule{
 	 * 
 	 * @param interColl the intersections presents in RGE data
 	 */
-	public void intersectSigns(IntersectionColl interColl,Map <String,Road> roads){
+	public void intersectSigns(IntersectionColl interColl, Scene scene){
 		
+		Map <String,Road> roads = scene.getRoads();
 		// We go through all the intersections
 		for (Intersection intersect : interColl.getMapIntersection().values()){
 			
@@ -63,7 +65,7 @@ public class Rule implements IRule{
 				
 				// DeadEndStreet Sign installation
 				StreetFurniture streetFurniture = addSigns(road,bool,"Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.jpg");
-				addStreetFurniture(streetFurniture);
+				addStreetFurniture(streetFurniture, road, scene);
 			}
 			
 			else if (intersect.getRoadId().size() == 2){
@@ -88,7 +90,9 @@ public class Rule implements IRule{
 				int larger = widthComparison(roadsTab[0],roadsTab[1]);
 				
 				if ( larger != -1){
-					addSigns(roadsTab[larger],roadsBoolTab[larger],"A REMPLIR AVEC LE BON PATH");
+					StreetFurniture streetFurniture = addSigns(roadsTab[larger],roadsBoolTab[larger],"Models/RoadSigns/dangerSigns/RoadNarrows/roadNarrows.jpg");
+					addStreetFurniture(streetFurniture, roadsTab[larger], scene);
+
 				}
 				
 				// "Sens unique/Sens interdit" sign installation
@@ -97,11 +101,13 @@ public class Rule implements IRule{
 				if (sensMap != null){
 					
 					if(sensMap.containsKey(-1)){
-						addSigns(roadsTab[sensMap.get(-1)],roadsBoolTab[sensMap.get(-1)],"A REMPLIR AVEC LE BON PATH");
+						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(-1)],roadsBoolTab[sensMap.get(-1)],"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.jpg");
+						addStreetFurniture(streetFurniture, roadsTab[sensMap.get(-1)], scene);
 					}
 					
 					if(sensMap.containsKey(1)){
-						addSigns(roadsTab[sensMap.get(1)],roadsBoolTab[sensMap.get(1)],"A REMPLIR AVEC LE BON PATH");
+						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(1)],roadsBoolTab[sensMap.get(1)],"Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.jpg");
+						addStreetFurniture(streetFurniture, roadsTab[sensMap.get(1)], scene);
 					}
 				}
 			}
@@ -186,22 +192,27 @@ public class Rule implements IRule{
 	/**
 	 * 
 	 */
-	private void addStreetFurniture(StreetFurniture streetFurniture, Road road){
-		// Test si null
+	private void addStreetFurniture(StreetFurniture streetFurniture, LineRoad road, Scene scene){
+
+		boolean alreadyOn = false;
 		
 		if (streetFurniture != null){
-			road.
+			if (road.getSF().size() != 0){
+				for (int i=0; i < road.getSF().size(); i++){
+					if (streetFurniture.getCoord().equals2D(road.getSF().get(i).getCoord())){
+						alreadyOn = true;
+					}
+				}
+				if (!alreadyOn){
+					road.addSF(streetFurniture);
+					scene.addStreetFurniture(streetFurniture);
+				}
+			}
+			else{
+				road.addSF(streetFurniture);
+				scene.addStreetFurniture(streetFurniture);
+			}
 		}
-		// Test si sur la route
-		// Ajoute sur la route si non
-		// Ajoute sur la scène
-		
-		
-		/* On ajoute le panneau à la route (ID) ? 
-		 * 		OUI car on a besoin pour verifier les conflits
-		 * On ajoute le panneau à la scène (OBject) ? 
-		 * 		OUI car on a besoin pour la creation du xml ?? 
-		 */
 	}
 	
 	/**
@@ -342,4 +353,5 @@ public class Rule implements IRule{
 		
 		return null;
 	}
+
 }
