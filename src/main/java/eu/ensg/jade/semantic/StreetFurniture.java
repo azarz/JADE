@@ -1,8 +1,8 @@
 package eu.ensg.jade.semantic;
 
-import com.vividsolutions.jts.geom.Coordinate;
-
 import java.util.List;
+
+import com.vividsolutions.jts.geom.Coordinate;
 
 import eu.ensg.jade.geometricObject.PunctualObject;
 
@@ -33,13 +33,13 @@ public class StreetFurniture extends PunctualObject {
 
 	public StreetFurniture(Coordinate coord) {
 		super(coord);
-		this.id++;
+		id++;
 	}
 	
 	public StreetFurniture(String path, Coordinate coord) {
 			super(coord);
 			this.path = path;
-			this.id++;
+			id++;
 		}
 
 

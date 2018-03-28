@@ -86,6 +86,23 @@
       </translation>
     </model>
 
+    <model id="TrafficLight_0" key="Models/TrafficLight/trafficlight.scene" ref="">
+      <mass>0</mass><visible>true</visible><collisionShape>meshShape</collisionShape>
+      <scale><vector jtype="java_lang_Float" size="3">
+        <entry>1</entry><entry>1</entry><entry>1</entry>
+      </vector></scale>
+      <rotation quaternion="false">
+        <vector jtype="java_lang_Float" size="3">
+          <entry>0</entry><entry>0</entry><entry>0</entry>
+        </vector>
+      </rotation>
+      <translation>
+        <vector jtype="java_lang_Float" size="3">
+          <entry>2</entry><entry>-0.6</entry><entry>-4</entry>
+        </vector>
+      </translation>
+    </model>
+
   </models>
 
 

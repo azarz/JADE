@@ -12,7 +12,6 @@ import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.Hydrography;
 import eu.ensg.jade.semantic.IntersectionColl;
-import eu.ensg.jade.semantic.LineRoad;
 import eu.ensg.jade.semantic.PointVegetation;
 import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceRoad;
@@ -33,12 +32,7 @@ public class Scene {
 	 * List of surfacic roads to create {@link SurfaceRoad}
 	 */
 	private Map <String,Road> roads;
-
-	/**
-	 * List of linear roads to create {@link LineRoad}
-	 */
-	private List<LineRoad> lineRoads;
-
+	
 	/**
 	 * List of buildings to create {@link Building}
 	 */
@@ -86,7 +80,6 @@ public class Scene {
 	public Scene() {
 		this.buildings = new ArrayList<Building>();
 		this.roads = new HashMap<String,Road>();
-		this.lineRoads = new ArrayList<LineRoad>();
 		this.hydrography = new ArrayList<Hydrography>();
 		this.vegetation = new ArrayList<PointVegetation>();
 		this.surfaceVegetation = new ArrayList<SurfaceVegetation>();

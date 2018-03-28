@@ -2,8 +2,6 @@ package eu.ensg.jade.semantic;
 
 import java.util.HashMap;
 
-import com.sun.javafx.collections.MappingChange.Map;
-
 public class IntersectionColl {
 	
 // ========================== ATTRIBUTES ===========================

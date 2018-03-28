@@ -13,12 +13,6 @@ import com.vividsolutions.jts.geom.Coordinate;
 public abstract class PunctualObject extends WorldObject {
 
 // ========================== ATTRIBUTES ===========================
-	
-	/** 
-	 * The punctual object nature 
-	 */
-	private String nature;
-	
 	/**
 	 * The punctual coordinate of the furniture
 	 */
