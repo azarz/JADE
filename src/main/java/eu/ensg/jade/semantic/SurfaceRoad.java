@@ -92,8 +92,16 @@ public class SurfaceRoad extends Road {
 		String vertexCoords = "";
 		String uvCoords     = "";
 		String normalCoords = "";
+		String faces;
 		
-		String faces = "usemtl Road\n";
+		if (direction.equals("Double")) {
+			faces = "usemtl RoadDouble\n";
+		} else if (direction.equals("Direct")) {
+			faces = "usemtl RoadDirect\n";
+		} else {
+			faces = "usemtl RoadInverse\n";
+		}
+		
 		
 		int numGeometries = geometry.getNumGeometries();
 		
