@@ -460,14 +460,16 @@ public class Rule implements IRule{
 	 * @return boolean, true if the intersection is in a ramp
 	 */
 	private boolean isRamp(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Intersection intersect, int size){
-		// Si size = 3, on peut faire un test pour retourner autre que false 
+		// No ramp if size is different then 3:
 		if (size !=3){return false;}
 		else {
+			//We check in the roads if there is at least one is of ramp nature (bretelle in French)
 			for (LineRoad road : roadsTab){
 				if(road.getNature() == "Bretelle")
 				{return true;}
 			}
 		}
+		//Else there is no ramp
 		return false;
 	}
 
@@ -475,13 +477,14 @@ public class Rule implements IRule{
 	 * Check if it is a roundabout
 	 * 
 	 * @param roadsTab the table containing the roads
-	 * @param roadsBoolTab the table containing the roads boolean descritor of direction
+	 * @param roadsBoolTab the table containing the roads boolean descriptor of direction
 	 * @param intersect the intersection considered
 	 * @param size Intersection's size
 	 * 
-	 * @return boolean, true if the intersection is in a roundabout
+	 * @return boolean, true if the intersection is in a round about
 	 */
 	private boolean isRoundAbout(LineRoad[] roadsTab){
+	//We go through the roads and see if there is at least one being a Round About.
 		for (LineRoad road : roadsTab){
 			if (road.getName().length()>2){
 				if(road.getName().substring(0, 2)==("PL") || road.getName().substring(0, 3) == "RPT")
@@ -515,7 +518,8 @@ public class Rule implements IRule{
 	private void addRoundAbout(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Scene scene){
 		for (int i = 0; i < roadsTab.length; i++){
 			LineRoad road = roadsTab[i];
-			
+
+			//We add yeild signs for all roads not on the round about
 			if (!(road.getName().substring(0, 2)==("PL") || road.getName().substring(0, 3) == "RPT")){
 				StreetFurniture lightRoad = addSigns(road, roadsBoolTab[i], "Models/RoasSings/otherSigns/Yield/Yield.scene");
 				addStreetFurniture(lightRoad, road, scene);
