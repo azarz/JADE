@@ -175,5 +175,16 @@ public class JadeUtils {
 		
 		return theta; 
 	}
+	
+	public static double lineAngle(Coordinate p1, Coordinate p2) {
+		double dx = p2.x - p1.x;
+		double dy = p2.y - p1.y;
+		
+		double dist = Math.sqrt(dx*dx + dy*dy);
+		dx /= dist;
+		dy /= dist;
+		
+		return Math.atan(dy / dx);
+	}
 
 }
