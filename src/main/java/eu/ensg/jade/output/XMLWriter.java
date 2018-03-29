@@ -139,7 +139,7 @@ public class XMLWriter {
 	 */
 	public void createAllXml() {
 		// Clean directory
-		Arrays.stream(new File(mainDirectory).listFiles()).forEach(File::delete);
+		//Arrays.stream(new File(mainDirectory).listFiles()).forEach(File::delete);
 		
 		this.createMainXml();
 		this.createInteractionXml();

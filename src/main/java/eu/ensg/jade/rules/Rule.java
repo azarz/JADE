@@ -40,6 +40,7 @@ public class Rule implements IRule{
 		// We get thelist of roads existing in the scene
 		Map <String,Road> roads = scene.getRoads();
 		IntersectionColl interColl = scene.getCollIntersect();
+		Coordinate centroid = scene.getBuildingCentroid();
 		
 		// We go through all the intersections
 		for (Intersection intersect : interColl.getMapIntersection().values()){
@@ -56,7 +57,7 @@ public class Rule implements IRule{
 				boolean bool = intersect.getRoadId().get(intersect.getRoadId().keySet().toArray()[0]);
 				
 				// DeadEndStreet Sign installation
-				StreetFurniture streetFurniture = addSigns(road,bool,"Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.scene");
+				StreetFurniture streetFurniture = addSigns(road,bool,"Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.scene", centroid);
 				addStreetFurniture(streetFurniture, road, scene);
 			}
 			
@@ -81,7 +82,7 @@ public class Rule implements IRule{
 				int larger = widthComparison(roadsTab[0],roadsTab[1]);
 				
 				if ( larger != -1){
-					StreetFurniture streetFurniture = addSigns(roadsTab[larger],roadsBoolTab[larger],"Models/RoadSigns/dangerSigns/RoadNarrows/RoadNarrows.scene");
+					StreetFurniture streetFurniture = addSigns(roadsTab[larger],roadsBoolTab[larger],"Models/RoadSigns/dangerSigns/RoadNarrows/RoadNarrows.scene",centroid);
 					addStreetFurniture(streetFurniture, roadsTab[larger], scene);
 				}
 				
@@ -91,12 +92,12 @@ public class Rule implements IRule{
 				if (sensMap != null){
 					
 					if(sensMap.containsKey(-1)){
-						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(-1)],roadsBoolTab[sensMap.get(-1)],"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene");
+						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(-1)],roadsBoolTab[sensMap.get(-1)],"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", centroid);
 						addStreetFurniture(streetFurniture, roadsTab[sensMap.get(-1)], scene);
 					}
 					
 					if(sensMap.containsKey(1)){
-						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(1)],roadsBoolTab[sensMap.get(1)],"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene");
+						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(1)],roadsBoolTab[sensMap.get(1)],"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", centroid);
 						addStreetFurniture(streetFurniture, roadsTab[sensMap.get(1)], scene);
 					}
 				}
@@ -137,13 +138,13 @@ public class Rule implements IRule{
 					addRampSigns(roadsTab,roadsBoolTab,intersect,size);
 				}
 				else if (asRoundAbout){
-					addRoundAbout(roadsTab,roadsBoolTab,scene);
+					addRoundAbout(roadsTab,roadsBoolTab,scene, centroid);
 				}
 				else {
 					//Checking Road importance for yield
 					
 					int intersectType = calcIntersectionType(roadsTab,size);
-					addMultiSigns(roadsTab,roadsBoolTab,intersectType, scene);
+					addMultiSigns(roadsTab,roadsBoolTab,intersectType, scene, centroid);
 				}
 				
 			}
@@ -168,19 +169,19 @@ public class Rule implements IRule{
 					enter = isEntering(lineRoad, roadBool);
 					
 					if (enter == 1){
-						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene");
+						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", centroid);
 						addStreetFurniture(streetFurniture, lineRoad, scene);
 						
-						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene");
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene", centroid);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
 					
 					}
 					else if (enter == -1){
-						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene");
+						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", centroid);
 						addStreetFurniture(streetFurniture, lineRoad, scene);
 					}
 					else if (enter == 0){
-						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene");
+						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene", centroid);
 						addStreetFurniture(streetFurniture, lineRoad, scene);
 					}
 				}
@@ -286,7 +287,7 @@ public class Rule implements IRule{
 	 * 
 	 * @return an object Coordinate that give the position of the sign from the intersection
 	 */
-	private StreetFurniture signPosition(LineRoad road, boolean left, int position, String folder){
+	private StreetFurniture signPosition(LineRoad road, boolean left, int position, String folder,Coordinate centroid){
 
 		// Variable 
 		Coordinate[] coord = road.getGeom().getCoordinates();
@@ -358,7 +359,7 @@ public class Rule implements IRule{
 		}
 		
 		// Be careful y is the vertical axis in OpenDS 
-		Coordinate newCoord = new Coordinate(newX, newZ, road.getZ_ini());
+		Coordinate newCoord = new Coordinate(newX - centroid.x, newZ - centroid.y, road.getZ_ini());
 		return new StreetFurniture(folder, newCoord, rotation);
 	}
 	
@@ -371,7 +372,7 @@ public class Rule implements IRule{
 	 * 
 	 * @return a street furniture object 
 	 */
-	private StreetFurniture addSigns(LineRoad road, boolean init, String folder){
+	private StreetFurniture addSigns(LineRoad road, boolean init, String folder, Coordinate centroid){
 		
 		// The signs which has to be on the right of the road 
 		String deadEndStreet = "Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.scene";
@@ -388,11 +389,11 @@ public class Rule implements IRule{
 		// We create the sign 
 		if (init){
 			// It is possible to return the sign angle in street furniture
-			return signPosition(road, left, 0, folder);
+			return signPosition(road, left, 0, folder, centroid);
 				
 		}
 		else{
-			return signPosition(road, left, road.getGeom().getCoordinates().length-1, folder);
+			return signPosition(road, left, road.getGeom().getCoordinates().length-1, folder, centroid);
 		}
 	}
 	
@@ -515,13 +516,13 @@ public class Rule implements IRule{
 	 * @param intersect the intersection considered
 	 * @param size Intersection's size
 	 */
-	private void addRoundAbout(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Scene scene){
+	private void addRoundAbout(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Scene scene, Coordinate centroid){
 		for (int i = 0; i < roadsTab.length; i++){
 			LineRoad road = roadsTab[i];
 
 			//We add yeild signs for all roads not on the round about
 			if (!(road.getName().substring(0, 2)==("PL") || road.getName().substring(0, 3) == "RPT")){
-				StreetFurniture lightRoad = addSigns(road, roadsBoolTab[i], "Models/RoasSings/otherSigns/Yield/Yield.scene");
+				StreetFurniture lightRoad = addSigns(road, roadsBoolTab[i], "Models/RoasSings/otherSigns/Yield/Yield.scene", centroid);
 				addStreetFurniture(lightRoad, road, scene);
 			}
 		}
@@ -602,7 +603,7 @@ public class Rule implements IRule{
 	 * @param size Intersection's size
 	 * @param intersectType the type of the intersection
 	 */
-	private void addMultiSigns(LineRoad[] roadsTab, Boolean[] roadsBoolTab, int intersectType, Scene scene) {
+	private void addMultiSigns(LineRoad[] roadsTab, Boolean[] roadsBoolTab, int intersectType, Scene scene, Coordinate centroid) {
 		LineRoad lineRoad;
 		boolean roadBool;
 		int enter;
@@ -618,19 +619,19 @@ public class Rule implements IRule{
 				enter = isEntering(lineRoad, roadBool);
 				
 				if (enter == 1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene");
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", centroid);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 					
-					StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene");
+					StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene", centroid);
 					addStreetFurniture(streetFurniture2, lineRoad, scene);
 				
 				}
 				else if (enter == -1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene");
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", centroid);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 				}
 				else if (enter == 0){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene");
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene", centroid);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 				}
 			
@@ -644,19 +645,19 @@ public class Rule implements IRule{
 				enter = isEntering(lineRoad, roadBool);
 				
 				if (enter == 1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene");
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", centroid);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 					
-					StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/dangerSigns/IntersectionAhead/IntersectionAhead.scene");
+					StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/dangerSigns/IntersectionAhead/IntersectionAhead.scene", centroid);
 					addStreetFurniture(streetFurniture2, lineRoad, scene);
 				
 				}
 				else if (enter == -1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene");
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", centroid);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 				}
 				else if (enter == 0){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/dangerSigns/IntersectionAhead/IntersectionAhead.scene");
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/dangerSigns/IntersectionAhead/IntersectionAhead.scene", centroid);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 				}	
 			}
@@ -677,31 +678,31 @@ public class Rule implements IRule{
 				enter = isEntering(lineRoad, roadBool);
 				
 				if (enter == 1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene");
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", centroid);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 					
 					if (Integer.parseInt(lineRoad.getImportance()) - greatest == 1 ){
-						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Yield/Yield.scene");
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Yield/Yield.scene", centroid);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
 					}
 					else if (Integer.parseInt(lineRoad.getImportance()) - greatest > 1){
-						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Stop/Stop.scene");
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Stop/Stop.scene", centroid);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
 					
 					}
 				
 				}
 				else if (enter == -1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene");
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", centroid);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 				}
 				else if (enter == 0){
 					if (Integer.parseInt(lineRoad.getImportance()) - greatest == 1 ){
-						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Yield/Yield.scene");
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Yield/Yield.scene", centroid);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
 					}
 					else if (Integer.parseInt(lineRoad.getImportance()) - greatest > 1){
-						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Stop/Stop.scene");
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Stop/Stop.scene", centroid);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
 					
 					}

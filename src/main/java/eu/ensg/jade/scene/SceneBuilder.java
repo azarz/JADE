@@ -194,7 +194,6 @@ public class SceneBuilder {
 		
 		// Add street furniture
 		for(StreetFurniture sign : scene.getStreetFurniture()) {
-			System.out.println(sign.getPath());
 			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
 			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation(), 0});			
 			xmlWriter.addModel(streetFurnitureModel);
