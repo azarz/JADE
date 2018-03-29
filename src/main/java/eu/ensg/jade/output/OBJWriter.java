@@ -79,10 +79,11 @@ public class OBJWriter {
 	 * @param yCentroid the centroid y coordinate
 	 */
 	public void exportRoad(String filePath, Map<String, Road> roads, double xCentroid, double yCentroid) {
+		
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
 		offsets.add(1);
-		offsets.add(1);
+		offsets.add(0);
 		
 		File file = new File(filePath);
 		
@@ -99,13 +100,14 @@ public class OBJWriter {
 			
 			out.print("mtllib paris.mtl\n");
 
-			for (Road road: roads.values()) {				
+			for (Road road: roads.values()) {
 				out.print(road.toOBJ(offsets, xCentroid, yCentroid));
 			}		
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 }
