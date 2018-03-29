@@ -8,7 +8,6 @@ import com.vividsolutions.jts.geom.Coordinate;
 
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.scene.Scene;
-import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.Intersection;
 import eu.ensg.jade.semantic.IntersectionColl;
 import eu.ensg.jade.semantic.LineRoad;

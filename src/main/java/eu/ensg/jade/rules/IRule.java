@@ -5,7 +5,6 @@ import java.util.Map;
 
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.scene.Scene;
-import eu.ensg.jade.semantic.IntersectionColl;
 import eu.ensg.jade.semantic.SurfaceVegetation;
 
 /**

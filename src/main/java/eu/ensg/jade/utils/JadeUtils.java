@@ -99,7 +99,8 @@ public class JadeUtils {
 	
 	/**
 	 * Calculates the interpolated altitude value 
-	 * from a DTM and a set of XY coordinates unsing bilinear interpolation
+	 * from a DTM and a set of XY coordinates using JME interpolation
+	 * (https://github.com/jMonkeyEngine/jmonkeyengine/blob/master/jme3-terrain/src/main/java/com/jme3/terrain/heightmap/AbstractHeightMap.java)
 	 * 
 	 * @param xCoord X coordinate
 	 * @param yCoord Z coordinate
@@ -132,19 +133,11 @@ public class JadeUtils {
 		double fracSouth = yCoord - (yllCorner + (nrows - southIndex)*cellsize);
 		double fracNorth = yllCorner + (nrows - northIndex)*cellsize - yCoord;
 		
-		// Calculating the interpolated north value
-		double interpolatedNorthValue = (fracWest * northEastValue 
-				+ fracEast * northWestValue)/cellsize;
+		double intX = ((northEastValue - northWestValue) * fracWest) + northWestValue*cellsize;	
 		
-		// Calculating the interpolated south value
-		double interpolatedSouthValue = (fracWest * southEastValue 
-				+ fracEast * southWestValue)/cellsize;			
-		
-		// Calculating the final interpolated value
-		double newZ = (fracNorth * interpolatedSouthValue
-				+ fracSouth * interpolatedNorthValue)/cellsize;
-		
-		return newZ;
+		double intY = ((southWestValue - northWestValue) * fracNorth) + northWestValue*cellsize;
+
+		return (intX + intY)/(2*cellsize);
 	}
 	
 	/**
@@ -190,6 +183,17 @@ public class JadeUtils {
 	    }
 		
 		return theta; 
+	}
+	
+	public static double lineAngle(Coordinate p1, Coordinate p2) {
+		double dx = p2.x - p1.x;
+		double dy = p2.y - p1.y;
+		
+		double dist = Math.sqrt(dx*dx + dy*dy);
+		dx /= dist;
+		dy /= dist;
+		
+		return Math.atan(dy / dx);
 	}
 
 }
