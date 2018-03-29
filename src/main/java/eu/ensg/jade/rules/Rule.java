@@ -128,7 +128,7 @@ public class Rule implements IRule{
 				
 				//First test for ramp, round about or "normal".
 				Boolean asRamp = isRamp(roadsTab,roadsBoolTab,intersect,size);
-				Boolean asRoundAbout = isRoundAbout(roadsTab,roadsBoolTab,intersect,size);
+				Boolean asRoundAbout = isRoundAbout(roadsTab);
 				
 				//Workflow following result
 				
@@ -136,13 +136,13 @@ public class Rule implements IRule{
 					addRampSigns(roadsTab,roadsBoolTab,intersect,size);
 				}
 				else if (asRoundAbout){
-					addRoundAbout(roadsTab,roadsBoolTab,size,scene);
+					addRoundAbout(roadsTab,roadsBoolTab,scene);
 				}
 				else {
 					//Checking Road importance for yield
 					
 					int intersectType = calcIntersectionType(roadsTab,size);
-					addMultiSigns(roadsTab,roadsBoolTab,intersect,size,intersectType, scene);
+					addMultiSigns(roadsTab,roadsBoolTab,intersectType, scene);
 				}
 				
 			}
@@ -482,10 +482,10 @@ public class Rule implements IRule{
 	 * 
 	 * @return boolean, true if the intersection is in a round about
 	 */
-	private boolean isRoundAbout(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Intersection intersect, int size){
-		//We go through the roads and see if there is at least one being a Round About.
+	private boolean isRoundAbout(LineRoad[] roadsTab){
+	//We go through the roads and see if there is at least one being a Round About.
 		for (LineRoad road : roadsTab){
-			if(road.getName().substring(0, 1)==("PL") || road.getName().substring(0, 3) == "RPT")
+			if(road.getName().substring(0, 2)==("PL") || road.getName().substring(0, 3) == "RPT")
 			{return true;}
 		}
 		return false;
@@ -500,6 +500,7 @@ public class Rule implements IRule{
 	 * @param size Intersection's size
 	 */
 	private void addRampSigns(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Intersection intersect, int size){
+		System.out.println("C'est une bretelle");
 		
 	}
 	
@@ -511,11 +512,12 @@ public class Rule implements IRule{
 	 * @param intersect the intersection considered
 	 * @param size Intersection's size
 	 */
-	private void addRoundAbout(LineRoad[] roadsTab, Boolean[] roadsBoolTab, int size, Scene scene){
-		for (int i = 0; i < size; i++){
+	private void addRoundAbout(LineRoad[] roadsTab, Boolean[] roadsBoolTab, Scene scene){
+		for (int i = 0; i < roadsTab.length; i++){
 			LineRoad road = roadsTab[i];
+
 			//We add yeild signs for all roads not on the round about
-			if (!(road.getName().substring(0, 1)==("PL") || road.getName().substring(0, 3) == "RPT")){
+			if (!(road.getName().substring(0, 2)==("PL") || road.getName().substring(0, 3) == "RPT")){
 				StreetFurniture lightRoad = addSigns(road, roadsBoolTab[i], "Models/RoasSings/otherSigns/Yield/Yield.scene");
 				addStreetFurniture(lightRoad, road, scene);
 			}
@@ -531,19 +533,20 @@ public class Rule implements IRule{
 	 * @return table of int, 1 for bigger, 0 for lesser importance, null if same importance.
 	 */
 	private int hasDiffImportance(LineRoad[] roadsTab, int size) {
+		// By order the greatest are 1, 2, 3, 4, 5
 		int greatest = Integer.parseInt(roadsTab[0].getImportance());
 		int lowest = Integer.parseInt(roadsTab[0].getImportance());
 
 		for (int i=0; i<size; i++){
-			if (greatest < Integer.parseInt(roadsTab[i].getImportance())){
+			if (greatest > Integer.parseInt(roadsTab[i].getImportance())){
 				greatest = Integer.parseInt(roadsTab[i].getImportance());
 			}
-			else if (lowest > Integer.parseInt(roadsTab[i].getImportance())){
+			else if (lowest < Integer.parseInt(roadsTab[i].getImportance())){
 				lowest = Integer.parseInt(roadsTab[i].getImportance());
 
 			}
 		}
-		return greatest - lowest;
+		return lowest - greatest;
 	}
 	
 	/**
@@ -572,11 +575,8 @@ public class Rule implements IRule{
 				}
 				return 1;
 			}
-			else if (diff == 1){
+			else if (diff >= 1){
 				return 3;
-			}
-			else if (diff > 1){
-				return 4;
 			}
 		}
 		return -1;
@@ -593,24 +593,119 @@ public class Rule implements IRule{
 	 * @param size Intersection's size
 	 * @param intersectType the type of the intersection
 	 */
-	private void addMultiSigns(LineRoad[] roadsTab, Boolean[] roadsBoolTab,
-												Intersection intersect,
-												int size, int intersectType, Scene scene) {
+	private void addMultiSigns(LineRoad[] roadsTab, Boolean[] roadsBoolTab, int intersectType, Scene scene) {
+		LineRoad lineRoad;
+		boolean roadBool;
+		int enter;
+		int greatest;
+		
 		switch (intersectType) {
+		
 		case 1:
 			
+			for(int i=0; i < roadsTab.length; i++){
+				lineRoad = (LineRoad) roadsTab[i];
+				roadBool =roadsBoolTab[i];
+				enter = isEntering(lineRoad, roadBool);
+				
+				if (enter == 1){
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.scene");
+					addStreetFurniture(streetFurniture, lineRoad, scene);
+					
+					StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene");
+					addStreetFurniture(streetFurniture2, lineRoad, scene);
+				
+				}
+				else if (enter == -1){
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene");
+					addStreetFurniture(streetFurniture, lineRoad, scene);
+				}
+				else if (enter == 0){
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene");
+					addStreetFurniture(streetFurniture, lineRoad, scene);
+				}
+			
+			}
 			break;
 		case 2:
+			
+			for(int i=0; i < roadsTab.length; i++){
+				lineRoad = (LineRoad) roadsTab[i];
+				roadBool =roadsBoolTab[i];
+				enter = isEntering(lineRoad, roadBool);
 				
+				if (enter == 1){
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.scene");
+					addStreetFurniture(streetFurniture, lineRoad, scene);
+					
+					StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/dangerSigns/IntersectionAhead/IntersectionAhead.scene");
+					addStreetFurniture(streetFurniture2, lineRoad, scene);
+				
+				}
+				else if (enter == -1){
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene");
+					addStreetFurniture(streetFurniture, lineRoad, scene);
+				}
+				else if (enter == 0){
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/dangerSigns/IntersectionAhead/IntersectionAhead.scene");
+					addStreetFurniture(streetFurniture, lineRoad, scene);
+				}	
+			}
 			break;
+
 		case 3:
 			
+			greatest = Integer.parseInt(roadsTab[0].getImportance());
+
+			for (int i=0; i<roadsTab.length; i++){
+				if (greatest > Integer.parseInt(roadsTab[i].getImportance())){
+					greatest = Integer.parseInt(roadsTab[i].getImportance());
+				}
+			}
+			for (int i=0; i<roadsTab.length; i++){
+				lineRoad = (LineRoad) roadsTab[i];
+				roadBool =roadsBoolTab[i];
+				enter = isEntering(lineRoad, roadBool);
+				
+				if (enter == 1){
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.scene");
+					addStreetFurniture(streetFurniture, lineRoad, scene);
+					
+					if (Integer.parseInt(lineRoad.getImportance()) - greatest == 1 ){
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Yield/Yield.scene");
+						addStreetFurniture(streetFurniture2, lineRoad, scene);
+					}
+					else if (Integer.parseInt(lineRoad.getImportance()) - greatest > 1){
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Stop/Stop.scene");
+						addStreetFurniture(streetFurniture2, lineRoad, scene);
+					
+					}
+				
+				}
+				else if (enter == -1){
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene");
+					addStreetFurniture(streetFurniture, lineRoad, scene);
+				}
+				else if (enter == 0){
+					if (Integer.parseInt(lineRoad.getImportance()) - greatest == 1 ){
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Yield/Yield.scene");
+						addStreetFurniture(streetFurniture2, lineRoad, scene);
+					}
+					else if (Integer.parseInt(lineRoad.getImportance()) - greatest > 1){
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Stop/Stop.scene");
+						addStreetFurniture(streetFurniture2, lineRoad, scene);
+					
+					}
+				}				
+			}
+			
 			break;
+			
 		default:
 			System.out.println("Intersection de mauvais type");
 			break;
 		}
-	}
 	
-
+	
+	}
 }
