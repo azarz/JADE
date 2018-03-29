@@ -264,9 +264,9 @@ public class Building extends WorldObject {
 				newVertexOffset += 3;
 			}
 		} catch (RuntimeException  e){
-			System.out.println("unable to create roof");
+			//System.out.println("unable to create roof");
 		} catch (StackOverflowError  e){
-			System.out.println("unable to create roof");
+			//System.out.println("unable to create roof");
 		}
 		
 		// Updating the offsets

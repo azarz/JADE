@@ -3,6 +3,8 @@ package eu.ensg.jade.scene;
 import java.io.IOException;
 import java.util.Map;
 
+import com.vividsolutions.jts.geom.Coordinate;
+
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
@@ -174,33 +176,42 @@ public class SceneBuilder {
 //		xmlWritter.updateConfig("rainCoefficient", "5");
 		
 		// Add flat ground
-		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
-		xmlWriter.addModel(grassPlane);
+//		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
+//		xmlWriter.addModel(grassPlane);
 		
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
 		driver.setMass(800);
-		driver.setTranslation(new double[]{0, 60, 0});
+		Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
+		driver.setTranslation(new double[]{coord.x, 90, coord.y});
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
-		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
-		xmlWriter.addModel(buildindModel);
+//		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
+//		xmlWriter.addModel(buildindModel);
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
 		xmlWriter.addModel(roadsModel);
 		
-		
+		int k = 0;
 		// Add street furniture
 		for(StreetFurniture sign : scene.getStreetFurniture()) {
+			k++;
 			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
-			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation(), 0});			
+			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation(), 0});
+			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
+			//streetFurnitureModel.setScale(new double[] {10,10,10});
 			xmlWriter.addModel(streetFurnitureModel);
+			
+			if (k>100){
+				break;
+			}
 		}
 		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);
+		ground.setVisible(false);
 		xmlWriter.addTerrain(ground);
 		
 		xmlWriter.createAllXml();
