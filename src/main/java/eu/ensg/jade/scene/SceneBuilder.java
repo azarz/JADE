@@ -183,7 +183,7 @@ public class SceneBuilder {
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
 		driver.setMass(800);
 		Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
-		driver.setTranslation(new double[]{coord.x, 90, coord.y});
+		driver.setTranslation(new double[]{coord.x - 2, 60, coord.y});
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
@@ -199,12 +199,12 @@ public class SceneBuilder {
 		for(StreetFurniture sign : scene.getStreetFurniture()) {
 			k++;
 			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
-			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation(), 0});
+			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
 			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
 			//streetFurnitureModel.setScale(new double[] {10,10,10});
 			xmlWriter.addModel(streetFurnitureModel);
 			
-			if (k>100){
+			if (k>5000){
 				break;
 			}
 		}

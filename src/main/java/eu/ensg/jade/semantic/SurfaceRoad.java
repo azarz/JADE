@@ -197,7 +197,6 @@ public class SurfaceRoad extends Road {
 				
 				// Setting the Z coordinate
 				seq.getCoordinate(i).z = JadeUtils.interpolatedDtmValue(xCoord, yCoord, dtm);
-				System.out.println(seq.getCoordinate(i).z);
 			}
 
 			@Override

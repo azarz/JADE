@@ -150,11 +150,20 @@ public class JadeUtils {
 	/**
 	 * 
 	 */
-	public static double roadAngle(LineRoad road){
+	public static double roadAngle(LineRoad road, int position){
 		
 		// We determine the ends of the roads
-		Coordinate ini = road.getGeom().getCoordinates()[0];
-		Coordinate end = road.getGeom().getCoordinates()[road.getGeom().getCoordinates().length-1];
+		Coordinate ini;
+		Coordinate end;
+		
+		if(position == 0){
+			ini = road.getGeom().getCoordinates()[0];
+			end = road.getGeom().getCoordinates()[1];
+		}
+		else{	
+			ini = road.getGeom().getCoordinates()[position];
+			end = road.getGeom().getCoordinates()[position-1];
+		}
 		
 		double theta = 0.0;
 		

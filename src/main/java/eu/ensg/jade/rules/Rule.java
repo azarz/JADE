@@ -61,136 +61,136 @@ public class Rule implements IRule{
 				addStreetFurniture(streetFurniture, road, scene);
 			}
 			
-			else if (intersect.getRoadId().size() == 2){
-				/*
-				 * => Narrow signs
-				 * => One-way street
-				 */
-				
-				// Roads recovery
-				LineRoad[] roadsTab = new LineRoad[2];
-				Boolean[] roadsBoolTab = new Boolean[2];
-				int k = 0;
-				
-				for (String road : intersect.getRoadId().keySet()){
-					roadsTab[k] = (LineRoad) roads.get(road);
-					roadsBoolTab[k] = intersect.getRoadId().get(road);
-					k++;
-				}
-				
-				// Narrow sign installation
-				int larger = widthComparison(roadsTab[0],roadsTab[1]);
-				
-				if ( larger != -1){
-					StreetFurniture streetFurniture = addSigns(roadsTab[larger],roadsBoolTab[larger],"Models/RoadSigns/dangerSigns/RoadNarrows/RoadNarrows.scene", scene);
-					addStreetFurniture(streetFurniture, roadsTab[larger], scene);
-				}
-				
-				// One-way sign installation
-				Map<Integer,Integer> sensMap = directionVariation(roadsTab,roadsBoolTab);
-				
-				if (sensMap != null){
-					
-					if(sensMap.containsKey(-1)){
-						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(-1)],roadsBoolTab[sensMap.get(-1)],"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", scene);
-						addStreetFurniture(streetFurniture, roadsTab[sensMap.get(-1)], scene);
-					}
-					
-					if(sensMap.containsKey(1)){
-						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(1)],roadsBoolTab[sensMap.get(1)],"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", scene);
-						addStreetFurniture(streetFurniture, roadsTab[sensMap.get(1)], scene);
-					}
-				}
-			}
-			
-			else if (intersect.getRoadId().size() == 3 || intersect.getRoadId().size() == 4){
-				/*
-				 * Si 3-4 => Test Bretelle
-				 *        => Test Rond point
-				 * 		  => Test de sens
-				 * 		  => Test d'importance
-				 * 		  => Test nombre de voies
-				 * 		  => Algo de placement de signalisation en fonction des résultats obtenus
-				 */
-				
-				int size = intersect.getRoadId().size();
-				
-				// Roads recuperation
-				LineRoad[] roadsTab = new LineRoad[size];
-				Boolean[] roadsBoolTab = new Boolean[size];
-				
-				int k = 0;
-				
-				for (String road : intersect.getRoadId().keySet()){
-					roadsTab[k] = (LineRoad) roads.get(road);
-					roadsBoolTab[k] = intersect.getRoadId().get(road);
-					k++;
-				}
-				
-				
-				//First test for ramp, round about or "normal".
-				Boolean asRamp = isRamp(roadsTab,roadsBoolTab,intersect,size);
-				Boolean asRoundAbout = isRoundAbout(roadsTab);
-				
-				//Workflow following result
-				
-				if(asRamp){
-					addRampSigns(roadsTab,roadsBoolTab,intersect,size);
-				}
-				else if (asRoundAbout){
-					addRoundAbout(roadsTab,roadsBoolTab,scene);
-				}
-				else {
-					//Checking Road importance for yield
-					
-					int intersectType = calcIntersectionType(roadsTab,size);
-					addMultiSigns(roadsTab,roadsBoolTab,intersectType, scene);
-				}
-				
-			}
-			else if (intersect.getRoadId().size() >= 5){
-				/*
-				 * - Si 5 ou plus 
-				 *        => Test de sens 
-				 *        => Cédez le passage et flèches bleu pour modéliser un rond point 
-				 */
-				
-				int size = intersect.getRoadId().size();
-				
-				// Roads recuperation
-
-				LineRoad lineRoad = new LineRoad(); 
-				boolean roadBool;
-				int enter = -100; 
-				
-				for (String road : intersect.getRoadId().keySet()){
-					lineRoad = (LineRoad) roads.get(road);
-					roadBool = intersect.getRoadId().get(road);
-					enter = isEntering(lineRoad, roadBool);
-					
-					if (enter == 1){
-						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", scene);
-						addStreetFurniture(streetFurniture, lineRoad, scene);
-						
-						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene", scene);
-						addStreetFurniture(streetFurniture2, lineRoad, scene);
-					
-					}
-					else if (enter == -1){
-						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", scene);
-						addStreetFurniture(streetFurniture, lineRoad, scene);
-					}
-					else if (enter == 0){
-						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene", scene);
-						addStreetFurniture(streetFurniture, lineRoad, scene);
-					}
-				}
-				
-				
-			}
-			else{
-				System.out.println("There is no road in this intersection ... ");
-			}
+//			else if (intersect.getRoadId().size() == 2){
+//				/*
+//				 * => Narrow signs
+//				 * => One-way street
+//				 */
+//				
+//				// Roads recovery
+//				LineRoad[] roadsTab = new LineRoad[2];
+//				Boolean[] roadsBoolTab = new Boolean[2];
+//				int k = 0;
+//				
+//				for (String road : intersect.getRoadId().keySet()){
+//					roadsTab[k] = (LineRoad) roads.get(road);
+//					roadsBoolTab[k] = intersect.getRoadId().get(road);
+//					k++;
+//				}
+//				
+//				// Narrow sign installation
+//				int larger = widthComparison(roadsTab[0],roadsTab[1]);
+//				
+//				if ( larger != -1){
+//					StreetFurniture streetFurniture = addSigns(roadsTab[larger],roadsBoolTab[larger],"Models/RoadSigns/dangerSigns/RoadNarrows/RoadNarrows.scene", scene);
+//					addStreetFurniture(streetFurniture, roadsTab[larger], scene);
+//				}
+//				
+//				// One-way sign installation
+//				Map<Integer,Integer> sensMap = directionVariation(roadsTab,roadsBoolTab);
+//				
+//				if (sensMap != null){
+//					
+//					if(sensMap.containsKey(-1)){
+//						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(-1)],roadsBoolTab[sensMap.get(-1)],"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", scene);
+//						addStreetFurniture(streetFurniture, roadsTab[sensMap.get(-1)], scene);
+//					}
+//					
+//					if(sensMap.containsKey(1)){
+//						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(1)],roadsBoolTab[sensMap.get(1)],"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", scene);
+//						addStreetFurniture(streetFurniture, roadsTab[sensMap.get(1)], scene);
+//					}
+//				}
+//			}
+//			
+//			else if (intersect.getRoadId().size() == 3 || intersect.getRoadId().size() == 4){
+//				/*
+//				 * Si 3-4 => Test Bretelle
+//				 *        => Test Rond point
+//				 * 		  => Test de sens
+//				 * 		  => Test d'importance
+//				 * 		  => Test nombre de voies
+//				 * 		  => Algo de placement de signalisation en fonction des résultats obtenus
+//				 */
+//				
+//				int size = intersect.getRoadId().size();
+//				
+//				// Roads recuperation
+//				LineRoad[] roadsTab = new LineRoad[size];
+//				Boolean[] roadsBoolTab = new Boolean[size];
+//				
+//				int k = 0;
+//				
+//				for (String road : intersect.getRoadId().keySet()){
+//					roadsTab[k] = (LineRoad) roads.get(road);
+//					roadsBoolTab[k] = intersect.getRoadId().get(road);
+//					k++;
+//				}
+//				
+//				
+//				//First test for ramp, round about or "normal".
+//				Boolean asRamp = isRamp(roadsTab,roadsBoolTab,intersect,size);
+//				Boolean asRoundAbout = isRoundAbout(roadsTab);
+//				
+//				//Workflow following result
+//				
+//				if(asRamp){
+//					addRampSigns(roadsTab,roadsBoolTab,intersect,size);
+//				}
+//				else if (asRoundAbout){
+//					addRoundAbout(roadsTab,roadsBoolTab,scene);
+//				}
+//				else {
+//					//Checking Road importance for yield
+//					
+//					int intersectType = calcIntersectionType(roadsTab,size);
+//					addMultiSigns(roadsTab,roadsBoolTab,intersectType, scene);
+//				}
+//				
+//			}
+//			else if (intersect.getRoadId().size() >= 5){
+//				/*
+//				 * - Si 5 ou plus 
+//				 *        => Test de sens 
+//				 *        => Cédez le passage et flèches bleu pour modéliser un rond point 
+//				 */
+//				
+//				int size = intersect.getRoadId().size();
+//				
+//				// Roads recuperation
+//
+//				LineRoad lineRoad = new LineRoad(); 
+//				boolean roadBool;
+//				int enter = -100; 
+//				
+//				for (String road : intersect.getRoadId().keySet()){
+//					lineRoad = (LineRoad) roads.get(road);
+//					roadBool = intersect.getRoadId().get(road);
+//					enter = isEntering(lineRoad, roadBool);
+//					
+//					if (enter == 1){
+//						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", scene);
+//						addStreetFurniture(streetFurniture, lineRoad, scene);
+//						
+//						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene", scene);
+//						addStreetFurniture(streetFurniture2, lineRoad, scene);
+//					
+//					}
+//					else if (enter == -1){
+//						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", scene);
+//						addStreetFurniture(streetFurniture, lineRoad, scene);
+//					}
+//					else if (enter == 0){
+//						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene", scene);
+//						addStreetFurniture(streetFurniture, lineRoad, scene);
+//					}
+//				}
+//				
+//				
+//			}
+//			else{
+//				System.out.println("There is no road in this intersection ... ");
+//			}
 		}
 	}
 	
@@ -301,16 +301,16 @@ public class Rule implements IRule{
 		double d = 5; // 5 meters after the beginning of the road
 		double D = road.getWidth()/2 + 0.7; // 0.70 meters after the border of the road
 
-		double theta = JadeUtils.roadAngle(road); // Angle between road and horizontal line, in counter clockwise
+		double theta = JadeUtils.roadAngle(road,position); // Angle between road and horizontal line, in counter clockwise
 		double rotation = 0;
 		
-		if (position != 0){ // if the end of the road is on the intersection
+		if (position != 0 && !folder.equals("Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.scene")){ // if the end of the road is on the intersection
 			theta = theta - Math.PI;
 		}
-		
+		System.out.println(theta);
 		// Determination of the position
 		if(left){
-			rotation = theta;
+			rotation =  Math.PI + theta;
 
 			// Up-Right quarter
 			if (0<= theta && theta <= Math.PI/2){
@@ -334,30 +334,36 @@ public class Rule implements IRule{
 			}
 		}
 		else{
-			rotation = Math.PI + theta;
+			rotation = theta;
 
 			// Up-Right quarter
 			if (0<= theta && theta <= Math.PI/2){
 				newX = x + d*Math.cos(theta) + D*Math.sin(theta);
 				newZ = y + d*Math.sin(theta) - D*Math.cos(theta);
+						
+				
 			}
 			// Down-Right quarter
 			else if (theta> 3*Math.PI/2 && theta <= 2*Math.PI){
 				newX = x + d*Math.cos(2*Math.PI - theta) - D*Math.sin(2*Math.PI - theta);
 				newZ = y - d*Math.sin(2*Math.PI - theta) - D*Math.cos(2*Math.PI - theta);
+						
 			}
 			// Up-Left quarter
 			else if (theta > Math.PI/2 && theta <= Math.PI){
 				newX = x - d*Math.cos(Math.PI - theta) + D*Math.sin(Math.PI - theta);
 				newZ = y + d*Math.sin(Math.PI - theta) + D*Math.cos(Math.PI - theta);
+						
+						
 			}
 			// Down-Left quarter
 			else{
 				newX = x - d*Math.cos(theta - Math.PI) - D*Math.sin(theta - Math.PI);
 				newZ = y - d*Math.sin(theta - Math.PI) + D*Math.cos(theta - Math.PI);
+						
+						
 			}
 		}
-		
 		// Be careful y is the vertical axis in OpenDS 
 		//Coordinate newCoord = new Coordinate(newX - centroid.x, newZ - centroid.y, road.getZ_ini());
 		double newY = JadeUtils.interpolatedDtmValue(newX, newZ, scene.getDtm());
@@ -384,18 +390,29 @@ public class Rule implements IRule{
 		// We determine if the sign has to be on the right side or the left side of the road 
 		boolean left = true;
 		
-		if (folder == deadEndStreet || folder == oneWayStreet || folder == doNotEnter){
+		if (folder.equals(oneWayStreet) || folder.equals(doNotEnter)){
 			left = false;
 		}
 		
 		// We create the sign 
-		if (init){
-			// It is possible to return the sign angle in street furniture
-			return signPosition(road, left, 0, folder, scene);
-				
+		if (!folder.equals(deadEndStreet)){
+			if (init){
+				// It is possible to return the sign angle in street furniture
+				return signPosition(road, left, 0, folder, scene);
+					
+			}
+			else{
+				return signPosition(road, left, road.getGeom().getCoordinates().length-1, folder, scene);
+			}
 		}
 		else{
-			return signPosition(road, left, road.getGeom().getCoordinates().length-1, folder, scene);
+			if (init){
+				// It is possible to return the sign angle in street furniture
+				return signPosition(road, left, road.getGeom().getCoordinates().length-1, folder, scene);
+			}
+			else{
+				return signPosition(road, left, 0, folder, scene);
+			}
 		}
 	}
 	
