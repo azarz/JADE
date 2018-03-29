@@ -25,7 +25,7 @@ public interface IRule {
 	 * 
 	 * @param interColl the intersections presents in RGE data
 	 */
-	public void intersectSigns(IntersectionColl interColl, Scene scene);
+	public void intersectSigns(Scene scene);
 	
 	/**
 	 * Puts signs on roads

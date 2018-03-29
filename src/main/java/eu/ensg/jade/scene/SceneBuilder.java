@@ -10,6 +10,7 @@ import eu.ensg.jade.input.ReaderFactory;
 import eu.ensg.jade.input.ReaderFactory.READER_METHOD;
 import eu.ensg.jade.output.OBJWriter;
 import eu.ensg.jade.output.XMLWriter;
+import eu.ensg.jade.rules.Rule;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
@@ -22,11 +23,16 @@ import eu.ensg.jade.xml.XMLTerrain;
 public class SceneBuilder {
 	
 // ========================== ATTRIBUTES ===========================
-	
+	/**
+	 * 
+	 */
 	private Scene scene;
 	
 // ========================== CONSTRUCTORS =========================	
 	
+	/**
+	 * 
+	 */
 	public SceneBuilder() {
 		this.scene = new Scene();
 	}
@@ -141,6 +147,8 @@ public class SceneBuilder {
 		DTM dtm = scene.getDtm();
 		
 		// TODO: add vegetation & street furniture
+		Rule ruleObject = new Rule();
+		ruleObject.intersectSigns(scene);
 		
 		for (Building building : scene.getBuildings()) {
 			building.setZfromDTM(dtm);
@@ -186,10 +194,9 @@ public class SceneBuilder {
 		
 		// Add street furniture
 		for(StreetFurniture sign : scene.getStreetFurniture()) {
+			System.out.println(sign.getPath());
 			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
-			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation(), 0});
-			streetFurnitureModel.setTranslation(new double[] {0, 0, 0});
-			
+			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation(), 0});			
 			xmlWriter.addModel(streetFurnitureModel);
 		}
 		

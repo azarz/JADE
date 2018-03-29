@@ -1,5 +1,6 @@
 package eu.ensg.jade.semantic;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.vividsolutions.jts.geom.Coordinate;
@@ -55,6 +56,7 @@ public class LineRoad extends Road{
 	public LineRoad(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, String importance, String number, String name, MultiLineString geometry) {
 		super(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, name);
 		this.geometry = geometry;
+		this.listSF = new ArrayList<>();
 	}
 	
 	public LineRoad(){

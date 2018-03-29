@@ -22,7 +22,7 @@ import eu.ensg.jade.utils.JadeUtils;
  */
 
 public class Rule implements IRule{
-
+	
 // ========================== METHODS ==============================
 
 // ------------------------- INTERFACE -----------------------------
@@ -35,10 +35,11 @@ public class Rule implements IRule{
 	 * @param interColl the intersections existing in RGE data
 	 * @param scene the object containing all the elements of the scene
 	 */
-	public void intersectSigns(IntersectionColl interColl, Scene scene){
+	public void intersectSigns(Scene scene){
 		
 		// We get thelist of roads existing in the scene
 		Map <String,Road> roads = scene.getRoads();
+		IntersectionColl interColl = scene.getCollIntersect();
 		
 		// We go through all the intersections
 		for (Intersection intersect : interColl.getMapIntersection().values()){
@@ -80,7 +81,7 @@ public class Rule implements IRule{
 				int larger = widthComparison(roadsTab[0],roadsTab[1]);
 				
 				if ( larger != -1){
-					StreetFurniture streetFurniture = addSigns(roadsTab[larger],roadsBoolTab[larger],"Models/RoadSigns/dangerSigns/RoadNarrows/roadNarrows.scene");
+					StreetFurniture streetFurniture = addSigns(roadsTab[larger],roadsBoolTab[larger],"Models/RoadSigns/dangerSigns/RoadNarrows/RoadNarrows.scene");
 					addStreetFurniture(streetFurniture, roadsTab[larger], scene);
 				}
 				
@@ -95,7 +96,7 @@ public class Rule implements IRule{
 					}
 					
 					if(sensMap.containsKey(1)){
-						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(1)],roadsBoolTab[sensMap.get(1)],"Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.scene");
+						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(1)],roadsBoolTab[sensMap.get(1)],"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene");
 						addStreetFurniture(streetFurniture, roadsTab[sensMap.get(1)], scene);
 					}
 				}
@@ -167,7 +168,7 @@ public class Rule implements IRule{
 					enter = isEntering(lineRoad, roadBool);
 					
 					if (enter == 1){
-						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.scene");
+						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene");
 						addStreetFurniture(streetFurniture, lineRoad, scene);
 						
 						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene");
@@ -258,7 +259,7 @@ public class Rule implements IRule{
 		boolean alreadyOn = false;
 		
 		if (streetFurniture != null){
-			if (road.getSF().size() != 0){
+			if (!road.getSF().isEmpty()){
 				for (int i=0; i < road.getSF().size(); i++){
 					if (streetFurniture.getCoord().equals2D(road.getSF().get(i).getCoord())){
 						alreadyOn = true;
@@ -375,7 +376,7 @@ public class Rule implements IRule{
 		// The signs which has to be on the right of the road 
 		String deadEndStreet = "Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.scene";
 		String oneWayStreet = "Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene";
-		String doNotEnter = "Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.scene";
+		String doNotEnter = "Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene";
 		
 		// We determine if the sign has to be on the right side or the left side of the road 
 		boolean left = true;
@@ -482,8 +483,10 @@ public class Rule implements IRule{
 	 */
 	private boolean isRoundAbout(LineRoad[] roadsTab){
 		for (LineRoad road : roadsTab){
-			if(road.getName().substring(0, 2)==("PL") || road.getName().substring(0, 3) == "RPT")
-			{return true;}
+			if (road.getName().length()>2){
+				if(road.getName().substring(0, 2)==("PL") || road.getName().substring(0, 3) == "RPT")
+				{return true;}
+			}
 		}
 		return false;
 	}
@@ -530,10 +533,14 @@ public class Rule implements IRule{
 	 */
 	private int hasDiffImportance(LineRoad[] roadsTab, int size) {
 		// By order the greatest are 1, 2, 3, 4, 5
-		int greatest = Integer.parseInt(roadsTab[0].getImportance());
-		int lowest = Integer.parseInt(roadsTab[0].getImportance());
+		int greatest = 300;
+		int lowest = -1;
 
 		for (int i=0; i<size; i++){
+			if (roadsTab[i].getImportance().equals("NC") || roadsTab[i].getImportance().equals("NR")){
+				return -1;
+			}
+			
 			if (greatest > Integer.parseInt(roadsTab[i].getImportance())){
 				greatest = Integer.parseInt(roadsTab[i].getImportance());
 			}
@@ -559,20 +566,22 @@ public class Rule implements IRule{
 	private int calcIntersectionType(LineRoad[] roadsTab, int size) {
 		int diff = hasDiffImportance(roadsTab, size);
 		
-		for(int i=0; i < size; i++){
-			if ((roadsTab[i].getDirection() == "Double" && roadsTab[i].getLaneNumber() >= 3) 
-					|| ((roadsTab[i].getDirection() == "Inverse" || roadsTab[i].getDirection() == "Direct") && roadsTab[i].getLaneNumber() >= 2)
-					){
-				return 1;
-			}
-			else if(diff == 0){
-				if (roadsTab[i].getSpeed() != ""){
-					return 2;
+		if (diff != -1){
+			for(int i=0; i < size; i++){
+				if ((roadsTab[i].getDirection() == "Double" && roadsTab[i].getLaneNumber() >= 3) 
+						|| ((roadsTab[i].getDirection() == "Inverse" || roadsTab[i].getDirection() == "Direct") && roadsTab[i].getLaneNumber() >= 2)
+						){
+					return 1;
 				}
-				return 1;
-			}
-			else if (diff >= 1){
-				return 3;
+				else if(diff == 0){
+					if (roadsTab[i].getSpeed() != ""){
+						return 2;
+					}
+					return 1;
+				}
+				else if (diff >= 1){
+					return 3;
+				}
 			}
 		}
 		return -1;
@@ -605,7 +614,7 @@ public class Rule implements IRule{
 				enter = isEntering(lineRoad, roadBool);
 				
 				if (enter == 1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.scene");
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene");
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 					
 					StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene");
@@ -631,7 +640,7 @@ public class Rule implements IRule{
 				enter = isEntering(lineRoad, roadBool);
 				
 				if (enter == 1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.scene");
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene");
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 					
 					StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/dangerSigns/IntersectionAhead/IntersectionAhead.scene");
@@ -664,7 +673,7 @@ public class Rule implements IRule{
 				enter = isEntering(lineRoad, roadBool);
 				
 				if (enter == 1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/Do-not-enter.scene");
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene");
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 					
 					if (Integer.parseInt(lineRoad.getImportance()) - greatest == 1 ){
