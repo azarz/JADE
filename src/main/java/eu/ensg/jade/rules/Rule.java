@@ -295,7 +295,7 @@ public class Rule implements IRule{
 		double y = coord[position].y;
 		
 		double newX;
-		double newZ;
+		double newY;
 		
 		double d = 5; // 5 meters after the beginning of the road
 		double D = road.getWidth()/2 + 0.7; // 0.70 meters after the border of the road
@@ -305,68 +305,68 @@ public class Rule implements IRule{
 		
 		if (position != 0 && !folder.equals("Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.scene")){ // if the end of the road is on the intersection
 			theta = theta - Math.PI;
+			System.out.println("blabla");
 		}
-		System.out.println(theta);
+		
 		// Determination of the position
 		if(left){
-			rotation =  Math.PI + theta;
-
-			// Up-Right quarter
-			if (0<= theta && theta <= Math.PI/2){
-				newX = x + d*Math.cos(theta) - D*Math.sin(theta);
-				newZ = y + d*Math.sin(theta) + D*Math.cos(theta);
-			}
-			// Down-Right quarter
-			else if (theta> 3*Math.PI/2 && theta <= 2*Math.PI){
-				newX = x + d*Math.cos(2*Math.PI - theta) + D*Math.sin(2*Math.PI - theta);
-				newZ = y - d*Math.sin(2*Math.PI - theta) + D*Math.cos(2*Math.PI - theta);
-			}
-			// Up-Left quarter
-			else if (theta > Math.PI/2 && theta <= Math.PI){
-				newX = x - d*Math.cos(Math.PI - theta) - D*Math.sin(Math.PI - theta);
-				newZ = y + d*Math.sin(Math.PI - theta) - D*Math.cos(Math.PI - theta);
-			}
-			// Down-Left quarter
-			else{
-				newX = x - d*Math.cos(theta - Math.PI) + D*Math.sin(theta - Math.PI);
-				newZ = y - d*Math.sin(theta - Math.PI) - D*Math.cos(theta - Math.PI);
-			}
-		}
-		else{
 			rotation = theta;
 
 			// Up-Right quarter
 			if (0<= theta && theta <= Math.PI/2){
-				newX = x + d*Math.cos(theta) + D*Math.sin(theta);
-				newZ = y + d*Math.sin(theta) - D*Math.cos(theta);
-						
+				newX = x + d*Math.cos(theta) - D*Math.sin(theta);
+				newY = y + d*Math.sin(theta) + D*Math.cos(theta);
+			}
+			// Down-Right quarter
+			else if (theta> 3*Math.PI/2 && theta <= 2*Math.PI){
+				newX = x + d*Math.cos(2*Math.PI - theta) + D*Math.sin(2*Math.PI - theta);
+				newY = y - d*Math.sin(2*Math.PI - theta) + D*Math.cos(2*Math.PI - theta);
+			}
+			// Up-Left quarter
+			else if (theta > Math.PI/2 && theta <= Math.PI){
+				newX = x - d*Math.cos(Math.PI - theta) - D*Math.sin(Math.PI - theta);
+				newY = y + d*Math.sin(Math.PI - theta) - D*Math.cos(Math.PI - theta);
+			}
+			// Down-Left quarter
+			else{
+				newX = x - d*Math.cos(theta - Math.PI) + D*Math.sin(theta - Math.PI);
+				newY = y - d*Math.sin(theta - Math.PI) - D*Math.cos(theta - Math.PI);
+			}
+		}
+		else{
+			rotation =  - Math.PI/2 + theta;
+
+			// Up-Right quarter
+			if (0<= theta && theta <= Math.PI/2){
+				newX = x + d*Math.sin(theta) - D*Math.cos(theta);
+				newY = y - d*Math.cos(theta) - D*Math.sin(theta);
 				
 			}
 			// Down-Right quarter
 			else if (theta> 3*Math.PI/2 && theta <= 2*Math.PI){
-				newX = x + d*Math.cos(2*Math.PI - theta) - D*Math.sin(2*Math.PI - theta);
-				newZ = y - d*Math.sin(2*Math.PI - theta) - D*Math.cos(2*Math.PI - theta);
-						
+				newX = x - d*Math.sin(2*Math.PI - theta) - D*Math.cos(2*Math.PI - theta);
+				newY = y - d*Math.cos(2*Math.PI - theta) + D*Math.sin(2*Math.PI - theta);
+
 			}
 			// Up-Left quarter
 			else if (theta > Math.PI/2 && theta <= Math.PI){
-				newX = x - d*Math.cos(Math.PI - theta) + D*Math.sin(Math.PI - theta);
-				newZ = y + d*Math.sin(Math.PI - theta) + D*Math.cos(Math.PI - theta);
-						
+				newX = x + d*Math.sin(Math.PI - theta) + D*Math.cos(Math.PI - theta);
+				newY = y + d*Math.cos(Math.PI - theta) - D*Math.sin(Math.PI - theta);
+		
 						
 			}
 			// Down-Left quarter
 			else{
-				newX = x - d*Math.cos(theta - Math.PI) - D*Math.sin(theta - Math.PI);
-				newZ = y - d*Math.sin(theta - Math.PI) + D*Math.cos(theta - Math.PI);
-						
+				newX = x - d*Math.sin(theta - Math.PI) + D*Math.cos(theta - Math.PI);
+				newY = y + d*Math.cos(theta - Math.PI) + D*Math.sin(theta - Math.PI);
+		
 						
 			}
 		}
 		// Be careful y is the vertical axis in OpenDS 
 		//Coordinate newCoord = new Coordinate(newX - centroid.x, newZ - centroid.y, road.getZ_ini());
-		double newY = JadeUtils.interpolatedDtmValue(newX, newZ, scene.getDtm());
-		Coordinate newCoord = new Coordinate(newX - scene.getBuildingCentroid().x, -1*(newZ - scene.getBuildingCentroid().y), newY);
+		double newZ = JadeUtils.interpolatedDtmValue(newX, newY, scene.getDtm());
+		Coordinate newCoord = new Coordinate(newX - scene.getBuildingCentroid().x, -1*(newY - scene.getBuildingCentroid().y), newZ);
 		return new StreetFurniture(folder, newCoord, rotation);
 	}
 	
@@ -389,7 +389,7 @@ public class Rule implements IRule{
 		// We determine if the sign has to be on the right side or the left side of the road 
 		boolean left = true;
 		
-		if (folder.equals(oneWayStreet) || folder.equals(doNotEnter)){
+		if (folder.equals(deadEndStreet) || folder.equals(oneWayStreet) || folder.equals(doNotEnter)){
 			left = false;
 		}
 		
@@ -597,7 +597,7 @@ public class Rule implements IRule{
 					return 1;
 				}
 				else if(diff == 0){
-					if (roadsTab[i].getSpeed() != ""){
+					if (roadsTab[i].getSpeed() != "" && size != 3){
 						return 2;
 					}
 					return 1;

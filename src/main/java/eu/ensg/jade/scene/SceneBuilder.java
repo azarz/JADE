@@ -49,6 +49,7 @@ public class SceneBuilder {
 	public static void main(String[] args) {
 		String buildingLayer = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
 		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
+		//String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad.shp";
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
 		String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
 		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";

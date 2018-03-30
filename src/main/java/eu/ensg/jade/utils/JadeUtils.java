@@ -161,24 +161,28 @@ public class JadeUtils {
 		double theta = 0.0;
 		
 		// We determine the angle from horizontal in trigo order
-	    if (ini.x >= end.x){
+	    if (ini.y >= end.y){
 			//Top right
-	        if(ini.y >= end.y){
-	            theta = Math.asin( (ini.y - end.y)/ini.distance(end) );
+	        if(ini.x <= end.x){
+	            theta = Math.asin( (end.x - ini.x)/ini.distance(end) );
+
 	        }
 	        //bottom right
 	        else{
-	            theta = 2*Math.PI + Math.asin( (ini.y - end.y)/ini.distance(end) );
+	            theta = 2*Math.PI - Math.asin( (ini.x - end.x)/ini.distance(end) );
+
 	        }
 	    }
 	    else {
 			//top left
-	        if(ini.y >= end.y){
-	           theta = Math.PI - Math.asin( (ini.y-end.y)/ini.distance(end) );
+	        if(ini.x <= end.x){
+	           theta = Math.PI - Math.asin( (end.x-ini.x)/ini.distance(end) );
+
 	        }
 	        //bottom left
 	        else{
-	            theta = Math.PI - Math.asin( (ini.y-end.y)/ini.distance(end) );
+	            theta = Math.PI + Math.asin( (ini.x-end.x)/ini.distance(end) );
+
 	        }
 	    }
 		
