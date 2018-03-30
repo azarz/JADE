@@ -1,6 +1,7 @@
 package eu.ensg.jade.scene;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.vividsolutions.jts.geom.Coordinate;
@@ -84,6 +85,23 @@ public class SceneBuilder {
 	
 	public void buildFromRGE(String rge) {
 		// TODO: implement RGE loading
+		Map<String,String> connectionParameters = new HashMap<String,String>();
+		
+		String getCapabilities = "http://localhost:8081/geoserver/wfs?REQUEST=GetCapabilities&version=1.0.0";
+		connectionParameters.put("WFSDataStoreFactory:GET_CAPABILITIES_URL", getCapabilities);
+		
+//		WFSDataStoreFactory  dsf = new WFSDataStoreFactory();
+//		try {
+//		    WFSDataStore dataStore = dsf.createDataStore(connectionParameters);
+//		    SimpleFeatureSource source = dataStore.getFeatureSource("ali:Manategh_Tehran");
+//		    SimpleFeatureCollection fc = source.getFeatures();
+//		    while(fc.features().hasNext()){
+//		        SimpleFeature sf = fc.features().next();
+//		        System.out.println(sf.getAttribute("myname"));
+//		    }
+//		} catch (IOException ex) {
+//		    ex.printStackTrace();
+//		}
 		
 		build(scene);
 	}
