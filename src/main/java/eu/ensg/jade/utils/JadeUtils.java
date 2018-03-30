@@ -185,15 +185,16 @@ public class JadeUtils {
 		return theta; 
 	}
 	
-	public static double lineAngle(Coordinate p1, Coordinate p2) {
-		double dx = p2.x - p1.x;
-		double dy = p2.y - p1.y;
-		
-		double dist = Math.sqrt(dx*dx + dy*dy);
-		dx /= dist;
-		dy /= dist;
-		
-		return Math.atan(dy / dx);
+	/**
+	 * Linear Interpolation of x between a and b
+	 * 
+	 * @param a Lower limit
+	 * @param b Upper Limit
+	 * @param x Value to interpolate
+	 * @return
+	 */
+	public static double lerp(double a, double b, double x) {
+		return (1-x)*a + x*b;
 	}
 
 }
