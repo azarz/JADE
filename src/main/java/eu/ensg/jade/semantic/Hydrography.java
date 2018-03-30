@@ -158,7 +158,7 @@ public class Hydrography extends WorldObject {
 					// Adding the vertex coords as in a obj file
 					for (int i = 0; i < coords.length - 1; i++) {
 						vertexCoords += "v " + (coords[i].x - xOffset) + " "
-										     + coords[i].z + " "
+										     + z_average + " "
 										     + -1*(coords[i].y - yOffset) + "\n";
 						
 						faces += " " + (i + vertexIndexOffset + newVertexOffset) + "//" + normalIndexOffset;
