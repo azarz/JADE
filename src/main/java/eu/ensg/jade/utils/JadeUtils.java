@@ -13,7 +13,6 @@ import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.GeometryFactory;
 
-import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
 
 /**
