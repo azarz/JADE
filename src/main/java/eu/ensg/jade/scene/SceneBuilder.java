@@ -2,9 +2,28 @@ package eu.ensg.jade.scene;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.geotools.data.DataStore;
+import org.geotools.data.DataStoreFinder;
+import org.geotools.data.DefaultQuery;
+import org.geotools.data.FeatureSource;
+import org.geotools.data.Query;
+import org.geotools.data.wfs.WFSDataStoreFactory;
+import org.geotools.factory.CommonFactoryFinder;
+import org.geotools.factory.GeoTools;
+import org.geotools.feature.FeatureCollection;
+import org.geotools.geometry.jts.JTS;
+import org.geotools.geometry.jts.ReferencedEnvelope;
+import org.opengis.feature.Feature;
+import org.opengis.feature.simple.SimpleFeature;
+import org.opengis.feature.simple.SimpleFeatureType;
+import org.opengis.filter.FilterFactory2;
+import org.opengis.filter.spatial.Intersects;
+
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Envelope;
 
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.input.InputRGE;
@@ -17,7 +36,6 @@ import eu.ensg.jade.rules.Rule;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
-import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.xml.XMLGroundModel;
 import eu.ensg.jade.xml.XMLModel;
@@ -85,22 +103,45 @@ public class SceneBuilder {
 	
 	public void buildFromRGE(String rge) {
 		// TODO: implement RGE loading
-		Map<String,String> connectionParameters = new HashMap<String,String>();
+		String getCapabilities = "http://localhost:8080/geoserver/wfs?REQUEST=GetCapabilities";
+
+		Map<String, String> connectionParameters = new HashMap<String, String>();
+		connectionParameters.put("WFSDataStoreFactory:GET_CAPABILITIES_URL", getCapabilities );
 		
-		String getCapabilities = "http://localhost:8081/geoserver/wfs?REQUEST=GetCapabilities&version=1.0.0";
-		connectionParameters.put("WFSDataStoreFactory:GET_CAPABILITIES_URL", getCapabilities);
+		// Step 2 - connection	
+		DataStore data = DataStoreFinder.getDataStore( connectionParameters );
 		
-//		WFSDataStoreFactory  dsf = new WFSDataStoreFactory();
+		// Step 3 - discovery
+		String typeNames[] = data.getTypeNames();
+		String typeName = typeNames[0];
+		SimpleFeatureType schema = data.getSchema( typeName );
+
+		// Step 4 - target
+		FeatureSource<SimpleFeatureType, SimpleFeature> source = data.getFeatureSource( typeName );
+		System.out.println( "Metadata Bounds:"+ source.getBounds() );
+
+		// Step 5 - query
+//		String geomName = schema.getDefaultGeometry().getLocalName();
+//		Envelope bbox = new Envelope( -100.0, -70, 25, 40 );
+//
+//		FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2( GeoTools.getDefaultHints() );
+//		Object polygon = JTS.toGeometry( bbox );
+//		Intersects filter = ff.intersects( ff.property( geomName ), ff.literal( polygon ) );
+//
+//		Query query = new DefaultQuery( typeName, filter, new String[]{ geomName } );
+//		FeatureCollection<SimpleFeatureType, SimpleFeature> features = source.getFeatures( query );
+//
+//		ReferencedEnvelope bounds = new ReferencedEnvelope();
+//		Iterator<SimpleFeature> iterator = ((List<Building>) features).iterator();
 //		try {
-//		    WFSDataStore dataStore = dsf.createDataStore(connectionParameters);
-//		    SimpleFeatureSource source = dataStore.getFeatureSource("ali:Manategh_Tehran");
-//		    SimpleFeatureCollection fc = source.getFeatures();
-//		    while(fc.features().hasNext()){
-//		        SimpleFeature sf = fc.features().next();
-//		        System.out.println(sf.getAttribute("myname"));
-//		    }
-//		} catch (IOException ex) {
-//		    ex.printStackTrace();
+//		    while( iterator.hasNext() ){
+//		        Feature feature = (Feature) iterator.next();
+//		    bounds.include( feature.getBounds() );
+//		}
+//		    System.out.println( "Calculated Bounds:"+ bounds );
+//		}
+//		finally {
+//		    features.close( iterator );
 //		}
 		
 		build(scene);

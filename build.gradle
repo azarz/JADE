@@ -20,8 +20,8 @@ dependencies {
   testCompile group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
   
   compile "org.geotools:gt-shapefile:19.0"
-  compile "org.geotools:gt-wfs:16.5"
-  compile "org.geotools:gt-wms:19.0"
+  compile "org.geotools:gt-wfs-ng:19.0"
+  //compile "org.geotools:gt-wms:19.0"
   
   compile "org.orbisgis:poly2tri-core:0.1.1"  
   compile fileTree(dir: 'lib', include: '**/*.jar')
