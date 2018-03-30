@@ -9,6 +9,8 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import eu.ensg.jade.utils.JadeUtils;
+
 /**
  * DTM is the class implementing a DTM
  * 
@@ -99,8 +101,8 @@ public class DTM {
 	}
 	
 	/**
-	 * Gets the number of colons
-	 * @return number of colons
+	 * Gets the number of columns
+	 * @return number of columns
 	 */
 	public int getNcols() {
 		return ncols;
@@ -186,6 +188,55 @@ public class DTM {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+	}
+	
+	public double getHeightAtPoint(double x, double y){
+		double columnFraction = (x - xllcorner) / cellsize;
+		double RowFraction = nrows - ((y - yllcorner) / cellsize);
+		
+		int column = (int) columnFraction;
+		int row = (int) RowFraction;
+		
+		columnFraction -= column;
+		RowFraction -= row;
+		
+		double northWestValue = mockJMonkeySmooth(column, row, 0.8, 1);
+		double northEastValue = mockJMonkeySmooth(column+1, row, 0.8, 1);
+		double southWestValue = mockJMonkeySmooth(column, row+1, 0.8, 1);
+		double southEastValue = mockJMonkeySmooth(column+1, row+1, 0.8, 1);
+//		double northWestValue = tabDTM[row][column];
+//		double northEastValue = tabDTM[row][column+1];
+//		double southWestValue = tabDTM[row+1][column];
+//		double southEastValue = tabDTM[row+1][column+1];
+		
+		
+		return JadeUtils.lerp(
+				JadeUtils.lerp(northWestValue, northEastValue, columnFraction),
+				JadeUtils.lerp(southWestValue, southEastValue, columnFraction),
+				RowFraction) + 0.01;
+	}
+	
+	
+	private double mockJMonkeySmooth(int x, int y, double np, int radius) {
+		if (np < 0 || np > 1) {
+			np = 0.8;
+		}
+		if (radius == 0){
+			radius = 1;
+		}
+		
+		int number = 0;
+		double average = 0;
+		for (int rx = -radius; rx <= radius; rx++) {
+			for (int ry = -radius; ry <= radius; ry++) {
+				if(x+rx >= 0 && x+rx < ncols && y+ry >= 0 && y+ry < nrows) {
+					number++;
+					average += tabDTM[y+ry][x+rx];
+				}
+			}
+		}
+		average /= number;
+		return JadeUtils.lerp(tabDTM[y][x], average, np);
 	}
 
 }

@@ -99,6 +99,7 @@ public class SceneBuilder {
 		
 		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);		
 		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
+		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
 		
 		scene.getDtm().toPNG("assets/RGE/paris.png");
 		
@@ -195,28 +196,33 @@ public class SceneBuilder {
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
 		xmlWriter.addModel(roadsModel);
 		
+		// Add water
+		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
+		xmlWriter.addModel(waterModel);
+		
 		int k = 0;
 		// Add street furniture
-		for(StreetFurniture sign : scene.getStreetFurniture()) {
-			k++;
-			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
-			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
-			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
-			//streetFurnitureModel.setScale(new double[] {10,10,10});
-			xmlWriter.addModel(streetFurnitureModel);
-			
-			if (k>5000){
-				break;
-			}
-		}
+//		for(StreetFurniture sign : scene.getStreetFurniture()) {
+//			k++;
+//			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
+//			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
+//			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
+//			//streetFurnitureModel.setScale(new double[] {10,10,10});
+//			xmlWriter.addModel(streetFurnitureModel);
+//			
+//			if (k>5000){
+//				break;
+//			}
+//		}
 		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);
-		ground.setVisible(false);
+//		ground.setVisible(false);
 		xmlWriter.addTerrain(ground);
 		
 		xmlWriter.createAllXml();
 	}
+	
 	
 	private XMLGroundModel getGroundModelFromScene(Scene scene){
 		DTM dtm = scene.getDtm();
