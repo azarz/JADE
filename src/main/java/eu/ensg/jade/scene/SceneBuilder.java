@@ -108,41 +108,48 @@ public class SceneBuilder {
 		Map<String, String> connectionParameters = new HashMap<String, String>();
 		connectionParameters.put("WFSDataStoreFactory:GET_CAPABILITIES_URL", getCapabilities );
 		
-		// Step 2 - connection	
-		DataStore data = DataStoreFinder.getDataStore( connectionParameters );
 		
-		// Step 3 - discovery
-		String typeNames[] = data.getTypeNames();
-		String typeName = typeNames[0];
-		SimpleFeatureType schema = data.getSchema( typeName );
+		try {
+			// Step 2 - connection
+			DataStore data = DataStoreFinder.getDataStore( connectionParameters );
 
-		// Step 4 - target
-		FeatureSource<SimpleFeatureType, SimpleFeature> source = data.getFeatureSource( typeName );
-		System.out.println( "Metadata Bounds:"+ source.getBounds() );
-
-		// Step 5 - query
-//		String geomName = schema.getDefaultGeometry().getLocalName();
-//		Envelope bbox = new Envelope( -100.0, -70, 25, 40 );
-//
-//		FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2( GeoTools.getDefaultHints() );
-//		Object polygon = JTS.toGeometry( bbox );
-//		Intersects filter = ff.intersects( ff.property( geomName ), ff.literal( polygon ) );
-//
-//		Query query = new DefaultQuery( typeName, filter, new String[]{ geomName } );
-//		FeatureCollection<SimpleFeatureType, SimpleFeature> features = source.getFeatures( query );
-//
-//		ReferencedEnvelope bounds = new ReferencedEnvelope();
-//		Iterator<SimpleFeature> iterator = ((List<Building>) features).iterator();
-//		try {
-//		    while( iterator.hasNext() ){
-//		        Feature feature = (Feature) iterator.next();
-//		    bounds.include( feature.getBounds() );
-//		}
-//		    System.out.println( "Calculated Bounds:"+ bounds );
-//		}
-//		finally {
-//		    features.close( iterator );
-//		}
+			// Step 3 - discovery
+			String typeNames[] = data.getTypeNames();
+			String typeName = typeNames[0];
+			SimpleFeatureType schema = data.getSchema( typeName );
+			
+			// Step 4 - target
+			FeatureSource<SimpleFeatureType, SimpleFeature> source = data.getFeatureSource( typeName );
+			System.out.println( "Metadata Bounds:"+ source.getBounds() );
+			
+			// Step 5 - query
+//			String geomName = schema.getDefaultGeometry().getLocalName();
+//			Envelope bbox = new Envelope( -100.0, -70, 25, 40 );
+//	
+//			FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2( GeoTools.getDefaultHints() );
+//			Object polygon = JTS.toGeometry( bbox );
+//			Intersects filter = ff.intersects( ff.property( geomName ), ff.literal( polygon ) );
+//	
+//			Query query = new DefaultQuery( typeName, filter, new String[]{ geomName } );
+//			FeatureCollection<SimpleFeatureType, SimpleFeature> features = source.getFeatures( query );
+//	
+//			ReferencedEnvelope bounds = new ReferencedEnvelope();
+//			Iterator<SimpleFeature> iterator = ((List<Building>) features).iterator();
+//			try {
+//			    while( iterator.hasNext() ){
+//			        Feature feature = (Feature) iterator.next();
+//			    bounds.include( feature.getBounds() );
+//			}
+//			    System.out.println( "Calculated Bounds:"+ bounds );
+//			}
+//			finally {
+//			    features.close( iterator );
+//			}
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		build(scene);
 	}
