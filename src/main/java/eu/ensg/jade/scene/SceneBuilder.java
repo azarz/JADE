@@ -201,26 +201,27 @@ public class SceneBuilder {
 		
 		int k = 0;
 		// Add street furniture
-		for(StreetFurniture sign : scene.getStreetFurniture()) {
-			k++;
-			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
-			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
-			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
-			//streetFurnitureModel.setScale(new double[] {10,10,10});
-			xmlWriter.addModel(streetFurnitureModel);
-			
-			if (k>5000){
-				break;
-			}
-		}
+//		for(StreetFurniture sign : scene.getStreetFurniture()) {
+//			k++;
+//			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
+//			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
+//			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
+//			//streetFurnitureModel.setScale(new double[] {10,10,10});
+//			xmlWriter.addModel(streetFurnitureModel);
+//			
+//			if (k>5000){
+//				break;
+//			}
+//		}
 		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);
-		ground.setVisible(false);
+//		ground.setVisible(false);
 		xmlWriter.addTerrain(ground);
 		
 		xmlWriter.createAllXml();
 	}
+	
 	
 	private XMLGroundModel getGroundModelFromScene(Scene scene){
 		DTM dtm = scene.getDtm();

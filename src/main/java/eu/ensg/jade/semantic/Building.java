@@ -139,11 +139,12 @@ public class Building extends WorldObject {
 		
 		for (int i = 0; i < vertices.size(); i++) {
 			// Fetching the points coordinate
-			double xCoord = vertices.get(i)[0];
-			double yCoord = vertices.get(i)[1];
-	
+//			double xCoord = vertices.get(i)[0];
+//			double yCoord = vertices.get(i)[1];
 			// Setting the Z coordinate
-			vertices.get(i)[2] = JadeUtils.interpolatedDtmValue(xCoord, yCoord, dtm);
+//			vertices.get(i)[2] = JadeUtils.interpolatedDtmValue(xCoord, yCoord, dtm);
+			
+			vertices.get(i)[2] = dtm.getHeightAtPoint(vertices.get(i)[0], vertices.get(i)[1]);
 		}
 		
 		if (hasHeight) {
