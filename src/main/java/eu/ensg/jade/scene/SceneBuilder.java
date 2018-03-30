@@ -10,10 +10,13 @@ import org.geotools.data.DataStoreFinder;
 import org.geotools.data.DefaultQuery;
 import org.geotools.data.FeatureSource;
 import org.geotools.data.Query;
+import org.geotools.data.simple.SimpleFeatureCollection;
 import org.geotools.data.wfs.WFSDataStoreFactory;
 import org.geotools.factory.CommonFactoryFinder;
 import org.geotools.factory.GeoTools;
 import org.geotools.feature.FeatureCollection;
+import org.geotools.feature.FeatureIterator;
+import org.geotools.filter.text.cql2.CQL;
 import org.geotools.geometry.jts.JTS;
 import org.geotools.geometry.jts.ReferencedEnvelope;
 import org.opengis.feature.Feature;
@@ -120,7 +123,9 @@ public class SceneBuilder {
 			
 			// Step 4 - target
 			FeatureSource<SimpleFeatureType, SimpleFeature> source = data.getFeatureSource( typeName );
-			System.out.println( "Metadata Bounds:"+ source.getBounds() );
+			
+			FeatureCollection<SimpleFeatureType,SimpleFeature> collection = source.getFeatures( );
+			FeatureIterator<SimpleFeature> iterator = collection.features();
 			
 			// Step 5 - query
 //			String geomName = schema.getDefaultGeometry().getLocalName();
@@ -191,9 +196,11 @@ public class SceneBuilder {
 		ReaderFactory readerFact = new ReaderFactory();
 		InputRGE rge = new InputRGE();
 		
-		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.BUILDING), buildingLayer);
+//		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.BUILDING), buildingLayer);
+		rge = readerFact.createReader(READER_METHOD.BUILDING).loadFromFile(buildingLayer);
 		scene.setBuildings(rge.getBuildings());
 		scene.setBuildingCentroid(rge.getCentroid());
+		
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.ROAD), roadLayer);
 		scene.setRoads(rge.getRoads());

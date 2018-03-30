@@ -8,8 +8,8 @@ import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.Polygon;
+
 import eu.ensg.jade.geometricObject.Road;
-import eu.ensg.jade.utils.JadeTriangulation;
 import eu.ensg.jade.utils.JadeUtils;
 
 /**
