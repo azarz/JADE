@@ -116,7 +116,7 @@ public class SurfaceRoad extends Road {
 			}
 			
 			// Triangulating the polygon using th utils class
-			GeometryCollection triangles = (GeometryCollection) JadeTriangulation.triangulate(polygon);
+			GeometryCollection triangles = (GeometryCollection) JadeUtils.triangulate(polygon);
 				
 			int numTriangles = triangles.getNumGeometries();
 			
