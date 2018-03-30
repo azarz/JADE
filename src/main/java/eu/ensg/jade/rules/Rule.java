@@ -365,7 +365,7 @@ public class Rule implements IRule{
 		}
 		// Be careful y is the vertical axis in OpenDS 
 		//Coordinate newCoord = new Coordinate(newX - centroid.x, newZ - centroid.y, road.getZ_ini());
-		double newZ = JadeUtils.interpolatedDtmValue(newX, newY, scene.getDtm());
+		double newZ = scene.getDtm().getHeightAtPoint(newX,  newY);
 		Coordinate newCoord = new Coordinate(newX - scene.getBuildingCentroid().x, -1*(newY - scene.getBuildingCentroid().y), newZ);
 		return new StreetFurniture(folder, newCoord, rotation);
 	}
