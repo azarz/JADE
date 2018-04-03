@@ -143,6 +143,7 @@ public class DrivingTaskDataQuery
 	        	isValid = true;
 	        
 	    } catch (Exception ex) {
+	    	ex.printStackTrace();
 	    	System.err.println(errorMsg);
 	    	isValid = false;
 	    }
