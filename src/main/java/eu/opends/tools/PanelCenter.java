@@ -737,7 +737,7 @@ public class PanelCenter
 	        cogText = new BitmapText(gaugeFont, false);          
 	        cogText.setSize(gaugeFont.getCharSet().getRenderedSize());
 	        cogText.setColor(ColorRGBA.Black);
-	        cogText.setText("360Â°");
+	        cogText.setText("360°");
 	        cogText.setLocalScale(5.5f, 5.5f, 1);
 	        cogText.setLocalTranslation(910,1170,0);
 	        displayLeftNode.attachChild(cogText);
@@ -992,13 +992,13 @@ public class PanelCenter
 		    	startTime = System.currentTimeMillis();
 
 	        // OpenDS-Maritime - heading
-			maritimeHeadingText.setText("Heading: " + df.format(car.getHeadingDegree()) + " Grad");
+			maritimeHeadingText.setText("Kurs: " + df.format(car.getHeadingDegree()) + " Grad");
 			
 			// OpenDS-Maritime - speed
-	        maritimeSpeedText.setText("Speed.: " + df.format(car.getCurrentSpeedKmh()/1.852f) + " kn");
+	        maritimeSpeedText.setText("Geschw.: " + df.format(car.getCurrentSpeedKmh()/1.852f) + " kn");
 	        
 	        // OpenDS-Maritime - depth
-	        maritimeDepthText.setText("Depth: " + df.format(car.getDistanceToRoadSurface()) + " m");
+	        maritimeDepthText.setText("Tiefe: " + df.format(car.getDistanceToRoadSurface()) + " m");
 	        
 	        // OpenDS-Maritime - wind
 	        maritimeWindText.setText("Wind: 0,0 Grad");
@@ -1009,16 +1009,16 @@ public class PanelCenter
 	        maritimeTimeText.setText("Zeit: " + elapsedTimeString);
 	        
 	        // OpenDS-Maritime - distance
-	        maritimeDistanceText.setText("Distance: " + df2.format(car.getMileage()/1852f) + " nm");
+	        maritimeDistanceText.setText("Distanz: " + df2.format(car.getMileage()/1852f) + " nm");
 	        
 	        // OpenDS-Maritime - latitude
-	        maritimeLatitudeText.setText("Latitude: " + df3.format(car.getGeoPosition().getX()) + " N");
+	        maritimeLatitudeText.setText("Breite: " + df3.format(car.getGeoPosition().getX()) + " N");
 	        
 	        // OpenDS-Maritime - longitude
-	        maritimeLongitudeText.setText("Longitude: " + df3.format(car.getGeoPosition().getY()) + " O");
+	        maritimeLongitudeText.setText("Länge: " + df3.format(car.getGeoPosition().getY()) + " O");
 	        
 	        // OpenDS-Maritime - scenario
-	        maritimeScenarioText.setText("Scenario: " + SimulationBasics.getDrivingTask().getFileName().replace(".xml", ""));
+	        maritimeScenarioText.setText("Szenario: " + SimulationBasics.getDrivingTask().getFileName().replace(".xml", ""));
         }
         
         if(maritimeDisplayMode == MaritimeDisplayMode.Compass || maritimeDisplayMode == MaritimeDisplayMode.All)
@@ -1031,9 +1031,9 @@ public class PanelCenter
         
         if(maritimeDisplayMode == MaritimeDisplayMode.MultiFunctionDisplay || maritimeDisplayMode == MaritimeDisplayMode.All)
         {
-	        cogText.setText(df4.format(Math.round(car.getHeadingDegree()))+"Â°");
+	        cogText.setText(df4.format(Math.round(car.getHeadingDegree()))+"°");
 	        sogText.setText(df.format(car.getCurrentSpeedKmh()/1.852f));
-	        magText.setText(df4.format((Math.round(car.getHeadingDegree())+3)%360)+"Â°");
+	        magText.setText(df4.format((Math.round(car.getHeadingDegree())+3)%360)+"°");
 	        latText.setText(getDegreeText(car.getGeoPosition().getX()));
 	        longText.setText(getDegreeText(car.getGeoPosition().getY()));
 	        timeText.setText(sdf2.format(new Date()));
@@ -1050,7 +1050,7 @@ public class PanelCenter
         double minutes = ((decimalValue-degree) * 60);
         String minutesFormatted = df.format(Math.round(minutes*1000f)/1000f);
 
-        return degree + "Â°" + minutesFormatted + "'";
+        return degree + "°" + minutesFormatted + "'";
     }
     
     

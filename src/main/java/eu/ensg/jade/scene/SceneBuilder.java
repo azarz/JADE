@@ -257,6 +257,7 @@ public class SceneBuilder {
 	
 	private void exportXML(Scene scene) {
 		XMLWriter xmlWriter = new XMLWriter();
+		xmlWriter.log = true;
 		
 		xmlWriter.updateConfig("fileMainXML", "MAIN_FILE.xml");
 //		xmlWritter.updateConfig("rainCoefficient", "5");
