@@ -43,6 +43,7 @@ sourceSets {
 jar {
    manifest {
       attributes 'Main-Class': 'eu.opends.main.Simulator',
-      'Implementation-Title': 'Jade', 'Implementation-Version': version
+      'Implementation-Title': 'Jade', 'Implementation-Version': version,
+      'Class-Path': configurations.compile.join(' ')
    }
 }
