@@ -141,7 +141,9 @@ public class XMLWriter {
 	 */
 	public void createAllXml() {
 		// Clean directory
-		Arrays.stream(new File(mainDirectory).listFiles()).forEach(File::delete);
+		File directory = new File(mainDirectory);
+		if (! directory.exists()){ directory.mkdir(); }
+		Arrays.stream(directory.listFiles()).forEach(File::delete);
 		
 		this.createMainXml();
 		this.createInteractionXml();

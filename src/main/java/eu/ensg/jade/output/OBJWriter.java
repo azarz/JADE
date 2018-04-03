@@ -49,7 +49,6 @@ public class OBJWriter {
 		offsets.add(1);
 		
 		File file = new File(filePath);
-
 		try {
 			Files.deleteIfExists(file.toPath());
 		} catch (IOException e1) {
