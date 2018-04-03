@@ -19,6 +19,7 @@ import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.MultiLineString;
+import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Point;
 
 
@@ -233,20 +234,21 @@ public class RoadArc {
      */
     public Point calculMidPoint(LineRoad road1, LineRoad road2,Point startPoint, Point endPoint){
        if( !startPoint.isEmpty() && !endPoint.isEmpty()) {
-        Point centre=this.calculerCentre(road1,road2);
-        double xd = (startPoint.getX()+endPoint.getX())/2;
-        double yd = (startPoint.getY()+endPoint.getY())/2;
-        double[] vect = new double[2];
-        vect[0] = xd-centre.getX();
-        vect[1] = yd-centre.getY();
-        double[] norm = new double[2];
-        norm[0] = vect[0]/( Math.sqrt( Math.pow(vect[0], 2) + Math.pow(vect[1], 2) )  );
-        norm[1] = vect[1]/( Math.sqrt( Math.pow(vect[0], 2) + Math.pow(vect[1], 2) )  );
-        double xmid = centre.getX()+ norm[0]*this.radius;
-        double ymid = centre.getY()+norm[1]*this.radius;
-        Point midPoint= new GeometryFactory().createPoint(new Coordinate(xmid,ymid));
-        return midPoint; }
-        return null;
+	        Point centre=this.calculerCentre(road1,road2);
+	        double xd = (startPoint.getX()+endPoint.getX())/2;
+	        double yd = (startPoint.getY()+endPoint.getY())/2;
+	        double[] vect = new double[2];
+	        vect[0] = xd-centre.getX();
+	        vect[1] = yd-centre.getY();
+	        double[] norm = new double[2];
+	        norm[0] = vect[0]/( Math.sqrt( Math.pow(vect[0], 2) + Math.pow(vect[1], 2) )  );
+	        norm[1] = vect[1]/( Math.sqrt( Math.pow(vect[0], 2) + Math.pow(vect[1], 2) )  );
+	        double xmid = centre.getX()+ norm[0]*this.radius;
+	        double ymid = centre.getY()+norm[1]*this.radius;
+	        Point midPoint= new GeometryFactory().createPoint(new Coordinate(xmid,ymid));
+	        return midPoint;
+	   }
+       return null;
     }
       
 
@@ -262,11 +264,19 @@ public class RoadArc {
     public CircularArc createRoadArc(LineRoad road1, LineRoad road2){
        
         if(calculAngle(road1,road2)<150) {
-        List<Point> arcPoint = calculerPointArc(road1,road2);
-        if(!arcPoint.isEmpty()) {
-        Point midPoint = calculMidPoint(road1,road1,arcPoint.get(0), arcPoint.get(1)); if(midPoint != null)
-        this.geomArc = new CircularArc(arcPoint.get(0).getX(),arcPoint.get(0).getY(), midPoint.getX(),midPoint.getY(),arcPoint.get(1).getX(),arcPoint.get(1).getY());
-        return this.geomArc ;   
-        }
+	        List<Point> arcPoint = calculerPointArc(road1,road2);
+	        if(!arcPoint.isEmpty()) {
+		        Point midPoint = calculMidPoint(road1,road1,arcPoint.get(0), arcPoint.get(1)); if(midPoint != null)
+		        this.geomArc = new CircularArc(arcPoint.get(0).getX(),arcPoint.get(0).getY(), midPoint.getX(),midPoint.getY(),arcPoint.get(1).getX(),arcPoint.get(1).getY());
+		        return this.geomArc ;   
+	        }
         } return null;
-    }}
+    }
+    
+    
+    public MultiPolygon intersectionSurface(){
+    	
+		return null;
+    	
+    }
+}
