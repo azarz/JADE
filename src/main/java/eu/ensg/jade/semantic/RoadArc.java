@@ -264,7 +264,7 @@ public class RoadArc {
         if(calculAngle(road1,road2)<150) {
         List<Point> arcPoint = calculerPointArc(road1,road2);
         if(!arcPoint.isEmpty()) {
-        Point midPoint = calculMidPoint(road1,road1,arcPoint.get(0), arcPoint.get(1)); if(midPoint != null)
+        Point midPoint = calculMidPoint(road1,road2,arcPoint.get(0), arcPoint.get(1)); if(midPoint != null)
         this.geomArc = new CircularArc(arcPoint.get(0).getX(),arcPoint.get(0).getY(), midPoint.getX(),midPoint.getY(),arcPoint.get(1).getX(),arcPoint.get(1).getY());
         return this.geomArc ;   
         }
