@@ -54,14 +54,21 @@
 		<joystick>
 			<!-- Logitech G27 -->
 			<dumpJoystickList>true</dumpJoystickList>
-			<steering controllerID="0" axisID="3" invert="false" sensitivity="1.0"/>
-			<combinedPedals controllerID="0" axisID="4" invert="false" sensitivity="1.0"/>
-			<accelerator controllerID="0" axisID="6" invert="true" sensitivity="1.0"/>
-			<brake controllerID="0" axisID="5" invert="true" sensitivity="1.0"/>
-			<clutch controllerID="0" axisID="7" invert="true" sensitivity="1.0"/>
+			<steering controllerID="2" axisID="6" invert="false" sensitivity="0.5"/>
+			<combinedPedals controllerID="2" axisID="3" invert="false" sensitivity="1.0"/>
+			<accelerator controllerID="2" axisID="5" invert="true" sensitivity="1.0"/>
+			<brake controllerID="2" axisID="4" invert="true" sensitivity="1.0"/>
+			<clutch controllerID="2" axisID="9" invert="true" sensitivity="1.0"/>
 			<keyAssignments>
 				<keyAssignment function="start_engine" key="BUTTON_1" />
 				<keyAssignment function="stop_engine" key="BUTTON_2" />
+				<keyAssignment function="gear1" key="BUTTON_12" />
+				<keyAssignment function="gear2" key="BUTTON_13" />
+				<keyAssignment function="gear3" key="BUTTON_14" />
+				<keyAssignment function="gear4" key="BUTTON_15" />
+			    <keyAssignment function="gear5" key="BUTTON_16" />
+				<keyAssignment function="gear6" key="BUTTON_17" />
+				<keyAssignment function="gearR" key="BUTTON_11" />
 			</keyAssignments>
 		</joystick>
 		<keyboard>

@@ -60,7 +60,9 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
         		minOccurs="0" />
         	<xs:element name="engine" type="engine" maxOccurs="1"
         		minOccurs="1" />
-
+        	<xs:element name="autoPilot" type="autoPilot" maxOccurs="1"
+        		minOccurs="0">
+			</xs:element>
         	<xs:element name="cruiseControl" type="cruiseControl" maxOccurs="1" minOccurs="0"></xs:element>
         	<xs:element name="transmission" type="transmission"
         		maxOccurs="1" minOccurs="0">
@@ -130,11 +132,18 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
         <xs:choice maxOccurs="unbounded" minOccurs="0">
 
 
-        	<xs:element name="pedestrian" type="pedestrian" maxOccurs="1" minOccurs="0"></xs:element>
-        	<xs:element name="vehicle" type="vehicle" maxOccurs="1" minOccurs="0">
+        	<xs:element name="pedestrian" type="pedestrian"
+        		maxOccurs="1" minOccurs="0">
         	</xs:element>
+        	<xs:element name="vehicle" type="vehicle" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="animatedRoadSign" type="animatedRoadSign" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+
         </xs:choice>
-        
+
     </xs:complexType>
 
     <xs:complexType name="pedestrian">
@@ -182,6 +191,35 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
         	</xs:element>
         	<xs:element name="wayPoints" type="wayPoints" maxOccurs="1"
         		minOccurs="1">
+        	</xs:element>
+        </xs:all>
+        <xs:attribute name="id" type="xs:string" />
+
+    </xs:complexType>
+    
+    <xs:complexType name="animatedRoadSign">
+
+        <xs:all>
+        	<xs:element name="modelPath" type="xs:string" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="enabled" type="xs:boolean" maxOccurs="1"
+        		minOccurs="0">
+        	</xs:element>
+        	<xs:element name="mass" type="xs:float" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="animationBlink" type="xs:string"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="scale" type="xs:float" maxOccurs="1"
+        		minOccurs="1">
+        	</xs:element>
+        	<xs:element name="localTranslation" type="translation"
+        		maxOccurs="1" minOccurs="1">
+        	</xs:element>
+        	<xs:element name="localRotation" type="rotation"
+        		maxOccurs="1" minOccurs="0">
         	</xs:element>
         </xs:all>
         <xs:attribute name="id" type="xs:string" />
@@ -618,4 +656,19 @@ elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns
     		<xs:element name="forward" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
     	</xs:sequence>
     </xs:complexType>
+	
+	<xs:complexType name="autoPilot">
+        <xs:all>
+    		<xs:element name="enabled" type="xs:string" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="minDistanceFromPath" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="maxDistanceFromPath" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="curveTension" type="xs:float" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="pathIsCycle" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="pathIsVisible" type="xs:boolean" maxOccurs="1" minOccurs="0"></xs:element>
+    		<xs:element name="startWayPoint" type="xs:string" maxOccurs="1" minOccurs="1"></xs:element>
+    		<xs:element name="wayPoints" type="wayPoints" maxOccurs="1" minOccurs="1">
+    		</xs:element>
+    	</xs:all>
+    </xs:complexType>
+	
 </xs:schema>

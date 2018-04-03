@@ -133,7 +133,198 @@
 		<model id="SpeedLimit50_6" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene" ref=""><mass>0</mass><visible>true</visible><collisionShape>meshShape</collisionShape><scale><vector jtype="java_lang_Float" size="3"><entry>1.0</entry><entry>1.0</entry><entry>1.0</entry></vector></scale><rotation quaternion="false"><vector jtype="java_lang_Float" size="3"><entry>0</entry><entry>104.97181</entry><entry>0</entry></vector></rotation><translation><vector jtype="java_lang_Float" size="3"><entry>-66.79876</entry><entry>39.441063</entry><entry>616.73816</entry></vector></translation></model>
 		<model id="SpeedLimit50_7" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene" ref=""><mass>0</mass><visible>true</visible><collisionShape>meshShape</collisionShape><scale><vector jtype="java_lang_Float" size="3"><entry>1.0</entry><entry>1.0</entry><entry>1.0</entry></vector></scale><rotation quaternion="false"><vector jtype="java_lang_Float" size="3"><entry>0</entry><entry>135.43506</entry><entry>0</entry></vector></rotation><translation><vector jtype="java_lang_Float" size="3"><entry>-807.56635</entry><entry>40.312862</entry><entry>-807.9059</entry></vector></translation></model>
 		<model id="SpeedLimit50_8" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene" ref=""><mass>0</mass><visible>true</visible><collisionShape>meshShape</collisionShape><scale><vector jtype="java_lang_Float" size="3"><entry>1.0</entry><entry>1.0</entry><entry>1.0</entry></vector></scale><rotation quaternion="false"><vector jtype="java_lang_Float" size="3"><entry>0</entry><entry>-41.036137</entry><entry>0</entry></vector></rotation><translation><vector jtype="java_lang_Float" size="3"><entry>-737.8526</entry><entry>40.272427</entry><entry>-867.1012</entry></vector></translation></model>
-
+		
+		
+		<model id="shadowChassis" key="Models/Cars/highPolygonDrivingCars/BMW7/chassis/chassis.scene" ref="">
+		<mass>200</mass>
+		<visible>true</visible>
+		<collisionShape>none</collisionShape>
+		<scale>
+			<vector jtype="java_lang_Float" size="3">
+				<entry>1.9</entry>
+				<entry>1.9</entry>
+				<entry>1.9</entry>
+			</vector>
+		</scale>
+		<rotation quaternion="false">
+		<vector jtype="java_lang_Float" size="3">
+			<entry>0</entry>
+			<entry>0</entry>
+			<entry>0</entry>
+		</vector>
+		</rotation>
+		<translation>
+			<vector jtype="java_lang_Float" size="3">
+				<entry>2</entry>
+				<entry>0</entry>
+				<entry>0</entry>
+			</vector>
+		</translation>
+		</model>
+		
+		<model id="shadowSteeringWheel" key="Models/Cars/highPolygonDrivingCars/BMW7/steeringWheel/steeringWheel.scene" ref="">
+		<mass>200</mass>
+		<visible>true</visible>
+		<collisionShape>none</collisionShape>
+		<scale>
+			<vector jtype="java_lang_Float" size="3">
+				<entry>1.9</entry>
+				<entry>1.9</entry>
+				<entry>1.9</entry>
+			</vector>
+		</scale>
+		<rotation quaternion="false">
+		<vector jtype="java_lang_Float" size="3">
+			<entry>0</entry>
+			<entry>0</entry>
+			<entry>0</entry>
+		</vector>
+		</rotation>
+		<translation>
+			<vector jtype="java_lang_Float" size="3">
+				<entry>2</entry>
+				<entry>0</entry>
+				<entry>0</entry>
+			</vector>
+		</translation>
+		</model>
+				
+		<model id="shadowInstrumentCluster" key="Models/Cars/highPolygonDrivingCars/BMW7/InstrumentCluster/InstrumentCluster.scene" ref="">
+		<mass>200</mass>
+		<visible>true</visible>
+		<collisionShape>none</collisionShape>
+		<scale>
+			<vector jtype="java_lang_Float" size="3">
+				<entry>1</entry>
+				<entry>1</entry>
+				<entry>1</entry>
+			</vector>
+		</scale>
+		<rotation quaternion="false">
+		<vector jtype="java_lang_Float" size="3">
+			<entry>0</entry>
+			<entry>0</entry>
+			<entry>0</entry>
+		</vector>
+		</rotation>
+		<translation>
+			<vector jtype="java_lang_Float" size="3">
+				<entry>2</entry>
+				<entry>0</entry>
+				<entry>0</entry>
+			</vector>
+		</translation>
+		</model>
+			
+		<model id="shadowWheelFrontLeft" key="Models/Cars/highPolygonDrivingCars/BMW7/wheelsFL/wheelsFL.scene" ref=""> 
+		<mass>200</mass>
+		<visible>true</visible>
+		<collisionShape>none</collisionShape>
+		<scale>
+			<vector jtype="java_lang_Float" size="3">
+				<entry>1</entry>
+				<entry>1</entry>
+				<entry>1</entry>
+			</vector>
+		</scale>
+		<rotation quaternion="false">
+		<vector jtype="java_lang_Float" size="3">
+			<entry>0</entry>
+			<entry>0</entry>
+			<entry>0</entry>
+		</vector>
+		</rotation>
+		<translation>
+			<vector jtype="java_lang_Float" size="3">
+				<entry>2</entry>
+				<entry>0</entry>
+				<entry>0</entry>
+			</vector>
+		</translation>
+		</model>	
+		
+		<model id="shadowWheelFrontRight" key="Models/Cars/highPolygonDrivingCars/BMW7/wheelsFR/wheelsFR.scene" ref="">
+		<mass>200</mass>
+		<visible>true</visible>
+		<collisionShape>none</collisionShape>
+		<scale>
+			<vector jtype="java_lang_Float" size="3">
+				<entry>1</entry>
+				<entry>1</entry>
+				<entry>1</entry>
+			</vector>
+		</scale>
+		<rotation quaternion="false">
+		<vector jtype="java_lang_Float" size="3">
+			<entry>0</entry>
+			<entry>0</entry>
+			<entry>0</entry>
+		</vector>
+		</rotation>
+		<translation>
+			<vector jtype="java_lang_Float" size="3">
+				<entry>2</entry>
+				<entry>0</entry>
+				<entry>0</entry>
+			</vector>
+		</translation>
+		</model>
+				
+		<model id="shadowWheelBackLeft" key="Models/Cars/highPolygonDrivingCars/BMW7/wheelsBL/wheelsBL.scene" ref="">
+		<mass>200</mass>
+		<visible>true</visible>
+		<collisionShape>none</collisionShape>
+		<scale>
+			<vector jtype="java_lang_Float" size="3">
+				<entry>1</entry>
+				<entry>1</entry>
+				<entry>1</entry>
+			</vector>
+		</scale>
+		<rotation quaternion="false">
+		<vector jtype="java_lang_Float" size="3">
+			<entry>0</entry>
+			<entry>0</entry>
+			<entry>0</entry>
+		</vector>
+		</rotation>
+		<translation>
+			<vector jtype="java_lang_Float" size="3">
+				<entry>2</entry>
+				<entry>0</entry>
+				<entry>0</entry>
+			</vector>
+		</translation>
+		</model>
+				
+		<model id="shadowWheelBackRight" key="Models/Cars/highPolygonDrivingCars/BMW7/wheelsBR/wheelsBR.scene" ref="">
+		<mass>200</mass>
+		<visible>true</visible>
+		<collisionShape>none</collisionShape>
+		<scale>
+			<vector jtype="java_lang_Float" size="3">
+				<entry>1</entry>
+				<entry>1</entry>
+				<entry>1</entry>
+			</vector>
+		</scale>
+		<rotation quaternion="false">
+		<vector jtype="java_lang_Float" size="3">
+			<entry>0</entry>
+			<entry>0</entry>
+			<entry>0</entry>
+		</vector>
+		</rotation>
+		<translation>
+			<vector jtype="java_lang_Float" size="3">
+				<entry>2</entry>
+				<entry>0</entry>
+				<entry>0</entry>
+			</vector>
+		</translation>
+		</model>
+		
+		
 		<!--
 		<model id="speedLimit70_1" key="Models/RoadSigns/speedLimits/speedLimit70/speedLimit70.scene"><mass>0</mass><visible>true</visible><collisionShape>meshShape</collisionShape><scale><vector jtype="java_lang_Float" size="3"><entry>1.0</entry><entry>1.0</entry><entry>1.0</entry></vector></scale><rotation quaternion="false"><vector jtype="java_lang_Float" size="3"><entry>0</entry><entry>-133.09236</entry><entry>0</entry></vector></rotation><translation><vector jtype="java_lang_Float" size="3"><entry>-538.22473</entry><entry>19.692575</entry><entry>-671.4367</entry></vector></translation></model>
 		<model id="speedLimit70_2" key="Models/RoadSigns/speedLimits/speedLimit70/speedLimit70.scene"><mass>0</mass><visible>true</visible><collisionShape>meshShape</collisionShape><scale><vector jtype="java_lang_Float" size="3"><entry>1.0</entry><entry>1.0</entry><entry>1.0</entry></vector></scale><rotation quaternion="false"><vector jtype="java_lang_Float" size="3"><entry>0</entry><entry>48.145496</entry><entry>0</entry></vector></rotation><translation><vector jtype="java_lang_Float" size="3"><entry>-533.3986</entry><entry>19.692232</entry><entry>-677.16003</entry></vector></translation></model>

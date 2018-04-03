@@ -21,6 +21,7 @@ package eu.opends.trigger;
 import eu.opends.basics.SimulationBasics;
 import eu.opends.main.Simulator;
 import eu.opends.traffic.Pedestrian;
+import eu.opends.traffic.AnimatedRoadSign;
 import eu.opends.traffic.PhysicalTraffic;
 import eu.opends.traffic.TrafficCar;
 import eu.opends.traffic.TrafficObject;
@@ -40,7 +41,7 @@ public class MoveTrafficTriggerAction extends TriggerAction
 	private String wayPointID;
 	private Boolean engineOn;
 	private Boolean pedestrianEnabled;
-	
+	private Boolean animatedRoadSignEnabled;
 	
 	/**
 	 * Creates a new MoveTraffic trigger action instance, providing traffic 
@@ -102,6 +103,9 @@ public class MoveTrafficTriggerAction extends TriggerAction
 					
 					if(trafficObject instanceof Pedestrian && pedestrianEnabled != null)
 						((Pedestrian)trafficObject).setEnabled(pedestrianEnabled);
+					
+					if(trafficObject instanceof AnimatedRoadSign && animatedRoadSignEnabled != null)
+						((AnimatedRoadSign)trafficObject).setEnabled(animatedRoadSignEnabled);
 				}
 				
 				updateCounter();

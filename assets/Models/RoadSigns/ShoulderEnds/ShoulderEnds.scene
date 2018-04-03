@@ -1,0 +1,65 @@
+<scene export_time="1479398091.807148" exported_by="Sina" formatVersion="1.0.1" previous_export_time="0" >
+  <nodes >
+    <node name="Rod-2X5X115" >
+      <position z="435.524536" x="-0.504478" y="6.265583" />
+      <rotation qw="0.707107" qx="-0.707107" qy="-0.000000" qz="0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.500000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity friction_x="1.0" friction_y="1.0" friction_z="1.0" meshFile="Rod-2X5X115.mesh" anisotropic_friction="False" name="Rod-2X5X115" lock_trans_z="False" inertia_tensor="0.4000000059604645" lock_trans_x="False" lock_trans_y="False" mass="1.0" actor="False" velocity_max="0.0" physics_type="STATIC" mass_radius="1.0" damping_rot="0.10000000149011612" velocity_min="0.0" ghost="False" damping_trans="0.03999999910593033" lock_rot_y="False" lock_rot_x="False" lock_rot_z="False" />
+    </node>
+    <node name="ShoulderEnds" >
+      <position z="467.824677" x="4.741940" y="29.615086" />
+      <rotation qw="0.707107" qx="0.707107" qy="0.000000" qz="0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity friction_x="1.0" friction_y="1.0" friction_z="1.0" meshFile="ShoulderEnds.mesh" anisotropic_friction="False" name="ShoulderEnds" lock_trans_z="False" inertia_tensor="0.4000000059604645" lock_trans_x="False" lock_trans_y="False" mass="1.0" actor="False" velocity_max="0.0" physics_type="STATIC" mass_radius="1.0" damping_rot="0.10000000149011612" velocity_min="0.0" ghost="False" damping_trans="0.03999999910593033" lock_rot_y="False" lock_rot_x="False" lock_rot_z="False" />
+    </node>
+    <node name="Lamp" >
+      <position z="473.728546" x="8.818188" y="30.620541" />
+      <rotation qw="0.570947" qx="0.169076" qy="0.272171" qz="0.755880" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <light powerScale="1.0" name="Lamp" type="point" shadow="true" >
+        <position z="473.728546" x="8.818188" y="30.620541" />
+        <lightAttenuation quadratic="0.0" linear="0.03333335240683057" range="5000" constant="1.0" />
+        <colourDiffuse r="1.0" b="1.0" g="1.0" />
+        <colourSpecular r="1.0" b="1.0" g="1.0" />
+        <colourShadow r="1.0" b="1.0" g="1.0" />
+      </light>
+    </node>
+    <node name="Camera" >
+      <position z="473.168335" x="12.223072" y="23.107445" />
+      <rotation qw="0.781600" qx="0.481707" qy="0.212922" qz="0.334251" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <camera projectionType="perspective" name="Camera" fov="0.5033799435163735" >
+        <clipping far="100.0" near="0.10000000149011612" farPlaneDist="100.0" nearPlaneDist="0.10000000149011612" />
+      </camera>
+    </node>
+  </nodes>
+  <externals >
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Sign\48x48\ShoulderEnds\ShoulderEnds\Material.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Sign\48x48\ShoulderEnds\ShoulderEnds\material_0.material" />
+    </item>
+  </externals>
+  <environment >
+    <colourAmbient r="0.0" b="0.0" g="0.0" />
+    <colourDiffuse r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+    <colourBackground r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+  </environment>
+</scene>

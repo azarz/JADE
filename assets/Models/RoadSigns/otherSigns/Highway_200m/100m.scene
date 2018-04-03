@@ -1,0 +1,53 @@
+<scene formatVersion="1.0.0">
+  <nodes>
+    <node name="">
+      <position x="0.000000" y="0.000000" z="0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name="" meshFile="ID3.mesh"/>
+    </node>
+    <node name=".007">
+      <position x="1353.808960" y="-67.886452" z="351.004486"/>
+      <quaternion x="0.462073" y="0.455369" z="0.534165" w="0.542029"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <camera name="ID1" fov="40.176376" projectionType="perspective">
+        <clipping nearPlaneDist="1.000000" farPlaneDist="1000.000000"/>
+      </camera>
+    </node>
+    <node name=".004">
+      <position x="0.000000" y="0.000000" z="0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name=".004" meshFile="ID40.mesh"/>
+    </node>
+    <node name=".005">
+      <position x="0.000000" y="0.000000" z="0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name=".005" meshFile="ID48.mesh"/>
+    </node>
+    <node name=".002">
+      <position x="0.000000" y="0.000000" z="0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name=".002" meshFile="ID24.mesh"/>
+    </node>
+    <node name=".003">
+      <position x="0.000000" y="0.000000" z="0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name=".003" meshFile="ID32.mesh"/>
+    </node>
+    <node name=".001">
+      <position x="0.000000" y="0.000000" z="0.000000"/>
+      <quaternion x="0.000000" y="0.000000" z="0.000000" w="1.000000"/>
+      <scale x="1.000000" y="1.000000" z="1.000000"/>
+      <entity name=".001" meshFile="ID11.mesh"/>
+    </node>
+  </nodes>
+  <externals>
+    <item type="material">
+      <file name=".material"/>
+    </item>
+  </externals>
+</scene>

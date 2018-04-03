@@ -71,6 +71,7 @@
 	
 		</model>
 		
+
 	</models>
 
     <geometries>
@@ -79,6 +80,12 @@
             <smoothing percentage="0.9" radius="1" />
             <lod patchSize="65" totalSize="513" distanceFactor="2.7" />
         </terrain>
+
+		<box id="box">
+			<width>3</width>
+			<depth>1</depth>
+			<height>0.1</height>
+		</box>
     </geometries>
     
     <gravity>9.81</gravity>

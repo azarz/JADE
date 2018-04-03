@@ -54,6 +54,7 @@ public class TrafficCar extends Car implements TrafficObject
 	private float overwriteSpeed = -1;
 	private Material brickMaterial;
 	private boolean loseCargo = false;
+	private boolean isSpeedLimitedToSteeringCar = false;
 
 	
 	public TrafficCar(Simulator sim, TrafficCarData trafficCarData)
@@ -86,6 +87,8 @@ public class TrafficCar extends Car implements TrafficObject
 		
 		modelPath = trafficCarData.getModelPath();
 		
+		isSpeedLimitedToSteeringCar = trafficCarData.isSpeedLimitedToSteeringCar();
+
 		init();
 
 		
@@ -103,7 +106,7 @@ public class TrafficCar extends Car implements TrafficObject
 		//---------------------------------
 		*/
 		
-		followBox = new FollowBox(sim, this, trafficCarData.getFollowBoxSettings());
+		followBox = new FollowBox(sim, this, trafficCarData.getFollowBoxSettings(), true);
 		
 		// cargo
 		brickMaterial = new Material(sim.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md");
@@ -372,7 +375,13 @@ public class TrafficCar extends Car implements TrafficObject
 		// reduced speed to reach next speed limit in time
 		float reducedSpeed = followBox.getReducedSpeed();
 		
-		return Math.max(Math.min(regularSpeed, reducedSpeed),0);
+		float targetSpeed = Math.max(Math.min(regularSpeed, reducedSpeed),0);
+		
+		// limit maximum speed to speed of steering car 
+		if(isSpeedLimitedToSteeringCar)
+			targetSpeed = Math.min(sim.getCar().getCurrentSpeedKmh(), targetSpeed);
+		
+		return targetSpeed;
 	}
 	
 	
@@ -495,6 +504,11 @@ public class TrafficCar extends Car implements TrafficObject
 			if(getTurnSignal() != currentTurnSignalState)
 				setTurnSignal(currentTurnSignalState);
 		}
+		
+		// set brake light
+		Boolean currentBrakeLightOn = followBox.getCurrentWayPoint().isBrakeLightOn();
+		if(currentBrakeLightOn != null)
+			setBrakeLight(currentBrakeLightOn);
 	}
 	
 	

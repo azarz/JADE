@@ -29,6 +29,7 @@ import eu.opends.hmi.LocalDangerWarningPresentationModel;
 import eu.opends.hmi.PresentationModel;
 import eu.opends.hmi.RoadWorksInformationPresentationModel;
 import eu.opends.main.Simulator;
+import eu.opends.trigger.GetSpeedForAnim;
 import eu.opends.trigger.GetTimeUntilBrakeAction;
 import eu.opends.trigger.GetTimeUntilSpeedChangeAction;
 import eu.opends.trigger.ManipulateObjectTriggerAction;
@@ -48,6 +49,7 @@ import eu.opends.trigger.ResetCarToResetPointAction;
 import eu.opends.trigger.ResumeTriggerAction;
 import eu.opends.trigger.SendMessageTriggerAction;
 import eu.opends.trigger.SendNumberToParallelPortTriggerAction;
+import eu.opends.trigger.SetAutoPilotTriggerAction;
 import eu.opends.trigger.SetCrosswindTriggerAction;
 import eu.opends.trigger.SetMotorwayTaskStimulusTriggerAction;
 import eu.opends.trigger.SetSpeedLimitAction;
@@ -419,6 +421,39 @@ public class InteractionMethods
 		return new ShutDownSimulationTriggerAction((Simulator)sim, delay, repeat);
 	}
 
+	
+	@Action(
+			name = "setAutoPilot", 
+			layer = Layer.INTERACTION, 
+			description = "Starts/stopps auto pilot",
+			defaultDelay = 0,
+			defaultRepeat = 0,
+			param = {@Parameter(name="isEnabled", type="Boolean", defaultValue="1", 
+							 	description="Starts/stopps auto pilot")
+					}
+		)
+	public TriggerAction setAutoPilot(SimulationBasics sim, float delay, int repeat, Properties parameterList)
+	{
+		String parameter = "isEnabled";
+		
+		try {
+			
+			// read whether auto pilot wil be switched on or off
+			String autopilotString = parameterList.getProperty(parameter);
+			if(autopilotString == null)
+				autopilotString = setDefault("setAutoPilot", parameter, "false");
+			boolean autopilotOn = Boolean.parseBoolean(autopilotString);
+			
+			// create SetAutoPilotTriggerAction
+			return new SetAutoPilotTriggerAction(delay, repeat, (Simulator) sim, autopilotOn);
+			
+		} catch (Exception e) {
+	
+			reportError("setAutoPilot", parameter);
+			return null;
+		}
+	}
+	
 
 	@Action(
 			name = "startRecording", 
@@ -1743,6 +1778,58 @@ public class InteractionMethods
 		} catch (Exception e) {
 			
 			reportError("reportSpeed", parameter);
+			return null;
+		}
+	}
+	
+	/**
+	 * Writes an entry to the log if given speed exceeded or undershot, resp.
+	 * 
+	 * @param sim
+	 * 			Simulator.
+	 * 
+	 * @param delay
+	 * 			Amount of seconds (float) to wait before the TriggerAction will be executed.
+	 * 
+	 * @param repeat
+	 * 			Number of maximum repetitions (0 = infinite).
+	 * 
+	 * @param parameterList
+	 * 			List of additional parameters.
+	 * 
+	 * @return
+	 * 			ReportSpeed trigger action.
+	 */
+	@Action(
+			name = "getSpeedForAnim",
+			layer = Layer.INTERACTION,
+			description = "Writes an entry to the log if given speed exceeded or undershot, resp.",
+			defaultDelay = 0,
+			defaultRepeat = 0,
+			param = {@Parameter(name="animBlink", type="String", defaultValue="my_animation", 
+								description=""),
+					@Parameter(name="modelID", type="String", defaultValue="animSign03", 
+					description="")}
+		)
+	public TriggerAction getSpeedForAnim(SimulationBasics sim, float delay, int repeat, Properties parameterList)
+	{	
+		String parameter = "";
+		
+		try {
+			
+			// extract type of comparison
+			parameter = "animBlink";
+			String animBlink = parameterList.getProperty(parameter);
+			
+			parameter = "modelID";
+			String modelID = parameterList.getProperty(parameter);
+	
+			// create ReportSpeedTriggerAction
+			return new GetSpeedForAnim(delay, repeat, animBlink, (Simulator)sim, modelID);
+			
+		} catch (Exception e) {
+			
+			reportError("getSpeedForAnim", parameter);
 			return null;
 		}
 	}

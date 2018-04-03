@@ -424,7 +424,7 @@ public abstract class Car
 		
 		// compensate that car is actually driving backwards
 		float[] angles = rotation.toAngles(null);
-		angles[1] = -angles[1];
+		angles[1] = -angles[1]; //FIXME
 		rotation = new Quaternion().fromAngles(angles);
 		
 		carControl.setPhysicsRotation(rotation);
