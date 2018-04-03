@@ -8,8 +8,8 @@ import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.Polygon;
+
 import eu.ensg.jade.geometricObject.Road;
-import eu.ensg.jade.utils.JadeTriangulation;
 import eu.ensg.jade.utils.JadeUtils;
 
 /**
@@ -116,7 +116,7 @@ public class SurfaceRoad extends Road {
 			}
 			
 			// Triangulating the polygon using th utils class
-			GeometryCollection triangles = (GeometryCollection) JadeTriangulation.triangulate(polygon);
+			GeometryCollection triangles = (GeometryCollection) JadeUtils.triangulate(polygon);
 				
 			int numTriangles = triangles.getNumGeometries();
 			

@@ -1,7 +1,16 @@
 package eu.ensg.jade.scene;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
+
+import org.geotools.data.DataStore;
+import org.geotools.data.DataStoreFinder;
+import org.geotools.data.FeatureSource;
+import org.geotools.feature.FeatureCollection;
+import org.geotools.feature.FeatureIterator;
+import org.opengis.feature.simple.SimpleFeature;
+import org.opengis.feature.simple.SimpleFeatureType;
 
 import com.vividsolutions.jts.geom.Coordinate;
 
@@ -49,6 +58,7 @@ public class SceneBuilder {
 	public static void main(String[] args) {
 		String buildingLayer = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
 		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
+		//String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad.shp";
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
 		String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
 		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
@@ -83,6 +93,55 @@ public class SceneBuilder {
 	
 	public void buildFromRGE(String rge) {
 		// TODO: implement RGE loading
+		String getCapabilities = "http://localhost:8080/geoserver/wfs?REQUEST=GetCapabilities";
+
+		Map<String, String> connectionParameters = new HashMap<String, String>();
+		connectionParameters.put("WFSDataStoreFactory:GET_CAPABILITIES_URL", getCapabilities );
+		
+		
+		try {
+			// Step 2 - connection
+			DataStore data = DataStoreFinder.getDataStore( connectionParameters );
+
+			// Step 3 - discovery
+			String typeNames[] = data.getTypeNames();
+			String typeName = typeNames[0];
+			SimpleFeatureType schema = data.getSchema( typeName );
+			
+			// Step 4 - target
+			FeatureSource<SimpleFeatureType, SimpleFeature> source = data.getFeatureSource( typeName );
+			
+			FeatureCollection<SimpleFeatureType,SimpleFeature> collection = source.getFeatures( );
+			FeatureIterator<SimpleFeature> iterator = collection.features();
+			
+			// Step 5 - query
+//			String geomName = schema.getDefaultGeometry().getLocalName();
+//			Envelope bbox = new Envelope( -100.0, -70, 25, 40 );
+//	
+//			FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2( GeoTools.getDefaultHints() );
+//			Object polygon = JTS.toGeometry( bbox );
+//			Intersects filter = ff.intersects( ff.property( geomName ), ff.literal( polygon ) );
+//	
+//			Query query = new DefaultQuery( typeName, filter, new String[]{ geomName } );
+//			FeatureCollection<SimpleFeatureType, SimpleFeature> features = source.getFeatures( query );
+//	
+//			ReferencedEnvelope bounds = new ReferencedEnvelope();
+//			Iterator<SimpleFeature> iterator = ((List<Building>) features).iterator();
+//			try {
+//			    while( iterator.hasNext() ){
+//			        Feature feature = (Feature) iterator.next();
+//			    bounds.include( feature.getBounds() );
+//			}
+//			    System.out.println( "Calculated Bounds:"+ bounds );
+//			}
+//			finally {
+//			    features.close( iterator );
+//			}
+			
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		build(scene);
 	}
@@ -98,6 +157,7 @@ public class SceneBuilder {
 		
 		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);		
 		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
+		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
 		
 		scene.getDtm().toPNG("assets/RGE/paris.png");
 		
@@ -123,9 +183,11 @@ public class SceneBuilder {
 		ReaderFactory readerFact = new ReaderFactory();
 		InputRGE rge = new InputRGE();
 		
-		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.BUILDING), buildingLayer);
+//		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.BUILDING), buildingLayer);
+		rge = readerFact.createReader(READER_METHOD.BUILDING).loadFromFile(buildingLayer);
 		scene.setBuildings(rge.getBuildings());
 		scene.setBuildingCentroid(rge.getCentroid());
+		
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.ROAD), roadLayer);
 		scene.setRoads(rge.getRoads());
@@ -194,24 +256,28 @@ public class SceneBuilder {
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
 		xmlWriter.addModel(roadsModel);
 		
+		// Add water
+		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
+		xmlWriter.addModel(waterModel);
+		
 		int k = 0;
 		// Add street furniture
-//		for(StreetFurniture sign : scene.getStreetFurniture()) {
-//			k++;
-//			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
-//			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
-//			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
-//			//streetFurnitureModel.setScale(new double[] {10,10,10});
-//			xmlWriter.addModel(streetFurnitureModel);
-//			
-//			if (k>5000){
-//				break;
-//			}
-//		}
+		for(StreetFurniture sign : scene.getStreetFurniture()) {
+			k++;
+			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
+			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
+			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
+			//streetFurnitureModel.setScale(new double[] {10,10,10});
+			xmlWriter.addModel(streetFurnitureModel);
+			
+			if (k>5000){
+				break;
+			}
+		}
 		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);
-//		ground.setVisible(false);
+		ground.setVisible(false);
 		xmlWriter.addTerrain(ground);
 		
 		xmlWriter.createAllXml();

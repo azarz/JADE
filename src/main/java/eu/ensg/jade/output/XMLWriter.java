@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -138,7 +139,7 @@ public class XMLWriter {
 	 */
 	public void createAllXml() {
 		// Clean directory
-		//Arrays.stream(new File(mainDirectory).listFiles()).forEach(File::delete);
+		Arrays.stream(new File(mainDirectory).listFiles()).forEach(File::delete);
 		
 		this.createMainXml();
 		this.createInteractionXml();

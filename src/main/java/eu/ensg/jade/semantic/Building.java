@@ -8,7 +8,6 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Polygon;
 
 import eu.ensg.jade.geometricObject.WorldObject;
-import eu.ensg.jade.utils.JadeTriangulation;
 import eu.ensg.jade.utils.JadeUtils;
 
 /**
@@ -240,7 +239,7 @@ public class Building extends WorldObject {
 		
 		try {
 			// Triangulating the polygon using the utils class
-			GeometryCollection triangles = (GeometryCollection) JadeTriangulation.triangulate(polygon);
+			GeometryCollection triangles = (GeometryCollection) JadeUtils.triangulate(polygon);
 			
 			int numTriangles = triangles.getNumGeometries();
 

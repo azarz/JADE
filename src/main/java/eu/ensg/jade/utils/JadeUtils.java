@@ -1,8 +1,18 @@
 package eu.ensg.jade.utils;
 
-import com.vividsolutions.jts.geom.Coordinate;
+import java.util.ArrayList;
+import java.util.List;
 
-import eu.ensg.jade.semantic.DTM;
+import org.poly2tri.Poly2Tri;
+import org.poly2tri.geometry.polygon.PolygonPoint;
+import org.poly2tri.triangulation.TriangulationPoint;
+import org.poly2tri.triangulation.delaunay.DelaunayTriangle;
+
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.GeometryCollection;
+import com.vividsolutions.jts.geom.GeometryFactory;
+
 import eu.ensg.jade.semantic.LineRoad;
 
 /**
@@ -96,49 +106,7 @@ public class JadeUtils {
 		
 		return result;
 	}
-	
-	/**
-	 * Calculates the interpolated altitude value 
-	 * from a DTM and a set of XY coordinates using JME interpolation
-	 * (https://github.com/jMonkeyEngine/jmonkeyengine/blob/master/jme3-terrain/src/main/java/com/jme3/terrain/heightmap/AbstractHeightMap.java)
-	 * 
-	 * @param xCoord X coordinate
-	 * @param yCoord Z coordinate
-	 * @param dtm the DTM to interpolate from
-	 * @return interpolated Z
-	 */
-	public static double interpolatedDtmValue(double xCoord, double yCoord, DTM dtm) {
-		// Fetching the DTM data
-		double xllCorner = dtm.getXllcorner();
-		double yllCorner = dtm.getYllcorner();
-		double cellsize = dtm.getCellsize();
-		int nrows = dtm.getNrows();
-		
-		// Calculating the indices of the 4 cells around the point
-		int westIndex = (int) Math.floor((xCoord - xllCorner)/cellsize);
-		int eastIndex = 1 + (int) Math.floor((xCoord - xllCorner)/cellsize);
-		int southIndex = 1 + (int) Math.floor(nrows- ((yCoord - yllCorner)/cellsize));
-		int northIndex = (int) Math.floor(nrows - ((yCoord - yllCorner)/cellsize));
-		
-		// Getting the 4 cells values
-		double northWestValue = dtm.getTabDTM()[northIndex][westIndex];
-		double northEastValue = dtm.getTabDTM()[northIndex][eastIndex];
-		double southWestValue = dtm.getTabDTM()[southIndex][westIndex];
-		double southEastValue = dtm.getTabDTM()[southIndex][eastIndex];
-		
-		// Calculating the distances between the point's coordinates
-		// and the corners coordinates
-		double fracWest = xCoord - (xllCorner + westIndex*cellsize);
-		double fracEast = xllCorner + eastIndex*cellsize - xCoord;
-		double fracSouth = yCoord - (yllCorner + (nrows - southIndex)*cellsize);
-		double fracNorth = yllCorner + (nrows - northIndex)*cellsize - yCoord;
-		
-		double intX = ((northEastValue - northWestValue) * fracWest) + northWestValue*cellsize;	
-		
-		double intY = ((southWestValue - northWestValue) * fracNorth) + northWestValue*cellsize;
 
-		return (intX + intY)/(2*cellsize);
-	}
 	
 	/**
 	 * 
@@ -161,28 +129,74 @@ public class JadeUtils {
 		double theta = 0.0;
 		
 		// We determine the angle from horizontal in trigo order
-	    if (ini.x >= end.x){
+	    if (ini.y >= end.y){
 			//Top right
-	        if(ini.y >= end.y){
-	            theta = Math.asin( (ini.y - end.y)/ini.distance(end) );
+	        if(ini.x <= end.x){
+	            theta = Math.asin( (end.x - ini.x)/ini.distance(end) );
+
 	        }
 	        //bottom right
 	        else{
-	            theta = 2*Math.PI + Math.asin( (ini.y - end.y)/ini.distance(end) );
+	            theta = 2*Math.PI - Math.asin( (ini.x - end.x)/ini.distance(end) );
+
 	        }
 	    }
 	    else {
 			//top left
-	        if(ini.y >= end.y){
-	           theta = Math.PI - Math.asin( (ini.y-end.y)/ini.distance(end) );
+	        if(ini.x <= end.x){
+	           theta = Math.PI - Math.asin( (end.x-ini.x)/ini.distance(end) );
+
 	        }
 	        //bottom left
 	        else{
-	            theta = Math.PI - Math.asin( (ini.y-end.y)/ini.distance(end) );
+	            theta = Math.PI + Math.asin( (ini.x-end.x)/ini.distance(end) );
+
 	        }
 	    }
 		
 		return theta; 
+	}
+	
+	public static GeometryCollection triangulate(com.vividsolutions.jts.geom.Polygon polygon){
+		// List of JTS polygons triangle result
+		List<com.vividsolutions.jts.geom.Polygon> resultingList = new ArrayList<com.vividsolutions.jts.geom.Polygon>();
+		
+		// Getting the coords of the polygon
+		Coordinate[] coordinates = polygon.getCoordinates();
+		
+		List<PolygonPoint> polygonPoints = new ArrayList<PolygonPoint>();
+		
+		// Converting the JTS polygon into polygonPoints
+		for(int i = 0; i < coordinates.length - 1; i++) {
+			polygonPoints.add(new PolygonPoint(coordinates[i].x, 
+											   coordinates[i].y, 
+											   coordinates[i].z));
+		}
+		org.poly2tri.geometry.polygon.Polygon poly2triPolygon = 
+				new org.poly2tri.geometry.polygon.Polygon(polygonPoints);
+		
+		// Triangulating the outline into the triangle list
+		Poly2Tri.triangulate(poly2triPolygon);
+		List<DelaunayTriangle> triangles = poly2triPolygon.getTriangles();
+		
+		GeometryFactory factory = new GeometryFactory();
+		
+		for(int i = 0; i < triangles.size(); i++) {
+			TriangulationPoint[] vertices = triangles.get(i).points;
+			Coordinate[] triangleCoords = new Coordinate[4];
+			for (int j = 0; j < 4; j++) {
+				double x = vertices[j%3].getX();
+				double y = vertices[j%3].getY();
+				double z = vertices[j%3].getZ();
+				triangleCoords[j] = new Coordinate(x, y, z);
+			}
+			
+			com.vividsolutions.jts.geom.Polygon jtsTriangle = factory.createPolygon(triangleCoords);
+			resultingList.add(jtsTriangle);
+		}
+		
+		Geometry[] resultArray = resultingList.toArray(new Geometry[resultingList.size()]);
+		return factory.createGeometryCollection(resultArray);
 	}
 	
 	/**
