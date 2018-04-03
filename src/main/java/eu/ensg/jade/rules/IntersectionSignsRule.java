@@ -41,8 +41,6 @@ public class IntersectionSignsRule implements RuleShape{
 			// We test how many roads are attached to the intersection
 			// If the node has 1 attached road
 			if (intersect.getRoadId().size() == 1){
-				System.out.println("Case 1");
-				System.out.println("=================================");
 				/*
 				 * => DeadEndStreet sign
 				 */
@@ -58,8 +56,6 @@ public class IntersectionSignsRule implements RuleShape{
 			}
 			
 			else if (intersect.getRoadId().size() == 2){
-				System.out.println("Case 2");
-				System.out.println("=================================");
 				/*
 				 * => Narrow signs
 				 * => One-way street
@@ -80,7 +76,6 @@ public class IntersectionSignsRule implements RuleShape{
 				
 				// If they are different, we had a road narrows sign
 				if ( larger != -1){
-					System.out.println("Largeur -----------");
 					StreetFurniture streetFurniture = addSigns(roadsTab[larger],startOnIntersectTab[larger],"Models/RoadSigns/dangerSigns/RoadNarrows/RoadNarrows.scene", scene);
 					addStreetFurniture(streetFurniture, roadsTab[larger], scene);
 				}
@@ -90,16 +85,13 @@ public class IntersectionSignsRule implements RuleShape{
 				
 				// If we are facing a one way driving road, we had the appropriate sign
 				if (sensMap != null){
-					System.out.println("sensMap not null -----------");
 					
 					if(sensMap.containsKey(-1)){
-						System.out.println("Sens unique -----------");
 						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(-1)],startOnIntersectTab[sensMap.get(-1)],"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", scene);
 						addStreetFurniture(streetFurniture, roadsTab[sensMap.get(-1)], scene);
 					}
 					
 					if(sensMap.containsKey(1)){
-						System.out.println("Sens interdit -----------");
 						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(1)],startOnIntersectTab[sensMap.get(1)],"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", scene);
 						addStreetFurniture(streetFurniture, roadsTab[sensMap.get(1)], scene);
 					}
@@ -108,8 +100,6 @@ public class IntersectionSignsRule implements RuleShape{
 			
 			// If the node has 3 or 4 attached roads
 			else if (intersect.getRoadId().size() == 3 || intersect.getRoadId().size() == 4){
-				System.out.println("Case "+intersect.getRoadId().size());
-				System.out.println("=================================");
 				/*
 				 * Si 3-4 => Ramp test
 				 *        => Roundabout test
@@ -133,17 +123,14 @@ public class IntersectionSignsRule implements RuleShape{
 				
 				// If it is a ramp
 				if(asRamp){
-					System.out.println("Ramp -----------");
 					addRampSigns(roadsTab,startOnIntersectTab,intersect,size);
 				}
 				//If it is a roundabout
 				else if (asRoundAbout){
-					System.out.println("Roundabout -----------");
 					addRoundAbout(roadsTab,startOnIntersectTab,scene);
 				}
 				// "Normal" case
 				else {
-					System.out.println("Normal case -----------");
 					//Checking Road importance for yield
 					
 					int intersectType = calcIntersectionType(roadsTab,size);
@@ -154,8 +141,6 @@ public class IntersectionSignsRule implements RuleShape{
 			
 			// If the node has 5 or more attached nodes
 			else if (intersect.getRoadId().size() >= 5){
-				System.out.println("Case 5");
-				System.out.println("=================================");
 				/* 
 				 *        => Direction test 
 				 *        => Traffic lights placed 
@@ -175,11 +160,9 @@ public class IntersectionSignsRule implements RuleShape{
 					// We check the road driving direction
 					enter = isEntering(lineRoad, roadBool);
 
-					System.out.println("----------- La route est "+lineRoad.getDirection()+"et elle entre sur l'intersection "+roadBool);
 					
 					// If it is a direct driving direction, we had traffic lights and do not enter sign
 					if (enter == 1){
-						System.out.println("Cas 1 -----------");
 						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", scene);
 						addStreetFurniture(streetFurniture, lineRoad, scene);
 						
@@ -190,14 +173,12 @@ public class IntersectionSignsRule implements RuleShape{
 					
 					// If it is a reverse driving direction, we had traffic lights and one way sign
 					else if (enter == -1){
-						System.out.println("Cas -1 -----------");
 						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", scene);
 						addStreetFurniture(streetFurniture, lineRoad, scene);
 					}
 					
 					// If it is a two-way driving direction, we had traffic lights
 					else if (enter == 0){
-						System.out.println("Cas 0 -----------");
 						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene", scene);
 						addStreetFurniture(streetFurniture, lineRoad, scene);
 					}
@@ -233,16 +214,18 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @return -1 if leaving, 0 if double-way, +1 if entering 
 	 */
 	private int isEntering(Road road, Boolean direction){
+		int modDirection = 1;
+
 		// If it is a two-way driving road we return 0
-		if(road.getDirection()=="Double"){
+		if(road.getDirection().equals("Double")){
 			return 0;
 		}
 		
-		int modDirection=1;
+		if (road.getDirection().equals("Inverse")){
 		// If the road driving direction is reverse
-		if (road.getDirection()=="Inverse"){
-			modDirection=-1;
-		}
+				modDirection=-1;
+			}
+			
 		// And the beginning of the road is on the intersection, the road is entering it
 		if(direction) {
 			return -1*modDirection;
@@ -251,7 +234,9 @@ public class IntersectionSignsRule implements RuleShape{
 		else if(!direction) {
 			return 1*modDirection;
 		}
+			
 		
+
 		return 0;
 	}
 	
@@ -311,35 +296,41 @@ public class IntersectionSignsRule implements RuleShape{
 		double theta = JadeUtils.roadAngle(road,position); // Angle between road and horizontal line, in counter clockwise
 		double rotation = 0;
 		
+		int i = 0;
+
 		
 		// Determination of the position
 		if(left){
-			if (folder != "Models/RoadSigns/dangerSigns/RoadNarrows/RoadNarrows.scene"){
+			if (folder.equals("Models/RoadSigns/otherSigns/Yield/Yield.scene")){
 				rotation = theta + Math.PI/2;
+				D = D - 2.2;
 			}
 			else {
 				rotation = theta;
 			}
-
 			// Up-Right quarter
 			if (0<= theta && theta <= Math.PI/2){
 				newX = x + d*Math.sin(theta) + D*Math.cos(theta);
 				newY = y - d*Math.cos(theta) + D*Math.sin(theta);
+				i = 1;
 			}
 			// Down-Right quarter
 			else if (theta> 3*Math.PI/2 && theta <= 2*Math.PI){
 				newX = x - d*Math.sin(2*Math.PI - theta) + D*Math.cos(2*Math.PI - theta);
 				newY = y - d*Math.cos(2*Math.PI - theta) - D*Math.sin(2*Math.PI - theta);
+				i = 2;
 			}
 			// Up-Left quarter
 			else if (theta > Math.PI/2 && theta <= Math.PI){
 				newX = x + d*Math.sin(Math.PI - theta) - D*Math.cos(Math.PI - theta);
 				newY = y + d*Math.cos(Math.PI - theta) + D*Math.sin(Math.PI - theta);
+				i = 3;
 			}
 			// Down-Left quarter
 			else{
 				newX = x - d*Math.sin(theta - Math.PI) - D*Math.cos(theta - Math.PI);
 				newY = y + d*Math.cos(theta - Math.PI) - D*Math.sin(theta - Math.PI);
+				i = 4;
 			}
 		}
 		else{
@@ -381,6 +372,8 @@ public class IntersectionSignsRule implements RuleShape{
 		//Coordinate newCoord = new Coordinate(newX - centroid.x, newZ - centroid.y, road.getZ_ini());
 		double newZ = scene.getDtm().getHeightAtPoint(newX,  newY);
 		Coordinate newCoord = new Coordinate(newX - scene.getBuildingCentroid().x, -1*(newY - scene.getBuildingCentroid().y), newZ);
+		
+
 		return new StreetFurniture(folder, newCoord, rotation);
 	}
 	
@@ -553,9 +546,9 @@ public class IntersectionSignsRule implements RuleShape{
 		for (int i = 0; i < roadsTab.length; i++){
 			LineRoad road = roadsTab[i];
 
-			//We add yeild signs for all roads not on the round about
-			if (!(road.getName().substring(0, 2)==("PL") || road.getName().substring(0, 3) == "RPT")){
-				StreetFurniture lightRoad = addSigns(road, startOnIntersectTab[i], "Models/RoasSings/otherSigns/Yield/Yield.scene", scene);
+			//We add yield signs for all roads not on the round about
+			if (!((road.getName().substring(0, 2)).equals("PL") || (road.getName().substring(0, 3)).equals("RPT"))){
+				StreetFurniture lightRoad = addSigns(road, startOnIntersectTab[i], "Models/RoadSigns/otherSigns/Yield/Yield.scene", scene);
 				addStreetFurniture(lightRoad, road, scene);
 			}
 		}
@@ -606,8 +599,8 @@ public class IntersectionSignsRule implements RuleShape{
 		
 		if (diff != -1){
 			for(int i=0; i < size; i++){
-				if ((roadsTab[i].getDirection() == "Double" && roadsTab[i].getLaneNumber() >= 3) 
-						|| ((roadsTab[i].getDirection() == "Inverse" || roadsTab[i].getDirection() == "Direct") && roadsTab[i].getLaneNumber() >= 2)
+				if ((roadsTab[i].getDirection().equals("Double") && roadsTab[i].getLaneNumber() >= 4) 
+						|| ((roadsTab[i].getDirection().equals("Inverse") || roadsTab[i].getDirection().equals("Direct")) && roadsTab[i].getLaneNumber() >= 3)
 						){
 					return 1;
 				}
@@ -615,13 +608,13 @@ public class IntersectionSignsRule implements RuleShape{
 					if (roadsTab[i].getSpeed() != "" && size != 3){
 						return 2;
 					}
-/////////////// ELSE ??? /////////////////////////////////////////////////					
-					return 1;
+					return 3;
 				}
 				else if (diff >= 1){
 					return 3;
 				}
 			}
+
 		}
 		return -1;
 	}
@@ -646,15 +639,12 @@ public class IntersectionSignsRule implements RuleShape{
 		switch (intersectType) {
 		
 		case 1:
-			System.out.println("Intersection à feux -----------");
 			for(int i=0; i < roadsTab.length; i++){
 				lineRoad = (LineRoad) roadsTab[i];
 				roadBool = startOnIntersectTab[i];
 				enter = isEntering(lineRoad, roadBool);
-				System.out.println("----------- La route est "+lineRoad.getDirection()+"et elle entre sur l'intersection "+roadBool);
 				
 				if (enter == 1){
-					System.out.println("Sans unique -----------");
 					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", scene);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 					
@@ -663,12 +653,10 @@ public class IntersectionSignsRule implements RuleShape{
 				
 				}
 				else if (enter == -1){
-					System.out.println("Sens interdit -----------");
 					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", scene);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 				}
 				else if (enter == 0){
-					System.out.println("Double sens -----------");
 					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene", scene);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 				}
@@ -676,16 +664,13 @@ public class IntersectionSignsRule implements RuleShape{
 			}
 			break;
 		case 2:
-			System.out.println("Cas priorite a droite -----------");
 			for(int i=0; i < roadsTab.length; i++){
 				lineRoad = (LineRoad) roadsTab[i];
 				roadBool =startOnIntersectTab[i];
 				enter = isEntering(lineRoad, roadBool);
-				System.out.println("----------- La route est "+lineRoad.getDirection()+"et elle entre sur l'intersection "+roadBool);
 				
 				
 				if (enter == 1){
-					System.out.println("Sens unique -----------");
 					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", scene);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 					
@@ -694,12 +679,10 @@ public class IntersectionSignsRule implements RuleShape{
 				
 				}
 				else if (enter == -1){
-					System.out.println("Sens interdit -----------");
 					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", scene);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 				}
 				else if (enter == 0){
-					System.out.println("Double sens -----------");
 					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/dangerSigns/IntersectionAhead/IntersectionAhead.scene", scene);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 				}	
@@ -707,7 +690,6 @@ public class IntersectionSignsRule implements RuleShape{
 			break;
 
 		case 3:
-			System.out.println("Cas cédez le passage/Stop -----------");
 			greatest = Integer.parseInt(roadsTab[0].getImportance());
 
 			for (int i=0; i<roadsTab.length; i++){
@@ -719,21 +701,17 @@ public class IntersectionSignsRule implements RuleShape{
 				lineRoad = (LineRoad) roadsTab[i];
 				roadBool =startOnIntersectTab[i];
 				enter = isEntering(lineRoad, roadBool);
-				System.out.println("----------- La route est "+lineRoad.getDirection()+"et elle entre sur l'intersection "+roadBool);
 				
 				
 				if (enter == 1){
-					System.out.println("Sens unique -----------");
 					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", scene);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 					
 					if (Integer.parseInt(lineRoad.getImportance()) - greatest == 1 ){
-						System.out.println("Cede le passage -----------");
 						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Yield/Yield.scene", scene);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
 					}
 					else if (Integer.parseInt(lineRoad.getImportance()) - greatest > 1){
-						System.out.println("Stop -----------");
 						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Stop/Stop.scene", scene);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
 					
@@ -741,19 +719,15 @@ public class IntersectionSignsRule implements RuleShape{
 				
 				}
 				else if (enter == -1){
-					System.out.println("Sens interdit -----------");
 					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", scene);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 				}
 				else if (enter == 0){
-					System.out.println("double sens -----------");
 					if (Integer.parseInt(lineRoad.getImportance()) - greatest == 1 ){
-						System.out.println("Cede le passage -----------");
 						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Yield/Yield.scene", scene);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
 					}
 					else if (Integer.parseInt(lineRoad.getImportance()) - greatest > 1){
-						System.out.println("Stop -----------");
 						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Stop/Stop.scene", scene);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
 					
