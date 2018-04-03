@@ -1,16 +1,7 @@
 package eu.ensg.jade.scene;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
-
-import org.geotools.data.DataStore;
-import org.geotools.data.DataStoreFinder;
-import org.geotools.data.FeatureSource;
-import org.geotools.feature.FeatureCollection;
-import org.geotools.feature.FeatureIterator;
-import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.feature.simple.SimpleFeatureType;
 
 import com.vividsolutions.jts.geom.Coordinate;
 
@@ -54,7 +45,6 @@ public class SceneBuilder {
 	 * 
 	 * Main method
 	 */
-	
 	public static void main(String[] args) {
 		String buildingLayer = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
 		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
@@ -69,11 +59,14 @@ public class SceneBuilder {
 		builder.export();
 	}
 	
-	/* (non-Javadoc)
-	 * 
-	 * Methods to load data
-	 */
 	
+	/**
+	 * @param buildingLayer
+	 * @param roadLayer
+	 * @param hydroLayer
+	 * @param treeLayer
+	 * @param dtmLayer
+	 */
 	public void buildFromFiles(
 			String buildingLayer,
 			String roadLayer,
@@ -91,9 +84,21 @@ public class SceneBuilder {
 		build(scene);
 	}
 	
-	public void buildFromRGE(String rge) {		
+	/**
+	 * @param buildingLayer
+	 * @param roadLayer
+	 * @param hydroLayer
+	 * @param treeLayer
+	 * @param dtmLayer
+	 */
+	public void buildFromRGE(
+			String buildingLayer,
+			String roadLayer,
+			String hydroLayer,
+			String treeLayer,
+			String dtmLayer) {		
 		try {
-			scene = loadRGE(rge);
+			scene = loadRGE(buildingLayer, roadLayer, hydroLayer, treeLayer, dtmLayer);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -102,11 +107,9 @@ public class SceneBuilder {
 	}
 	
 	
-	/* (non-Javadoc)
-	 * 
-	 * Public method to export the whole Scene
+	/**
+	 * Public method to export the whole Scene as a driving task, to be used in OpenDS
 	 */
-	
 	public void export() {
 		OBJWriter objWritter = new OBJWriter();
 		
@@ -124,7 +127,6 @@ public class SceneBuilder {
 	 * 
 	 * Private utility methods, get the job done
 	 */
-	
 	private Scene loadData(
 			String buildingLayer,
 			String roadLayer,
@@ -160,18 +162,32 @@ public class SceneBuilder {
 		return scene;
 	}
 	
-	private Scene loadRGE(String url) throws IOException {
+	private Scene loadRGE(
+			String buildingLayer,
+			String roadLayer,
+			String hydroLayer,
+			String treeLayer,
+			String dtmLayer) throws IOException {
 		Scene scene = new Scene();
 		
-		ReaderContext readerContx = new ReaderContext();
 		ReaderFactory readerFact = new ReaderFactory();
 		InputRGE rge = new InputRGE();
 		
-		rge = readerFact.createReader(READER_METHOD.BUILDING).loadFromRGE(url);
+		rge = readerFact.createReader(READER_METHOD.BUILDING).loadFromRGE(buildingLayer);
 		scene.setBuildings(rge.getBuildings());
 		scene.setBuildingCentroid(rge.getCentroid());
 		
-		// TODO: fill scene with data
+		rge = readerFact.createReader(READER_METHOD.ROAD).loadFromRGE(roadLayer);
+		scene.setRoads(rge.getRoads());
+		scene.setCollIntersect(rge.getCollIntersect());
+		
+		rge = readerFact.createReader(READER_METHOD.HYDRO).loadFromRGE(hydroLayer);
+		scene.setHydrography(rge.getHydrography());
+		
+		rge = readerFact.createReader(READER_METHOD.VEGETATION).loadFromRGE(treeLayer);
+		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
+		
+		// TODO: Add the DTM
 		
 		return scene;
 	}
