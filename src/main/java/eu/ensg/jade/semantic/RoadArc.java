@@ -173,9 +173,16 @@ public class RoadArc {
     */
    
     public boolean intersectOther(CircularArc arc, LineRoad road){
-       //TO DO
-       
-        return false;
+       double[] points = arc.getControlPoints();
+       double cirAXSta = points[0];
+       double cirAYSta = points[1];
+       double cirAXEnd = points[4];
+       double cirAYEnd = points[5];
+       Coordinate coordSta = new Coordinate(cirAXSta,cirAYSta);
+       Coordinate coordEnd = new Coordinate(cirAXEnd,cirAYEnd);
+       Coordinate[] coords = {coordSta,coordEnd};
+       LineString line = new LineString(coords,road.getGeom().getPrecisionModel(),road.getGeom().getSRID());
+       return line.intersects(road.getGeom());
     }
    
      
