@@ -146,7 +146,7 @@ public class IntersectionSignsRule implements RuleShape{
 				 *        => Traffic lights placed 
 				 */
 				
-				int size = intersect.getRoadId().size();
+//				int size = intersect.getRoadId().size();
 				
 				// Roads retrieval
 
@@ -295,8 +295,6 @@ public class IntersectionSignsRule implements RuleShape{
 
 		double theta = JadeUtils.roadAngle(road,position); // Angle between road and horizontal line, in counter clockwise
 		double rotation = 0;
-		
-		int i = 0;
 
 		
 		// Determination of the position
@@ -312,25 +310,21 @@ public class IntersectionSignsRule implements RuleShape{
 			if (0<= theta && theta <= Math.PI/2){
 				newX = x + d*Math.sin(theta) + D*Math.cos(theta);
 				newY = y - d*Math.cos(theta) + D*Math.sin(theta);
-				i = 1;
 			}
 			// Down-Right quarter
 			else if (theta> 3*Math.PI/2 && theta <= 2*Math.PI){
 				newX = x - d*Math.sin(2*Math.PI - theta) + D*Math.cos(2*Math.PI - theta);
 				newY = y - d*Math.cos(2*Math.PI - theta) - D*Math.sin(2*Math.PI - theta);
-				i = 2;
 			}
 			// Up-Left quarter
 			else if (theta > Math.PI/2 && theta <= Math.PI){
 				newX = x + d*Math.sin(Math.PI - theta) - D*Math.cos(Math.PI - theta);
 				newY = y + d*Math.cos(Math.PI - theta) + D*Math.sin(Math.PI - theta);
-				i = 3;
 			}
 			// Down-Left quarter
 			else{
 				newX = x - d*Math.sin(theta - Math.PI) - D*Math.cos(theta - Math.PI);
 				newY = y + d*Math.cos(theta - Math.PI) - D*Math.sin(theta - Math.PI);
-				i = 4;
 			}
 		}
 		else{

@@ -1,9 +1,6 @@
 package eu.ensg.jade.rules;
 
-import java.util.List;
-
 import eu.ensg.jade.scene.Scene;
-import eu.ensg.jade.semantic.SurfaceVegetation;
 
 /**
  * 

@@ -52,7 +52,21 @@ public class DTM {
 	private double cellsize;
 	
 	
-// ========================== CONSTRUCTORS =========================	
+// ========================== CONSTRUCTORS =========================
+	
+	/**
+	 * Empty constructor 
+	 * 
+	 * @param tabDTM the table associates to the DTM
+	 */
+	public DTM() {
+		this.tabDTM = new double[0][0];
+		this.ncols = 0;
+		this.nrows = 0;
+		this.xllcorner = 0;
+		this.yllcorner = 0;
+		this.cellsize = 1;
+	}
 
 	/**
 	 * Constructor using all fields
@@ -61,31 +75,22 @@ public class DTM {
 	 */
 	public DTM(double[][] tabDTM, Map<String,Double> headerDTM) {
 		this.tabDTM = tabDTM;
+		this.ncols = tabDTM[0].length;
+		this.nrows = tabDTM.length;
+		this.xllcorner = 0;
+		this.yllcorner = 0;
+		this.cellsize = 1;
+		
 		// Getting all the data from the hashmap and putting default values if they are not in the input map
 		try {
 			this.ncols = headerDTM.get("ncols").intValue();
-		} catch (NullPointerException e) {
-			this.ncols = tabDTM[0].length;
-		}
-		try {
 			this.nrows = headerDTM.get("nrows").intValue();
-		} catch (NullPointerException e) {
-			this.nrows = tabDTM.length;
-		}
-		try {
 			this.xllcorner = headerDTM.get("xllcorner");
-		} catch (NullPointerException e) {	
-			this.xllcorner = 0;
-		}
-		try {
 			this.yllcorner = headerDTM.get("yllcorner");
-		} catch (NullPointerException e) {
-			this.yllcorner = 0;
-		}
-		try {
 			this.cellsize = headerDTM.get("cellsize");
+			
 		} catch (NullPointerException e) {
-			this.cellsize = 1;
+			e.printStackTrace();
 		}
 	}
 	
