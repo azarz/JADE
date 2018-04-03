@@ -1,5 +1,6 @@
 package eu.ensg.jade.scene;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
@@ -112,6 +113,9 @@ public class SceneBuilder {
 	 */
 	public void export() {
 		OBJWriter objWritter = new OBJWriter();
+		
+		File directory = new File("assets/RGE");
+		if (! directory.exists()){ directory.mkdir(); }
 		
 		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);		
 		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
