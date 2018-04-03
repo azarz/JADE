@@ -84,6 +84,8 @@ public class Scene {
 		this.vegetation = new ArrayList<PointVegetation>();
 		this.surfaceVegetation = new ArrayList<SurfaceVegetation>();
 		this.streetFurniture = new ArrayList<StreetFurniture>();
+		
+		this.dtm = new DTM();
 	}
 
 
