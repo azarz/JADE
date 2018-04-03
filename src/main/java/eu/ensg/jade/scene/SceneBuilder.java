@@ -65,7 +65,7 @@ public class SceneBuilder {
 		
 		
 		SceneBuilder builder = new SceneBuilder();
-		builder.buildFromData(buildingLayer, roadLayer, hydroLayer, treeLayer, dtmLayer);
+		builder.buildFromFiles(buildingLayer, roadLayer, hydroLayer, treeLayer, dtmLayer);
 		builder.export();
 	}
 	
@@ -74,7 +74,7 @@ public class SceneBuilder {
 	 * Methods to load data
 	 */
 	
-	public void buildFromData(
+	public void buildFromFiles(
 			String buildingLayer,
 			String roadLayer,
 			String hydroLayer,
@@ -91,54 +91,9 @@ public class SceneBuilder {
 		build(scene);
 	}
 	
-	public void buildFromRGE(String rge) {
-		// TODO: implement RGE loading
-		String getCapabilities = "http://localhost:8080/geoserver/wfs?REQUEST=GetCapabilities";
-
-		Map<String, String> connectionParameters = new HashMap<String, String>();
-		connectionParameters.put("WFSDataStoreFactory:GET_CAPABILITIES_URL", getCapabilities );
-		
-		
+	public void buildFromRGE(String rge) {		
 		try {
-			// Step 2 - connection
-			DataStore data = DataStoreFinder.getDataStore( connectionParameters );
-
-			// Step 3 - discovery
-			String typeNames[] = data.getTypeNames();
-			String typeName = typeNames[0];
-			SimpleFeatureType schema = data.getSchema( typeName );
-			
-			// Step 4 - target
-			FeatureSource<SimpleFeatureType, SimpleFeature> source = data.getFeatureSource( typeName );
-			
-			FeatureCollection<SimpleFeatureType,SimpleFeature> collection = source.getFeatures( );
-			FeatureIterator<SimpleFeature> iterator = collection.features();
-			
-			// Step 5 - query
-//			String geomName = schema.getDefaultGeometry().getLocalName();
-//			Envelope bbox = new Envelope( -100.0, -70, 25, 40 );
-//	
-//			FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2( GeoTools.getDefaultHints() );
-//			Object polygon = JTS.toGeometry( bbox );
-//			Intersects filter = ff.intersects( ff.property( geomName ), ff.literal( polygon ) );
-//	
-//			Query query = new DefaultQuery( typeName, filter, new String[]{ geomName } );
-//			FeatureCollection<SimpleFeatureType, SimpleFeature> features = source.getFeatures( query );
-//	
-//			ReferencedEnvelope bounds = new ReferencedEnvelope();
-//			Iterator<SimpleFeature> iterator = ((List<Building>) features).iterator();
-//			try {
-//			    while( iterator.hasNext() ){
-//			        Feature feature = (Feature) iterator.next();
-//			    bounds.include( feature.getBounds() );
-//			}
-//			    System.out.println( "Calculated Bounds:"+ bounds );
-//			}
-//			finally {
-//			    features.close( iterator );
-//			}
-			
-			
+			scene = loadRGE(rge);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -205,20 +160,51 @@ public class SceneBuilder {
 		return scene;
 	}
 	
+	private Scene loadRGE(String url) throws IOException {
+		Scene scene = new Scene();
+		
+		ReaderContext readerContx = new ReaderContext();
+		ReaderFactory readerFact = new ReaderFactory();
+		InputRGE rge = new InputRGE();
+		
+		rge = readerFact.createReader(READER_METHOD.BUILDING).loadFromRGE(url);
+		scene.setBuildings(rge.getBuildings());
+		scene.setBuildingCentroid(rge.getCentroid());
+		
+		// TODO: fill scene with data
+		
+		return scene;
+	}
 	
+	
+	/**
+	 * Build the scene with additional data:
+	 * <ul>
+	 * <li>Street Furniture</li>
+	 * <li>Vegetation</li>
+	 * <li>Correct building height</li>
+	 * <li>Streets at DTM level</li>
+	 * </ul>
+	 * 
+	 * @param scene The scene to build
+	 */
 	private void build(Scene scene) {
 		// Changing the roads and buildings data so it matches the DTM
 		DTM dtm = scene.getDtm();
 		
-		// TODO: add vegetation & street furniture
+		// TODO: add vegetation
+		
+		// Create street furniture
 		Rule ruleObject = new Rule();
 		ruleObject.intersectSigns(scene);
 		
+		// Set building height
 		for (Building building : scene.getBuildings()) {
 			building.setZfromDTM(dtm);
 			building.addHeight();
 		}
 		
+		// Set road height
 		Map<String, Road> roads = scene.getRoads();
 		for(String key : roads.keySet()) {
 			SurfaceRoad surfRoad = new SurfaceRoad( (LineRoad) roads.get(key));
