@@ -47,8 +47,8 @@ public class SceneBuilder {
 	 */
 	public static void main(String[] args) {
 		String buildingLayer = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
-		//String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
-		String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
+		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
+		//String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad.shp";
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
 		String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
 		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
@@ -245,7 +245,7 @@ public class SceneBuilder {
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
 		driver.setMass(800);
 		Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
-		driver.setTranslation(new double[]{coord.x + 2, 60, coord.y});
+		driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
