@@ -1,16 +1,7 @@
 package eu.ensg.jade.scene;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
-
-import org.geotools.data.DataStore;
-import org.geotools.data.DataStoreFinder;
-import org.geotools.data.FeatureSource;
-import org.geotools.feature.FeatureCollection;
-import org.geotools.feature.FeatureIterator;
-import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.feature.simple.SimpleFeatureType;
 
 import com.vividsolutions.jts.geom.Coordinate;
 
@@ -54,7 +45,6 @@ public class SceneBuilder {
 	 * 
 	 * Main method
 	 */
-	
 	public static void main(String[] args) {
 		String buildingLayer = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
 		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
@@ -65,16 +55,19 @@ public class SceneBuilder {
 		
 		
 		SceneBuilder builder = new SceneBuilder();
-		builder.buildFromData(buildingLayer, roadLayer, hydroLayer, treeLayer, dtmLayer);
+		builder.buildFromFiles(buildingLayer, roadLayer, hydroLayer, treeLayer, dtmLayer);
 		builder.export();
 	}
 	
-	/* (non-Javadoc)
-	 * 
-	 * Methods to load data
-	 */
 	
-	public void buildFromData(
+	/**
+	 * @param buildingLayer
+	 * @param roadLayer
+	 * @param hydroLayer
+	 * @param treeLayer
+	 * @param dtmLayer
+	 */
+	public void buildFromFiles(
 			String buildingLayer,
 			String roadLayer,
 			String hydroLayer,
@@ -91,54 +84,21 @@ public class SceneBuilder {
 		build(scene);
 	}
 	
-	public void buildFromRGE(String rge) {
-		// TODO: implement RGE loading
-		String getCapabilities = "http://localhost:8080/geoserver/wfs?REQUEST=GetCapabilities";
-
-		Map<String, String> connectionParameters = new HashMap<String, String>();
-		connectionParameters.put("WFSDataStoreFactory:GET_CAPABILITIES_URL", getCapabilities );
-		
-		
+	/**
+	 * @param buildingLayer
+	 * @param roadLayer
+	 * @param hydroLayer
+	 * @param treeLayer
+	 * @param dtmLayer
+	 */
+	public void buildFromRGE(
+			String buildingLayer,
+			String roadLayer,
+			String hydroLayer,
+			String treeLayer,
+			String dtmLayer) {		
 		try {
-			// Step 2 - connection
-			DataStore data = DataStoreFinder.getDataStore( connectionParameters );
-
-			// Step 3 - discovery
-			String typeNames[] = data.getTypeNames();
-			String typeName = typeNames[0];
-			SimpleFeatureType schema = data.getSchema( typeName );
-			
-			// Step 4 - target
-			FeatureSource<SimpleFeatureType, SimpleFeature> source = data.getFeatureSource( typeName );
-			
-			FeatureCollection<SimpleFeatureType,SimpleFeature> collection = source.getFeatures( );
-			FeatureIterator<SimpleFeature> iterator = collection.features();
-			
-			// Step 5 - query
-//			String geomName = schema.getDefaultGeometry().getLocalName();
-//			Envelope bbox = new Envelope( -100.0, -70, 25, 40 );
-//	
-//			FilterFactory2 ff = CommonFactoryFinder.getFilterFactory2( GeoTools.getDefaultHints() );
-//			Object polygon = JTS.toGeometry( bbox );
-//			Intersects filter = ff.intersects( ff.property( geomName ), ff.literal( polygon ) );
-//	
-//			Query query = new DefaultQuery( typeName, filter, new String[]{ geomName } );
-//			FeatureCollection<SimpleFeatureType, SimpleFeature> features = source.getFeatures( query );
-//	
-//			ReferencedEnvelope bounds = new ReferencedEnvelope();
-//			Iterator<SimpleFeature> iterator = ((List<Building>) features).iterator();
-//			try {
-//			    while( iterator.hasNext() ){
-//			        Feature feature = (Feature) iterator.next();
-//			    bounds.include( feature.getBounds() );
-//			}
-//			    System.out.println( "Calculated Bounds:"+ bounds );
-//			}
-//			finally {
-//			    features.close( iterator );
-//			}
-			
-			
+			scene = loadRGE(buildingLayer, roadLayer, hydroLayer, treeLayer, dtmLayer);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -147,11 +107,9 @@ public class SceneBuilder {
 	}
 	
 	
-	/* (non-Javadoc)
-	 * 
-	 * Public method to export the whole Scene
+	/**
+	 * Public method to export the whole Scene as a driving task, to be used in OpenDS
 	 */
-	
 	public void export() {
 		OBJWriter objWritter = new OBJWriter();
 		
@@ -169,7 +127,6 @@ public class SceneBuilder {
 	 * 
 	 * Private utility methods, get the job done
 	 */
-	
 	private Scene loadData(
 			String buildingLayer,
 			String roadLayer,
@@ -205,20 +162,65 @@ public class SceneBuilder {
 		return scene;
 	}
 	
+	private Scene loadRGE(
+			String buildingLayer,
+			String roadLayer,
+			String hydroLayer,
+			String treeLayer,
+			String dtmLayer) throws IOException {
+		Scene scene = new Scene();
+		
+		ReaderFactory readerFact = new ReaderFactory();
+		InputRGE rge = new InputRGE();
+		
+		rge = readerFact.createReader(READER_METHOD.BUILDING).loadFromRGE(buildingLayer);
+		scene.setBuildings(rge.getBuildings());
+		scene.setBuildingCentroid(rge.getCentroid());
+		
+		rge = readerFact.createReader(READER_METHOD.ROAD).loadFromRGE(roadLayer);
+		scene.setRoads(rge.getRoads());
+		scene.setCollIntersect(rge.getCollIntersect());
+		
+		rge = readerFact.createReader(READER_METHOD.HYDRO).loadFromRGE(hydroLayer);
+		scene.setHydrography(rge.getHydrography());
+		
+		rge = readerFact.createReader(READER_METHOD.VEGETATION).loadFromRGE(treeLayer);
+		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
+		
+		// TODO: Add the DTM
+		
+		return scene;
+	}
 	
+	
+	/**
+	 * Build the scene with additional data:
+	 * <ul>
+	 * <li>Street Furniture</li>
+	 * <li>Vegetation</li>
+	 * <li>Correct building height</li>
+	 * <li>Streets at DTM level</li>
+	 * </ul>
+	 * 
+	 * @param scene The scene to build
+	 */
 	private void build(Scene scene) {
 		// Changing the roads and buildings data so it matches the DTM
 		DTM dtm = scene.getDtm();
 		
-		// TODO: add vegetation & street furniture
+		// TODO: add vegetation
+		
+		// Create street furniture
 		Rule ruleObject = new Rule();
 		ruleObject.intersectSigns(scene);
 		
+		// Set building height
 		for (Building building : scene.getBuildings()) {
 			building.setZfromDTM(dtm);
 			building.addHeight();
 		}
 		
+		// Set road height
 		Map<String, Road> roads = scene.getRoads();
 		for(String key : roads.keySet()) {
 			SurfaceRoad surfRoad = new SurfaceRoad( (LineRoad) roads.get(key));
