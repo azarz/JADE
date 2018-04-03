@@ -1,0 +1,172 @@
+<scene export_time="1479381634.131155" previous_export_time="0" formatVersion="1.0.1" exported_by="Sina" >
+  <nodes >
+    <node name="Group45" >
+      <position z="0.000000" x="0.000000" y="0.000000" />
+      <rotation qw="1.000000" qz="0.000000" qx="0.000000" qy="0.000000" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <node name="Group57" >
+        <position z="0.000000" x="0.000000" y="0.000000" />
+        <rotation qw="1.000000" qz="0.000000" qx="0.000000" qy="0.000000" />
+        <scale z="1.000000" x="1.000000" y="1.000000" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+      </node>
+      <node name="Mesh538" >
+        <position z="0.000000" x="0.000000" y="0.000000" />
+        <rotation qw="1.000000" qz="0.000000" qx="0.000000" qy="0.000000" />
+        <scale z="1.000000" x="1.000000" y="1.000000" />
+        <game >
+          <sensors />
+          <actuators />
+        </game>
+        <entity name="Mesh538" velocity_min="0.0" physics_type="STATIC" meshFile="Mesh538.mesh" friction_y="1.0" mass="1.0" damping_rot="0.10000000149011612" mass_radius="1.0" inertia_tensor="0.4000000059604645" friction_z="1.0" friction_x="1.0" anisotropic_friction="False" lock_trans_x="False" lock_trans_y="False" lock_trans_z="False" damping_trans="0.03999999910593033" lock_rot_z="False" lock_rot_y="False" lock_rot_x="False" velocity_max="0.0" ghost="False" actor="False" />
+      </node>
+    </node>
+    <node name="Lamp" >
+      <position z="5.903862" x="4.076245" y="1.005454" />
+      <rotation qw="0.570947" qz="0.755880" qx="0.169076" qy="0.272171" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <light name="Lamp" type="point" powerScale="1.0" shadow="true" >
+        <position z="5.903862" x="4.076245" y="1.005454" />
+        <lightAttenuation linear="0.03333335240683057" constant="1.0" quadratic="0.0" range="5000" />
+        <colourDiffuse g="1.0" r="1.0" b="1.0" />
+        <colourSpecular g="1.0" r="1.0" b="1.0" />
+        <colourShadow g="1.0" r="1.0" b="1.0" />
+      </light>
+    </node>
+    <node name="Camera" >
+      <position z="5.343665" x="7.481132" y="-6.507640" />
+      <rotation qw="0.781600" qz="0.334251" qx="0.481707" qy="0.212922" />
+      <scale z="1.000000" x="1.000000" y="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <camera name="Camera" fov="0.5033799435163735" projectionType="perspective" >
+        <clipping farPlaneDist="100.0" near="0.10000000149011612" nearPlaneDist="0.10000000149011612" far="100.0" />
+      </camera>
+    </node>
+  </nodes>
+  <externals >
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\0128_Whi.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\2007t800.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\Color_02.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\_Color01.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\Color_00.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\Foregrou.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\White1.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\Color_I0.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\_Charcoa.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\metal1.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\_Color_A.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\0136_Cha.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\NEW_CHRO.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\0135_Dar.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\VP_BLACK.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\WHITE_PL.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\SKY_GREY.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\0039_Dar.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\_Black_.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\Default_.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\0132_Lig.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\FrontCol.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\Red1.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\Chrome1.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\Color_04.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\Color_03.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\0133_Gra.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\Materi01.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\Material.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\_Color02.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\_Fencing.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\Color_C0.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\Color_01.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\Color_05.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Cars\DumpTruck\SCENE\Color_06.material" />
+    </item>
+  </externals>
+  <environment >
+    <colourDiffuse g="0.05087608844041824" r="0.05087608844041824" b="0.05087608844041824" />
+    <colourAmbient g="0.0" r="0.0" b="0.0" />
+    <colourBackground g="0.05087608844041824" r="0.05087608844041824" b="0.05087608844041824" />
+  </environment>
+</scene>

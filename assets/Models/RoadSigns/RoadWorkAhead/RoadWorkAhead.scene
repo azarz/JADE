@@ -1,0 +1,65 @@
+<scene formatVersion="1.0.1" exported_by="Sina" previous_export_time="1479397755.699505" export_time="1479397799.132774" >
+  <nodes >
+    <node name="Rod-2X5X115" >
+      <position z="436.225952" y="6.730518" x="-4.692226" />
+      <rotation qz="0.000000" qy="-0.000000" qx="-0.707107" qw="0.707107" />
+      <scale z="1.000000" y="1.500000" x="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity mass="1.0" velocity_max="0.0" lock_trans_y="False" lock_trans_x="False" ghost="False" lock_trans_z="False" anisotropic_friction="False" actor="False" friction_z="1.0" physics_type="STATIC" damping_trans="0.03999999910593033" velocity_min="0.0" friction_y="1.0" friction_x="1.0" lock_rot_z="False" lock_rot_x="False" lock_rot_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" name="Rod-2X5X115" meshFile="Rod-2X5X115.mesh" />
+    </node>
+    <node name="RoadWordAhead" >
+      <position z="465.587982" y="29.712513" x="0.000000" />
+      <rotation qz="0.000000" qy="0.000000" qx="0.707107" qw="0.707107" />
+      <scale z="1.000000" y="1.000000" x="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity mass="1.0" velocity_max="0.0" lock_trans_y="False" lock_trans_x="False" ghost="False" lock_trans_z="False" anisotropic_friction="False" actor="False" friction_z="1.0" physics_type="STATIC" damping_trans="0.03999999910593033" velocity_min="0.0" friction_y="1.0" friction_x="1.0" lock_rot_z="False" lock_rot_x="False" lock_rot_y="False" mass_radius="1.0" damping_rot="0.10000000149011612" inertia_tensor="0.4000000059604645" name="RoadWordAhead" meshFile="RoadWordAhead.mesh" />
+    </node>
+    <node name="Lamp" >
+      <position z="471.491852" y="30.717966" x="4.076245" />
+      <rotation qz="0.755880" qy="0.272171" qx="0.169076" qw="0.570947" />
+      <scale z="1.000000" y="1.000000" x="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <light shadow="true" powerScale="1.0" type="point" name="Lamp" >
+        <position z="471.491852" y="30.717966" x="4.076245" />
+        <lightAttenuation range="5000" quadratic="0.0" constant="1.0" linear="0.03333335240683057" />
+        <colourDiffuse r="1.0" g="1.0" b="1.0" />
+        <colourSpecular r="1.0" g="1.0" b="1.0" />
+        <colourShadow r="1.0" g="1.0" b="1.0" />
+      </light>
+    </node>
+    <node name="Camera" >
+      <position z="470.931641" y="23.204872" x="7.481132" />
+      <rotation qz="0.334251" qy="0.212922" qx="0.481707" qw="0.781600" />
+      <scale z="1.000000" y="1.000000" x="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <camera fov="0.5033799435163735" projectionType="perspective" name="Camera" >
+        <clipping near="0.10000000149011612" farPlaneDist="100.0" far="100.0" nearPlaneDist="0.10000000149011612" />
+      </camera>
+    </node>
+  </nodes>
+  <externals >
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Sign\48x48\RoadWordAhead\RoadWorkAhead\Material.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Sign\48x48\RoadWordAhead\RoadWorkAhead\material_0.material" />
+    </item>
+  </externals>
+  <environment >
+    <colourDiffuse r="0.05087608844041824" g="0.05087608844041824" b="0.05087608844041824" />
+    <colourBackground r="0.05087608844041824" g="0.05087608844041824" b="0.05087608844041824" />
+    <colourAmbient r="0.0" g="0.0" b="0.0" />
+  </environment>
+</scene>

@@ -29,6 +29,7 @@ import eu.opends.tools.PanelCenter;
 /**
  * 
  * @author Rafael Math
+ * This class corresponds to an older transmission without clutch
  */
 public class Transmission 
 {

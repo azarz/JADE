@@ -102,4 +102,10 @@
 		</mouse>
 	</controllers>
 	
+	<multiThreading>
+		<enableThreads>true</enableThreads>
+		<numberOfThreads>13</numberOfThreads>
+	</multiThreading>
+	
+	
 </settings>

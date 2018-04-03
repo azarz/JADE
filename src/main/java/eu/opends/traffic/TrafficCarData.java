@@ -32,10 +32,12 @@ public class TrafficCarData
 	private boolean engineOn;
 	private String modelPath;
 	private FollowBoxSettings followBoxSettings;
+	private boolean isSpeedLimitedToSteeringCar;
 	
 	
 	public TrafficCarData(String name, float mass, float acceleration,	float decelerationBrake, 
-			float decelerationFreeWheel, boolean engineOn, String modelPath, FollowBoxSettings followBoxSettings) 
+			float decelerationFreeWheel, boolean engineOn, String modelPath, FollowBoxSettings followBoxSettings,
+			boolean isSpeedLimitedToSteeringCar) 
 	{
 		this.name = name;
 		this.mass = mass;
@@ -45,6 +47,7 @@ public class TrafficCarData
 		this.engineOn = engineOn;
 		this.modelPath = modelPath;
 		this.followBoxSettings = followBoxSettings;
+		this.isSpeedLimitedToSteeringCar = isSpeedLimitedToSteeringCar;
 	}
 
 
@@ -85,6 +88,11 @@ public class TrafficCarData
 
 	public FollowBoxSettings getFollowBoxSettings() {
 		return followBoxSettings;
+	}
+
+
+	public boolean isSpeedLimitedToSteeringCar() {
+		return isSpeedLimitedToSteeringCar;
 	}
 	
 	

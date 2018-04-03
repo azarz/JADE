@@ -1,0 +1,94 @@
+<scene previous_export_time="0" export_time="1479398794.543607" formatVersion="1.0.1" exported_by="Sina" >
+  <nodes >
+    <node name="35MPH" >
+      <position z="232.296051" y="-73.250046" x="4.908755" />
+      <rotation qw="0.707107" qy="0.000000" qx="0.707107" qz="0.000000" />
+      <scale z="0.780000" y="0.780000" x="0.780000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity meshFile="35MPH.mesh" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" anisotropic_friction="False" velocity_min="0.0" mass_radius="1.0" inertia_tensor="0.4000000059604645" friction_y="1.0" actor="False" friction_x="1.0" ghost="False" friction_z="1.0" mass="1.0" physics_type="STATIC" velocity_max="0.0" lock_rot_x="False" name="35MPH" lock_rot_z="False" lock_trans_z="False" lock_trans_y="False" lock_trans_x="False" lock_rot_y="False" />
+    </node>
+    <node name="RoadWordAhead" >
+      <position z="310.000031" y="30.120556" x="5.037906" />
+      <rotation qw="0.707107" qy="0.000000" qx="0.707107" qz="0.000000" />
+      <scale z="1.000000" y="1.000000" x="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity meshFile="RoadWordAhead.mesh" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" anisotropic_friction="False" velocity_min="0.0" mass_radius="1.0" inertia_tensor="0.4000000059604645" friction_y="1.0" actor="False" friction_x="1.0" ghost="False" friction_z="1.0" mass="1.0" physics_type="STATIC" velocity_max="0.0" lock_rot_x="False" name="RoadWordAhead" lock_rot_z="False" lock_trans_z="False" lock_trans_y="False" lock_trans_x="False" lock_rot_y="False" />
+    </node>
+    <node name="Rod-2X5X115.001" >
+      <position z="286.174500" y="-31.767027" x="0.000000" />
+      <rotation qw="0.707107" qy="0.000000" qx="-0.707107" qz="0.000000" />
+      <scale z="1.000000" y="1.000000" x="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity meshFile="Rod-2X5X115.002.mesh" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" anisotropic_friction="False" velocity_min="0.0" mass_radius="1.0" inertia_tensor="0.4000000059604645" friction_y="1.0" actor="False" friction_x="1.0" ghost="False" friction_z="1.0" mass="1.0" physics_type="STATIC" velocity_max="0.0" lock_rot_x="False" name="Rod-2X5X115.002" lock_rot_z="False" lock_trans_z="False" lock_trans_y="False" lock_trans_x="False" lock_rot_y="False" />
+    </node>
+    <node name="Rod-2X5X115" >
+      <position z="288.793823" y="43.254719" x="0.000000" />
+      <rotation qw="0.707107" qy="0.000000" qx="-0.707107" qz="0.000000" />
+      <scale z="1.000000" y="1.000000" x="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity meshFile="Rod-2X5X115.001.mesh" damping_trans="0.03999999910593033" damping_rot="0.10000000149011612" anisotropic_friction="False" velocity_min="0.0" mass_radius="1.0" inertia_tensor="0.4000000059604645" friction_y="1.0" actor="False" friction_x="1.0" ghost="False" friction_z="1.0" mass="1.0" physics_type="STATIC" velocity_max="0.0" lock_rot_x="False" name="Rod-2X5X115.001" lock_rot_z="False" lock_trans_z="False" lock_trans_y="False" lock_trans_x="False" lock_rot_y="False" />
+    </node>
+    <node name="Lamp" >
+      <position z="283.420959" y="-38.466175" x="4.076245" />
+      <rotation qw="0.570947" qy="0.272171" qx="0.169076" qz="0.755880" />
+      <scale z="1.000000" y="1.000000" x="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <light powerScale="1.0" type="point" name="Lamp" shadow="true" >
+        <position z="283.420959" y="-38.466175" x="4.076245" />
+        <lightAttenuation constant="1.0" range="5000" linear="0.03333335240683057" quadratic="0.0" />
+        <colourDiffuse r="1.0" g="1.0" b="1.0" />
+        <colourSpecular r="1.0" g="1.0" b="1.0" />
+        <colourShadow r="1.0" g="1.0" b="1.0" />
+      </light>
+    </node>
+    <node name="Camera" >
+      <position z="282.860748" y="-45.979271" x="7.481132" />
+      <rotation qw="0.781600" qy="0.212922" qx="0.481707" qz="0.334251" />
+      <scale z="1.000000" y="1.000000" x="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <camera fov="0.5033799435163735" name="Camera" projectionType="perspective" >
+        <clipping near="0.10000000149011612" farPlaneDist="100.0" far="100.0" nearPlaneDist="0.10000000149011612" />
+      </camera>
+    </node>
+  </nodes>
+  <externals >
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Sign\A_RURAL_AREA_ADVISORY_SPEED_PLAQUE\A-Rural-Area-Advisory\Material.000.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Sign\A_RURAL_AREA_ADVISORY_SPEED_PLAQUE\A-Rural-Area-Advisory\Material.001_NONE.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Sign\A_RURAL_AREA_ADVISORY_SPEED_PLAQUE\A-Rural-Area-Advisory\material_0.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Sign\A_RURAL_AREA_ADVISORY_SPEED_PLAQUE\A-Rural-Area-Advisory\Material.001.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Sign\A_RURAL_AREA_ADVISORY_SPEED_PLAQUE\A-Rural-Area-Advisory\Material.002.material" />
+    </item>
+  </externals>
+  <environment >
+    <colourAmbient r="0.0" g="0.0" b="0.0" />
+    <colourBackground r="0.05087608844041824" g="0.05087608844041824" b="0.05087608844041824" />
+    <colourDiffuse r="0.05087608844041824" g="0.05087608844041824" b="0.05087608844041824" />
+  </environment>
+</scene>

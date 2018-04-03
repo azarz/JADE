@@ -64,6 +64,8 @@ public class XMLWriter {
 	private List<XMLModel> modelList;
 	private List<XMLGroundModel> terrainList;
 	private List<XMLVehicle> vehicleList;
+	
+	public boolean log = false;
 
 
 // ========================== CONSTRUCTORS =========================
@@ -146,6 +148,10 @@ public class XMLWriter {
 		this.createSceneXml();
 		this.createScenarioXml();
 		this.createSettingsXml();
+		
+		if(log) {
+			System.out.println("XML export finished");
+		}
 	}
 
 
@@ -319,9 +325,16 @@ public class XMLWriter {
 				transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, doctype.getSystemId());
 			}			
 			
-//			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			if(log) {
+				transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			}
+			
 			
 			transformer.transform(source, result);
+			
+			if(log) {
+				System.out.println("Export XML file: " + filePath);
+			}
 			
 		} catch (IOException | TransformerException e) {
 			e.printStackTrace();

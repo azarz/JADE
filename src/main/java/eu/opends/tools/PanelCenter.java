@@ -85,6 +85,8 @@ public class PanelCenter
 	private static Node compassIndicator = new Node("compassIndicator");
 	private static BitmapText cogText, sogText, magText, latText, longText, timeText, depthText;
 	
+	
+	
 	public enum MaritimeDisplayMode 
 	{
 		Off, Panel, Compass, MultiFunctionDisplay, All
@@ -152,6 +154,8 @@ public class PanelCenter
 		sim = simulator;
 		messageBoxGUI = new MessageBoxGUI(sim);
 
+		
+		
 		settingsLoader = Simulator.getSettingsLoader();
 		
 		String showAnalogString = settingsLoader.getSetting(Setting.General_showAnalogIndicators, "true");
@@ -204,7 +208,7 @@ public class PanelCenter
         guiNode.attachChild(warningFrame);
         
         RPMgauge = new Picture("RPMgauge");
-        RPMgauge.setImage(sim.getAssetManager(), "Textures/Gauges/RPMgauge.png", true);
+        RPMgauge.setImage(sim.getAssetManager(), "Textures/Gauges/RPMgaugeV4.png", true);
         RPMgauge.setWidth(184);
         RPMgauge.setHeight(184);
         RPMgauge.setPosition(0, 15);
@@ -226,6 +230,15 @@ public class PanelCenter
         speedometer.setHeight(184);
         speedometer.setPosition(100, 15);
         analogIndicators.attachChild(speedometer);
+        
+        if (getUSMetricSystem()){
+	        speedometer = new Picture("speedometer");
+	        speedometer.setImage(sim.getAssetManager(), "Textures/Gauges/speedometerMPHV3.png", true);
+	        speedometer.setWidth(184);
+	        speedometer.setHeight(184);
+	        speedometer.setPosition(100, 15);
+	        analogIndicators.attachChild(speedometer);
+	    }
         
         handBrakeIndicator = new Picture("handBrakeIndicator");
         handBrakeIndicator.setImage(sim.getAssetManager(), "Textures/Gauges/handBrakeIndicatorSmall.png", true);
@@ -737,7 +750,7 @@ public class PanelCenter
 	        cogText = new BitmapText(gaugeFont, false);          
 	        cogText.setSize(gaugeFont.getCharSet().getRenderedSize());
 	        cogText.setColor(ColorRGBA.Black);
-	        cogText.setText("360Â°");
+	        cogText.setText("360°");
 	        cogText.setLocalScale(5.5f, 5.5f, 1);
 	        cogText.setLocalTranslation(910,1170,0);
 	        displayLeftNode.attachChild(cogText);
@@ -992,13 +1005,13 @@ public class PanelCenter
 		    	startTime = System.currentTimeMillis();
 
 	        // OpenDS-Maritime - heading
-			maritimeHeadingText.setText("Heading: " + df.format(car.getHeadingDegree()) + " Grad");
+			maritimeHeadingText.setText("Kurs: " + df.format(car.getHeadingDegree()) + " Grad");
 			
 			// OpenDS-Maritime - speed
-	        maritimeSpeedText.setText("Speed.: " + df.format(car.getCurrentSpeedKmh()/1.852f) + " kn");
+	        maritimeSpeedText.setText("Geschw.: " + df.format(car.getCurrentSpeedKmh()/1.852f) + " kn");
 	        
 	        // OpenDS-Maritime - depth
-	        maritimeDepthText.setText("Depth: " + df.format(car.getDistanceToRoadSurface()) + " m");
+	        maritimeDepthText.setText("Tiefe: " + df.format(car.getDistanceToRoadSurface()) + " m");
 	        
 	        // OpenDS-Maritime - wind
 	        maritimeWindText.setText("Wind: 0,0 Grad");
@@ -1009,16 +1022,16 @@ public class PanelCenter
 	        maritimeTimeText.setText("Zeit: " + elapsedTimeString);
 	        
 	        // OpenDS-Maritime - distance
-	        maritimeDistanceText.setText("Distance: " + df2.format(car.getMileage()/1852f) + " nm");
+	        maritimeDistanceText.setText("Distanz: " + df2.format(car.getMileage()/1852f) + " nm");
 	        
 	        // OpenDS-Maritime - latitude
-	        maritimeLatitudeText.setText("Latitude: " + df3.format(car.getGeoPosition().getX()) + " N");
+	        maritimeLatitudeText.setText("Breite: " + df3.format(car.getGeoPosition().getX()) + " N");
 	        
 	        // OpenDS-Maritime - longitude
-	        maritimeLongitudeText.setText("Longitude: " + df3.format(car.getGeoPosition().getY()) + " O");
+	        maritimeLongitudeText.setText("Länge: " + df3.format(car.getGeoPosition().getY()) + " O");
 	        
 	        // OpenDS-Maritime - scenario
-	        maritimeScenarioText.setText("Scenario: " + SimulationBasics.getDrivingTask().getFileName().replace(".xml", ""));
+	        maritimeScenarioText.setText("Szenario: " + SimulationBasics.getDrivingTask().getFileName().replace(".xml", ""));
         }
         
         if(maritimeDisplayMode == MaritimeDisplayMode.Compass || maritimeDisplayMode == MaritimeDisplayMode.All)
@@ -1031,9 +1044,9 @@ public class PanelCenter
         
         if(maritimeDisplayMode == MaritimeDisplayMode.MultiFunctionDisplay || maritimeDisplayMode == MaritimeDisplayMode.All)
         {
-	        cogText.setText(df4.format(Math.round(car.getHeadingDegree()))+"Â°");
+	        cogText.setText(df4.format(Math.round(car.getHeadingDegree()))+"°");
 	        sogText.setText(df.format(car.getCurrentSpeedKmh()/1.852f));
-	        magText.setText(df4.format((Math.round(car.getHeadingDegree())+3)%360)+"Â°");
+	        magText.setText(df4.format((Math.round(car.getHeadingDegree())+3)%360)+"°");
 	        latText.setText(getDegreeText(car.getGeoPosition().getX()));
 	        longText.setText(getDegreeText(car.getGeoPosition().getY()));
 	        timeText.setText(sdf2.format(new Date()));
@@ -1050,30 +1063,55 @@ public class PanelCenter
         double minutes = ((decimalValue-degree) * 60);
         String minutesFormatted = df.format(Math.round(minutes*1000f)/1000f);
 
-        return degree + "Â°" + minutesFormatted + "'";
+        return degree + "°" + minutesFormatted + "'";
     }
     
     
 	private static void updateMilageText(Car car) 
-	{
-		float mileage = car.getMileage();
-		String mileageString;
-		
-		if(mileage < 1000)
-			mileageString = ((int)mileage) + " m";
-		else
-			mileageString = ((int)(mileage/10f))/100f + " km";
-		
-		mileageText.setText(mileageString);
-		
-		float odometer = ((int)mileage)/1000f;
-		DecimalFormat df = new DecimalFormat("#0.0");
-		odometerText.setText(df.format(odometer) + " km");
-		
-		// OpenDS-Rift
-		riftKmText.setText(df.format(odometer) + " km");
+	{		
+	
+		if ( !getUSMetricSystem() ){
+		// to be added difference between km/h and mph
+			float mileage = car.getMileage();
+			String mileageString;
+			if(mileage < 1000)
+				mileageString = ((int)mileage) + " m";
+			else
+				mileageString = ((int)(mileage/10f))/100f + " km";
+			
+			mileageText.setText(mileageString);
+			
+			float odometer = ((int)mileage)/1000f;
+			DecimalFormat df = new DecimalFormat("#0.0");
+			odometerText.setText(df.format(odometer) + " km");
+			
+			// OpenDS-Rift
+			riftKmText.setText(df.format(odometer) + " km");
+		}
+		else {
+			float mileage = car.getMileage()*0.62137f;
+			String mileageString;
+			if(mileage < 1750)
+				mileageString = ((int)mileage) + " yd.";
+			else
+				mileageString = ((int)((mileage)/10f))/100f + " mi.";
+			
+			mileageText.setText(mileageString);
+			
+			float odometer = ((int)mileage)/1000f;
+			DecimalFormat df = new DecimalFormat("#0.0");
+			odometerText.setText(df.format(odometer) + " mi.");
+			
+			// OpenDS-Rift
+			riftKmText.setText(df.format(odometer) + " mi.");
+		}
 	}
 
+	private static boolean getUSMetricSystem(){
+		boolean USMetric = settingsLoader.getSetting(Setting.General_USMeasurementSystem, false);
+		return USMetric;
+	}
+	
 
 	private static void setSpeedIndicator(float speed) 
 	{
@@ -1210,18 +1248,26 @@ public class PanelCenter
 		float currentSpeedLimit = SpeedControlCenter.getCurrentSpeedlimit();
 		float upcomingSpeedLimit = SpeedControlCenter.getUpcomingSpeedlimit();
 		
+		String ending;
+		if (!getUSMetricSystem()){
+			ending = " km/h";
+		}
+		else {
+			ending = " mph";
+		}
+		
 		if(Math.abs(carSpeed) <= 0.7f)
 		{
-			speedText.setText("0.0 km/h");
+			speedText.setText("0.0" + ending);
 			// OpenDS-Rift
-			riftSpeedText.setText("0.0 km/h");
+			riftSpeedText.setText("0.0" + ending);
 			setSpeedIndicator(0);		
 		}
 		else
 		{
-			speedText.setText("" + carSpeed + " km/h");
+			speedText.setText("" + carSpeed + ending);
 			// OpenDS-Rift
-			riftSpeedText.setText("" + carSpeed + " km/h");
+			riftSpeedText.setText("" + carSpeed + ending);
 			setSpeedIndicator(carSpeed);
 		}
 		

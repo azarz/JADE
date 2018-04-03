@@ -11,6 +11,8 @@
 		<numberOfScreens>3</numberOfScreens>
 		<angleBetweenAdjacentCameras>45</angleBetweenAdjacentCameras>
 		-->
+		
+		<USMeasurementSystem>true</USMeasurementSystem>
 		 
 	</general>
 	
@@ -20,13 +22,19 @@
 		<port>2111</port>
 	</HMI>
 	
-	<!-- -->
+	<!--
+	<objectLocator>
+		<enable>true</enable>
+		<fileName>trafficObjects.txt</fileName>	
+	</objectLocator>
+	
+	
 	<simphynity>
 		<enableConnection>true</enableConnection>
 		<ip>127.0.0.1</ip>
 		<port>20777</port>
 	</simphynity>
-	<!--  -->
+	-->
 	 
 	 
 	<settingsControllerServer>

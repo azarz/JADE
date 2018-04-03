@@ -1,0 +1,52 @@
+<scene export_time="1479400935.306848" exported_by="Sina" previous_export_time="0" formatVersion="1.0.1" >
+  <nodes >
+    <node name="BARRIER_PROFILES" >
+      <position y="0.242837" x="0.000000" z="0.000000" />
+      <rotation qw="0.707107" qz="0.000000" qy="0.000000" qx="0.707107" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity mass_radius="1.0" meshFile="BARRIER_PROFILES.mesh" inertia_tensor="0.4000000059604645" mass="1.0" physics_type="STATIC" lock_trans_z="False" lock_rot_z="False" velocity_min="0.0" actor="False" lock_rot_y="False" velocity_max="0.0" damping_rot="0.10000000149011612" ghost="False" damping_trans="0.03999999910593033" anisotropic_friction="False" name="BARRIER_PROFILES" lock_trans_y="False" lock_trans_x="False" lock_rot_x="False" friction_z="1.0" friction_y="1.0" friction_x="1.0" />
+    </node>
+    <node name="Lamp" >
+      <position y="1.005454" x="4.076245" z="5.903862" />
+      <rotation qw="0.570947" qz="0.755880" qy="0.272171" qx="0.169076" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <light powerScale="1.0" shadow="true" type="point" name="Lamp" >
+        <position y="1.005454" x="4.076245" z="5.903862" />
+        <lightAttenuation quadratic="0.0" constant="1.0" range="5000" linear="0.03333335240683057" />
+        <colourDiffuse b="1.0" r="1.0" g="1.0" />
+        <colourSpecular b="1.0" r="1.0" g="1.0" />
+        <colourShadow b="1.0" r="1.0" g="1.0" />
+      </light>
+    </node>
+    <node name="Camera" >
+      <position y="-6.507640" x="7.481132" z="5.343665" />
+      <rotation qw="0.781600" qz="0.334251" qy="0.212922" qx="0.481707" />
+      <scale y="1.000000" x="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <camera projectionType="perspective" fov="0.5033799435163735" name="Camera" >
+        <clipping near="0.10000000149011612" far="100.0" nearPlaneDist="0.10000000149011612" farPlaneDist="100.0" />
+      </camera>
+    </node>
+  </nodes>
+  <externals >
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\BARRIER PROFILES\Barrier-Profilw\Material.001.material" />
+    </item>
+  </externals>
+  <environment >
+    <colourAmbient b="0.0" r="0.0" g="0.0" />
+    <colourBackground b="0.05087608844041824" r="0.05087608844041824" g="0.05087608844041824" />
+    <colourDiffuse b="0.05087608844041824" r="0.05087608844041824" g="0.05087608844041824" />
+  </environment>
+</scene>

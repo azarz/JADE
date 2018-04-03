@@ -770,7 +770,7 @@
         	</pedestrian>
         	
         	 <pedestrian id="pedestrian02">
-        		<modelPath>Models/Humans/male/male.scene</modelPath>
+        		<modelPath>Models/Humans/female/female.scene</modelPath>
 				<mass>5</mass>
 				<animationStand>Stand</animationStand>
 				<animationWalk>WalkBaked</animationWalk>
@@ -794,6 +794,7 @@
 					<wayPoint id="WayPoint_11"><translation><vector jtype="java_lang_Float" size="3"><entry>-27.689312</entry><entry>0.22632186</entry><entry>-588.3543</entry></vector></translation><speed>4</speed></wayPoint>
 				</wayPoints>
         	</pedestrian>
+        	
 		</traffic>
         
         <road>

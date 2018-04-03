@@ -1,0 +1,65 @@
+<scene export_time="1479399946.983455" exported_by="Sina" formatVersion="1.0.1" previous_export_time="0" >
+  <nodes >
+    <node name="Rod-2X5X115" >
+      <position x="-5.170375" y="5.674843" z="432.949127" />
+      <rotation qz="0.000000" qx="-0.707107" qy="-0.000000" qw="0.707107" />
+      <scale x="1.000000" y="1.500000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity name="Rod-2X5X115" actor="False" physics_type="STATIC" ghost="False" meshFile="Rod-2X5X115.mesh" velocity_min="0.0" friction_z="1.0" lock_rot_z="False" friction_x="1.0" friction_y="1.0" mass_radius="1.0" damping_rot="0.10000000149011612" anisotropic_friction="False" lock_trans_x="False" lock_trans_y="False" lock_trans_z="False" velocity_max="0.0" lock_rot_y="False" lock_rot_x="False" mass="1.0" inertia_tensor="0.4000000059604645" damping_trans="0.03999999910593033" />
+    </node>
+    <node name="W1-4c" >
+      <position x="0.000000" y="28.671776" z="484.664032" />
+      <rotation qz="0.000000" qx="0.707107" qy="0.000000" qw="0.707107" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <entity name="W1-4c" actor="False" physics_type="STATIC" ghost="False" meshFile="W1-4c.mesh" velocity_min="0.0" friction_z="1.0" lock_rot_z="False" friction_x="1.0" friction_y="1.0" mass_radius="1.0" damping_rot="0.10000000149011612" anisotropic_friction="False" lock_trans_x="False" lock_trans_y="False" lock_trans_z="False" velocity_max="0.0" lock_rot_y="False" lock_rot_x="False" mass="1.0" inertia_tensor="0.4000000059604645" damping_trans="0.03999999910593033" />
+    </node>
+    <node name="Lamp" >
+      <position x="4.076245" y="29.677229" z="490.567902" />
+      <rotation qz="0.755880" qx="0.169076" qy="0.272171" qw="0.570947" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <light shadow="true" name="Lamp" powerScale="1.0" type="point" >
+        <position x="4.076245" y="29.677229" z="490.567902" />
+        <lightAttenuation linear="0.03333335240683057" constant="1.0" quadratic="0.0" range="5000" />
+        <colourDiffuse r="1.0" b="1.0" g="1.0" />
+        <colourSpecular r="1.0" b="1.0" g="1.0" />
+        <colourShadow r="1.0" b="1.0" g="1.0" />
+      </light>
+    </node>
+    <node name="Camera" >
+      <position x="7.481132" y="22.164135" z="490.007690" />
+      <rotation qz="0.334251" qx="0.481707" qy="0.212922" qw="0.781600" />
+      <scale x="1.000000" y="1.000000" z="1.000000" />
+      <game >
+        <sensors />
+        <actuators />
+      </game>
+      <camera name="Camera" fov="0.5033799435163735" projectionType="perspective" >
+        <clipping farPlaneDist="100.0" nearPlaneDist="0.10000000149011612" near="0.10000000149011612" far="100.0" />
+      </camera>
+    </node>
+  </nodes>
+  <externals >
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Sign\48x48\W1-4c\W1-4c\Material.material" />
+    </item>
+    <item type="material" >
+      <file name="C:\Users\Sina\Desktop\WhiteC\Uni-Massachusett\Sign\48x48\W1-4c\W1-4c\material_0.material" />
+    </item>
+  </externals>
+  <environment >
+    <colourAmbient r="0.0" b="0.0" g="0.0" />
+    <colourBackground r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+    <colourDiffuse r="0.05087608844041824" b="0.05087608844041824" g="0.05087608844041824" />
+  </environment>
+</scene>

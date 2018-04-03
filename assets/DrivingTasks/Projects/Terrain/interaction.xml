@@ -45,6 +45,7 @@
 				<parameter name="soundID" value="beep" />
 			</action>
 		</activity>
+	
 	</activities>
 	
 	<triggers>

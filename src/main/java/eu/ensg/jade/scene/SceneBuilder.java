@@ -90,13 +90,14 @@ public class SceneBuilder {
 	 * @param hydroLayer
 	 * @param treeLayer
 	 * @param dtmLayer
+	 * @throws Exception 
 	 */
 	public void buildFromRGE(
 			String buildingLayer,
 			String roadLayer,
 			String hydroLayer,
 			String treeLayer,
-			String dtmLayer) {		
+			String dtmLayer) throws Exception {		
 		try {
 			scene = loadRGE(buildingLayer, roadLayer, hydroLayer, treeLayer, dtmLayer);
 		} catch (IOException e) {
@@ -124,8 +125,21 @@ public class SceneBuilder {
 	
 	
 	/* (non-Javadoc)
-	 * 
 	 * Private utility methods, get the job done
+	 */
+	
+	
+	/**
+	 * Instantiate a Scene object, and fill it with data extracted from the specified files
+	 * 
+	 * @param buildingLayer the building shp file
+	 * @param roadLayer the road shp file
+	 * @param hydroLayer the hydrography shp file
+	 * @param treeLayer the vegetation shp file
+	 * @param dtmLayer the DTM png file
+	 * 
+	 * @return a new Scene
+	 * @throws IOException
 	 */
 	private Scene loadData(
 			String buildingLayer,
@@ -157,37 +171,48 @@ public class SceneBuilder {
 		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.DTM), dtmLayer);
-		scene.setDtm(rge.getDTM());	
+		scene.setDtm(rge.getDTM());
 		
 		return scene;
 	}
 	
+	/**
+	 * Instantiate a Scene object, and fill it with data extracted from the features of the RGE
+	 * 
+	 * @param buildingFeature the building shp feature
+	 * @param roadFeature the road shp feature
+	 * @param hydroFeature the hydrography shp feature
+	 * @param treeFeature the vegetation shp feature
+	 * @param dtmFeature the DTM png feature
+	 * @return
+	 * @throws Exception 
+	 */
 	private Scene loadRGE(
-			String buildingLayer,
-			String roadLayer,
-			String hydroLayer,
-			String treeLayer,
-			String dtmLayer) throws IOException {
+			String buildingFeature,
+			String roadFeature,
+			String hydroFeature,
+			String treeFeature,
+			String dtmFeature) throws Exception {
 		Scene scene = new Scene();
 		
 		ReaderFactory readerFact = new ReaderFactory();
 		InputRGE rge = new InputRGE();
 		
-		rge = readerFact.createReader(READER_METHOD.BUILDING).loadFromRGE(buildingLayer);
+		rge = readerFact.createReader(READER_METHOD.BUILDING).loadFromRGE(buildingFeature);
 		scene.setBuildings(rge.getBuildings());
 		scene.setBuildingCentroid(rge.getCentroid());
 		
-		rge = readerFact.createReader(READER_METHOD.ROAD).loadFromRGE(roadLayer);
+		rge = readerFact.createReader(READER_METHOD.ROAD).loadFromRGE(roadFeature);
 		scene.setRoads(rge.getRoads());
 		scene.setCollIntersect(rge.getCollIntersect());
 		
-		rge = readerFact.createReader(READER_METHOD.HYDRO).loadFromRGE(hydroLayer);
+		rge = readerFact.createReader(READER_METHOD.HYDRO).loadFromRGE(hydroFeature);
 		scene.setHydrography(rge.getHydrography());
 		
-		rge = readerFact.createReader(READER_METHOD.VEGETATION).loadFromRGE(treeLayer);
+		rge = readerFact.createReader(READER_METHOD.VEGETATION).loadFromRGE(treeFeature);
 		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
 		
-		// TODO: Add the DTM
+		// TODO: Add the DTM ?
 		
 		return scene;
 	}
@@ -233,6 +258,7 @@ public class SceneBuilder {
 	
 	private void exportXML(Scene scene) {
 		XMLWriter xmlWriter = new XMLWriter();
+		xmlWriter.log = true;
 		
 		xmlWriter.updateConfig("fileMainXML", "MAIN_FILE.xml");
 //		xmlWritter.updateConfig("rainCoefficient", "5");
