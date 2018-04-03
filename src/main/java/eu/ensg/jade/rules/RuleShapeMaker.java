@@ -12,12 +12,12 @@ public class RuleShapeMaker {
 // ========================== ATTRIBUTES ===========================
 	
 	/**
-	 * 
+	 * Every road signs that are not human crossing and speed limits
 	 */
 	private RuleShape intersectionSigns;
 	
 	/**
-	 * 
+	 * Human crossing and speed limits
 	 */
 	private RuleShape roadSigns;
 	

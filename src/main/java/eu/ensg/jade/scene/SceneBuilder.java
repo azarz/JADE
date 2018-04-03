@@ -21,7 +21,7 @@ import eu.ensg.jade.input.ReaderFactory;
 import eu.ensg.jade.input.ReaderFactory.READER_METHOD;
 import eu.ensg.jade.output.OBJWriter;
 import eu.ensg.jade.output.XMLWriter;
-import eu.ensg.jade.rules.Rule;
+import eu.ensg.jade.rules.RuleShapeMaker;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
@@ -57,8 +57,8 @@ public class SceneBuilder {
 	
 	public static void main(String[] args) {
 		String buildingLayer = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
-		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
-		//String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad.shp";
+		//String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
+		String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
 		String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
 		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
@@ -211,8 +211,8 @@ public class SceneBuilder {
 		DTM dtm = scene.getDtm();
 		
 		// TODO: add vegetation & street furniture
-		Rule ruleObject = new Rule();
-		ruleObject.intersectSigns(scene);
+		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
+		ruleShapeMaker.addIntersectionSigns(scene);
 		
 		for (Building building : scene.getBuildings()) {
 			building.setZfromDTM(dtm);
@@ -245,7 +245,7 @@ public class SceneBuilder {
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
 		driver.setMass(800);
 		Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
-		driver.setTranslation(new double[]{coord.x - 2, 60, coord.y});
+		driver.setTranslation(new double[]{coord.x + 2, 60, coord.y});
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
