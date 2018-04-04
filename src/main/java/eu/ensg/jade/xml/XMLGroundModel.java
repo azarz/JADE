@@ -78,11 +78,7 @@ public class XMLGroundModel extends XMLModel implements IXMLExport {
 	 */
 	@Override
 	public Element toXMLElement(Document doc){
-		Element model = super.toXMLElement(doc);
-		
-		Element shadowMode = doc.createElement("shadowMode");
-		shadowMode.appendChild(doc.createTextNode("Receive"));
-		model.appendChild(shadowMode);
+		Element model = super.toXMLElement(doc);		
 		
 		// Set the material of the Ground (as a key)
 		Element material = doc.createElement("material");

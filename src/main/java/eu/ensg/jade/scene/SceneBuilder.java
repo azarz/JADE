@@ -258,7 +258,6 @@ public class SceneBuilder {
 			roads.put(key, surfRoad);
 		}
 		scene.setRoads(roads);
-
 		
 	}
 	
@@ -310,7 +309,7 @@ public class SceneBuilder {
 		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);
-		ground.setVisible(false);
+		ground.setVisible(true);
 		xmlWriter.addTerrain(ground);
 		
 		xmlWriter.createAllXml();

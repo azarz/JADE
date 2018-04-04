@@ -224,6 +224,7 @@ public class DTM {
 	
 	private double mockJMonkeySmooth(int x, int y, double np, int radius) {
 		if (np < 0 || np > 1) {
+			System.out.println("Percent not valid");
 			np = 0.8;
 		}
 		if (radius == 0){

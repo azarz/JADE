@@ -189,15 +189,8 @@ public class SurfaceRoad extends Road {
 		CoordinateSequenceFilter filter = new CoordinateSequenceFilter() {
 			
 			@Override
-			public void filter(CoordinateSequence seq, int i) {
-				
-				// Fetching the points coordinate
-//				double xCoord = seq.getCoordinate(i).x;
-//				double yCoord = seq.getCoordinate(i).y;
-				// Setting the Z coordinate
-//				seq.getCoordinate(i).z = JadeUtils.interpolatedDtmValue(xCoord, yCoord, dtm);
-				
-				seq.getCoordinate(i).z = dtm.getHeightAtPoint(seq.getCoordinate(i).x, seq.getCoordinate(i).y);
+			public void filter(CoordinateSequence seq, int i) {		
+				seq.setOrdinate(i, 2, dtm.getHeightAtPoint(seq.getCoordinate(i).x, seq.getCoordinate(i).y));
 			}
 
 			@Override
