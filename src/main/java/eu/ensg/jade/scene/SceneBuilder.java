@@ -282,8 +282,8 @@ public class SceneBuilder {
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
-//		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
-//		xmlWriter.addModel(buildindModel);
+		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
+		xmlWriter.addModel(buildindModel);
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
@@ -303,14 +303,14 @@ public class SceneBuilder {
 			//streetFurnitureModel.setScale(new double[] {10,10,10});
 			xmlWriter.addModel(streetFurnitureModel);
 			
-			if (k>5000){
+			if (k>2500){
 				break;
 			}
 		}
 		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);
-		ground.setVisible(false);
+		ground.setVisible(true);
 		xmlWriter.addTerrain(ground);
 		
 		xmlWriter.createAllXml();

@@ -97,9 +97,9 @@ public class SurfaceRoad extends Road {
 		if (direction.equals("Double")) {
 			faces = "usemtl RoadDouble\n";
 		} else if (direction.equals("Direct")) {
-			faces = "usemtl RoadDirect\n";
+			faces = "usemtl RoadDouble\n";
 		} else {
-			faces = "usemtl RoadInverse\n";
+			faces = "usemtl RoadDouble\n";
 		}
 		
 		

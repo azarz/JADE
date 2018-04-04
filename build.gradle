@@ -1,5 +1,5 @@
 group 'eu.ensg'
-version '1.0'
+version '0.0.1-SNAPSHOT'
 
 apply plugin: 'java'
 
@@ -21,8 +21,8 @@ dependencies {
   compile fileTree(dir: 'lib', include: '**/*.jar')
   
   compile "org.geotools:gt-shapefile:19.0"
-  compile "org.geotools:gt-wfs-ng:19.0"
-  compile "org.geotools:gt-wms:19.0"
+  compile "org.geotools:gt-wfs-ng:17.5"
+  compile "org.geotools:gt-wms:17.5"
 
   compile "org.orbisgis:poly2tri-core:0.1.1"
 }
