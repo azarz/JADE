@@ -42,6 +42,9 @@ public class AudioCenter {
 	private static Listener listener;
 	private static Map<String, AudioNode> audioNodeList;
 	private static Map<String, Float> audioNodeVolumeList;
+	private static AudioNode enduring;
+	private static float previousVolume;
+	private static float previousPitch;
 
 	public static void init(Simulator sim) {
 		AudioCenter.sim = sim;

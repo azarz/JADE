@@ -4,6 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
+import com.jme3.asset.AssetManager;
+import com.jme3.asset.TextureKey;
+import com.jme3.terrain.heightmap.AbstractHeightMap;
+import com.jme3.terrain.heightmap.ImageBasedHeightMap;
+import com.jme3.texture.Image;
 import com.vividsolutions.jts.geom.Coordinate;
 
 import eu.ensg.jade.geometricObject.Road;
@@ -239,6 +244,21 @@ public class SceneBuilder {
 	private void build(Scene scene) {
 		// Changing the roads and buildings data so it matches the DTM
 		DTM dtm = scene.getDtm();
+		
+		
+//		String heightMapImagePath = "RGE/paris.png";
+//		dtm.toPNG("assets/" + heightMapImagePath);
+//		
+//		TextureKey textureKey = new TextureKey(heightMapImagePath, false);
+//		AssetManager assetManager = 
+//		Image heightMapImage = new Imag
+//		dtm.toPNG(path);;
+//		
+//		AbstractHeightMap heightmap = new ImageBasedHeightMap(heightMapImage, heightScale);
+//		heightmap.load();
+//		heightmap.smooth(smoothPercentage, smoothRadius);
+		
+		
 
 		// TODO: add vegetation & street furniture
 		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
@@ -294,18 +314,15 @@ public class SceneBuilder {
 		
 		int k = 0;
 		// Add street furniture
-		for(StreetFurniture sign : scene.getStreetFurniture()) {
-			k++;
-			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
-			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
-			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
-			//streetFurnitureModel.setScale(new double[] {10,10,10});
-			xmlWriter.addModel(streetFurnitureModel);
-			
-			if (k>5000){
-				break;
-			}
-		}
+//		for(StreetFurniture sign : scene.getStreetFurniture()) {
+//			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
+//			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
+//			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
+//			//streetFurnitureModel.setScale(new double[] {10,10,10});
+//			xmlWriter.addModel(streetFurnitureModel);
+//			
+//			if (++k>5000){ break; }
+//		}
 		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);

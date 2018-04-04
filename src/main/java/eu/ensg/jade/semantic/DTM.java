@@ -196,43 +196,54 @@ public class DTM {
 	}
 	
 	public double getHeightAtPoint(double x, double y){
-		double columnFraction = (x - xllcorner) / cellsize;
-		double RowFraction = nrows - ((y - yllcorner) / cellsize);
+		double xFraction = (x - xllcorner) / cellsize;
+		double yFraction = nrows - ((y - yllcorner) / cellsize);
 		
-		int column = (int) columnFraction;
-		int row = (int) RowFraction;
+		int column = (int) xFraction;
+		int row = (int) yFraction;
 		
-		columnFraction -= column;
-		RowFraction -= row;
+		xFraction -= column;
+		yFraction -= row;
 		
-		double northWestValue = mockJMonkeySmooth(column, row, 0.8, 1);
-		double northEastValue = mockJMonkeySmooth(column+1, row, 0.8, 1);
-		double southWestValue = mockJMonkeySmooth(column, row+1, 0.8, 1);
-		double southEastValue = mockJMonkeySmooth(column+1, row+1, 0.8, 1);
-//		double northWestValue = tabDTM[row][column];
-//		double northEastValue = tabDTM[row][column+1];
-//		double southWestValue = tabDTM[row+1][column];
-//		double southEastValue = tabDTM[row+1][column+1];
+		double northWest = mockJMonkeySmooth(column, row, 0.9, 1);
+		double northEast = mockJMonkeySmooth(column+1, row, 0.9, 1);
+		double southWest = mockJMonkeySmooth(column, row+1, 0.9, 1);
+		double southEast = mockJMonkeySmooth(column+1, row+1, 0.9, 1);
+		
+		if ((column == 0 && row == 0) || (column == ncols - 2 && row == nrows - 2)) {
+            if (xFraction < yFraction)
+                return 0.01 + northWest + xFraction*(southEast-southWest) + yFraction*(southWest-northWest);
+            else
+                return 0.01 + northWest + xFraction*(northEast-northWest) + yFraction*(southEast-northEast);
+            
+        }
+		else {
+            if (xFraction < (1-yFraction))
+            	return 0.01 + southWest + (xFraction)*(northEast-northWest) + (1-yFraction)*(northWest-southWest);
+            else
+                return 0.01 + southWest + (xFraction)*(southEast-southWest) + (1-yFraction)*(northEast-southEast);
+        }
+
 		
 		
-		return JadeUtils.lerp(
-				JadeUtils.lerp(northWestValue, northEastValue, columnFraction),
-				JadeUtils.lerp(southWestValue, southEastValue, columnFraction),
-				RowFraction) + 0.01;
+//		return JadeUtils.lerp(
+//				JadeUtils.lerp(northWestValue, northEastValue, columnFraction),
+//				JadeUtils.lerp(southWestValue, southEastValue, columnFraction),
+//				rowFraction) + 0.01;
 	}
 	
 	
 	private double mockJMonkeySmooth(int x, int y, double np, int radius) {
 		if (np < 0 || np > 1) {
 			System.out.println("Percent not valid");
-			np = 0.8;
+			np = 0.9;
 		}
 		if (radius == 0){
 			radius = 1;
 		}
 		
 		int number = 0;
-		double average = 0;
+		float average = 0;
 		for (int rx = -radius; rx <= radius; rx++) {
 			for (int ry = -radius; ry <= radius; ry++) {
 				if(x+rx >= 0 && x+rx < ncols && y+ry >= 0 && y+ry < nrows) {

@@ -18,8 +18,7 @@
 
 package eu.opends.traffic;
 
-import java.util.ArrayList;
-
+import com.jme3.asset.AssetKey;
 import com.jme3.asset.AssetManager;
 import com.jme3.bullet.control.BetterCharacterControl;
 import com.jme3.light.AmbientLight;
@@ -30,6 +29,8 @@ import com.jme3.renderer.queue.RenderQueue.ShadowMode;
 import com.jme3.scene.Node;
 
 import eu.opends.main.Simulator;
+
+import java.util.ArrayList;
 
 /**
  * @author Tommi S.E. Laukkanen, Rafael Math

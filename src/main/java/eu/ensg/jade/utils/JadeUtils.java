@@ -200,7 +200,8 @@ public class JadeUtils {
 	}
 	
 	/**
-	 * Linear Interpolation of x between a and b
+	 * Linear Interpolation of x between a and b:
+	 * n = (1-x) * a  + x * b
 	 * 
 	 * @param a Lower limit
 	 * @param b Upper Limit

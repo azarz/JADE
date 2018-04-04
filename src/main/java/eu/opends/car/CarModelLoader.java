@@ -258,7 +258,9 @@ public class CarModelLoader
 		    	   		//properties file for chassis
 		    	   	String propertiesPathChassis = modelPathChassis.replace(".scene", ".properties");
 		    		Properties propertiesChassis = (Properties) sim.getAssetManager().loadAsset(propertiesPathChassis);
-		    	    // scale chassis 
+		    	    Vector3f NewChassisScale = new Vector3f(getVector3f(propertiesChassis, "chassisScale", 1));
+		    	
+		       	        // scale chassis 
 		    	    highPolyChassis.scale(Float.parseFloat(propertiesChassis.getProperty("chassisScale.x")), Float.parseFloat(propertiesChassis.getProperty("chassisScale.y")), Float.parseFloat(propertiesChassis.getProperty("chassisScale.z")));
 		            	// rotate chassis
 		    	    highPolyChassis.rotate(Float.parseFloat(propertiesChassis.getProperty("chassisRotation.x"))*FastMath.DEG_TO_RAD, Float.parseFloat(propertiesChassis.getProperty("chassisRotation.y"))*FastMath.DEG_TO_RAD, Float.parseFloat(propertiesChassis.getProperty("chassisRotation.z"))*FastMath.DEG_TO_RAD);
@@ -273,7 +275,9 @@ public class CarModelLoader
 		       	    
 		       	    String propertiesPathSteeringWheel = modelPathSteeringWheel.replace(".scene", ".properties");
 		       	    Properties propertiesSteeringWheel = (Properties)sim.getAssetManager().loadAsset(propertiesPathSteeringWheel);
-		       	    //scale steering wheel
+		       	    Vector3f newSteeringWheelScale = new Vector3f(getVector3f(propertiesSteeringWheel, "steeringWheelScale", 1));
+		       	    	       	    
+		       	    	//scale steering wheel
 		       	    highPolySteering.scale(Float.parseFloat(propertiesSteeringWheel.getProperty("steeringWheelScale.x")), Float.parseFloat(propertiesSteeringWheel.getProperty("steeringWheelScale.y")), Float.parseFloat(propertiesSteeringWheel.getProperty("steeringWheelScale.z")));
 		       	    	// rotate steering wheel
 		       	    highPolySteering.rotate(Float.parseFloat(propertiesSteeringWheel.getProperty("steeringWheelRotation.x"))*FastMath.DEG_TO_RAD, Float.parseFloat(propertiesSteeringWheel.getProperty("steeringWheelRotation.y"))*FastMath.DEG_TO_RAD, Float.parseFloat(propertiesSteeringWheel.getProperty("steeringWheelRotation.z"))*FastMath.DEG_TO_RAD);

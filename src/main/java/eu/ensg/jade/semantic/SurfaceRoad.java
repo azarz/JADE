@@ -177,9 +177,8 @@ public class SurfaceRoad extends Road {
 	 * Transforms the Z coordinates of the geometry according to a DTM parameter
 	 * @param dtm for the road to match
 	 */
-	public void setZfromDTM(DTM dtm) {	
-		// Densifying the geometry so it has a number of vertices corresponding tO
-		// the DTM
+	public void setZfromDTM(DTM dtm) {
+		// Densify the geometry so it has a number of vertices corresponding to the DTM
 		if(geometry.getCoordinates().length > 0) {
 			geometry = (Polygon) Densifier.densify(geometry, 5);
 		}
@@ -189,8 +188,8 @@ public class SurfaceRoad extends Road {
 		CoordinateSequenceFilter filter = new CoordinateSequenceFilter() {
 			
 			@Override
-			public void filter(CoordinateSequence seq, int i) {		
-				seq.setOrdinate(i, 2, dtm.getHeightAtPoint(seq.getCoordinate(i).x, seq.getCoordinate(i).y));
+			public void filter(CoordinateSequence seq, int i) {
+				seq.setOrdinate(i, 2, dtm.getHeightAtPoint(seq.getX(i), seq.getY(i)));
 			}
 
 			@Override
