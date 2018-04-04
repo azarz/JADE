@@ -14,6 +14,11 @@ git clone https://gitlab.com/azarzelli/JADE.git
 
 Une fois le téléchargement terminé lancer
 ```sh
+cd JADE
+git checkout demo
+```
+pui pour lancer l'application
+```sh
 java -jar JADE-0.0.1-SNAPHOT.jar
 ```
 
