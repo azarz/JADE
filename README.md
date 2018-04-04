@@ -3,7 +3,7 @@
 Contributors : Amaury Zarzelli, Antoine Roca, Antoine Moutou, Augustin Gagnon, Eva Chen-Yen-Su, Laure Le Breton, Mariem Moukhlissi
 
 ## Prérequis
-Oracle JDK version 8.
+Oracle JRE version 8.
 
 ## Comment lancer ?
 
@@ -17,7 +17,7 @@ Une fois le téléchargement terminé lancer
 cd JADE
 git checkout demo
 ```
-pui pour lancer l'application
+puis pour lancer l'application
 ```sh
 java -jar JADE-0.0.1-SNAPHOT.jar
 ```
