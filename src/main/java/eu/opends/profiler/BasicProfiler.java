@@ -69,7 +69,6 @@ public class BasicProfiler implements AppProfiler {
     private long[] frames;
     private long startTime;
     private long renderTime;
-    private long previousFrame;
     private long updateInterval = 1000000L; // once a millisecond
     private long lastUpdate = 0;
     
@@ -185,8 +184,7 @@ public class BasicProfiler implements AppProfiler {
             case EndFrame:
                 long time = System.nanoTime();
                 frames[frameIndex * 2 + 1] = time - renderTime;
-                previousFrame = startTime; 
-                frameIndex++;
+			frameIndex++;
                 if( frameIndex >= size ) {
                     frameIndex = 0;
                 }
@@ -195,6 +193,8 @@ public class BasicProfiler implements AppProfiler {
                     lastUpdate = startTime;
                 }                
                 break;
+			default:
+				break;
         }
     }
     
