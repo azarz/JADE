@@ -888,11 +888,12 @@ public class IntersectionSignsRule implements RuleShape{
 	private void addRoundAbout(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Scene scene, Intersection intersect) throws NoSuchAuthorityCodeException, FactoryException{
 		for (int i = 0; i < roadsTab.length; i++){
 			LineRoad road = roadsTab[i];
-
 			//We add yield signs for all roads not on the round about
-			if (!((road.getName().substring(0, 2)).equals("PL") || (road.getName().substring(0, 3)).equals("RPT"))){
-				StreetFurniture lightRoad = addSigns(road, startOnIntersectTab[i], this.yield, scene,intersect);
-				addStreetFurniture(lightRoad, road, scene);
+			if (!road.getName().equals("")) {
+				if (!((road.getName().substring(0, 2)).equals("PL") || (road.getName().substring(0, 3)).equals("RPT"))){
+					StreetFurniture lightRoad = addSigns(road, startOnIntersectTab[i], this.yield, scene,intersect);
+					addStreetFurniture(lightRoad, road, scene);
+				}
 			}
 		}
 	}
