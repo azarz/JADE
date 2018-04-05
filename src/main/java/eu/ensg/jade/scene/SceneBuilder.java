@@ -2,30 +2,25 @@ package eu.ensg.jade.scene;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.geotools.feature.SchemaException;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 
-import com.vividsolutions.jts.geom.Coordinate;
-
 import eu.ensg.jade.geometricObject.Road;
+import eu.ensg.jade.input.FluxConfiguration;
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
 import eu.ensg.jade.input.ReaderFactory;
-import eu.ensg.jade.input.ReaderFactory.READER_METHOD;
+import eu.ensg.jade.input.ReaderFactory.READER_TYPE;
 import eu.ensg.jade.output.OBJWriter;
 import eu.ensg.jade.output.XMLWriter;
 import eu.ensg.jade.rules.RuleShapeMaker;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
-import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceRoad;
-import eu.ensg.jade.semantic.SurfaceVegetation;
 import eu.ensg.jade.xml.XMLGroundModel;
 import eu.ensg.jade.xml.XMLModel;
 import eu.ensg.jade.xml.XMLTerrain;
@@ -179,22 +174,22 @@ public class SceneBuilder {
 		InputRGE rge = new InputRGE();
 		
 //		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.BUILDING), buildingLayer);
-		rge = readerFact.createReader(READER_METHOD.BUILDING).loadFromFile(buildingLayer);
+		rge = readerFact.createReader(READER_TYPE.BUILDING).loadFromFile(buildingLayer);
 		scene.setBuildings(rge.getBuildings());
 		scene.setBuildingCentroid(rge.getCentroid());
 		
 		
-		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.ROAD), roadLayer);
+		rge = readerContx.createInputRGE(readerFact.createReader(READER_TYPE.ROAD), roadLayer);
 		scene.setRoads(rge.getRoads());
 		scene.setCollIntersect(rge.getCollIntersect());
 		
-		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.HYDRO), hydroLayer);
+		rge = readerContx.createInputRGE(readerFact.createReader(READER_TYPE.HYDRO), hydroLayer);
 		scene.setHydrography(rge.getHydrography());
 		
-		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.VEGETATION), treeLayer);
+		rge = readerContx.createInputRGE(readerFact.createReader(READER_TYPE.VEGETATION), treeLayer);
 		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
 		
-		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.DTM), dtmLayer);
+		rge = readerContx.createInputRGE(readerFact.createReader(READER_TYPE.DTM), dtmLayer);
 		scene.setDtm(rge.getDTM());
 		
 		return scene;
@@ -222,19 +217,21 @@ public class SceneBuilder {
 		ReaderFactory readerFact = new ReaderFactory();
 		InputRGE rge = new InputRGE();
 		
-		rge = readerFact.createReader(READER_METHOD.BUILDING).loadFromRGE(buildingFeature);
-		scene.setBuildings(rge.getBuildings());
-		scene.setBuildingCentroid(rge.getCentroid());
+		FluxConfiguration config = new FluxConfiguration();
 		
-		rge = readerFact.createReader(READER_METHOD.ROAD).loadFromRGE(roadFeature);
-		scene.setRoads(rge.getRoads());
-		scene.setCollIntersect(rge.getCollIntersect());
-		
-		rge = readerFact.createReader(READER_METHOD.HYDRO).loadFromRGE(hydroFeature);
-		scene.setHydrography(rge.getHydrography());
-		
-		rge = readerFact.createReader(READER_METHOD.VEGETATION).loadFromRGE(treeFeature);
-		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
+//		rge = readerFact.createReader(READER_TYPE.BUILDING).loadFromRGE(buildingFeature);
+//		scene.setBuildings(rge.getBuildings());
+//		scene.setBuildingCentroid(rge.getCentroid());
+//		
+//		rge = readerFact.createReader(READER_TYPE.ROAD).loadFromRGE(roadFeature);
+//		scene.setRoads(rge.getRoads());
+//		scene.setCollIntersect(rge.getCollIntersect());
+//		
+//		rge = readerFact.createReader(READER_TYPE.HYDRO).loadFromRGE(hydroFeature);
+//		scene.setHydrography(rge.getHydrography());
+//		
+//		rge = readerFact.createReader(READER_TYPE.VEGETATION).loadFromRGE(treeFeature);
+//		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
 		
 		// TODO: Add the DTM ?
 		
@@ -260,6 +257,21 @@ public class SceneBuilder {
 	private void build(Scene scene) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
 		// Changing the roads and buildings data so it matches the DTM
 		DTM dtm = scene.getDtm();
+		
+		
+//		String heightMapImagePath = "RGE/paris.png";
+//		dtm.toPNG("assets/" + heightMapImagePath);
+//		
+//		TextureKey textureKey = new TextureKey(heightMapImagePath, false);
+//		AssetManager assetManager = 
+//		Image heightMapImage = new Imag
+//		dtm.toPNG(path);;
+//		
+//		AbstractHeightMap heightmap = new ImageBasedHeightMap(heightMapImage, heightScale);
+//		heightmap.load();
+//		heightmap.smooth(smoothPercentage, smoothRadius);
+		
+		
 
 		// TODO: add vegetation & street furniture
 		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
@@ -282,6 +294,7 @@ public class SceneBuilder {
 
 		//ruleShapeMaker.addVegetation(scene);
 		//System.out.println("J ajoute la vegetation a la scene");
+
 
 		
 	}
@@ -324,20 +337,18 @@ public class SceneBuilder {
 //		xmlWriter.addModel(vegeModel);
 //		System.out.println("xml créé");
 //		
-		/*int k = 0;
+		//int k = 0;
 		// Add street furniture
-		for(StreetFurniture sign : scene.getStreetFurniture()) {
-			k++;
-			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
-			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
-			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
-			//streetFurnitureModel.setScale(new double[] {10,10,10});
-			xmlWriter.addModel(streetFurnitureModel);
-			
-			if (k>5000){
-				break;
-			}
-		}*/
+
+//		for(StreetFurniture sign : scene.getStreetFurniture()) {
+//			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
+//			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
+//			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
+//			//streetFurnitureModel.setScale(new double[] {10,10,10});
+//			xmlWriter.addModel(streetFurnitureModel);
+//			
+//			if (++k>5000){ break; }
+//		}
 		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);

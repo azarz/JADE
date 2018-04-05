@@ -33,9 +33,14 @@
 <entry>2059</entry>
 </vector>
 </translation>
+<shadowMode>Receive</shadowMode>
 </model>
+<<<<<<< HEAD
 
 <model id="Vegetation" key="RGE/vegetation.obj">
+=======
+<model id="Roads" key="RGE/roads.obj">
+>>>>>>> 68b0317c32746bb7f07ecefbf8b3a2f56bbd7baf
 <mass>0.0</mass>
 <visible>true</visible>
 <collisionShape>meshShape</collisionShape>
@@ -55,15 +60,25 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
+<<<<<<< HEAD
 <entry>0</entry>
 <entry>0</entry>
 <entry>0</entry>
+=======
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+>>>>>>> 68b0317c32746bb7f07ecefbf8b3a2f56bbd7baf
 </vector>
 </translation>
 <shadowMode>Receive</shadowMode>
 </model>
+<<<<<<< HEAD
 
 <model id="Road" key="RGE/roads.obj">
+=======
+<model id="Water" key="RGE/water.obj">
+>>>>>>> 68b0317c32746bb7f07ecefbf8b3a2f56bbd7baf
 <mass>0.0</mass>
 <visible>true</visible>
 <collisionShape>meshShape</collisionShape>
@@ -83,18 +98,31 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
+<<<<<<< HEAD
 <entry>0</entry>
 <entry>0</entry>
 <entry>0</entry>
+=======
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+>>>>>>> 68b0317c32746bb7f07ecefbf8b3a2f56bbd7baf
 </vector>
 </translation>
 <shadowMode>Receive</shadowMode>
 </model>
+<<<<<<< HEAD
 
 <model id="Ground" key="" ref="Terrain">
 <mass>0.0</mass>
 <material key="Materials/OrthoImage.j3m"/>
 <visible>false</visible>
+=======
+<model id="Ground" key="" ref="Terrain">
+<mass>0.0</mass>
+<material key="Materials/OrthoImage.j3m"/>
+<visible>true</visible>
+>>>>>>> 68b0317c32746bb7f07ecefbf8b3a2f56bbd7baf
 <collisionShape>meshShape</collisionShape>
 <scale>
 <vector jtype="java_lang_Float" size="3">

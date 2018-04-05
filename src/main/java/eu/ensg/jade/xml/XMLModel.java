@@ -185,7 +185,11 @@ public class XMLModel implements IXMLExport {
 		Element transform = this.vector.toXMLElement(doc);
 		model.appendChild(transform.getElementsByTagName("scale").item(0));
 		model.appendChild(transform.getElementsByTagName("rotation").item(0));
-		model.appendChild(transform.getElementsByTagName("translation").item(0));		
+		model.appendChild(transform.getElementsByTagName("translation").item(0));
+		
+		Element shadowMode = doc.createElement("shadowMode");
+		shadowMode.appendChild(doc.createTextNode("Receive"));
+		model.appendChild(shadowMode);
 		
 		return model;
 	}

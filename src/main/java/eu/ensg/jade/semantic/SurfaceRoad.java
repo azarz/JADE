@@ -177,9 +177,8 @@ public class SurfaceRoad extends Road {
 	 * Transforms the Z coordinates of the geometry according to a DTM parameter
 	 * @param dtm for the road to match
 	 */
-	public void setZfromDTM(DTM dtm) {	
-		// Densifying the geometry so it has a number of vertices corresponding tO
-		// the DTM
+	public void setZfromDTM(DTM dtm) {
+		// Densify the geometry so it has a number of vertices corresponding to the DTM
 		if(geometry.getCoordinates().length > 0) {
 			geometry = (Polygon) Densifier.densify(geometry, 5);
 		}
@@ -190,14 +189,7 @@ public class SurfaceRoad extends Road {
 			
 			@Override
 			public void filter(CoordinateSequence seq, int i) {
-				
-				// Fetching the points coordinate
-//				double xCoord = seq.getCoordinate(i).x;
-//				double yCoord = seq.getCoordinate(i).y;
-				// Setting the Z coordinate
-//				seq.getCoordinate(i).z = JadeUtils.interpolatedDtmValue(xCoord, yCoord, dtm);
-				
-				seq.getCoordinate(i).z = dtm.getHeightAtPoint(seq.getCoordinate(i).x, seq.getCoordinate(i).y);
+				seq.setOrdinate(i, 2, dtm.getHeightAtPoint(seq.getX(i), seq.getY(i)));
 			}
 
 			@Override
