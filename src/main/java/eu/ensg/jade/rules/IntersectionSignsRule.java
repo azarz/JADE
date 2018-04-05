@@ -142,7 +142,7 @@ public class IntersectionSignsRule implements RuleShape{
 		}
 	}
 
-// ------ Cut of the interface function
+// ------ Limit of the interface function
 	/**
 	 * Creates the signs of intersections with one road
 	 * 

@@ -123,25 +123,7 @@ public class SceneBuilder {
 	 * Public method to export the whole Scene as a driving task, to be used in OpenDS
 	 */
 	public void export() {
-		OBJWriter objWritter = new OBJWriter();
-		
-		File directory = new File("assets/RGE");
-		if (! directory.exists()){ directory.mkdir(); }
-		
-		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getCentroid().x, scene.getCentroid().y);		
-		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getCentroid().x, scene.getCentroid().y);
-		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getCentroid().x, scene.getCentroid().y);
-		
-		System.out.println("Ajout de l obj !");
-		
-		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
-		vege.add(scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1));
-		objWritter.exportVege("assets/RGE/vegetation.obj", vege, scene.getCentroid().x, scene.getCentroid().y);
-		
-		System.out.println("Fin d ajout de l obj !");
-
-		scene.getDtm().toPNG("assets/RGE/paris.png");
-
+		exportRGEData(scene);
 		exportXML(scene);
 	}
 	
@@ -324,10 +306,11 @@ public class SceneBuilder {
 		
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
-		driver.setMass(800);
+		driver.setMass(1000);
 		//Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
 		//driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
 		driver.setTranslation(new double[]{0, 60, 0});
+		driver.setScale((new double[]{0.8, 0.8, 0.8}));
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
