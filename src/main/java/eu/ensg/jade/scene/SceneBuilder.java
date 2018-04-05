@@ -351,6 +351,7 @@ public class SceneBuilder {
 		//int k = 0;
 
 		// Add street furniture
+
 //		int k = 0;
 //		for(StreetFurniture sign : scene.getStreetFurniture()) {
 //			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
@@ -361,6 +362,7 @@ public class SceneBuilder {
 //			
 //			if (++k>5000){ break; }
 //		}
+
 		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);
