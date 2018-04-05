@@ -21,10 +21,8 @@ dependencies {
   compile fileTree(dir: 'lib', include: '**/*.jar')
   
   compile "org.geotools:gt-shapefile:19.0"
-<<<<<<< HEAD
-=======
+
   //compile "org.geotools:gt-coverage:19.0"
->>>>>>> 68b0317c32746bb7f07ecefbf8b3a2f56bbd7baf
   //compile "org.geotools:gt-wfs-ng:19.0"
   //compile "org.geotools:gt-wms:19.0"
 

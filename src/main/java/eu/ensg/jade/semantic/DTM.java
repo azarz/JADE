@@ -27,6 +27,11 @@ public class DTM {
 	private double[][] tabDTM;
 	
 	/**
+	 * The DTM mocking JMonkey smooth
+	 */
+	private double[][] smoothDTM;
+	
+	/**
 	 * Number of colons
 	 */
 	private int ncols;
@@ -92,6 +97,8 @@ public class DTM {
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
+		
+		this.createSmoothDTM();
 	}
 	
 // ========================== GETTERS/SETTERS ======================
@@ -205,12 +212,16 @@ public class DTM {
 		xFraction -= column;
 		yFraction -= row;
 		
-		double northWest = mockJMonkeySmooth(column, row, 0.9, 1);
-		double northEast = mockJMonkeySmooth(column+1, row, 0.9, 1);
-		double southWest = mockJMonkeySmooth(column, row+1, 0.9, 1);
-		double southEast = mockJMonkeySmooth(column+1, row+1, 0.9, 1);
+//		double northWest = singleSmooth(column, row, 0.9, 1);
+//		double northEast = singleSmooth(column+1, row, 0.9, 1);
+//		double southWest = singleSmooth(column, row+1, 0.9, 1);
+//		double southEast = singleSmooth(column+1, row+1, 0.9, 1);
+		double northWest = smoothDTM[row][column];
+		double northEast = smoothDTM[row][column+1];
+		double southWest = smoothDTM[row+1][column];
+		double southEast = smoothDTM[row+1][column+1];
 		
-		if ((column == 0 && row == 0) || (column == ncols - 2 && row == nrows - 2)) {
+		if ((column == 0 && row == 0) || (column == ncols - 1 && row == nrows - 1)) {
             if (xFraction < yFraction)
                 return 0.01 + northWest + xFraction*(southEast-southWest) + yFraction*(southWest-northWest);
             else
@@ -233,14 +244,35 @@ public class DTM {
 	}
 	
 	
-	private double mockJMonkeySmooth(int x, int y, double np, int radius) {
-		if (np < 0 || np > 1) {
-			System.out.println("Percent not valid");
-			np = 0.9;
-		}
-		if (radius == 0){
-			radius = 1;
-		}
+	public void smooth(double np, int radius) {
+		if(smoothDTM == null) this.createSmoothDTM();
+        if (np < 0 || np > 1) np = 0.9;
+        if (radius == 0) radius = 1;
+        
+        int number = 0;
+        double average = 0;
+        for (int x = 0; x < ncols; x++) {
+            for (int y = 0; y < nrows; y++) {
+            	number = 0;
+            	average = 0;
+                for (int rx = -radius; rx <= radius; rx++) {
+                    for (int ry = -radius; ry <= radius; ry++) {
+        				if(x+rx >= 0 && x+rx < ncols && y+ry >= 0 && y+ry < nrows) {
+        					number++;
+        					average += smoothDTM[y+ry][x+rx];
+        				}
+                    }
+                }
+                average /= number;
+                smoothDTM[y][x] = JadeUtils.lerp(smoothDTM[y][x], average, np);
+            }
+        }
+    }
+	
+	
+	private double singleSmooth(int x, int y, double np, int radius) {
+		if (np < 0 || np > 1)  np = 0.9;
+		if (radius == 0) radius = 1;
 		
 		int number = 0;
 		float average = 0;
@@ -248,12 +280,22 @@ public class DTM {
 			for (int ry = -radius; ry <= radius; ry++) {
 				if(x+rx >= 0 && x+rx < ncols && y+ry >= 0 && y+ry < nrows) {
 					number++;
-					average += tabDTM[y+ry][x+rx];
+					average += smoothDTM[y+ry][x+rx];
 				}
 			}
 		}
 		average /= number;
-		return JadeUtils.lerp(tabDTM[y][x], average, np);
+		return JadeUtils.lerp(smoothDTM[y][x], average, np);
+	}
+	
+	private void createSmoothDTM(){
+		// Copy of tabDTM into smoothDTM
+		if(this.tabDTM == null) return;
+		
+		this.smoothDTM = new double[nrows][];
+		for(int i=0; i<nrows; i++){
+			this.smoothDTM[i] = this.tabDTM[i].clone();
+		}
 	}
 
 }

@@ -136,7 +136,7 @@ public class Building extends WorldObject {
 			}
 		}
 		
-		for (int i = 0; i < vertices.size(); i++) {			
+		for (int i = 0; i < vertices.size(); i++) {	
 			vertices.get(i)[2] = dtm.getHeightAtPoint(vertices.get(i)[0], vertices.get(i)[1]);
 		}
 		
