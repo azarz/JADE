@@ -890,9 +890,11 @@ public class IntersectionSignsRule implements RuleShape{
 			LineRoad road = roadsTab[i];
 
 			//We add yield signs for all roads not on the round about
-			if (!((road.getName().substring(0, 2)).equals("PL") || (road.getName().substring(0, 3)).equals("RPT"))){
-				StreetFurniture lightRoad = addSigns(road, startOnIntersectTab[i], this.yield, scene,intersect);
-				addStreetFurniture(lightRoad, road, scene);
+			if (!road.getName().equals("")) {
+				if (!((road.getName().substring(0, 2)).equals("PL") || (road.getName().substring(0, 3)).equals("RPT"))){
+					StreetFurniture lightRoad = addSigns(road, startOnIntersectTab[i], this.yield, scene,intersect);
+					addStreetFurniture(lightRoad, road, scene);
+				}
 			}
 		}
 	}
