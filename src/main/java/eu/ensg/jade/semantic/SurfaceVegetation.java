@@ -6,6 +6,7 @@ import com.vividsolutions.jts.densify.Densifier;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
+import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
@@ -120,15 +121,10 @@ public class SurfaceVegetation extends WorldObject {
 						GeometryCollection triangles = (GeometryCollection) JadeUtils.triangulate(polygon);
 							
 						int numTriangles = triangles.getNumGeometries();
-						
-						int var2 = numTriangles*numGeometries; 
-						
+												
 						
 						
-						for (int tri = 0; tri < numTriangles; tri++) {
-							var++;
-							
-							System.out.println("Nous en sommes à "+var+" sur "+var2);
+						for (int tri = 0; tri < numTriangles; tri++) {							
 							
 							Polygon triangle = (Polygon) triangles.getGeometryN(tri);
 							
@@ -155,7 +151,7 @@ public class SurfaceVegetation extends WorldObject {
 							// Adding the vertex coords as in a obj file
 							for (int i = 0; i < coords.length - 1; i++) {
 								vertexCoords += "v " + (coords[i].x - xOffset) + " "
-												  + 60 + " "
+												  + 0 + " "
 												     + -1*(coords[i].y - yOffset) + "\n";
 								
 								faces += " " + (i + vertexIndexOffset + newVertexOffset) + "//" + normalIndexOffset;
@@ -192,7 +188,13 @@ public class SurfaceVegetation extends WorldObject {
 	public void setZfromDTM(DTM dtm) {
 		// Densify the geometry so it has a number of vertices corresponding to the DTM
 		if(geometry.getCoordinates().length > 0) {
+//			System.out.println(Densifier.densify(geometry, 5).getGeometryType());			
 			geometry = (MultiPolygon) Densifier.densify(geometry, 5);
+//			Polygon[] listPoly = new Polygon[]{poly};
+
+//			geometry = new MultiPolygon(listPoly, new GeometryFactory());
+//			geometry = (MultiPolygon) geom;
+
 		}
 		
 		// Defining a coordinate filter to set the z according to the DTM
