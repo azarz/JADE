@@ -1,5 +1,11 @@
 package eu.ensg.jade.rules;
 
+import java.io.IOException;
+
+import org.geotools.feature.SchemaException;
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
+
 import eu.ensg.jade.scene.Scene;
 
 /**
@@ -42,24 +48,36 @@ public class RuleShapeMaker {
 	/**
 	 * 
 	 * @param scene
+	 * @throws FactoryException 
+	 * @throws NoSuchAuthorityCodeException 
+	 * @throws IOException 
+	 * @throws SchemaException 
 	 */
-	public void addIntersectionSigns(Scene scene){
+	public void addIntersectionSigns(Scene scene) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException{
 		intersectionSigns.addPunctualObject(scene);
 	}
 	
 	/**
 	 * 
 	 * @param scene
+	 * @throws FactoryException 
+	 * @throws NoSuchAuthorityCodeException 
+	 * @throws IOException 
+	 * @throws SchemaException 
 	 */
-	public void addRoadSigns(Scene scene){
+	public void addRoadSigns(Scene scene) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException{
 		roadSigns.addPunctualObject(scene);
 	}
 	
 	/**
 	 * 
 	 * @param scene
+	 * @throws FactoryException 
+	 * @throws NoSuchAuthorityCodeException 
+	 * @throws IOException 
+	 * @throws SchemaException 
 	 */
-	public void addVegetation(Scene scene){
+	public void addVegetation(Scene scene) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException{
 		vegetation.addPunctualObject(scene);
 	}
 	

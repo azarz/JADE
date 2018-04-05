@@ -2,7 +2,13 @@ package eu.ensg.jade.scene;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+
+import org.geotools.feature.SchemaException;
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 import com.vividsolutions.jts.geom.Coordinate;
 
@@ -19,6 +25,7 @@ import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
 import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceRoad;
+import eu.ensg.jade.semantic.SurfaceVegetation;
 import eu.ensg.jade.xml.XMLGroundModel;
 import eu.ensg.jade.xml.XMLModel;
 import eu.ensg.jade.xml.XMLTerrain;
@@ -46,12 +53,13 @@ public class SceneBuilder {
 	 * 
 	 * Main method
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
 		String buildingLayer = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
-		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
-		//String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad.shp";
+		//String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
+		String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
-		String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
+		//String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
+		String treeLayer = "src/test/resources/inputTest/openShpTestVege2.shp";
 		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
 		
 		
@@ -67,13 +75,17 @@ public class SceneBuilder {
 	 * @param hydroLayer
 	 * @param treeLayer
 	 * @param dtmLayer
+	 * @throws FactoryException 
+	 * @throws NoSuchAuthorityCodeException 
+	 * @throws IOException 
+	 * @throws SchemaException 
 	 */
 	public void buildFromFiles(
 			String buildingLayer,
 			String roadLayer,
 			String hydroLayer,
 			String treeLayer,
-			String dtmLayer) {
+			String dtmLayer) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
 		
 		// Load shapefiles
 		try {
@@ -122,6 +134,14 @@ public class SceneBuilder {
 		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
 		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
 		
+		System.out.println("Ajout de l obj !");
+		
+//		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
+//		vege.add(scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1));
+//		objWritter.exportVege("assets/RGE/vegetation.obj", vege, scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
+//		
+		System.out.println("Fin d ajout de l obj !");
+
 		scene.getDtm().toPNG("assets/RGE/paris.png");
 		
 		exportXML(scene);
@@ -232,14 +252,18 @@ public class SceneBuilder {
 	 * </ul>
 	 * 
 	 * @param scene The scene to build
+	 * @throws FactoryException 
+	 * @throws NoSuchAuthorityCodeException 
+	 * @throws IOException 
+	 * @throws SchemaException 
 	 */
-	private void build(Scene scene) {
+	private void build(Scene scene) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
 		// Changing the roads and buildings data so it matches the DTM
 		DTM dtm = scene.getDtm();
 
 		// TODO: add vegetation & street furniture
 		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
-		ruleShapeMaker.addIntersectionSigns(scene);
+		//ruleShapeMaker.addIntersectionSigns(scene);
 
 		// Set building height
 		for (Building building : scene.getBuildings()) {
@@ -255,6 +279,9 @@ public class SceneBuilder {
 			roads.put(key, surfRoad);
 		}
 		scene.setRoads(roads);
+
+		//ruleShapeMaker.addVegetation(scene);
+		//System.out.println("J ajoute la vegetation a la scene");
 
 		
 	}
@@ -274,8 +301,9 @@ public class SceneBuilder {
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
 		driver.setMass(800);
-		Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
-		driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
+		//Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
+		//driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
+		driver.setTranslation(new double[]{scene.getBuildingCentroid().x, 120, scene.getBuildingCentroid().y});
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
@@ -283,14 +311,20 @@ public class SceneBuilder {
 //		xmlWriter.addModel(buildindModel);
 		
 		// Add roads
-		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
-		xmlWriter.addModel(roadsModel);
+//		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
+//		xmlWriter.addModel(roadsModel);
+//		
+		// Add water
+//		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
+//		xmlWriter.addModel(waterModel);
 		
 		// Add water
-		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
-		xmlWriter.addModel(waterModel);
-		
-		int k = 0;
+//		System.out.println("creation du xml");
+//		XMLModel vegeModel = new XMLModel("Vegetation", "RGE/vegetation.obj");
+//		xmlWriter.addModel(vegeModel);
+//		System.out.println("xml créé");
+//		
+		/*int k = 0;
 		// Add street furniture
 		for(StreetFurniture sign : scene.getStreetFurniture()) {
 			k++;
@@ -303,11 +337,11 @@ public class SceneBuilder {
 			if (k>5000){
 				break;
 			}
-		}
+		}*/
 		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);
-		ground.setVisible(false);
+		ground.setVisible(true);
 		xmlWriter.addTerrain(ground);
 		
 		xmlWriter.createAllXml();

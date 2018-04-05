@@ -301,6 +301,12 @@ public class Scene {
 		this.vegetation.add(newTree);
 
 	}
+	
+	public void addVegetationSurface(SurfaceVegetation newTree){
+		this.surfaceVegetation.add(newTree);
+
+	}
+
 
 	/**
 	 * Adds a new street furniture to the existing list of furnitures
