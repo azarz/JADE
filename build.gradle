@@ -15,10 +15,12 @@ repositories {
 	jcenter()
 }
 
+
 dependencies {
   testCompile group: 'junit', name: 'junit', version: '4.12'
   testCompile group: 'org.mockito', name: 'mockito-all', version: '1.9.5'
   compile fileTree(dir: 'lib', include: '**/*.jar')
+  runtime files("lib") 
   
   compile "org.geotools:gt-shapefile:19.0"
   compile "org.geotools:gt-wfs-ng:17.5"
@@ -45,6 +47,6 @@ jar {
       attributes 'Main-Class': 'eu.opends.main.Simulator',
       'Implementation-Title': 'Jade', 
       'Implementation-Version': version,
-      'Class-Path': configurations.compile.join(' ')
+      "Class-Path": configurations.compile.collect { "lib/" + it.getName() }.join(' ')
    }
 }
