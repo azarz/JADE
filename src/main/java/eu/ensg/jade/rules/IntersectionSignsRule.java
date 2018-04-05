@@ -14,13 +14,58 @@ import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.utils.JadeUtils;
 
 /**
+ * IntersectionSignsRule is the class implementing the generation of intersection signs on the scene 
  * 
  * @author JADE
  */
 
 public class IntersectionSignsRule implements RuleShape{
+	
+// ========================== ATTRIBUTES ===========================
+	
+	/**
+	 * Path of the dead-end street sign
+	 */
+	private String deadEndStreet = "Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.scene"; 
+	
+	/**
+	 * Path of the  narrow road sign
+	 */
+	private String roadNarrows = "Models/RoadSigns/dangerSigns/RoadNarrows/RoadNarrows.scene"; 
+	
+	/**
+	 * Path of the one-way street sign
+	 */
+	private String oneWay = "Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene"; 
+	
+	/**
+	 * Path of the do not enter street sign
+	 */
+	private String doNotEnter = "Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene"; 
+	
+	/**
+	 * Path of the traffic light
+	 */
+	private String trafficLight = "Models/TrafficLight/trafficlight.scene"; 
+	
+	/**
+	 * Path of the yield sign
+	 */
+	private String yield = "Models/RoadSigns/otherSigns/Yield/Yield.scene"; 
+	
+	/**
+	 * Path of the sign which warn for an intersection with right priority 
+	 */
+	private String intersectionAhead = "Models/RoadSigns/dangerSigns/IntersectionAhead/IntersectionAhead.scene";
 
+	/**
+	 * Path of the stop sign
+	 */
+	private String stop = "Models/RoadSigns/otherSigns/Stop/Stop.scene"; 
+	
 // ========================== METHODS ==============================
+	
+// ------ Interface
 	/**
 	 * Puts signs on intersections referring to the number of roads in the intersection
 	 * 
@@ -31,7 +76,7 @@ public class IntersectionSignsRule implements RuleShape{
 	@Override
 	public void addPunctualObject(Scene scene){
 		
-		// We get the list of existing roads in the scene
+		// We get the list of existing roads and intersections in the scene
 		Map <String,Road> roads = scene.getRoads();
 		IntersectionColl interColl = scene.getCollIntersect();
 		
@@ -39,20 +84,13 @@ public class IntersectionSignsRule implements RuleShape{
 		for (Intersection intersect : interColl.getMapIntersection().values()){
 			
 			// We test how many roads are attached to the intersection
+			
 			// If the node has 1 attached road
 			if (intersect.getRoadId().size() == 1){
 				/*
 				 * => DeadEndStreet sign
 				 */
-				
-				// Roads retrieval
-				LineRoad road = (LineRoad) roads.get(intersect.getRoadId().keySet().toArray()[0]);
-				// We see if the road starts on the intersection
-				boolean startOnIntersect = intersect.getRoadId().get(intersect.getRoadId().keySet().toArray()[0]);
-				
-				// DeadEndStreet Sign installation
-				StreetFurniture streetFurniture = addSigns(road,startOnIntersect,"Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.scene", scene);
-				addStreetFurniture(streetFurniture, road, scene);
+				oneRoadIntersect(intersect, roads, scene);	
 			}
 			
 			else if (intersect.getRoadId().size() == 2){
@@ -61,82 +99,21 @@ public class IntersectionSignsRule implements RuleShape{
 				 * => One-way street
 				 * => Do not enter
 				 */
-				
-				// Roads retrieval
-				LineRoad[] roadsTab = new LineRoad[2];
-				boolean[] startOnIntersectTab = new boolean[2];
-
-				// We fill the two previous tabs
-				roadTabFilling(roadsTab, startOnIntersectTab, intersect, roads);
-				
-				// Narrow sign installation
-				
-				// We compare the width of the node 2 roads
-				int larger = widthComparison(roadsTab[0],roadsTab[1]);
-				
-				// If they are different, we had a road narrows sign
-				if ( larger != -1){
-					StreetFurniture streetFurniture = addSigns(roadsTab[larger],startOnIntersectTab[larger],"Models/RoadSigns/dangerSigns/RoadNarrows/RoadNarrows.scene", scene);
-					addStreetFurniture(streetFurniture, roadsTab[larger], scene);
-				}
-				
-				// One-way sign installation
-				Map<Integer,Integer> sensMap = directionVariation(roadsTab,startOnIntersectTab);
-				
-				// If we are facing a one way driving road, we had the appropriate sign
-				if (sensMap != null){
-					
-					if(sensMap.containsKey(-1)){
-						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(-1)],startOnIntersectTab[sensMap.get(-1)],"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", scene);
-						addStreetFurniture(streetFurniture, roadsTab[sensMap.get(-1)], scene);
-					}
-					
-					if(sensMap.containsKey(1)){
-						StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(1)],startOnIntersectTab[sensMap.get(1)],"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", scene);
-						addStreetFurniture(streetFurniture, roadsTab[sensMap.get(1)], scene);
-					}
-				}
+				twoRoadIntersect(intersect, roads, scene);
 			}
 			
 			// If the node has 3 or 4 attached roads
 			else if (intersect.getRoadId().size() == 3 || intersect.getRoadId().size() == 4){
 				/*
-				 * Si 3-4 => Ramp test
-				 *        => Roundabout test
-				 * 		  => Direction test
-				 * 		  => Importance test
-				 * 		  => Way number test
+				 * => Ramp signs
+				 * => Roundabout signs
+				 * => One way signs
+				 * => Do not enter signs
+				 * => Yield signs
+				 * => Stop signs
+				 * => Traffic lights
 				 */
-				
-				int size = intersect.getRoadId().size();
-				
-				// Roads retrieval
-				LineRoad[] roadsTab = new LineRoad[size];
-				boolean[] startOnIntersectTab = new boolean[size];
-				
-				// We fill the two previous tabs
-				roadTabFilling(roadsTab, startOnIntersectTab, intersect, roads);
-				
-				//First test for ramp, round about or "normal".
-				Boolean asRamp = isRamp(roadsTab,startOnIntersectTab,intersect,size);
-				Boolean asRoundAbout = isRoundAbout(roadsTab);
-				
-				// If it is a ramp
-				if(asRamp){
-					addRampSigns(roadsTab,startOnIntersectTab,intersect,size);
-				}
-				//If it is a roundabout
-				else if (asRoundAbout){
-					addRoundAbout(roadsTab,startOnIntersectTab,scene);
-				}
-				// "Normal" case
-				else {
-					//Checking Road importance for yield
-					
-					int intersectType = calcIntersectionType(roadsTab,size);
-					addMultiSigns(roadsTab,startOnIntersectTab,intersectType, scene);
-				}
-				
+				threeFourRoadIntersect(intersect, roads, scene);
 			}
 			
 			// If the node has 5 or more attached nodes
@@ -145,54 +122,150 @@ public class IntersectionSignsRule implements RuleShape{
 				 *        => Direction test 
 				 *        => Traffic lights placed 
 				 */
-				
-//				int size = intersect.getRoadId().size();
-				
-				// Roads retrieval
-
-				LineRoad lineRoad = new LineRoad(); 
-				boolean roadBool;
-				int enter = -100; 
-				
-				for (String road : intersect.getRoadId().keySet()){
-					lineRoad = (LineRoad) roads.get(road);
-					roadBool = intersect.getRoadId().get(road);
-					// We check the road driving direction
-					enter = isEntering(lineRoad, roadBool);
-
-					
-					// If it is a direct driving direction, we had traffic lights and do not enter sign
-					if (enter == 1){
-						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", scene);
-						addStreetFurniture(streetFurniture, lineRoad, scene);
-						
-						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene", scene);
-						addStreetFurniture(streetFurniture2, lineRoad, scene);
-					
-					}		
-					
-					// If it is a reverse driving direction, we had traffic lights and one way sign
-					else if (enter == -1){
-						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", scene);
-						addStreetFurniture(streetFurniture, lineRoad, scene);
-					}
-					
-					// If it is a two-way driving direction, we had traffic lights
-					else if (enter == 0){
-						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene", scene);
-						addStreetFurniture(streetFurniture, lineRoad, scene);
-					}
-				}
-				
-				
+				fiveRoadIntersect(intersect, roads, scene);
 			}
+			
 			else{
 				System.out.println("There is no road in this intersection ... ");
 			}
 		}
 	}
+
+// ------ Cut of the interface function
+	/**
+	 * Creates the signs of intersections with one road
+	 * 
+	 * @param intersect
+	 * @param roads
+	 * @param scene
+	 */
+	private void oneRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) {
+		// Roads retrieval
+		LineRoad road = (LineRoad) roads.get(intersect.getRoadId().keySet().toArray()[0]);
+		// We see if the road starts on the intersection
+		boolean startOnIntersect = intersect.getRoadId().get(intersect.getRoadId().keySet().toArray()[0]);
+		
+		// DeadEndStreet Sign installation
+		StreetFurniture streetFurniture = addSigns(road,startOnIntersect,this.deadEndStreet, scene);
+		addStreetFurniture(streetFurniture, road, scene);
+	}
 	
+	/**
+	 * Creates the signs of intersections with two roads
+	 * 
+	 * @param intersect
+	 * @param roads
+	 * @param scene
+	 */
+	private void twoRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) {
+		// Roads retrieval
+		LineRoad[] roadsTab = new LineRoad[2];
+		boolean[] startOnIntersectTab = new boolean[2];
+
+		// We fill the two previous tabs
+		roadTabFilling(roadsTab, startOnIntersectTab, intersect, roads);
+		
+		// Narrow sign installation
+		
+		// We compare the width of the node 2 roads
+		int larger = widthComparison(roadsTab[0],roadsTab[1]);
+		
+		// If they are different, we had a road narrows sign
+		if ( larger != -1){
+			StreetFurniture streetFurniture = addSigns(roadsTab[larger],startOnIntersectTab[larger],this.roadNarrows, scene);
+			addStreetFurniture(streetFurniture, roadsTab[larger], scene);
+		}
+		
+		// One-way sign installation
+		Map<Integer,Integer> sensMap = directionVariation(roadsTab,startOnIntersectTab);
+		
+		// If we are facing a one way driving road, we had the appropriate sign
+		if (sensMap != null){
+			
+			if(sensMap.containsKey(-1)){
+				StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(-1)],startOnIntersectTab[sensMap.get(-1)],this.oneWay, scene);
+				addStreetFurniture(streetFurniture, roadsTab[sensMap.get(-1)], scene);
+			}
+			
+			if(sensMap.containsKey(1)){
+				StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(1)],startOnIntersectTab[sensMap.get(1)], this.doNotEnter, scene);
+				addStreetFurniture(streetFurniture, roadsTab[sensMap.get(1)], scene);
+			}
+		}
+	}
 	
+	/**
+	 * Creates the signs of intersections with three or four roads
+	 * 
+	 * @param intersect
+	 * @param roads
+	 * @param scene
+	 */
+	private void threeFourRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) {
+		int size = intersect.getRoadId().size();
+		
+		// Roads retrieval
+		LineRoad[] roadsTab = new LineRoad[size];
+		boolean[] startOnIntersectTab = new boolean[size];
+		
+		// We fill the two previous tabs
+		roadTabFilling(roadsTab, startOnIntersectTab, intersect, roads);
+		
+		//First test for ramp, round about or "normal".
+		Boolean asRamp = isRamp(roadsTab,startOnIntersectTab,intersect,size);
+		Boolean asRoundAbout = isRoundAbout(roadsTab);
+		
+		// If it is a ramp
+		if(asRamp){
+			addRampSigns(roadsTab,startOnIntersectTab,intersect,size);
+		}
+		
+		//If it is a roundabout
+		else if (asRoundAbout){
+			addRoundAbout(roadsTab,startOnIntersectTab,scene);
+		}
+		
+		// "Normal" case
+		else {					
+			int intersectType = calcIntersectionType(roadsTab,size);
+			addMultiSigns(roadsTab,startOnIntersectTab,intersectType, scene);
+		}
+	}
+	
+	/**
+	 * Creates the signs of intersections with more than 4 roads
+	 * 
+	 * @param intersect
+	 * @param roads
+	 * @param scene
+	 */
+	private void fiveRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) {
+		
+		// Roads retrieval
+		LineRoad lineRoad = new LineRoad(); 
+		boolean roadBool;
+		int enter = -100; 
+		
+		// We go through all the roads
+		for (String road : intersect.getRoadId().keySet()){
+			lineRoad = (LineRoad) roads.get(road);
+			roadBool = intersect.getRoadId().get(road);
+			// We check the road driving direction
+			enter = isEntering(lineRoad, roadBool);
+
+			// If it is a direct driving direction, we had traffic lights and do not enter sign
+			addSignsByRoad(enter, lineRoad, roadBool, this.trafficLight, scene);
+		}
+	}
+
+// ------ General methods -> roads characteristics
+	/**
+	 * 
+	 * @param roadsTab
+	 * @param startOnIntersectTab
+	 * @param intersect
+	 * @param roads
+	 */
 	private void roadTabFilling(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Intersection intersect, Map <String,Road> roads){
 		// Roads retrieval
 		int k = 0;
@@ -234,12 +307,11 @@ public class IntersectionSignsRule implements RuleShape{
 		else if(!direction) {
 			return 1*modDirection;
 		}
-			
-		
 
 		return 0;
 	}
 	
+// ------ General methods -> signs characteristics
 	/**
 	 * Adds street furniture to the associated road and the scene
 	 * 
@@ -299,7 +371,7 @@ public class IntersectionSignsRule implements RuleShape{
 		
 		// Determination of the position
 		if(left){
-			if (folder.equals("Models/RoadSigns/otherSigns/Yield/Yield.scene")){
+			if (folder.equals(this.yield)){
 				rotation = theta + Math.PI/2;
 				D = D - 2.2;
 			}
@@ -328,7 +400,7 @@ public class IntersectionSignsRule implements RuleShape{
 			}
 		}
 		else{
-			if (folder.equals("Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene")){
+			if (folder.equals(this.doNotEnter)){
 				rotation = theta + Math.PI;
 			}
 			else{
@@ -382,21 +454,15 @@ public class IntersectionSignsRule implements RuleShape{
 	 */
 	private StreetFurniture addSigns(LineRoad road, boolean init, String folder, Scene scene){
 		
-		// The signs which has to be on the right of the road 
-		String deadEndStreet = "Models/RoadSigns/squarePlatesWithPole/DeadEndStreet/DeadEndStreet.scene";
-		String oneWayStreet = "Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene";
-		String doNotEnter = "Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene";
-		String narrowRoad = "Models/RoadSigns/dangerSigns/RoadNarrows/RoadNarrows.scene";
-		
 		// We determine if the sign has to be on the right side or the left side of the road 
 		boolean left = true;
 		
-		if (folder.equals(deadEndStreet) || folder.equals(oneWayStreet) || folder.equals(doNotEnter)){
+		if (folder.equals(this.deadEndStreet) || folder.equals(this.oneWay) || folder.equals(this.doNotEnter)){
 			left = false;
 		}
 		
 		// We create the sign 
-		if (!folder.equals(deadEndStreet)){
+		if (!folder.equals(this.deadEndStreet)){
 			if (init){
 				// It is possible to return the sign angle in street furniture
 				return signPosition(road, left, 0, folder, scene);
@@ -416,9 +482,41 @@ public class IntersectionSignsRule implements RuleShape{
 			}
 		}
 	}
-	
-// -------------------------- 2-SPECIFIC ---------------------------
-	
+
+	/**
+	 * Creates signs for intersections of more than three roads
+	 * 
+	 * @param enter
+	 * @param lineRoad
+	 * @param roadBool
+	 * @param signs
+	 * @param scene
+	 */
+	private void addSignsByRoad(int enter, LineRoad lineRoad, boolean roadBool, String signs, Scene scene) {
+		// If it is a direct driving direction, we had traffic lights and do not enter sign
+		if (enter == 1){
+			StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.doNotEnter,scene);
+			addStreetFurniture(streetFurniture, lineRoad, scene);
+			
+			StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,signs,scene);
+			addStreetFurniture(streetFurniture2, lineRoad, scene);
+		
+		}		
+		
+		// If it is a reverse driving direction, we had traffic lights and one way sign
+		else if (enter == -1){
+			StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.oneWay,scene);
+			addStreetFurniture(streetFurniture, lineRoad, scene);
+		}
+		
+		// If it is a two-way driving direction, we had traffic lights
+		else if (enter == 0){
+			StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,signs,scene);
+			addStreetFurniture(streetFurniture, lineRoad, scene);
+		}
+	}
+
+// ------ Methods specifics to two roads
 	/**
 	 * Compares the width of two roads 
 	 * 
@@ -468,86 +566,7 @@ public class IntersectionSignsRule implements RuleShape{
 		return null;
 	}
 
-
-// -------------------------- 3/4-SPECIFIC ---------------------------
-	/**
-	 * Check if it is a ramp.
-	 * 
-	 * @param roadsTab the table containing the roads
-	 * @param startOnIntersectTab the table containing the roads boolean descritor of direction
-	 * @param intersect the intersection considered
-	 * @param size Intersection's size
-	 * 
-	 * @return boolean, true if the intersection is in a ramp
-	 */
-	private boolean isRamp(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Intersection intersect, int size){
-		// No ramp if size is different then 3:
-		if (size !=3){return false;}
-		else {
-			//We check in the roads if there is at least one is of ramp nature (bretelle in French)
-			for (LineRoad road : roadsTab){
-				if(road.getNature() == "Bretelle")
-				{return true;}
-			}
-		}
-		//Else there is no ramp
-		return false;
-	}
-
-	/**
-	 * Check if it is a roundabout
-	 * 
-	 * @param roadsTab the table containing the roads
-	 * @param roadsBoolTab the table containing the roads boolean descriptor of direction
-	 * @param intersect the intersection considered
-	 * @param size Intersection's size
-	 * 
-	 * @return boolean, true if the intersection is in a round about
-	 */
-	private boolean isRoundAbout(LineRoad[] roadsTab){
-	//We go through the roads and see if there is at least one being a Round About.
-		for (LineRoad road : roadsTab){
-			if (road.getName().length()>2){
-				if(road.getName().substring(0, 2)==("PL") || road.getName().substring(0, 3) == "RPT")
-				{return true;}
-			}
-		}
-		return false;
-	}
-	
-	/**
-	 * Adds signs corresponding to a ramp
-	 * 
-	 * @param roadsTab the table containing the roads
-	 * @param startOnIntersectTab the table containing the roads boolean descritor of direction
-	 * @param intersect the intersection considered
-	 * @param size Intersection's size
-	 */
-	private void addRampSigns(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Intersection intersect, int size){
-		System.out.println("C'est une bretelle");
-		
-	}
-	
-	/**
-	 * Adds signs corresponding to a roundabout
-	 * 
-	 * @param roadsTab the table containing the roads
-	 * @param startOnIntersectTab the table containing the roads boolean descritor of direction
-	 * @param intersect the intersection considered
-	 * @param size Intersection's size
-	 */
-	private void addRoundAbout(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Scene scene){
-		for (int i = 0; i < roadsTab.length; i++){
-			LineRoad road = roadsTab[i];
-
-			//We add yield signs for all roads not on the round about
-			if (!((road.getName().substring(0, 2)).equals("PL") || (road.getName().substring(0, 3)).equals("RPT"))){
-				StreetFurniture lightRoad = addSigns(road, startOnIntersectTab[i], "Models/RoadSigns/otherSigns/Yield/Yield.scene", scene);
-				addStreetFurniture(lightRoad, road, scene);
-			}
-		}
-	}
-	
+// ------ Methods specifics to three or four roads
 	/**
 	 * Check if there is an importance change between roads
 	 * 
@@ -613,8 +632,6 @@ public class IntersectionSignsRule implements RuleShape{
 		return -1;
 	}
 
-	
-
 	/**
 	 * Add multiple signs to the intersections.
 	 * 
@@ -638,23 +655,7 @@ public class IntersectionSignsRule implements RuleShape{
 				roadBool = startOnIntersectTab[i];
 				enter = isEntering(lineRoad, roadBool);
 				
-				if (enter == 1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", scene);
-					addStreetFurniture(streetFurniture, lineRoad, scene);
-					
-					StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene", scene);
-					addStreetFurniture(streetFurniture2, lineRoad, scene);
-				
-				}
-				else if (enter == -1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", scene);
-					addStreetFurniture(streetFurniture, lineRoad, scene);
-				}
-				else if (enter == 0){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/TrafficLight/trafficlight.scene", scene);
-					addStreetFurniture(streetFurniture, lineRoad, scene);
-				}
-			
+				addSignsByRoad(enter, lineRoad, roadBool, this.trafficLight, scene);			
 			}
 			break;
 		case 2:
@@ -663,23 +664,7 @@ public class IntersectionSignsRule implements RuleShape{
 				roadBool =startOnIntersectTab[i];
 				enter = isEntering(lineRoad, roadBool);
 				
-				
-				if (enter == 1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", scene);
-					addStreetFurniture(streetFurniture, lineRoad, scene);
-					
-					StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/dangerSigns/IntersectionAhead/IntersectionAhead.scene", scene);
-					addStreetFurniture(streetFurniture2, lineRoad, scene);
-				
-				}
-				else if (enter == -1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", scene);
-					addStreetFurniture(streetFurniture, lineRoad, scene);
-				}
-				else if (enter == 0){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/dangerSigns/IntersectionAhead/IntersectionAhead.scene", scene);
-					addStreetFurniture(streetFurniture, lineRoad, scene);
-				}	
+				addSignsByRoad(enter, lineRoad, roadBool, this.intersectionAhead, scene);	
 			}
 			break;
 
@@ -698,31 +683,31 @@ public class IntersectionSignsRule implements RuleShape{
 				
 				
 				if (enter == 1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/prohibitions/Do-not-enter/DoNotEnter.scene", scene);
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.doNotEnter, scene);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 					
 					if (Integer.parseInt(lineRoad.getImportance()) - greatest == 1 ){
-						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Yield/Yield.scene", scene);
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,this.yield, scene);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
 					}
 					else if (Integer.parseInt(lineRoad.getImportance()) - greatest > 1){
-						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Stop/Stop.scene", scene);
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,this.stop, scene);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
 					
 					}
 				
 				}
 				else if (enter == -1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,"Models/RoadSigns/squarePlatesWithPole/OneWayStreet2/OneWayStreet2.scene", scene);
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.oneWay, scene);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 				}
 				else if (enter == 0){
 					if (Integer.parseInt(lineRoad.getImportance()) - greatest == 1 ){
-						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Yield/Yield.scene", scene);
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,this.yield, scene);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
 					}
 					else if (Integer.parseInt(lineRoad.getImportance()) - greatest > 1){
-						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,"Models/RoadSigns/otherSigns/Stop/Stop.scene", scene);
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,this.stop, scene);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
 					
 					}
@@ -735,8 +720,91 @@ public class IntersectionSignsRule implements RuleShape{
 			System.out.println("Intersection de mauvais type");
 			break;
 		}
-	
-	
 	}
 
+// ------ Methods specifics to ramps
+	/**
+	 * Check if it is a ramp.
+	 * 
+	 * @param roadsTab the table containing the roads
+	 * @param startOnIntersectTab the table containing the roads boolean descritor of direction
+	 * @param intersect the intersection considered
+	 * @param size Intersection's size
+	 * 
+	 * @return boolean, true if the intersection is in a ramp
+	 */
+	private boolean isRamp(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Intersection intersect, int size){
+		
+		// No ramp if size is different then 3:
+		if (size !=3){
+			return false;
+		}
+		
+		else {
+			//We check in the roads if there is at least one is of ramp nature (bretelle in French)
+			for (LineRoad road : roadsTab){
+				if(road.getNature().equals("Bretelle")){
+					return true;
+				}
+			}
+		}
+		//Else there is no ramp
+		return false;
+	}
+
+	/**
+	 * Adds signs corresponding to a ramp
+	 * 
+	 * @param roadsTab the table containing the roads
+	 * @param startOnIntersectTab the table containing the roads boolean descritor of direction
+	 * @param intersect the intersection considered
+	 * @param size Intersection's size
+	 */
+	private void addRampSigns(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Intersection intersect, int size){
+		System.out.println("C'est une bretelle");
+		
+	}
+
+// ------ Methods specifics to roundabout
+	/**
+	 * Check if it is a roundabout
+	 * 
+	 * @param roadsTab the table containing the roads
+	 * @param roadsBoolTab the table containing the roads boolean descriptor of direction
+	 * @param intersect the intersection considered
+	 * @param size Intersection's size
+	 * 
+	 * @return boolean, true if the intersection is in a round about
+	 */
+	private boolean isRoundAbout(LineRoad[] roadsTab){
+	//We go through the roads and see if there is at least one being a Round About.
+		for (LineRoad road : roadsTab){
+			if (road.getName().length()>2){
+				if(road.getName().substring(0, 2).equals("PL") || road.getName().substring(0, 3).equals("RPT")){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Adds signs corresponding to a roundabout
+	 * 
+	 * @param roadsTab the table containing the roads
+	 * @param startOnIntersectTab the table containing the roads boolean descritor of direction
+	 * @param intersect the intersection considered
+	 * @param size Intersection's size
+	 */
+	private void addRoundAbout(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Scene scene){
+		for (int i = 0; i < roadsTab.length; i++){
+			LineRoad road = roadsTab[i];
+
+			//We add yield signs for all roads not on the round about
+			if (!((road.getName().substring(0, 2)).equals("PL") || (road.getName().substring(0, 3)).equals("RPT"))){
+				StreetFurniture lightRoad = addSigns(road, startOnIntersectTab[i], this.yield, scene);
+				addStreetFurniture(lightRoad, road, scene);
+			}
+		}
+	}
 }
