@@ -128,15 +128,15 @@ public class SceneBuilder {
 		File directory = new File("assets/RGE");
 		if (! directory.exists()){ directory.mkdir(); }
 		
-		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);		
-		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
-		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
+		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getCentroid().x, scene.getCentroid().y);		
+		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getCentroid().x, scene.getCentroid().y);
+		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getCentroid().x, scene.getCentroid().y);
 		
 		System.out.println("Ajout de l obj !");
 		
 		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
 		vege.add(scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1));
-		objWritter.exportVege("assets/RGE/vegetation.obj", vege, scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
+		objWritter.exportVege("assets/RGE/vegetation.obj", vege, scene.getCentroid().x, scene.getCentroid().y);
 		
 		System.out.println("Fin d ajout de l obj !");
 
