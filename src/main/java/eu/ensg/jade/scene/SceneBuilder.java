@@ -120,32 +120,9 @@ public class SceneBuilder {
 	 * Public method to export the whole Scene as a driving task, to be used in OpenDS
 	 */
 	public void export() {
-		OBJWriter objWritter = new OBJWriter();
-		
-		File directory = new File("assets/RGE");
-		if (! directory.exists()){ directory.mkdir(); }
-		
-		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);		
-		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
-		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
-		
-		System.out.println("Ajout de l obj !");
-		
-//		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
-//		vege.add(scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1));
-//		objWritter.exportVege("assets/RGE/vegetation.obj", vege, scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
-//		
-		System.out.println("Fin d ajout de l obj !");
-
-		scene.getDtm().toPNG("assets/RGE/paris.png");
-		
+		exportRGEData(scene);
 		exportXML(scene);
 	}
-	
-	
-	/* (non-Javadoc)
-	 * Private utility methods, get the job done
-	 */
 	
 	
 	/**
@@ -232,8 +209,9 @@ public class SceneBuilder {
 //		
 //		rge = readerFact.createReader(READER_TYPE.VEGETATION).loadFromRGE(treeFeature);
 //		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
-		
-		// TODO: Add the DTM ?
+//		
+//		rge = readerFact.createReader(READER_TYPE.DTM).loadFromRGE(dtmFeature);
+//		scene.setDtm(rge.getDTM());
 		
 		return scene;
 	}
@@ -257,24 +235,10 @@ public class SceneBuilder {
 	private void build(Scene scene) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
 		// Changing the roads and buildings data so it matches the DTM
 		DTM dtm = scene.getDtm();
-		
-		
-//		String heightMapImagePath = "RGE/paris.png";
-//		dtm.toPNG("assets/" + heightMapImagePath);
-//		
-//		TextureKey textureKey = new TextureKey(heightMapImagePath, false);
-//		AssetManager assetManager = 
-//		Image heightMapImage = new Imag
-//		dtm.toPNG(path);;
-//		
-//		AbstractHeightMap heightmap = new ImageBasedHeightMap(heightMapImage, heightScale);
-//		heightmap.load();
-//		heightmap.smooth(smoothPercentage, smoothRadius);
-		
+		dtm.smooth(0.9, 1);
 		
 
-		// TODO: add vegetation & street furniture
-		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
+//		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
 		//ruleShapeMaker.addIntersectionSigns(scene);
 
 		// Set building height
@@ -294,9 +258,27 @@ public class SceneBuilder {
 
 		//ruleShapeMaker.addVegetation(scene);
 		//System.out.println("J ajoute la vegetation a la scene");
-
-
 		
+	}
+	
+	
+	private void exportRGEData(Scene scene) {
+		OBJWriter objWritter = new OBJWriter();
+		
+		File directory = new File("assets/RGE");
+		if (! directory.exists()){ directory.mkdir(); }
+		
+		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);		
+		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
+		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
+		
+//		System.out.println("Ajout de l obj !");
+//		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
+//		vege.add(scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1));
+//		objWritter.exportVege("assets/RGE/vegetation.obj", vege, scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);	
+//		System.out.println("Fin d ajout de l obj !");
+
+		scene.getDtm().toPNG("assets/RGE/paris.png");
 	}
 	
 	
@@ -305,18 +287,18 @@ public class SceneBuilder {
 		xmlWriter.log = true;
 		
 		xmlWriter.updateConfig("fileMainXML", "MAIN_FILE.xml");
-//		xmlWritter.updateConfig("rainCoefficient", "5");
+		xmlWriter.updateConfig("rainCoefficient", "5");
 		
-		// Add flat ground
-//		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
-//		xmlWriter.addModel(grassPlane);
+		// Add flat ground (debug)
+		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
+		xmlWriter.addModel(grassPlane);
 		
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
 		driver.setMass(800);
 		//Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
 		//driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
-		driver.setTranslation(new double[]{scene.getBuildingCentroid().x, 120, scene.getBuildingCentroid().y});
+		driver.setTranslation(new double[]{-300, 60, 0});
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
@@ -324,8 +306,8 @@ public class SceneBuilder {
 //		xmlWriter.addModel(buildindModel);
 		
 		// Add roads
-//		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
-//		xmlWriter.addModel(roadsModel);
+		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
+		xmlWriter.addModel(roadsModel);
 //		
 		// Add water
 //		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
@@ -337,9 +319,9 @@ public class SceneBuilder {
 //		xmlWriter.addModel(vegeModel);
 //		System.out.println("xml créé");
 //		
-		//int k = 0;
+		
 		// Add street furniture
-
+//		int k = 0;
 //		for(StreetFurniture sign : scene.getStreetFurniture()) {
 //			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
 //			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
@@ -352,7 +334,7 @@ public class SceneBuilder {
 		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);
-		ground.setVisible(true);
+		ground.setVisible(false);
 		xmlWriter.addTerrain(ground);
 		
 		xmlWriter.createAllXml();
