@@ -221,22 +221,22 @@ public class DTM {
 		double southWest = smoothDTM[row+1][column];
 		double southEast = smoothDTM[row+1][column+1];
 		
+		double height = 0;
 		if ((column == 0 && row == 0) || (column == ncols - 1 && row == nrows - 1)) {
             if (xFraction < yFraction)
-                return 0.01 + northWest + xFraction*(southEast-southWest) + yFraction*(southWest-northWest);
+                height = northWest + xFraction*(southEast-southWest) + yFraction*(southWest-northWest);
             else
-                return 0.01 + northWest + xFraction*(northEast-northWest) + yFraction*(southEast-northEast);
+            	height = northWest + xFraction*(northEast-northWest) + yFraction*(southEast-northEast);
             
         }
 		else {
             if (xFraction < (1-yFraction))
-            	return 0.01 + southWest + (xFraction)*(northEast-northWest) + (1-yFraction)*(northWest-southWest);
+            	height = southWest + (xFraction)*(northEast-northWest) + (1-yFraction)*(northWest-southWest);
             else
-                return 0.01 + southWest + (xFraction)*(southEast-southWest) + (1-yFraction)*(northEast-southEast);
+                height = southWest + (xFraction)*(southEast-southWest) + (1-yFraction)*(northEast-southEast);
         }
-
-		
-		
+		return height + 0.03;
+				
 //		return JadeUtils.lerp(
 //				JadeUtils.lerp(northWestValue, northEastValue, columnFraction),
 //				JadeUtils.lerp(southWestValue, southEastValue, columnFraction),

@@ -50,7 +50,7 @@ public class SceneBuilder {
 	 */
 	public static void main(String[] args) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
 		String buildingLayer = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
-		//String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
+//		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
 		String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
 		//String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
@@ -150,10 +150,9 @@ public class SceneBuilder {
 		ReaderFactory readerFact = new ReaderFactory();
 		InputRGE rge = new InputRGE();
 		
-//		rge = readerContx.createInputRGE(readerFact.createReader(READER_METHOD.BUILDING), buildingLayer);
 		rge = readerFact.createReader(READER_TYPE.BUILDING).loadFromFile(buildingLayer);
 		scene.setBuildings(rge.getBuildings());
-		scene.setBuildingCentroid(rge.getCentroid());
+		scene.setCentroid(rge.getCentroid());
 		
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_TYPE.ROAD), roadLayer);
@@ -268,9 +267,9 @@ public class SceneBuilder {
 		File directory = new File("assets/RGE");
 		if (! directory.exists()){ directory.mkdir(); }
 		
-		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);		
-		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
-		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
+		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getCentroid().x, scene.getCentroid().y);		
+		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getCentroid().x, scene.getCentroid().y);
+		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getCentroid().x, scene.getCentroid().y);
 		
 //		System.out.println("Ajout de l obj !");
 //		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
@@ -298,12 +297,12 @@ public class SceneBuilder {
 		driver.setMass(800);
 		//Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
 		//driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
-		driver.setTranslation(new double[]{-300, 60, 0});
+		driver.setTranslation(new double[]{0, 60, 0});
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
-//		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
-//		xmlWriter.addModel(buildindModel);
+		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
+		xmlWriter.addModel(buildindModel);
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
@@ -334,7 +333,7 @@ public class SceneBuilder {
 		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);
-		ground.setVisible(false);
+		ground.setVisible(true);
 		xmlWriter.addTerrain(ground);
 		
 		xmlWriter.createAllXml();
@@ -366,8 +365,8 @@ public class SceneBuilder {
  		// Ground translation: the most tricky part
  		double[] groundTranslation = new double[3];
  		
- 		double xCentroid = scene.getBuildingCentroid().x;
- 		double yCentroid = scene.getBuildingCentroid().y;
+ 		double xCentroid = scene.getCentroid().x;
+ 		double yCentroid = scene.getCentroid().y;
              
         groundTranslation[0] = scene.getDtm().getXllcorner() - xCentroid + (powerOfTwo/2)*dtm.getCellsize();
         groundTranslation[1] = 0;

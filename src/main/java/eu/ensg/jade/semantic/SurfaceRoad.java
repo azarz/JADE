@@ -190,11 +190,6 @@ public class SurfaceRoad extends Road {
 			@Override
 			public void filter(CoordinateSequence seq, int i) {
 				seq.setOrdinate(i, 2, dtm.getHeightAtPoint(seq.getX(i), seq.getY(i)));
-				System.out.println("Road "+String.valueOf(i)+": "+
-				String.valueOf(seq.getOrdinate(i, 0)) + " " +
-				String.valueOf(seq.getOrdinate(i, 1)) + " " +
-				String.valueOf(seq.getOrdinate(i, 2)) + " "
-				);
 			}
 
 			@Override
