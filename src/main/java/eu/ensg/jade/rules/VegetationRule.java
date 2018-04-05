@@ -33,6 +33,7 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.simplify.TopologyPreservingSimplifier;
 
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.scene.Scene;
@@ -58,80 +59,86 @@ public class VegetationRule implements RuleShape {
 	@Override
 	public void addPunctualObject(Scene scene) throws SchemaException, IOException {
 		
-		System.out.println("Creation de la liste vege");
-		
 		List<SurfaceVegetation> vege = scene.getSurfaceVegetation();
+		Map<String, Road> roads = scene.getRoads();
 		
-		System.out.println("Creation de la collection vege");
+
+		Geometry diff = diffVegeRoad(vege, roads);
+		
+		// Recuperer la bounding box de la zone de vegetation
+		// Faire un placement aléatoire régulier de points (Poisson Disk Sampling)
+		// Ne garder que ceux qui intersectent la géométrie 
+		// Mettre des arbres à leur position 
+		
+		
+		
+		Geometry simplified = TopologyPreservingSimplifier.simplify(diff, 4);
+		//diff.getEnvelope().getCoordinates()[0];
+
+		//scene.addVegetationSurface(new SurfaceVegetation(m, "blabla"));;
+        
+
+	}
+	
+	
+	/**
+	 * Returns the geometry obtained by the difference of a given list of vegetation and roads
+	 * 
+	 * @param vege the vegetation on which to work
+	 * @param roads the roads of the same grip as the vegetation
+	 * @return
+	 */
+	private Geometry diffVegeRoad(List<SurfaceVegetation> vege, Map<String, Road> roads){
 		
 		Collection<Geometry> geometryCollectionVege = new ArrayList<Geometry>();
-		
-		System.out.println("Remplissage de la collection vege");
 		
 		for (SurfaceVegetation v: vege){
 			Geometry g = v.getGeometry();
 			geometryCollectionVege.add(g);
 		}
 		
-		System.out.println("Creation de la BIG geom vege");
 		
-        Geometry allVege = null;
-        for( Iterator<Geometry> i = geometryCollectionVege.iterator(); i.hasNext(); ){
-	        Geometry geometry = i.next();
-	        if( geometry == null ) continue;
-	        if( allVege == null ){
-	        	allVege = geometry;
-	        }
-	        else {
-	        	allVege = allVege.union( geometry );
-	        }
-        }
-	
-		System.out.println("Creation de la liste road");
-		
-		Map<String, Road> roads = scene.getRoads();
-
-		System.out.println("Creation de la collection road");
+        Geometry allVege = geomCollUnion(geometryCollectionVege);
 		
 		Collection<Geometry> geometryCollectionRoad = new ArrayList<Geometry>();
 
-		System.out.println("Remplissage de la collection road");
-		
 		for (Road road: roads.values()){
 			SurfaceRoad surfRoad = (SurfaceRoad) road;
 			Geometry g = (Geometry) surfRoad.getGeom();
 			geometryCollectionRoad.add(g);
 		}
 
-		System.out.println("Creation de la BIG geom road");
 		
-        Geometry allRoads = null;
-        for( Iterator<Geometry> i = geometryCollectionRoad.iterator(); i.hasNext(); ){
-	        Geometry geometry = i.next();
-	        if( geometry == null ) continue;
-	        if( allRoads == null ){
-	        	allRoads = geometry;
-	        }
-	        else {
-	        	allRoads = allRoads.union( geometry );
-	        }
-	    }
-	
-		System.out.println("Differenciation des geoms");
-		
+        Geometry allRoads = geomCollUnion(geometryCollectionRoad);
+    
+        // The difference between the vegetation and the road geometry
 		Geometry diff = allVege.difference(allRoads);
-
-		System.out.println("Transformation diif en multipolygon");
 		
-		MultiPolygon m = (MultiPolygon) diff;
-		
-		System.out.println("Ajout du multipolygon a une liste");
-			
-		scene.addVegetationSurface(new SurfaceVegetation(m, "blabla"));;
-        
-
+		return diff;
 	}
 	
 	
+	/**
+	 * Gathers all geometry of a collection in one unique geometry
+	 * 
+	 * @param geomColl the collection of geometry to be unified
+	 * @return
+	 */
+	private Geometry geomCollUnion(Collection<Geometry> geomColl){
+		
+		Geometry all = null;
+        for( Iterator<Geometry> i = geomColl.iterator(); i.hasNext(); ){
+	        Geometry geometry = i.next();
+	        if( geometry == null ) continue;
+	        if( all == null ){
+	        	all = geometry;
+	        }
+	        else {
+	        	all = all.union( geometry );
+	        }
+        }
+        return all;
+	
+	}
 	
 }
