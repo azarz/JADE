@@ -53,8 +53,8 @@ public class SceneBuilder {
 	 */
 	public static void main(String[] args) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
 		String buildingLayer = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
-//		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
-		String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
+		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
+		//String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
 		//String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
 		String treeLayer = "src/test/resources/inputTest/openShpTestVege2.shp";
@@ -134,10 +134,11 @@ public class SceneBuilder {
 		
 		System.out.println("Ajout de l obj !");
 		
-		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
-		vege.add(scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1));
-		objWritter.exportVege("assets/RGE/vegetation.obj", vege, scene.getCentroid().x, scene.getCentroid().y);
-		
+//		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
+//		vege.add(scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1));
+//		objWritter.exportVege("assets/RGE/vegetation.obj", vege, scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);
+//		
+
 		System.out.println("Fin d ajout de l obj !");
 
 		scene.getDtm().toPNG("assets/RGE/paris.png");
@@ -227,9 +228,9 @@ public class SceneBuilder {
 //		rge = readerFact.createReader(READER_TYPE.HYDRO).loadFromRGE(hydroFeature);
 //		scene.setHydrography(rge.getHydrography());
 //		
-		rge = readerFact.createReader(READER_TYPE.VEGETATION).loadFromFile(treeFeature);
-		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
-		
+//		rge = readerFact.createReader(READER_TYPE.VEGETATION).loadFromFile(treeFeature);
+//		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
+//		
 		// TODO: Add the DTM ?
 //		rge = readerFact.createReader(READER_TYPE.VEGETATION).loadFromRGE(treeFeature);
 //		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
@@ -281,10 +282,10 @@ public class SceneBuilder {
 		}
 		scene.setRoads(roads);
 		
-		ruleShapeMaker.addVegetation(scene);
-		for (SurfaceVegetation vege : scene.getSurfaceVegetation()) {
-			vege.setZfromDTM(dtm);
-		}
+//		ruleShapeMaker.addVegetation(scene);
+//		SurfaceVegetation vege = scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1);
+//		vege.setZfromDTM(dtm);
+		
 
 		//System.out.println("J ajoute la vegetation a la scene");
 		
@@ -343,10 +344,10 @@ public class SceneBuilder {
 //		xmlWriter.addModel(waterModel);
 		
 		// Add vegetation
-		System.out.println("creation du xml");
-		XMLModel vegeModel = new XMLModel("Vegetation", "RGE/vegetation.obj");
-		xmlWriter.addModel(vegeModel);
-		System.out.println("xml créé");
+//		System.out.println("creation du xml");
+//		XMLModel vegeModel = new XMLModel("Vegetation", "RGE/vegetation.obj");
+//		xmlWriter.addModel(vegeModel);
+//		System.out.println("xml créé");
 		
 		//int k = 0;
 

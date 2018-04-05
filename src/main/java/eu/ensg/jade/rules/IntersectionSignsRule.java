@@ -81,6 +81,7 @@ public class IntersectionSignsRule implements RuleShape{
 	 * Example : stop, one way, ...
 	 * 
 	 * @param scene the object containing all the elements of the scene
+	 * 
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
 	 */
@@ -146,9 +147,9 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * Creates the signs of intersections with one road
 	 * 
-	 * @param intersect
-	 * @param roads
-	 * @param scene
+	 * @param intersect the intersection on which to perform the work
+	 * @param roads the list of roads contained by the scene
+	 * @param scene the object containing all the elements of the scene
 	 * 
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
@@ -167,9 +168,9 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * Creates the signs of intersections with two roads
 	 * 
-	 * @param intersect
-	 * @param roads
-	 * @param scene
+	 * @param intersect the intersection on which to perform the work
+	 * @param roads the list of roads contained by the scene
+	 * @param scene the object containing all the elements of the scene
 	 * 
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
@@ -214,9 +215,9 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * Creates the signs of intersections with three or four roads
 	 * 
-	 * @param intersect
-	 * @param roads
-	 * @param scene
+	 * @param intersect the intersection on which to perform the work
+	 * @param roads the list of roads contained by the scene
+	 * @param scene the object containing all the elements of the scene
 	 * 
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
@@ -255,9 +256,9 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * Creates the signs of intersections with more than 4 roads
 	 * 
-	 * @param intersect
-	 * @param roads
-	 * @param scene
+	 * @param intersect the intersection on which to perform the work
+	 * @param roads the list of roads contained by the scene
+	 * @param scene the object containing all the elements of the scene
 	 * 
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
@@ -283,11 +284,10 @@ public class IntersectionSignsRule implements RuleShape{
 
 // ------ General methods -> roads characteristics
 	/**
-	 * 
-	 * @param roadsTab
-	 * @param startOnIntersectTab
-	 * @param intersect
-	 * @param roads
+	 * @param roadsTab the list of roads attached to the intersection
+	 * @param startOnIntersectTab the list of boolean associated to each road that tells if the road start point is on the intersection
+	 * @param intersect the intersection on which to perform the work
+	 * @param roads the list of roads contained by the scene
 	 */
 	private void roadTabFilling(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Intersection intersect, Map <String,Road> roads){
 		// Roads retrieval
@@ -304,7 +304,7 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * Gives the direction of the road compared to the intersection
 	 * 
-	 * @param road is the toad to test
+	 * @param road the road to test
 	 * @param direction a boolean that specifies if the beginning of the road is on the intersection or not
 	 * 
 	 * @return -1 if leaving, 0 if double-way, +1 if entering 
@@ -340,7 +340,7 @@ public class IntersectionSignsRule implements RuleShape{
 	 * 
 	 * @param streetFurniture the furniture to add
 	 * @param road the road on which the furniture is added
-	 * @param scene the object which contains all the elements to add to the simulator
+	 * @param scene the object containing all the elements of the scene
 	 */
 	private void addStreetFurniture(StreetFurniture streetFurniture, LineRoad road, Scene scene){
 
@@ -368,7 +368,7 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * Gives the possible position of a new street furniture
 	 * 
-	 * @param road the road on which the furniture has to be added
+	 * @param road the road on which the furniture is added
 	 * @param left the boolean which allow to know if the sign has to be on the right or on the left of the orad
 	 * @param position the position in the table of coordinate for the point we need to use
 	 * 
@@ -445,13 +445,13 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * 
 	 * 
-	 * @param left
-	 * @param folder
-	 * @param x
-	 * @param y
-	 * @param d
-	 * @param D
-	 * @param theta
+	 * @param left the boolean which allow to know if the sign has to be on the right or on the left of the orad
+	 * @param folder the path toward the right sign
+	 * @param x the x intersection coordinate
+	 * @param y the y intersection coordinate
+	 * @param d the distance between the sign and the intersection along the road
+	 * @param D the distance between the sign and the middle of the road across the road
+	 * @param theta the angle between the horizontal and the road in clockwise order
 	 * 
 	 * @return
 	 */
@@ -529,14 +529,17 @@ public class IntersectionSignsRule implements RuleShape{
 	 * Creates new street furniture
 	 * 
 	 * @param road the road on which the furniture has to be created
-	 * @param init the boolean to know if the beginning of the road is on the intersection
+	 * @param startOnIntersect the boolean to know if the beginning of the road is on the intersection
 	 * @param folder the path toward the right sign
+	 * @param scene the object containing all the elements of the scene
+	 * @param intersect the intersection on which to perform the work
 	 * 
 	 * @return a street furniture object 
+	 * 
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private StreetFurniture addSigns(LineRoad road, boolean init, String folder, Scene scene, Intersection intersect) throws NoSuchAuthorityCodeException, FactoryException{
+	private StreetFurniture addSigns(LineRoad road, boolean startOnIntersect, String folder, Scene scene, Intersection intersect) throws NoSuchAuthorityCodeException, FactoryException{
 		
 		// We determine if the sign has to be on the right side or the left side of the road 
 		boolean left = true;
@@ -547,7 +550,7 @@ public class IntersectionSignsRule implements RuleShape{
 		
 		// We create the sign 
 		if (!folder.equals(this.deadEndStreet)){
-			if (init){
+			if (startOnIntersect){
 				// It is possible to return the sign angle in street furniture
 				return signPosition(road, left, 0, folder, scene, intersect);
 			}
@@ -556,7 +559,7 @@ public class IntersectionSignsRule implements RuleShape{
 			}
 		}
 		else{
-			if (init){
+			if (startOnIntersect){
 				// It is possible to return the sign angle in street furniture
 				return signPosition(road, left, road.getGeom().getCoordinates().length-1, folder, scene, intersect);
 			}
@@ -569,35 +572,35 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * Creates signs for intersections of more than three roads
 	 * 
-	 * @param enter
-	 * @param lineRoad
-	 * @param roadBool
-	 * @param signs
-	 * @param scene
+	 * @param enter integer which tells the road traffic direction regarding the intersection
+	 * @param lineRoad the road on which to perform the work
+	 * @param startOnIntersect the boolean to know if the beginning of the road is on the intersection
+	 * @param folder the path toward the right sign
+	 * @param scene the object containing all the elements of the scene
 	 * 
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private void addSignsByRoad(int enter, LineRoad lineRoad, boolean roadBool, String signs, Scene scene, Intersection intersect) throws NoSuchAuthorityCodeException, FactoryException {
+	private void addSignsByRoad(int enter, LineRoad lineRoad, boolean startOnIntersect, String folder, Scene scene, Intersection intersect) throws NoSuchAuthorityCodeException, FactoryException {
 		// If it is a direct driving direction, we had traffic lights and do not enter sign
 		if (enter == 1){
-			StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.doNotEnter,scene, intersect);
+			StreetFurniture streetFurniture = addSigns(lineRoad,startOnIntersect,this.doNotEnter,scene, intersect);
 			addStreetFurniture(streetFurniture, lineRoad, scene);
 			
-			StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,signs,scene, intersect);
+			StreetFurniture streetFurniture2 = addSigns(lineRoad,startOnIntersect,folder,scene, intersect);
 			addStreetFurniture(streetFurniture2, lineRoad, scene);
 		
 		}		
 		
 		// If it is a reverse driving direction, we had traffic lights and one way sign
 		else if (enter == -1){
-			StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.oneWay,scene,intersect);
+			StreetFurniture streetFurniture = addSigns(lineRoad,startOnIntersect,this.oneWay,scene,intersect);
 			addStreetFurniture(streetFurniture, lineRoad, scene);
 		}
 		
 		// If it is a two-way driving direction, we had traffic lights
 		else if (enter == 0){
-			StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,signs,scene,intersect);
+			StreetFurniture streetFurniture = addSigns(lineRoad,startOnIntersect,folder,scene,intersect);
 			addStreetFurniture(streetFurniture, lineRoad, scene);
 		}
 	}
@@ -627,8 +630,8 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * Compares the direction of two roads
 	 * 
-	 * @param roadsTab the table of roads
-	 * @param startOnIntersectTab the table of boolean to say if the initial point of the orad is on the intersection
+	 * @param roadsTab the list of roads attached to the intersection
+	 * @param startOnIntersectTab the list of boolean associated to each road that tells if the road start point is on the intersection
 	 * 
 	 * @return the map with the way of the road and the index of it if their is a difference between both, else return null
 	 */
@@ -656,8 +659,8 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * Check if there is an importance change between roads
 	 * 
-	 * @param roadsTab the table containing the roads
-	 * @param size
+	 * @param roadsTab the list of roads attached to the intersection
+	 * @param size the number of roads in the considered intersection
 	 * 
 	 * @return table of int, 1 for bigger, 0 for lesser importance, null if same importance.
 	 */
@@ -685,11 +688,8 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * Calculates the intersection type
 	 * 
-	 * @param roadsTab the table containing the roads
-	 * @param roadsBoolTab the table containing the roads boolean descritor of direction
-	 * @param intersect the intersection considered
-	 * @param size Intersection's size
-	 * @param importTab the array of importance
+	 * @param roadsTab the list of roads attached to the intersection
+	 * @param size the number of roads in the considered intersection
 	 * 
 	 * @return int the type of intersection: 0: Traffic Lights, 1: Yield, 2: Break; 3: Priority to the right.
 	 */
@@ -721,11 +721,12 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * Add multiple signs to the intersections.
 	 * 
-	 * @param roadsTab the table containing the roads
-	 * @param startOnIntersectTab the table containing the roads boolean descritor of direction
-	 * @param intersect the intersection considered
-	 * @param size Intersection's size
-	 * @param intersectType the type of the intersection
+	 * @param roadsTab the list of roads attached to the intersection
+	 * @param startOnIntersectTab the list of boolean associated to each road that tells if the road start point is on the intersection
+	 * @param intersect the intersection on which to perform the work
+	 * @param intersectType the type of the intersection with 3 or 4 attached roads regarding the number, importance, speed of roads
+	 * @param scene the object containing all the elements of the scene
+	 * 
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
 	 */
@@ -812,10 +813,10 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * Check if it is a ramp.
 	 * 
-	 * @param roadsTab the table containing the roads
-	 * @param startOnIntersectTab the table containing the roads boolean descritor of direction
-	 * @param intersect the intersection considered
-	 * @param size Intersection's size
+	 * @param roadsTab the list of roads attached to the intersection
+	 * @param startOnIntersectTab the list of boolean associated to each road that tells if the road start point is on the intersection
+	 * @param intersect the intersection on which to perform the work
+	 * @param size the number of roads in the considered intersection
 	 * 
 	 * @return boolean, true if the intersection is in a ramp
 	 */
@@ -841,10 +842,10 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * Adds signs corresponding to a ramp
 	 * 
-	 * @param roadsTab the table containing the roads
-	 * @param startOnIntersectTab the table containing the roads boolean descritor of direction
-	 * @param intersect the intersection considered
-	 * @param size Intersection's size
+	 * @param roadsTab the list of roads attached to the intersection
+	 * @param startOnIntersectTab the list of boolean associated to each road that tells if the road start point is on the intersection
+	 * @param intersect the intersection on which to perform the work
+	 * @param size the number of roads in the considered intersection
 	 */
 	private void addRampSigns(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Intersection intersect, int size){
 		System.out.println("C'est une bretelle");
@@ -855,14 +856,11 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * Check if it is a roundabout
 	 * 
-	 * @param roadsTab the table containing the roads
-	 * @param roadsBoolTab the table containing the roads boolean descriptor of direction
-	 * @param intersect the intersection considered
-	 * @param size Intersection's size
+	 * @param roadsTab the list of roads attached to the intersection
 	 * 
 	 * @return boolean, true if the intersection is in a round about
 	 */
-	private boolean isRoundAbout(LineRoad[] roadsTab){
+	public boolean isRoundAbout(LineRoad[] roadsTab){
 	//We go through the roads and see if there is at least one being a Round About.
 		for (LineRoad road : roadsTab){
 			if (road.getName().length()>2){
@@ -877,10 +875,10 @@ public class IntersectionSignsRule implements RuleShape{
 	/**
 	 * Adds signs corresponding to a roundabout
 	 * 
-	 * @param roadsTab the table containing the roads
-	 * @param startOnIntersectTab the table containing the roads boolean descritor of direction
-	 * @param intersect the intersection considered
-	 * @param size the intersection's size
+	 * @param roadsTab the list of roads attached to the intersection
+	 * @param startOnIntersectTab the list of boolean associated to each road that tells if the road start point is on the intersection
+	 * @param scene the object containing all the elements of the scene
+	 * @param intersect the intersection on which to perform the work
 	 * 
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
