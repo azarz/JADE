@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.GeometryFactory;
 
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Building;
@@ -64,9 +66,9 @@ public class Scene {
 	private DTM dtm;	
 	
 	/**
-	 * The coordinate of the buildings' centroid
+	 * The coordinate of the scene centroid
 	 */
-	Coordinate buildingCentroid;
+	Coordinate centroid;
 
 	/**
 	 * The collection of intersections between roads
@@ -218,32 +220,21 @@ public class Scene {
 	}
 
 	/**
-	 * Gets the building centroid
+	 * Gets the centroid
 	 *
-	 * @return buildingCentroid
+	 * @return centroid
 	 */
-	public Coordinate getBuildingCentroid() {
-		return buildingCentroid;
+	public Coordinate getCentroid() {
+		return centroid;
 	}
 
 	/**
-	 * Sets the building centroid
+	 * Sets the scene centroid
 	 *
 	 * @param centroid
 	 */
-	public void setBuildingCentroid(Coordinate centroid) {
-		this.buildingCentroid = centroid;
-	}
-	
-	/**
-	 * Sets the building centroid with X and Y
-	 *
-	 * @param x
-	 * @param y
-	 */
-	public void setBuildingCentroid(double x, double y) {
-		this.buildingCentroid.x = x;
-		this.buildingCentroid.y = y;
+	public void setCentroid(Coordinate centroid) {
+		this.centroid = centroid;
 	}
 
 
@@ -304,7 +295,6 @@ public class Scene {
 	
 	public void addVegetationSurface(SurfaceVegetation newTree){
 		this.surfaceVegetation.add(newTree);
-
 	}
 
 
@@ -316,5 +306,4 @@ public class Scene {
 	public void addStreetFurniture(StreetFurniture newFurniture){
 		this.streetFurniture.add(newFurniture);
 	}
-
 }

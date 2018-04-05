@@ -435,7 +435,7 @@ public class IntersectionSignsRule implements RuleShape{
 		//Coordinate newCoord = new Coordinate(newX - centroid.x, newZ - centroid.y, road.getZ_ini());
 		if(!doesIntersect){
 			double newZ = scene.getDtm().getHeightAtPoint(newX,  newY);
-			Coordinate newCoord = new Coordinate(newX - scene.getBuildingCentroid().x, -1*(newY - scene.getBuildingCentroid().y), newZ); 
+			Coordinate newCoord = new Coordinate(newX - scene.getCentroid().x, -1*(newY - scene.getCentroid().y), newZ); 
 
 			return new StreetFurniture(folder, newCoord, rotation);
 		}
