@@ -3,7 +3,15 @@ package eu.ensg.jade.rules;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.opengis.referencing.FactoryException;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
+
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.CoordinateSequence;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.Point;
+import com.vividsolutions.jts.geom.impl.PackedCoordinateSequenceFactory;
 
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.scene.Scene;
@@ -11,6 +19,7 @@ import eu.ensg.jade.semantic.Intersection;
 import eu.ensg.jade.semantic.IntersectionColl;
 import eu.ensg.jade.semantic.LineRoad;
 import eu.ensg.jade.semantic.StreetFurniture;
+import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.utils.JadeUtils;
 
 /**
@@ -72,9 +81,11 @@ public class IntersectionSignsRule implements RuleShape{
 	 * Example : stop, one way, ...
 	 * 
 	 * @param scene the object containing all the elements of the scene
+	 * @throws FactoryException 
+	 * @throws NoSuchAuthorityCodeException 
 	 */
 	@Override
-	public void addPunctualObject(Scene scene){
+	public void addPunctualObject(Scene scene) throws NoSuchAuthorityCodeException, FactoryException{
 		
 		// We get the list of existing roads and intersections in the scene
 		Map <String,Road> roads = scene.getRoads();
@@ -138,15 +149,18 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @param intersect
 	 * @param roads
 	 * @param scene
+	 * 
+	 * @throws FactoryException 
+	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private void oneRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) {
+	private void oneRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) throws NoSuchAuthorityCodeException, FactoryException {
 		// Roads retrieval
 		LineRoad road = (LineRoad) roads.get(intersect.getRoadId().keySet().toArray()[0]);
 		// We see if the road starts on the intersection
 		boolean startOnIntersect = intersect.getRoadId().get(intersect.getRoadId().keySet().toArray()[0]);
 		
 		// DeadEndStreet Sign installation
-		StreetFurniture streetFurniture = addSigns(road,startOnIntersect,this.deadEndStreet, scene);
+		StreetFurniture streetFurniture = addSigns(road,startOnIntersect,this.deadEndStreet, scene,intersect);
 		addStreetFurniture(streetFurniture, road, scene);
 	}
 	
@@ -156,8 +170,11 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @param intersect
 	 * @param roads
 	 * @param scene
+	 * 
+	 * @throws FactoryException 
+	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private void twoRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) {
+	private void twoRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) throws NoSuchAuthorityCodeException, FactoryException {
 		// Roads retrieval
 		LineRoad[] roadsTab = new LineRoad[2];
 		boolean[] startOnIntersectTab = new boolean[2];
@@ -172,7 +189,7 @@ public class IntersectionSignsRule implements RuleShape{
 		
 		// If they are different, we had a road narrows sign
 		if ( larger != -1){
-			StreetFurniture streetFurniture = addSigns(roadsTab[larger],startOnIntersectTab[larger],this.roadNarrows, scene);
+			StreetFurniture streetFurniture = addSigns(roadsTab[larger],startOnIntersectTab[larger],this.roadNarrows, scene,intersect);
 			addStreetFurniture(streetFurniture, roadsTab[larger], scene);
 		}
 		
@@ -183,12 +200,12 @@ public class IntersectionSignsRule implements RuleShape{
 		if (sensMap != null){
 			
 			if(sensMap.containsKey(-1)){
-				StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(-1)],startOnIntersectTab[sensMap.get(-1)],this.oneWay, scene);
+				StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(-1)],startOnIntersectTab[sensMap.get(-1)],this.oneWay, scene,intersect);
 				addStreetFurniture(streetFurniture, roadsTab[sensMap.get(-1)], scene);
 			}
 			
 			if(sensMap.containsKey(1)){
-				StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(1)],startOnIntersectTab[sensMap.get(1)], this.doNotEnter, scene);
+				StreetFurniture streetFurniture = addSigns(roadsTab[sensMap.get(1)],startOnIntersectTab[sensMap.get(1)], this.doNotEnter, scene,intersect);
 				addStreetFurniture(streetFurniture, roadsTab[sensMap.get(1)], scene);
 			}
 		}
@@ -200,8 +217,11 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @param intersect
 	 * @param roads
 	 * @param scene
+	 * 
+	 * @throws FactoryException 
+	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private void threeFourRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) {
+	private void threeFourRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) throws NoSuchAuthorityCodeException, FactoryException {
 		int size = intersect.getRoadId().size();
 		
 		// Roads retrieval
@@ -222,13 +242,13 @@ public class IntersectionSignsRule implements RuleShape{
 		
 		//If it is a roundabout
 		else if (asRoundAbout){
-			addRoundAbout(roadsTab,startOnIntersectTab,scene);
+			addRoundAbout(roadsTab,startOnIntersectTab,scene,intersect);
 		}
 		
 		// "Normal" case
 		else {					
 			int intersectType = calcIntersectionType(roadsTab,size);
-			addMultiSigns(roadsTab,startOnIntersectTab,intersectType, scene);
+			addMultiSigns(roadsTab,startOnIntersectTab,intersectType, scene,intersect);
 		}
 	}
 	
@@ -238,8 +258,11 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @param intersect
 	 * @param roads
 	 * @param scene
+	 * 
+	 * @throws FactoryException 
+	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private void fiveRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) {
+	private void fiveRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) throws NoSuchAuthorityCodeException, FactoryException {
 		
 		// Roads retrieval
 		LineRoad lineRoad = new LineRoad(); 
@@ -254,7 +277,7 @@ public class IntersectionSignsRule implements RuleShape{
 			enter = isEntering(lineRoad, roadBool);
 
 			// If it is a direct driving direction, we had traffic lights and do not enter sign
-			addSignsByRoad(enter, lineRoad, roadBool, this.trafficLight, scene);
+			addSignsByRoad(enter, lineRoad, roadBool, this.trafficLight, scene,intersect);
 		}
 	}
 
@@ -350,8 +373,10 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @param position the position in the table of coordinate for the point we need to use
 	 * 
 	 * @return an object Coordinate that give the position of the sign from the intersection
+	 * @throws FactoryException 
+	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private StreetFurniture signPosition(LineRoad road, boolean left, int position, String folder, Scene scene){
+	private StreetFurniture signPosition(LineRoad road, boolean left, int position, String folder, Scene scene, Intersection intersection) throws NoSuchAuthorityCodeException, FactoryException{
 
 		// Variable 
 		Coordinate[] coord = road.getGeom().getCoordinates();
@@ -361,14 +386,83 @@ public class IntersectionSignsRule implements RuleShape{
 		
 		double newX;
 		double newY;
+		double rotation = 0;
+		double[] sfCoord ;
 		
+
 		double d = 5; // 5 meters after the beginning of the road
 		double D = road.getWidth()/2 + 0.7; // 0.70 meters after the border of the road
 
 		double theta = JadeUtils.roadAngle(road,position); // Angle between road and horizontal line, in counter clockwise
+		
+		sfCoord = sfPositionning(left, folder, x, y, d, D, theta);
+		newX = sfCoord[0];
+		newY = sfCoord[1];
+		rotation = sfCoord[2];
+		
+		boolean doesIntersect = true;
+		while (doesIntersect && d < 15){
+			doesIntersect = false;
+			sfCoord = sfPositionning(left, folder, x, y, d, D, theta);
+			newX = sfCoord[0];
+			newY = sfCoord[1];
+			rotation = sfCoord[2];
+			
+			/*Coordinate coord1 = new Coordinate(newX, newY);
+
+			GeometryFactory factory = new GeometryFactory();
+			Point point = new Point(coord1, null, 0);
+			//System.out.println(coord1);*/
+			
+			PackedCoordinateSequenceFactory factory=PackedCoordinateSequenceFactory.DOUBLE_FACTORY;
+			CoordinateSequence seq=factory.create(new Coordinate[]{new Coordinate(newX,newY)});
+
+			Point pt = new Point(seq,new GeometryFactory());
+
+			Geometry g = (Geometry) pt;
+
+			for (String roadId: intersection.getRoadId().keySet()){
+				
+				SurfaceRoad surfaceRoad = ((LineRoad) scene.getRoads().get(roadId)).enlarge();
+				if(surfaceRoad.getGeom().contains(g)){
+					doesIntersect = true;
+					d = d + 0.5;
+				}
+			}
+		}
+		
+		// Be careful y is the vertical axis in OpenDS 
+		//Coordinate newCoord = new Coordinate(newX - centroid.x, newZ - centroid.y, road.getZ_ini());
+		if(!doesIntersect){
+			double newZ = scene.getDtm().getHeightAtPoint(newX,  newY);
+			Coordinate newCoord = new Coordinate(newX - scene.getBuildingCentroid().x, -1*(newY - scene.getBuildingCentroid().y), newZ); 
+
+			return new StreetFurniture(folder, newCoord, rotation);
+		}
+		return null;
+	}
+	
+	/**
+	 * 
+	 * 
+	 * @param left
+	 * @param folder
+	 * @param x
+	 * @param y
+	 * @param d
+	 * @param D
+	 * @param theta
+	 * 
+	 * @return
+	 */
+	private double[] sfPositionning (boolean left, String folder, double x, double y, double d, double D, double theta){
+		
+		// Initialization
+		double newX;
+		double newY; 
+		
 		double rotation = 0;
 
-		
 		// Determination of the position
 		if(left){
 			if (folder.equals(this.yield)){
@@ -406,42 +500,30 @@ public class IntersectionSignsRule implements RuleShape{
 			else{
 				rotation =  - Math.PI/2 + theta;
 			}
-
 			// Up-Right quarter
 			if (0<= theta && theta <= Math.PI/2){
 				newX = x + d*Math.sin(theta) - D*Math.cos(theta);
 				newY = y - d*Math.cos(theta) - D*Math.sin(theta);
-				
 			}
 			// Down-Right quarter
 			else if (theta> 3*Math.PI/2 && theta <= 2*Math.PI){
 				newX = x - d*Math.sin(2*Math.PI - theta) - D*Math.cos(2*Math.PI - theta);
 				newY = y - d*Math.cos(2*Math.PI - theta) + D*Math.sin(2*Math.PI - theta);
-
 			}
 			// Up-Left quarter
 			else if (theta > Math.PI/2 && theta <= Math.PI){
 				newX = x + d*Math.sin(Math.PI - theta) + D*Math.cos(Math.PI - theta);
-				newY = y + d*Math.cos(Math.PI - theta) - D*Math.sin(Math.PI - theta);
-		
-						
+				newY = y + d*Math.cos(Math.PI - theta) - D*Math.sin(Math.PI - theta);	
 			}
 			// Down-Left quarter
 			else{
 				newX = x - d*Math.sin(theta - Math.PI) + D*Math.cos(theta - Math.PI);
-				newY = y + d*Math.cos(theta - Math.PI) + D*Math.sin(theta - Math.PI);
-		
-						
+				newY = y + d*Math.cos(theta - Math.PI) + D*Math.sin(theta - Math.PI);		
 			}
 		}
-		// Be careful y is the vertical axis in OpenDS 
-		//Coordinate newCoord = new Coordinate(newX - centroid.x, newZ - centroid.y, road.getZ_ini());
-		double newZ = scene.getDtm().getHeightAtPoint(newX,  newY);
-		Coordinate newCoord = new Coordinate(newX - scene.getBuildingCentroid().x, -1*(newY - scene.getBuildingCentroid().y), newZ);
-		
-
-		return new StreetFurniture(folder, newCoord, rotation);
+		return new double[]{newX, newY, rotation};
 	}
+
 	
 	/**
 	 * Creates new street furniture
@@ -451,8 +533,10 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @param folder the path toward the right sign
 	 * 
 	 * @return a street furniture object 
+	 * @throws FactoryException 
+	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private StreetFurniture addSigns(LineRoad road, boolean init, String folder, Scene scene){
+	private StreetFurniture addSigns(LineRoad road, boolean init, String folder, Scene scene, Intersection intersect) throws NoSuchAuthorityCodeException, FactoryException{
 		
 		// We determine if the sign has to be on the right side or the left side of the road 
 		boolean left = true;
@@ -465,20 +549,19 @@ public class IntersectionSignsRule implements RuleShape{
 		if (!folder.equals(this.deadEndStreet)){
 			if (init){
 				// It is possible to return the sign angle in street furniture
-				return signPosition(road, left, 0, folder, scene);
-					
+				return signPosition(road, left, 0, folder, scene, intersect);
 			}
 			else{
-				return signPosition(road, left, road.getGeom().getCoordinates().length-1, folder, scene);
+				return signPosition(road, left, road.getGeom().getCoordinates().length-1, folder, scene, intersect);
 			}
 		}
 		else{
 			if (init){
 				// It is possible to return the sign angle in street furniture
-				return signPosition(road, left, road.getGeom().getCoordinates().length-1, folder, scene);
+				return signPosition(road, left, road.getGeom().getCoordinates().length-1, folder, scene, intersect);
 			}
 			else{
-				return signPosition(road, left, 0, folder, scene);
+				return signPosition(road, left, 0, folder, scene, intersect);
 			}
 		}
 	}
@@ -491,27 +574,30 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @param roadBool
 	 * @param signs
 	 * @param scene
+	 * 
+	 * @throws FactoryException 
+	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private void addSignsByRoad(int enter, LineRoad lineRoad, boolean roadBool, String signs, Scene scene) {
+	private void addSignsByRoad(int enter, LineRoad lineRoad, boolean roadBool, String signs, Scene scene, Intersection intersect) throws NoSuchAuthorityCodeException, FactoryException {
 		// If it is a direct driving direction, we had traffic lights and do not enter sign
 		if (enter == 1){
-			StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.doNotEnter,scene);
+			StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.doNotEnter,scene, intersect);
 			addStreetFurniture(streetFurniture, lineRoad, scene);
 			
-			StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,signs,scene);
+			StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,signs,scene, intersect);
 			addStreetFurniture(streetFurniture2, lineRoad, scene);
 		
 		}		
 		
 		// If it is a reverse driving direction, we had traffic lights and one way sign
 		else if (enter == -1){
-			StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.oneWay,scene);
+			StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.oneWay,scene,intersect);
 			addStreetFurniture(streetFurniture, lineRoad, scene);
 		}
 		
 		// If it is a two-way driving direction, we had traffic lights
 		else if (enter == 0){
-			StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,signs,scene);
+			StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,signs,scene,intersect);
 			addStreetFurniture(streetFurniture, lineRoad, scene);
 		}
 	}
@@ -640,13 +726,18 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @param intersect the intersection considered
 	 * @param size Intersection's size
 	 * @param intersectType the type of the intersection
+	 * @throws FactoryException 
+	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private void addMultiSigns(LineRoad[] roadsTab, boolean[] startOnIntersectTab, int intersectType, Scene scene) {
+	private void addMultiSigns(LineRoad[] roadsTab, boolean[] startOnIntersectTab, int intersectType, Scene scene, Intersection intersect) throws NoSuchAuthorityCodeException, FactoryException {
+		
+		// Initialization
 		LineRoad lineRoad;
 		boolean roadBool;
 		int enter;
 		int greatest;
 		
+		// Signs positioning
 		switch (intersectType) {
 		
 		case 1:
@@ -655,7 +746,7 @@ public class IntersectionSignsRule implements RuleShape{
 				roadBool = startOnIntersectTab[i];
 				enter = isEntering(lineRoad, roadBool);
 				
-				addSignsByRoad(enter, lineRoad, roadBool, this.trafficLight, scene);			
+				addSignsByRoad(enter, lineRoad, roadBool, this.trafficLight, scene, intersect);			
 			}
 			break;
 		case 2:
@@ -664,7 +755,7 @@ public class IntersectionSignsRule implements RuleShape{
 				roadBool =startOnIntersectTab[i];
 				enter = isEntering(lineRoad, roadBool);
 				
-				addSignsByRoad(enter, lineRoad, roadBool, this.intersectionAhead, scene);	
+				addSignsByRoad(enter, lineRoad, roadBool, this.intersectionAhead, scene, intersect);	
 			}
 			break;
 
@@ -683,39 +774,34 @@ public class IntersectionSignsRule implements RuleShape{
 				
 				
 				if (enter == 1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.doNotEnter, scene);
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.doNotEnter, scene,intersect);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 					
 					if (Integer.parseInt(lineRoad.getImportance()) - greatest == 1 ){
-						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,this.yield, scene);
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,this.yield, scene,intersect);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
 					}
 					else if (Integer.parseInt(lineRoad.getImportance()) - greatest > 1){
-						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,this.stop, scene);
-						addStreetFurniture(streetFurniture2, lineRoad, scene);
-					
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,this.stop, scene,intersect);
+						addStreetFurniture(streetFurniture2, lineRoad, scene);					
 					}
-				
 				}
 				else if (enter == -1){
-					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.oneWay, scene);
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.oneWay, scene,intersect);
 					addStreetFurniture(streetFurniture, lineRoad, scene);
 				}
 				else if (enter == 0){
 					if (Integer.parseInt(lineRoad.getImportance()) - greatest == 1 ){
-						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,this.yield, scene);
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,this.yield, scene,intersect);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
 					}
 					else if (Integer.parseInt(lineRoad.getImportance()) - greatest > 1){
-						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,this.stop, scene);
+						StreetFurniture streetFurniture2 = addSigns(lineRoad,roadBool,this.stop, scene,intersect);
 						addStreetFurniture(streetFurniture2, lineRoad, scene);
-					
 					}
 				}				
 			}
-			
 			break;
-			
 		default:
 			System.out.println("Intersection de mauvais type");
 			break;
@@ -794,15 +880,18 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @param roadsTab the table containing the roads
 	 * @param startOnIntersectTab the table containing the roads boolean descritor of direction
 	 * @param intersect the intersection considered
-	 * @param size Intersection's size
+	 * @param size the intersection's size
+	 * 
+	 * @throws FactoryException 
+	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private void addRoundAbout(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Scene scene){
+	private void addRoundAbout(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Scene scene, Intersection intersect) throws NoSuchAuthorityCodeException, FactoryException{
 		for (int i = 0; i < roadsTab.length; i++){
 			LineRoad road = roadsTab[i];
 
 			//We add yield signs for all roads not on the round about
 			if (!((road.getName().substring(0, 2)).equals("PL") || (road.getName().substring(0, 3)).equals("RPT"))){
-				StreetFurniture lightRoad = addSigns(road, startOnIntersectTab[i], this.yield, scene);
+				StreetFurniture lightRoad = addSigns(road, startOnIntersectTab[i], this.yield, scene,intersect);
 				addStreetFurniture(lightRoad, road, scene);
 			}
 		}

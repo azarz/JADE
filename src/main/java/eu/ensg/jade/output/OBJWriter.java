@@ -13,6 +13,7 @@ import java.util.Map;
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.Hydrography;
+import eu.ensg.jade.semantic.SurfaceVegetation;
 
 /**
  * OBJCreator is the class implementing the creation of obj files.
@@ -144,6 +145,40 @@ public class OBJWriter {
 				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
 			}	
 			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+public void exportVege(String filePath, List<SurfaceVegetation> objectList, double xCentroid, double yCentroid) {
+		
+		List<Integer> offsets = new ArrayList<Integer>();
+		offsets.add(1);
+		offsets.add(1);
+		offsets.add(0);
+		
+		File file = new File(filePath);
+		
+		try {
+			Files.deleteIfExists(file.toPath());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		
+		try(FileWriter fw = new FileWriter(filePath, true);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter out = new PrintWriter(bw)) {
+			
+			out.print("mtllib paris.mtl\n");
+			System.out.println("Je vais entrer dans le for");
+			for (int i = 0; i < objectList.size(); i++) {
+				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
+			}	
+			System.out.println("Je suis sorti du for");
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
