@@ -2,7 +2,10 @@ package eu.ensg.jade.semantic;
 
 import java.util.List;
 
+import com.vividsolutions.jts.densify.Densifier;
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.CoordinateSequence;
+import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
@@ -152,7 +155,7 @@ public class SurfaceVegetation extends WorldObject {
 							// Adding the vertex coords as in a obj file
 							for (int i = 0; i < coords.length - 1; i++) {
 								vertexCoords += "v " + (coords[i].x - xOffset) + " "
-												  + 0 + " "
+												  + 60 + " "
 												     + -1*(coords[i].y - yOffset) + "\n";
 								
 								faces += " " + (i + vertexIndexOffset + newVertexOffset) + "//" + normalIndexOffset;
@@ -180,7 +183,42 @@ public class SurfaceVegetation extends WorldObject {
 				// Filling the output string
 				String outputString = vertexCoords + uvCoords + normalCoords + faces;
 				return outputString;
-			}		
+			}	
+	
+	/**
+	 * Transforms the Z coordinates of the geometry according to a DTM parameter
+	 * @param dtm for the road to match
+	 */
+	public void setZfromDTM(DTM dtm) {
+		// Densify the geometry so it has a number of vertices corresponding to the DTM
+		if(geometry.getCoordinates().length > 0) {
+			geometry = (MultiPolygon) Densifier.densify(geometry, 5);
+		}
+		
+		// Defining a coordinate filter to set the z according to the DTM
+		// using bilinear interpolation
+		CoordinateSequenceFilter filter = new CoordinateSequenceFilter() {
+			
+			@Override
+			public void filter(CoordinateSequence seq, int i) {
+				seq.setOrdinate(i, 2, dtm.getHeightAtPoint(seq.getX(i), seq.getY(i)));
+			}
+
+			@Override
+			public boolean isDone() {
+				return false;
+			}
+
+			@Override
+			public boolean isGeometryChanged() {
+				return true;
+			}
+			
+		};
+		
+		// Applying the filter
+		geometry.apply(filter);
+	}
 	
 
 }
