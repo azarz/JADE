@@ -57,7 +57,9 @@ public class VegetationRule implements RuleShape {
 		List<SurfaceVegetation> vege = scene.getSurfaceVegetation();
 		Map<String, Road> roads = scene.getRoads();
 
+		System.out.println("je vais faire la diffe");
 		Geometry diff = diffVegeRoad(vege, roads);
+		System.out.println("je sors de la diffe");
 		
 		// Recuperer la bounding box de la zone de vegetation
 		Coordinate[] envelopDiff = diff.getEnvelope().getCoordinates();
@@ -67,22 +69,31 @@ public class VegetationRule implements RuleShape {
 		double endY = envelopDiff[2].y;
 		
 		// Faire un placement aléatoire régulier de points (Poisson Disk Sampling)
-		PoissonDiskSampler poissonDisk = new PoissonDiskSampler(startX,startY,endX,endY,10);
+		PoissonDiskSampler poissonDisk = new PoissonDiskSampler(startX,startY,endX,endY,200);
 		List<double[]> pointList = poissonDisk.compute();
 		
+		System.out.println("je vais faire la diffe");
+		
+
+		PackedCoordinateSequenceFactory factory = PackedCoordinateSequenceFactory.DOUBLE_FACTORY;
+		Coordinate vegetCoord;
+		CoordinateSequence seq;
+		Point pt;
+		Geometry g;
+		int o = 0;
+		int var = pointList.size();
 		// Ne garder que ceux qui intersectent la géométrie 
 		for (double[] point : pointList){
+			o++;
+			vegetCoord = new Coordinate(point[0],point[1],0);
 			
-			PackedCoordinateSequenceFactory factory = PackedCoordinateSequenceFactory.DOUBLE_FACTORY;
+			seq = factory.create(new Coordinate[]{vegetCoord});
+
+			pt = new Point(seq,new GeometryFactory());
+
+			g = (Geometry) pt;
 			
-			Coordinate vegetCoord = new Coordinate(point[0],point[1],0);
-			
-			CoordinateSequence seq = factory.create(new Coordinate[]{vegetCoord});
-
-			Point pt = new Point(seq,new GeometryFactory());
-
-			Geometry g = (Geometry) pt;
-
+			System.out.println("for point "+o+" sur "+var);
 			if (diff.contains(g)){
 				// Creation de l'arbre 
 				vegetCoord.z = scene.getDtm().getHeightAtPoint(point[0],point[1]);

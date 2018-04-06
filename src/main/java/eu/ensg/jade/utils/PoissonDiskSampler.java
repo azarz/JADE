@@ -99,6 +99,8 @@ public class PoissonDiskSampler {
 		this.radius = Math.abs(radius);
 		this.k = k > 0 ? k : 30;
 		
+		this.rng = new Random();
+		
 		this.initGrid();
 	}
 	
@@ -140,6 +142,8 @@ public class PoissonDiskSampler {
 		this.height = Math.abs(endY - startY);
 		this.radius = Math.abs(radius);
 		this.k = k > 0 ? k : 30;
+		
+		this.rng = new Random();
 		
 		this.initGrid();
 	}

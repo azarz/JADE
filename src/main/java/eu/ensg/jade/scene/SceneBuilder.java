@@ -262,7 +262,7 @@ public class SceneBuilder {
 		}
 		scene.setRoads(roads);
 		
-		// Add punctual vegegation
+		// Add punctual vegetation
 		ruleShapeMaker.addVegetation(scene);
 		
 		
@@ -311,7 +311,7 @@ public class SceneBuilder {
 		driver.setMass(1000);
 		//Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
 		//driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
-		driver.setTranslation(new double[]{0, 55, 0});
+		driver.setTranslation(new double[]{0, 90, 0});
 		driver.setScale((new double[]{0.8, 0.8, 0.8}));
 		xmlWriter.addModel(driver);
 		
@@ -350,6 +350,7 @@ public class SceneBuilder {
 		
 		int g = 0;
 		for(PointVegetation tree : scene.getVegetation()) {
+			System.out.println("moi c'est gg "+g);
 			XMLModel vegetationModel = new XMLModel("PunctualVegetation", tree.getNature());
 			vegetationModel.setTranslation(new double[] {tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
 			//streetFurnitureModel.setScale(new double[] {10,10,10});

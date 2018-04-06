@@ -56,7 +56,7 @@
 <translation>
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>55.0</entry>
+<entry>90.0</entry>
 <entry>0.0</entry>
 </vector>
 </translation>
@@ -112,6 +112,924 @@
 <entry>0.0</entry>
 <entry>0.0</entry>
 <entry>0.0</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>654991.3006658256</entry>
+<entry>35.49728094210362</entry>
+<entry>6859746.213905168</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>655163.6786089045</entry>
+<entry>35.677218948141075</entry>
+<entry>6859476.818244919</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>655774.9867723226</entry>
+<entry>49.27478137777045</entry>
+<entry>6860300.993718092</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>655766.8588003946</entry>
+<entry>46.585051904036455</entry>
+<entry>6859787.086627698</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>654899.7089811672</entry>
+<entry>33.03445982066227</entry>
+<entry>6859486.893974811</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>654529.2619978025</entry>
+<entry>33.24971362740833</entry>
+<entry>6859642.011041069</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>655640.2814815309</entry>
+<entry>44.072554835800155</entry>
+<entry>6859590.804986224</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>655327.7007371132</entry>
+<entry>48.9252594482882</entry>
+<entry>6860878.677600314</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>654661.5276735643</entry>
+<entry>32.128095140536004</entry>
+<entry>6859407.979846488</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>655775.2825168193</entry>
+<entry>52.81526963056428</entry>
+<entry>6860915.10918408</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>654910.7138723676</entry>
+<entry>38.9833990003862</entry>
+<entry>6861285.3619077485</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>656350.006437943</entry>
+<entry>46.800197021690224</entry>
+<entry>6859331.255398868</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>655539.8804135785</entry>
+<entry>51.37313374467682</entry>
+<entry>6860589.956107096</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>655334.2335482064</entry>
+<entry>49.84069446529121</entry>
+<entry>6861535.248815885</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>656540.90568153</entry>
+<entry>47.11956467253486</entry>
+<entry>6859399.956853543</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>655477.7647255226</entry>
+<entry>70.46557341660225</entry>
+<entry>6862325.217758078</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>655764.7816360048</entry>
+<entry>89.16151809788288</entry>
+<entry>6862333.476979794</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>653909.0802814387</entry>
+<entry>35.89066406626147</entry>
+<entry>6862279.180325992</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>654313.9732614009</entry>
+<entry>37.17193909702031</entry>
+<entry>6862332.328281069</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>656080.468158052</entry>
+<entry>65.96343947645244</entry>
+<entry>6862170.688790769</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>656697.0533428618</entry>
+<entry>51.56352601675536</entry>
+<entry>6860704.552652854</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>655862.2522243042</entry>
+<entry>92.16170059625186</entry>
+<entry>6862612.153362848</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>656627.4107175462</entry>
+<entry>49.158477993776835</entry>
+<entry>6859161.442140139</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>655624.000044127</entry>
+<entry>94.94753052836836</entry>
+<entry>6862522.247717265</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>657209.491347686</entry>
+<entry>51.48880551465334</entry>
+<entry>6859393.281686536</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>654490.0390118811</entry>
+<entry>45.150616840829805</entry>
+<entry>6862570.794399491</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>657413.5131473381</entry>
+<entry>52.97980541323254</entry>
+<entry>6859511.193772319</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>656999.7666359196</entry>
+<entry>49.680330279145764</entry>
+<entry>6859299.990195978</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>656739.5971761144</entry>
+<entry>48.00686709368566</entry>
+<entry>6859847.398719924</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>657018.8643093643</entry>
+<entry>50.01843402713168</entry>
+<entry>6858878.669011241</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>656784.1457980627</entry>
+<entry>63.25373868932199</entry>
+<entry>6861830.642019431</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>655517.6790807177</entry>
+<entry>94.98086166649881</entry>
+<entry>6862706.619787175</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>656063.2363861378</entry>
+<entry>84.00049937936518</entry>
+<entry>6862929.624356211</entry>
+</vector>
+</translation>
+<shadowMode>Receive</shadowMode>
+</model>
+<model id="PunctualVegetation" key="">
+<mass>0.0</mass>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>656431.004590949</entry>
+<entry>79.78226278526097</entry>
+<entry>6862903.193481607</entry>
 </vector>
 </translation>
 <shadowMode>Receive</shadowMode>
