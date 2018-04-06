@@ -59,14 +59,14 @@ public class VegetationRule implements RuleShape {
 		
 		System.out.println("Start vegetation fusion");
 		
-		List<SurfaceVegetation> vege = scene.getSurfaceVegetation();
-		Collection<Geometry> geometryCollectionVege = new ArrayList<Geometry>();
-		for (SurfaceVegetation v: vege){
-			Geometry g = v.getGeometry();
-			geometryCollectionVege.add(g);
-		}
-        Geometry allVege = geomCollUnion(geometryCollectionVege);
-        
+		List<SurfaceVegetation> vegeList = scene.getSurfaceVegetation();
+//		Collection<Geometry> geometryCollectionVege = new ArrayList<Geometry>();
+//		for (SurfaceVegetation v: vege){
+//			Geometry g = v.getGeometry();
+//			geometryCollectionVege.add(g);
+//		}
+//        Geometry allVege = geomCollUnion(geometryCollectionVege);
+//        
         double t2 = (new Date()).getTime();
         System.out.println("End vegetation " + String.valueOf(t2-t1));
         t1 = t2;
@@ -88,40 +88,44 @@ public class VegetationRule implements RuleShape {
         
         System.out.println("Start poisson disk sampling");
 		
-		// Recuperer la bounding box de la zone de vegetation
-		Coordinate[] envelopDiff = allVege.getEnvelope().getCoordinates();
-		double startX = envelopDiff[0].x;
-		double endX = envelopDiff[2].x;
-		double startY = envelopDiff[0].y;
-		double endY = envelopDiff[2].y;
-		
-		// Faire un placement aléatoire régulier de points (Poisson Disk Sampling)
-		PoissonDiskSampler poissonDisk = new PoissonDiskSampler(startX,startY,endX,endY,100);
-		List<double[]> pointList = poissonDisk.compute();
-		
-		System.out.println(pointList.size());
-		t2 = (new Date()).getTime();
-        System.out.println("End sampling " + String.valueOf(t2-t1));
-        t1 = t2;
+        Geometry vegeGeom;
+        System.out.println("taille vegeList "+vegeList.size());
         
-        System.out.println("Start tree verification");
+        for(SurfaceVegetation surVege : vegeList){
+        	
+        	vegeGeom = surVege.getGeometry();
+        	
+    		// Recuperer la bounding box de la zone de vegetation
+    		Coordinate[] envelopDiff = vegeGeom.getEnvelope().getCoordinates();
+    		double startX = envelopDiff[0].x;
+    		double endX = envelopDiff[2].x;
+    		double startY = envelopDiff[0].y;
+    		double endY = envelopDiff[2].y;
+    		
+    		// Faire un placement aléatoire régulier de points (Poisson Disk Sampling)
+    		PoissonDiskSampler poissonDisk = new PoissonDiskSampler(startX,startY,endX,endY,100);
+    		List<double[]> pointList = poissonDisk.compute();
+    		
+    
+            
+            System.out.println("Start tree verification");
 
-		GeometryFactory factory = new GeometryFactory();
-		// Ne garder que ceux qui intersectent la géométrie
-		for (double[] point : pointList){
-			Coordinate vegetCoord = new Coordinate(point[0],point[1],0);
-			Point pt = factory.createPoint(vegetCoord);
-			
-			// Creation de l'arbre 
-			if (allVege.contains(pt)) {
-				if(!allRoads.contains(pt)) {
-					vegetCoord.z = scene.getDtm().getHeightAtPoint(point[0],point[1]);
-					PointVegetation tree = new PointVegetation(vegetCoord,TREE.DECIDUOUS);
-					scene.addVegetation(tree);
-				}
-			}
-		}
-		System.out.println(pointList.size());
+    		GeometryFactory factory = new GeometryFactory();
+    		// Ne garder que ceux qui intersectent la géométrie
+    		for (double[] point : pointList){
+    			Coordinate vegetCoord = new Coordinate(point[0],point[1],0);
+    			Point pt = factory.createPoint(vegetCoord);
+    			
+    			// Creation de l'arbre 
+    			if (vegeGeom.contains(pt)) {
+    				if(!allRoads.contains(pt)) {
+    					vegetCoord.z = scene.getDtm().getHeightAtPoint(point[0],point[1]);
+    					PointVegetation tree = new PointVegetation(vegetCoord,TREE.DECIDUOUS);
+    					scene.addVegetation(tree);
+    				}
+    			}
+    		}
+        }
 		t2 = (new Date()).getTime();
         System.out.println("End verification " + String.valueOf(t2-t1));
         t1 = t2;
