@@ -65,7 +65,9 @@ public class VegetationRule implements RuleShape {
 
 		Geometry diff = diffVegeRoad(vege, roads);
 		
+		
 		// Recuperer la bounding box de la zone de vegetation
+		Coordinate[] envelopDiff = diff.getEnvelope().getCoordinates();
 		// Faire un placement aléatoire régulier de points (Poisson Disk Sampling)
 		// Ne garder que ceux qui intersectent la géométrie 
 		// Mettre des arbres à leur position 

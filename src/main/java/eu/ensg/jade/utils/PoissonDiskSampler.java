@@ -4,7 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * PoissonDiskSampler is the class implementing the Poisson disk sampling algorithm
+ * 
+ * The algorithm allows to create an homogeneous distribution of points in 2D by granting a certain distance between points.
+ * 
+ * @author JADE
+ */
+
 public class PoissonDiskSampler {
+
+// ========================== ATTRIBUTES ===========================	
 	
 	/**
 	 * The width of the sampled space
@@ -62,7 +72,8 @@ public class PoissonDiskSampler {
 	 * The queue containing the index of point with potential neighbor
 	 */
 	private List<Integer> queue;
-	
+
+// ========================== CONSTRUCTORS =========================
 	
 	/**
 	 * Class constructor specifying each parameters
@@ -109,6 +120,7 @@ public class PoissonDiskSampler {
 		this(1, 1, 10, 30);
 	}
 	
+// ========================== METHODS ==============================
 	
 	/**
 	 * This method fills the space with randomly placed point. It compute all points, and leave not space empty
@@ -166,6 +178,7 @@ public class PoissonDiskSampler {
 	 * 
 	 * @param x The X coordinate of the new point
 	 * @param y The Y coordinate of the new point
+	 * 
 	 * @return A structure containing the point
 	 */
 	private double[] insertPoint(double x, double y) {
@@ -188,6 +201,7 @@ public class PoissonDiskSampler {
 	 * 
 	 * @param x The X coordinate of the point
 	 * @param y The Y coordinate of the point
+	 * 
 	 * @return True is the point is valid, false otherwise
 	 */
 	private boolean validPoint(double x, double y) {
@@ -218,11 +232,12 @@ public class PoissonDiskSampler {
 	/**
 	 * Compute the squared distance between two points. It avoids using sqrt for performance boost
 	 * 
-	 * @param x1
-	 * @param y1
-	 * @param x2
-	 * @param y2
-	 * @return The distance
+	 * @param x1 the x coordinate of the first point
+	 * @param y1 the y coordinate of the first point
+	 * @param x2 the x coordinate of the second point
+	 * @param y2 the y coordinate of the second point
+	 * 
+	 * @return The squared distance between two points
 	 */
 	private double squareDistance(double x1, double y1, double x2, double y2){
 	    return (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1);
