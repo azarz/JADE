@@ -4,10 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * PoissonDiskSampler is the class implementing the Poisson disk sampling algorithm
+ * 
+ * The algorithm allows to create an homogeneous distribution of points in 2D by granting a certain distance between points.
+ * 
+ * @author JADE
+ */
+
 public class PoissonDiskSampler {
+
+// ========================== ATTRIBUTES ===========================	
 	
+	/**
+	 * The upper left X coordinate of the concerned area
+	 */
 	private double startX;
 	
+	/**
+	 * The upper left Y coordinate of the concerned area
+	 */
 	private double startY;
 	
 	/**
@@ -30,12 +46,10 @@ public class PoissonDiskSampler {
 	 */
 	private int k;
 	
-	
 	/**
 	 * The random number generator
 	 */
 	private Random rng;
-	
 	
 	/**
 	 * The grid optimizing the placement of new points
@@ -66,6 +80,8 @@ public class PoissonDiskSampler {
 	 * The queue containing the index of point with potential neighbor
 	 */
 	private List<Integer> queue;
+
+// ========================== CONSTRUCTORS =========================
 	
 	/**
 	 * Class constructor specifying each parameters
@@ -110,12 +126,12 @@ public class PoissonDiskSampler {
 	/**
 	 * Class constructor based on on start point and end point to define the extent, and all other parameters
 	 * 
-	 * @param startX
-	 * @param startY
-	 * @param endX
-	 * @param endY
-	 * @param radius
-	 * @param k
+	 * @param startX the upper left X coordinate of the concerned area
+	 * @param startY the upper left Y coordinate of the concerned area
+	 * @param endX the down right X coordinate of the concerned area
+	 * @param endY the down right Y coordinate of the concerned area
+	 * @param radius the minimum distance between each point
+	 * @param k the number of repetitions to create a point
 	 */
 	public PoissonDiskSampler(double startX, double startY, double endX, double endY, double radius, int k) {
 		this.startX = Math.min(startX, endX);
@@ -154,6 +170,7 @@ public class PoissonDiskSampler {
 		this(startX, startY, endX, endY, 10, 30);
 	}
 	
+// ========================== METHODS ==============================
 	
 	/**
 	 * This method fills the space with randomly placed point. It compute all points, and leave not space empty
@@ -211,6 +228,7 @@ public class PoissonDiskSampler {
 	 * 
 	 * @param x The X coordinate of the new point
 	 * @param y The Y coordinate of the new point
+	 * 
 	 * @return A structure containing the point
 	 */
 	private double[] insertPoint(double x, double y) {
@@ -233,6 +251,7 @@ public class PoissonDiskSampler {
 	 * 
 	 * @param x The X coordinate of the point
 	 * @param y The Y coordinate of the point
+	 * 
 	 * @return True is the point is valid, false otherwise
 	 */
 	private boolean validPoint(double x, double y) {
@@ -263,11 +282,12 @@ public class PoissonDiskSampler {
 	/**
 	 * Compute the squared distance between two points. It avoids using sqrt for performance boost
 	 * 
-	 * @param x1
-	 * @param y1
-	 * @param x2
-	 * @param y2
-	 * @return The distance
+	 * @param x1 the x coordinate of the first point
+	 * @param y1 the y coordinate of the first point
+	 * @param x2 the x coordinate of the second point
+	 * @param y2 the y coordinate of the second point
+	 * 
+	 * @return The squared distance between two points
 	 */
 	private double squareDistance(double x1, double y1, double x2, double y2){
 	    return (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1);

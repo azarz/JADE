@@ -17,7 +17,6 @@ public class StreetFurniture extends PunctualObject {
 
 // ========================== ATTRIBUTES ===========================
 
-	
 	/**
 	 * The furniture type (folder path)
 	 */
@@ -46,7 +45,6 @@ public class StreetFurniture extends PunctualObject {
 			this.rotation = rotation;
 			id++;
 		}
-
 
 // ========================== GETTERS/SETTERS ======================
 	
