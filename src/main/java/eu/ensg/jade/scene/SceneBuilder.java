@@ -52,11 +52,11 @@ public class SceneBuilder {
 	 */
 	public static void main(String[] args) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
 		String buildingLayer = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
-//		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
-		String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
+		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
+//		String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
-		//String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
-		String treeLayer = "src/test/resources/inputTest/openShpTestVege2.shp";
+		String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
+//		String treeLayer = "src/test/resources/inputTest/openShpTestVege3.shp";
 		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
 		
 		
@@ -192,11 +192,11 @@ public class SceneBuilder {
 			String dtmFeature) throws Exception {
 		Scene scene = new Scene();
 		
-		ReaderFactory readerFact = new ReaderFactory();
-		InputRGE rge = new InputRGE();
-		
-		FluxConfiguration config = new FluxConfiguration();
-		
+//		ReaderFactory readerFact = new ReaderFactory();
+//		InputRGE rge = new InputRGE();
+//		
+//		FluxConfiguration config = new FluxConfiguration();
+//		
 //		rge = readerFact.createReader(READER_TYPE.BUILDING).loadFromRGE(buildingFeature);
 //		scene.setBuildings(rge.getBuildings());
 //		scene.setBuildingCentroid(rge.getCentroid());
@@ -278,11 +278,9 @@ public class SceneBuilder {
 		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getCentroid().x, scene.getCentroid().y);
 		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getCentroid().x, scene.getCentroid().y);
 		
-//		System.out.println("Ajout de l obj !");
 //		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
 //		vege.add(scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1));
 //		objWritter.exportVege("assets/RGE/vegetation.obj", vege, scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);	
-//		System.out.println("Fin d ajout de l obj !");
 
 		scene.getDtm().toPNG("assets/RGE/paris.png");
 	}
@@ -297,7 +295,6 @@ public class SceneBuilder {
 		
 		// Add flat ground (debug)
 		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
-//		grassPlane.setTranslation(new double[]{0, 45, 0});
 		xmlWriter.addModel(grassPlane);
 		
 		// Add driver
@@ -339,8 +336,8 @@ public class SceneBuilder {
 		int g = 0;
 		for(PointVegetation tree : scene.getVegetation()) {
 			XMLModel vegetationModel = new XMLModel("Tree", tree.getNature());
-			vegetationModel.setTranslation(new double[] {tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
-			vegetationModel.setScale(new double[] {8,8,8});
+			vegetationModel.setTranslation(new double[]{tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
+			vegetationModel.setScale(new double[]{8,8,8});
 			xmlWriter.addModel(vegetationModel);
 			
 			if (++g>1000){ break; }
