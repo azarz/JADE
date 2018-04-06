@@ -1,44 +1,25 @@
 package eu.ensg.jade.rules;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.geotools.data.DefaultTransaction;
-import org.geotools.data.Transaction;
-import org.geotools.data.collection.ListFeatureCollection;
-import org.geotools.data.shapefile.ShapefileDataStore;
-import org.geotools.data.shapefile.ShapefileDataStoreFactory;
-import org.geotools.data.simple.SimpleFeatureCollection;
-import org.geotools.data.simple.SimpleFeatureSource;
-import org.geotools.data.simple.SimpleFeatureStore;
 import org.geotools.feature.SchemaException;
-import org.geotools.feature.simple.SimpleFeatureBuilder;
-import org.geotools.feature.simple.SimpleFeatureTypeBuilder;
-import org.geotools.geometry.GeometryBuilder;
-import org.geotools.geometry.jts.JTSFactoryFinder;
-import org.geotools.referencing.crs.DefaultGeographicCRS;
-import org.opengis.feature.simple.SimpleFeature;
-import org.opengis.feature.simple.SimpleFeatureType;
-
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.LinearRing;
-import com.vividsolutions.jts.geom.MultiPolygon;
-import com.vividsolutions.jts.geom.Polygon;
-import com.vividsolutions.jts.simplify.TopologyPreservingSimplifier;
-
+import com.vividsolutions.jts.geom.Point;
+import com.vividsolutions.jts.geom.impl.PackedCoordinateSequenceFactory;
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.scene.Scene;
+import eu.ensg.jade.semantic.PointVegetation;
 import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.semantic.SurfaceVegetation;
+import eu.ensg.jade.utils.PoissonDiskSampler;
 
 /**
  * 
@@ -46,6 +27,26 @@ import eu.ensg.jade.semantic.SurfaceVegetation;
  */
 
 public class VegetationRule implements RuleShape {
+	
+// ========================== ENUM ==============================
+
+	/**
+	 * Enumeration of trees proposed by OpenDS
+	 * 
+	 * It allows to extract
+	 * 
+	 * - Chestnut trees
+	 * 
+	 * - Pine trees
+	 * 
+	 * - Sassafra trees
+	 * 
+	 * - Sycamore trees
+	 * 
+	 */
+	public static enum TREE {
+		CHESTNUT,PINE,SASSAFRA,SYCAMORE
+	};
 
 // ========================== METHODS ==============================
 	/**
@@ -61,25 +62,40 @@ public class VegetationRule implements RuleShape {
 		
 		List<SurfaceVegetation> vege = scene.getSurfaceVegetation();
 		Map<String, Road> roads = scene.getRoads();
-		
 
 		Geometry diff = diffVegeRoad(vege, roads);
 		
-		
 		// Recuperer la bounding box de la zone de vegetation
 		Coordinate[] envelopDiff = diff.getEnvelope().getCoordinates();
+		double startX = envelopDiff[0].x;
+		double endX = envelopDiff[2].x;
+		double startY = envelopDiff[0].y;
+		double endY = envelopDiff[2].y;
+		
 		// Faire un placement aléatoire régulier de points (Poisson Disk Sampling)
+		PoissonDiskSampler poissonDisk = new PoissonDiskSampler(startX,startY,endX,endY,10);
+		List<double[]> pointList = poissonDisk.compute();
+		
 		// Ne garder que ceux qui intersectent la géométrie 
-		// Mettre des arbres à leur position 
-		
-		
-		
-		Geometry simplified = TopologyPreservingSimplifier.simplify(diff, 4);
-		//diff.getEnvelope().getCoordinates()[0];
+		for (double[] point : pointList){
+			
+			PackedCoordinateSequenceFactory factory = PackedCoordinateSequenceFactory.DOUBLE_FACTORY;
+			
+			Coordinate vegetCoord = new Coordinate(point[0],point[1],0);
+			
+			CoordinateSequence seq = factory.create(new Coordinate[]{vegetCoord});
 
-		//scene.addVegetationSurface(new SurfaceVegetation(m, "blabla"));;
-        
+			Point pt = new Point(seq,new GeometryFactory());
 
+			Geometry g = (Geometry) pt;
+
+			if (diff.contains(g)){
+				// Creation de l'arbre 
+				vegetCoord.z = scene.getDtm().getHeightAtPoint(point[0],point[1]);
+				PointVegetation tree = new PointVegetation(vegetCoord,TREE.CHESTNUT);
+				scene.addVegetation(tree);
+			}
+		}    
 	}
 	
 	
@@ -140,7 +156,5 @@ public class VegetationRule implements RuleShape {
 	        }
         }
         return all;
-	
 	}
-	
 }

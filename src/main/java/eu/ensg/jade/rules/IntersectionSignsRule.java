@@ -29,7 +29,7 @@ import eu.ensg.jade.utils.JadeUtils;
  */
 
 public class IntersectionSignsRule implements RuleShape{
-	
+
 // ========================== ATTRIBUTES ===========================
 	
 	/**
@@ -443,7 +443,7 @@ public class IntersectionSignsRule implements RuleShape{
 	}
 	
 	/**
-	 * 
+	 * Determines the possible position of the signs
 	 * 
 	 * @param left the boolean which allow to know if the sign has to be on the right or on the left of the orad
 	 * @param folder the path toward the right sign

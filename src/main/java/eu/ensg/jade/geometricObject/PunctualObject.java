@@ -24,7 +24,6 @@ public abstract class PunctualObject extends WorldObject {
 		this.coord = coord;
 	}
 	
-	
 // ========================== GETTERS/SETTERS ======================
 	
 	/**
@@ -35,8 +34,6 @@ public abstract class PunctualObject extends WorldObject {
 	public Coordinate getCoord() {
 		return coord;
 	}
-	
-
 
 // ========================== METHODS ==============================
 	
