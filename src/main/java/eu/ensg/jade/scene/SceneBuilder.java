@@ -261,7 +261,7 @@ public class SceneBuilder {
 		}
 		scene.setRoads(roads);
 		
-//		ruleShapeMaker.addVegetation(scene);
+		ruleShapeMaker.addVegetation(scene);
 //		SurfaceVegetation vege = scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1);
 //		vege.setZfromDTM(dtm);
 		
@@ -307,7 +307,7 @@ public class SceneBuilder {
 		driver.setMass(1000);
 		//Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
 		//driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
-		driver.setTranslation(new double[]{0, 55, 0});
+		driver.setTranslation(new double[]{0, 60, 0});
 		driver.setScale((new double[]{0.8, 0.8, 0.8}));
 		xmlWriter.addModel(driver);
 		
