@@ -1,0 +1,62 @@
+# Blender MTL File: 'None'
+# Material Count: 5
+
+newmtl Rinde
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.197647 0.181961 0.181961
+Ks 0.001961 0.001961 0.001961
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Téléchargements/EAGL/model/Trees/Tree2/bark_loo.jpg
+map_Bump Téléchargements/EAGL/model/Trees/Tree2/bark_loo.jpg
+
+newmtl Rinde_Leaf
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.379608 0.373333 0.379608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Téléchargements/EAGL/model/Trees/Tree2/blatt1_a.jpg
+map_d Téléchargements/EAGL/model/Trees/Tree2/blatt1_a.jpg
+
+newmtl Rinde_Level1
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.197647 0.181961 0.181961
+Ks 0.001961 0.001961 0.001961
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Téléchargements/EAGL/model/Trees/Tree2/bark_loo.jpg
+map_Bump Téléchargements/EAGL/model/Trees/Tree2/bark_loo.jpg
+
+newmtl Rinde_Level2
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.197647 0.181961 0.181961
+Ks 0.001961 0.001961 0.001961
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Téléchargements/EAGL/model/Trees/Tree2/bark_loo.jpg
+map_Bump Téléchargements/EAGL/model/Trees/Tree2/bark_loo.jpg
+
+newmtl Rinde_Level3
+Ns 96.078431
+Ka 1.000000 1.000000 1.000000
+Kd 0.197647 0.181961 0.181961
+Ks 0.001961 0.001961 0.001961
+Ke 0.000000 0.000000 0.000000
+Ni 1.000000
+d 1.000000
+illum 2
+map_Kd Téléchargements/EAGL/model/Trees/Tree2/bark_loo.jpg
+map_Bump Téléchargements/EAGL/model/Trees/Tree2/bark_loo.jpg

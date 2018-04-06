@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.geotools.feature.SchemaException;
+
 import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
-import com.vividsolutions.jts.geom.impl.PackedCoordinateSequenceFactory;
+
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.scene.Scene;
 import eu.ensg.jade.semantic.PointVegetation;
@@ -36,17 +36,11 @@ public class VegetationRule implements RuleShape {
 	 * 
 	 * It allows to extract
 	 * 
-	 * - Chestnut trees
-	 * 
-	 * - Pine trees
-	 * 
-	 * - Sassafra trees
-	 * 
-	 * - Sycamore trees
+	 * - deciduous tree
 	 * 
 	 */
 	public static enum TREE {
-		CHESTNUT,PINE,SASSAFRA,SYCAMORE
+		DECIDUOUS
 	};
 
 // ========================== METHODS ==============================
@@ -122,7 +116,7 @@ public class VegetationRule implements RuleShape {
 			if (allVege.contains(pt)) {
 				if(!allRoads.contains(pt)) {
 					vegetCoord.z = scene.getDtm().getHeightAtPoint(point[0],point[1]);
-					PointVegetation tree = new PointVegetation(vegetCoord,TREE.CHESTNUT);
+					PointVegetation tree = new PointVegetation(vegetCoord,TREE.DECIDUOUS);
 					scene.addVegetation(tree);
 				}
 			}

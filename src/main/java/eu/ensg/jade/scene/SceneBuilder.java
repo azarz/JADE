@@ -20,6 +20,7 @@ import eu.ensg.jade.rules.RuleShapeMaker;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
+import eu.ensg.jade.semantic.PointVegetation;
 import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.xml.XMLGroundModel;
@@ -242,7 +243,7 @@ public class SceneBuilder {
 		DTM dtm = scene.getDtm();
 		dtm.smooth(0.9, 1);
 		
-
+		// Add intersections
 		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
 //		ruleShapeMaker.addIntersectionSigns(scene);
 
@@ -261,6 +262,7 @@ public class SceneBuilder {
 		}
 		scene.setRoads(roads);
 		
+		// Add punctual vegetation
 		ruleShapeMaker.addVegetation(scene);
 //		SurfaceVegetation vege = scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1);
 //		vege.setZfromDTM(dtm);
@@ -296,10 +298,11 @@ public class SceneBuilder {
 		xmlWriter.log = true;
 		
 		xmlWriter.updateConfig("fileMainXML", "MAIN_FILE.xml");
-		xmlWriter.updateConfig("rainCoefficient", "5");
+//		xmlWriter.updateConfig("rainCoefficient", "5");
 		
 		// Add flat ground (debug)
 		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
+		grassPlane.setTranslation(new double[]{0, 45, 0});
 		xmlWriter.addModel(grassPlane);
 		
 		// Add driver
@@ -307,13 +310,13 @@ public class SceneBuilder {
 		driver.setMass(1000);
 		//Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
 		//driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
-		driver.setTranslation(new double[]{0, 60, 0});
+		driver.setTranslation(new double[]{0, 70, 0});
 		driver.setScale((new double[]{0.8, 0.8, 0.8}));
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
-		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
-		xmlWriter.addModel(buildindModel);
+//		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
+//		xmlWriter.addModel(buildindModel);
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
@@ -323,26 +326,30 @@ public class SceneBuilder {
 //		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
 //		xmlWriter.addModel(waterModel);
 		
-		// Add vegetation
-//		System.out.println("creation du xml");
+		// Add vegetation surface
 //		XMLModel vegeModel = new XMLModel("Vegetation", "RGE/vegetation.obj");
 //		xmlWriter.addModel(vegeModel);
-//		System.out.println("xml créé");
-		
-		//int k = 0;
 
 		// Add street furniture
-
 //		int k = 0;
 //		for(StreetFurniture sign : scene.getStreetFurniture()) {
 //			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
 //			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
 //			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
-//			//streetFurnitureModel.setScale(new double[] {10,10,10});
 //			xmlWriter.addModel(streetFurnitureModel);
 //			
 //			if (++k>1000){ break; }
 //		}
+		
+		int g = 0;
+		for(PointVegetation tree : scene.getVegetation()) {
+			System.out.println("moi c'est gg "+g);
+			XMLModel vegetationModel = new XMLModel("PunctualVegetation", tree.getNature());
+			vegetationModel.setTranslation(new double[] {tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
+			xmlWriter.addModel(vegetationModel);
+			
+			if (++g>1000){ break; }
+		}
 
 		
 		// Add DTM

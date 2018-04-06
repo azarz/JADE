@@ -59,16 +59,13 @@ public class PointVegetation extends PunctualObject {
 	 * 
 	 * @return the path of the chosen tree
 	 */
-	private String choiceTree(TREE tree){
+	private void choiceTree(TREE tree){
 		
 		switch(tree)
 		{
-			case CHESTNUT: return "";
-			case PINE: return "";
-			case SASSAFRA: return "";
-			case SYCAMORE: return "";
+			case DECIDUOUS: this.nature = "Models/Trees/deciduousTree/tree.obj";
 			default:
-				return null;
+				this.nature = "";
 		}		
 	}
 }

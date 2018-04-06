@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
 
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Building;
