@@ -29,8 +29,8 @@ dependencies {
   compile "org.jogamp.joal:joal:2.3.2"
   compile "org.jogamp.jogl:jogl-all-main:2.3.2"
   compile "org.jogamp.jogl:jogl-all:2.3.2"
-  
-  
+  compile "org.apache.bcel:bcel:6.2"
+  compile group: 'org.apache.xmlgraphics', name: 'batik-all', version: '1.9.1', ext: 'pom'
 }
 
 

@@ -41,40 +41,40 @@
   </nodes>
   <externals >
     <item type="material" >
-      <file name="C:\Users\Sina\Desktop\WhiteC\Trees\1-1\Foliage__leafcard_1.material" />
+      <file name="Foliage__leafcard_1.material" />
     </item>
     <item type="material" >
-      <file name="C:\Users\Sina\Desktop\WhiteC\Trees\1-1\Bark_5.material" />
+      <file name="Bark_5.material" />
     </item>
     <item type="material" >
-      <file name="C:\Users\Sina\Desktop\WhiteC\Trees\1-1\Bark_3.material" />
+      <file name="Bark_3.material" />
     </item>
     <item type="material" >
-      <file name="C:\Users\Sina\Desktop\WhiteC\Trees\1-1\Bark.material" />
+      <file name="Bark.material" />
     </item>
     <item type="material" >
-      <file name="C:\Users\Sina\Desktop\WhiteC\Trees\1-1\Bark_4.material" />
+      <file name="Bark_4.material" />
     </item>
     <item type="material" >
-      <file name="C:\Users\Sina\Desktop\WhiteC\Trees\1-1\Bark_1.material" />
+      <file name="Bark_1.material" />
     </item>
     <item type="material" >
-      <file name="C:\Users\Sina\Desktop\WhiteC\Trees\1-1\Bark_2.material" />
+      <file name="Bark_2.material" />
     </item>
     <item type="material" >
-      <file name="C:\Users\Sina\Desktop\WhiteC\Trees\1-1\Foliage__leafcard_4.material" />
+      <file name="Foliage__leafcard_4.material" />
     </item>
     <item type="material" >
-      <file name="C:\Users\Sina\Desktop\WhiteC\Trees\1-1\Foliage__leafcard_3.material" />
+      <file name="Foliage__leafcard_3.material" />
     </item>
     <item type="material" >
-      <file name="C:\Users\Sina\Desktop\WhiteC\Trees\1-1\Foliage__leafcard_5.material" />
+      <file name="Foliage__leafcard_5.material" />
     </item>
     <item type="material" >
-      <file name="C:\Users\Sina\Desktop\WhiteC\Trees\1-1\Foliage__leafcard.material" />
+      <file name="Foliage__leafcard.material" />
     </item>
     <item type="material" >
-      <file name="C:\Users\Sina\Desktop\WhiteC\Trees\1-1\Foliage__leafcard_2.material" />
+      <file name="Foliage__leafcard_2.material" />
     </item>
   </externals>
   <environment >
