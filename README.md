@@ -3,7 +3,14 @@
 Contributors : Amaury Zarzelli, Antoine Roca, Antoine Moutou, Augustin Gagnon, Eva Chen-Yen-Su, Laure Le Breton, Mariem Moukhlissi
 
 ## Prérequis
-Oracle JRE version 8.
+Oracle JDK version 8.
+### Installation sur linux
+Lancer les commandes suivantes pour installer le jdk oracle sur une distribution linux dérivée de Debian (comme Ubuntu par exemple)
+```sh
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java8-installer
+```
 
 ## Comment lancer ?
 
