@@ -3,7 +3,7 @@
   <environment>
     <weather>
       <snowingPercentage>-1</snowingPercentage>
-      <rainingPercentage>5</rainingPercentage>
+      <rainingPercentage>-1</rainingPercentage>
       <fogPercentage>-1</fogPercentage>
     </weather>
     <useBloomFilter>true</useBloomFilter>
@@ -44,7 +44,7 @@
         <damping>0.3</damping>
       </suspension>
       <wheel>
-        <frictionSlip>50</frictionSlip>
+        <frictionSlip>10000</frictionSlip>
       </wheel>
       <brake profile="">
         <decelerationFreeWheel>5.0</decelerationFreeWheel>

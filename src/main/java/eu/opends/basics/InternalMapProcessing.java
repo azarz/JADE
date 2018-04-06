@@ -187,7 +187,7 @@ public class InternalMapProcessing implements AnimEventListener
 		        physicsControl.setPhysicsLocation(mapObject.getLocation());
 		        physicsControl.setPhysicsRotation(mapObject.getRotation());
 		        
-		        //physicsControl.setFriction(100);
+		        physicsControl.setFriction(mapObject.getFriction());
 		        
 		        // add additional map object to physics space
 		        physicsSpace.add(physicsControl);

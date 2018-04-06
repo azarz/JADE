@@ -164,6 +164,15 @@ This list can be considered as static declaration where unique identifiers have 
     			</xs:annotation>
     		</xs:element>
 
+            <xs:element minOccurs="0" maxOccurs="1" type="xs:float"
+                name="friction">
+                <xs:annotation>
+                    <xs:documentation>
+                        Specifies friction of the model. Ice, slides: 0.0f Soil, concrete, rock: 1.0f
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+
     		<xs:element minOccurs="0" maxOccurs="1" type="material"
     			name="material">
     			<xs:annotation>

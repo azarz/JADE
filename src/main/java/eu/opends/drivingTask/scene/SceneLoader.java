@@ -574,6 +574,7 @@ public class SceneLoader
 				NodeList childnodes = currentNode.getChildNodes();
 				
 				Float mass = null;
+				Float friction = null;
 				Boolean visible = null;
 				String collisionShape = null;
 				Vector3f scale = null;
@@ -630,6 +631,12 @@ public class SceneLoader
 					{
 						mass = Float.parseFloat(currentChild.getTextContent());
 					}
+					
+					else if(currentChild.getNodeName().equals("friction"))
+					{
+						friction = Float.parseFloat(currentChild.getTextContent());
+					}
+					
 					
 					else if(currentChild.getNodeName().equals("visible"))
 					{
@@ -706,6 +713,9 @@ public class SceneLoader
 				if(mass == null)
 					mass = 0f;
 				
+				if(friction == null)
+					friction = 1.0f;
+				
 				if(visible == null)
 					visible = true;
 				
@@ -717,7 +727,7 @@ public class SceneLoader
 						(collisionShape != null))
 				{
 					MapObject mapObject = new MapObject(name, spatial, translation, rotation, scale,
-							visible, collisionShape, mass, spatialURL, collisionSound);
+							visible, collisionShape, mass, spatialURL, collisionSound, friction);
 					mapObjectsList.add(mapObject);
 				}
 			}
