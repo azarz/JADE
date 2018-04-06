@@ -1,6 +1,6 @@
 package eu.ensg.jade.geometricObject;
 
-import java.util.List;
+import eu.ensg.jade.output.IObjExport;
 
 /**
  * Road is the super-class for roads
@@ -8,7 +8,7 @@ import java.util.List;
  * @author JADE
  */
 
-public abstract class Road extends WorldObject {	
+public abstract class Road implements IObjExport{	
 	
 // ========================== ATTRIBUTES ===========================
 
@@ -214,10 +214,6 @@ public abstract class Road extends WorldObject {
 			this.speed = "";
 		}
 	}
-
-	
-	@Override
-	public abstract String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset);
 
 }
 
