@@ -42,6 +42,7 @@ public class XMLModel implements IXMLExport {
 		this.collision = "meshShape";
 		this.visible = true;
 		this.mass = 0;
+		this.friction = 1.0;
 		
 		this.vector = new XMLVector();
 	}
@@ -63,6 +64,7 @@ public class XMLModel implements IXMLExport {
 		this.collision = "meshShape";
 		this.visible = true;
 		this.mass = 0;
+		this.friction = 1.0;
 		
 		this.vector = vector;
 	}
