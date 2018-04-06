@@ -3,17 +3,18 @@ package eu.ensg.jade.rules;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.geotools.feature.SchemaException;
+
 import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
-import com.vividsolutions.jts.geom.impl.PackedCoordinateSequenceFactory;
+
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.scene.Scene;
 import eu.ensg.jade.semantic.PointVegetation;
@@ -35,17 +36,11 @@ public class VegetationRule implements RuleShape {
 	 * 
 	 * It allows to extract
 	 * 
-	 * - Chestnut trees
-	 * 
-	 * - Pine trees
-	 * 
-	 * - Sassafra trees
-	 * 
-	 * - Sycamore trees
+	 * - deciduous tree
 	 * 
 	 */
 	public static enum TREE {
-		CHESTNUT,PINE,SASSAFRA,SYCAMORE
+		DECIDUOUS
 	};
 
 // ========================== METHODS ==============================
@@ -60,42 +55,76 @@ public class VegetationRule implements RuleShape {
 	@Override
 	public void addPunctualObject(Scene scene) throws SchemaException, IOException {
 		
+		double t1 = (new Date()).getTime();
+		
+		System.out.println("Start vegetation fusion");
+		
 		List<SurfaceVegetation> vege = scene.getSurfaceVegetation();
-		Map<String, Road> roads = scene.getRoads();
-
-		Geometry diff = diffVegeRoad(vege, roads);
+		Collection<Geometry> geometryCollectionVege = new ArrayList<Geometry>();
+		for (SurfaceVegetation v: vege){
+			Geometry g = v.getGeometry();
+			geometryCollectionVege.add(g);
+		}
+        Geometry allVege = geomCollUnion(geometryCollectionVege);
+        
+        double t2 = (new Date()).getTime();
+        System.out.println("End vegetation " + String.valueOf(t2-t1));
+        t1 = t2;
+        
+        System.out.println("Start road fusion");
+		
+        Map<String, Road> roads = scene.getRoads();
+		Collection<Geometry> geometryCollectionRoad = new ArrayList<Geometry>();
+		for (Road road: roads.values()){
+			SurfaceRoad surfRoad = (SurfaceRoad) road;
+			Geometry g = (Geometry) surfRoad.getGeom();
+			geometryCollectionRoad.add(g);
+		}
+        Geometry allRoads = geomCollUnion(geometryCollectionRoad);
+        
+        t2 = (new Date()).getTime();
+        System.out.println("End road " + String.valueOf(t2-t1));
+        t1 = t2;
+        
+        System.out.println("Start poisson disk sampling");
 		
 		// Recuperer la bounding box de la zone de vegetation
-		Coordinate[] envelopDiff = diff.getEnvelope().getCoordinates();
+		Coordinate[] envelopDiff = allVege.getEnvelope().getCoordinates();
 		double startX = envelopDiff[0].x;
 		double endX = envelopDiff[2].x;
 		double startY = envelopDiff[0].y;
 		double endY = envelopDiff[2].y;
 		
 		// Faire un placement aléatoire régulier de points (Poisson Disk Sampling)
-		PoissonDiskSampler poissonDisk = new PoissonDiskSampler(startX,startY,endX,endY,10);
+		PoissonDiskSampler poissonDisk = new PoissonDiskSampler(startX,startY,endX,endY,100);
 		List<double[]> pointList = poissonDisk.compute();
 		
-		// Ne garder que ceux qui intersectent la géométrie 
+		System.out.println(pointList.size());
+		t2 = (new Date()).getTime();
+        System.out.println("End sampling " + String.valueOf(t2-t1));
+        t1 = t2;
+        
+        System.out.println("Start tree verification");
+
+		GeometryFactory factory = new GeometryFactory();
+		// Ne garder que ceux qui intersectent la géométrie
 		for (double[] point : pointList){
-			
-			PackedCoordinateSequenceFactory factory = PackedCoordinateSequenceFactory.DOUBLE_FACTORY;
-			
 			Coordinate vegetCoord = new Coordinate(point[0],point[1],0);
+			Point pt = factory.createPoint(vegetCoord);
 			
-			CoordinateSequence seq = factory.create(new Coordinate[]{vegetCoord});
-
-			Point pt = new Point(seq,new GeometryFactory());
-
-			Geometry g = (Geometry) pt;
-
-			if (diff.contains(g)){
-				// Creation de l'arbre 
-				vegetCoord.z = scene.getDtm().getHeightAtPoint(point[0],point[1]);
-				PointVegetation tree = new PointVegetation(vegetCoord,TREE.CHESTNUT);
-				scene.addVegetation(tree);
+			// Creation de l'arbre 
+			if (allVege.contains(pt)) {
+				if(!allRoads.contains(pt)) {
+					vegetCoord.z = scene.getDtm().getHeightAtPoint(point[0],point[1]);
+					PointVegetation tree = new PointVegetation(vegetCoord,TREE.DECIDUOUS);
+					scene.addVegetation(tree);
+				}
 			}
-		}    
+		}
+		System.out.println(pointList.size());
+		t2 = (new Date()).getTime();
+        System.out.println("End verification " + String.valueOf(t2-t1));
+        t1 = t2;
 	}
 	
 	
