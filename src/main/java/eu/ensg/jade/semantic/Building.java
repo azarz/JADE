@@ -7,7 +7,7 @@ import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Polygon;
 
-import eu.ensg.jade.geometricObject.WorldObject;
+import eu.ensg.jade.output.IObjExport;
 import eu.ensg.jade.utils.JadeUtils;
 
 /**
@@ -16,7 +16,7 @@ import eu.ensg.jade.utils.JadeUtils;
  * @author JADE
  */
 
-public class Building extends WorldObject {
+public class Building implements IObjExport {
 	
 // ========================== ATTRIBUTES ===========================
 

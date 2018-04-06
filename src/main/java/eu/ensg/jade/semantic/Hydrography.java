@@ -10,7 +10,7 @@ import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Polygon;
 
-import eu.ensg.jade.geometricObject.WorldObject;
+import eu.ensg.jade.output.IObjExport;
 import eu.ensg.jade.utils.JadeUtils;
 
 /**
@@ -19,7 +19,7 @@ import eu.ensg.jade.utils.JadeUtils;
  * @author JADE
  */
 
-public class Hydrography extends WorldObject {
+public class Hydrography implements IObjExport {
 	
 
 // ========================== ATTRIBUTES ===========================

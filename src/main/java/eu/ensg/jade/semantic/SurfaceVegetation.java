@@ -6,7 +6,6 @@ import com.vividsolutions.jts.densify.Densifier;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
-import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
@@ -14,7 +13,7 @@ import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.MultiPolygon;
 import com.vividsolutions.jts.geom.Polygon;
 
-import eu.ensg.jade.geometricObject.WorldObject;
+import eu.ensg.jade.output.IObjExport;
 import eu.ensg.jade.utils.JadeUtils;
 
 /**
@@ -23,7 +22,7 @@ import eu.ensg.jade.utils.JadeUtils;
  * @author JADE
  */
 
-public class SurfaceVegetation extends WorldObject {
+public class SurfaceVegetation implements IObjExport {
 	
 // ========================== ATTRIBUTES ===========================
 	

@@ -1,7 +1,5 @@
 package eu.ensg.jade.semantic;
 
-import java.util.List;
-
 import com.vividsolutions.jts.geom.Coordinate;
 
 import eu.ensg.jade.geometricObject.PunctualObject;
@@ -77,12 +75,4 @@ public class StreetFurniture extends PunctualObject {
 
 // ========================== METHODS ==============================
 
-	/**
-	 * @see eu.ensg.jade.geometricObject.Point#toOBJ(java.util.List, double, double)
-	 */
-	@Override
-	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

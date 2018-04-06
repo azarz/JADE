@@ -1,15 +1,8 @@
 package eu.ensg.jade.semantic;
 
-import java.util.List;
-
 import com.vividsolutions.jts.geom.Coordinate;
 
 import eu.ensg.jade.geometricObject.PunctualObject;
-import eu.ensg.jade.input.BuildingSHP;
-import eu.ensg.jade.input.DTMReader;
-import eu.ensg.jade.input.HydrographySHP;
-import eu.ensg.jade.input.LineRoadSHP;
-import eu.ensg.jade.input.VegetationSHP;
 import eu.ensg.jade.rules.VegetationRule.TREE;
 
 /**
@@ -77,14 +70,5 @@ public class PointVegetation extends PunctualObject {
 			default:
 				return null;
 		}		
-	}
-	
-	/**
-	 * @see eu.ensg.jade.geometricObject.Point#toOBJ(java.util.List, double, double)
-	 */
-	@Override
-	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

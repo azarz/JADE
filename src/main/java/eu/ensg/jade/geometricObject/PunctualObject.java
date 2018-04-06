@@ -1,7 +1,5 @@
 package eu.ensg.jade.geometricObject;
 
-import java.util.List;
-
 import com.vividsolutions.jts.geom.Coordinate;
 
 /**
@@ -10,7 +8,7 @@ import com.vividsolutions.jts.geom.Coordinate;
  * @author JADE
  */
 
-public abstract class PunctualObject extends WorldObject {
+public abstract class PunctualObject {
 
 // ========================== ATTRIBUTES ===========================
 	/**
@@ -37,11 +35,4 @@ public abstract class PunctualObject extends WorldObject {
 
 // ========================== METHODS ==============================
 	
-	/**
-	 * This method will have a return that will soon be specified
-	 * 
-	 * @see eu.ensg.jade.geometricObject.WorldObject#toOBJ(java.util.List)
-	 */
-	@Override
-	public abstract String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset);
 }
