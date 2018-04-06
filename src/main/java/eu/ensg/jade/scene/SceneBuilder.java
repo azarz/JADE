@@ -52,8 +52,8 @@ public class SceneBuilder {
 	 */
 	public static void main(String[] args) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
 		String buildingLayer = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
-		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
-		//String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
+//		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
+		String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
 		//String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
 		String treeLayer = "src/test/resources/inputTest/openShpTestVege2.shp";
@@ -264,12 +264,7 @@ public class SceneBuilder {
 		
 		// Add punctual vegetation
 		ruleShapeMaker.addVegetation(scene);
-//		SurfaceVegetation vege = scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1);
-//		vege.setZfromDTM(dtm);
-		
-
-		//System.out.println("J ajoute la vegetation a la scene");
-		
+//		SurfaceVegetation vege = scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1);		
 	}
 	
 	
@@ -302,7 +297,7 @@ public class SceneBuilder {
 		
 		// Add flat ground (debug)
 		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
-		grassPlane.setTranslation(new double[]{0, 45, 0});
+//		grassPlane.setTranslation(new double[]{0, 45, 0});
 		xmlWriter.addModel(grassPlane);
 		
 		// Add driver
@@ -315,8 +310,8 @@ public class SceneBuilder {
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
-//		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
-//		xmlWriter.addModel(buildindModel);
+		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
+		xmlWriter.addModel(buildindModel);
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
@@ -331,21 +326,21 @@ public class SceneBuilder {
 //		xmlWriter.addModel(vegeModel);
 
 		// Add street furniture
-//		int k = 0;
-//		for(StreetFurniture sign : scene.getStreetFurniture()) {
-//			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
-//			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
-//			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
-//			xmlWriter.addModel(streetFurnitureModel);
-//			
-//			if (++k>1000){ break; }
-//		}
+		int k = 0;
+		for(StreetFurniture sign : scene.getStreetFurniture()) {
+			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
+			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
+			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
+			xmlWriter.addModel(streetFurnitureModel);
+			
+			if (++k>1000){ break; }
+		}
 		
 		int g = 0;
 		for(PointVegetation tree : scene.getVegetation()) {
-			System.out.println("moi c'est gg "+g);
-			XMLModel vegetationModel = new XMLModel("PunctualVegetation", tree.getNature());
+			XMLModel vegetationModel = new XMLModel("Tree", tree.getNature());
 			vegetationModel.setTranslation(new double[] {tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
+			vegetationModel.setScale(new double[] {8,8,8});
 			xmlWriter.addModel(vegetationModel);
 			
 			if (++g>1000){ break; }
