@@ -20,6 +20,7 @@ import eu.ensg.jade.rules.RuleShapeMaker;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
+import eu.ensg.jade.semantic.PointVegetation;
 import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.xml.XMLGroundModel;
@@ -242,7 +243,7 @@ public class SceneBuilder {
 		DTM dtm = scene.getDtm();
 		dtm.smooth(0.9, 1);
 		
-
+		// Add intersections
 		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
 		ruleShapeMaker.addIntersectionSigns(scene);
 
@@ -261,7 +262,10 @@ public class SceneBuilder {
 		}
 		scene.setRoads(roads);
 		
-//		ruleShapeMaker.addVegetation(scene);
+		// Add punctual vegegation
+		ruleShapeMaker.addVegetation(scene);
+		
+		
 //		SurfaceVegetation vege = scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1);
 //		vege.setZfromDTM(dtm);
 		
@@ -343,6 +347,16 @@ public class SceneBuilder {
 //			
 //			if (++k>1000){ break; }
 //		}
+		
+		int g = 0;
+		for(PointVegetation tree : scene.getVegetation()) {
+			XMLModel vegetationModel = new XMLModel("PunctualVegetation", tree.getNature());
+			vegetationModel.setTranslation(new double[] {tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
+			//streetFurnitureModel.setScale(new double[] {10,10,10});
+			xmlWriter.addModel(vegetationModel);
+			
+			if (++g>1000){ break; }
+		}
 
 		
 		// Add DTM

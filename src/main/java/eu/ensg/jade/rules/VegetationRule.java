@@ -35,17 +35,11 @@ public class VegetationRule implements RuleShape {
 	 * 
 	 * It allows to extract
 	 * 
-	 * - Chestnut trees
-	 * 
-	 * - Pine trees
-	 * 
-	 * - Sassafra trees
-	 * 
-	 * - Sycamore trees
+	 * - deciduous tree
 	 * 
 	 */
 	public static enum TREE {
-		CHESTNUT,PINE,SASSAFRA,SYCAMORE
+		DECIDUOUS
 	};
 
 // ========================== METHODS ==============================
@@ -92,7 +86,7 @@ public class VegetationRule implements RuleShape {
 			if (diff.contains(g)){
 				// Creation de l'arbre 
 				vegetCoord.z = scene.getDtm().getHeightAtPoint(point[0],point[1]);
-				PointVegetation tree = new PointVegetation(vegetCoord,TREE.CHESTNUT);
+				PointVegetation tree = new PointVegetation(vegetCoord,TREE.DECIDUOUS);
 				scene.addVegetation(tree);
 			}
 		}    

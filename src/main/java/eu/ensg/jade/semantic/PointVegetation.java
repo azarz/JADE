@@ -70,10 +70,7 @@ public class PointVegetation extends PunctualObject {
 		
 		switch(tree)
 		{
-			case CHESTNUT: return "";
-			case PINE: return "";
-			case SASSAFRA: return "";
-			case SYCAMORE: return "";
+			case DECIDUOUS: return "Models/Trees/deciduousTree/tree.obj";
 			default:
 				return null;
 		}		
