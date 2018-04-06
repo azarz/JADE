@@ -6,6 +6,10 @@ import java.util.Random;
 
 public class PoissonDiskSampler {
 	
+	private double startX;
+	
+	private double startY;
+	
 	/**
 	 * The width of the sampled space
 	 */
@@ -63,7 +67,6 @@ public class PoissonDiskSampler {
 	 */
 	private List<Integer> queue;
 	
-	
 	/**
 	 * Class constructor specifying each parameters
 	 * 
@@ -73,10 +76,12 @@ public class PoissonDiskSampler {
 	 * @param k The number of repetitions to create a point
 	 */
 	public PoissonDiskSampler(double width, double height, double radius, int k) {
-		this.width = width;
-		this.height = height;
-		this.radius = radius;
-		this.k = k;
+		this.startX = 0;
+		this.startY = 0;
+		this.width = Math.abs(width);
+		this.height = Math.abs(height);
+		this.radius = Math.abs(radius);
+		this.k = k > 0 ? k : 30;
 		
 		this.initGrid();
 	}
@@ -103,10 +108,50 @@ public class PoissonDiskSampler {
 	}
 	
 	/**
-	 * Empty class constructor, fall back to empty extent and default parameters
+	 * Class constructor based on on start point and end point to define the extent, and all other parameters
+	 * 
+	 * @param startX
+	 * @param startY
+	 * @param endX
+	 * @param endY
+	 * @param radius
+	 * @param k
 	 */
-	public PoissonDiskSampler() {
-		this(1, 1, 10, 30);
+	public PoissonDiskSampler(double startX, double startY, double endX, double endY, double radius, int k) {
+		this.startX = Math.min(startX, endX);
+		this.startY = Math.min(startY, endY);
+		this.width = Math.abs(endX - startX);
+		this.height = Math.abs(endY - startY);
+		this.radius = Math.abs(radius);
+		this.k = k > 0 ? k : 30;
+		
+		this.initGrid();
+	}
+	
+	/**
+	 * Class constructor based on on start point and end point to define the extent
+	 * 
+	 * @param startX
+	 * @param startY
+	 * @param endX
+	 * @param endY
+	 * @param radius
+	 */
+	public PoissonDiskSampler(double startX, double startY, double endX, double endY, double radius) {
+		this(startX, startY, endX, endY, radius, 30);
+	}
+	
+	/**
+	 * Class constructor based on on start point and end point to define the extent, and leaving all parameters
+	 * as default
+	 * 
+	 * @param startX
+	 * @param startY
+	 * @param endX
+	 * @param endY
+	 */
+	public PoissonDiskSampler(double startX, double startY, double endX, double endY) {
+		this(startX, startY, endX, endY, 10, 30);
 	}
 	
 	
@@ -119,7 +164,7 @@ public class PoissonDiskSampler {
 		List<double[]> pointList = new ArrayList<double[]>();
 		double[] point = new double[2];
 		while(point != null) {
-			point = this.next();
+			point = next();
 			if(point != null) pointList.add(point);
 		}
 		return pointList;
@@ -134,8 +179,8 @@ public class PoissonDiskSampler {
 		double x = 0, y = 0;
 		
 		if(this.pointNumber == 0) {
-			x = rng.nextDouble() * width;
-			y = rng.nextDouble() * height;
+			x = startX + rng.nextDouble() * width;
+			y = startY + rng.nextDouble() * height;
 			return insertPoint(x, y);
 		}
 		
@@ -171,7 +216,7 @@ public class PoissonDiskSampler {
 	private double[] insertPoint(double x, double y) {
 		double[] point = new double[]{x, y};
 		
-		int idx = (int)(x/cellSize) + gridColumns * (int)(y/cellSize);
+		int idx = (int)((x-startX)/cellSize) + gridColumns * (int)((y-startY)/cellSize);
 	    grid[idx] = point;
 	    pointNumber++;
 	    queue.add(idx);
@@ -191,12 +236,12 @@ public class PoissonDiskSampler {
 	 * @return True is the point is valid, false otherwise
 	 */
 	private boolean validPoint(double x, double y) {
-		if(x < 0 || x >= width || y < 0 || y >= height){
+		if(x < startX || x >= (startX+width) || y < startY || y >= (startY+height)){
 			return false;
 		}
 
-		int col = (int) (x/cellSize);
-		int row = (int) (y/cellSize);
+		int col = (int) ((x-startX)/cellSize);
+		int row = (int) ((y-startY)/cellSize);
 		
 		int idx = 0;
 		for (int i = col-2; i < col+3; i++) {

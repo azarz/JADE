@@ -2,8 +2,6 @@ package eu.ensg.jade.scene;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.geotools.feature.SchemaException;
@@ -22,8 +20,8 @@ import eu.ensg.jade.rules.RuleShapeMaker;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
+import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceRoad;
-import eu.ensg.jade.semantic.SurfaceVegetation;
 import eu.ensg.jade.xml.XMLGroundModel;
 import eu.ensg.jade.xml.XMLModel;
 import eu.ensg.jade.xml.XMLTerrain;
@@ -246,7 +244,7 @@ public class SceneBuilder {
 		
 
 		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
-		//ruleShapeMaker.addIntersectionSigns(scene);
+		ruleShapeMaker.addIntersectionSigns(scene);
 
 		// Set building height
 		for (Building building : scene.getBuildings()) {
@@ -343,7 +341,7 @@ public class SceneBuilder {
 //			//streetFurnitureModel.setScale(new double[] {10,10,10});
 //			xmlWriter.addModel(streetFurnitureModel);
 //			
-//			if (++k>5000){ break; }
+//			if (++k>1000){ break; }
 //		}
 
 		
