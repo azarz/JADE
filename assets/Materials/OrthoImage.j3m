@@ -1,5 +1,5 @@
 Material jME Logo : Common/MatDefs/Misc/Unshaded.j3md {
     MaterialParameters {
-        ColorMap : Textures/Terrain/grass.jpg
+        ColorMap : RGE/ortho_50cm.png
     }
 }
