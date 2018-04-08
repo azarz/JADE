@@ -691,8 +691,10 @@ public class Simulator extends SimulationBasics
 		super.destroy();
 		logger.info("finished destroy()");
 		
-		if (physicalTraffic.getMultiThreadingEnable()){
-			physicalTraffic.executorShutdown();
+		if (physicalTraffic != null) {
+			if (physicalTraffic.getMultiThreadingEnable()){
+				physicalTraffic.executorShutdown();
+			}
 		}
 		
 		PlatformImpl.exit();
