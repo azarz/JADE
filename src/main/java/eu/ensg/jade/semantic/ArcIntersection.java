@@ -59,7 +59,7 @@ public class ArcIntersection {
 				}
 				else {
 //					result.add(bufferSmoothbis(tempRoads, inter));	
-					List<Polygon> polygons2=smoothIntersection(tempRoads, inter);				
+					List<Polygon> polygons2=smoothIntersection(tempRoads, inter);
 					for(int k=0 ; k<polygons2.size();k++) {
 //						result.add(polygons2.get(k));
 					}					
@@ -67,7 +67,7 @@ public class ArcIntersection {
 			}
 			// 3+ roads intersecting
 			else if (tempRoads.size()>2 ){
-				List<Polygon> polygons=smoothIntersection(tempRoads, inter);				
+				List<Polygon> polygons=smoothIntersection(tempRoads, inter);
 				for(int k=0 ; k<polygons.size();k++) {
 //					result.add(polygons.get(k));
 				}
@@ -78,8 +78,13 @@ public class ArcIntersection {
 	}
 	
 	
-
-	private static Polygon bufferSmoothbis(List<LineRoad> roads, Intersection inter) {
+/**
+ * General method to smooth roads
+ *
+ * @return List of polygons 
+ *
+ */
+	private static Polygon bufferSmooth(List<LineRoad> roads, Intersection inter) {
 		
 		Coordinate coord=new Coordinate(inter.getGeometry().x, inter.getGeometry().y);
 		Point pointInter= new GeometryFactory().createPoint(coord);
@@ -228,7 +233,7 @@ public class ArcIntersection {
 	
 	
 	  /**
-     * Creates arc in each intersection in order smooth roads 
+     * Creates arc in each intersection in order to smooth roads 
      *
      * @param List of lineroads
      * @param Intersection
