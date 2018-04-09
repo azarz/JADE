@@ -19,6 +19,8 @@ public class XMLModel implements IXMLExport {
 	protected String ref;
 	
 	protected double mass;
+	protected double friction;
+
 	protected boolean visible;
 	protected String collision;	
 	
@@ -40,6 +42,7 @@ public class XMLModel implements IXMLExport {
 		this.collision = "meshShape";
 		this.visible = true;
 		this.mass = 0;
+		this.friction = 1.0;
 		
 		this.vector = new XMLVector();
 	}
@@ -61,6 +64,7 @@ public class XMLModel implements IXMLExport {
 		this.collision = "meshShape";
 		this.visible = true;
 		this.mass = 0;
+		this.friction = 1.0;
 		
 		this.vector = vector;
 	}
@@ -82,6 +86,7 @@ public class XMLModel implements IXMLExport {
 		this.collision = "meshShape";
 		this.visible = true;
 		this.mass = 0;
+		this.friction = 1;
 		
 		this.vector = new XMLVector(scale, rotation, translation);
 	}
@@ -156,6 +161,13 @@ public class XMLModel implements IXMLExport {
 		this.vector.setTranslation(translation);
 	}
 	
+	public double getFriction() {
+		return friction;
+	}
+
+	public void setFriction(double friction) {
+		this.friction = friction;
+	}
 	
 // ========================== METHODS ==============================
 
@@ -173,6 +185,10 @@ public class XMLModel implements IXMLExport {
 		mass.appendChild(doc.createTextNode(String.valueOf(this.mass)));
 		model.appendChild(mass);
 		
+		Element friction = doc.createElement("friction");
+		friction.appendChild(doc.createTextNode(String.valueOf(this.friction)));
+		model.appendChild(friction);
+		
 		Element visible = doc.createElement("visible");
 		visible.appendChild(doc.createTextNode(String.valueOf(this.visible)));
 		model.appendChild(visible);
@@ -188,7 +204,7 @@ public class XMLModel implements IXMLExport {
 		model.appendChild(transform.getElementsByTagName("translation").item(0));
 		
 		Element shadowMode = doc.createElement("shadowMode");
-		shadowMode.appendChild(doc.createTextNode("Receive"));
+		shadowMode.appendChild(doc.createTextNode("CastAndReceive"));
 		model.appendChild(shadowMode);
 		
 		return model;
