@@ -93,6 +93,7 @@ public class ArcIntersection {
      */
 	private Polygon bufferSmooth(List<LineRoad> roads, Intersection inter) {
 		
+		//Initialize
 		Coordinate coord=new Coordinate(inter.getGeometry().x, inter.getGeometry().y);
 		Point pointInter= new GeometryFactory().createPoint(coord);
 		LineRoad road=new LineRoad();
@@ -113,10 +114,12 @@ public class ArcIntersection {
 		Point p1=line.getStartPoint();
 		if(p1.equals(pointInter)) p1=line.getEndPoint();
 		
+		//Unit vector
 		double denominateur= Math.sqrt( Math.pow((p1.getX()-pointInter.getX()),2)   + Math.pow((p1.getY()-pointInter.getY()),2) );
 		double ux= (pointInter.getY() - p1.getY())/denominateur;
 		double uy= (p1.getX()- pointInter.getX() ) / denominateur;
 		
+		//Calculate of the coordinates
 		Coordinate coordonate1= new Coordinate(pointInter.getX()+bigWidth*ux, pointInter.getY()+bigWidth*uy );
 		Coordinate coordonate2= new Coordinate(p1.getX()+smallWidth*ux, p1.getY()+smallWidth*uy);
 		Coordinate coordonate3= new Coordinate(p1.getX()-smallWidth*ux, p1.getY()-smallWidth*uy);
@@ -128,7 +131,7 @@ public class ArcIntersection {
 		trapezeCoor.add(coordonate4);
 		trapezeCoor.add(trapezeCoor.get(0));
 		
-		//We create the polygon		
+		//Create the polygon		
 		GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
     	LinearRing ring = geometryFactory.createLinearRing(trapezeCoor.toArray(new Coordinate[trapezeCoor.size()]));
     	LinearRing holes[] = null;
@@ -249,28 +252,31 @@ public class ArcIntersection {
      */ 
 	private List<Polygon> smoothIntersection(List<LineRoad> roads, Intersection inter) throws NoSuchAuthorityCodeException, FactoryException {
 		
- 		List<Polygon> polygons = new ArrayList<Polygon>();		
-		for(int i=0; i<roads.size()-1; i++ ) 
-		{
+ 		List<Polygon> polygons = new ArrayList<Polygon>();
+ 		//We go through the road list, with all couples of roads possible
+		for(int i=0; i<roads.size()-1; i++ ) {
 			for(int j=i+1 ; j<roads.size(); j++) {
-				
+				//We create the road Arc
 				RoadArc roadArc = new RoadArc(roads.get(i), roads.get(j));
+				//We create the corresponding arc
 				CircularArc arc = roadArc.createRoadArc(roads.get(i), roads.get(j));
 				boolean intersectionTest=false;
 				for(int k=0 ; k<roads.size(); k++) {
 					//Testing if the eventual arc intersect a road. If yes the arc is not conserved					
 					if(arc!=null && roadArc.intersectOther(arc, roads.get(k))) intersectionTest=true;
 				}
-				
+				//Only if there is no intersection
 				if(intersectionTest == false && arc != null) { 
 					List<Coordinate> polygonCoor = new ArrayList<Coordinate>();
-					//circularArcs.add(arc);
 					GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
+					//We linearize the arc
 					double[] pointsOfArc = arc.linearize(1);
+					//We create the list of Coordinates for the polygon with the points of the arc
 					for(int z = 0; z<((pointsOfArc.length)/2)-1; z++) { 
 						Coordinate coord = new Coordinate(pointsOfArc[2*z],pointsOfArc[2*z+1]);
 						polygonCoor.add(coord);
 					}
+					//We get the projected points from the ends of the arc to the corresponding roads
 					Point extremity1 = new GeometryFactory().createPoint(polygonCoor.get(0));
 					Point extremity2 = new GeometryFactory().createPoint(polygonCoor.get(polygonCoor.size()-1));
 					Point ptI=new GeometryFactory().createPoint(inter.getGeometry());
@@ -288,14 +294,17 @@ public class ArcIntersection {
 						pointToAdd1 = coordCutPoint2;
 						pointToAdd2 = coordCutPoint1;
 					}
+				    //We add the points
 					polygonCoor.add(pointToAdd1);
 					polygonCoor.add(new Coordinate(ptI.getX(),ptI.getY()));
 					polygonCoor.add(pointToAdd2);
 					polygonCoor.add(polygonCoor.get(0));
+					//We create the polygon with the list of coordinates and no holes
 			    	LinearRing ring = geometryFactory.createLinearRing(polygonCoor.toArray(new Coordinate[polygonCoor.size()]));
 			    	LinearRing holes[] = null;
-			    	if(geometryFactory.createPolygon(ring, holes).getArea() <10000) 
-			    	polygons.add(geometryFactory.createPolygon(ring, holes));
+			    	Polygon geom = geometryFactory.createPolygon(ring, holes);
+			    	if(geom.getArea() <10000) 
+			    	polygons.add(geom);
 					
 			}
 		}
