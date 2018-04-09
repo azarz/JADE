@@ -51,21 +51,18 @@ public class VegetationRule implements RuleShape {
 	@Override
 	public void addPunctualObject(Scene scene) throws SchemaException, IOException {
 		
-		System.out.println("Start geometry list");
 		List<Geometry> vegetGeometryList = new ArrayList<Geometry>();
 		for (SurfaceVegetation v: scene.getSurfaceVegetation()){
 			vegetGeometryList.add(v.getGeometry());
 		}
         System.out.println("vegetGeometryList size: "+vegetGeometryList.size());
         
-        System.out.println("Start road fusion");
 		List<Geometry> roadGeometryList = new ArrayList<Geometry>();
 		for (SurfaceRoad road: scene.getSurfaceRoads().values()){
 			roadGeometryList.add(road.getGeom());
 		}
 		Geometry roadGeometryUnion = CascadedPolygonUnion.union(roadGeometryList);
         
-        System.out.println("Start vegetation loop");
         GeometryFactory factory = new GeometryFactory();
         Coordinate centroid = scene.getCentroid();
         

@@ -33,7 +33,6 @@ public class OBJWriter {
 	 * 
 	 */
 	public OBJWriter(){
-		// TODO: add parameters to the constructor (maybe ?)
 	}
 	
 	/**
@@ -154,7 +153,6 @@ public class OBJWriter {
 	
 	
 	public void exportVege(String filePath, List<SurfaceVegetation> objectList, double xCentroid, double yCentroid) {
-		
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
 		offsets.add(1);
@@ -183,6 +181,5 @@ public class OBJWriter {
 			e.printStackTrace();
 		}
 		
-	}
-	
+	}	
 }
