@@ -2,9 +2,7 @@ package eu.ensg.jade.rules;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.geotools.feature.SchemaException;
 
@@ -14,7 +12,6 @@ import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.operation.union.CascadedPolygonUnion;
 
-import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.scene.Scene;
 import eu.ensg.jade.semantic.PointVegetation;
 import eu.ensg.jade.semantic.SurfaceRoad;
@@ -54,22 +51,18 @@ public class VegetationRule implements RuleShape {
 	@Override
 	public void addPunctualObject(Scene scene) throws SchemaException, IOException {
 		
-		System.out.println("Start geometry list");
 		List<Geometry> vegetGeometryList = new ArrayList<Geometry>();
 		for (SurfaceVegetation v: scene.getSurfaceVegetation()){
 			vegetGeometryList.add(v.getGeometry());
 		}
         System.out.println("vegetGeometryList size: "+vegetGeometryList.size());
         
-        System.out.println("Start road fusion");
 		List<Geometry> roadGeometryList = new ArrayList<Geometry>();
-		for (Road road: scene.getRoads().values()){
-			SurfaceRoad surfRoad = (SurfaceRoad) road;
-			roadGeometryList.add(surfRoad.getGeom());
+		for (SurfaceRoad road: scene.getSurfaceRoads().values()){
+			roadGeometryList.add(road.getGeom());
 		}
 		Geometry roadGeometryUnion = CascadedPolygonUnion.union(roadGeometryList);
         
-        System.out.println("Start vegetation loop");
         GeometryFactory factory = new GeometryFactory();
         Coordinate centroid = scene.getCentroid();
         
@@ -107,27 +100,5 @@ public class VegetationRule implements RuleShape {
         }
 
 		System.out.println("Total trees created: "+scene.getVegetation().size());
-	}	
-	
-	/**
-	 * Gathers all geometry of a collection in one unique geometry
-	 * 
-	 * @param geomColl the collection of geometry to be unified
-	 * @return
-	 */
-	private Geometry geomCollUnion(List<Geometry> geomColl){
-		
-		Geometry all = null;
-        for( Iterator<Geometry> i = geomColl.iterator(); i.hasNext(); ){
-	        Geometry geometry = i.next();
-	        if( geometry == null ) continue;
-	        if( all == null ){
-	        	all = geometry;
-	        }
-	        else {
-	        	all = all.union( geometry );
-	        }
-        }
-        return all;
 	}
 }

@@ -15,7 +15,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.SurfaceRoad;
 
@@ -54,7 +53,7 @@ public class OBJWriterTest {
 	
 	@Test
 	public void testRoadExport() {
-		Map<String, Road> objectList = new HashMap<String, Road>();
+		Map<String, SurfaceRoad> objectList = new HashMap<String, SurfaceRoad>();
 		for(int i=0; i<10; i++) {
 			objectList.put(String.valueOf(i), road);
 		}

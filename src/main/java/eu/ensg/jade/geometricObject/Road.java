@@ -219,8 +219,6 @@ public abstract class Road implements IObjExport{
 		}
 	}
 	
-	public abstract String sidewalksToOBJ(List<Integer> indexOffsets, double xOffset, double yOffset, Geometry fullRoads);
-
 }
 
 

@@ -166,9 +166,4 @@ public class LineRoad extends Road{
 		return null;
 	}
 
-	@Override
-	public String sidewalksToOBJ(List<Integer> indexOffsets, double xOffset, double yOffset, Geometry fullRoads) {
-		return null;
-	}
-	
 }

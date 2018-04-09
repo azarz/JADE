@@ -15,6 +15,7 @@ import com.vividsolutions.jts.geom.Geometry;
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.Hydrography;
+import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.semantic.SurfaceVegetation;
 
 /**
@@ -34,7 +35,6 @@ public class OBJWriter {
 	 * 
 	 */
 	public OBJWriter(){
-		// TODO: add parameters to the constructor (maybe ?)
 	}
 	
 	/**
@@ -81,7 +81,7 @@ public class OBJWriter {
 	 * @param xCentroid the centroid x coordinate
 	 * @param yCentroid the centroid y coordinate
 	 */
-	public void exportRoad(String filePath, Map<String, Road> roads, double xCentroid, double yCentroid) {
+	public void exportRoad(String filePath, Map<String, SurfaceRoad> roads, double xCentroid, double yCentroid) {
 		
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
@@ -122,7 +122,7 @@ public class OBJWriter {
 	 * @param xCentroid the centroid x coordinate
 	 * @param yCentroid the centroid y coordinate
 	 */
-	public void exportSidewalks(String filePath, Map<String, Road> roads, double xCentroid, double yCentroid,Geometry fullRoads) {
+	public void exportSidewalks(String filePath, Map<String, SurfaceRoad> roads, double xCentroid, double yCentroid,Geometry fullRoads) {
 		
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
@@ -144,7 +144,7 @@ public class OBJWriter {
 			
 			out.print("mtllib paris.mtl\n");
 			int i=0;
-			for (Road road: roads.values()) {
+			for (SurfaceRoad road: roads.values()) {
 				System.out.println((100*i/3343.) + "%");
 				out.print(road.sidewalksToOBJ(offsets, xCentroid, yCentroid, fullRoads));
 				i++;
@@ -198,7 +198,6 @@ public class OBJWriter {
 	
 	
 	public void exportVege(String filePath, List<SurfaceVegetation> objectList, double xCentroid, double yCentroid) {
-		
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
 		offsets.add(1);
@@ -227,6 +226,5 @@ public class OBJWriter {
 			e.printStackTrace();
 		}
 		
-	}
-	
+	}	
 }

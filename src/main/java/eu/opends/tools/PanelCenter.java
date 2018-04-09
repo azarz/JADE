@@ -750,7 +750,7 @@ public class PanelCenter
 	        cogText = new BitmapText(gaugeFont, false);          
 	        cogText.setSize(gaugeFont.getCharSet().getRenderedSize());
 	        cogText.setColor(ColorRGBA.Black);
-	        cogText.setText("360°");
+	        cogText.setText("360");
 	        cogText.setLocalScale(5.5f, 5.5f, 1);
 	        cogText.setLocalTranslation(910,1170,0);
 	        displayLeftNode.attachChild(cogText);
@@ -1028,7 +1028,7 @@ public class PanelCenter
 	        maritimeLatitudeText.setText("Breite: " + df3.format(car.getGeoPosition().getX()) + " N");
 	        
 	        // OpenDS-Maritime - longitude
-	        maritimeLongitudeText.setText("Länge: " + df3.format(car.getGeoPosition().getY()) + " O");
+	        maritimeLongitudeText.setText("Lnge: " + df3.format(car.getGeoPosition().getY()) + " O");
 	        
 	        // OpenDS-Maritime - scenario
 	        maritimeScenarioText.setText("Szenario: " + SimulationBasics.getDrivingTask().getFileName().replace(".xml", ""));
@@ -1044,9 +1044,9 @@ public class PanelCenter
         
         if(maritimeDisplayMode == MaritimeDisplayMode.MultiFunctionDisplay || maritimeDisplayMode == MaritimeDisplayMode.All)
         {
-	        cogText.setText(df4.format(Math.round(car.getHeadingDegree()))+"°");
+	        cogText.setText(df4.format(Math.round(car.getHeadingDegree()))+"");
 	        sogText.setText(df.format(car.getCurrentSpeedKmh()/1.852f));
-	        magText.setText(df4.format((Math.round(car.getHeadingDegree())+3)%360)+"°");
+	        magText.setText(df4.format((Math.round(car.getHeadingDegree())+3)%360)+"");
 	        latText.setText(getDegreeText(car.getGeoPosition().getX()));
 	        longText.setText(getDegreeText(car.getGeoPosition().getY()));
 	        timeText.setText(sdf2.format(new Date()));
@@ -1063,7 +1063,7 @@ public class PanelCenter
         double minutes = ((decimalValue-degree) * 60);
         String minutesFormatted = df.format(Math.round(minutes*1000f)/1000f);
 
-        return degree + "°" + minutesFormatted + "'";
+        return degree + "" + minutesFormatted + "'";
     }
     
     
