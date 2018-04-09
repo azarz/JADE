@@ -245,6 +245,7 @@ public class SceneBuilder {
 		// Add intersections
 		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
 //		ruleShapeMaker.addIntersectionSigns(scene);
+		ruleShapeMaker.addRoadSigns(scene);
 
 		// Set building height
 		for (Building building : scene.getBuildings()) {
