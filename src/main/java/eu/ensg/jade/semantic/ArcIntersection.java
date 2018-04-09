@@ -8,6 +8,7 @@ import org.geotools.geometry.jts.CircularArc;
 import org.geotools.geometry.jts.JTSFactoryFinder;
 
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.LinearRing;
@@ -30,13 +31,14 @@ public class ArcIntersection {
 	/**
      * General method to smooth roads
      *
+     * @param scene the scene where the roads will be smoothed
      * @return List of polygons 
      */ 
-	public static List<Polygon>  generateSmoothRoad(Scene scene) {
+	public static List<Geometry>  generateSmoothRoad(Scene scene) {
 		Map<String, LineRoad> lineRoads = scene.getLineRoads();
 //		Map<String, SurfaceRoad> surfaceRoads = scene.getSurfaceRoads();
 		
-		ArrayList<Polygon> result = new ArrayList<Polygon>();
+		List<Geometry> result = new ArrayList<Geometry>();
 		for (Intersection inter : scene.getCollIntersect().getMapIntersection().values()) {
 			
 			String[] roadsId =  inter.getRoadId().keySet().toArray(new String[0]);
@@ -45,43 +47,38 @@ public class ArcIntersection {
 				tempRoads.add((LineRoad) lineRoads.get(roadId));
 			}
 
-			//Skip 1 Road cases
-			if (tempRoads.size()<2){
+			if(tempRoads.size() < 2 || tempRoads.get(0).getWidth()==tempRoads.get(1).getWidth() || 
+					tempRoads.get(0).getWidth()==0 || tempRoads.get(1).getWidth()==0) {
 				continue;
 			}
 			
 			// 2 roads intersecting
 			if (tempRoads.size()==2) {
-				
-				//Skip if there is no width of if the width is the same
-				if(tempRoads.get(0).getWidth()==tempRoads.get(1).getWidth() || tempRoads.get(0).getWidth()==0 || tempRoads.get(1).getWidth()==0) {
-					continue;
-				}				
 				double angle = RoadArc.calculAngle(tempRoads.get(0), tempRoads.get(1));
 				if(angle < 210 && angle > 150 ) {
-					result.add(trapezoid(tempRoads, inter));
-//					SurfaceRoad road = surfaceRoads.get(roadsId[0]);
-//					road.mergePolygon(trapezoid(tempRoads, inter));
-//					surfaceRoads.put(roadsId[0], road);
+					Polygon p = trapezoid(tempRoads, inter);
+					result.add(p);
 				}
 				else {
-					result.add(bufferSmooth(tempRoads, inter));
-//					SurfaceRoad road = surfaceRoads.get(roadsId[0]);
-//					road.mergePolygon(bufferSmooth(tempRoads, inter));
-//					surfaceRoads.put(roadsId[0], road);
-					
+					Polygon p = bufferSmooth(tempRoads, inter);
+					result.add(p);
 					
 					List<Polygon> polygons2=smoothIntersection(tempRoads, inter);
 					for(int k=0 ; k<polygons2.size();k++) {
-						result.add(polygons2.get(k));
+						p = polygons2.get(k);
+						if(!p.isValid()) System.out.println("smoothIntersection (2) incorrect !");
+						result.add(p);
 					}					
 				}					
 			}
 			// 3+ roads intersecting
 			else if (tempRoads.size()>2 ){
+				Polygon p;
 				List<Polygon> polygons=smoothIntersection(tempRoads, inter);
 				for(int k=0 ; k<polygons.size();k++) {
-					result.add(polygons.get(k));
+					p = polygons.get(k);
+					if(!p.isValid()) System.out.println("smoothIntersection (3) incorrect !");
+					result.add(p);
 				}
 			}
 		}

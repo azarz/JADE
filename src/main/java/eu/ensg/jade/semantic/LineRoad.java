@@ -43,16 +43,16 @@ public class LineRoad extends Road{
 	/**
 	 * Constructor using all fields
 	 * 
-	 * @param width
-	 * @param wayNumber
-	 * @param z_ini
-	 * @param z_fin
-	 * @param direction
-	 * @param nature
-	 * @param importance
-	 * @param number
-	 * @param speed
-	 * @param geometry
+	 * @param width The width of the road
+	 * @param laneNumber The lane number of the road
+	 * @param z_ini The starting altitude of the road
+	 * @param z_fin The ending altitude of the road
+	 * @param direction The direction of the road
+	 * @param nature The nature of the road
+	 * @param importance The importance of the road
+	 * @param number The number of the road
+	 * @param geometry The geometry of the road
+	 * @param name The name of the road
 	 */
 	public LineRoad(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, String importance, String number, String name, MultiLineString geometry) {
 		super(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, name);
@@ -91,7 +91,7 @@ public class LineRoad extends Road{
 	/**
 	 * Adds a street furniture to the existing list
 	 * 
-	 * @param streetFurniture
+	 * @param streetFurniture The street furniture to add
 	 */
 	public void addSF(StreetFurniture streetFurniture){
 		this.listSF.add(streetFurniture);

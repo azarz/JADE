@@ -71,11 +71,15 @@ public abstract class Road implements IObjExport{
 	/**
 	 * Constructor using all fields
 	 * 
-	 * @param width
-	 * @param wayNumber
-	 * @param z_ini
-	 * @param z_fin
-	 * @param direction
+	 * @param width the width of the road
+	 * @param laneNumber the number of lanes of the road
+	 * @param z_ini altitude at the start of the road
+	 * @param z_fin altitude at the end of the road
+	 * @param direction direction of the road
+	 * @param nature the nature of the road
+	 * @param importance the importance of the road
+	 * @param number the number of the road
+	 * @param name the name of the road
 	 */
 	public Road(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, String importance, String number, String name) {
 		this.width = width;

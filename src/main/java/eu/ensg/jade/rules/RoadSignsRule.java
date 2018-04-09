@@ -45,9 +45,7 @@ public class RoadSignsRule implements RuleShape {
 	 * 
 	 * Example : pedestrian crossing, speed limitation
 	 * 
-	 * @param roads the roads present in RGE data
-	 * @throws FactoryException 
-	 * @throws NoSuchAuthorityCodeException 
+	 * @param scene The scene where to add signs
 	 */	
 	@Override
 	public void addPunctualObject(Scene scene) throws NoSuchAuthorityCodeException, FactoryException {
@@ -94,13 +92,14 @@ public class RoadSignsRule implements RuleShape {
 	 * @param intersect the intersection on which to perform the work
 	 * @param roads the list of roads contained by the scene
 	 */
+
 	private void roadTabFilling(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Intersection intersect, Map<String, LineRoad> roads){
 		// Roads retrieval
 		int k = 0;
 		
 		// We fill the roadsTab and startOnIntersectTab arrays
 		for (String road : intersect.getRoadId().keySet()){
-			roadsTab[k] = (LineRoad) roads.get(road);
+			roadsTab[k] = roads.get(road);
 			startOnIntersectTab[k] = intersect.getRoadId().get(road);
 			k++;
 		}
@@ -345,8 +344,7 @@ public class RoadSignsRule implements RuleShape {
 			Geometry g = (Geometry) pt;
 
 			for (String roadId: intersection.getRoadId().keySet()){
-				
-				SurfaceRoad surfaceRoad = ((LineRoad) scene.getLineRoads().get(roadId)).enlarge();
+				SurfaceRoad surfaceRoad = scene.getLineRoads().get(roadId).enlarge();
 				if(surfaceRoad.getGeom().contains(g)){
 					doesIntersect = true;
 					d = d + 0.5;

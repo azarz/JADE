@@ -52,9 +52,7 @@ public class XMLModel implements IXMLExport {
 	 * 
 	 * @param id the ID used for the model
 	 * @param key the key used for the model (optional)
-	 * @param scale the scale Vector
-	 * @param rotation the rotation Vector
-	 * @param translation the translation Vector
+	 * @param vector The vector used for the model
 	 */
 	public XMLModel(String id, String key, XMLVector vector) {
 		this.id = id;
