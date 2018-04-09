@@ -44,12 +44,18 @@ public class ArcIntersection {
 				tempRoads.add((LineRoad) roadList.get(roadId));
 			}
 
-			if(tempRoads.get(0).getWidth()==tempRoads.get(1).getWidth() || tempRoads.get(0).getWidth()==0 || tempRoads.get(1).getWidth()==0) {
+			//Skip 1 Road cases
+			if (tempRoads.size()<2){
 				continue;
 			}
 			
 			// 2 roads intersecting
-			if (tempRoads.size()==2) {				
+			if (tempRoads.size()==2) {
+				
+			//Skip if there is no width of if the width is the same
+			if(tempRoads.get(0).getWidth()==tempRoads.get(1).getWidth() || tempRoads.get(0).getWidth()==0 || tempRoads.get(1).getWidth()==0) {
+				continue;
+			}				
 				double angle = RoadArc.calculAngle(tempRoads.get(0), tempRoads.get(1));
 				if(angle < 210 && angle > 150 ) {
 					result.add(trapezoid(tempRoads, inter));
