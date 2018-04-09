@@ -374,8 +374,8 @@ public class RoadArc {
     /**
      * Checks if the first LineString of multilineString is the one forming the intersection
      *
-     * @param multilineString
-     * @param intersection point
+     * @param multi multiLineString to test
+     * @param pointInter Intersection point
      * @return the lineString forming the intersection 
      *
      */ 
