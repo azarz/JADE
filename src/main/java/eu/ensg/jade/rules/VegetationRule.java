@@ -13,6 +13,7 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.Point;
+import com.vividsolutions.jts.operation.union.CascadedPolygonUnion;
 
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.scene.Scene;
@@ -64,7 +65,7 @@ public class VegetationRule implements RuleShape {
         System.out.println("vegetGeometryList size: "+vegetGeometryList.size());
         
         double t2 = (new Date()).getTime();
-        System.out.println("End: " + String.valueOf(t2-t1)); t1 = t2;
+        System.out.println("End: " + + (t2-t1)*0.001); t1 = t2;
         
         System.out.println("Start road fusion");
 		List<Geometry> roadGeometryList = new ArrayList<Geometry>();
@@ -72,10 +73,11 @@ public class VegetationRule implements RuleShape {
 			SurfaceRoad surfRoad = (SurfaceRoad) road;
 			roadGeometryList.add(surfRoad.getGeom());
 		}
-        Geometry roadGeometryUnion = geomCollUnion(roadGeometryList);
+//        Geometry roadGeometryUnion = geomCollUnion(roadGeometryList);
+		Geometry roadGeometryUnion = CascadedPolygonUnion.union(roadGeometryList);
         
         t2 = (new Date()).getTime();
-        System.out.println("End: " + String.valueOf(t2-t1)); t1 = t2;
+        System.out.println("End: " + (t2-t1)*0.001); t1 = t2;
         
         System.out.println("Start vegetation loop");
         GeometryFactory factory = new GeometryFactory();
@@ -95,7 +97,7 @@ public class VegetationRule implements RuleShape {
     		List<double[]> pointList = poissonDisk.compute();
     
             
-            System.out.println("\tStart tree verification, samples: "+pointList.size());
+//            System.out.println("\tStart tree verification, samples: "+pointList.size());
             
             for (double[] point : pointList){
             	Coordinate vegetCoord = new Coordinate(point[0],point[1],0);
@@ -114,12 +116,11 @@ public class VegetationRule implements RuleShape {
             		}
             	}
             }
-            System.out.println("\tEnd tree");
         }
 
 		t2 = (new Date()).getTime();
 		System.out.println("Total trees created: "+scene.getVegetation().size());
-        System.out.println("End loop " + String.valueOf(t2-t1));
+        System.out.println("End loop " + (t2-t1)*0.001);
         t1 = t2;
 	}
 	
