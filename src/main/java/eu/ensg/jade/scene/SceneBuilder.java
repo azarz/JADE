@@ -10,7 +10,9 @@ import org.geotools.feature.SchemaException;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 
+import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.operation.union.CascadedPolygonUnion;
 
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
@@ -246,9 +248,6 @@ public class SceneBuilder {
 		DTM dtm = scene.getDtm();
 		dtm.smooth(0.9, 1);
 		
-		// Add intersections
-		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
-//		ruleShapeMaker.addIntersectionSigns(scene);
 
 		// Set building height
 		for (Building building : scene.getBuildings()) {
@@ -267,11 +266,20 @@ public class SceneBuilder {
 		scene.setSurfaceRoads(surfaceRoads);
 		
 
-		List<Polygon> intersectionPolygon = ArcIntersection.generateSmoothRoad(scene);
+		List<Polygon> polygonList = ArcIntersection.generateSmoothRoad(scene);
+		for(SurfaceRoad road : scene.getSurfaceRoads().values()) {
+			polygonList.add(road.getGeom());
+		}
+		Geometry unifiedRoads = CascadedPolygonUnion.union(polygonList);
+
+
+		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
+		
+		// Add intersections
+//		ruleShapeMaker.addIntersectionSigns(scene);
 		
 		// Add punctual vegetation
-		ruleShapeMaker.addVegetation(scene);
-//		SurfaceVegetation vege = scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1);		
+//		ruleShapeMaker.addVegetation(scene);	
 	}
 	
 	

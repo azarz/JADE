@@ -33,7 +33,8 @@ public class ArcIntersection {
      * @return List of polygons 
      */ 
 	public static List<Polygon>  generateSmoothRoad(Scene scene) {
-		Map<String, LineRoad> roadList = scene.getLineRoads();
+		Map<String, LineRoad> lineRoads = scene.getLineRoads();
+//		Map<String, SurfaceRoad> surfaceRoads = scene.getSurfaceRoads();
 		
 		ArrayList<Polygon> result = new ArrayList<Polygon>();
 		for (Intersection inter : scene.getCollIntersect().getMapIntersection().values()) {
@@ -41,7 +42,7 @@ public class ArcIntersection {
 			String[] roadsId =  inter.getRoadId().keySet().toArray(new String[0]);
 			List<LineRoad> tempRoads = new ArrayList<LineRoad>();
 			for( String roadId : roadsId) {
-				tempRoads.add((LineRoad) roadList.get(roadId));
+				tempRoads.add((LineRoad) lineRoads.get(roadId));
 			}
 
 			if(tempRoads.get(0).getWidth()==tempRoads.get(1).getWidth() || tempRoads.get(0).getWidth()==0 || tempRoads.get(1).getWidth()==0) {
@@ -49,13 +50,21 @@ public class ArcIntersection {
 			}
 			
 			// 2 roads intersecting
-			if (tempRoads.size()==2) {				
+			if (tempRoads.size()==2) {			
 				double angle = RoadArc.calculAngle(tempRoads.get(0), tempRoads.get(1));
 				if(angle < 210 && angle > 150 ) {
 					result.add(trapezoid(tempRoads, inter));
+//					SurfaceRoad road = surfaceRoads.get(roadsId[0]);
+//					road.mergePolygon(trapezoid(tempRoads, inter));
+//					surfaceRoads.put(roadsId[0], road);
 				}
 				else {
-					result.add(bufferSmooth(tempRoads, inter));	
+					result.add(bufferSmooth(tempRoads, inter));
+//					SurfaceRoad road = surfaceRoads.get(roadsId[0]);
+//					road.mergePolygon(bufferSmooth(tempRoads, inter));
+//					surfaceRoads.put(roadsId[0], road);
+					
+					
 					List<Polygon> polygons2=smoothIntersection(tempRoads, inter);
 					for(int k=0 ; k<polygons2.size();k++) {
 						result.add(polygons2.get(k));
@@ -248,7 +257,7 @@ public class ArcIntersection {
 				CircularArc arc = roadArc.createRoadArc(roads.get(i), roads.get(j));
 				boolean intersectionTest=false;
 				for(int k=0 ; k<roads.size(); k++) {
-					//Testing if the eventual arc intersect a road. If yes the arc is not conserved					
+					//Testing if the eventual arc intersect a road. If yes the arc is not conserved	
 					if(arc!=null && roadArc.intersectOther(arc, roads.get(k))) intersectionTest=true;
 				}
 				
@@ -287,10 +296,10 @@ public class ArcIntersection {
 			    	if(geometryFactory.createPolygon(ring, holes).getArea() <10000) 
 			    	polygons.add(geometryFactory.createPolygon(ring, holes));
 					
+				}
 			}
 		}
-		}
 		return polygons ;
-		}
+	}
 
 }
