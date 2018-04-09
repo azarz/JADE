@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.geotools.geometry.jts.CircularArc;
-import org.opengis.referencing.FactoryException;
-import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
@@ -25,7 +23,7 @@ import com.vividsolutions.jts.operation.distance.DistanceOp;
 
 public class RoadArc {
    
-    // ========================== ATTRIBUTES ===========================
+// ========================== ATTRIBUTES ===========================
     /**
     * The attribute containing two roads between each the arc will be drawn
     */
@@ -41,7 +39,7 @@ public class RoadArc {
      */
     private CircularArc geomArc;
    
-    // ========================== CONSTRUCTORS =========================  
+// ========================== CONSTRUCTORS =========================  
     /**
     * Constructor using all fields
     *
@@ -219,7 +217,7 @@ public class RoadArc {
      * @return tList of the cutting points
      */
     
-    public List<Point> cuttingPoint(Point extremity1, Point extremity2,LineRoad r1, LineRoad r2, Point pt_I) throws NoSuchAuthorityCodeException, FactoryException{
+    public List<Point> cuttingPoint(Point extremity1, Point extremity2,LineRoad r1, LineRoad r2, Point pt_I) {
     	List<Point> result = new ArrayList<Point>();
     	Geometry geomRoad1 =  r1.getGeom();
     	Geometry geomRoad2 =  r2.getGeom(); 
