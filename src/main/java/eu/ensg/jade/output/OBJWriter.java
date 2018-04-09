@@ -181,5 +181,37 @@ public class OBJWriter {
 			e.printStackTrace();
 		}
 		
-	}	
+	}
+	
+	public void exportFromList(String filePath, List<IObjExport> objList, double xCentroid, double yCentroid) {
+		
+		List<Integer> offsets = new ArrayList<Integer>();
+		offsets.add(1);
+		offsets.add(1);
+		offsets.add(0);
+		
+		File file = new File(filePath);
+		
+		try {
+			Files.deleteIfExists(file.toPath());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		
+		try(FileWriter fw = new FileWriter(filePath, true);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter out = new PrintWriter(bw)) {
+			
+			out.print("mtllib paris.mtl\n");
+
+			for (int i = 0; i < objList.size(); i++) {
+				out.print(objList.get(i).toOBJ(offsets, xCentroid, yCentroid));
+			}	
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 }

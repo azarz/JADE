@@ -10,9 +10,8 @@ import org.geotools.feature.SchemaException;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 
+import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.Polygon;
-import com.vividsolutions.jts.operation.union.CascadedPolygonUnion;
 
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
@@ -20,7 +19,6 @@ import eu.ensg.jade.input.ReaderFactory;
 import eu.ensg.jade.input.ReaderFactory.READER_TYPE;
 import eu.ensg.jade.output.OBJWriter;
 import eu.ensg.jade.output.XMLWriter;
-import eu.ensg.jade.rules.RuleShapeMaker;
 import eu.ensg.jade.semantic.ArcIntersection;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
@@ -266,14 +264,16 @@ public class SceneBuilder {
 		scene.setSurfaceRoads(surfaceRoads);
 		
 
-		List<Polygon> polygonList = ArcIntersection.generateSmoothRoad(scene);
-		for(SurfaceRoad road : scene.getSurfaceRoads().values()) {
-			polygonList.add(road.getGeom());
-		}
-		Geometry unifiedRoads = CascadedPolygonUnion.union(polygonList);
+		List<Geometry> polygonList = ArcIntersection.generateSmoothRoad(scene);
+//		for (SurfaceRoad road: surfaceRoads.values()){
+//			polygonList.add(road.getGeom());
+//		}
+//		Geometry roadGeometryUnion = CascadedPolygonUnion.union(polygonList);
+//		SurfaceRoad unifiedRoads = new SurfaceRoad(0, 0, 0, 0, "", "", "", "", "", unifiedRoadGeometry);
+//		unifiedRoads.setZfromDTM(dtm);
+//		surfaceRoads.put("-1", unifiedRoads);
 
-
-		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
+//		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
 		
 		// Add intersections
 //		ruleShapeMaker.addIntersectionSigns(scene);
@@ -284,14 +284,20 @@ public class SceneBuilder {
 	
 	
 	private void exportRGEData(Scene scene) {
-		OBJWriter objWritter = new OBJWriter();
+		OBJWriter objWriter = new OBJWriter();
 		
 		File directory = new File("assets/RGE");
 		if (! directory.exists()){ directory.mkdir(); }
 		
-		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getCentroid().x, scene.getCentroid().y);		
-		objWritter.exportRoad("assets/RGE/roads.obj", scene.getSurfaceRoads(), scene.getCentroid().x, scene.getCentroid().y);
-		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getCentroid().x, scene.getCentroid().y);
+		Coordinate centroid = scene.getCentroid();
+		
+		objWriter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), centroid.x, centroid.y);
+		
+		objWriter.exportRoad("assets/RGE/roads.obj", scene.getSurfaceRoads(), centroid.x, centroid.y);
+//		List<IObjExport> roads = new ArrayList<>(0); roads.add(scene.getSurfaceRoads().get("-1"));
+//		objWriter.exportFromList("assets/RGE.roads.obj", roads, centroid.x, centroid.y);
+		
+//		objWriter.exportWater("assets/RGE/water.obj", scene.getHydrography(), centroid.x, centroid.y);
 		
 //		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
 //		vege.add(scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1));

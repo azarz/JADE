@@ -86,9 +86,9 @@ public class VegetationRule implements RuleShape {
             	
             	// test the coordinates
             	if (vegetGeometry.contains(pt)) {
-            		vegetCoord.x -= centroid.x;
-            		vegetCoord.y -= centroid.y;
-            		pt = factory.createPoint(vegetCoord);
+//            		vegetCoord.x -= centroid.x;
+//            		vegetCoord.y -= centroid.y;
+//            		pt = factory.createPoint(vegetCoord);
             		if(!roadGeometryUnion.contains(pt)) {
             			// Creation of the tree
             			vegetCoord.z = scene.getDtm().getHeightAtPoint(point[0],point[1]);
