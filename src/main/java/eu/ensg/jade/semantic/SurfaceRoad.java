@@ -75,6 +75,10 @@ public class SurfaceRoad extends Road {
 	
 
 // ========================== METHODS ==============================
+	
+	public void mergePolygon(Polygon other) {
+		this.geometry.union(other);
+	}
 
 	/**
 	 * Converts a SurfaceRoad into a string corresponding to the .obj description of it

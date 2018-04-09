@@ -13,6 +13,7 @@ import java.util.Map;
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.Hydrography;
+import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.semantic.SurfaceVegetation;
 
 /**
@@ -79,7 +80,7 @@ public class OBJWriter {
 	 * @param xCentroid the centroid x coordinate
 	 * @param yCentroid the centroid y coordinate
 	 */
-	public void exportRoad(String filePath, Map<String, Road> roads, double xCentroid, double yCentroid) {
+	public void exportRoad(String filePath, Map<String, SurfaceRoad> roads, double xCentroid, double yCentroid) {
 		
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);

@@ -2,11 +2,10 @@ package eu.ensg.jade.semantic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.geotools.geometry.jts.CircularArc;
 import org.geotools.geometry.jts.JTSFactoryFinder;
-import org.opengis.referencing.FactoryException;
-import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
@@ -24,74 +23,65 @@ import eu.ensg.jade.scene.Scene;
  * @author JADE
  */
 
-
 public class ArcIntersection {
 	
-	 /**
-	  * The attribute containing the scene
-	  */
-	private Scene scene;
+// ========================== ATTRIBUTES ===========================
 	
-	
-	public ArcIntersection(Scene s) {
-		this.scene=s;
-	}
-	
-	  /**
+	/**
      * General method to smooth roads
      *
      * @return List of polygons 
-     *
      */ 
-	public List<Polygon> roadSmoother() throws NoSuchAuthorityCodeException, FactoryException{
-		//Creating the resulting list
+	public static List<Polygon>  generateSmoothRoad(Scene scene) {
+		Map<String, LineRoad> roadList = scene.getLineRoads();
+		
 		ArrayList<Polygon> result = new ArrayList<Polygon>();
-		//For each intersection
 		for (Intersection inter : scene.getCollIntersect().getMapIntersection().values()) {
-			//We get the list of roads
-			List<LineRoad> roads = new ArrayList<LineRoad>();
-			for( String roadId :inter.getRoadId().keySet()) {
-				roads.add((LineRoad) scene.getRoads().get(roadId));
+			
+			String[] roadsId =  inter.getRoadId().keySet().toArray(new String[0]);
+			List<LineRoad> tempRoads = new ArrayList<LineRoad>();
+			for( String roadId : roadsId) {
+				tempRoads.add((LineRoad) roadList.get(roadId));
 			}
-			//If there are two roads, either we will do a trapezoid, or smooth the buffer following the angle between the roads
-			if (roads.size()==2) {
-				double angle = RoadArc.calculAngle(roads.get(0), roads.get(1));
+
+			if(tempRoads.get(0).getWidth()==tempRoads.get(1).getWidth() || tempRoads.get(0).getWidth()==0 || tempRoads.get(1).getWidth()==0) {
+				continue;
+			}
+			
+			// 2 roads intersecting
+			if (tempRoads.size()==2) {				
+				double angle = RoadArc.calculAngle(tempRoads.get(0), tempRoads.get(1));
 				if(angle < 210 && angle > 150 ) {
-					if(roads.get(0).getWidth()!=roads.get(1).getWidth() && roads.get(0).getWidth()!=0  && roads.get(1).getWidth()!=0) {
-						result.add(trapezoid(roads, inter));
-					}
+					result.add(trapezoid(tempRoads, inter));
 				}
-				else 
-				{
-					if(roads.get(0).getWidth()!=roads.get(1).getWidth() && roads.get(0).getWidth()!=0  && roads.get(1).getWidth()!=0) { 
-						result.add(bufferSmooth(roads, inter));	
-					}
-					List<Polygon> polygons2=smoothIntersection(roads, inter);				
+				else {
+					result.add(bufferSmooth(tempRoads, inter));	
+					List<Polygon> polygons2=smoothIntersection(tempRoads, inter);
 					for(int k=0 ; k<polygons2.size();k++) {
 						result.add(polygons2.get(k));
 					}					
 				}					
 			}
-			//Intersection of three roads or more, we create all arcs
-			else if (roads.size()>2 ){
-				List<Polygon> polygons=smoothIntersection(roads, inter);				
+			// 3+ roads intersecting
+			else if (tempRoads.size()>2 ){
+				List<Polygon> polygons=smoothIntersection(tempRoads, inter);
 				for(int k=0 ; k<polygons.size();k++) {
 					result.add(polygons.get(k));
 				}
-			} 
+			}
 		}
 		
 		return result;
 	}
 	
 	
-	 /**
-     * General method to smooth roads
-     *
-     * @return List of polygons 
-     *
-     */
-	private Polygon bufferSmooth(List<LineRoad> roads, Intersection inter) {
+/**
+ * General method to smooth roads
+ *
+ * @return List of polygons 
+ *
+ */
+	private static Polygon bufferSmooth(List<LineRoad> roads, Intersection inter) {
 		
 		//Initialize
 		Coordinate coord=new Coordinate(inter.getGeometry().x, inter.getGeometry().y);
@@ -141,14 +131,14 @@ public class ArcIntersection {
 	}
 	 
 	/**
-     * Draws a trapezoid in the intersection of two roads which having different radius
+     * Draws a trapezoid in the intersection of two roads which have different radius
      *
      * @param List of LineRoads
      * @param Intersection
      * @return Polygon
      *
      */ 
-	private Polygon trapezoid(List<LineRoad> roads, Intersection inter) {
+	private static Polygon trapezoid(List<LineRoad> roads, Intersection inter) {
 		//List of coordinates to stock the points
 		List<Coordinate> trapezeCoor = new ArrayList<Coordinate>();
 		
@@ -250,7 +240,7 @@ public class ArcIntersection {
      * @return Polygon 
      *
      */ 
-	private List<Polygon> smoothIntersection(List<LineRoad> roads, Intersection inter) throws NoSuchAuthorityCodeException, FactoryException {
+	private static List<Polygon> smoothIntersection(List<LineRoad> roads, Intersection inter) {
 		
  		List<Polygon> polygons = new ArrayList<Polygon>();
  		//We go through the road list, with all couples of roads possible
