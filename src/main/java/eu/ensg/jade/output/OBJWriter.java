@@ -152,7 +152,7 @@ public class OBJWriter {
 	}
 	
 	
-public void exportVege(String filePath, List<SurfaceVegetation> objectList, double xCentroid, double yCentroid) {
+	public void exportVege(String filePath, List<SurfaceVegetation> objectList, double xCentroid, double yCentroid) {
 		
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
@@ -173,11 +173,10 @@ public void exportVege(String filePath, List<SurfaceVegetation> objectList, doub
 				PrintWriter out = new PrintWriter(bw)) {
 			
 			out.print("mtllib paris.mtl\n");
-			System.out.println("Je vais entrer dans le for");
+			
 			for (int i = 0; i < objectList.size(); i++) {
 				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
-			}	
-			System.out.println("Je suis sorti du for");
+			}
 
 		} catch (IOException e) {
 			e.printStackTrace();

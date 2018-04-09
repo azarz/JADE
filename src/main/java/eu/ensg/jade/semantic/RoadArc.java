@@ -114,26 +114,31 @@ public class RoadArc {
     */
    
     public Point calculerCentre(LineRoad road1, LineRoad road2){      
-        //Getting the intersection of 2 roads
-        Point inter = (Point) (road1.getGeom().intersection(road2.getGeom())).getCentroid();
+    	//Getting the intersection of 2 roads
+        Point inter = (Point) (road1.getGeom().intersection(road2.getGeom()).getGeometryN(0));
 
         //Calculate the radius of the two possible arc radius and conserving the smallest
         double speed1 = Integer.parseInt( road1.getSpeed().substring(0, 3).trim())-30;
         double speed2 = Integer.parseInt( road2.getSpeed().substring(0, 3).trim())-30;
         double width1 = road1.getWidth();
         double width2 = road2.getWidth();
-        if(width1==0) width1=1;
-        if(width2==0) width2=1;
         if(speed1<=0) speed1=10;
         if(speed2<=0) speed2=10;
         if(speed1>70) speed1=35;
         if(speed2>70) speed2=35;
         double r1 = (18.6 * Math.sqrt(speed1/(Math.abs(10*(width1)+65-speed1))));
         double r2 = 18.6 * Math.sqrt(speed2/(Math.abs(10*(width2)+65-speed2)));
-        this.radius = Math.min(r1, r2);
+		this.radius = Math.min(r1, r2);
+        
         //Calculate the points for middle
-        Point temp1 = getIntersection(inter.buffer(road2.getWidth()+(this.getRadius())),road1.getGeom(),inter);
-        Point temp2 = getIntersection(inter.buffer(road1.getWidth()+(this.getRadius())),road2.getGeom(),inter);
+        LineString lineString1= lineStringIntersection(road1.getGeom(),inter);
+        LineString lineString2= lineStringIntersection(road2.getGeom(),inter);
+
+        double angle = calculAngle(road1, road2)*Math.PI/180;
+        if(angle == 0) angle = Math.PI/2 ;
+        Point temp1 = getIntersection(inter.buffer(road2.getWidth()/Math.abs(Math.sin(angle))+(this.getRadius())),lineString1,inter);
+        Point temp2 = getIntersection(inter.buffer(road1.getWidth()/Math.abs(Math.sin(angle))+(this.getRadius())),lineString2,inter);
+
         if(temp1 != null && temp2 != null) {
         //Calculate the coordinates of the arc's center
         double xD =  (temp1.getX() + temp2.getX() - inter.getX());
@@ -154,16 +159,16 @@ public class RoadArc {
     */
     public List<Point> calculerPointArc(LineRoad road1, LineRoad road2){
     	
-        List <Point> resultat = new ArrayList<Point>();
-        Point pt_Intersection = calculerCentre(road1,road2);
-        if(pt_Intersection != null ) {
-        Point p1 = (pt_Intersection.buffer(this.radius)).intersection(road1.getGeom().buffer(road1.getWidth())).getCentroid();
-        Point p2 = (pt_Intersection.buffer(this.radius)).intersection(road2.getGeom().buffer(road2.getWidth())).getCentroid();
-        if( p1 != null && p2 != null ) {
-        resultat.add(p1);
-        resultat.add(p2);}
-        return resultat;}
-        return null;
+    	  List <Point> resultat = new ArrayList<Point>();
+          Point pt_Intersection = calculerCentre(road1,road2);
+          if(pt_Intersection != null ) {
+          Point p1 = (pt_Intersection.buffer(this.radius)).intersection(road1.getGeom().buffer(road1.getWidth())).getCentroid();
+          Point p2 = (pt_Intersection.buffer(this.radius)).intersection(road2.getGeom().buffer(road2.getWidth())).getCentroid();
+          if( p1 != null && p2 != null ) {
+          resultat.add(p1);
+          resultat.add(p2);}
+          return resultat;}
+          return null;
     }
    
     /**
@@ -176,8 +181,9 @@ public class RoadArc {
    
     public boolean intersectOther(CircularArc arc, LineRoad road){
         double[] points = arc.linearize(10);
+        boolean result=false;
         
-     // create a list of connected positions
+        // create a list of connected positions
         Coordinate firstArcPoint = new Coordinate(points[0],points[1]);
         Coordinate secondArcPoint = new Coordinate(points[points.length-2],points[points.length-1]);
         Coordinate thirdPoint = new Coordinate(points[(points.length/2)],points[(points.length/2)+1]);
@@ -187,8 +193,17 @@ public class RoadArc {
         LineString lineRoute=new GeometryFactory().createLineString(tabCoord);
         LineString lineRoute2=new GeometryFactory().createLineString(tabCoord2);
         LineString lineRoute3=new GeometryFactory().createLineString(tabCoord3);
-        LineString line= (LineString) road.getGeom().getGeometryN(0);
-         return line.intersects(lineRoute) || line.intersects(lineRoute2) || line.intersects(lineRoute3);
+
+        int a=road.getGeom().getCoordinates().length;
+        Coordinate[] tab= {road.getGeom().getCoordinates()[0] , road.getGeom().getCoordinates()[a-1]};
+        LineString line = new GeometryFactory().createLineString(tab);
+         if(line.intersects(lineRoute) || line.intersects(lineRoute2) || line.intersects(lineRoute3))
+             result=true;
+         if(road.getGeom().getNumGeometries()>0) {
+       LineString line2= (LineString) road.getGeom().getGeometryN((road.getGeom().getNumGeometries())-1);
+       if(line2.intersects(lineRoute) || line2.intersects(lineRoute2) || line2.intersects(lineRoute3))
+           result=true;}
+        return result;
      }
 
     /**
@@ -257,36 +272,38 @@ public class RoadArc {
      *
      */
     public static double calculAngle(LineRoad lineroad1, LineRoad lineroad2)
-    {
-        //Get the relevent points
-        MultiLineString road1 = lineroad1.getGeom();
-        MultiLineString road2 = lineroad2.getGeom();
-        Point ptIntersection = (Point) road1.intersection(road2).getCentroid();
-        Point ptStart1 = ((LineString) road1.getGeometryN(0)).getStartPoint();
-        Point ptEnd1 = ((LineString) road1.getGeometryN(0)).getEndPoint();
-        Point ptStart2 = ((LineString) road2.getGeometryN(0)).getStartPoint();
-        Point ptEnd2 = ((LineString) road2.getGeometryN(0)).getEndPoint();
-        Point  sommet1 = (ptIntersection.distance(ptStart1) > ptIntersection.distance(ptEnd1))? ptStart1 : ptEnd1;
-        Point  sommet2 = (ptIntersection.distance(ptStart2) > ptIntersection.distance(ptEnd2))? ptStart2 : ptEnd2;
+    { 
+		  //Get the relevent points
+    	  MultiLineString road1 = lineroad1.getGeom();
+          MultiLineString road2 = lineroad2.getGeom();
+          Point ptIntersection = (Point) road1.intersection(road2).getCentroid();
+          LineString linestring1 = lineStringIntersection(road1,ptIntersection);
+          LineString linestring2 = lineStringIntersection(road2,ptIntersection);
+          Point ptStart1 =  linestring1.getStartPoint();
+          Point ptEnd1 = linestring1.getEndPoint();
+          Point ptStart2 = linestring2.getStartPoint();
+          Point ptEnd2 = linestring2.getEndPoint();
+          Point  sommet1 = (ptIntersection.distance(ptStart1) > ptIntersection.distance(ptEnd1))? ptStart1 : ptEnd1;
+          Point  sommet2 = (ptIntersection.distance(ptStart2) > ptIntersection.distance(ptEnd2))? ptStart2 : ptEnd2;
 
         //Calculate the vectors
-        double diffCoord1[] = new double[2];
-        diffCoord1[0] = sommet1.getX()-ptIntersection.getX();
-        diffCoord1[1] = sommet1.getY()-ptIntersection.getY();
+          double diffCoord1[] = new double[2];
+          diffCoord1[0] = sommet1.getX()-ptIntersection.getX();
+          diffCoord1[1] = sommet1.getY()-ptIntersection.getY();
 
-        double diffCoord2[] = new double[2];
-        diffCoord2[0] = sommet2.getX()-ptIntersection.getX();
-        diffCoord2[1] = sommet2.getY()-ptIntersection.getY();
+          double diffCoord2[] = new double[2];
+          diffCoord2[0] = sommet2.getX()-ptIntersection.getX();
+          diffCoord2[1] = sommet2.getY()-ptIntersection.getY();
 
-        //Scalar product
-        double prodScalaire = diffCoord1[0]*diffCoord2[0] + diffCoord1[1]*diffCoord2[1];
-        //Norm
-        double normA = Math.sqrt(diffCoord1[0]*diffCoord1[0] + diffCoord1[1]*diffCoord1[1]);
-        double normB = Math.sqrt(diffCoord2[0]*diffCoord2[0] + diffCoord2[1]*diffCoord2[1]);
-        //Angle
-        double angle = Math.acos(prodScalaire/(normA*normB));
-        //Returning the result as degree and not radiant
-        return angle*(180.0/Math.PI);
+          //Scalar product
+		  double prodScalaire = diffCoord1[0]*diffCoord2[0] + diffCoord1[1]*diffCoord2[1];
+		  //Norm
+          double normA = Math.sqrt(diffCoord1[0]*diffCoord1[0] + diffCoord1[1]*diffCoord1[1]);
+          double normB = Math.sqrt(diffCoord2[0]*diffCoord2[0] + diffCoord2[1]*diffCoord2[1]);
+          //Angle
+          double angle = Math.acos(prodScalaire/(normA*normB));
+          //Returning the result as degree and not radiant
+          return angle*(180.0/Math.PI);
     }
     
  
@@ -302,26 +319,26 @@ public class RoadArc {
      *
      */
     public Point calculMidPoint(LineRoad road1, LineRoad road2,Point startPoint, Point endPoint){
-       if( !startPoint.isEmpty() && !endPoint.isEmpty()) {
-    	    //Center of the circle:
-	        Point centre=this.calculerCentre(road1,road2);
-	        //Vector from the circle center to middle of the 
-	        double xd = (startPoint.getX()+endPoint.getX())/2;
-	        double yd = (startPoint.getY()+endPoint.getY())/2;
-	        double[] vect = new double[2];
-	        vect[0] = xd-centre.getX();
-	        vect[1] = yd-centre.getY();
-	        //Unit Vector
-	        double[] norm = new double[2];
-	        norm[0] = vect[0]/( Math.sqrt( Math.pow(vect[0], 2) + Math.pow(vect[1], 2) )  );
-	        norm[1] = vect[1]/( Math.sqrt( Math.pow(vect[0], 2) + Math.pow(vect[1], 2) )  );
-	        //Translation of the circle center with norm as direction and radius as length
-	        double xmid = centre.getX()+ norm[0]*this.radius;
-	        double ymid = centre.getY()+norm[1]*this.radius;
-	        Point midPoint= new GeometryFactory().createPoint(new Coordinate(xmid,ymid));
-	        return midPoint;
-       }
-       return null;
+
+    	   if( !startPoint.isEmpty() && !endPoint.isEmpty()) {
+       	    //Center of the circle:
+    	        Point centre=this.calculerCentre(road1,road2);
+    	        //Vector from the circle center to middle of the 
+    	        double xd = (startPoint.getX()+endPoint.getX())/2;
+    	        double yd = (startPoint.getY()+endPoint.getY())/2;
+    	        double[] vect = new double[2];
+    	        vect[0] = xd-centre.getX();
+    	        vect[1] = yd-centre.getY();
+    	        //Unit Vector
+    	        double[] norm = new double[2];
+    	        norm[0] = vect[0]/( Math.sqrt( Math.pow(vect[0], 2) + Math.pow(vect[1], 2) )  );
+    	        norm[1] = vect[1]/( Math.sqrt( Math.pow(vect[0], 2) + Math.pow(vect[1], 2) )  );
+    	      //Translation of the circle center with norm as direction and radius as length
+    	        double xmid = centre.getX()+ norm[0]*this.radius;
+    	        double ymid = centre.getY()+norm[1]*this.radius;
+    	        Point midPoint= new GeometryFactory().createPoint(new Coordinate(xmid,ymid));
+    	        return midPoint; }
+    	        return null;
     }
       
   
@@ -334,17 +351,43 @@ public class RoadArc {
      *
      */ 
     public CircularArc createRoadArc(LineRoad road1, LineRoad road2){
-        if(road1.equals(road2)) return null ;
-        if(calculAngle(road1,road2)<150 && calculAngle(road1,road2)>-150)
-        {
-        List<Point> arcPoint = calculerPointArc(road1,road2);
-        if(arcPoint != null && !arcPoint.isEmpty()) {
-        Point midPoint = calculMidPoint(road1,road2,arcPoint.get(0), arcPoint.get(1)); 
-        if(midPoint != null)
-        this.geomArc = new CircularArc(arcPoint.get(0).getX(),arcPoint.get(0).getY(), midPoint.getX(),midPoint.getY(),arcPoint.get(1).getX(),arcPoint.get(1).getY());
-        return this.geomArc ;   
-        }
-        } return null;
+    	  if(road1.equals(road2)) return null ;
+    	  //Arcs are not drawn in roundabouts
+          if(road1.getName().contains("PL") || road1.getName().contains("RPT")) return null;
+          if(road2.getName().contains("PL") || road2.getName().contains("RPT")) return null;
+          if(calculAngle(road1,road2)<140 && calculAngle(road1,road2)>-140)
+          {
+          List<Point> arcPoint = calculerPointArc(road1,road2);
+          if(arcPoint != null && !arcPoint.isEmpty()) {
+          Point midPoint = calculMidPoint(road1,road2,arcPoint.get(0), arcPoint.get(1));
+          if(midPoint != null)
+          this.geomArc = new CircularArc(arcPoint.get(0).getX(),arcPoint.get(0).getY(), midPoint.getX(),midPoint.getY(),arcPoint.get(1).getX(),arcPoint.get(1).getY());
+          return this.geomArc ;
+          }
+          } 
+          return null;
+    }
+    
+    /**
+     * Checks if the first LineString of multilineString is the one forming the intersection
+     *
+     * @param multilineString
+     * @param intersection point
+     * @return the lineString forming the intersection 
+     *
+     */ 
+    public static LineString lineStringIntersection(MultiLineString multi, Point pointInter) {
+
+        LineString linestring2=(LineString) multi.getGeometryN(0);
+        Coordinate[] multiCoord = multi.getCoordinates();
+        Coordinate[] tabCoord1 = {multiCoord[0],multiCoord[1]};
+        LineString linestring1 = new GeometryFactory().createLineString(tabCoord1);
+        Point first=linestring1.getStartPoint();
+        Point second=linestring1.getEndPoint();
+        Point ptI= new GeometryFactory().createPoint(new Coordinate(pointInter.getX(),pointInter.getY()));
+        if( (!first.equalsExact(ptI)) && (!second.equalsExact(ptI)) ){
+            return linestring2;}
+        return linestring1;
     }
    
 }
