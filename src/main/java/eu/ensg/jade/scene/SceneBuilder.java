@@ -9,7 +9,6 @@ import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 import eu.ensg.jade.geometricObject.Road;
-import eu.ensg.jade.input.FluxConfiguration;
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
 import eu.ensg.jade.input.ReaderFactory;
@@ -55,8 +54,8 @@ public class SceneBuilder {
 		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
 //		String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
-		String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
-//		String treeLayer = "src/test/resources/inputTest/openShpTestVege3.shp";
+//		String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
+		String treeLayer = "src/test/resources/inputTest/openShpTestVege3.shp";
 		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
 		
 		

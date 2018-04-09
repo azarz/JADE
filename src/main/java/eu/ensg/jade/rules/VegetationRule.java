@@ -2,7 +2,6 @@ package eu.ensg.jade.rules;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -55,8 +54,6 @@ public class VegetationRule implements RuleShape {
 	@Override
 	public void addPunctualObject(Scene scene) throws SchemaException, IOException {
 		
-		double t1 = (new Date()).getTime();
-		
 		System.out.println("Start geometry list");
 		List<Geometry> vegetGeometryList = new ArrayList<Geometry>();
 		for (SurfaceVegetation v: scene.getSurfaceVegetation()){
@@ -64,20 +61,13 @@ public class VegetationRule implements RuleShape {
 		}
         System.out.println("vegetGeometryList size: "+vegetGeometryList.size());
         
-        double t2 = (new Date()).getTime();
-        System.out.println("End: " + + (t2-t1)*0.001); t1 = t2;
-        
         System.out.println("Start road fusion");
 		List<Geometry> roadGeometryList = new ArrayList<Geometry>();
 		for (Road road: scene.getRoads().values()){
 			SurfaceRoad surfRoad = (SurfaceRoad) road;
 			roadGeometryList.add(surfRoad.getGeom());
 		}
-//        Geometry roadGeometryUnion = geomCollUnion(roadGeometryList);
 		Geometry roadGeometryUnion = CascadedPolygonUnion.union(roadGeometryList);
-        
-        t2 = (new Date()).getTime();
-        System.out.println("End: " + (t2-t1)*0.001); t1 = t2;
         
         System.out.println("Start vegetation loop");
         GeometryFactory factory = new GeometryFactory();
@@ -96,8 +86,6 @@ public class VegetationRule implements RuleShape {
     		PoissonDiskSampler poissonDisk = new PoissonDiskSampler(startX,startY,endX,endY,20);
     		List<double[]> pointList = poissonDisk.compute();
     
-            
-//            System.out.println("\tStart tree verification, samples: "+pointList.size());
             
             for (double[] point : pointList){
             	Coordinate vegetCoord = new Coordinate(point[0],point[1],0);
@@ -118,46 +106,8 @@ public class VegetationRule implements RuleShape {
             }
         }
 
-		t2 = (new Date()).getTime();
 		System.out.println("Total trees created: "+scene.getVegetation().size());
-        System.out.println("End loop " + (t2-t1)*0.001);
-        t1 = t2;
-	}
-	
-	
-	/**
-	 * Returns the geometry obtained by the difference of a given list of vegetation and roads
-	 * 
-	 * @param vege the vegetation on which to work
-	 * @param roads the roads of the same grip as the vegetation
-	 * @return
-	 */
-	private Geometry diffVegeRoad(List<SurfaceVegetation> vege, Map<String, Road> roads){
-		
-		List<Geometry> geometryCollectionVege = new ArrayList<Geometry>();
-		
-		for (SurfaceVegetation v: vege){
-			Geometry g = v.getGeometry();
-			geometryCollectionVege.add(g);
-		}
-        Geometry allVege = geomCollUnion(geometryCollectionVege);
-		
-        
-        List<Geometry> geometryCollectionRoad = new ArrayList<Geometry>();
-
-		for (Road road: roads.values()){
-			SurfaceRoad surfRoad = (SurfaceRoad) road;
-			Geometry g = (Geometry) surfRoad.getGeom();
-			geometryCollectionRoad.add(g);
-		}
-        Geometry allRoads = geomCollUnion(geometryCollectionRoad);
-    
-        // The difference between the vegetation and the road geometry
-		Geometry diff = allVege.difference(allRoads);
-		
-		return diff;
-	}
-	
+	}	
 	
 	/**
 	 * Gathers all geometry of a collection in one unique geometry

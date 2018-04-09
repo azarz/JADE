@@ -44,7 +44,7 @@
         <damping>0.3</damping>
       </suspension>
       <wheel>
-        <frictionSlip>10000</frictionSlip>
+        <frictionSlip>50</frictionSlip>
       </wheel>
       <brake profile="">
         <decelerationFreeWheel>5.0</decelerationFreeWheel>

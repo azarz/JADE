@@ -1,0 +1,4883 @@
+<?xml version="1.0" encoding="UTF-8"?><scene xmlns="http://opends.eu/drivingtask/scene" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://opends.eu/drivingtask/scene ../../Schema/scene.xsd">
+
+  <sounds>
+  </sounds>
+
+  <gravity>9.81</gravity>
+  <time>12:00:00</time>
+  <date>2018-03-15</date>
+
+  <models>
+  <model id="grassPlane" key="Scenes/grassPlane/Scene.j3o">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="driverCar" key="Models/Cars/drivingCars/CitroenC4/Car.j3o">
+<mass>1000.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>0.8</entry>
+<entry>0.8</entry>
+<entry>0.8</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>70.0</entry>
+<entry>0.0</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Building" key="RGE/buildings.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>false</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Roads" key="RGE/roads.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-604.2810539861675</entry>
+<entry>37.33352502320213</entry>
+<entry>-562.858899503015</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-582.7631162831094</entry>
+<entry>37.65191157037347</entry>
+<entry>-568.6207232996821</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-523.1665011126315</entry>
+<entry>37.98754351602644</entry>
+<entry>-223.5826876303181</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-487.55001635150984</entry>
+<entry>38.43815894884322</entry>
+<entry>-205.46938207466155</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-543.9315321689937</entry>
+<entry>37.91920724557094</entry>
+<entry>-215.16191762685776</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-503.47386151831597</entry>
+<entry>38.136755366827494</entry>
+<entry>-227.96437372732908</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-302.74234671285376</entry>
+<entry>40.80582980390671</entry>
+<entry>-858.6538860900328</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-305.18646500003524</entry>
+<entry>40.83535949080998</entry>
+<entry>-886.662674873136</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-263.58606261154637</entry>
+<entry>41.552308919449715</entry>
+<entry>-834.2638196619228</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-279.5059027899988</entry>
+<entry>41.6782004505498</entry>
+<entry>-915.5703325364739</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-282.3180107790977</entry>
+<entry>41.50806616953458</entry>
+<entry>-886.4963603019714</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-280.7257472401252</entry>
+<entry>41.38073871872887</entry>
+<entry>-858.7374834949151</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-208.661716667586</entry>
+<entry>41.98932887525342</entry>
+<entry>-553.3027365002781</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-232.19665638857987</entry>
+<entry>41.34131952026341</entry>
+<entry>-536.8989450419322</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-180.43703775014728</entry>
+<entry>42.59008121412132</entry>
+<entry>-548.456812213175</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-237.2774617727846</entry>
+<entry>41.396309046896036</entry>
+<entry>-567.3368461020291</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-252.57230496581178</entry>
+<entry>41.03489845496153</entry>
+<entry>-554.1410021241754</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-269.3563716125209</entry>
+<entry>40.824770166462145</entry>
+<entry>-572.7126068044454</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-317.2878794675926</entry>
+<entry>40.33928753994659</entry>
+<entry>-841.5000821119174</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-138.0115945498692</entry>
+<entry>43.65143671495018</entry>
+<entry>-502.03336753416806</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-113.56019786861725</entry>
+<entry>44.30771206287058</entry>
+<entry>-495.942341607064</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-211.02594705100637</entry>
+<entry>42.3792831339837</entry>
+<entry>-308.9903967557475</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-188.33619844261557</entry>
+<entry>42.905726449405044</entry>
+<entry>-325.2922323420644</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-135.21875778923277</entry>
+<entry>43.899205699646316</entry>
+<entry>-324.09646710567176</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-161.0854798174696</entry>
+<entry>43.47951085784746</entry>
+<entry>-338.75231315754354</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-255.90980709111318</entry>
+<entry>41.100729117362015</entry>
+<entry>-319.4959735535085</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-292.500166227459</entry>
+<entry>40.37914719448869</entry>
+<entry>-292.92712092678994</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-230.27042481431272</entry>
+<entry>41.83151693182905</entry>
+<entry>-320.2930255047977</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-268.80296783160884</entry>
+<entry>40.8495921351037</entry>
+<entry>-302.37971209175885</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-115.65012218384072</entry>
+<entry>44.3164420541976</entry>
+<entry>-337.62758977804333</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-318.71213342412375</entry>
+<entry>39.869410287524516</entry>
+<entry>-288.35346052609384</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-348.4639367007185</entry>
+<entry>39.336998156020556</entry>
+<entry>-292.4012805186212</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-354.7344037478324</entry>
+<entry>39.263740089634865</entry>
+<entry>-271.1431751716882</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-394.61285363079514</entry>
+<entry>38.98624211090876</entry>
+<entry>-278.0249387938529</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-427.56191965925973</entry>
+<entry>38.786090398294405</entry>
+<entry>-273.31542265973985</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-545.9068694587331</entry>
+<entry>37.9565435257168</entry>
+<entry>-783.2751901997253</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-551.3795148632489</entry>
+<entry>37.924800252996235</entry>
+<entry>-736.1784240072593</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-549.0242191833677</entry>
+<entry>37.939541208606656</entry>
+<entry>-709.9584974730387</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-551.2842210248346</entry>
+<entry>37.932800345215696</entry>
+<entry>-804.7068065069616</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-542.1139766918495</entry>
+<entry>37.96337921858445</entry>
+<entry>-687.7671663556248</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-552.9189136050409</entry>
+<entry>37.915348134467536</entry>
+<entry>-760.8725768662989</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-541.9549316595076</entry>
+<entry>37.96411626469641</entry>
+<entry>-665.3745562229306</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-540.58343809098</entry>
+<entry>37.96881321568341</entry>
+<entry>-622.2046031113714</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-588.1994628343964</entry>
+<entry>37.51016594010687</entry>
+<entry>-622.6613250235096</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-623.8744165307144</entry>
+<entry>37.0007183051848</entry>
+<entry>-627.3335363324732</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-653.6210785020376</entry>
+<entry>36.92497053100907</entry>
+<entry>-620.3419403154403</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-612.3027752740309</entry>
+<entry>37.14390647400386</entry>
+<entry>-609.8073369590566</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-571.6875208823476</entry>
+<entry>37.811716835232865</entry>
+<entry>-605.9270624862984</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-37.75913151202258</entry>
+<entry>45.955882678645736</entry>
+<entry>-446.37829918507487</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-399.82784606539644</entry>
+<entry>39.24644885128371</entry>
+<entry>-855.2020085705444</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-378.29085065599065</entry>
+<entry>39.67962930711666</entry>
+<entry>-831.7016658522189</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-398.78894669772126</entry>
+<entry>39.112650409292414</entry>
+<entry>-892.2972426656634</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>39.97124853730202</entry>
+<entry>48.62660334946765</entry>
+<entry>-554.800291037187</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-240.79423294751905</entry>
+<entry>41.47869477745269</entry>
+<entry>-392.2854502350092</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-3.7472818676615134</entry>
+<entry>47.65208687416153</entry>
+<entry>-117.15477981232107</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-0.9566394197754562</entry>
+<entry>47.52082170305423</entry>
+<entry>-140.38861587177962</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>22.76398432685528</entry>
+<entry>47.84945156942239</entry>
+<entry>-141.1920463098213</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-40.478439226862974</entry>
+<entry>47.12617391504893</entry>
+<entry>-104.49444646108896</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-17.663771249935962</entry>
+<entry>47.63381989893805</entry>
+<entry>-94.85989643912762</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-79.54726833244786</entry>
+<entry>46.704939029705734</entry>
+<entry>-67.57001947052777</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>45.15664154221304</entry>
+<entry>47.668359821891336</entry>
+<entry>-179.24876016471535</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-55.122717572026886</entry>
+<entry>47.22521258603439</entry>
+<entry>-73.83014993928373</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>69.31088207080029</entry>
+<entry>48.061398069071785</entry>
+<entry>-173.12178213708103</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-73.89070307451766</entry>
+<entry>47.15920178310893</entry>
+<entry>-41.037148946896195</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-102.44778197084088</entry>
+<entry>46.51319211340713</entry>
+<entry>-35.880809222348034</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>80.51895922771655</entry>
+<entry>47.95105487035222</entry>
+<entry>-201.992392167449</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-34.97472867497709</entry>
+<entry>47.441057628025405</entry>
+<entry>-84.38510702177882</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>111.55584638251457</entry>
+<entry>48.137042251275446</entry>
+<entry>-220.70475450064987</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.4428299830760807</entry>
+<entry>48.112564949853166</entry>
+<entry>-78.3174156062305</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>9.358055199496448</entry>
+<entry>46.00469127523859</entry>
+<entry>-399.4143600873649</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-188.93706783640664</entry>
+<entry>43.61410589268452</entry>
+<entry>-809.5614165049046</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-167.279913899838</entry>
+<entry>44.32029255073886</entry>
+<entry>-807.7765928236768</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-9.092046952573583</entry>
+<entry>46.496736148480615</entry>
+<entry>-478.16041362658143</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-32.66008520289324</entry>
+<entry>45.993802981896614</entry>
+<entry>-467.49249602574855</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>78.1954110666411</entry>
+<entry>47.17311859827917</entry>
+<entry>-435.8773867134005</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>62.14534125768114</entry>
+<entry>46.60127841848293</entry>
+<entry>-396.27856620773673</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>55.44368879974354</entry>
+<entry>47.04152374037767</entry>
+<entry>-447.55588212702423</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>40.83471255504992</entry>
+<entry>47.14433798639811</entry>
+<entry>-466.1197492927313</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-246.1569416426355</entry>
+<entry>41.468968719296825</entry>
+<entry>-787.3541653603315</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-158.1951819016831</entry>
+<entry>43.09380387310365</entry>
+<entry>-522.1341921407729</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-150.82959026226308</entry>
+<entry>45.11913712254276</entry>
+<entry>-827.0154224326834</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-56.85125131206587</entry>
+<entry>45.21248067685913</entry>
+<entry>-520.3963037952781</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-84.8041454856284</entry>
+<entry>44.64468663050604</entry>
+<entry>-523.7007894106209</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-99.7524208300747</entry>
+<entry>44.27374336048201</entry>
+<entry>-538.8653673464432</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-1.5812345545273274</entry>
+<entry>46.865491423626395</entry>
+<entry>-524.9215711019933</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>36.5384317713324</entry>
+<entry>47.60489372851156</entry>
+<entry>-495.7296313047409</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>23.347572331666015</entry>
+<entry>47.6260264506155</entry>
+<entry>-517.8811070416123</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>61.28854244283866</entry>
+<entry>48.08798639728071</entry>
+<entry>-499.3961234046146</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>99.78576895885635</entry>
+<entry>48.420382079899795</entry>
+<entry>-496.8065067976713</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>119.18134216137696</entry>
+<entry>48.78274008297326</entry>
+<entry>-507.91089593898505</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>115.1228319919901</entry>
+<entry>48.34401794050041</entry>
+<entry>-482.9179034344852</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>0.44389456510543823</entry>
+<entry>50.55468010710987</entry>
+<entry>-829.3937907405198</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>4.082179861026816</entry>
+<entry>50.46742567708374</entry>
+<entry>-805.5734493853524</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-167.97731170000043</entry>
+<entry>44.54388291078359</entry>
+<entry>-823.0297403484583</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-349.1258569241036</entry>
+<entry>39.916539187944416</entry>
+<entry>-779.7942113075405</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-316.91942979209125</entry>
+<entry>40.077233013300955</entry>
+<entry>-728.3745839605108</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-413.2385371704586</entry>
+<entry>39.03568479842971</entry>
+<entry>-750.8482167609036</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-582.3167861350812</entry>
+<entry>37.62462965323267</entry>
+<entry>-597.3973140781745</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-527.8393274768023</entry>
+<entry>37.99377417824013</entry>
+<entry>-624.4995656106621</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-416.4902934299316</entry>
+<entry>38.97879219511376</entry>
+<entry>-594.9561832407489</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-403.9889698663028</entry>
+<entry>39.00328233834654</entry>
+<entry>-572.1187338167801</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-456.7577503309585</entry>
+<entry>38.65919804515003</entry>
+<entry>-600.3606987241656</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-446.2835130189778</entry>
+<entry>38.87301515322252</entry>
+<entry>-577.6745359729975</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-375.2538472068263</entry>
+<entry>39.30937754970179</entry>
+<entry>-564.1470322813839</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-426.1533307151403</entry>
+<entry>38.95955452939091</entry>
+<entry>-574.5521043306217</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-375.9466694308212</entry>
+<entry>39.29891164028156</entry>
+<entry>-585.2002249695361</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-510.2537872361718</entry>
+<entry>38.042695329388664</entry>
+<entry>-605.7497697239742</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-484.77824692381546</entry>
+<entry>38.34032233106623</entry>
+<entry>-579.9038319177926</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-200.91281727480236</entry>
+<entry>42.648926365420934</entry>
+<entry>-736.9719115793705</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>56.92550245998427</entry>
+<entry>50.014346265399624</entry>
+<entry>-643.774084020406</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>78.98864589061122</entry>
+<entry>50.533054574097044</entry>
+<entry>-652.6790693895891</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-526.2911747705657</entry>
+<entry>38.01362767180326</entry>
+<entry>-513.4633543631062</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-531.3286495377542</entry>
+<entry>38.00524270303895</entry>
+<entry>-533.0759649360552</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-59.486180336913094</entry>
+<entry>47.32251068097118</entry>
+<entry>-733.5040460480377</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-30.81140729272738</entry>
+<entry>47.979461323252146</entry>
+<entry>-712.8219748334959</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-676.6677582405973</entry>
+<entry>36.98434421086335</entry>
+<entry>-508.30299764778465</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-2.0721960179507732</entry>
+<entry>49.091096630562134</entry>
+<entry>-736.4659017473459</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-296.23718296771403</entry>
+<entry>40.31867489504706</entry>
+<entry>-417.7830569362268</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-226.5304221601691</entry>
+<entry>42.107908216561796</entry>
+<entry>-706.2285647047684</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-551.4762955009937</entry>
+<entry>37.92448326947996</entry>
+<entry>-332.5491680894047</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>23.953997476724908</entry>
+<entry>49.069047744316684</entry>
+<entry>-672.4239075286314</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-651.9631593219237</entry>
+<entry>37.01463656084474</entry>
+<entry>-457.15189433656633</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-674.999568935018</entry>
+<entry>36.99216807418584</entry>
+<entry>-458.2895655920729</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>21.135990335256793</entry>
+<entry>49.60189743457047</entry>
+<entry>-736.8055062601343</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-585.5345909515163</entry>
+<entry>37.71283295462672</entry>
+<entry>-542.3301600906998</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-606.3903037022101</entry>
+<entry>37.50424498820251</entry>
+<entry>-537.7262458503246</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-597.1731336705852</entry>
+<entry>37.3386007274694</entry>
+<entry>-314.0396246416494</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-11.35769412573427</entry>
+<entry>47.609376150429675</entry>
+<entry>-632.6356083974242</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-25.73582187225111</entry>
+<entry>47.461025239738156</entry>
+<entry>-655.1926604798064</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-332.6138169923797</entry>
+<entry>39.883476306463514</entry>
+<entry>-478.49802200030535</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-318.11973087047227</entry>
+<entry>39.99300918337447</entry>
+<entry>-455.8062457656488</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>80.69286683597602</entry>
+<entry>50.73752674466029</entry>
+<entry>-618.4697409849614</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>84.36379739257973</entry>
+<entry>50.46942120995581</entry>
+<entry>-588.0061394590884</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>99.72581562842242</entry>
+<entry>51.09177003572818</entry>
+<entry>-650.0298463907093</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>104.96398203866556</entry>
+<entry>50.79576029165417</entry>
+<entry>-596.5960780410096</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>59.84982405859046</entry>
+<entry>50.08531991964997</entry>
+<entry>-604.5265841353685</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>132.28269565850496</entry>
+<entry>51.00618122771333</entry>
+<entry>-608.6105853980407</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>63.047781533095986</entry>
+<entry>49.83460583439524</entry>
+<entry>-579.0741929179057</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>52.43950856407173</entry>
+<entry>49.15287663201582</entry>
+<entry>-560.1764331795275</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>139.56041318795178</entry>
+<entry>50.02780318209576</entry>
+<entry>-566.4512295462191</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>164.8261428741971</entry>
+<entry>50.45610151668807</entry>
+<entry>-589.6661352869123</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>144.02405046485364</entry>
+<entry>50.52138765403434</entry>
+<entry>-590.0853992486373</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-518.293122620671</entry>
+<entry>38.0150716478942</entry>
+<entry>-427.4971222952008</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-396.8200834451709</entry>
+<entry>38.99240341096739</entry>
+<entry>-261.07732712384313</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-229.32179230661131</entry>
+<entry>41.92931748776544</entry>
+<entry>-733.1890734247863</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-691.8757363174809</entry>
+<entry>36.95710891956419</entry>
+<entry>-471.27888778597116</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-491.75629049830604</entry>
+<entry>38.024881253698815</entry>
+<entry>-330.5477608991787</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-98.72310885949992</entry>
+<entry>45.37457953614008</entry>
+<entry>-668.1406011292711</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-133.73391239659395</entry>
+<entry>44.348884490337426</entry>
+<entry>-659.0476752659306</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-122.15092053660192</entry>
+<entry>44.934423791597816</entry>
+<entry>-693.5773055600002</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-161.44222149730194</entry>
+<entry>43.61922219639474</entry>
+<entry>-721.6053373459727</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-74.93972768168896</entry>
+<entry>45.89942073180395</entry>
+<entry>-659.030666639097</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-657.8998006939655</entry>
+<entry>36.66143646329421</entry>
+<entry>-684.7753662643954</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-708.009244275745</entry>
+<entry>36.19611814953542</entry>
+<entry>-635.0599029455334</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-731.0478924133349</entry>
+<entry>35.94257610831893</entry>
+<entry>-635.1348214540631</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-653.4114658862818</entry>
+<entry>36.82979648762672</entry>
+<entry>-661.9622312467545</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-621.7640420257812</entry>
+<entry>36.95658268733171</entry>
+<entry>-739.8335691941902</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-754.1084621964255</entry>
+<entry>35.72319671910946</entry>
+<entry>-640.1613380033523</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-594.4156820060452</entry>
+<entry>37.383082210891864</entry>
+<entry>-784.8922233562917</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-776.3079780335538</entry>
+<entry>35.335165845951835</entry>
+<entry>-653.444223263301</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-777.5168614558643</entry>
+<entry>35.414138293530385</entry>
+<entry>-631.0884760785848</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-795.6536105942214</entry>
+<entry>35.11449904098641</entry>
+<entry>-647.3065902246162</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-815.5318141290918</entry>
+<entry>35.06880348719212</entry>
+<entry>-634.0441390825436</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-579.9221895452356</entry>
+<entry>37.66219968904501</entry>
+<entry>-807.7498803278431</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-507.9036675458774</entry>
+<entry>38.01587288822361</entry>
+<entry>-383.8960431702435</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Tree" key="Models/Trees/deciduousTree/tree.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>8.0</entry>
+<entry>8.0</entry>
+<entry>8.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-612.2728428968694</entry>
+<entry>37.13866366194101</entry>
+<entry>-348.51942992117256</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="Ground" key="" ref="Terrain">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<material key="Materials/OrthoImage.j3m"/>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>25.0</entry>
+<entry>1.0</entry>
+<entry>25.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-521.6981923107523</entry>
+<entry>0.0</entry>
+<entry>-2664.066319609061</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+</models>
+
+  <geometries>
+  <terrain id="Terrain">
+<imageBasedHeightMap heightScale="1.0" key="RGE/paris.png"/>
+<smoothing percentage="0.9" radius="1"/>
+<lod distanceFactor="2.7" patchSize="65" totalSize="1025"/>
+</terrain>
+</geometries>
+
+  <lights>
+    <directionalLight>
+      <direction>
+        <vector jtype="java_lang_Float" size="3">
+          <entry>0.5</entry>
+          <entry>-0.5</entry>
+          <entry>0.5</entry>
+        </vector>
+      </direction>
+      <color>
+        <vector jtype="java_lang_Float" size="4">
+          <entry>0.7</entry>
+          <entry>0.7</entry>
+          <entry>0.7</entry>
+          <entry>0.7</entry>
+        </vector>
+      </color>
+    </directionalLight>
+    <directionalLight>
+      <direction>
+        <vector jtype="java_lang_Float" size="3">
+          <entry>-0.5</entry>
+          <entry>-0.5</entry>
+          <entry>0.5</entry>
+        </vector>
+      </direction>
+      <color>
+        <vector jtype="java_lang_Float" size="4">
+          <entry>0.7</entry>
+          <entry>0.7</entry>
+          <entry>0.7</entry>
+          <entry>0.7</entry>
+        </vector>
+      </color>
+    </directionalLight>
+    <directionalLight>
+      <direction>
+        <vector jtype="java_lang_Float" size="3">
+          <entry>0.5</entry>
+          <entry>-0.5</entry>
+          <entry>-0.5</entry>
+        </vector>
+      </direction>
+      <color>
+        <vector jtype="java_lang_Float" size="4">
+          <entry>0.7</entry>
+          <entry>0.7</entry>
+          <entry>0.7</entry>
+          <entry>0.7</entry>
+        </vector>
+      </color>
+    </directionalLight>
+    <directionalLight>
+      <direction>
+        <vector jtype="java_lang_Float" size="3">
+          <entry>-0.5</entry>
+          <entry>-0.5</entry>
+          <entry>-0.5</entry>
+        </vector>
+      </direction>
+      <color>
+        <vector jtype="java_lang_Float" size="4">
+          <entry>0.7</entry>
+          <entry>0.7</entry>
+          <entry>0.7</entry>
+          <entry>0.7</entry>
+        </vector>
+      </color>
+    </directionalLight>
+  </lights>
+
+  <skyTexture>Textures/Sky/Dark/darkgloom.dds</skyTexture>
+
+</scene>

@@ -39,7 +39,7 @@ public class SurfaceVegetation implements IObjExport {
 // ========================== CONSTRUCTORS =========================	
 
 	/**
-	 * Constructor with all the fiels
+	 * Constructor with all the fields
 	 * 
 	 * @param geometry the polygon geometry of the vegetation
 	 * @param natuer the nature of the vegetation surface
@@ -97,8 +97,6 @@ public class SurfaceVegetation implements IObjExport {
 				int numGeometries = geometry.getNumGeometries();
 				
 				int newVertexOffset = 0;
-				
-				int var = 0;
 				
 				for (int N = 0; N < numGeometries; N++) {
 					
