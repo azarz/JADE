@@ -1,5 +1,9 @@
 package eu.ensg.jade.geometricObject;
 
+import java.util.List;
+
+import com.vividsolutions.jts.geom.Geometry;
+
 import eu.ensg.jade.output.IObjExport;
 
 /**
@@ -214,6 +218,8 @@ public abstract class Road implements IObjExport{
 			this.speed = "";
 		}
 	}
+	
+	public abstract String sidewalksToOBJ(List<Integer> indexOffsets, double xOffset, double yOffset, Geometry fullRoads);
 
 }
 

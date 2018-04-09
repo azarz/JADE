@@ -2,11 +2,16 @@ package eu.ensg.jade.scene;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.geotools.feature.SchemaException;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
+
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.operation.union.CascadedPolygonUnion;
 
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.input.InputRGE;
@@ -56,7 +61,8 @@ public class SceneBuilder {
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
 //		String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
 		String treeLayer = "src/test/resources/inputTest/openShpTestVege3.shp";
-		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
+//		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
+		String dtmLayer = "src/test/resources/RGE/DTM_1m.asc";
 		
 		
 		SceneBuilder builder = new SceneBuilder();
@@ -262,7 +268,7 @@ public class SceneBuilder {
 		scene.setRoads(roads);
 		
 		// Add punctual vegetation
-		ruleShapeMaker.addVegetation(scene);
+//		ruleShapeMaker.addVegetation(scene);
 //		SurfaceVegetation vege = scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1);		
 	}
 	
@@ -273,8 +279,16 @@ public class SceneBuilder {
 		File directory = new File("assets/RGE");
 		if (! directory.exists()){ directory.mkdir(); }
 		
-		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getCentroid().x, scene.getCentroid().y);		
+		List<Geometry> roadGeometryList = new ArrayList<Geometry>();
+		for (Road road: scene.getRoads().values()){
+			SurfaceRoad surfRoad = (SurfaceRoad) road;
+			roadGeometryList.add(surfRoad.getGeom());
+		}
+		Geometry fullRoads = CascadedPolygonUnion.union(roadGeometryList);
+
+//		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getCentroid().x, scene.getCentroid().y);		
 		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getCentroid().x, scene.getCentroid().y);
+		objWritter.exportSidewalks("assets/RGE/sidewalks.obj", scene.getRoads(), scene.getCentroid().x, scene.getCentroid().y, fullRoads);
 		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getCentroid().x, scene.getCentroid().y);
 		
 //		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
@@ -293,8 +307,8 @@ public class SceneBuilder {
 //		xmlWriter.updateConfig("rainCoefficient", "5");
 		
 		// Add flat ground (debug)
-		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
-		xmlWriter.addModel(grassPlane);
+//		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
+//		xmlWriter.addModel(grassPlane);
 		
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
@@ -306,12 +320,16 @@ public class SceneBuilder {
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
-		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
-		xmlWriter.addModel(buildindModel);
+//		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
+//		xmlWriter.addModel(buildindModel);
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
 		xmlWriter.addModel(roadsModel);
+		
+		// Add sidewalks
+		XMLModel sidewalksModel = new XMLModel("Sidewalks", "RGE/sidewalks.obj");
+		xmlWriter.addModel(sidewalksModel);
 //		
 		// Add water
 //		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");

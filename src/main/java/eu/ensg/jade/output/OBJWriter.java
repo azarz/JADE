@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.vividsolutions.jts.geom.Geometry;
+
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.Hydrography;
@@ -104,6 +106,49 @@ public class OBJWriter {
 			for (Road road: roads.values()) {
 				out.print(road.toOBJ(offsets, xCentroid, yCentroid));
 			}		
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	/**
+	 * Exports a list of Road (SurfaceRoad) object as a single <i>.obj</i> file
+	 * describing the sidewalks
+	 * 
+	 * @param filePath the path to the obj file
+	 * @param objectList the list of roads
+	 * @param xCentroid the centroid x coordinate
+	 * @param yCentroid the centroid y coordinate
+	 */
+	public void exportSidewalks(String filePath, Map<String, Road> roads, double xCentroid, double yCentroid,Geometry fullRoads) {
+		
+		List<Integer> offsets = new ArrayList<Integer>();
+		offsets.add(1);
+		offsets.add(1);
+		offsets.add(1);
+		
+		File file = new File(filePath);
+		
+		try {
+			Files.deleteIfExists(file.toPath());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		
+		try(FileWriter fw = new FileWriter(filePath, true);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter out = new PrintWriter(bw)) {
+			
+			out.print("mtllib paris.mtl\n");
+			int i=0;
+			for (Road road: roads.values()) {
+				System.out.println((100*i/3343.) + "%");
+				out.print(road.sidewalksToOBJ(offsets, xCentroid, yCentroid, fullRoads));
+				i++;
+			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
