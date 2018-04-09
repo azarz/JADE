@@ -44,12 +44,16 @@ public class ArcIntersection {
      *
      */ 
 	public List<Polygon> roadSmoother() throws NoSuchAuthorityCodeException, FactoryException{
+		//Creating the resulting list
 		ArrayList<Polygon> result = new ArrayList<Polygon>();
+		//For each intersection
 		for (Intersection inter : scene.getCollIntersect().getMapIntersection().values()) {
+			//We get the list of roads
 			List<LineRoad> roads = new ArrayList<LineRoad>();
 			for( String roadId :inter.getRoadId().keySet()) {
 				roads.add((LineRoad) scene.getRoads().get(roadId));
 			}
+			//If there are two roads, either we will do a trapezoid, or smooth the buffer following the angle between the roads
 			if (roads.size()==2) {
 				double angle = RoadArc.calculAngle(roads.get(0), roads.get(1));
 				if(angle < 210 && angle > 150 ) {
@@ -60,7 +64,7 @@ public class ArcIntersection {
 				else 
 				{
 					if(roads.get(0).getWidth()!=roads.get(1).getWidth() && roads.get(0).getWidth()!=0  && roads.get(1).getWidth()!=0) { 
-						result.add(bufferSmoothbis(roads, inter));	
+						result.add(bufferSmooth(roads, inter));	
 					}
 					List<Polygon> polygons2=smoothIntersection(roads, inter);				
 					for(int k=0 ; k<polygons2.size();k++) {
@@ -68,7 +72,7 @@ public class ArcIntersection {
 					}					
 				}					
 			}
-			//Intersection of three roads or more
+			//Intersection of three roads or more, we create all arcs
 			else if (roads.size()>2 ){
 				List<Polygon> polygons=smoothIntersection(roads, inter);				
 				for(int k=0 ; k<polygons.size();k++) {
@@ -81,8 +85,13 @@ public class ArcIntersection {
 	}
 	
 	
-
-	private Polygon bufferSmoothbis(List<LineRoad> roads, Intersection inter) {
+	 /**
+     * General method to smooth roads
+     *
+     * @return List of polygons 
+     *
+     */
+	private Polygon bufferSmooth(List<LineRoad> roads, Intersection inter) {
 		
 		Coordinate coord=new Coordinate(inter.getGeometry().x, inter.getGeometry().y);
 		Point pointInter= new GeometryFactory().createPoint(coord);
@@ -231,7 +240,7 @@ public class ArcIntersection {
 	
 	
 	  /**
-     * Creates arc in each intersection in order smooth roads 
+     * Creates arc in each intersection in order to smooth roads 
      *
      * @param List of lineroads
      * @param Intersection
