@@ -110,8 +110,8 @@ public class RoadArc {
     * Calculate the center of the arc by estimating a radius for each road by
     * using this formula: r = 18.6 * SQRT(road_speed/ (10 * road_width + 65 - road_speed)
     *
-    * @param route1 One Arc road
-    * @param route2 Another Arc road 
+    * @param road1 One Arc road
+    * @param road2 Another Arc road 
     *
     * @return the arc center
     */
@@ -155,8 +155,8 @@ public class RoadArc {
     /**
     * Calculates the two points limiting the arc
     *
-    * @param route1 One Arc road
-    * @param route2 Another Arc road
+    * @param road1 One Arc road
+    * @param road2 Another Arc road
     *
     * @return list of the the two point limiting the arc
     */
@@ -220,8 +220,7 @@ public class RoadArc {
      * @param pt_I intersection point
      * @return List of the cutting points
      * 
-     * @throws NoSuchAuthorityCodeException, FactoryException
-     */
+    */
     
     public List<Point> cuttingPoint(Point extremity1, Point extremity2,LineRoad r1, LineRoad r2, Point pt_I) {
     	List<Point> result = new ArrayList<Point>();

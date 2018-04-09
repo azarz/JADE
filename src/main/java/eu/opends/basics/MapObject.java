@@ -79,6 +79,9 @@ public class MapObject
 	 * 
 	 * @param collisionSound 
 	 * 			Sound played when driver car collides with object
+	 * 
+	 * @param friction
+	 * 			!Forgotten by openDS coders!
 	 */
 	public MapObject(String name, Spatial spatial, Vector3f location, Quaternion rotation, Vector3f scale,
 			boolean isVisible, String collisionShape, float mass, String modelPath, String collisionSound,

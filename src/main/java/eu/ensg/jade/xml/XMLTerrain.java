@@ -47,7 +47,7 @@ public class XMLTerrain implements IXMLExport {
 	 * 
 	 * @param id the ID used for the terrain
 	 * @param imageHeightmap the path to the grayscale image used as a heightmap
-	 * @param the terrain's size (which must be a power of 2)
+	 * @param terrainSize the terrain's size (which must be a power of 2)
 	 */
 	public XMLTerrain(String id, String imageHeightmap, int terrainSize) {
 		this.id = id;

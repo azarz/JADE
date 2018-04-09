@@ -62,7 +62,7 @@ public class DTM {
 	/**
 	 * Empty constructor 
 	 * 
-	 * @param tabDTM the table associates to the DTM
+	 * 
 	 */
 	public DTM() {
 		this.tabDTM = new double[0][0];
@@ -77,6 +77,7 @@ public class DTM {
 	 * Constructor using all fields
 	 * 
 	 * @param tabDTM the table associates to the DTM
+	 * @param headerDTM the header Map of the DTM
 	 */
 	public DTM(double[][] tabDTM, Map<String,Double> headerDTM) {
 		this.tabDTM = tabDTM;
@@ -159,7 +160,7 @@ public class DTM {
 	/**
 	 * Transforms a DTM table into a PNG file 
 	 * 
-	 * @throws IOException 
+	 * @param path path to the DTM
 	 */
 	public void toPNG(String path) {
 		

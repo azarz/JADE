@@ -75,7 +75,7 @@ public class OBJWriter {
 	 * Exports a list of Road (SurfaceRoad) object as a single <i>.obj</i> file
 	 * 
 	 * @param filePath the path to the obj file
-	 * @param objectList the list of roads
+	 * @param roads the list of roads
 	 * @param xCentroid the centroid x coordinate
 	 * @param yCentroid the centroid y coordinate
 	 */

@@ -34,14 +34,14 @@ public class SceneBuilder {
 	
 // ========================== ATTRIBUTES ===========================
 	/**
-	 * 
+	 * The scene of the builder
 	 */
 	private Scene scene;
 	
 // ========================== CONSTRUCTORS =========================	
 	
 	/**
-	 * 
+	 * Empty constructor
 	 */
 	public SceneBuilder() {
 		this.scene = new Scene();
@@ -70,15 +70,18 @@ public class SceneBuilder {
 	
 	
 	/**
-	 * @param buildingLayer
-	 * @param roadLayer
-	 * @param hydroLayer
-	 * @param treeLayer
-	 * @param dtmLayer
-	 * @throws FactoryException 
-	 * @throws NoSuchAuthorityCodeException 
-	 * @throws IOException 
-	 * @throws SchemaException 
+	 * Builds the scene from files
+	 * 
+	 * @param buildingLayer The path to the building layer file
+	 * @param roadLayer The path to the road layer file
+	 * @param hydroLayer The path to the hydro layer file
+	 * @param treeLayer The path to the tree layer file
+	 * @param dtmLayer The path to the dtm layer file
+	 * 
+	 * @throws FactoryException Throws FactoryException
+	 * @throws NoSuchAuthorityCodeException Throws NoSuchAuthorityCodeException 
+	 * @throws IOException Throws IOException
+	 * @throws SchemaException Throws SchemaException
 	 */
 	public void buildFromFiles(
 			String buildingLayer,
@@ -98,12 +101,14 @@ public class SceneBuilder {
 	}
 	
 	/**
-	 * @param buildingLayer
-	 * @param roadLayer
-	 * @param hydroLayer
-	 * @param treeLayer
-	 * @param dtmLayer
-	 * @throws Exception 
+	 * Builds the scene from a RGE stream
+	 * 
+	 * @param buildingLayer The location of the building layer stream
+	 * @param roadLayer The location of the road layer stream
+	 * @param hydroLayer The location of the hydro layer stream
+	 * @param treeLayer The location of the tree layer stream
+	 * @param dtmLayer The location of the dtm layer stream
+	 * @throws Exception Throws some exceptions (to be specified) 
 	 */
 	public void buildFromRGE(
 			String buildingLayer,
@@ -246,6 +251,9 @@ public class SceneBuilder {
 		DTM dtm = scene.getDtm();
 		dtm.smooth(0.9, 1);
 		
+		// Add intersections
+//		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
+//		ruleShapeMaker.addIntersectionSigns(scene);
 
 		// Set building height
 		for (Building building : scene.getBuildings()) {
@@ -277,7 +285,8 @@ public class SceneBuilder {
 		
 		// Add intersections
 //		ruleShapeMaker.addIntersectionSigns(scene);
-		
+		ruleShapeMaker.addRoadSigns(scene);
+
 		// Add punctual vegetation
 //		ruleShapeMaker.addVegetation(scene);	
 	}

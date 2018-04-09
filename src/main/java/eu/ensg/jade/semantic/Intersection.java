@@ -33,7 +33,7 @@ public class Intersection {
 	/**
 	 * Constructor using all fields
 	 * 
-	 * @param geometry
+	 * @param geometry The geometry of the new object
 	 */
 	public Intersection(Coordinate geometry) {
 		this.geometry = geometry;

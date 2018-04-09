@@ -31,6 +31,7 @@ public class ArcIntersection {
 	/**
      * General method to smooth roads
      *
+     * @param scene the scene where the roads will be smoothed
      * @return List of polygons 
      */ 
 	public static List<Geometry>  generateSmoothRoad(Scene scene) {
