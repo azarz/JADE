@@ -42,6 +42,7 @@ public class MapObject
 	private float mass;
 	private String modelPath;
 	private String collisionSound;
+	private float friction;
 	
 
 	/**
@@ -80,7 +81,8 @@ public class MapObject
 	 * 			Sound played when driver car collides with object
 	 */
 	public MapObject(String name, Spatial spatial, Vector3f location, Quaternion rotation, Vector3f scale,
-			boolean isVisible, String collisionShape, float mass, String modelPath, String collisionSound)
+			boolean isVisible, String collisionShape, float mass, String modelPath, String collisionSound,
+			float friction)
 	{
 		this.name = name;
 		this.spatial = spatial;
@@ -92,6 +94,7 @@ public class MapObject
 		this.mass = mass;
 		this.modelPath = modelPath;
 		this.collisionSound = collisionSound;
+		this.friction = friction;
 	}
 
 	
@@ -325,6 +328,11 @@ public class MapObject
 	public void setCollisionSound(String collisionSound) 
 	{
 		this.collisionSound = collisionSound;
+	}
+
+
+	public float getFriction() {
+		return friction;
 	}
 
 }

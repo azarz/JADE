@@ -291,7 +291,7 @@ public class Scene {
 
 	}
 	
-	public void addVegetationSurface(SurfaceVegetation newTree){
+	public void addSurfaceVegetation(SurfaceVegetation newTree){
 		this.surfaceVegetation.add(newTree);
 	}
 

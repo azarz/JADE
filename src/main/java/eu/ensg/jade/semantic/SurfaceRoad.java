@@ -7,6 +7,9 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
 import com.vividsolutions.jts.geom.GeometryCollection;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.LineString;
+import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.Polygon;
 
 import eu.ensg.jade.geometricObject.Road;
@@ -108,12 +111,17 @@ public class SurfaceRoad extends Road {
 		int newVertexOffset = 0;
 		
 		for (int N = 0; N < numGeometries; N++) {
-			Polygon polygon = (Polygon) geometry.getGeometryN(N);
-			int numCoords = polygon.getCoordinates().length;
+			Polygon fullPolygon = (Polygon) geometry.getGeometryN(N);
+			int numCoords = fullPolygon.getCoordinates().length;
 			
 			if(numCoords < 3) {
 				continue;
 			}
+			
+			// Filling the polygon holes
+			LineString exteriorRing = fullPolygon.getExteriorRing();
+			GeometryFactory factory = new GeometryFactory();
+			Polygon polygon = factory.createPolygon((LinearRing) exteriorRing);
 			
 			// Triangulating the polygon using th utils class
 			GeometryCollection triangles = (GeometryCollection) JadeUtils.triangulate(polygon);

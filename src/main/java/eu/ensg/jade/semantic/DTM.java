@@ -212,14 +212,23 @@ public class DTM {
 		xFraction -= column;
 		yFraction -= row;
 		
+		double northWest;
+		double northEast;
+		double southWest;
+		double southEast;
+		
 //		double northWest = singleSmooth(column, row, 0.9, 1);
 //		double northEast = singleSmooth(column+1, row, 0.9, 1);
 //		double southWest = singleSmooth(column, row+1, 0.9, 1);
 //		double southEast = singleSmooth(column+1, row+1, 0.9, 1);
-		double northWest = smoothDTM[row][column];
-		double northEast = smoothDTM[row][column+1];
-		double southWest = smoothDTM[row+1][column];
-		double southEast = smoothDTM[row+1][column+1];
+		try {
+			northWest = smoothDTM[row][column];
+			northEast = smoothDTM[row][column+1];
+			southWest = smoothDTM[row+1][column];
+			southEast = smoothDTM[row+1][column+1];
+		} catch (ArrayIndexOutOfBoundsException e) {
+			return 0;
+		}
 		
 		double height = 0;
 		if ((column == 0 && row == 0) || (column == ncols - 1 && row == nrows - 1)) {

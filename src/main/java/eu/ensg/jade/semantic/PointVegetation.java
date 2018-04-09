@@ -63,7 +63,7 @@ public class PointVegetation extends PunctualObject {
 		
 		switch(tree)
 		{
-			case DECIDUOUS: 
+			case DECIDUOUS:
 				this.nature = "Models/Trees/deciduousTree/tree.obj";
 				break;
 			default:
