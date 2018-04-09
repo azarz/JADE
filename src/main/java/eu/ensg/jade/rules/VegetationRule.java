@@ -43,10 +43,9 @@ public class VegetationRule implements RuleShape {
 	/**
 	 * Puts vegetation on vegetation area
 	 * 
-	 * @param vegetation the list of surface of vegetation in RGE data
-	 * @return 
-	 * @throws IOException 
-	 * @throws SchemaException 
+	 * @param scene The scene where to add the objects
+	 * @throws IOException Throws IOException
+	 * @throws SchemaException Throws SchemaException 
 	 */
 	@Override
 	public void addPunctualObject(Scene scene) throws SchemaException, IOException {

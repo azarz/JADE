@@ -49,10 +49,10 @@ public class Building implements IObjExport {
 	/**
 	 * Constructor using all fields
 	 * 
-	 * @param height
-	 * @param z_min
-	 * @param z_max
-	 * @param vertices
+	 * @param height The height of the building
+	 * @param z_min The altitude of the base of the building
+	 * @param z_max The altitude of the roof of the building
+	 * @param vertices The vertices of the building
 	 */
 	public Building(double height, double z_min, double z_max, List<double[]> vertices) {
 		this.height = height;

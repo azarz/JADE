@@ -44,9 +44,9 @@ public class Hydrography implements IObjExport {
 	/**
 	 * Constructor using all fields
 	 * 
-	 * @param nature
-	 * @param z_average
-	 * @param geometry
+	 * @param nature The nature of the surface
+	 * @param z_average The average altitude of the object
+	 * @param geometry The geometry of the layer
 	 */
 	public Hydrography(String nature,double z_average, MultiPolygon geometry) {
 		this.nature = nature;
@@ -88,9 +88,13 @@ public class Hydrography implements IObjExport {
 // ========================== METHODS ==============================
 
 	/**
-	 * This method will have a return that will soon be specified
+	 * Converts into an OBJ String
 	 * 
-	 * @see eu.ensg.jade.geometricObject.WorldObject#toOBJ(java.util.List)
+	 * @param indexOffsets The list of offsets
+	 * @param xOffset The offset for x axis
+	 * @param xOffset The offset for x axis
+	 * 
+	 * @return The string for the OBJ file
 	 */
 	@Override
 	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {

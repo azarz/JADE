@@ -19,7 +19,7 @@ public class RoadSignsRule implements RuleShape {
 	 * 
 	 * Example : pedestrian crossing, speed limitation
 	 * 
-	 * @param roads the roads present in RGE data
+	 * @param scene The scene where to add signs
 	 */	
 	@Override
 	public void addPunctualObject(Scene scene) {

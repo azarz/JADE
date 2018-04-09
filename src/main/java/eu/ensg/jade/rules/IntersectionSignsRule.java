@@ -82,8 +82,8 @@ public class IntersectionSignsRule implements RuleShape{
 	 * 
 	 * @param scene the object containing all the elements of the scene
 	 * 
-	 * @throws FactoryException 
-	 * @throws NoSuchAuthorityCodeException 
+	 * @throws FactoryException Throws FactoryException
+	 * @throws NoSuchAuthorityCodeException Throws NoSuchAuthorityCodeException
 	 */
 	@Override
 	public void addPunctualObject(Scene scene) throws NoSuchAuthorityCodeException, FactoryException{

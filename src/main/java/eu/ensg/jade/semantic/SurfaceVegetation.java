@@ -42,7 +42,7 @@ public class SurfaceVegetation implements IObjExport {
 	 * Constructor with all the fields
 	 * 
 	 * @param geometry the polygon geometry of the vegetation
-	 * @param natuer the nature of the vegetation surface
+	 * @param nature the nature of the vegetation surface
 	 * 
 	 **/
 
@@ -69,16 +69,15 @@ public class SurfaceVegetation implements IObjExport {
 	
 	
 // ========================== METHODS ==============================
-
-	public void addHeight() {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	/**
 	 * This method will have a return that will soon be specified
 	 * 
-	 * @see eu.ensg.jade.geometricObject.WorldObject#toOBJ(java.util.List)
+	 * @param indexOffsets The list of indexes
+	 * @param xOffset the offset following x axis
+	 * @param yOffset the offset following y axis
+	 * 
+	 * @return The string for the OBJ file
 	 */
 	@Override
 	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {
