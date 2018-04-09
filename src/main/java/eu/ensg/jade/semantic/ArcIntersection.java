@@ -14,7 +14,6 @@ import com.vividsolutions.jts.geom.LinearRing;
 import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.Polygon;
 
-import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.scene.Scene;
 
 

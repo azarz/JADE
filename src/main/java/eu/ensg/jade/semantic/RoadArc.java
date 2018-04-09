@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.geotools.geometry.jts.CircularArc;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
@@ -27,7 +28,7 @@ public class RoadArc {
     /**
     * The attribute containing two roads between each the arc will be drawn
     */
-    private LineRoad routes[];
+//    private LineRoad routes[];
    
     /**
     * The attribute containing the radius of the arc

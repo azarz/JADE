@@ -7,7 +7,6 @@ import java.util.Map;
 
 import com.vividsolutions.jts.geom.Coordinate;
 
-import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.Hydrography;
