@@ -216,11 +216,6 @@ public class DTM {
 		double northEast;
 		double southWest;
 		double southEast;
-		
-//		double northWest = singleSmooth(column, row, 0.9, 1);
-//		double northEast = singleSmooth(column+1, row, 0.9, 1);
-//		double southWest = singleSmooth(column, row+1, 0.9, 1);
-//		double southEast = singleSmooth(column+1, row+1, 0.9, 1);
 		try {
 			northWest = smoothDTM[row][column];
 			northEast = smoothDTM[row][column+1];
@@ -245,11 +240,6 @@ public class DTM {
                 height = southWest + (xFraction)*(southEast-southWest) + (1-yFraction)*(northEast-southEast);
         }
 		return height + 0.03;
-				
-//		return JadeUtils.lerp(
-//				JadeUtils.lerp(northWestValue, northEastValue, columnFraction),
-//				JadeUtils.lerp(southWestValue, southEastValue, columnFraction),
-//				rowFraction) + 0.01;
 	}
 	
 	
@@ -277,25 +267,6 @@ public class DTM {
             }
         }
     }
-	
-	
-	private double singleSmooth(int x, int y, double np, int radius) {
-		if (np < 0 || np > 1)  np = 0.9;
-		if (radius == 0) radius = 1;
-		
-		int number = 0;
-		float average = 0;
-		for (int rx = -radius; rx <= radius; rx++) {
-			for (int ry = -radius; ry <= radius; ry++) {
-				if(x+rx >= 0 && x+rx < ncols && y+ry >= 0 && y+ry < nrows) {
-					number++;
-					average += smoothDTM[y+ry][x+rx];
-				}
-			}
-		}
-		average /= number;
-		return JadeUtils.lerp(smoothDTM[y][x], average, np);
-	}
 	
 	private void createSmoothDTM(){
 		// Copy of tabDTM into smoothDTM
