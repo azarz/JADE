@@ -54,7 +54,7 @@ public class OBJWriterTest {
 	
 	@Test
 	public void testRoadExport() {
-		Map<String, Road> objectList = new HashMap<String, Road>();
+		Map<String, SurfaceRoad> objectList = new HashMap<String, SurfaceRoad>();
 		for(int i=0; i<10; i++) {
 			objectList.put(String.valueOf(i), road);
 		}
