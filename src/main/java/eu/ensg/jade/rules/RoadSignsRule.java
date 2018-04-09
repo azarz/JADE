@@ -2,8 +2,8 @@ package eu.ensg.jade.rules;
 
 import java.util.Map;
 
-import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.scene.Scene;
+import eu.ensg.jade.semantic.SurfaceRoad;
 
 /**
  * 
@@ -23,9 +23,9 @@ public class RoadSignsRule implements RuleShape {
 	 */	
 	@Override
 	public void addPunctualObject(Scene scene) {
-			Map<String, Road> roads = scene.getRoads();
+			Map<String, SurfaceRoad> roads = scene.getSurfaceRoads();
 			// We go through all the roads
-			for(Road road : roads.values()){
+			for(SurfaceRoad road : roads.values()){
 				
 			}
 

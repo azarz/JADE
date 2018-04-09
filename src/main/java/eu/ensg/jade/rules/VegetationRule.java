@@ -63,9 +63,8 @@ public class VegetationRule implements RuleShape {
         
         System.out.println("Start road fusion");
 		List<Geometry> roadGeometryList = new ArrayList<Geometry>();
-		for (Road road: scene.getRoads().values()){
-			SurfaceRoad surfRoad = (SurfaceRoad) road;
-			roadGeometryList.add(surfRoad.getGeom());
+		for (SurfaceRoad road: scene.getSurfaceRoads().values()){
+			roadGeometryList.add(road.getGeom());
 		}
 		Geometry roadGeometryUnion = CascadedPolygonUnion.union(roadGeometryList);
         

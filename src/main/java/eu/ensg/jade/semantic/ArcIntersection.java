@@ -3,7 +3,6 @@ package eu.ensg.jade.semantic;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.geotools.geometry.jts.CircularArc;
 import org.geotools.geometry.jts.JTSFactoryFinder;
@@ -34,18 +33,17 @@ public class ArcIntersection {
      *
      * @return List of polygons 
      */ 
-	public static void generateSmoothRoad(Scene scene) {
-		Map<String, Road> roadList = scene.getRoads();
+	public static List<Polygon>  generateSmoothRoad(Scene scene) {
+		Map<String, LineRoad> roadList = scene.getLineRoads();
 		
-//		ArrayList<Polygon> result = new ArrayList<Polygon>();
+		ArrayList<Polygon> result = new ArrayList<Polygon>();
 		for (Intersection inter : scene.getCollIntersect().getMapIntersection().values()) {
 			
-			Set<String> roadsId = inter.getRoadId().keySet();
+			String[] roadsId =  inter.getRoadId().keySet().toArray(new String[0]);
 			List<LineRoad> tempRoads = new ArrayList<LineRoad>();
 			for( String roadId : roadsId) {
 				tempRoads.add((LineRoad) roadList.get(roadId));
 			}
-			
 
 			if(tempRoads.get(0).getWidth()==tempRoads.get(1).getWidth() || tempRoads.get(0).getWidth()==0 || tempRoads.get(1).getWidth()==0) {
 				continue;
@@ -55,13 +53,13 @@ public class ArcIntersection {
 			if (tempRoads.size()==2) {				
 				double angle = RoadArc.calculAngle(tempRoads.get(0), tempRoads.get(1));
 				if(angle < 210 && angle > 150 ) {
-//					result.add(trapezoid(roads, inter));
+					result.add(trapezoid(tempRoads, inter));
 				}
 				else {
-//					result.add(bufferSmoothbis(tempRoads, inter));	
+					result.add(bufferSmooth(tempRoads, inter));	
 					List<Polygon> polygons2=smoothIntersection(tempRoads, inter);
 					for(int k=0 ; k<polygons2.size();k++) {
-//						result.add(polygons2.get(k));
+						result.add(polygons2.get(k));
 					}					
 				}					
 			}
@@ -69,12 +67,12 @@ public class ArcIntersection {
 			else if (tempRoads.size()>2 ){
 				List<Polygon> polygons=smoothIntersection(tempRoads, inter);
 				for(int k=0 ; k<polygons.size();k++) {
-//					result.add(polygons.get(k));
+					result.add(polygons.get(k));
 				}
 			}
 		}
 		
-		scene.setRoads(roadList);
+		return result;
 	}
 	
 	
