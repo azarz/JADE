@@ -253,6 +253,9 @@ public class SceneBuilder {
 		DTM dtm = scene.getDtm();
 		dtm.smooth(0.9, 1);
 		
+		// Add intersections
+//		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
+//		ruleShapeMaker.addIntersectionSigns(scene);
 
 		// Set building height
 		for (Building building : scene.getBuildings()) {
@@ -282,7 +285,8 @@ public class SceneBuilder {
 		
 		// Add intersections
 //		ruleShapeMaker.addIntersectionSigns(scene);
-		
+		ruleShapeMaker.addRoadSigns(scene);
+
 		// Add punctual vegetation
 //		ruleShapeMaker.addVegetation(scene);	
 	}
