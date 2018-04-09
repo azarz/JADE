@@ -3,8 +3,6 @@
  */
 package eu.ensg.jade.rules;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
 

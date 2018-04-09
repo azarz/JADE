@@ -71,7 +71,6 @@ public class RoadSignsRule implements RuleShape {
 				int enter = isEntering(lineRoad, roadBool);
 				
 				int intersectType = calcIntersectionType(roadsTab,numberOfRoads);
-
 				
 				// If the intersection has 5 or more roads, we've placed traffic lights
 				// Intersection with 3 or 4 attached roads and traffic lights are harder to determine ...

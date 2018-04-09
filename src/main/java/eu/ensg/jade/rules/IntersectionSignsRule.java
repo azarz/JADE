@@ -89,7 +89,7 @@ public class IntersectionSignsRule implements RuleShape{
 	public void addPunctualObject(Scene scene) throws NoSuchAuthorityCodeException, FactoryException{
 		
 		// We get the list of existing roads and intersections in the scene
-		Map <String,Road> roads = scene.getRoads();
+//		Map <String,Road> roads = scene.getRoads();
 		IntersectionColl interColl = scene.getCollIntersect();
 		
 		// We go through all the intersections
@@ -102,7 +102,7 @@ public class IntersectionSignsRule implements RuleShape{
 				/*
 				 * => DeadEndStreet sign
 				 */
-				oneRoadIntersect(intersect, roads, scene);	
+				oneRoadIntersect(intersect, scene);	
 			}
 			
 			else if (intersect.getRoadId().size() == 2){
@@ -111,7 +111,7 @@ public class IntersectionSignsRule implements RuleShape{
 				 * => One-way street
 				 * => Do not enter
 				 */
-				twoRoadIntersect(intersect, roads, scene);
+				twoRoadIntersect(intersect, scene);
 			}
 			
 			// If the node has 3 or 4 attached roads
@@ -125,7 +125,7 @@ public class IntersectionSignsRule implements RuleShape{
 				 * => Stop signs
 				 * => Traffic lights
 				 */
-				threeFourRoadIntersect(intersect, roads, scene);
+				threeFourRoadIntersect(intersect, scene);
 			}
 			
 			// If the node has 5 or more attached nodes
@@ -134,7 +134,7 @@ public class IntersectionSignsRule implements RuleShape{
 				 *        => Direction test 
 				 *        => Traffic lights placed 
 				 */
-				fiveRoadIntersect(intersect, roads, scene);
+				fiveRoadIntersect(intersect, scene);
 			}
 			
 			else{
@@ -154,9 +154,10 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private void oneRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) throws NoSuchAuthorityCodeException, FactoryException {
+	private void oneRoadIntersect(Intersection intersect, Scene scene) throws NoSuchAuthorityCodeException, FactoryException {
 		// Roads retrieval
-		LineRoad road = (LineRoad) roads.get(intersect.getRoadId().keySet().toArray()[0]);
+//		LineRoad road = (LineRoad) roads.get(intersect.getRoadId().keySet().toArray()[0]);
+		LineRoad road = scene.getLineRoads().get(intersect.getRoadId().keySet().toArray()[0]);
 		// We see if the road starts on the intersection
 		boolean startOnIntersect = intersect.getRoadId().get(intersect.getRoadId().keySet().toArray()[0]);
 		
@@ -175,13 +176,13 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private void twoRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) throws NoSuchAuthorityCodeException, FactoryException {
+	private void twoRoadIntersect(Intersection intersect, Scene scene) throws NoSuchAuthorityCodeException, FactoryException {
 		// Roads retrieval
 		LineRoad[] roadsTab = new LineRoad[2];
 		boolean[] startOnIntersectTab = new boolean[2];
 
 		// We fill the two previous tabs
-		roadTabFilling(roadsTab, startOnIntersectTab, intersect, roads);
+		roadTabFilling(roadsTab, startOnIntersectTab, intersect, scene.getLineRoads());
 		
 		// Narrow sign installation
 		
@@ -222,7 +223,7 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private void threeFourRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) throws NoSuchAuthorityCodeException, FactoryException {
+	private void threeFourRoadIntersect(Intersection intersect, Scene scene) throws NoSuchAuthorityCodeException, FactoryException {
 		int size = intersect.getRoadId().size();
 		
 		// Roads retrieval
@@ -230,7 +231,7 @@ public class IntersectionSignsRule implements RuleShape{
 		boolean[] startOnIntersectTab = new boolean[size];
 		
 		// We fill the two previous tabs
-		roadTabFilling(roadsTab, startOnIntersectTab, intersect, roads);
+		roadTabFilling(roadsTab, startOnIntersectTab, intersect, scene.getLineRoads());
 		
 		//First test for ramp, round about or "normal".
 		Boolean asRamp = isRamp(roadsTab,startOnIntersectTab,intersect,size);
@@ -263,16 +264,17 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private void fiveRoadIntersect(Intersection intersect, Map<String,Road> roads, Scene scene) throws NoSuchAuthorityCodeException, FactoryException {
+	private void fiveRoadIntersect(Intersection intersect, Scene scene) throws NoSuchAuthorityCodeException, FactoryException {
 		
 		// Roads retrieval
+		Map<String,LineRoad> sceneRoads = scene.getLineRoads();
 		LineRoad lineRoad = new LineRoad(); 
 		boolean roadBool;
 		int enter = -100; 
 		
 		// We go through all the roads
 		for (String road : intersect.getRoadId().keySet()){
-			lineRoad = (LineRoad) roads.get(road);
+			lineRoad = sceneRoads.get(road);
 			roadBool = intersect.getRoadId().get(road);
 			// We check the road driving direction
 			enter = isEntering(lineRoad, roadBool);
@@ -289,13 +291,13 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @param intersect the intersection on which to perform the work
 	 * @param roads the list of roads contained by the scene
 	 */
-	private void roadTabFilling(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Intersection intersect, Map <String,Road> roads){
+	private void roadTabFilling(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Intersection intersect, Map <String,LineRoad> roads){
 		// Roads retrieval
 		int k = 0;
 		
 		// We fill the roadsTab and startOnIntersectTab arrays
 		for (String road : intersect.getRoadId().keySet()){
-			roadsTab[k] = (LineRoad) roads.get(road);
+			roadsTab[k] = roads.get(road);
 			startOnIntersectTab[k] = intersect.getRoadId().get(road);
 			k++;
 		}
@@ -380,6 +382,7 @@ public class IntersectionSignsRule implements RuleShape{
 
 		// Variable 
 		Coordinate[] coord = road.getGeom().getCoordinates();
+		Map<String, LineRoad> sceneLineRoad = scene.getLineRoads();
 		
 		double x = coord[position].x;
 		double y = coord[position].y;
@@ -423,7 +426,7 @@ public class IntersectionSignsRule implements RuleShape{
 
 			for (String roadId: intersection.getRoadId().keySet()){
 				
-				SurfaceRoad surfaceRoad = ((LineRoad) scene.getRoads().get(roadId)).enlarge();
+				SurfaceRoad surfaceRoad = sceneLineRoad.get(roadId).enlarge();
 				if(surfaceRoad.getGeom().contains(g)){
 					doesIntersect = true;
 					d = d + 0.5;

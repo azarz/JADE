@@ -75,6 +75,10 @@ public class SurfaceRoad extends Road {
 	
 
 // ========================== METHODS ==============================
+	
+	public void mergePolygon(Polygon other) {
+		this.geometry.union(other);
+	}
 
 	/**
 	 * Converts a SurfaceRoad into a string corresponding to the .obj description of it
@@ -123,7 +127,7 @@ public class SurfaceRoad extends Road {
 			GeometryFactory factory = new GeometryFactory();
 			Polygon polygon = factory.createPolygon((LinearRing) exteriorRing);
 			
-			// Triangulating the polygon using th utils class
+			// Triangulating the polygon using the utils class
 			GeometryCollection triangles = (GeometryCollection) JadeUtils.triangulate(polygon);
 				
 			int numTriangles = triangles.getNumGeometries();
@@ -178,7 +182,6 @@ public class SurfaceRoad extends Road {
 		// Filling the output string
 		String outputString = vertexCoords + uvCoords + normalCoords + faces;
 		return outputString;
-		
 	}
 	
 	/**

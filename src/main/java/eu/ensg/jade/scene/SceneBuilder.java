@@ -2,13 +2,18 @@ package eu.ensg.jade.scene;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.geotools.feature.SchemaException;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 
-import eu.ensg.jade.geometricObject.Road;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.Polygon;
+import com.vividsolutions.jts.operation.union.CascadedPolygonUnion;
+
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
 import eu.ensg.jade.input.ReaderFactory;
@@ -16,6 +21,7 @@ import eu.ensg.jade.input.ReaderFactory.READER_TYPE;
 import eu.ensg.jade.output.OBJWriter;
 import eu.ensg.jade.output.XMLWriter;
 import eu.ensg.jade.rules.RuleShapeMaker;
+import eu.ensg.jade.semantic.ArcIntersection;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
@@ -157,7 +163,7 @@ public class SceneBuilder {
 		
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_TYPE.ROAD), roadLayer);
-		scene.setRoads(rge.getRoads());
+		scene.setLineRoads(rge.getRoads());
 		scene.setCollIntersect(rge.getCollIntersect());
 		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_TYPE.HYDRO), hydroLayer);
@@ -243,9 +249,8 @@ public class SceneBuilder {
 		dtm.smooth(0.9, 1);
 		
 		// Add intersections
-		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
+//		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
 //		ruleShapeMaker.addIntersectionSigns(scene);
-		ruleShapeMaker.addRoadSigns(scene);
 
 		// Set building height
 		for (Building building : scene.getBuildings()) {
@@ -253,18 +258,32 @@ public class SceneBuilder {
 			building.addHeight();
 		}
 		
-		// Set road height
-		Map<String, Road> roads = scene.getRoads();
-		for(String key : roads.keySet()) {
-			SurfaceRoad surfRoad = new SurfaceRoad( (LineRoad) roads.get(key));
+		// Create the areal roads, and set the correct height
+		Map<String, LineRoad> lineRoads = scene.getLineRoads();
+		Map<String, SurfaceRoad> surfaceRoads = new HashMap<String,SurfaceRoad>();
+		for(String key : lineRoads.keySet()) {
+			SurfaceRoad surfRoad = new SurfaceRoad(lineRoads.get(key));
 			surfRoad.setZfromDTM(dtm);
-			roads.put(key, surfRoad);
+			surfaceRoads.put(key, surfRoad);
 		}
-		scene.setRoads(roads);
+		scene.setSurfaceRoads(surfaceRoads);
 		
+
+		List<Polygon> polygonList = ArcIntersection.generateSmoothRoad(scene);
+		for(SurfaceRoad road : scene.getSurfaceRoads().values()) {
+			polygonList.add(road.getGeom());
+		}
+		Geometry unifiedRoads = CascadedPolygonUnion.union(polygonList);
+
+
+		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
+		
+		// Add intersections
+//		ruleShapeMaker.addIntersectionSigns(scene);
+		ruleShapeMaker.addRoadSigns(scene);
+
 		// Add punctual vegetation
-		ruleShapeMaker.addVegetation(scene);
-//		SurfaceVegetation vege = scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1);		
+//		ruleShapeMaker.addVegetation(scene);	
 	}
 	
 	
@@ -275,7 +294,7 @@ public class SceneBuilder {
 		if (! directory.exists()){ directory.mkdir(); }
 		
 		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getCentroid().x, scene.getCentroid().y);		
-		objWritter.exportRoad("assets/RGE/roads.obj", scene.getRoads(), scene.getCentroid().x, scene.getCentroid().y);
+		objWritter.exportRoad("assets/RGE/roads.obj", scene.getSurfaceRoads(), scene.getCentroid().x, scene.getCentroid().y);
 		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getCentroid().x, scene.getCentroid().y);
 		
 //		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 

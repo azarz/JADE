@@ -7,11 +7,11 @@ import java.util.Map;
 
 import com.vividsolutions.jts.geom.Coordinate;
 
-import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.Hydrography;
 import eu.ensg.jade.semantic.IntersectionColl;
+import eu.ensg.jade.semantic.LineRoad;
 import eu.ensg.jade.semantic.PointVegetation;
 import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceRoad;
@@ -31,7 +31,12 @@ public class Scene {
 	/**
 	 * List of surfacic roads to create {@link SurfaceRoad}
 	 */
-	private Map <String,Road> roads;
+	private Map <String,SurfaceRoad> surfaceRoads;
+	
+	/**
+	 * List of line roads inside the scene {@link LineRoad}
+	 */
+	private Map <String,LineRoad> lineRoads;
 	
 	/**
 	 * List of buildings to create {@link Building}
@@ -44,12 +49,12 @@ public class Scene {
 	private List<Hydrography> hydrography;
 
 	/**
-	 * List of trees to create {@link Vegetation}
+	 * List of trees to create {@link PointVegetation}
 	 */
 	private List<PointVegetation> vegetation;
 
 	/**
-	 * List of trees area used for tree creation {@link Vegetation}
+	 * List of trees area used for tree creation {@link SurfaceVegetation}
 	 */
 	private List<SurfaceVegetation> surfaceVegetation;
 
@@ -61,7 +66,7 @@ public class Scene {
 	/**
 	 * The DTM associated to the scene {@link DTM}
 	 */
-	private DTM dtm;	
+	private DTM dtm;
 	
 	/**
 	 * The coordinate of the scene centroid
@@ -79,7 +84,8 @@ public class Scene {
 
 	public Scene() {
 		this.buildings = new ArrayList<Building>();
-		this.roads = new HashMap<String,Road>();
+		this.lineRoads = new HashMap<String,LineRoad>();
+		this.surfaceRoads = new HashMap<String,SurfaceRoad>();
 		this.hydrography = new ArrayList<Hydrography>();
 		this.vegetation = new ArrayList<PointVegetation>();
 		this.surfaceVegetation = new ArrayList<SurfaceVegetation>();
@@ -92,12 +98,30 @@ public class Scene {
 // ========================== GETTERS/SETTERS ======================
 
 	/**
+	 * Allows to access the list of linear roads in the scene
+	 *
+	 * @return the scene roads
+	 */
+	public Map<String,LineRoad> getLineRoads() {
+		return lineRoads;
+	}
+
+	/**
+	 * Allow to set the scene linear roads
+	 *
+	 * @param roads the list of roads to be assigned
+	 */
+	public void setLineRoads(Map<String,LineRoad> lineRoads) {
+		this.lineRoads = lineRoads;
+	}
+	
+	/**
 	 * Allows to access the list of roads in the scene
 	 *
 	 * @return the scene roads
 	 */
-	public Map<String,Road> getRoads() {
-		return roads;
+	public Map<String,SurfaceRoad> getSurfaceRoads() {
+		return surfaceRoads;
 	}
 
 	/**
@@ -105,8 +129,8 @@ public class Scene {
 	 *
 	 * @param roads the list of roads to be assigned
 	 */
-	public void setRoads(Map<String,Road> roads) {
-		this.roads = roads;
+	public void setSurfaceRoads(Map<String,SurfaceRoad> surfaceRoads) {
+		this.surfaceRoads = surfaceRoads;
 	}
 
 	/**
@@ -258,9 +282,9 @@ public class Scene {
 	 *
 	 * @param newRoad the Road to be added
 	 */
-	public void addRoad(String id, Road newRoad){
-		this.roads.put(id, newRoad);
-	}
+//	public void addRoad(String id, Road newRoad){
+//		this.roads.put(id, newRoad);
+//	}
 
 	/**
 	 * Adds a new buiding to the existing list of buildings

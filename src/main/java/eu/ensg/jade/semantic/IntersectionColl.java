@@ -29,7 +29,6 @@ public class IntersectionColl {
 	public IntersectionColl() {
 		super();
 		this.mapIntersection = new HashMap<String,Intersection>();
-		// TODO Auto-generated constructor stub
 	}
 
 // ========================== GETTERS/SETTERS ======================

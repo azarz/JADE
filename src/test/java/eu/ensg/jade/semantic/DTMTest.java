@@ -1,6 +1,7 @@
 package eu.ensg.jade.semantic;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.awt.Image;
 import java.io.File;
@@ -12,9 +13,6 @@ import javax.imageio.ImageIO;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import eu.ensg.jade.input.BuildingSHP;
-import eu.ensg.jade.input.ShpReader;
 
 /**
  * DTMTest is the class testing the {@link DTM} class

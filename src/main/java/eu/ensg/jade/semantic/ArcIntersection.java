@@ -2,11 +2,10 @@ package eu.ensg.jade.semantic;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.geotools.geometry.jts.CircularArc;
 import org.geotools.geometry.jts.JTSFactoryFinder;
-import org.opengis.referencing.FactoryException;
-import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
@@ -24,66 +23,82 @@ import eu.ensg.jade.scene.Scene;
  * @author JADE
  */
 
-
 public class ArcIntersection {
 	
-	 /**
-	  * The attribute containing the scene
-	  */
-	private Scene scene;
+// ========================== ATTRIBUTES ===========================
 	
-	
-	public ArcIntersection(Scene s) {
-		this.scene=s;
-	}
-	
-	  /**
+	/**
      * General method to smooth roads
      *
      * @return List of polygons 
-     *
      */ 
-	public List<Polygon> roadSmoother() throws NoSuchAuthorityCodeException, FactoryException{
+	public static List<Polygon>  generateSmoothRoad(Scene scene) {
+		Map<String, LineRoad> lineRoads = scene.getLineRoads();
+//		Map<String, SurfaceRoad> surfaceRoads = scene.getSurfaceRoads();
+		
 		ArrayList<Polygon> result = new ArrayList<Polygon>();
 		for (Intersection inter : scene.getCollIntersect().getMapIntersection().values()) {
-			List<LineRoad> roads = new ArrayList<LineRoad>();
-			for( String roadId :inter.getRoadId().keySet()) {
-				roads.add((LineRoad) scene.getRoads().get(roadId));
+			
+			String[] roadsId =  inter.getRoadId().keySet().toArray(new String[0]);
+			List<LineRoad> tempRoads = new ArrayList<LineRoad>();
+			for( String roadId : roadsId) {
+				tempRoads.add((LineRoad) lineRoads.get(roadId));
 			}
-			if (roads.size()==2) {
-				double angle = RoadArc.calculAngle(roads.get(0), roads.get(1));
+
+			//Skip 1 Road cases
+			if (tempRoads.size()<2){
+				continue;
+			}
+			
+			// 2 roads intersecting
+			if (tempRoads.size()==2) {
+				
+				//Skip if there is no width of if the width is the same
+				if(tempRoads.get(0).getWidth()==tempRoads.get(1).getWidth() || tempRoads.get(0).getWidth()==0 || tempRoads.get(1).getWidth()==0) {
+					continue;
+				}				
+				double angle = RoadArc.calculAngle(tempRoads.get(0), tempRoads.get(1));
 				if(angle < 210 && angle > 150 ) {
-					if(roads.get(0).getWidth()!=roads.get(1).getWidth() && roads.get(0).getWidth()!=0  && roads.get(1).getWidth()!=0) {
-						result.add(trapezoid(roads, inter));
-					}
+					result.add(trapezoid(tempRoads, inter));
+//					SurfaceRoad road = surfaceRoads.get(roadsId[0]);
+//					road.mergePolygon(trapezoid(tempRoads, inter));
+//					surfaceRoads.put(roadsId[0], road);
 				}
-				else 
-				{
-					if(roads.get(0).getWidth()!=roads.get(1).getWidth() && roads.get(0).getWidth()!=0  && roads.get(1).getWidth()!=0) { 
-						result.add(bufferSmoothbis(roads, inter));	
-					}
-					List<Polygon> polygons2=smoothIntersection(roads, inter);				
+				else {
+					result.add(bufferSmooth(tempRoads, inter));
+//					SurfaceRoad road = surfaceRoads.get(roadsId[0]);
+//					road.mergePolygon(bufferSmooth(tempRoads, inter));
+//					surfaceRoads.put(roadsId[0], road);
+					
+					
+					List<Polygon> polygons2=smoothIntersection(tempRoads, inter);
 					for(int k=0 ; k<polygons2.size();k++) {
 						result.add(polygons2.get(k));
 					}					
 				}					
 			}
-			//Intersection of three roads or more
-			else if (roads.size()>2 ){
-				List<Polygon> polygons=smoothIntersection(roads, inter);				
+			// 3+ roads intersecting
+			else if (tempRoads.size()>2 ){
+				List<Polygon> polygons=smoothIntersection(tempRoads, inter);
 				for(int k=0 ; k<polygons.size();k++) {
 					result.add(polygons.get(k));
 				}
-			} 
+			}
 		}
 		
 		return result;
 	}
 	
 	
-
-	private Polygon bufferSmoothbis(List<LineRoad> roads, Intersection inter) {
+/**
+ * General method to smooth roads
+ *
+ * @return List of polygons 
+ *
+ */
+	private static Polygon bufferSmooth(List<LineRoad> roads, Intersection inter) {
 		
+		//Initialize
 		Coordinate coord=new Coordinate(inter.getGeometry().x, inter.getGeometry().y);
 		Point pointInter= new GeometryFactory().createPoint(coord);
 		LineRoad road=new LineRoad();
@@ -104,10 +119,12 @@ public class ArcIntersection {
 		Point p1=line.getStartPoint();
 		if(p1.equals(pointInter)) p1=line.getEndPoint();
 		
+		//Unit vector
 		double denominateur= Math.sqrt( Math.pow((p1.getX()-pointInter.getX()),2)   + Math.pow((p1.getY()-pointInter.getY()),2) );
 		double ux= (pointInter.getY() - p1.getY())/denominateur;
 		double uy= (p1.getX()- pointInter.getX() ) / denominateur;
 		
+		//Calculate of the coordinates
 		Coordinate coordonate1= new Coordinate(pointInter.getX()+bigWidth*ux, pointInter.getY()+bigWidth*uy );
 		Coordinate coordonate2= new Coordinate(p1.getX()+smallWidth*ux, p1.getY()+smallWidth*uy);
 		Coordinate coordonate3= new Coordinate(p1.getX()-smallWidth*ux, p1.getY()-smallWidth*uy);
@@ -119,7 +136,7 @@ public class ArcIntersection {
 		trapezeCoor.add(coordonate4);
 		trapezeCoor.add(trapezeCoor.get(0));
 		
-		//We create the polygon		
+		//Create the polygon		
 		GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
     	LinearRing ring = geometryFactory.createLinearRing(trapezeCoor.toArray(new Coordinate[trapezeCoor.size()]));
     	LinearRing holes[] = null;
@@ -129,14 +146,14 @@ public class ArcIntersection {
 	}
 	 
 	/**
-     * Draws a trapezoid in the intersection of two roads which having different radius
+     * Draws a trapezoid in the intersection of two roads which have different radius
      *
      * @param List of LineRoads
      * @param Intersection
      * @return Polygon
      *
      */ 
-	private Polygon trapezoid(List<LineRoad> roads, Intersection inter) {
+	private static Polygon trapezoid(List<LineRoad> roads, Intersection inter) {
 		//List of coordinates to stock the points
 		List<Coordinate> trapezeCoor = new ArrayList<Coordinate>();
 		
@@ -231,37 +248,40 @@ public class ArcIntersection {
 	
 	
 	  /**
-     * Creates arc in each intersection in order smooth roads 
+     * Creates arc in each intersection in order to smooth roads 
      *
      * @param List of lineroads
      * @param Intersection
      * @return Polygon 
      *
      */ 
-	private List<Polygon> smoothIntersection(List<LineRoad> roads, Intersection inter) throws NoSuchAuthorityCodeException, FactoryException {
+	private static List<Polygon> smoothIntersection(List<LineRoad> roads, Intersection inter) {
 		
- 		List<Polygon> polygons = new ArrayList<Polygon>();		
-		for(int i=0; i<roads.size()-1; i++ ) 
-		{
+ 		List<Polygon> polygons = new ArrayList<Polygon>();
+ 		//We go through the road list, with all couples of roads possible
+		for(int i=0; i<roads.size()-1; i++ ) {
 			for(int j=i+1 ; j<roads.size(); j++) {
-				
+				//We create the road Arc
 				RoadArc roadArc = new RoadArc(roads.get(i), roads.get(j));
+				//We create the corresponding arc
 				CircularArc arc = roadArc.createRoadArc(roads.get(i), roads.get(j));
 				boolean intersectionTest=false;
 				for(int k=0 ; k<roads.size(); k++) {
-					//Testing if the eventual arc intersect a road. If yes the arc is not conserved					
+					//Testing if the eventual arc intersect a road. If yes the arc is not conserved	
 					if(arc!=null && roadArc.intersectOther(arc, roads.get(k))) intersectionTest=true;
 				}
-				
+				//Only if there is no intersection
 				if(intersectionTest == false && arc != null) { 
 					List<Coordinate> polygonCoor = new ArrayList<Coordinate>();
-					//circularArcs.add(arc);
 					GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
+					//We linearize the arc
 					double[] pointsOfArc = arc.linearize(1);
+					//We create the list of Coordinates for the polygon with the points of the arc
 					for(int z = 0; z<((pointsOfArc.length)/2)-1; z++) { 
 						Coordinate coord = new Coordinate(pointsOfArc[2*z],pointsOfArc[2*z+1]);
 						polygonCoor.add(coord);
 					}
+					//We get the projected points from the ends of the arc to the corresponding roads
 					Point extremity1 = new GeometryFactory().createPoint(polygonCoor.get(0));
 					Point extremity2 = new GeometryFactory().createPoint(polygonCoor.get(polygonCoor.size()-1));
 					Point ptI=new GeometryFactory().createPoint(inter.getGeometry());
@@ -279,19 +299,22 @@ public class ArcIntersection {
 						pointToAdd1 = coordCutPoint2;
 						pointToAdd2 = coordCutPoint1;
 					}
+				    //We add the points
 					polygonCoor.add(pointToAdd1);
 					polygonCoor.add(new Coordinate(ptI.getX(),ptI.getY()));
 					polygonCoor.add(pointToAdd2);
 					polygonCoor.add(polygonCoor.get(0));
+					//We create the polygon with the list of coordinates and no holes
 			    	LinearRing ring = geometryFactory.createLinearRing(polygonCoor.toArray(new Coordinate[polygonCoor.size()]));
 			    	LinearRing holes[] = null;
-			    	if(geometryFactory.createPolygon(ring, holes).getArea() <10000) 
-			    	polygons.add(geometryFactory.createPolygon(ring, holes));
+			    	Polygon geom = geometryFactory.createPolygon(ring, holes);
+			    	if(geom.getArea() <10000) 
+			    	polygons.add(geom);
 					
+				}
 			}
 		}
-		}
 		return polygons ;
-		}
+	}
 
 }
