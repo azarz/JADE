@@ -124,6 +124,7 @@ public class OBJWriter {
 	 * @param xCentroid the centroid x coordinate
 	 * @param yCentroid the centroid y coordinate
 	 * @param fullRoads The geometry of all the roads
+	 * @param dtm The DTM
 	 */
 	public void exportSidewalks(String filePath, Map<String, LineRoad> roads, double xCentroid, double yCentroid,Geometry fullRoads, DTM dtm) {
 		
