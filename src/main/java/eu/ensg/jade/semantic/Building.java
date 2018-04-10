@@ -1,5 +1,6 @@
 package eu.ensg.jade.semantic;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import com.vividsolutions.jts.geom.Coordinate;
@@ -156,6 +157,9 @@ public class Building implements IObjExport {
 	 * @return A string corresponding to the .obj description of the Building
 	 */
 	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset){
+		// Defining a new decimal format in order to have smaller obj files
+		DecimalFormat format = new DecimalFormat("#.###");		
+		
 		// Checking if the height was already calculated
 		if (!hasHeight) {
 			this.addHeight();
@@ -174,26 +178,26 @@ public class Building implements IObjExport {
 		
 		// Adding the vertex coords as in a obj file
 		for (int i = 0; i < vertices.size(); i++) {
-			vertexCoords += "v " + (vertices.get(i)[0] - xOffset) + " "
-							     + vertices.get(i)[2] + " "
-							     + -1*(vertices.get(i)[1] - yOffset) + "\n";
+			vertexCoords += "v " + format.format(vertices.get(i)[0] - xOffset) + " "
+							     + format.format(vertices.get(i)[2]) + " "
+							     + format.format(-1*(vertices.get(i)[1] - yOffset)) + "\n";
 			
 		}
 		
 		for (int i = 0; i < vertices.size()/2 - 1; i++) {
 			// Calculating the texture coordinates
 			uvCoords += "vt 0 0" + "\n";
-			uvCoords += "vt " + JadeUtils.getDistance(vertices.get(i), vertices.get(i+1)) + " 0" + "\n";
-			uvCoords += "vt " + JadeUtils.getDistance(vertices.get(i), vertices.get(i+1)) + " " + height/3 + "\n";
-			uvCoords += "vt 0 " + height/3 + "\n";
+			uvCoords += "vt " + format.format(JadeUtils.getDistance(vertices.get(i), vertices.get(i+1))) + " 0" + "\n";
+			uvCoords += "vt " + format.format(JadeUtils.getDistance(vertices.get(i), vertices.get(i+1))) + " " + height/3 + "\n";
+			uvCoords += "vt 0 " + format.format(height/3) + "\n";
 			
 			// Calculating the normal vector
 			double[] normalVector = JadeUtils.getNormalVector(vertices.get(i), 
 					vertices.get(i+1), vertices.get(i + vertices.size()/2 ));
 	
-			normalCoords += "vn " + normalVector[0] + " " + 
-									normalVector[1] + " " + 
-									normalVector[2] + "\n";
+			normalCoords += "vn " + format.format(normalVector[0]) + " " + 
+									format.format(normalVector[1]) + " " + 
+									format.format(normalVector[2]) + "\n";
 
 			// Calculating the face corresponding indices
 			faces += "f " + (i + vertexIndexOffset) + "/" + 
@@ -247,9 +251,9 @@ public class Building implements IObjExport {
 				
 				// Adding the vertex coords as in a obj file
 				for (int i = 0; i < coords.length - 1; i++) {
-					vertexCoords += "v " + (coords[i].x - xOffset) + " "
-									     + coords[i].z + " "
-									     + -1*(coords[i].y - yOffset) + "\n";
+					vertexCoords += "v " + format.format(coords[i].x - xOffset) + " "
+									     + format.format(coords[i].z) + " "
+									     + format.format(-1*(coords[i].y - yOffset)) + "\n";
 					
 					faces += " " + (i + vertexIndexOffset + newVertexOffset) + "//" + normalIndexOffset;
 				}

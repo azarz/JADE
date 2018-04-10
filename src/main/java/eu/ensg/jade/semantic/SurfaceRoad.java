@@ -1,5 +1,6 @@
 package eu.ensg.jade.semantic;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,6 +106,9 @@ public class SurfaceRoad extends Road implements IObjExport{
 	 * @return A string corresponding to the .obj description of the SurfaceRoad
 	 */
 	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset){
+		// Defining a new decimal format in order to have smaller obj files
+		DecimalFormat format = new DecimalFormat("#.###");				
+		
 		// Fetching the offsets from the offsets parameter
 		int vertexIndexOffset  = indexOffsets.get(0);
 		int textureIndexOffset = indexOffsets.get(1);
@@ -115,14 +119,7 @@ public class SurfaceRoad extends Road implements IObjExport{
 		String normalCoords = "";
 		String faces;
 		
-		if (direction.equals("Double")) {
-			faces = "usemtl RoadDouble\n";
-		} else if (direction.equals("Direct")) {
-			faces = "usemtl RoadDouble\n";
-		} else {
-			faces = "usemtl RoadDouble\n";
-		}
-		
+		faces = "usemtl RoadDouble\n";
 		
 		int numGeometries = geometry.getNumGeometries();
 		
@@ -163,18 +160,18 @@ public class SurfaceRoad extends Road implements IObjExport{
 				}
 				
 				
-				normalCoords += "vn " + normalVector[0] + " " + 
-										normalVector[1] + " " + 
-										normalVector[2] + "\n";
+				normalCoords += "vn " + format.format(normalVector[0]) + " " + 
+										format.format(normalVector[1]) + " " + 
+										format.format(normalVector[2]) + "\n";
 				normalIndexOffset++;
 				
 				faces += "f";
 				
 				// Adding the vertex coords as in a obj file
 				for (int i = 0; i < coords.length - 1; i++) {
-					vertexCoords += "v " + (coords[i].x - xOffset) + " "
-									     + coords[i].z + " "
-									     + -1*(coords[i].y - yOffset) + "\n";
+					vertexCoords += "v " + format.format(coords[i].x - xOffset) + " "
+									     + format.format(coords[i].z) + " "
+									     + format.format(-1*(coords[i].y - yOffset)) + "\n";
 					
 					faces += " " + (i + vertexIndexOffset + newVertexOffset) + "//" + normalIndexOffset;
 				}
@@ -282,6 +279,9 @@ public class SurfaceRoad extends Road implements IObjExport{
 	}
 	
 	public String sidewalksToOBJ(List<Integer> indexOffsets, double xOffset, double yOffset, Geometry fullRoads) {
+		// Defining a new decimal format in order to have smaller obj files
+		DecimalFormat format = new DecimalFormat("#.###");	
+		
 		// Fetching the offsets from the offsets parameter
 		int vertexIndexOffset  = indexOffsets.get(0);
 		int textureIndexOffset = indexOffsets.get(1);
@@ -336,26 +336,26 @@ public class SurfaceRoad extends Road implements IObjExport{
 			
 			// Adding the vertex coords as in a obj file
 			for (int i = 0; i < vertices.size(); i++) {
-				vertexCoords += "v " + (vertices.get(i)[0] - xOffset) + " "
-								     + vertices.get(i)[2] + " "
-								     + -1*(vertices.get(i)[1] - yOffset) + "\n";
+				vertexCoords += "v " + format.format((vertices.get(i)[0] - xOffset)) + " "
+								     + format.format(vertices.get(i)[2]) + " "
+								     + format.format(-1*(vertices.get(i)[1] - yOffset)) + "\n";
 				
 			}
 			
 			for (int i = 0; i < vertices.size()/2 - 1; i++) {
 				// Calculating the texture coordinates
 				uvCoords += "vt 0 0" + "\n";
-				uvCoords += "vt " + JadeUtils.getDistance(vertices.get(i), vertices.get(i+1)) + " 0" + "\n";
-				uvCoords += "vt " + JadeUtils.getDistance(vertices.get(i), vertices.get(i+1)) + " 0.2\n";
+				uvCoords += "vt " + format.format(JadeUtils.getDistance(vertices.get(i), vertices.get(i+1))) + " 0" + "\n";
+				uvCoords += "vt " + format.format(JadeUtils.getDistance(vertices.get(i), vertices.get(i+1))) + " 0.2\n";
 				uvCoords += "vt 0 0.2\n";
 				
 				// Calculating the normal vector
 				double[] normalVector = JadeUtils.getNormalVector(vertices.get(i), 
 						vertices.get(i+1), vertices.get(i + vertices.size()/2 ));
 		
-				normalCoords += "vn " + normalVector[0] + " " + 
-										normalVector[1] + " " + 
-										normalVector[2] + "\n";
+				normalCoords += "vn " + format.format(normalVector[0]) + " " + 
+										format.format(normalVector[1]) + " " + 
+										format.format(normalVector[2]) + "\n";
 	
 				// Calculating the face corresponding indices
 				faces += "f " + (i + vertexIndexOffset) + "/" + 
@@ -406,9 +406,9 @@ public class SurfaceRoad extends Road implements IObjExport{
 					
 					// Adding the vertex coords as in a obj file
 					for (int i = 0; i < coordinates.length - 1; i++) {
-						vertexCoords += "v " + (coordinates[i].x - xOffset) + " "
-										     + coordinates[i].z + " "
-										     + -1*(coordinates[i].y - yOffset) + "\n";
+						vertexCoords += "v " + format.format(coordinates[i].x - xOffset) + " "
+										     + format.format(coordinates[i].z) + " "
+										     + format.format(-1*(coordinates[i].y - yOffset)) + "\n";
 						
 						faces += " " + (i + vertexIndexOffset + newVertexOffset) + "//" + normalIndexOffset;
 					}
