@@ -8,35 +8,7 @@
   <date>2018-03-15</date>
 
   <models>
-  <model id="grassPlane" key="Scenes/grassPlane/Scene.j3o">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>0.0</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>0.0</entry>
-<entry>0.0</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="driverCar" key="Models/Cars/drivingCars/CitroenC4/Car.j3o">
+  <model id="driverCar" key="Models/Cars/drivingCars/CitroenC4/Car.j3o">
 <mass>1000.0</mass>
 <friction>1.0</friction>
 <visible>true</visible>
@@ -64,7 +36,7 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="Building" key="RGE/buildings.obj">
+<model id="Roads" key="RGE/roads.obj">
 <mass>0.0</mass>
 <friction>1.0</friction>
 <visible>true</visible>
@@ -92,7 +64,7 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="Roads" key="RGE/roads.obj">
+<model id="Sidewalks" key="RGE/sidewalks.obj">
 <mass>0.0</mass>
 <friction>1.0</friction>
 <visible>true</visible>
@@ -128,9 +100,9 @@
 <collisionShape>meshShape</collisionShape>
 <scale>
 <vector jtype="java_lang_Float" size="3">
-<entry>25.0</entry>
 <entry>1.0</entry>
-<entry>25.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
 </vector>
 </scale>
 <rotation quaternion="false">
@@ -142,9 +114,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-521.6981923107523</entry>
+<entry>738.3018076892477</entry>
 <entry>0.0</entry>
-<entry>-2664.066319609061</entry>
+<entry>595.9336803909391</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -155,7 +127,7 @@
   <terrain id="Terrain">
 <imageBasedHeightMap heightScale="1.0" key="RGE/paris.png"/>
 <smoothing percentage="0.9" radius="1"/>
-<lod distanceFactor="2.7" patchSize="65" totalSize="1025"/>
+<lod distanceFactor="2.7" patchSize="65" totalSize="4097"/>
 </terrain>
 </geometries>
 

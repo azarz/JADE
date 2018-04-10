@@ -12,7 +12,6 @@ import java.util.Map;
 
 import com.vividsolutions.jts.geom.Geometry;
 
-import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.Hydrography;
 import eu.ensg.jade.semantic.SurfaceRoad;
@@ -103,7 +102,7 @@ public class OBJWriter {
 			
 			out.print("mtllib paris.mtl\n");
 
-			for (Road road: roads.values()) {
+			for (SurfaceRoad road: roads.values()) {
 				out.print(road.toOBJ(offsets, xCentroid, yCentroid));
 			}		
 			
