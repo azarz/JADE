@@ -12,7 +12,7 @@ import eu.ensg.jade.output.IObjExport;
  * @author JADE
  */
 
-public abstract class Road implements IObjExport{	
+public abstract class Road{	
 	
 // ========================== ATTRIBUTES ===========================
 

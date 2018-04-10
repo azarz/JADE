@@ -20,6 +20,7 @@ import com.vividsolutions.jts.operation.buffer.BufferParameters;
 import com.vividsolutions.jts.operation.distance.DistanceOp;
 
 import eu.ensg.jade.geometricObject.Road;
+import eu.ensg.jade.output.IObjExport;
 import eu.ensg.jade.utils.JadeUtils;
 
 /**
@@ -28,7 +29,7 @@ import eu.ensg.jade.utils.JadeUtils;
  * @author JADE
  */
 
-public class SurfaceRoad extends Road {
+public class SurfaceRoad extends Road implements IObjExport{
 	
 // ========================== ATTRIBUTES ===========================
 	
@@ -250,7 +251,7 @@ public class SurfaceRoad extends Road {
 				
 				// Creating a multipoint from the initial geometry (so only vertices are taken
 				// into account)
-				Coordinate[] geomCoords = geometry.getCoordinates();
+				Coordinate[] geomCoords = oldGeometry.getCoordinates();
 				if (geomCoords.length > 0) {
 					MultiPoint geomAsMultiPoint = factory.createMultiPoint(geomCoords);
 									
@@ -295,7 +296,7 @@ public class SurfaceRoad extends Road {
 		int numGeometries = sidewalk.getNumGeometries();
 		   		  
 		for (int N = 0; N < numGeometries; N++) {
-			// List containing all the building coordinates
+			// List containing all the sidewalk coordinates
 			List<double[]> vertices = new ArrayList<double[]>(); 
 			
 			if (N > 5) {
@@ -303,10 +304,6 @@ public class SurfaceRoad extends Road {
 			}
 			Polygon fullPolygon = (Polygon) sidewalk.getGeometryN(N);
 					
-			// Filling the polygon holes
-//			LineString exteriorRing = fullPolygon.getExteriorRing();
-//			GeometryFactory factory = new GeometryFactory();
-//			Polygon polygon = factory.createPolygon((LinearRing) exteriorRing);
 			Coordinate[] coords = fullPolygon.getCoordinates();
 			
 			if (coords.length < 3) {

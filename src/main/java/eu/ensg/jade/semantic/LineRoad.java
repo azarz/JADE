@@ -160,10 +160,4 @@ public class LineRoad extends Road{
 		return null;
 	}
 
-
-	@Override
-	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {
-		return null;
-	}
-
 }
