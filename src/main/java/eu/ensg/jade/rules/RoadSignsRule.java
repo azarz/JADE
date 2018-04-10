@@ -81,6 +81,9 @@ public class RoadSignsRule implements RuleShape {
 					
 			
 				}
+				else{
+					System.out.println("There is no road in this intersection ... ");
+				}
 			}
 		}
 	}		
@@ -344,7 +347,9 @@ public class RoadSignsRule implements RuleShape {
 			Geometry g = (Geometry) pt;
 
 			for (String roadId: intersection.getRoadId().keySet()){
-				SurfaceRoad surfaceRoad = scene.getLineRoads().get(roadId).enlarge();
+				
+				SurfaceRoad surfaceRoad = ((LineRoad) scene.getLineRoads().get(roadId)).enlarge();
+
 				if(surfaceRoad.getGeom().contains(g)){
 					doesIntersect = true;
 					d = d + 0.5;
