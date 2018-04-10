@@ -19,19 +19,45 @@ import com.vividsolutions.jts.operation.buffer.BufferParameters;
 import eu.ensg.jade.output.IObjExport;
 import eu.ensg.jade.utils.JadeUtils;
 
+/**
+ * Sidewalk is a class to manage sidewalks (as expected)
+ * 
+ * @author JADE
+ */
 public class Sidewalk implements IObjExport{
 	
+// ========================== ATTRIBUTES ===========================
+	
+	/*
+	 * Geometry of the associated LineRoad
+	 */
 	private MultiLineString oldGeometry;
+	/*
+	 * Width of the associated LineRoad
+	 */
 	private double width;
+	/*
+	 * Geometry of the merged SurfaceRoad of the scene
+	 */
 	private Geometry fullRoads;
+	/*
+	 * DTM of the scene
+	 */
 	private DTM dtm;
 	
+// ========================== CONSTRUCTORS =========================
+	
+	/*
+	 * Constructor using all fields
+	 */
 	public Sidewalk(MultiLineString oldGeometry, double width, Geometry fullRoads, DTM dtm) {
 		this.oldGeometry = oldGeometry;
 		this.width = width;
 		this.fullRoads = fullRoads;
 		this.dtm = dtm;
 	}
+
+// ========================== METHODS ==============================
 
 	/**
 	 * Computes a sidewalk with a buffer and difference.
@@ -66,6 +92,9 @@ public class Sidewalk implements IObjExport{
 		return sidewalk;
 	}
 	
+	/*
+	 * Adds an height of 0.2 to a set of vertices
+	 */
 	private void addHeight(List<double[]> vertices) {
 		// Getting the initial number of vertices
 		int size = vertices.size();
@@ -80,6 +109,9 @@ public class Sidewalk implements IObjExport{
 		}
 	}
 	
+	/*
+	 * Extracts a polygon's points into a list of vertices
+	 */
 	private List<double[]> extractPolyPoints(Polygon poly){
 		// List containing all the sidewalk coordinates
 		List<double[]> vertices = new ArrayList<double[]>(); 
@@ -106,6 +138,10 @@ public class Sidewalk implements IObjExport{
 	}
 	
 	@Override
+	/*
+	 * (non-Javadoc)
+	 * @see eu.ensg.jade.output.IObjExport#toOBJ(java.util.List, double, double)
+	 */
 	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {
 		// Defining a new decimal format in order to have smaller obj files
 		NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
