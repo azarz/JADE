@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.MultiPolygon;
 
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
@@ -37,6 +38,11 @@ public class Scene {
 	 * List of line roads inside the scene {@link LineRoad}
 	 */
 	private Map <String,LineRoad> lineRoads;
+	
+	/**
+	 * The geometry that contains the union of all surface roads and intersection
+	 */
+	private MultiPolygon roadArea;
 	
 	/**
 	 * List of buildings to create {@link Building}
@@ -131,6 +137,24 @@ public class Scene {
 	 */
 	public void setSurfaceRoads(Map<String,SurfaceRoad> surfaceRoads) {
 		this.surfaceRoads = surfaceRoads;
+	}
+	
+	/**
+	 * Allows to access the roads area
+	 *
+	 * @return the roads area
+	 */
+	public MultiPolygon getRoadArea() {
+		return roadArea;
+	}
+
+	/**
+	 * Allow to set the roads area
+	 *
+	 * @param surfaceRoads the area of roads to be assigned
+	 */
+	public void setRoadArea(MultiPolygon roadArea) {
+		this.roadArea = roadArea;
 	}
 
 	/**

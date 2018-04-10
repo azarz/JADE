@@ -57,17 +57,16 @@ public class ArcIntersection {
 				double angle = RoadArc.calculAngle(tempRoads.get(0), tempRoads.get(1));
 				if(angle < 210 && angle > 150 ) {
 					Polygon p = trapezoid(tempRoads, inter);
-					result.add(p);
+					if(p.isValid()) result.add(p);
 				}
 				else {
 					Polygon p = bufferSmooth(tempRoads, inter);
-					result.add(p);
+					if(p.isValid()) result.add(p);
 					
 					List<Polygon> polygons2=smoothIntersection(tempRoads, inter);
 					for(int k=0 ; k<polygons2.size();k++) {
 						p = polygons2.get(k);
-						if(!p.isValid()) System.out.println("smoothIntersection (2) incorrect !");
-						result.add(p);
+						if(p.isValid()) result.add(p);
 					}					
 				}					
 			}
@@ -77,8 +76,7 @@ public class ArcIntersection {
 				List<Polygon> polygons=smoothIntersection(tempRoads, inter);
 				for(int k=0 ; k<polygons.size();k++) {
 					p = polygons.get(k);
-					if(!p.isValid()) System.out.println("smoothIntersection (3) incorrect !");
-					result.add(p);
+					if(p.isValid()) result.add(p);
 				}
 			}
 		}
