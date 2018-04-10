@@ -238,30 +238,15 @@ public class SurfaceRoad extends Road implements IObjExport{
 	 * Computes a sidewalks with a buffer and difference.
 	 * @return sidewalk geometry
 	 */
-	private Geometry computeSidewalks(Geometry fullRoads) {
+	private Geometry computeSidewalks(Geometry fullRoads, DTM dtm) {
 		Geometry buffer = oldGeometry.buffer(1 + width/2, 0, BufferParameters.CAP_SQUARE);
-		// Defining a coordinate filter to add the z back
+		// Defining a coordinate filter to set the z according to the DTM
+		// using bilinear interpolation
 		CoordinateSequenceFilter filter = new CoordinateSequenceFilter() {
 			
 			@Override
 			public void filter(CoordinateSequence seq, int i) {
-				seq.getCoordinate(i).z = 0;	
-				
-				// Creating a point from the coordinate
-				GeometryFactory factory = new GeometryFactory();
-				Point point = factory.createPoint(seq.getCoordinate(i));
-				
-				// Creating a multipoint from the initial geometry (so only vertices are taken
-				// into account)
-				Coordinate[] geomCoords = oldGeometry.getCoordinates();
-				if (geomCoords.length > 0) {
-					MultiPoint geomAsMultiPoint = factory.createMultiPoint(geomCoords);
-									
-					// Calculating the nearest coordinate in the collection
-					Coordinate[] coords = DistanceOp.nearestPoints(geomAsMultiPoint, point);
-					
-					seq.getCoordinate(i).z = coords[0].z;
-				}
+				seq.setOrdinate(i, 2, dtm.getHeightAtPoint(seq.getX(i), seq.getY(i)));
 			}
 
 			@Override
@@ -282,7 +267,7 @@ public class SurfaceRoad extends Road implements IObjExport{
 		return sidewalk;
 	}
 	
-	public String sidewalksToOBJ(List<Integer> indexOffsets, double xOffset, double yOffset, Geometry fullRoads) {
+	public String sidewalksToOBJ(List<Integer> indexOffsets, double xOffset, double yOffset, Geometry fullRoads, DTM dtm) {
 		// Defining a new decimal format in order to have smaller obj files
 		NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
 		DecimalFormat format = (DecimalFormat)nf;
@@ -299,7 +284,7 @@ public class SurfaceRoad extends Road implements IObjExport{
 		
 		String faces = "usemtl Sidewalk\n";
 		
-		Geometry sidewalk = computeSidewalks(fullRoads);
+		Geometry sidewalk = computeSidewalks(fullRoads, dtm);
 		int numGeometries = sidewalk.getNumGeometries();
 		   		  
 		for (int N = 0; N < numGeometries; N++) {

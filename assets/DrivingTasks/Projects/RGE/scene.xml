@@ -29,9 +29,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
+<entry>10.0</entry>
 <entry>70.0</entry>
-<entry>0.0</entry>
+<entry>10.0</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
