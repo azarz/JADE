@@ -6,7 +6,6 @@ import java.util.List;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
-import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.MultiLineString;
 import com.vividsolutions.jts.geom.MultiPoint;
@@ -144,7 +143,7 @@ public class LineRoad extends Road{
 		// Applying the filter
 		newGeometry.apply(filter);
 		
-		SurfaceRoad surfacicRoad = new SurfaceRoad(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, name, newGeometry, geometry);
+		SurfaceRoad surfacicRoad = new SurfaceRoad(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, name, newGeometry);
 		
 		return surfacicRoad;
 		
@@ -157,12 +156,6 @@ public class LineRoad extends Road{
 	 */
 	public SurfaceRoad smooth(){
 //		SurfaceRoad surf = this.enlarge();
-		return null;
-	}
-
-
-	@Override
-	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {
 		return null;
 	}
 

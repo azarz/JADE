@@ -1,18 +1,12 @@
 package eu.ensg.jade.geometricObject;
 
-import java.util.List;
-
-import com.vividsolutions.jts.geom.Geometry;
-
-import eu.ensg.jade.output.IObjExport;
-
 /**
  * Road is the super-class for roads
  * 
  * @author JADE
  */
 
-public abstract class Road implements IObjExport{	
+public abstract class Road{	
 	
 // ========================== ATTRIBUTES ===========================
 
