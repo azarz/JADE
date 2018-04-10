@@ -151,11 +151,11 @@ public class PoissonDiskSampler {
 	/**
 	 * Class constructor based on on start point and end point to define the extent
 	 * 
-	 * @param startX
-	 * @param startY
-	 * @param endX
-	 * @param endY
-	 * @param radius
+	 * @param startX the upper left X coordinate of the concerned area
+	 * @param startY the upper left Y coordinate of the concerned area
+	 * @param endX the down right X coordinate of the concerned area
+	 * @param endY the down right Y coordinate of the concerned area
+	 * @param radius the minimum distance between each point
 	 */
 	public PoissonDiskSampler(double startX, double startY, double endX, double endY, double radius) {
 		this(startX, startY, endX, endY, radius, 30);
@@ -165,10 +165,10 @@ public class PoissonDiskSampler {
 	 * Class constructor based on on start point and end point to define the extent, and leaving all parameters
 	 * as default
 	 * 
-	 * @param startX
-	 * @param startY
-	 * @param endX
-	 * @param endY
+	 * @param startX the upper left X coordinate of the concerned area
+	 * @param startY the upper left Y coordinate of the concerned area
+	 * @param endX the down right X coordinate of the concerned area
+	 * @param endY the down right Y coordinate of the concerned area
 	 */
 	public PoissonDiskSampler(double startX, double startY, double endX, double endY) {
 		this(startX, startY, endX, endY, 10, 30);

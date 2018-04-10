@@ -18,10 +18,14 @@ public interface RuleShape {
 // ========================== METHODS ==============================
 
 	/**
-	 * @throws FactoryException 
-	 * @throws NoSuchAuthorityCodeException 
-	 * @throws IOException 
-	 * @throws SchemaException 
+	 * Adds punctual objects to the scene
+	 * 
+	 * @param scene The scene where to add punctual object
+	 * 
+	 * @throws FactoryException Throws FactoryException
+	 * @throws NoSuchAuthorityCodeException Throws NoSuchAuthorityCodeException
+	 * @throws IOException Throws IOException
+	 * @throws SchemaException Throws SchemaException
 	 * 
 	 */
 	public void addPunctualObject(Scene scene) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException;

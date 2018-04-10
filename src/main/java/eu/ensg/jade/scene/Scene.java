@@ -109,7 +109,7 @@ public class Scene {
 	/**
 	 * Allow to set the scene linear roads
 	 *
-	 * @param roads the list of roads to be assigned
+	 * @param lineRoads the list of roads to be assigned
 	 */
 	public void setLineRoads(Map<String,LineRoad> lineRoads) {
 		this.lineRoads = lineRoads;
@@ -127,7 +127,7 @@ public class Scene {
 	/**
 	 * Allow to set the scene roads
 	 *
-	 * @param roads the list of roads to be assigned
+	 * @param surfaceRoads the list of roads to be assigned
 	 */
 	public void setSurfaceRoads(Map<String,SurfaceRoad> surfaceRoads) {
 		this.surfaceRoads = surfaceRoads;
@@ -253,7 +253,7 @@ public class Scene {
 	/**
 	 * Sets the scene centroid
 	 *
-	 * @param centroid
+	 * @param centroid The centroid of the scene
 	 */
 	public void setCentroid(Coordinate centroid) {
 		this.centroid = centroid;

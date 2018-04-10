@@ -109,7 +109,12 @@ public class JadeUtils {
 
 	
 	/**
+	 * Calculates the angle considering a road and position
 	 * 
+	 * @param road The road
+	 * @param position The position
+	 * 
+	 * @return The angle of the road
 	 */
 	public static double roadAngle(LineRoad road, int position){
 		
@@ -206,7 +211,7 @@ public class JadeUtils {
 	 * @param a Lower limit
 	 * @param b Upper Limit
 	 * @param x Value to interpolate
-	 * @return
+	 * @return The linear interpolation result
 	 */
 	public static double lerp(double a, double b, double x) {
 		return (1-x)*a + x*b;

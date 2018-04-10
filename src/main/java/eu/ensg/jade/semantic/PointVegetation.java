@@ -23,9 +23,10 @@ public class PointVegetation extends PunctualObject {
 // ========================== CONSTRUCTORS ===========================
 
 	/**
-	 * 
-	 * @param coord
-	 * @param nature
+	 * Constructor using all fields
+	 *  
+	 * @param coord The coordinate of the vegetation
+	 * @param tree The tree for this vegetation point
 	 */
 	public PointVegetation(Coordinate coord,TREE tree) {
 		super(coord);
@@ -36,7 +37,7 @@ public class PointVegetation extends PunctualObject {
 	
 	/**
 	 * 
-	 * @return
+	 * @return Then nature of the vegetation
 	 */
 	public String getNature() {
 		return nature;

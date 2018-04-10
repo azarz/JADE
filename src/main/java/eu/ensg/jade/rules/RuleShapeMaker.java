@@ -46,36 +46,39 @@ public class RuleShapeMaker {
 // ========================== METHODS ==============================
 
 	/**
+	 * Adds intersection signs to a scene
 	 * 
-	 * @param scene
-	 * @throws FactoryException 
-	 * @throws NoSuchAuthorityCodeException 
-	 * @throws IOException 
-	 * @throws SchemaException 
+	 * @param scene The scene where to add intersection signs
+	 * @throws FactoryException Throws FactoryException
+	 * @throws NoSuchAuthorityCodeException Throws NoSuchAuthorityCodeException
+	 * @throws IOException Throws IOException
+	 * @throws SchemaException Throws SchemaException
 	 */
 	public void addIntersectionSigns(Scene scene) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException{
 		intersectionSigns.addPunctualObject(scene);
 	}
 	
 	/**
+	 * Adds Road Signs to a scene
 	 * 
-	 * @param scene
-	 * @throws FactoryException 
-	 * @throws NoSuchAuthorityCodeException 
-	 * @throws IOException 
-	 * @throws SchemaException 
+	 * @param scene The scene where to add intersection signs
+	 * @throws FactoryException Throws FactoryException
+	 * @throws NoSuchAuthorityCodeException Throws NoSuchAuthorityCodeException
+	 * @throws IOException Throws IOException
+	 * @throws SchemaException Throws SchemaException
 	 */
 	public void addRoadSigns(Scene scene) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException{
 		roadSigns.addPunctualObject(scene);
 	}
 	
 	/**
+	 * Adds vegetation to the scene
 	 * 
-	 * @param scene
-	 * @throws FactoryException 
-	 * @throws NoSuchAuthorityCodeException 
-	 * @throws IOException 
-	 * @throws SchemaException 
+	 * @param scene The scene where to add intersection signs
+	 * @throws FactoryException Throws FactoryException
+	 * @throws NoSuchAuthorityCodeException Throws NoSuchAuthorityCodeException
+	 * @throws IOException Throws IOException
+	 * @throws SchemaException Throws SchemaException
 	 */
 	public void addVegetation(Scene scene) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException{
 		vegetation.addPunctualObject(scene);

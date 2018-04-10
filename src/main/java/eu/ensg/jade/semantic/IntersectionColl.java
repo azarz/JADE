@@ -16,7 +16,7 @@ public class IntersectionColl {
 	/**
 	 * Constructor with all the fields
 	 * 
-	 * @param mapIntersection
+	 * @param mapIntersection The HashMap of intersections
 	 */
 	public IntersectionColl(HashMap<String, Intersection> mapIntersection) {
 		super();

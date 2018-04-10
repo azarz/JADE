@@ -2,6 +2,7 @@ package eu.ensg.jade.scene;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,10 +11,12 @@ import org.geotools.feature.SchemaException;
 import org.opengis.referencing.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 
+import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.Polygon;
 import com.vividsolutions.jts.operation.union.CascadedPolygonUnion;
 
+import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
 import eu.ensg.jade.input.ReaderFactory;
@@ -36,14 +39,14 @@ public class SceneBuilder {
 	
 // ========================== ATTRIBUTES ===========================
 	/**
-	 * 
+	 * The scene of the builder
 	 */
 	private Scene scene;
 	
 // ========================== CONSTRUCTORS =========================	
 	
 	/**
-	 * 
+	 * Empty constructor
 	 */
 	public SceneBuilder() {
 		this.scene = new Scene();
@@ -62,7 +65,8 @@ public class SceneBuilder {
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
 //		String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
 		String treeLayer = "src/test/resources/inputTest/openShpTestVege3.shp";
-		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
+//		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
+		String dtmLayer = "src/test/resources/RGE/DTM_1m.asc";
 		
 		
 		SceneBuilder builder = new SceneBuilder();
@@ -72,15 +76,18 @@ public class SceneBuilder {
 	
 	
 	/**
-	 * @param buildingLayer
-	 * @param roadLayer
-	 * @param hydroLayer
-	 * @param treeLayer
-	 * @param dtmLayer
-	 * @throws FactoryException 
-	 * @throws NoSuchAuthorityCodeException 
-	 * @throws IOException 
-	 * @throws SchemaException 
+	 * Builds the scene from files
+	 * 
+	 * @param buildingLayer The path to the building layer file
+	 * @param roadLayer The path to the road layer file
+	 * @param hydroLayer The path to the hydro layer file
+	 * @param treeLayer The path to the tree layer file
+	 * @param dtmLayer The path to the dtm layer file
+	 * 
+	 * @throws FactoryException Throws FactoryException
+	 * @throws NoSuchAuthorityCodeException Throws NoSuchAuthorityCodeException 
+	 * @throws IOException Throws IOException
+	 * @throws SchemaException Throws SchemaException
 	 */
 	public void buildFromFiles(
 			String buildingLayer,
@@ -100,12 +107,14 @@ public class SceneBuilder {
 	}
 	
 	/**
-	 * @param buildingLayer
-	 * @param roadLayer
-	 * @param hydroLayer
-	 * @param treeLayer
-	 * @param dtmLayer
-	 * @throws Exception 
+	 * Builds the scene from a RGE stream
+	 * 
+	 * @param buildingLayer The location of the building layer stream
+	 * @param roadLayer The location of the road layer stream
+	 * @param hydroLayer The location of the hydro layer stream
+	 * @param treeLayer The location of the tree layer stream
+	 * @param dtmLayer The location of the dtm layer stream
+	 * @throws Exception Throws some exceptions (to be specified) 
 	 */
 	public void buildFromRGE(
 			String buildingLayer,
@@ -268,13 +277,14 @@ public class SceneBuilder {
 		}
 		scene.setSurfaceRoads(surfaceRoads);
 		
-
-		List<Polygon> polygonList = ArcIntersection.generateSmoothRoad(scene);
-		for(SurfaceRoad road : scene.getSurfaceRoads().values()) {
-			polygonList.add(road.getGeom());
-		}
-		//Geometry unifiedRoads = CascadedPolygonUnion.union(polygonList);
-
+		List<Geometry> polygonList = ArcIntersection.generateSmoothRoad(scene);
+//		for (SurfaceRoad road: surfaceRoads.values()){
+//			polygonList.add(road.getGeom());
+//		}
+//		Geometry roadGeometryUnion = CascadedPolygonUnion.union(polygonList);
+//		SurfaceRoad unifiedRoads = new SurfaceRoad(0, 0, 0, 0, "", "", "", "", "", unifiedRoadGeometry);
+//		unifiedRoads.setZfromDTM(dtm);
+//		surfaceRoads.put("-1", unifiedRoads);
 
 		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
 		
@@ -282,20 +292,39 @@ public class SceneBuilder {
 		ruleShapeMaker.addIntersectionSigns(scene);
 		ruleShapeMaker.addRoadSigns(scene);
 
+
 		// Add punctual vegetation
 //		ruleShapeMaker.addVegetation(scene);	
+
 	}
 	
 	
 	private void exportRGEData(Scene scene) {
-		OBJWriter objWritter = new OBJWriter();
+		OBJWriter objWriter = new OBJWriter();
 		
 		File directory = new File("assets/RGE");
 		if (! directory.exists()){ directory.mkdir(); }
 		
-//		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getCentroid().x, scene.getCentroid().y);		
-		objWritter.exportRoad("assets/RGE/roads.obj", scene.getSurfaceRoads(), scene.getCentroid().x, scene.getCentroid().y);
-		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getCentroid().x, scene.getCentroid().y);
+
+		Coordinate centroid = scene.getCentroid();
+		
+		objWriter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), centroid.x, centroid.y);
+		
+		objWriter.exportRoad("assets/RGE/roads.obj", scene.getSurfaceRoads(), centroid.x, centroid.y);
+//		List<IObjExport> roads = new ArrayList<>(0); roads.add(scene.getSurfaceRoads().get("-1"));
+//		objWriter.exportFromList("assets/RGE.roads.obj", roads, centroid.x, centroid.y);
+		
+		List<Geometry> roadGeometryList = new ArrayList<Geometry>();
+		for (Road road: scene.getSurfaceRoads().values()){
+			SurfaceRoad surfRoad = (SurfaceRoad) road;
+			roadGeometryList.add(surfRoad.getGeom());
+		}
+		Geometry fullRoads = CascadedPolygonUnion.union(roadGeometryList);
+		
+		objWriter.exportSidewalks("assets/RGE/sidewalks.obj", scene.getSurfaceRoads(), scene.getCentroid().x, scene.getCentroid().y, fullRoads);
+		
+//		objWriter.exportWater("assets/RGE/water.obj", scene.getHydrography(), centroid.x, centroid.y);
+
 		
 //		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
 //		vege.add(scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1));
@@ -313,8 +342,8 @@ public class SceneBuilder {
 //		xmlWriter.updateConfig("rainCoefficient", "5");
 		
 		// Add flat ground (debug)
-		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
-		xmlWriter.addModel(grassPlane);
+//		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
+//		xmlWriter.addModel(grassPlane);
 		
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
@@ -332,6 +361,10 @@ public class SceneBuilder {
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
 		xmlWriter.addModel(roadsModel);
+		
+		// Add sidewalks
+		XMLModel sidewalksModel = new XMLModel("Sidewalks", "RGE/sidewalks.obj");
+		xmlWriter.addModel(sidewalksModel);
 //		
 		// Add water
 //		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
