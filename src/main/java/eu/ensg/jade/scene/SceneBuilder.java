@@ -321,7 +321,7 @@ public class SceneBuilder {
 		}
 		Geometry fullRoads = CascadedPolygonUnion.union(roadGeometryList);
 		
-		objWriter.exportSidewalks("assets/RGE/sidewalks.obj", scene.getSurfaceRoads(), scene.getCentroid().x, scene.getCentroid().y, fullRoads, scene.getDtm());
+		objWriter.exportSidewalks("assets/RGE/sidewalks.obj", scene.getLineRoads(), scene.getCentroid().x, scene.getCentroid().y, fullRoads, scene.getDtm());
 		
 		objWriter.exportWater("assets/RGE/water.obj", scene.getHydrography(), centroid.x, centroid.y);
 
