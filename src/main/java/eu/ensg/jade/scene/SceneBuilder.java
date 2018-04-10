@@ -285,7 +285,7 @@ public class SceneBuilder {
 		
 		// Add intersections
 //		ruleShapeMaker.addIntersectionSigns(scene);
-		ruleShapeMaker.addRoadSigns(scene);
+//		ruleShapeMaker.addRoadSigns(scene);
 
 		// Add punctual vegetation
 //		ruleShapeMaker.addVegetation(scene);	
