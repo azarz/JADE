@@ -2,7 +2,6 @@ package eu.ensg.jade.semantic;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -15,12 +14,7 @@ import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.LinearRing;
-import com.vividsolutions.jts.geom.MultiLineString;
-import com.vividsolutions.jts.geom.MultiPoint;
-import com.vividsolutions.jts.geom.Point;
 import com.vividsolutions.jts.geom.Polygon;
-import com.vividsolutions.jts.operation.buffer.BufferParameters;
-import com.vividsolutions.jts.operation.distance.DistanceOp;
 
 import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.output.IObjExport;
@@ -39,7 +33,7 @@ public class SurfaceRoad extends Road implements IObjExport{
 	/**
 	 * the attribute containing the geometry of the road
 	 */
-	Polygon geometry;
+	Geometry geometry;
 	
 	
 // ========================== CONSTRUCTORS =========================
@@ -57,9 +51,8 @@ public class SurfaceRoad extends Road implements IObjExport{
 	 * @param number The number of the road
 	 * @param geometry The geometry of the road
 	 * @param name The name of the road
-	 * @param oldGeometry The linear geometry of the road
 	 */
-	public SurfaceRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, String nature, String importance, String number,  String name, Polygon geometry) {
+	public SurfaceRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, String nature, String importance, String number,  String name, Geometry geometry) {
 		super(width, wayNumber, z_ini, z_fin, direction, nature, importance, number, name);
 		this.geometry = geometry;
 	}
@@ -81,16 +74,12 @@ public class SurfaceRoad extends Road implements IObjExport{
 	 * 
 	 * @return the road original linear road
 	 */
-	public Polygon getGeom() {
+	public Geometry getGeom() {
 		return this.geometry;
 	}
 	
 
 // ========================== METHODS ==============================
-	
-	public void mergePolygon(Polygon other) {
-		this.geometry.union(other);
-	}
 
 	/**
 	 * Converts a SurfaceRoad into a string corresponding to the .obj description of it
@@ -201,7 +190,7 @@ public class SurfaceRoad extends Road implements IObjExport{
 	public void setZfromDTM(DTM dtm) {
 		// Densify the geometry so it has a number of vertices corresponding to the DTM
 		if(geometry.getCoordinates().length > 0) {
-			geometry = (Polygon) Densifier.densify(geometry,dtm.getCellsize());
+			geometry = Densifier.densify(geometry, dtm.getCellsize());
 		}
 		
 		// Defining a coordinate filter to set the z according to the DTM

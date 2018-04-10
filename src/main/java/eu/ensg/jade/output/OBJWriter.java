@@ -124,6 +124,7 @@ public class OBJWriter {
 	 * @param xCentroid the centroid x coordinate
 	 * @param yCentroid the centroid y coordinate
 	 * @param fullRoads The geometry of all the roads
+	 * @param dtm The DTM
 	 */
 	public void exportSidewalks(String filePath, Map<String, LineRoad> roads, double xCentroid, double yCentroid,Geometry fullRoads, DTM dtm) {
 		
@@ -227,38 +228,6 @@ public class OBJWriter {
 				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
 			}
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public void exportFromList(String filePath, List<IObjExport> objList, double xCentroid, double yCentroid) {
-		
-		List<Integer> offsets = new ArrayList<Integer>();
-		offsets.add(1);
-		offsets.add(1);
-		offsets.add(0);
-		
-		File file = new File(filePath);
-		
-		try {
-			Files.deleteIfExists(file.toPath());
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		
-		
-		try(FileWriter fw = new FileWriter(filePath, true);
-				BufferedWriter bw = new BufferedWriter(fw);
-				PrintWriter out = new PrintWriter(bw)) {
-			
-			out.print("mtllib paris.mtl\n");
-
-			for (int i = 0; i < objList.size(); i++) {
-				out.print(objList.get(i).toOBJ(offsets, xCentroid, yCentroid));
-			}	
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -32,6 +32,7 @@
 <entry>0.0</entry>
 <entry>70.0</entry>
 <entry>0.0</entry>
+<<<<<<< HEAD
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -60,6 +61,8 @@
 <entry>0.0</entry>
 <entry>0.0</entry>
 <entry>0.0</entry>
+=======
+>>>>>>> 140f307d055e6acc5c1588f02ad982f81bd94b53
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -120,6 +123,7 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
+<<<<<<< HEAD
 <model id="Water" key="RGE/water.obj">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -56204,6 +56208,8 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
+=======
+>>>>>>> 140f307d055e6acc5c1588f02ad982f81bd94b53
 <model id="Ground" key="" ref="Terrain">
 <mass>0.0</mass>
 <friction>1.0</friction>
