@@ -81,6 +81,9 @@ public class RoadSignsRule implements RuleShape {
 					
 			
 				}
+				else{
+					System.out.println("There is no road in this intersection ... ");
+				}
 			}
 		}
 	}		
@@ -92,7 +95,8 @@ public class RoadSignsRule implements RuleShape {
 	 * @param intersect the intersection on which to perform the work
 	 * @param roads the list of roads contained by the scene
 	 */
-	private void roadTabFilling(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Intersection intersect, Map <String,LineRoad> roads){
+
+	private void roadTabFilling(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Intersection intersect, Map<String, LineRoad> roads){
 		// Roads retrieval
 		int k = 0;
 		
@@ -344,7 +348,8 @@ public class RoadSignsRule implements RuleShape {
 
 			for (String roadId: intersection.getRoadId().keySet()){
 				
-				SurfaceRoad surfaceRoad = scene.getLineRoads().get(roadId).enlarge();
+				SurfaceRoad surfaceRoad = ((LineRoad) scene.getLineRoads().get(roadId)).enlarge();
+
 				if(surfaceRoad.getGeom().contains(g)){
 					doesIntersect = true;
 					d = d + 0.5;
