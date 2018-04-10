@@ -118,9 +118,10 @@ public class OBJWriter {
 	 * describing the sidewalks
 	 * 
 	 * @param filePath the path to the obj file
-	 * @param objectList the list of roads
+	 * @param roads the map of roads
 	 * @param xCentroid the centroid x coordinate
 	 * @param yCentroid the centroid y coordinate
+	 * @param fullRoads The geometry of all the roads
 	 */
 	public void exportSidewalks(String filePath, Map<String, SurfaceRoad> roads, double xCentroid, double yCentroid,Geometry fullRoads) {
 		

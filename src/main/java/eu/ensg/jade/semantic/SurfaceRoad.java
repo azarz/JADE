@@ -55,6 +55,7 @@ public class SurfaceRoad extends Road {
 	 * @param number The number of the road
 	 * @param geometry The geometry of the road
 	 * @param name The name of the road
+	 * @param oldGeometry The linear geometry of the road
 	 */
 	public SurfaceRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, String nature, String importance, String number,  String name, Polygon geometry, 
 			MultiLineString oldGeometry) {
