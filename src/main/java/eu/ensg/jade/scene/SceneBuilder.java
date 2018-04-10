@@ -253,10 +253,10 @@ public class SceneBuilder {
 //		ruleShapeMaker.addIntersectionSigns(scene);
 
 		// Set building height
-		for (Building building : scene.getBuildings()) {
-			building.setZfromDTM(dtm);
-			building.addHeight();
-		}
+//		for (Building building : scene.getBuildings()) {
+//			building.setZfromDTM(dtm);
+//			building.addHeight();
+//		}
 		
 		// Create the areal roads, and set the correct height
 		Map<String, LineRoad> lineRoads = scene.getLineRoads();
@@ -273,13 +273,13 @@ public class SceneBuilder {
 		for(SurfaceRoad road : scene.getSurfaceRoads().values()) {
 			polygonList.add(road.getGeom());
 		}
-		Geometry unifiedRoads = CascadedPolygonUnion.union(polygonList);
+		//Geometry unifiedRoads = CascadedPolygonUnion.union(polygonList);
 
 
 		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
 		
 		// Add intersections
-//		ruleShapeMaker.addIntersectionSigns(scene);
+		ruleShapeMaker.addIntersectionSigns(scene);
 		ruleShapeMaker.addRoadSigns(scene);
 
 		// Add punctual vegetation
@@ -293,7 +293,7 @@ public class SceneBuilder {
 		File directory = new File("assets/RGE");
 		if (! directory.exists()){ directory.mkdir(); }
 		
-		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getCentroid().x, scene.getCentroid().y);		
+//		objWritter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), scene.getCentroid().x, scene.getCentroid().y);		
 		objWritter.exportRoad("assets/RGE/roads.obj", scene.getSurfaceRoads(), scene.getCentroid().x, scene.getCentroid().y);
 		objWritter.exportWater("assets/RGE/water.obj", scene.getHydrography(), scene.getCentroid().x, scene.getCentroid().y);
 		
@@ -326,8 +326,8 @@ public class SceneBuilder {
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
-		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
-		xmlWriter.addModel(buildindModel);
+//		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
+//		xmlWriter.addModel(buildindModel);
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
