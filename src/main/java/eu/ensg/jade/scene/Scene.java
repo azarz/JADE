@@ -151,7 +151,7 @@ public class Scene {
 	/**
 	 * Allow to set the roads area
 	 *
-	 * @param surfaceRoads the area of roads to be assigned
+	 * @param roadArea the area of roads to be assigned
 	 */
 	public void setRoadArea(MultiPolygon roadArea) {
 		this.roadArea = roadArea;
