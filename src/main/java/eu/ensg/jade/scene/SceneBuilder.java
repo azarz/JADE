@@ -61,12 +61,14 @@ public class SceneBuilder {
 	 * Main method
 	 */
 	public static void main(String[] args) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
+		long begin = System.currentTimeMillis();
+		
 		String buildingLayer = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
 		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
 //		String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
-//		String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
-		String treeLayer = "src/test/resources/inputTest/openShpTestVege3.shp";
+		String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
+//		String treeLayer = "src/test/resources/inputTest/openShpTestVege3.shp";
 //		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
 		String dtmLayer = "src/test/resources/RGE/DTM_1m.asc";
 		
@@ -74,6 +76,8 @@ public class SceneBuilder {
 		SceneBuilder builder = new SceneBuilder();
 		builder.buildFromFiles(buildingLayer, roadLayer, hydroLayer, treeLayer, dtmLayer);
 		builder.export();
+		long end = System.currentTimeMillis();
+		System.out.println((end-begin)/1000 + " seconds elapsed");
 	}
 	
 	
@@ -264,7 +268,7 @@ public class SceneBuilder {
 			building.setZfromDTM(dtm);
 			building.addHeight();
 		}
-		
+	
 		List<Geometry> polygonList = new ArrayList<>();
 //		polygonList = ArcIntersection.generateSmoothRoad(scene);
 		
@@ -290,9 +294,8 @@ public class SceneBuilder {
 		ruleShapeMaker.addIntersectionSigns(scene);
 		ruleShapeMaker.addRoadSigns(scene);
 
-
 		// Add punctual vegetation
-//		ruleShapeMaker.addVegetation(scene);	
+		ruleShapeMaker.addVegetation(scene);	
 
 	}
 	
@@ -306,7 +309,6 @@ public class SceneBuilder {
 		if (! directory.exists()){ directory.mkdir(); }
 		
 		Coordinate centroid = scene.getCentroid();
-		
 		objWriter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), centroid.x, centroid.y);
 		
 		Map<String, SurfaceRoad> roads = new HashMap<String, SurfaceRoad>();
@@ -325,7 +327,6 @@ public class SceneBuilder {
 		
 //		objWriter.exportWater("assets/RGE/water.obj", scene.getHydrography(), centroid.x, centroid.y);
 
-		
 //		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
 //		vege.add(scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1));
 //		objWritter.exportVege("assets/RGE/vegetation.obj", vege, scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);	
