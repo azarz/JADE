@@ -323,7 +323,7 @@ public class SceneBuilder {
 		
 		objWriter.exportSidewalks("assets/RGE/sidewalks.obj", scene.getSurfaceRoads(), scene.getCentroid().x, scene.getCentroid().y, fullRoads, scene.getDtm());
 		
-//		objWriter.exportWater("assets/RGE/water.obj", scene.getHydrography(), centroid.x, centroid.y);
+		objWriter.exportWater("assets/RGE/water.obj", scene.getHydrography(), centroid.x, centroid.y);
 
 		
 //		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
@@ -355,8 +355,8 @@ public class SceneBuilder {
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
-//		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
-//		xmlWriter.addModel(buildindModel);
+		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
+		xmlWriter.addModel(buildindModel);
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
@@ -367,8 +367,8 @@ public class SceneBuilder {
 		xmlWriter.addModel(sidewalksModel);
 //		
 		// Add water
-//		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
-//		xmlWriter.addModel(waterModel);
+		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
+		xmlWriter.addModel(waterModel);
 		
 		// Add vegetation surface
 //		XMLModel vegeModel = new XMLModel("Vegetation", "RGE/vegetation.obj");
