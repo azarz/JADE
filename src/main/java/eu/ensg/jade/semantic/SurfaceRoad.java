@@ -201,7 +201,7 @@ public class SurfaceRoad extends Road implements IObjExport{
 	public void setZfromDTM(DTM dtm) {
 		// Densify the geometry so it has a number of vertices corresponding to the DTM
 		if(geometry.getCoordinates().length > 0) {
-			geometry = (Polygon) Densifier.densify(geometry, dtm.getCellsize()/2);
+			geometry = (Polygon) Densifier.densify(geometry,dtm.getCellsize());
 		}
 		
 		// Defining a coordinate filter to set the z according to the DTM
