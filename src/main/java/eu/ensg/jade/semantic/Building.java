@@ -1,7 +1,9 @@
 package eu.ensg.jade.semantic;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryCollection;
@@ -158,7 +160,9 @@ public class Building implements IObjExport {
 	 */
 	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset){
 		// Defining a new decimal format in order to have smaller obj files
-		DecimalFormat format = new DecimalFormat("#.###");		
+		NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
+		DecimalFormat format = (DecimalFormat)nf;
+		format.applyPattern("#.###");
 		
 		// Checking if the height was already calculated
 		if (!hasHeight) {
