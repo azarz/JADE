@@ -13,7 +13,10 @@ import java.util.Map;
 import com.vividsolutions.jts.geom.Geometry;
 
 import eu.ensg.jade.semantic.Building;
+import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.Hydrography;
+import eu.ensg.jade.semantic.LineRoad;
+import eu.ensg.jade.semantic.Sidewalk;
 import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.semantic.SurfaceVegetation;
 
@@ -121,8 +124,9 @@ public class OBJWriter {
 	 * @param xCentroid the centroid x coordinate
 	 * @param yCentroid the centroid y coordinate
 	 * @param fullRoads The geometry of all the roads
+	 * @param dtm The DTM
 	 */
-	public void exportSidewalks(String filePath, Map<String, SurfaceRoad> roads, double xCentroid, double yCentroid,Geometry fullRoads) {
+	public void exportSidewalks(String filePath, Map<String, LineRoad> roads, double xCentroid, double yCentroid,Geometry fullRoads, DTM dtm) {
 		
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
@@ -144,9 +148,11 @@ public class OBJWriter {
 			
 			out.print("mtllib paris.mtl\n");
 			int i=0;
-			for (SurfaceRoad road: roads.values()) {
-				System.out.println((100*i/3343.) + "%");
-				out.print(road.sidewalksToOBJ(offsets, xCentroid, yCentroid, fullRoads));
+			System.out.println("sidewalks creating...");
+			for (LineRoad road: roads.values()) {
+				System.out.println(100*i/3343. + "%");
+				Sidewalk sidewalk = new Sidewalk(road.getGeom(),road.getWidth(),fullRoads,dtm);
+				out.print(sidewalk.toOBJ(offsets, xCentroid, yCentroid));
 				i++;
 			}
 			
@@ -222,38 +228,6 @@ public class OBJWriter {
 				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
 			}
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public void exportFromList(String filePath, List<IObjExport> objList, double xCentroid, double yCentroid) {
-		
-		List<Integer> offsets = new ArrayList<Integer>();
-		offsets.add(1);
-		offsets.add(1);
-		offsets.add(0);
-		
-		File file = new File(filePath);
-		
-		try {
-			Files.deleteIfExists(file.toPath());
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		
-		
-		try(FileWriter fw = new FileWriter(filePath, true);
-				BufferedWriter bw = new BufferedWriter(fw);
-				PrintWriter out = new PrintWriter(bw)) {
-			
-			out.print("mtllib paris.mtl\n");
-
-			for (int i = 0; i < objList.size(); i++) {
-				out.print(objList.get(i).toOBJ(offsets, xCentroid, yCentroid));
-			}	
-			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

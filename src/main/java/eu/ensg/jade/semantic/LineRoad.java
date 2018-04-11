@@ -143,7 +143,7 @@ public class LineRoad extends Road{
 		// Applying the filter
 		newGeometry.apply(filter);
 		
-		SurfaceRoad surfacicRoad = new SurfaceRoad(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, name, newGeometry, geometry);
+		SurfaceRoad surfacicRoad = new SurfaceRoad(width, laneNumber, z_ini, z_fin, direction, nature, importance, number, name, newGeometry);
 		
 		return surfacicRoad;
 		

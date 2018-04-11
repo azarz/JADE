@@ -1,6 +1,9 @@
 package eu.ensg.jade.semantic;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryCollection;
@@ -98,6 +101,11 @@ public class Hydrography implements IObjExport {
 	 */
 	@Override
 	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {
+		// Defining a new decimal format in order to have smaller obj files
+		NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
+		DecimalFormat format = (DecimalFormat)nf;
+		format.applyPattern("#.###");
+		
 		// Fetching the offsets from the offsets parameter
 		int vertexIndexOffset  = indexOffsets.get(0);
 		int textureIndexOffset = indexOffsets.get(1);
