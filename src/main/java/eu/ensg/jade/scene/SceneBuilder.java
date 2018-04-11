@@ -286,11 +286,11 @@ public class SceneBuilder {
 		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
 		
 		// Add intersections
-//		ruleShapeMaker.addIntersectionSigns(scene);
-//		ruleShapeMaker.addRoadSigns(scene);
+		//ruleShapeMaker.addIntersectionSigns(scene);
+		ruleShapeMaker.addRoadSigns(scene);
 
 		// Add punctual vegetation
-//		ruleShapeMaker.addVegetation(scene);	
+		//ruleShapeMaker.addVegetation(scene);	
 
 	}
 	
@@ -339,28 +339,32 @@ public class SceneBuilder {
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
 		driver.setMass(1000);
-		driver.setTranslation(new double[]{0, 70, 0});
+		Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
+		//driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
+		driver.setTranslation(new double[]{0, 80, 0});
+
 		driver.setScale((new double[]{0.8, 0.8, 0.8}));
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
-		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
+//		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
 //		xmlWriter.addModel(buildindModel);
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
-//		xmlWriter.addModel(roadsModel);
+		xmlWriter.addModel(roadsModel);
 		
 		// Add sidewalks
+
 		XMLModel sidewalksModel = new XMLModel("Sidewalks", "RGE/sidewalks.obj");
 //		xmlWriter.addModel(sidewalksModel);
 		
 		// Add water
-		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
+//		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
 //		xmlWriter.addModel(waterModel);
 		
 		// Add vegetation surface
-		XMLModel vegeModel = new XMLModel("Vegetation", "RGE/vegetation.obj");
+//		XMLModel vegeModel = new XMLModel("Vegetation", "RGE/vegetation.obj");
 //		xmlWriter.addModel(vegeModel);
 
 		// Add street furniture
