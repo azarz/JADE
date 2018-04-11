@@ -67,7 +67,7 @@ public class SceneBuilder {
 		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
 //		String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
-		String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
+		String treeLayer = "src/test/resources/RGE/BD_TOPO/smallVege.shp";
 //		String treeLayer = "src/test/resources/inputTest/openShpTestVege3.shp";
 //		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
 		String dtmLayer = "src/test/resources/RGE/DTM_1m.asc";
@@ -295,7 +295,7 @@ public class SceneBuilder {
 		ruleShapeMaker.addRoadSigns(scene);
 
 		// Add punctual vegetation
-//		ruleShapeMaker.addVegetation(scene);	
+		ruleShapeMaker.addVegetation(scene);	
 
 	}
 	
@@ -379,15 +379,15 @@ public class SceneBuilder {
 			if (++k>1000){ break; }
 		}
 		
-//		int g = 0;
-//		for(PointVegetation tree : scene.getVegetation()) {
-//			XMLModel vegetationModel = new XMLModel("Tree", tree.getNature());
-//			vegetationModel.setTranslation(new double[]{tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
-//			vegetationModel.setScale(new double[]{8,8,8});
-//			xmlWriter.addModel(vegetationModel);
-//			
-//			if (++g>1000){ break; }
-//		}
+		int g = 0;
+		for(PointVegetation tree : scene.getVegetation()) {
+			XMLModel vegetationModel = new XMLModel("Tree", tree.getNature());
+			vegetationModel.setTranslation(new double[]{tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
+			vegetationModel.setScale(new double[]{8,8,8});
+			xmlWriter.addModel(vegetationModel);
+			
+			if (++g>1000){ break; }
+		}
 
 		
 		// Add DTM
