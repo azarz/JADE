@@ -257,10 +257,6 @@ public class SceneBuilder {
 		DTM dtm = scene.getDtm();
 		dtm.smooth(0.9, 1);
 		
-		// Add intersections
-//		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
-//		ruleShapeMaker.addIntersectionSigns(scene);
-
 		// Set building height
 //		for (Building building : scene.getBuildings()) {
 //			building.setZfromDTM(dtm);
@@ -289,7 +285,7 @@ public class SceneBuilder {
 		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
 		
 		// Add intersections
-		ruleShapeMaker.addIntersectionSigns(scene);
+		//ruleShapeMaker.addIntersectionSigns(scene);
 		ruleShapeMaker.addRoadSigns(scene);
 
 
@@ -345,12 +341,23 @@ public class SceneBuilder {
 //		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
 //		xmlWriter.addModel(grassPlane);
 		
+		// Add street furniture
+		int k = 0;
+		for(StreetFurniture sign : scene.getStreetFurniture()) {
+			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
+			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
+			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
+			xmlWriter.addModel(streetFurnitureModel);
+			
+			if (++k>1000){ break; }
+		}
+		
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
 		driver.setMass(1000);
-		//Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
-		//driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
-		driver.setTranslation(new double[]{0, 70, 0});
+		Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
+		driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
+		//driver.setTranslation(new double[]{0, 70, 0});
 		driver.setScale((new double[]{0.8, 0.8, 0.8}));
 		xmlWriter.addModel(driver);
 		
@@ -374,26 +381,17 @@ public class SceneBuilder {
 //		XMLModel vegeModel = new XMLModel("Vegetation", "RGE/vegetation.obj");
 //		xmlWriter.addModel(vegeModel);
 
-		// Add street furniture
-		int k = 0;
-		for(StreetFurniture sign : scene.getStreetFurniture()) {
-			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
-			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
-			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
-			xmlWriter.addModel(streetFurnitureModel);
-			
-			if (++k>1000){ break; }
-		}
+
 		
-		int g = 0;
-		for(PointVegetation tree : scene.getVegetation()) {
-			XMLModel vegetationModel = new XMLModel("Tree", tree.getNature());
-			vegetationModel.setTranslation(new double[]{tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
-			vegetationModel.setScale(new double[]{8,8,8});
-			xmlWriter.addModel(vegetationModel);
-			
-			if (++g>1000){ break; }
-		}
+//		int g = 0;
+//		for(PointVegetation tree : scene.getVegetation()) {
+//			XMLModel vegetationModel = new XMLModel("Tree", tree.getNature());
+//			vegetationModel.setTranslation(new double[]{tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
+//			vegetationModel.setScale(new double[]{8,8,8});
+//			xmlWriter.addModel(vegetationModel);
+//			
+//			if (++g>1000){ break; }
+//		}
 
 		
 		// Add DTM

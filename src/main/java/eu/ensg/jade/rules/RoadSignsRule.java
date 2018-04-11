@@ -76,9 +76,10 @@ public class RoadSignsRule implements RuleShape {
 						((lineRoad.getName().substring(0, 2).equals("PL") || lineRoad.getName().substring(0, 3).equals("RPT"))
 						|| numberOfRoads == 5)) ||
 						lineRoad.getSpeed().equals("50 km/h")){
-					
-					addSignsByRoad(enter, lineRoad, roadBool, this.pedestrianCrossing, scene, intersect);
-					
+					System.out.println("We've got a road to place pedestrian crossing");
+					//addSignsByRoad(enter, lineRoad, roadBool, this.pedestrianCrossing, scene, intersect);
+					StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.pedestrianCrossing, scene,intersect);
+					addStreetFurniture(streetFurniture, lineRoad, scene);
 			
 				}
 				else{
@@ -219,7 +220,7 @@ public class RoadSignsRule implements RuleShape {
 	 */
 	private void addSignsByRoad(int enter, LineRoad lineRoad, boolean startOnIntersect, String folder, Scene scene, Intersection intersect) throws NoSuchAuthorityCodeException, FactoryException {
 		// If it is a direct driving direction
-		if (enter == 1){
+		if (enter == 1 || enter == -1){
 			StreetFurniture streetFurniture = addSigns(lineRoad,startOnIntersect,this.pedestrianCrossing,scene, intersect);
 			addStreetFurniture(streetFurniture, lineRoad, scene);
 		
@@ -245,6 +246,7 @@ public class RoadSignsRule implements RuleShape {
 		boolean alreadyOn = false;
 		
 		if (streetFurniture != null){
+			System.out.println("We're in the if");
 			if (!road.getSF().isEmpty()){
 				for (int i=0; i < road.getSF().size(); i++){
 					if (streetFurniture.getCoord().equals2D(road.getSF().get(i).getCoord())){
@@ -252,11 +254,13 @@ public class RoadSignsRule implements RuleShape {
 					}
 				}
 				if (!alreadyOn){
+					System.out.println("We've placed a sign !!");
 					road.addSF(streetFurniture);
 					scene.addStreetFurniture(streetFurniture);
 				}
 			}
 			else{
+				System.out.println("We've placed a sign !!");
 				road.addSF(streetFurniture);
 				scene.addStreetFurniture(streetFurniture);
 			}
