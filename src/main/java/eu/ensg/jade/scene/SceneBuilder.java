@@ -63,14 +63,11 @@ public class SceneBuilder {
 	public static void main(String[] args) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
 		long begin = System.currentTimeMillis();
 		
-		String buildingLayer = "src/test/resources/RGE/BD_TOPO/BATI_INDIFFERENCIE.SHP";
-		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
-//		String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
-		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
-		String treeLayer = "src/test/resources/RGE/BD_TOPO/smallVege.shp";
-//		String treeLayer = "src/test/resources/inputTest/openShpTestVege3.shp";
-//		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
-		String dtmLayer = "src/test/resources/RGE/DTM_1m.asc";
+		String buildingLayer = "input/Nation/BATI_INDIFFERENCIE.SHP";
+		String roadLayer = "input/Nation/ROUTE.SHP";
+		String hydroLayer = "input/Nation/SURFACE_EAU.SHP";
+		String treeLayer = "input/Nation/ZONE_VEGETATION.shp";
+		String dtmLayer = "input/Nation/DTM_1m.asc";
 		
 		
 		SceneBuilder builder = new SceneBuilder();
@@ -320,10 +317,6 @@ public class SceneBuilder {
 		
 		objWriter.exportWater("assets/RGE/water.obj", scene.getHydrography(), centroid.x, centroid.y);
 
-//		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
-//		vege.add(scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1));
-//		objWritter.exportVege("assets/RGE/vegetation.obj", vege, scene.getBuildingCentroid().x, scene.getBuildingCentroid().y);	
-
 		scene.getDtm().toPNG("assets/RGE/paris.png");
 	}
 	
@@ -336,10 +329,6 @@ public class SceneBuilder {
 		
 		xmlWriter.updateConfig("fileMainXML", "MAIN_FILE.xml");
 //		xmlWriter.updateConfig("rainCoefficient", "5");
-		
-		// Add flat ground (debug)
-		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
-//		xmlWriter.addModel(grassPlane);
 		
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
@@ -364,10 +353,6 @@ public class SceneBuilder {
 		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
 		xmlWriter.addModel(waterModel);
 		
-		// Add vegetation surface
-		XMLModel vegeModel = new XMLModel("Vegetation", "RGE/vegetation.obj");
-//		xmlWriter.addModel(vegeModel);
-
 		// Add street furniture
 		int k = 0;
 		for(StreetFurniture sign : scene.getStreetFurniture()) {
@@ -383,13 +368,12 @@ public class SceneBuilder {
 		for(PointVegetation tree : scene.getVegetation()) {
 			XMLModel vegetationModel = new XMLModel("Tree", tree.getNature());
 			vegetationModel.setTranslation(new double[]{tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
-			vegetationModel.setScale(new double[]{8,8,8});
+			vegetationModel.setScale(new double[]{1,1,1});
 			xmlWriter.addModel(vegetationModel);
 			
 			if (++g>1000){ break; }
 		}
 
-		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);
 		ground.setVisible(true);
