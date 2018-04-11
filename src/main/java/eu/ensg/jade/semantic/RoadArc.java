@@ -289,6 +289,7 @@ public class RoadArc {
 	 *
 	 */ 
 	public static CircularArc createRoadArc(LineRoad road1, LineRoad road2){
+		if (road1.getWidth()==0 || road2.getWidth()==0) return null;
 		if(road1.equals(road2)) return null ;
 		//Arcs are not drawn in roundabouts
 		if(road1.getName().contains("PL") || road1.getName().contains("RPT")) return null;

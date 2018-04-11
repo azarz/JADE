@@ -3,6 +3,7 @@ package eu.ensg.jade.semantic;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -261,7 +262,7 @@ public class RoadArcTest {
 		Mockito.when(lrFG.getGeom()).thenReturn(mlsFG);
 		Mockito.when(lrHI.getGeom()).thenReturn(mlsHI);
 		Mockito.when(lrDJ.getGeom()).thenReturn(mlsDJ);
-		
+
 		assertEquals(RoadArc.calculAngle(lrAB, lrAB),0,1);
 		assertEquals(RoadArc.calculAngle(lrAB, lrAC),90,1);
 		assertEquals(RoadArc.calculAngle(lrAC, lrAB),90,1);
@@ -277,6 +278,75 @@ public class RoadArcTest {
 	 */
 	@Test
 	public void testCreateRoadArc(){
+
+		//Geometry factory
+		GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
+
+		//Road coordinate
+		Coordinate coorA = new Coordinate(12,0);
+		Coordinate coorB = new Coordinate(0,0);
+		Coordinate coorC = new Coordinate(0,12);
+		Coordinate coorD = new Coordinate(0,-12);
+
+		//Road LineString
+		LineString lsAB = geometryFactory.createLineString(new Coordinate[] {coorA,coorB});
+		LineString lsBC = geometryFactory.createLineString(new Coordinate[] {coorB,coorC});
+		LineString lsBD = geometryFactory.createLineString(new Coordinate[] {coorB,coorA});
+
+		//Road MultiLineString
+		MultiLineString mlsAB = geometryFactory.createMultiLineString(new LineString[] {lsAB});
+		MultiLineString mlsBC = geometryFactory.createMultiLineString(new LineString[] {lsBC});
+		MultiLineString mlsBD = geometryFactory.createMultiLineString(new LineString[] {lsBD});
+
+		//Creating the lineroads with mockito
+		LineRoad lrAB = Mockito.mock(LineRoad.class);
+		LineRoad lrBD = Mockito.mock(LineRoad.class);
+		LineRoad lrBC = Mockito.mock(LineRoad.class);
+		LineRoad pl = Mockito.mock(LineRoad.class);
+		LineRoad rpt = Mockito.mock(LineRoad.class);
+		LineRoad tod = Mockito.mock(LineRoad.class);
+
+		//Set getGeom 
+		Mockito.when(lrAB.getGeom()).thenReturn(mlsAB);
+		Mockito.when(lrBD.getGeom()).thenReturn(mlsBD);
+		Mockito.when(lrBC.getGeom()).thenReturn(mlsBC);
+		Mockito.when(rpt.getGeom()).thenReturn(mlsBC);
+		Mockito.when(pl.getGeom()).thenReturn(mlsBC);
+		Mockito.when(tod.getGeom()).thenReturn(mlsBC);
+
+		//Set getWidth 
+		Mockito.when(lrAB.getWidth()).thenReturn(10d);
+		Mockito.when(lrBD.getWidth()).thenReturn(10d);
+		Mockito.when(lrBC.getWidth()).thenReturn(10d);
+		Mockito.when(rpt.getWidth()).thenReturn(10d);
+		Mockito.when(pl.getWidth()).thenReturn(10d);
+		Mockito.when(tod.getWidth()).thenReturn(0d);
+
+		//Set getNom 
+		Mockito.when(lrAB.getName()).thenReturn("lrAB");
+		Mockito.when(lrBC.getName()).thenReturn("lrBC");
+		Mockito.when(lrBD.getName()).thenReturn("lrBD");
+		Mockito.when(rpt.getName()).thenReturn("RPT");
+		Mockito.when(pl.getName()).thenReturn("PL");
+		Mockito.when(tod.getName()).thenReturn("tod");
+
+		//Set getSpeed 
+		Mockito.when(lrAB.getSpeed()).thenReturn("30 KM");
+		Mockito.when(lrBC.getSpeed()).thenReturn("30 KM");
+		Mockito.when(lrBD.getSpeed()).thenReturn("30 KM");
+		Mockito.when(rpt.getSpeed()).thenReturn("30 KM");
+		Mockito.when(pl.getSpeed()).thenReturn("30 KM");
+		Mockito.when(tod.getSpeed()).thenReturn("30 KM");
+
+		assertNotNull(RoadArc.createRoadArc(lrAB, lrBC));
+		assertNull(RoadArc.createRoadArc(lrAB, rpt));
+		assertNull(RoadArc.createRoadArc(rpt, lrAB));
+		assertNull(RoadArc.createRoadArc(lrAB, pl));
+		assertNull(RoadArc.createRoadArc(pl, lrAB));
+		assertNull(RoadArc.createRoadArc(lrAB, lrAB));
+		assertNull(RoadArc.createRoadArc(lrAB, lrBD));
+		assertNull(RoadArc.createRoadArc(lrAB, tod));
+		assertNull(RoadArc.createRoadArc(tod, lrAB));
 		
 	}
 }
