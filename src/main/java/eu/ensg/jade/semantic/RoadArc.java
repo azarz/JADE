@@ -211,8 +211,8 @@ public class RoadArc {
 		//Get the relevent points
 		MultiLineString road1 = lineroad1.getGeom();
 		MultiLineString road2 = lineroad2.getGeom();
-		if (isParallel(road1, road2)){
-			return 0;
+		if (isUnconnected(road1, road2)){
+			return Double.NaN;
 		}
 		Point ptIntersection = (Point) road1.intersection(road2).getCentroid();
 		LineString linestring1 = lineStringIntersection(road1,ptIntersection);
@@ -289,11 +289,12 @@ public class RoadArc {
 	 *
 	 */ 
 	public static CircularArc createRoadArc(LineRoad road1, LineRoad road2){
+		if (road1.getWidth()==0 || road2.getWidth()==0) return null;
 		if(road1.equals(road2)) return null ;
 		//Arcs are not drawn in roundabouts
 		if(road1.getName().contains("PL") || road1.getName().contains("RPT")) return null;
 		if(road2.getName().contains("PL") || road2.getName().contains("RPT")) return null;
-		if(calculAngle(road1,road2)<140 && calculAngle(road1,road2)>-140)
+		if(calculAngle(road1,road2)<140)
 		{
 			List<Point> arcPoint = calculerPointArc(road1,road2);
 			if(arcPoint != null && !arcPoint.isEmpty()) {
@@ -333,7 +334,7 @@ public class RoadArc {
 	 * @param road2 second MultiLineString
 	 * @return Boolean, true if parallel
 	 */
-	private static boolean isParallel(MultiLineString road1, MultiLineString road2) {
+	private static boolean isUnconnected(MultiLineString road1, MultiLineString road2) {
 		Point ptIntersection = (Point) road1.intersection(road2).getCentroid();
 		return ptIntersection.isEmpty();
 	}

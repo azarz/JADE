@@ -13,20 +13,15 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.MultiPolygon;
-import com.vividsolutions.jts.geom.Polygon;
 import com.vividsolutions.jts.operation.union.CascadedPolygonUnion;
 
-import eu.ensg.jade.geometricObject.Road;
 import eu.ensg.jade.input.InputRGE;
 import eu.ensg.jade.input.ReaderContext;
 import eu.ensg.jade.input.ReaderFactory;
 import eu.ensg.jade.input.ReaderFactory.READER_TYPE;
-import eu.ensg.jade.output.IObjExport;
 import eu.ensg.jade.output.OBJWriter;
 import eu.ensg.jade.output.XMLWriter;
 import eu.ensg.jade.rules.RuleShapeMaker;
-import eu.ensg.jade.semantic.ArcIntersection;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
@@ -68,7 +63,6 @@ public class SceneBuilder {
 		String hydroLayer = "input/Nation/SURFACE_EAU.SHP";
 		String treeLayer = "input/Nation/ZONE_VEGETATION.shp";
 		String dtmLayer = "input/Nation/DTM_1m.asc";
-		
 		
 		SceneBuilder builder = new SceneBuilder();
 		builder.buildFromFiles(buildingLayer, roadLayer, hydroLayer, treeLayer, dtmLayer);
@@ -280,19 +274,19 @@ public class SceneBuilder {
 		}
 		scene.setSurfaceRoads(surfaceRoads);
 		
-		Geometry roadGeometryUnion =  CascadedPolygonUnion.union(polygonList);
-		SurfaceRoad unifiedRoads = new SurfaceRoad(0, 0, 0, 0, "", "", "", "", "", roadGeometryUnion);
-		unifiedRoads.setZfromDTM(dtm);
-		surfaceRoads.put("-1", unifiedRoads);
+//		Geometry roadGeometryUnion =  CascadedPolygonUnion.union(polygonList);
+//		SurfaceRoad unifiedRoads = new SurfaceRoad(0, 0, 0, 0, "", "", "", "", "", roadGeometryUnion);
+//		unifiedRoads.setZfromDTM(dtm);
+//		surfaceRoads.put("-1", unifiedRoads);
 
 		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
 		
 		// Add intersections
-		ruleShapeMaker.addIntersectionSigns(scene);
+		//ruleShapeMaker.addIntersectionSigns(scene);
 		ruleShapeMaker.addRoadSigns(scene);
 
 		// Add punctual vegetation
-		ruleShapeMaker.addVegetation(scene);	
+		//ruleShapeMaker.addVegetation(scene);	
 
 	}
 	
@@ -308,14 +302,14 @@ public class SceneBuilder {
 		Coordinate centroid = scene.getCentroid();
 		objWriter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), centroid.x, centroid.y);
 		
-		Geometry fullRoads = scene.getSurfaceRoads().get("-1").getGeom();
+//		Geometry fullRoads = scene.getSurfaceRoads().get("-1").getGeom();
+//		scene.getSurfaceRoads().remove("-1");
 		
-		scene.getSurfaceRoads().remove("-1");
 		objWriter.exportRoad("assets/RGE/roads.obj", scene.getSurfaceRoads(), centroid.x, centroid.y);
 		
-		objWriter.exportSidewalks("assets/RGE/sidewalks.obj", scene.getLineRoads(), scene.getCentroid().x, scene.getCentroid().y, fullRoads, scene.getDtm());
+//		objWriter.exportSidewalks("assets/RGE/sidewalks.obj", scene.getLineRoads(), scene.getCentroid().x, scene.getCentroid().y, fullRoads, scene.getDtm());
 		
-		objWriter.exportWater("assets/RGE/water.obj", scene.getHydrography(), centroid.x, centroid.y);
+//		objWriter.exportWater("assets/RGE/water.obj", scene.getHydrography(), centroid.x, centroid.y);
 
 		scene.getDtm().toPNG("assets/RGE/paris.png");
 	}
@@ -333,21 +327,25 @@ public class SceneBuilder {
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
 		driver.setMass(1000);
-		driver.setTranslation(new double[]{0, 70, 0});
+		Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
+		//driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
+		driver.setTranslation(new double[]{0, 80, 0});
+
 		driver.setScale((new double[]{0.8, 0.8, 0.8}));
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
-		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
-		xmlWriter.addModel(buildindModel);
+//		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
+//		xmlWriter.addModel(buildindModel);
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
 		xmlWriter.addModel(roadsModel);
 		
 		// Add sidewalks
+
 		XMLModel sidewalksModel = new XMLModel("Sidewalks", "RGE/sidewalks.obj");
-		xmlWriter.addModel(sidewalksModel);
+//		xmlWriter.addModel(sidewalksModel);
 		
 		// Add water
 		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
@@ -359,7 +357,7 @@ public class SceneBuilder {
 			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
 			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
 			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
-			xmlWriter.addModel(streetFurnitureModel);
+//			xmlWriter.addModel(streetFurnitureModel);
 			
 			if (++k>1000){ break; }
 		}
