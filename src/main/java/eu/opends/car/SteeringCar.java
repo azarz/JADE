@@ -572,10 +572,8 @@ public class SteeringCar extends Car implements TrafficObject
 		// >22.5  degree = 100%
 		float steeringIntensity = Math.max(Math.min(4*steeringAngle/FastMath.PI,1f),0f);
 		
-		// apply steering instruction
-		//TODO: apply speed coefficient
-		float percent = (maxSpeed - getCurrentSpeedKmh()) / (maxSpeed - minSpeed);
-		steer(steeringDirection*steeringIntensity*percent);
+		// apply steering instruction		
+		steer(steeringDirection*steeringIntensity);
 		
 		//System.out.println(steeringDirection*steeringIntensity);
 	}
