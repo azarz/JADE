@@ -99,8 +99,8 @@ public class RoadSignsRule implements RuleShape {
 
 				if (lineRoad.getSF().isEmpty()){
 					// If the speed limit is under 90 km/h we can place a pedestrian crossing sign, else, we place a speed limit sign
-					if (!(lineRoad.getSpeed().equals("90 km/h")) || !(lineRoad.getSpeed().equals("110 km/h")) || !(lineRoad.getSpeed().equals("130 km/h"))){
-						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.pedestrianCrossing, scene,intersect, 5);
+					if (lineRoad.getSpeed().equals("50 km/h")){
+						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.pedestrianCrossing, scene,intersect, 10);
 						addStreetFurniture(streetFurniture, lineRoad, scene);
 					}
 				}
@@ -577,7 +577,8 @@ private void addSpeedLimitSigns(LineRoad lineRoad, boolean startOnIntersect, int
 		
 		double rotation = 0;
 
-		rotation =  - Math.PI/2 + theta;
+		rotation = theta;
+		//rotation =  - Math.PI/2 + theta;
 		
 		// Up-Right quarter
 		if (0<= theta && theta <= Math.PI/2){
