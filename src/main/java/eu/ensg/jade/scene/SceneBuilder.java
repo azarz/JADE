@@ -295,7 +295,7 @@ public class SceneBuilder {
 		ruleShapeMaker.addRoadSigns(scene);
 
 		// Add punctual vegetation
-		ruleShapeMaker.addVegetation(scene);	
+//		ruleShapeMaker.addVegetation(scene);	
 
 	}
 	
@@ -311,11 +311,11 @@ public class SceneBuilder {
 		Coordinate centroid = scene.getCentroid();
 		objWriter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), centroid.x, centroid.y);
 		
-		Map<String, SurfaceRoad> roads = new HashMap<String, SurfaceRoad>();
-		roads.put("-1", scene.getSurfaceRoads().get("-1"));
-		objWriter.exportRoad("assets/RGE/roads.obj", roads, centroid.x, centroid.y);
-		
 		Geometry fullRoads = scene.getSurfaceRoads().get("-1").getGeom();
+		
+		scene.getSurfaceRoads().remove("-1");
+		objWriter.exportRoad("assets/RGE/roads.obj", scene.getSurfaceRoads(), centroid.x, centroid.y);
+		
 		objWriter.exportSidewalks("assets/RGE/sidewalks.obj", scene.getLineRoads(), scene.getCentroid().x, scene.getCentroid().y, fullRoads, scene.getDtm());
 		
 		objWriter.exportWater("assets/RGE/water.obj", scene.getHydrography(), centroid.x, centroid.y);
@@ -359,7 +359,7 @@ public class SceneBuilder {
 		// Add sidewalks
 		XMLModel sidewalksModel = new XMLModel("Sidewalks", "RGE/sidewalks.obj");
 		xmlWriter.addModel(sidewalksModel);
-//		
+		
 		// Add water
 		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
 		xmlWriter.addModel(waterModel);
@@ -379,15 +379,15 @@ public class SceneBuilder {
 			if (++k>1000){ break; }
 		}
 		
-		int g = 0;
-		for(PointVegetation tree : scene.getVegetation()) {
-			XMLModel vegetationModel = new XMLModel("Tree", tree.getNature());
-			vegetationModel.setTranslation(new double[]{tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
-			vegetationModel.setScale(new double[]{8,8,8});
-			xmlWriter.addModel(vegetationModel);
-			
-			if (++g>1000){ break; }
-		}
+//		int g = 0;
+//		for(PointVegetation tree : scene.getVegetation()) {
+//			XMLModel vegetationModel = new XMLModel("Tree", tree.getNature());
+//			vegetationModel.setTranslation(new double[]{tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
+//			vegetationModel.setScale(new double[]{8,8,8});
+//			xmlWriter.addModel(vegetationModel);
+//			
+//			if (++g>1000){ break; }
+//		}
 
 		
 		// Add DTM
