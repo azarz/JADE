@@ -51,7 +51,6 @@ public class SurfaceRoad extends Road implements IObjExport{
 	 * @param number The number of the road
 	 * @param geometry The geometry of the road
 	 * @param name The name of the road
-	 * @param oldGeometry The linear geometry of the road
 	 */
 	public SurfaceRoad(double width, int wayNumber, double z_ini, double z_fin, String direction, String nature, String importance, String number,  String name, Geometry geometry) {
 		super(width, wayNumber, z_ini, z_fin, direction, nature, importance, number, name);
@@ -191,8 +190,7 @@ public class SurfaceRoad extends Road implements IObjExport{
 	public void setZfromDTM(DTM dtm) {
 		// Densify the geometry so it has a number of vertices corresponding to the DTM
 		if(geometry.getCoordinates().length > 0) {
-//			geometry = (Polygon) Densifier.densify(geometry, dtm.getCellsize()/2);
-			geometry = Densifier.densify(geometry, dtm.getCellsize()/2);
+			geometry = Densifier.densify(geometry, dtm.getCellsize());
 		}
 		
 		// Defining a coordinate filter to set the z according to the DTM

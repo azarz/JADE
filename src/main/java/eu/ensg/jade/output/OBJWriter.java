@@ -124,6 +124,7 @@ public class OBJWriter {
 	 * @param xCentroid the centroid x coordinate
 	 * @param yCentroid the centroid y coordinate
 	 * @param fullRoads The geometry of all the roads
+	 * @param dtm The DTM
 	 */
 	public void exportSidewalks(String filePath, Map<String, LineRoad> roads, double xCentroid, double yCentroid,Geometry fullRoads, DTM dtm) {
 		
@@ -149,7 +150,7 @@ public class OBJWriter {
 			int i=0;
 			System.out.println("\t\tsidewalks creating...");
 			for (LineRoad road: roads.values()) {
-//				System.out.printf("%3d %%", 100*i/3343.);
+				System.out.println(100*i/3343. + "%");
 				Sidewalk sidewalk = new Sidewalk(road.getGeom(),road.getWidth(),fullRoads,dtm);
 				out.print(sidewalk.toOBJ(offsets, xCentroid, yCentroid));
 				i++;
