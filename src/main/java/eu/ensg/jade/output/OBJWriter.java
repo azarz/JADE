@@ -148,7 +148,7 @@ public class OBJWriter {
 			
 			out.print("mtllib paris.mtl\n");
 			int i=0;
-			System.out.println("sidewalks creating...");
+			System.out.println("\t\tsidewalks creating...");
 			for (LineRoad road: roads.values()) {
 				System.out.println(100*i/3343. + "%");
 				Sidewalk sidewalk = new Sidewalk(road.getGeom(),road.getWidth(),fullRoads,dtm);

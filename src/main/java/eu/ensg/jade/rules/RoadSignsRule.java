@@ -36,6 +36,31 @@ public class RoadSignsRule implements RuleShape {
 	 */
 	private String pedestrianCrossing = "Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene"; 
 	
+	/**
+	 * Path of the 130 speed limit sign
+	 */
+	private String speedLimit130 = "Models/RoadSigns/speedLimits/speedLimit130/speedLimit130.scene"; 
+	
+	/**
+	 * Path of the 110 speed limit sign
+	 */
+	private String speedLimit110 = "Models/RoadSigns/speedLimits/speedLimit110/speedLimit110.scene"; 
+	
+	/**
+	 * Path of the 90 speed limit sign
+	 */
+	private String speedLimit90 = "Models/RoadSigns/speedLimits/speedLimit90/speedLimit90.scene"; 
+	
+	/**
+	 * Path of the 90 speed limit sign
+	 */
+	private String speedLimit70 = "Models/RoadSigns/speedLimits/speedLimit70/speedLimit70.scene"; 
+	
+	/**
+	 * Path of the 50 speed limit sign
+	 */
+	private String speedLimit50 = "Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene"; 
+	
 	
 	
 // ========================== METHODS ==============================
@@ -49,45 +74,187 @@ public class RoadSignsRule implements RuleShape {
 	 */	
 	@Override
 	public void addPunctualObject(Scene scene) throws NoSuchAuthorityCodeException, FactoryException {
-
 		Map<String, LineRoad> roads = scene.getLineRoads();
 		IntersectionColl interColl = scene.getCollIntersect();
 		
+		LineRoad lineRoad = new LineRoad(); 
+		boolean roadBool;
+		int enter = -100; 
+		
 		// We go through all the intersections
 		for (Intersection intersect : interColl.getMapIntersection().values()){
-			int numberOfRoads = intersect.getRoadId().size();
-			LineRoad[] roadsTab = new LineRoad[numberOfRoads];
-			boolean[] startOnIntersectTab = new boolean[numberOfRoads];
-			
-			roadTabFilling(roadsTab, startOnIntersectTab, intersect, roads);
-
-			// We go through all the roads
 			for (String road : intersect.getRoadId().keySet()){
-				LineRoad lineRoad = (LineRoad) roads.get(road);
-				boolean roadBool = intersect.getRoadId().get(road);
+				lineRoad = roads.get(road);
+				roadBool = intersect.getRoadId().get(road);
 				// We check the road driving direction
-				int enter = isEntering(lineRoad, roadBool);
+				enter = isEntering(lineRoad, roadBool);
 				
-				int intersectType = calcIntersectionType(roadsTab,numberOfRoads);
+				Coordinate roadStart = lineRoad.getGeom().getCoordinates()[0];
+				double[] roadStartDouble = new double[]{roadStart.x, roadStart.y, roadStart.z};
 				
-				// If the intersection has 5 or more roads, we've placed traffic lights
-				// Intersection with 3 or 4 attached roads and traffic lights are harder to determine ...
-				if ((lineRoad.getSpeed().equals("70 km/h") &&
-						((lineRoad.getName().substring(0, 2).equals("PL") || lineRoad.getName().substring(0, 3).equals("RPT"))
-						|| numberOfRoads == 5)) ||
-						lineRoad.getSpeed().equals("50 km/h")){
+				Coordinate roadEnd = lineRoad.getGeom().getCoordinates()[lineRoad.getGeom().getCoordinates().length-1];
+				double[] roadEndDouble = new double[]{roadEnd.x, roadEnd.y, roadEnd.z};
+										
+				double roadLength = JadeUtils.getDistance(roadStartDouble, roadEndDouble);
+
+				if (lineRoad.getSF().isEmpty()){
+					// If the speed limit is under 90 km/h we can place a pedestrian crossing sign, else, we place a speed limit sign
+					if (!(lineRoad.getSpeed().equals("90 km/h")) || !(lineRoad.getSpeed().equals("110 km/h")) || !(lineRoad.getSpeed().equals("130 km/h"))){
+						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.pedestrianCrossing, scene,intersect, 5);
+						addStreetFurniture(streetFurniture, lineRoad, scene);
+					}
+				}
+				else if (roadLength >= 100){
+					double distance = roadLength / 2;
 					
-					addSignsByRoad(enter, lineRoad, roadBool, this.pedestrianCrossing, scene, intersect);
+					int speedType = slowestRoad(lineRoad.getSpeed());
+					addSpeedLimitSigns(lineRoad, roadBool, speedType, scene, intersect, distance);
 					
-			
 				}
 				else{
 					System.out.println("There is no road in this intersection ... ");
-				}
+					}
 			}
 		}
+		
+		
+//		Map<String, LineRoad> roads = scene.getLineRoads();
+//		IntersectionColl interColl = scene.getCollIntersect();
+//		
+//		boolean road90 = false;
+//		boolean road130 = false;
+//		
+//		// We go through all the intersections
+//		for (Intersection intersect : interColl.getMapIntersection().values()){
+//			int numberOfRoads = intersect.getRoadId().size();
+//			LineRoad[] roadsTab = new LineRoad[numberOfRoads];
+//			boolean[] startOnIntersectTab = new boolean[numberOfRoads];
+//			
+//			roadTabFilling(roadsTab, startOnIntersectTab, intersect, roads);
+//			
+//			// If we're facing a road narrowing and the roads have 2 different speeds
+//			if(intersect.getRoadId().size() == 2) {
+//				System.out.println("Intersection à 2 routes !");
+//				int larger = widthComparison(roadsTab[0],roadsTab[1]);
+//				
+//				// If they are different, we compare their speed
+//				if (larger != -1){
+//					int speedType = slowestRoad(roadsTab[0].getSpeed(), roadsTab[1].getSpeed());
+//					addSpeedLimitSigns(roadsTab, startOnIntersectTab, speedType, scene, intersect);
+//					}
+//				}
+//			
+//			else{
+//				System.out.println("On est dans l'autre cas");
+//				// We go through all the roads
+//				for (String road : intersect.getRoadId().keySet()){
+//					LineRoad lineRoad = (LineRoad) roads.get(road);
+//					boolean roadBool = intersect.getRoadId().get(road);
+//					// We check the road driving direction
+//					int enter = isEntering(lineRoad, roadBool);
+//					
+////					if (lineRoad.getSpeed().equals("130 km/h")){
+////						road130 = true;
+////					}
+////					else if (lineRoad.getSpeed().equals("90 km/h") && lineRoad.getNature().equals("Bretelle")){
+////						road90 = true;
+////					}
+//					
+//					int intersectType = calcIntersectionType(roadsTab,numberOfRoads);
+//					
+//					// If the intersection has 5 or more roads, we've placed traffic lights
+//					// Intersection with 3 or 4 attached roads and traffic lights are harder to determine ...
+//					if ((lineRoad.getSpeed().equals("70 km/h") &&
+//							((lineRoad.getName().substring(0, 2).equals("PL") || lineRoad.getName().substring(0, 3).equals("RPT"))
+//							|| numberOfRoads == 5))){
+//						System.out.println("We've got a road to place pedestrian crossing");
+//						//addSignsByRoad(enter, lineRoad, roadBool, this.pedestrianCrossing, scene, intersect);
+//						StreetFurniture streetFurniture = addSigns(lineRoad,roadBool,this.pedestrianCrossing, scene,intersect);
+//						addStreetFurniture(streetFurniture, lineRoad, scene);
+//				
+//					}
+//					else{
+//					System.out.println("There is no road in this intersection ... ");
+//					}
+//				}
+//			}
+//
+//		}
 	}		
 	
+	
+	private int slowestRoad(String speed1){
+		// They have 2 different speeds
+		
+		// Case 0: speed2 is the slowest and its value is 110 km/h
+		if (speed1.equals("130 km/h")){
+			return 0;
+		}
+		// Case 1: speed1 is the slowest and its value is 110 km/h
+		else if (speed1.equals("110 km/h")){
+			return 1;
+		}
+		// Case 2: speed2 is the slowest and its value is 90 km/h
+		if (speed1.equals("90 km/h")){
+			return 2;
+		}
+		// Case 3: speed1 is the slowest and its value is 90 km/h
+		if (speed1.equals("70 km/h")){
+			return 3;
+		}
+		// Case 4: speed1 is the slowest and its value is 70 km/h
+		if (speed1.equals("50 km/h")){
+			return 4;
+		}
+		return -1;
+			
+		}
+		
+private void addSpeedLimitSigns(LineRoad lineRoad, boolean startOnIntersect, int speedType, Scene scene, Intersection intersect, double distance) throws NoSuchAuthorityCodeException, FactoryException {
+		
+		// Signs positioning
+		switch (speedType) {
+		
+		case 0:
+			System.out.println("Cas 0");
+			boolean startOnIntersect0 = startOnIntersect;
+			StreetFurniture streetFurniture0 = addSigns(lineRoad, startOnIntersect0, this.speedLimit130, scene, intersect, distance);
+			addStreetFurniture(streetFurniture0, lineRoad, scene);
+			break;
+			
+		case 1:
+			System.out.println("Cas 1");
+			boolean startOnIntersect1 = startOnIntersect;
+			StreetFurniture streetFurniture1 = addSigns(lineRoad, startOnIntersect1, this.speedLimit110, scene, intersect, distance);
+			addStreetFurniture(streetFurniture1, lineRoad, scene);
+			break;
+
+		case 2:
+			System.out.println("Cas 2");
+			boolean startOnIntersect2 = startOnIntersect;
+			StreetFurniture streetFurniture2 = addSigns(lineRoad, startOnIntersect2, this.speedLimit90, scene, intersect, distance);
+			addStreetFurniture(streetFurniture2, lineRoad, scene);
+			break;
+			
+		case 3:
+			System.out.println("Cas 3");
+			boolean startOnIntersect3 = startOnIntersect;
+			StreetFurniture streetFurniture3 = addSigns(lineRoad, startOnIntersect3, this.speedLimit70, scene, intersect, distance);
+			addStreetFurniture(streetFurniture3, lineRoad, scene);
+			break;
+			
+		case 4:
+			System.out.println("Cas 4");
+			boolean startOnIntersect4 = startOnIntersect;
+			StreetFurniture streetFurniture4 = addSigns(lineRoad, startOnIntersect4, this.speedLimit50, scene, intersect, distance);
+			addStreetFurniture(streetFurniture4, lineRoad, scene);
+			break;
+		
+		default:
+			System.out.println("Intersection de mauvais type");
+			break;
+		}
+	}
 	
 	/**
 	 * @param roadsTab the list of roads attached to the intersection
@@ -108,6 +275,26 @@ public class RoadSignsRule implements RuleShape {
 		}
 	}
 	
+	/**
+	 * Compares the width of two roads 
+	 * 
+	 * @param road1 the first road
+	 * @param road2 the second road
+	 * 
+	 * @return the index of the largest road if there is one, and null if not
+	 */
+	private int widthComparison(Road road1, Road road2){
+		
+		if(road1.getWidth() > road2.getWidth()){
+			return 0;
+		}
+		
+		else if(road1.getWidth() < road2.getWidth()){
+			return 1;
+		}
+		
+		return -1;
+	}
 	
 	/**
 	 * Gives the direction of the road compared to the intersection
@@ -217,10 +404,10 @@ public class RoadSignsRule implements RuleShape {
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private void addSignsByRoad(int enter, LineRoad lineRoad, boolean startOnIntersect, String folder, Scene scene, Intersection intersect) throws NoSuchAuthorityCodeException, FactoryException {
+	private void addSignsByRoad(int enter, LineRoad lineRoad, boolean startOnIntersect, String folder, Scene scene, Intersection intersect, double distance) throws NoSuchAuthorityCodeException, FactoryException {
 		// If it is a direct driving direction
-		if (enter == 1){
-			StreetFurniture streetFurniture = addSigns(lineRoad,startOnIntersect,this.pedestrianCrossing,scene, intersect);
+		if (enter == 1 || enter == -1){
+			StreetFurniture streetFurniture = addSigns(lineRoad,startOnIntersect,this.pedestrianCrossing,scene, intersect, distance);
 			addStreetFurniture(streetFurniture, lineRoad, scene);
 		
 		}		
@@ -252,11 +439,13 @@ public class RoadSignsRule implements RuleShape {
 					}
 				}
 				if (!alreadyOn){
+					System.out.println("We've placed a sign !!");
 					road.addSF(streetFurniture);
 					scene.addStreetFurniture(streetFurniture);
 				}
 			}
 			else{
+				System.out.println("We've placed a sign !!");
 				road.addSF(streetFurniture);
 				scene.addStreetFurniture(streetFurniture);
 			}
@@ -277,14 +466,14 @@ public class RoadSignsRule implements RuleShape {
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private StreetFurniture addSigns(LineRoad road, boolean startOnIntersect, String folder, Scene scene, Intersection intersect) throws NoSuchAuthorityCodeException, FactoryException{
+	private StreetFurniture addSigns(LineRoad road, boolean startOnIntersect, String folder, Scene scene, Intersection intersect, double distance) throws NoSuchAuthorityCodeException, FactoryException{
 
 		if (startOnIntersect){
 			// It is possible to return the sign angle in street furniture
-			return signPosition(road, 0, folder, scene, intersect);
+			return signPosition(road, 0, folder, scene, intersect, distance);
 		}
 		else{
-			return signPosition(road, road.getGeom().getCoordinates().length-1, folder, scene, intersect);
+			return signPosition(road, road.getGeom().getCoordinates().length-1, folder, scene, intersect, distance);
 		}
 	}	
 	
@@ -301,7 +490,7 @@ public class RoadSignsRule implements RuleShape {
 	 * @throws FactoryException 
 	 * @throws NoSuchAuthorityCodeException 
 	 */
-	private StreetFurniture signPosition(LineRoad road, int position, String folder, Scene scene, Intersection intersection) throws NoSuchAuthorityCodeException, FactoryException{
+	private StreetFurniture signPosition(LineRoad road, int position, String folder, Scene scene, Intersection intersection, double d) throws NoSuchAuthorityCodeException, FactoryException{
 
 		// Variable 
 		Coordinate[] coord = road.getGeom().getCoordinates();
@@ -315,7 +504,6 @@ public class RoadSignsRule implements RuleShape {
 		double[] sfCoord ;
 		
 
-		double d = 60; // 5 meters after the beginning of the road
 		double D = road.getWidth()/2 + 0.7; // 0.70 meters after the border of the road
 
 		double theta = JadeUtils.roadAngle(road,position); // Angle between road and horizontal line, in counter clockwise
@@ -326,7 +514,7 @@ public class RoadSignsRule implements RuleShape {
 		rotation = sfCoord[2];
 		
 		boolean doesIntersect = true;
-		while (doesIntersect && d < 15){
+		while (doesIntersect && d < d+10){
 			doesIntersect = false;
 			sfCoord = sfPositionning(folder, x, y, d, D, theta);
 			newX = sfCoord[0];

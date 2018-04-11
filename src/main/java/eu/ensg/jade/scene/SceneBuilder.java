@@ -67,7 +67,7 @@ public class SceneBuilder {
 		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
 //		String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
-		String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
+		String treeLayer = "src/test/resources/RGE/BD_TOPO/smallVege.shp";
 //		String treeLayer = "src/test/resources/inputTest/openShpTestVege3.shp";
 //		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
 		String dtmLayer = "src/test/resources/RGE/DTM_1m.asc";
@@ -291,11 +291,11 @@ public class SceneBuilder {
 		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
 		
 		// Add intersections
-		ruleShapeMaker.addIntersectionSigns(scene);
+		//ruleShapeMaker.addIntersectionSigns(scene);
 		ruleShapeMaker.addRoadSigns(scene);
 
 		// Add punctual vegetation
-//		ruleShapeMaker.addVegetation(scene);	
+		//ruleShapeMaker.addVegetation(scene);	
 
 	}
 	
@@ -339,35 +339,8 @@ public class SceneBuilder {
 		
 		// Add flat ground (debug)
 		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
-//		xmlWriter.addModel(grassPlane);
+		xmlWriter.addModel(grassPlane);
 		
-		// Add driver
-		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
-		driver.setMass(1000);
-		driver.setTranslation(new double[]{0, 70, 0});
-		driver.setScale((new double[]{0.8, 0.8, 0.8}));
-		xmlWriter.addModel(driver);
-		
-		// Add buildings
-		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
-		xmlWriter.addModel(buildindModel);
-		
-		// Add roads
-		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
-		xmlWriter.addModel(roadsModel);
-		
-		// Add sidewalks
-		XMLModel sidewalksModel = new XMLModel("Sidewalks", "RGE/sidewalks.obj");
-		xmlWriter.addModel(sidewalksModel);
-		
-		// Add water
-		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
-		xmlWriter.addModel(waterModel);
-		
-		// Add vegetation surface
-		XMLModel vegeModel = new XMLModel("Vegetation", "RGE/vegetation.obj");
-//		xmlWriter.addModel(vegeModel);
-
 		// Add street furniture
 		int k = 0;
 		for(StreetFurniture sign : scene.getStreetFurniture()) {
@@ -378,6 +351,39 @@ public class SceneBuilder {
 			
 			if (++k>1000){ break; }
 		}
+		
+		// Add driver
+		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
+		driver.setMass(1000);
+		Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
+		//driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
+		driver.setTranslation(new double[]{0, 70, 0});
+
+		driver.setScale((new double[]{0.8, 0.8, 0.8}));
+		xmlWriter.addModel(driver);
+		
+		// Add buildings
+//		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
+//		xmlWriter.addModel(buildindModel);
+		
+		// Add roads
+		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
+//		xmlWriter.addModel(roadsModel);
+		
+		// Add sidewalks
+
+		XMLModel sidewalksModel = new XMLModel("Sidewalks", "RGE/sidewalks.obj");
+		xmlWriter.addModel(sidewalksModel);
+		
+		// Add water
+//		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
+//		xmlWriter.addModel(waterModel);
+		
+		// Add vegetation surface
+//		XMLModel vegeModel = new XMLModel("Vegetation", "RGE/vegetation.obj");
+//		xmlWriter.addModel(vegeModel);
+
+
 		
 //		int g = 0;
 //		for(PointVegetation tree : scene.getVegetation()) {
@@ -392,7 +398,7 @@ public class SceneBuilder {
 		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);
-		ground.setVisible(true);
+		ground.setVisible(false);
 		xmlWriter.addTerrain(ground);
 		
 		xmlWriter.createAllXml();
