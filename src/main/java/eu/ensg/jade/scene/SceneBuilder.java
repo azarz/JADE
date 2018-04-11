@@ -345,7 +345,7 @@ public class SceneBuilder {
 		
 		// Add flat ground (debug)
 		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
-//		xmlWriter.addModel(grassPlane);
+		xmlWriter.addModel(grassPlane);
 		
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
@@ -356,11 +356,11 @@ public class SceneBuilder {
 		
 		// Add buildings
 		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
-//		xmlWriter.addModel(buildindModel);
+		xmlWriter.addModel(buildindModel);
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
-		xmlWriter.addModel(roadsModel);
+//		xmlWriter.addModel(roadsModel);
 		
 		// Add sidewalks
 		XMLModel sidewalksModel = new XMLModel("Sidewalks", "RGE/sidewalks.obj");
