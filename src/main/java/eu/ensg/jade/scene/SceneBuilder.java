@@ -67,8 +67,8 @@ public class SceneBuilder {
 		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
 //		String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
-		String treeLayer = "src/test/resources/RGE/BD_TOPO/smallVege.shp";
-//		String treeLayer = "src/test/resources/inputTest/openShpTestVege3.shp";
+//		String treeLayer = "src/test/resources/RGE/BD_TOPO/smallVege.shp";
+		String treeLayer = "src/test/resources/inputTest/openShpTestVege3.shp";
 //		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
 		String dtmLayer = "src/test/resources/RGE/DTM_1m.asc";
 		
@@ -357,7 +357,7 @@ public class SceneBuilder {
 		driver.setMass(1000);
 		Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
 		//driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
-		driver.setTranslation(new double[]{0, 70, 0});
+		driver.setTranslation(new double[]{0, 80, 0});
 
 		driver.setScale((new double[]{0.8, 0.8, 0.8}));
 		xmlWriter.addModel(driver);
@@ -368,12 +368,12 @@ public class SceneBuilder {
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
-//		xmlWriter.addModel(roadsModel);
+		xmlWriter.addModel(roadsModel);
 		
 		// Add sidewalks
 
 		XMLModel sidewalksModel = new XMLModel("Sidewalks", "RGE/sidewalks.obj");
-		xmlWriter.addModel(sidewalksModel);
+//		xmlWriter.addModel(sidewalksModel);
 		
 		// Add water
 //		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
@@ -398,7 +398,7 @@ public class SceneBuilder {
 		
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);
-		ground.setVisible(false);
+		ground.setVisible(true);
 		xmlWriter.addTerrain(ground);
 		
 		xmlWriter.createAllXml();
