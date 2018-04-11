@@ -1,8 +1,11 @@
 package eu.ensg.jade.semantic;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.List;
 
 import org.geotools.geometry.jts.CircularArc;
 import org.geotools.geometry.jts.JTSFactoryFinder;
@@ -15,6 +18,7 @@ import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.MultiLineString;
+import com.vividsolutions.jts.geom.Point;
 
 /**
  * ArcIntersectionTest is the class testing the {@link RoadArc} class
@@ -41,7 +45,7 @@ public class RoadArcTest {
 	@Test
 	public void testIntersectOther(){
 
-		//Geometry used for the roads
+		//Geometry factory
 		GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
 
 		//Creating the roadArc
@@ -63,7 +67,7 @@ public class RoadArcTest {
 		LineString falseFar2LS = geometryFactory.createLineString(falseFar2Coor);
 		LineString falseFar3LS = geometryFactory.createLineString(falseFar3Coor);
 		LineString falseFar4LS = geometryFactory.createLineString(falseFar4Coor);
-		
+
 		//MultiLineString
 		MultiLineString trueDoubleMLS = geometryFactory.createMultiLineString(new LineString[] {trueDoubleLS});
 		MultiLineString trueTangMLS = geometryFactory.createMultiLineString(new LineString[] {trueTangLS});
@@ -81,7 +85,7 @@ public class RoadArcTest {
 		LineRoad falseFar2 = Mockito.mock(LineRoad.class);
 		LineRoad falseFar3 = Mockito.mock(LineRoad.class);
 		LineRoad falseFar4 = Mockito.mock(LineRoad.class);
-		
+
 		//Set getGeom 
 		Mockito.when(trueDouble.getGeom()).thenReturn(trueDoubleMLS);
 		Mockito.when(trueTang.getGeom()).thenReturn(trueTangMLS);
@@ -90,7 +94,7 @@ public class RoadArcTest {
 		Mockito.when(falseFar2.getGeom()).thenReturn(falseFar2MLS);
 		Mockito.when(falseFar3.getGeom()).thenReturn(falseFar3MLS);
 		Mockito.when(falseFar4.getGeom()).thenReturn(falseFar4MLS);
-		
+
 		assertTrue(RoadArc.intersectOther(cirularArc, trueDouble));
 		assertTrue(RoadArc.intersectOther(cirularArc, trueTang));
 		assertTrue(RoadArc.intersectOther(cirularArc, trueEdge));
@@ -106,6 +110,99 @@ public class RoadArcTest {
 	@Test
 	public void testCuttingPoint(){
 
+		//Geometry factory
+		GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
+
+		//Points
+		Point intersection= geometryFactory.createPoint(new Coordinate(0,0));
+		Point extremity1 = geometryFactory.createPoint(new Coordinate(-2,5));
+		Point extremity2 = geometryFactory.createPoint(new Coordinate(-2,-5));
+		Point extremity3 = geometryFactory.createPoint(new Coordinate(2,5));
+		Point extremity4 = geometryFactory.createPoint(new Coordinate(2,-5));
+		Point extremity5 = geometryFactory.createPoint(new Coordinate(3,0));
+		Point extremity6 = geometryFactory.createPoint(new Coordinate(-3,0));
+		Point extremity7 = geometryFactory.createPoint(new Coordinate(3,13));
+		Point extremity8 = geometryFactory.createPoint(new Coordinate(3,-13));
+
+		Point expected1 = geometryFactory.createPoint(new Coordinate(0,5));
+		Point expected2 = geometryFactory.createPoint(new Coordinate(0,-5));
+		Point expected3 = geometryFactory.createPoint(new Coordinate(0,5));
+		Point expected4 = geometryFactory.createPoint(new Coordinate(0,-5));
+		Point expected5 = geometryFactory.createPoint(new Coordinate(0,0));
+		Point expected6 = geometryFactory.createPoint(new Coordinate(0,0));
+		Point expected7 = geometryFactory.createPoint(new Coordinate(0,10));
+		Point expected8 = geometryFactory.createPoint(new Coordinate(0,-10));
+
+
+		//Road coordinate
+		Coordinate coorA = new Coordinate(0,10);
+		Coordinate coorB = new Coordinate(0,0);
+		Coordinate coorC = new Coordinate(0,-10);
+
+		//Road LineString
+		LineString lsAB = geometryFactory.createLineString(new Coordinate[] {coorA,coorB});
+		LineString lsBC = geometryFactory.createLineString(new Coordinate[] {coorB,coorC});
+
+		//Road MultiLineString
+		MultiLineString mlsAB = geometryFactory.createMultiLineString(new LineString[] {lsAB});
+		MultiLineString mlsBC = geometryFactory.createMultiLineString(new LineString[] {lsBC});
+
+		//Creating the lineroads with mockito
+		LineRoad lrAB = Mockito.mock(LineRoad.class);
+		LineRoad lrBC = Mockito.mock(LineRoad.class);
+
+		//Set getGeom 
+		Mockito.when(lrAB.getGeom()).thenReturn(mlsAB);
+		Mockito.when(lrBC.getGeom()).thenReturn(mlsBC);
+
+		List<Point> list1 =RoadArc.cuttingPoint(extremity1,extremity2, lrAB, lrBC, intersection);
+		List<Point> list2 =RoadArc.cuttingPoint(extremity3,extremity4, lrAB, lrBC, intersection);
+		List<Point> list3 =RoadArc.cuttingPoint(extremity5,extremity6, lrAB, lrBC, intersection);
+		List<Point> list4 =RoadArc.cuttingPoint(extremity7,extremity8, lrAB, lrBC, intersection);
+
+		//Results extraction
+		Point result1 = list1.get(0);
+		Point result2 = list1.get(1);
+		Point result3 = list2.get(0);
+		Point result4 = list2.get(1);
+		Point result5 = list3.get(0);
+		Point result6 = list3.get(1);
+		Point result7 = list4.get(0);
+		Point result8 = list4.get(1);
+
+		assertEquals(expected1,result1);
+		assertEquals(expected2,result2);
+		assertEquals(expected3,result3);
+		assertEquals(expected4,result4);
+		assertEquals(expected5,result5);
+		assertEquals(expected6,result6);
+		assertEquals(expected7,result7);
+		assertEquals(expected8,result8);
+
+		list1 =RoadArc.cuttingPoint(extremity1,extremity2, lrBC, lrAB, intersection);
+		list2 =RoadArc.cuttingPoint(extremity3,extremity4, lrBC, lrAB, intersection);
+		list3 =RoadArc.cuttingPoint(extremity5,extremity6, lrBC, lrAB, intersection);
+		list4 =RoadArc.cuttingPoint(extremity7,extremity8, lrBC, lrAB, intersection);
+
+		//Results extraction
+		result1 = list1.get(0);
+		result2 = list1.get(1);
+		result3 = list2.get(0);
+		result4 = list2.get(1);
+		result5 = list3.get(0);
+		result6 = list3.get(1);
+		result7 = list4.get(0);
+		result8 = list4.get(1);
+
+		assertFalse(expected1.equals(result1));
+		assertFalse(expected2.equals(result2));
+		assertFalse(expected3.equals(result3));
+		assertFalse(expected4.equals(result4));
+		assertTrue(expected5.equals(result5));
+		assertTrue(expected6.equals(result6));
+		assertFalse(expected7.equals(result7));
+		assertFalse(expected8.equals(result8));
+
 	}
 
 	/**
@@ -114,6 +211,65 @@ public class RoadArcTest {
 	@Test
 	public void testCalculAngle(){
 
+		//Geometry factory
+		GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
+
+		//Road coordinate
+		Coordinate coorA = new Coordinate(0,0);
+		Coordinate coorB = new Coordinate(1,0);
+		Coordinate coorC = new Coordinate(0,1);
+		Coordinate coorD = new Coordinate(-1,0);
+		Coordinate coorE = new Coordinate(0,-1);
+		Coordinate coorF = new Coordinate(0,-0.5);
+		Coordinate coorG = new Coordinate(1,-0.5);
+		Coordinate coorH = new Coordinate(2,0);
+		Coordinate coorI = new Coordinate(3,0);
+		Coordinate coorJ = new Coordinate(-1,-1);
+
+		//Road LineString
+		LineString lsAB = geometryFactory.createLineString(new Coordinate[] {coorA,coorB});
+		LineString lsAC = geometryFactory.createLineString(new Coordinate[] {coorA,coorC});
+		LineString lsAD = geometryFactory.createLineString(new Coordinate[] {coorA,coorD});
+		LineString lsAE = geometryFactory.createLineString(new Coordinate[] {coorA,coorE});
+		LineString lsFG = geometryFactory.createLineString(new Coordinate[] {coorF,coorG});
+		LineString lsHI = geometryFactory.createLineString(new Coordinate[] {coorH,coorI});
+		LineString lsDJ = geometryFactory.createLineString(new Coordinate[] {coorD,coorJ});
+
+		//Road MultiLineString
+		MultiLineString mlsAB = geometryFactory.createMultiLineString(new LineString[] {lsAB});
+		MultiLineString mlsAC = geometryFactory.createMultiLineString(new LineString[] {lsAC});
+		MultiLineString mlsAD = geometryFactory.createMultiLineString(new LineString[] {lsAD});
+		MultiLineString mlsAE = geometryFactory.createMultiLineString(new LineString[] {lsAE});
+		MultiLineString mlsFG = geometryFactory.createMultiLineString(new LineString[] {lsFG});
+		MultiLineString mlsHI = geometryFactory.createMultiLineString(new LineString[] {lsHI});
+		MultiLineString mlsDJ = geometryFactory.createMultiLineString(new LineString[] {lsDJ});
+
+		//Creating the lineroads with mockito
+		LineRoad lrAB = Mockito.mock(LineRoad.class);
+		LineRoad lrAC = Mockito.mock(LineRoad.class);
+		LineRoad lrAD = Mockito.mock(LineRoad.class);
+		LineRoad lrAE = Mockito.mock(LineRoad.class);
+		LineRoad lrFG = Mockito.mock(LineRoad.class);
+		LineRoad lrHI = Mockito.mock(LineRoad.class);
+		LineRoad lrDJ = Mockito.mock(LineRoad.class);
+
+		//Set getGeom 
+		Mockito.when(lrAB.getGeom()).thenReturn(mlsAB);
+		Mockito.when(lrAC.getGeom()).thenReturn(mlsAC);
+		Mockito.when(lrAD.getGeom()).thenReturn(mlsAD);
+		Mockito.when(lrAE.getGeom()).thenReturn(mlsAE);
+		Mockito.when(lrFG.getGeom()).thenReturn(mlsFG);
+		Mockito.when(lrHI.getGeom()).thenReturn(mlsHI);
+		Mockito.when(lrDJ.getGeom()).thenReturn(mlsDJ);
+		
+		assertEquals(RoadArc.calculAngle(lrAB, lrAB),0,1);
+		assertEquals(RoadArc.calculAngle(lrAB, lrAC),90,1);
+		assertEquals(RoadArc.calculAngle(lrAC, lrAB),90,1);
+		assertEquals(RoadArc.calculAngle(lrAB, lrAD),180,1);
+		assertEquals(RoadArc.calculAngle(lrAB, lrAE),90,1);
+		assertEquals(RoadArc.calculAngle(lrAB, lrFG),Double.NaN,1);
+		assertEquals(RoadArc.calculAngle(lrAB, lrHI),Double.NaN,1);
+		assertEquals(RoadArc.calculAngle(lrAB, lrDJ),Double.NaN,1);
 	}
 
 	/**
@@ -121,6 +277,6 @@ public class RoadArcTest {
 	 */
 	@Test
 	public void testCreateRoadArc(){
-
+		
 	}
 }
