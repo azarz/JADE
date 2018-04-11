@@ -67,7 +67,7 @@ public class SceneBuilder {
 		String roadLayer = "src/test/resources/RGE/BD_TOPO/ROUTE.SHP";
 //		String roadLayer = "src/test/resources/inputTest/openShpTestLinearRoad3.shp";
 		String hydroLayer = "src/test/resources/RGE/BD_TOPO/SURFACE_EAU.SHP";
-		String treeLayer = "src/test/resources/RGE/BD_TOPO/ZONE_VEGETATION.SHP";
+		String treeLayer = "src/test/resources/RGE/BD_TOPO/smallVege.shp";
 //		String treeLayer = "src/test/resources/inputTest/openShpTestVege3.shp";
 //		String dtmLayer = "src/test/resources/RGE/Dpt_75_asc.asc";
 		String dtmLayer = "src/test/resources/RGE/DTM_1m.asc";
@@ -311,11 +311,11 @@ public class SceneBuilder {
 		Coordinate centroid = scene.getCentroid();
 		objWriter.exportBuilding("assets/RGE/buildings.obj", scene.getBuildings(), centroid.x, centroid.y);
 		
-		Map<String, SurfaceRoad> roads = new HashMap<String, SurfaceRoad>();
-		roads.put("-1", scene.getSurfaceRoads().get("-1"));
-		objWriter.exportRoad("assets/RGE/roads.obj", roads, centroid.x, centroid.y);
-		
 		Geometry fullRoads = scene.getSurfaceRoads().get("-1").getGeom();
+		
+		scene.getSurfaceRoads().remove("-1");
+		objWriter.exportRoad("assets/RGE/roads.obj", scene.getSurfaceRoads(), centroid.x, centroid.y);
+		
 		objWriter.exportSidewalks("assets/RGE/sidewalks.obj", scene.getLineRoads(), scene.getCentroid().x, scene.getCentroid().y, fullRoads, scene.getDtm());
 		
 		objWriter.exportWater("assets/RGE/water.obj", scene.getHydrography(), centroid.x, centroid.y);
@@ -339,7 +339,7 @@ public class SceneBuilder {
 		
 		// Add flat ground (debug)
 		XMLModel grassPlane = new XMLModel("grassPlane", "Scenes/grassPlane/Scene.j3o");
-//		xmlWriter.addModel(grassPlane);
+		xmlWriter.addModel(grassPlane);
 		
 		// Add street furniture
 		int k = 0;
@@ -368,12 +368,13 @@ public class SceneBuilder {
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
-		xmlWriter.addModel(roadsModel);
+//		xmlWriter.addModel(roadsModel);
 		
 		// Add sidewalks
-//		XMLModel sidewalksModel = new XMLModel("Sidewalks", "RGE/sidewalks.obj");
-//		xmlWriter.addModel(sidewalksModel);
-//		
+
+		XMLModel sidewalksModel = new XMLModel("Sidewalks", "RGE/sidewalks.obj");
+		xmlWriter.addModel(sidewalksModel);
+		
 		// Add water
 //		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
 //		xmlWriter.addModel(waterModel);
