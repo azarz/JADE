@@ -313,19 +313,12 @@ public class SceneBuilder {
 		
 		Map<String, SurfaceRoad> roads = new HashMap<String, SurfaceRoad>();
 		roads.put("-1", scene.getSurfaceRoads().get("-1"));
-//		objWriter.exportRoad("assets/RGE/roads.obj", roads, centroid.x, centroid.y);
-		
-//		List<Geometry> roadGeometryList = new ArrayList<Geometry>();
-//		for (Road road: scene.getSurfaceRoads().values()){
-//			SurfaceRoad surfRoad = (SurfaceRoad) road;
-//			roadGeometryList.add(surfRoad.getGeom());
-//		}
-//		Geometry fullRoads = CascadedPolygonUnion.union(roadGeometryList);
+		objWriter.exportRoad("assets/RGE/roads.obj", roads, centroid.x, centroid.y);
 		
 		Geometry fullRoads = scene.getSurfaceRoads().get("-1").getGeom();
 		objWriter.exportSidewalks("assets/RGE/sidewalks.obj", scene.getLineRoads(), scene.getCentroid().x, scene.getCentroid().y, fullRoads, scene.getDtm());
 		
-//		objWriter.exportWater("assets/RGE/water.obj", scene.getHydrography(), centroid.x, centroid.y);
+		objWriter.exportWater("assets/RGE/water.obj", scene.getHydrography(), centroid.x, centroid.y);
 
 //		List<SurfaceVegetation> vege = new ArrayList<SurfaceVegetation>(); 
 //		vege.add(scene.getSurfaceVegetation().get(scene.getSurfaceVegetation().size()-1));
@@ -357,7 +350,7 @@ public class SceneBuilder {
 		
 		// Add buildings
 		XMLModel buildindModel = new XMLModel("Building", "RGE/buildings.obj");
-//		xmlWriter.addModel(buildindModel);
+		xmlWriter.addModel(buildindModel);
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/roads.obj");
@@ -369,7 +362,7 @@ public class SceneBuilder {
 //		
 		// Add water
 		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
-//		xmlWriter.addModel(waterModel);
+		xmlWriter.addModel(waterModel);
 		
 		// Add vegetation surface
 		XMLModel vegeModel = new XMLModel("Vegetation", "RGE/vegetation.obj");
@@ -381,7 +374,7 @@ public class SceneBuilder {
 			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
 			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
 			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
-//			xmlWriter.addModel(streetFurnitureModel);
+			xmlWriter.addModel(streetFurnitureModel);
 			
 			if (++k>1000){ break; }
 		}
@@ -391,7 +384,7 @@ public class SceneBuilder {
 			XMLModel vegetationModel = new XMLModel("Tree", tree.getNature());
 			vegetationModel.setTranslation(new double[]{tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
 			vegetationModel.setScale(new double[]{8,8,8});
-//			xmlWriter.addModel(vegetationModel);
+			xmlWriter.addModel(vegetationModel);
 			
 			if (++g>1000){ break; }
 		}
