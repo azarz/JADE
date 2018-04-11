@@ -118,7 +118,7 @@ public class RoadArc {
    
     public Point calculerCentre(LineRoad road1, LineRoad road2){      
     	//Getting the intersection of 2 roads
-        Point inter = (Point) (road1.getGeom().intersection(road2.getGeom()).getGeometryN(0));
+    	Point inter = (Point) (road1.getGeom().intersection(road2.getGeom()).getGeometryN(0));
 
         //Calculate the radius of the two possible arc radius and conserving the smallest
         double speed1 = Integer.parseInt( road1.getSpeed().substring(0, 3).trim())-30;
@@ -139,8 +139,8 @@ public class RoadArc {
 
         double angle = calculAngle(road1, road2)*Math.PI/180;
         if(angle == 0) angle = Math.PI/2 ;
-        Point temp1 = getIntersection(inter.buffer(road2.getWidth()/Math.abs(Math.sin(angle))+(this.getRadius())),lineString1,inter);
-        Point temp2 = getIntersection(inter.buffer(road1.getWidth()/Math.abs(Math.sin(angle))+(this.getRadius())),lineString2,inter);
+        Point temp1 = getIntersection(inter.buffer(road2.getWidth()/Math.abs(Math.sin(Math.PI-angle))+(this.getRadius())),lineString1,inter);
+        Point temp2 = getIntersection(inter.buffer(road1.getWidth()/Math.abs(Math.sin(Math.PI-angle))+(this.getRadius())),lineString2,inter);
 
         if(temp1 != null && temp2 != null) {
         //Calculate the coordinates of the arc's center
@@ -206,7 +206,7 @@ public class RoadArc {
        LineString line2= (LineString) road.getGeom().getGeometryN((road.getGeom().getNumGeometries())-1);
        if(line2.intersects(lineRoute) || line2.intersects(lineRoute2) || line2.intersects(lineRoute3))
            result=true;}
-        return result;
+       return result;
      }
 
     /**
@@ -278,6 +278,9 @@ public class RoadArc {
 		  //Get the relevent points
     	  MultiLineString road1 = lineroad1.getGeom();
           MultiLineString road2 = lineroad2.getGeom();
+          if (isParallel(road1, road2)){
+        	  return 0;
+          }
           Point ptIntersection = (Point) road1.intersection(road2).getCentroid();
           LineString linestring1 = lineStringIntersection(road1,ptIntersection);
           LineString linestring2 = lineStringIntersection(road2,ptIntersection);
@@ -390,6 +393,17 @@ public class RoadArc {
         if( (!first.equalsExact(ptI)) && (!second.equalsExact(ptI)) ){
             return linestring2;}
         return linestring1;
+    }
+    
+    /**
+     * Checks if two MultilineString are parallel
+     * @param road1 first MultiLineString
+     * @param road2 second MultiLineString
+     * @return Boolean, true if parallel
+     */
+    private static boolean isParallel(MultiLineString road1, MultiLineString road2) {
+    	 Point ptIntersection = (Point) road1.intersection(road2).getCentroid();
+    	 return ptIntersection.isEmpty();
     }
    
 }
