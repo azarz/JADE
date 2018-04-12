@@ -254,7 +254,7 @@ public class SceneBuilder {
 	private void build(Scene scene) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
 		// Changing the roads and buildings data so it matches the DTM
 		DTM dtm = scene.getDtm();
-		dtm.smooth(0.9, 1);
+		dtm.smooth(0.9, 10);
 
 		// Set building height
 		for (Building building : scene.getBuildings()) {
@@ -330,7 +330,10 @@ public class SceneBuilder {
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
 		driver.setMass(1000);
-		driver.setTranslation(new double[]{0, scene.getDtm().getHeightAtPoint(0, 0) + 10, 0});
+		driver.setTranslation(new double[]{0, 
+				scene.getDtm().getHeightAtPoint(
+						scene.getCentroid().x, scene.getCentroid().y) + 10,
+				0});
 
 		driver.setScale((new double[]{0.8, 0.8, 0.8}));
 		xmlWriter.addModel(driver);

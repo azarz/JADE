@@ -247,7 +247,7 @@ public class DTM {
 	public void smooth(double np, int radius) {
 		if(smoothDTM == null) this.createSmoothDTM();
         if (np < 0 || np > 1) np = 0.9;
-        if (radius == 0) radius = 1;
+        if (radius == 0) radius = 10;
         
         int number = 0;
         double average = 0;
