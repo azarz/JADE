@@ -64,6 +64,7 @@ public class Sidewalk implements IObjExport{
 	 * @return sidewalk geometry
 	 */
 	private Geometry computeSidewalks(DTM dtm) {
+		if (width==0) {return null;}
 		Geometry buffer = oldGeometry.buffer(1 + width/2, 0, BufferParameters.CAP_SQUARE);
 		// Defining a coordinate filter to set the z according to the DTM
 		// using bilinear interpolation
@@ -160,6 +161,7 @@ public class Sidewalk implements IObjExport{
 		String faces = "usemtl Sidewalk\n";
 		
 		Geometry sidewalk = computeSidewalks(dtm);
+		if (sidewalk==null) {return "";}
 		int numGeometries = sidewalk.getNumGeometries();
 		   		  
 		for (int N = 0; N < numGeometries; N++) {

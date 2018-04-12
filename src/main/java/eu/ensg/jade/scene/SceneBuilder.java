@@ -41,7 +41,7 @@ public class SceneBuilder {
 	 */
 	private Scene scene;
 	
-	private static String place = "Nation";
+	private static String place = "Voise";
 	
 // ========================== CONSTRUCTORS =========================	
 	
@@ -166,7 +166,7 @@ public class SceneBuilder {
 		ReaderFactory readerFact = new ReaderFactory();
 		InputRGE rge = new InputRGE();
 		
-		rge = readerContx.createInputRGE(readerFact.createReader(READER_TYPE.BUILDING), roadLayer);
+		rge = readerContx.createInputRGE(readerFact.createReader(READER_TYPE.BUILDING), buildingLayer);
 		scene.setBuildings(rge.getBuildings());
 		scene.setCentroid(rge.getCentroid());
 		
@@ -370,7 +370,7 @@ public class SceneBuilder {
 			streetFurnitureModel.setTranslation(new double[] {sign.getCoord().x,sign.getCoord().z,sign.getCoord().y});
 			xmlWriter.addModel(streetFurnitureModel);
 			
-			if (++k>1000){ break; }
+//			if (++k>1000){ break; }
 		}
 		
 		int g = 0;
@@ -381,7 +381,7 @@ public class SceneBuilder {
 			vegetationModel.setScale(new double[]{1,1,1});
 			xmlWriter.addModel(vegetationModel);
 			
-			if (++g>1000){ break; }
+//			if (++g>1000){ break; }
 		}
 
 		// Add DTM
