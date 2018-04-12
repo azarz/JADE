@@ -31,7 +31,7 @@ public abstract class Road{
 	protected double z_fin;
 	
 	/**
-	 * The way driving direction
+	 * The road direction
 	 */
 	protected String direction;
 	
@@ -46,17 +46,17 @@ public abstract class Road{
 	protected String importance;
 	
 	/**
-	 * The number
+	 * The road number, in case of national / regional road
 	 */
 	protected String number;
 	
 	/**
-	 * The number
+	 * The limit speed on this road
 	 */
 	protected String speed;
 	
 	/**
-	 * The name
+	 * The name of the road
 	 */
 	protected String name;
 	

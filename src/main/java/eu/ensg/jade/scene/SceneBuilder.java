@@ -163,7 +163,7 @@ public class SceneBuilder {
 		ReaderFactory readerFact = new ReaderFactory();
 		InputRGE rge = new InputRGE();
 		
-		rge = readerFact.createReader(READER_TYPE.BUILDING).loadFromFile(buildingLayer);
+		rge = readerContx.createInputRGE(readerFact.createReader(READER_TYPE.BUILDING), roadLayer);
 		scene.setBuildings(rge.getBuildings());
 		scene.setCentroid(rge.getCentroid());
 		

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.geotools.geometry.jts.CircularArc;
-import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
@@ -26,11 +25,6 @@ public class RoadArc {
 	
 	// ========================== ATTRIBUTES ===========================
     /**
-    * The attribute containing two roads between each the arc will be drawn
-    */
-    private LineRoad routes[];
-   
-    /**
     * The attribute containing the radius of the arc
     */
     
@@ -47,11 +41,11 @@ public class RoadArc {
     * @param route1 One of the roads
     * @param route2 The other road
     */  
-    public RoadArc(LineRoad route1, LineRoad route2){      
-            double speed1 = Integer.parseInt( route1.getSpeed().substring(0, 3).trim());
-            double speed2 = Integer.parseInt( route2.getSpeed().substring(0, 3).trim());
-            double r1 = 18.6 * Math.sqrt(  speed1/(Math.abs( Math.abs(10*(route1.getWidth())+65-speed1) ) ) );
-            double r2 = 18.6 * Math.sqrt(  speed2/( Math.abs(10*(route2.getWidth())+65-speed2) )  );
+    public RoadArc(LineRoad road1, LineRoad road2){      
+            double speed1 = Integer.parseInt( road1.getSpeed().substring(0, 3).trim());
+            double speed2 = Integer.parseInt( road2.getSpeed().substring(0, 3).trim());
+            double r1 = 18.6 * Math.sqrt(  speed1/(Math.abs( Math.abs(10*(road1.getWidth())+65-speed1) ) ) );
+            double r2 = 18.6 * Math.sqrt(  speed2/( Math.abs(10*(road2.getWidth())+65-speed2) )  );
            double r = Math.min(r1, r2);
             this.radius=r;
     }
@@ -66,17 +60,7 @@ public class RoadArc {
     public CircularArc getGeomArc() {
         return geomArc;
     }
-   
-    /**
-    * Allows to access the road's table
-    *
-    * @return the road's table
-    */
-   
-    public LineRoad[] getRoutes() {
-        return routes;
-    }
-   
+    
     /**
     * Allows to access the radius
     *
@@ -98,8 +82,7 @@ public class RoadArc {
 	 * 
 	 * @return Point of intersection
 	 */
-
-	private static Point getIntersection(Geometry buffer, Geometry element, Point pt_I)
+	private Point getIntersection(Geometry buffer, Geometry element, Point pt_I)
 	{
 		//Getting the intersection
 		Geometry geom;
@@ -126,7 +109,7 @@ public class RoadArc {
 	 * @return the arc center
 	 */
 
-	private  Point calculerCentre(LineRoad road1, LineRoad road2){      
+	private Point computeCenter(LineRoad road1, LineRoad road2){
 		//Getting the intersection of 2 roads
 		Point inter = (Point) (road1.getGeom().intersection(road2.getGeom()).getGeometryN(0));
 
@@ -167,10 +150,10 @@ public class RoadArc {
 	 *
 	 * @return list of the the two point limiting the arc
 	 */
-	private  List<Point> calculerPointArc(LineRoad road1, LineRoad road2){
+	private List<Point> calculerPointArc(LineRoad road1, LineRoad road2){
 
 		List <Point> resultat = new ArrayList<Point>();
-		Point pt_Intersection = calculerCentre(road1,road2);
+		Point pt_Intersection = computeCenter(road1,road2);
 		if(pt_Intersection != null ) {
 	        Point p1 = (pt_Intersection.buffer(this.radius)).intersection(road1.getGeom().buffer(road1.getWidth()/2+0.4)).getCentroid();
 	        if(p1==null) {
@@ -198,7 +181,7 @@ public class RoadArc {
 	}
 
 	/**
-	 * Checks if the arc intersects a given road
+	 * Checks if the arc intersects a road
 	 *
 	 * @param arc the arc
 	 * @param road the road to check for intersection
@@ -244,7 +227,6 @@ public class RoadArc {
 	 * @return List of the cutting points
 	 * 
 	 */
-
 	public static List<Point> cuttingPoint(Point extremity1, Point extremity2,LineRoad r1, LineRoad r2, Point pt_I) {
 		List<Point> result = new ArrayList<Point>();
 		Geometry geomRoad1 =  r1.getGeom();
@@ -346,10 +328,10 @@ public class RoadArc {
 	 * @return midpoint the middle point of the arc
 	 *
 	 */
-	private  Point calculMidPoint(LineRoad road1, LineRoad road2,Point startPoint, Point endPoint){
+	private Point calculMidPoint(LineRoad road1, LineRoad road2,Point startPoint, Point endPoint){
 
 		if( !startPoint.isEmpty() && !endPoint.isEmpty()) {
-	        Point centre = this.calculerCentre(road1,road2);
+	        Point centre = this.computeCenter(road1,road2);
 	        double xd = (startPoint.getX()+endPoint.getX())/2;
 	        double yd = (startPoint.getY()+endPoint.getY())/2;
 	        double[] vect = new double[2];
@@ -374,7 +356,7 @@ public class RoadArc {
 	 * @return circularArc the arc
 	 *
 	 */ 
-	public  CircularArc createRoadArc(LineRoad road1, LineRoad road2){
+	public CircularArc createRoadArc(LineRoad road1, LineRoad road2){
 		if (road1.getWidth()==0 || road2.getWidth()==0) return null;
 		if(road1.equals(road2)) return null ;
         if(road1.getName().startsWith("PL") || road1.getName().startsWith("RPT")) return null;
