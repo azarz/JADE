@@ -116,15 +116,13 @@ public class OBJWriter {
 	}
 	
 	/**
-	 * Exports a list of Road (SurfaceRoad) object as a single <i>.obj</i> file
+	 * Exports a list of Sidewalks object as a single <i>.obj</i> file
 	 * describing the sidewalks
 	 * 
 	 * @param filePath the path to the obj file
-	 * @param roads the map of roads
+	 * @param sidewalks the list of sidewalks
 	 * @param xCentroid the centroid x coordinate
 	 * @param yCentroid the centroid y coordinate
-	 * @param fullRoads The geometry of all the roads
-	 * @param dtm The DTM
 	 */
 	public void exportSidewalks(String filePath, List<Sidewalk> sidewalks, double xCentroid, double yCentroid) {
 		
@@ -200,7 +198,14 @@ public class OBJWriter {
 		
 	}
 	
-	
+	/**
+	 * Exports a list of Vegetation (SurfaceVegetation) object as a single <i>.obj</i> file
+	 * 
+	 * @param filePath the path to the obj file
+	 * @param objectList the list of vegetation
+	 * @param xCentroid the centroid x coordinate
+	 * @param yCentroid the centroid y coordinate
+	 */
 	public void exportVege(String filePath, List<SurfaceVegetation> objectList, double xCentroid, double yCentroid) {
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
