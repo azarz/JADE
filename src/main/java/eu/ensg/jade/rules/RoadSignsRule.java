@@ -128,23 +128,23 @@ public class RoadSignsRule implements RuleShape {
 	private int speedType(String speed1){
 		// They have 2 different speeds
 		
-		// Case 0: speed2 is the slowest and its value is 110 km/h
+		// Case 0: the road speed is limited to 130 km/h
 		if (speed1.equals("130 km/h")){
 			return 0;
 		}
-		// Case 1: speed1 is the slowest and its value is 110 km/h
+		// Case 1: the road speed is limited to 110 km/h
 		else if (speed1.equals("110 km/h")){
 			return 1;
 		}
-		// Case 2: speed2 is the slowest and its value is 90 km/h
+		// Case 2: the road speed is limited to 90 km/h
 		if (speed1.equals("90 km/h")){
 			return 2;
 		}
-		// Case 3: speed1 is the slowest and its value is 90 km/h
+		// Case 3: the road speed is limited to 70 km/h
 		if (speed1.equals("70 km/h")){
 			return 3;
 		}
-		// Case 4: speed1 is the slowest and its value is 70 km/h
+		// Case 4: the road speed is limited to 50 km/h
 		if (speed1.equals("50 km/h")){
 			return 4;
 		}
@@ -170,36 +170,36 @@ public class RoadSignsRule implements RuleShape {
 		// Signs positioning
 		switch (speedType) {
 		
-		case 0:
-			System.out.println("Cas 0");
-			boolean startOnIntersect0 = startOnIntersect;
+		case 0:	
+		    // In this case, we place a 130 speed limit sign
+		    boolean startOnIntersect0 = startOnIntersect;
 			StreetFurniture streetFurniture0 = addSigns(lineRoad, startOnIntersect0, this.speedLimit130, scene, intersect, distance);
 			addStreetFurniture(streetFurniture0, lineRoad, scene);
 			break;
 			
 		case 1:
-			System.out.println("Cas 1");
+		    // In this case, we place a 110 speed limit sign
 			boolean startOnIntersect1 = startOnIntersect;
 			StreetFurniture streetFurniture1 = addSigns(lineRoad, startOnIntersect1, this.speedLimit110, scene, intersect, distance);
 			addStreetFurniture(streetFurniture1, lineRoad, scene);
 			break;
 
 		case 2:
-			System.out.println("Cas 2");
+		    // In this case, we place a 90 speed limit sign
 			boolean startOnIntersect2 = startOnIntersect;
 			StreetFurniture streetFurniture2 = addSigns(lineRoad, startOnIntersect2, this.speedLimit90, scene, intersect, distance);
 			addStreetFurniture(streetFurniture2, lineRoad, scene);
 			break;
 			
 		case 3:
-			System.out.println("Cas 3");
+		    // In this case, we place a 70 speed limit sign
 			boolean startOnIntersect3 = startOnIntersect;
 			StreetFurniture streetFurniture3 = addSigns(lineRoad, startOnIntersect3, this.speedLimit70, scene, intersect, distance);
 			addStreetFurniture(streetFurniture3, lineRoad, scene);
 			break;
 			
 		case 4:
-			System.out.println("Cas 4");
+		    // In this case, we place a 50 speed limit sign
 			boolean startOnIntersect4 = startOnIntersect;
 			StreetFurniture streetFurniture4 = addSigns(lineRoad, startOnIntersect4, this.speedLimit50, scene, intersect, distance);
 			addStreetFurniture(streetFurniture4, lineRoad, scene);
@@ -261,10 +261,11 @@ public class RoadSignsRule implements RuleShape {
 	private StreetFurniture addSigns(LineRoad road, boolean startOnIntersect, String folder, Scene scene, Intersection intersect, double distance) throws NoSuchAuthorityCodeException, FactoryException{
 
 		if (startOnIntersect){
-			// It is possible to return the sign angle in street furniture
+			// If the road start on the intersection, the sign will be placed at the beginning of the road
 			return signPosition(road, 0, folder, scene, intersect, distance);
 		}
 		else{
+		    // If the road does not start on the intersection, the sign will be placed at the end of the road
 			return signPosition(road, road.getGeom().getCoordinates().length-1, folder, scene, intersect, distance);
 		}
 	}	
@@ -307,18 +308,13 @@ public class RoadSignsRule implements RuleShape {
 		rotation = sfCoord[2];
 		
 		boolean doesIntersect = true;
+		// This part avoid signs to intersect another road than the one it is placed on
 		while (doesIntersect && distance < distance+10){
 			doesIntersect = false;
 			sfCoord = sfPositionning(folder, x, y, distance, D, theta);
 			newX = sfCoord[0];
 			newY = sfCoord[1];
 			rotation = sfCoord[2];
-			
-			/*Coordinate coord1 = new Coordinate(newX, newY);
-
-			GeometryFactory factory = new GeometryFactory();
-			Point point = new Point(coord1, null, 0);
-			//System.out.println(coord1);*/
 			
 			PackedCoordinateSequenceFactory factory=PackedCoordinateSequenceFactory.DOUBLE_FACTORY;
 			CoordinateSequence seq=factory.create(new Coordinate[]{new Coordinate(newX,newY)});
@@ -339,7 +335,6 @@ public class RoadSignsRule implements RuleShape {
 		}
 		
 		// Be careful y is the vertical axis in OpenDS 
-		//Coordinate newCoord = new Coordinate(newX - centroid.x, newZ - centroid.y, road.getZ_ini());
 		if(!doesIntersect){
 			double newZ = scene.getDtm().getHeightAtPoint(newX,  newY);
 			Coordinate newCoord = new Coordinate(newX - scene.getCentroid().x, -1*(newY - scene.getCentroid().y), newZ); 
@@ -363,6 +358,7 @@ public class RoadSignsRule implements RuleShape {
 	 */
 	private double[] sfPositionning (String folder, double x, double y, double d, double D, double theta){
 		// We place the sign on the right side of the road
+		
 		// Initialization
 		double newX;
 		double newY; 
@@ -370,8 +366,7 @@ public class RoadSignsRule implements RuleShape {
 		double rotation = 0;
 
 		rotation = theta;
-		//rotation =  - Math.PI/2 + theta;
-		
+
 		// Up-Right quarter
 		if (0<= theta && theta <= Math.PI/2){
 			newX = x + d*Math.sin(theta) + D*Math.cos(theta);
