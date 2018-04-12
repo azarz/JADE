@@ -89,6 +89,7 @@ public class VegetationRule implements RuleShape {
             			// Creation of the tree
                 		vegetCoord.x -= centroid.x;
                 		vegetCoord.y -= centroid.y;
+                		vegetCoord.y *= -1;
             			vegetCoord.z = scene.getDtm().getHeightAtPoint(point[0],point[1]);
             			PointVegetation tree = new PointVegetation(vegetCoord,TREE.DECIDUOUS);
             			scene.addVegetation(tree);
