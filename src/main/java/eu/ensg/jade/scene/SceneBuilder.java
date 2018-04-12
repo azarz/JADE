@@ -355,9 +355,9 @@ public class SceneBuilder {
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
 		driver.setMass(1000);
-		Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
+		//Coordinate coord = scene.getStreetFurniture().get(0).getCoord();
 		//driver.setTranslation(new double[]{coord.x + 10, 60, coord.y});
-		driver.setTranslation(new double[]{0, 80, 0});
+		driver.setTranslation(new double[]{-5, 70, 0});
 
 		driver.setScale((new double[]{0.8, 0.8, 0.8}));
 		xmlWriter.addModel(driver);
@@ -373,7 +373,7 @@ public class SceneBuilder {
 		// Add sidewalks
 
 		XMLModel sidewalksModel = new XMLModel("Sidewalks", "RGE/sidewalks.obj");
-//		xmlWriter.addModel(sidewalksModel);
+		xmlWriter.addModel(sidewalksModel);
 		
 		// Add water
 //		XMLModel waterModel = new XMLModel("Water", "RGE/water.obj");
