@@ -1,0 +1,5 @@
+Material jME Logo : Common/MatDefs/Misc/Unshaded.j3md {
+    MaterialParameters {
+        ColorMap : RGE/Perros/ortho_50cm.png
+    }
+}
