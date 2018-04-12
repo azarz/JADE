@@ -18,6 +18,7 @@ import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.MultiLineString;
+import com.vividsolutions.jts.geom.Polygon;
 
 import eu.ensg.jade.scene.Scene;
 
@@ -262,10 +263,10 @@ public class ArcIntersectionTest {
 		Mockito.when(intersectColl.getMapIntersection()).thenReturn(mapIntersection);
 		Mockito.when(scene.getCollIntersect()).thenReturn(intersectColl);
 
-		List<Geometry> result = ArcIntersection.generateSmoothRoad(scene);
+		List<Polygon> result = ArcIntersection.generateSmoothRoad(scene);
 
 		assertNotNull(result);
-		assertEquals(5,result.size());
+		assertEquals(7,result.size());
 
 		//Trapezoid-specific
 		Mockito.when(intersectColl.getMapIntersection()).thenReturn(mapIntersectionTrap);
@@ -286,7 +287,7 @@ public class ArcIntersectionTest {
 		Mockito.when(scene.getCollIntersect()).thenReturn(intersectColl);
 		result = ArcIntersection.generateSmoothRoad(scene);
 		assertNotNull(result);
-		assertEquals(2,result.size());
+		assertEquals(4,result.size());
 
 		//Unknown size-specific
 		Mockito.when(intersectColl.getMapIntersection()).thenReturn(mapIntersectionUk);

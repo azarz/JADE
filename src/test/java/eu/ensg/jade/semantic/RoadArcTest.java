@@ -36,7 +36,44 @@ public class RoadArcTest {
 	 */
 	@Test
 	public void testRoadArc(){
-		RoadArc roadArc = new RoadArc();
+
+		//Geometry factory
+		GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
+
+		//Road coordinate
+		Coordinate coorA = new Coordinate(12,0);
+		Coordinate coorB = new Coordinate(0,0);
+		Coordinate coorC = new Coordinate(0,12);
+
+		//Road LineString
+		LineString lsAB = geometryFactory.createLineString(new Coordinate[] {coorA,coorB});
+		LineString lsBC = geometryFactory.createLineString(new Coordinate[] {coorB,coorC});
+
+		//Road MultiLineString
+		MultiLineString mlsAB = geometryFactory.createMultiLineString(new LineString[] {lsAB});
+		MultiLineString mlsBC = geometryFactory.createMultiLineString(new LineString[] {lsBC});
+
+		//Creating the lineroads with mockito
+		LineRoad lrAB = Mockito.mock(LineRoad.class);
+		LineRoad lrBC = Mockito.mock(LineRoad.class);
+
+		//Set getGeom 
+		Mockito.when(lrAB.getGeom()).thenReturn(mlsAB);
+		Mockito.when(lrBC.getGeom()).thenReturn(mlsBC);
+
+		//Set getWidth 
+		Mockito.when(lrAB.getWidth()).thenReturn(10d);
+		Mockito.when(lrBC.getWidth()).thenReturn(10d);
+
+		//Set getNom 
+		Mockito.when(lrAB.getName()).thenReturn("lrAB");
+		Mockito.when(lrBC.getName()).thenReturn("lrBC");
+
+		//Set getSpeed 
+		Mockito.when(lrAB.getSpeed()).thenReturn("30 KM");
+		Mockito.when(lrBC.getSpeed()).thenReturn("30 KM");
+
+		RoadArc roadArc = new RoadArc(lrAB,lrBC);
 		assertNotNull(roadArc);
 	}
 
@@ -316,8 +353,8 @@ public class RoadArcTest {
 
 		//Set getWidth 
 		Mockito.when(lrAB.getWidth()).thenReturn(10d);
-		Mockito.when(lrBD.getWidth()).thenReturn(10d);
 		Mockito.when(lrBC.getWidth()).thenReturn(10d);
+		Mockito.when(lrBD.getWidth()).thenReturn(10d);
 		Mockito.when(rpt.getWidth()).thenReturn(10d);
 		Mockito.when(pl.getWidth()).thenReturn(10d);
 		Mockito.when(tod.getWidth()).thenReturn(0d);
@@ -338,15 +375,26 @@ public class RoadArcTest {
 		Mockito.when(pl.getSpeed()).thenReturn("30 KM");
 		Mockito.when(tod.getSpeed()).thenReturn("30 KM");
 
-		assertNotNull(RoadArc.createRoadArc(lrAB, lrBC));
-		assertNull(RoadArc.createRoadArc(lrAB, rpt));
-		assertNull(RoadArc.createRoadArc(rpt, lrAB));
-		assertNull(RoadArc.createRoadArc(lrAB, pl));
-		assertNull(RoadArc.createRoadArc(pl, lrAB));
-		assertNull(RoadArc.createRoadArc(lrAB, lrAB));
-		assertNull(RoadArc.createRoadArc(lrAB, lrBD));
-		assertNull(RoadArc.createRoadArc(lrAB, tod));
-		assertNull(RoadArc.createRoadArc(tod, lrAB));
+		//RoadArcs
+		RoadArc raT1 = new RoadArc(lrAB,lrBC);
+		RoadArc raT2 = new RoadArc(lrAB, rpt);
+		RoadArc raT3 = new RoadArc(rpt, lrAB);
+		RoadArc raT4 = new RoadArc(lrAB, pl);
+		RoadArc raT5 = new RoadArc(pl, lrAB);
+		RoadArc raT6 = new RoadArc(lrAB, lrAB);
+		RoadArc raT7 = new RoadArc(lrAB, lrBD);
+		RoadArc raT8 = new RoadArc(lrAB, tod);
+		RoadArc raT9 = new RoadArc(tod, lrAB);
 		
+		assertNotNull(raT1.createRoadArc(lrAB, lrBC));
+		assertNull(raT2.createRoadArc(lrAB, rpt));
+		assertNull(raT3.createRoadArc(rpt, lrAB));
+		assertNull(raT4.createRoadArc(lrAB, pl));
+		assertNull(raT5.createRoadArc(pl, lrAB));
+		assertNull(raT6.createRoadArc(lrAB, lrAB));
+		assertNull(raT7.createRoadArc(lrAB, lrBD));
+		assertNull(raT8.createRoadArc(lrAB, tod));
+		assertNull(raT9.createRoadArc(tod, lrAB));
+
 	}
 }
