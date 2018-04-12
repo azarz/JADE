@@ -34,7 +34,7 @@ public class ArcIntersection {
 	 * @param scene the scene where the roads will be smoothed
 	 * @return List of polygons 
 	 */ 
-	public static List<Polygon>  generateSmoothRoad(Scene scene) {
+	public static List<Polygon> generateSmoothRoad(Scene scene) {
 		Map<String, LineRoad> lineRoads = scene.getLineRoads();
 		//		Map<String, SurfaceRoad> surfaceRoads = scene.getSurfaceRoads();
 
