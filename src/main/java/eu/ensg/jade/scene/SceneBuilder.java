@@ -322,6 +322,7 @@ public class SceneBuilder {
 		
 		XMLWriter xmlWriter = new XMLWriter();
 		xmlWriter.log = true;
+		xmlWriter.setMainDirectory("assets/DrivingTasks/Projects/RGE/" + place);
 		
 		xmlWriter.updateConfig("fileMainXML", "MAIN_FILE.xml");
 //		xmlWriter.updateConfig("rainCoefficient", "5");
