@@ -26,6 +26,7 @@ import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
 import eu.ensg.jade.semantic.PointVegetation;
+import eu.ensg.jade.semantic.Sidewalk;
 import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.xml.XMLGroundModel;
@@ -169,7 +170,6 @@ public class SceneBuilder {
 		scene.setBuildings(rge.getBuildings());
 		scene.setCentroid(rge.getCentroid());
 		
-		
 		rge = readerContx.createInputRGE(readerFact.createReader(READER_TYPE.ROAD), roadLayer);
 		scene.setLineRoads(rge.getRoads());
 		scene.setCollIntersect(rge.getCollIntersect());
@@ -254,7 +254,7 @@ public class SceneBuilder {
 	private void build(Scene scene) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
 		// Changing the roads and buildings data so it matches the DTM
 		DTM dtm = scene.getDtm();
-		dtm.smooth(0.9, 1);
+		dtm.smooth(0.9, 10);
 
 		// Set building height
 		for (Building building : scene.getBuildings()) {
@@ -280,6 +280,15 @@ public class SceneBuilder {
 		SurfaceRoad unifiedRoads = new SurfaceRoad(0, 0, 0, 0, "", "", "", "", "", roadGeometryUnion);
 		unifiedRoads.setZfromDTM(dtm);
 		surfaceRoads.put("-1", unifiedRoads);
+		
+		System.out.println("sidewalks creating...");
+		List<Sidewalk> sidewalks = new ArrayList<Sidewalk>();
+		for(LineRoad road : lineRoads.values()) {
+			Sidewalk sidewalk = new Sidewalk(road.getGeom(),road.getWidth(),roadGeometryUnion,dtm);
+			sidewalks.add(sidewalk);
+		}
+		scene.setSidewalks(sidewalks);
+		System.out.println("sidewalks created!");
 
 		RuleShapeMaker ruleShapeMaker = new RuleShapeMaker();
 		
@@ -304,12 +313,10 @@ public class SceneBuilder {
 		Coordinate centroid = scene.getCentroid();
 		objWriter.exportBuilding("assets/RGE/" + place + "/buildings.obj", scene.getBuildings(), centroid.x, centroid.y);
 		
-		Geometry fullRoads = scene.getSurfaceRoads().get("-1").getGeom();
 		scene.getSurfaceRoads().remove("-1");
-		
 		objWriter.exportRoad("assets/RGE/" + place + "/roads.obj", scene.getSurfaceRoads(), centroid.x, centroid.y);
 		
-		objWriter.exportSidewalks("assets/RGE/" + place + "/sidewalks.obj", scene.getLineRoads(), scene.getCentroid().x, scene.getCentroid().y, fullRoads, scene.getDtm());
+		objWriter.exportSidewalks("assets/RGE/" + place + "/sidewalks.obj", scene.getSidewalks(), scene.getCentroid().x, scene.getCentroid().y);
 		
 		objWriter.exportWater("assets/RGE/" + place + "/water.obj", scene.getHydrography(), centroid.x, centroid.y);
 
@@ -330,7 +337,10 @@ public class SceneBuilder {
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
 		driver.setMass(1000);
-		driver.setTranslation(new double[]{0, scene.getDtm().getHeightAtPoint(0, 0) + 10, 0});
+		driver.setTranslation(new double[]{0, 
+				scene.getDtm().getHeightAtPoint(
+						scene.getCentroid().x, scene.getCentroid().y) + 10,
+				0});
 
 		driver.setScale((new double[]{0.8, 0.8, 0.8}));
 		xmlWriter.addModel(driver);
