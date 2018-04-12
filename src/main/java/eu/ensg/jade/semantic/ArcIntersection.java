@@ -34,16 +34,15 @@ public class ArcIntersection {
 	 * @param scene the scene where the roads will be smoothed
 	 * @return List of polygons 
 	 */ 
-	public static List<Geometry>  generateSmoothRoad(Scene scene) {
+	public static List<Polygon>  generateSmoothRoad(Scene scene) {
 		Map<String, LineRoad> lineRoads = scene.getLineRoads();
 		//		Map<String, SurfaceRoad> surfaceRoads = scene.getSurfaceRoads();
 
-		List<Geometry> result = new ArrayList<Geometry>();
+		ArrayList<Polygon> result = new ArrayList<Polygon>();
 		for (Intersection inter : scene.getCollIntersect().getMapIntersection().values()) {
-			String[] roadsId =  inter.getRoadId().keySet().toArray(new String[inter.getRoadId().keySet().size()]);
 			List<LineRoad> tempRoads = new ArrayList<LineRoad>();
-			for( String roadId : roadsId) {
-				tempRoads.add((LineRoad) lineRoads.get(roadId));
+			for( String roadId :inter.getRoadId().keySet()) {
+				tempRoads.add((LineRoad) scene.getLineRoads().get(roadId));
 			}
 
 
@@ -101,16 +100,16 @@ public class ArcIntersection {
 		double bigWidth;
 		if(roads.get(0).getWidth()>roads.get(1).getWidth()) { 
 			road=roads.get(1);
-			smallWidth=roads.get(1).getWidth();
-			bigWidth = roads.get(0).getWidth();
+			smallWidth=roads.get(1).getWidth()/2;
+			bigWidth = roads.get(0).getWidth()/2;
 		}
 		else {
-			smallWidth=roads.get(0).getWidth();
+			smallWidth=roads.get(0).getWidth()/2;
 			road=roads.get(0);
-			bigWidth=roads.get(1).getWidth();
+			bigWidth=roads.get(1).getWidth()/2;
 		}
 		Point ptI=new GeometryFactory().createPoint(new Coordinate(inter.getGeometry()));
-		LineString line = (LineString) (ptI.buffer(bigWidth)).intersection(road.getGeom());
+		LineString line = (LineString) (ptI.buffer(2*bigWidth)).intersection(road.getGeom());
 		Point p1=line.getStartPoint();
 		if(p1.equals(pointInter)) p1=line.getEndPoint();
 
@@ -256,8 +255,9 @@ public class ArcIntersection {
 		//We go through the road list, with all couples of roads possible
 		for(int i=0; i<roads.size()-1; i++ ) {
 			for(int j=i+1 ; j<roads.size(); j++) {
+				RoadArc roadArc = new RoadArc(roads.get(i), roads.get(j));
 				//We create the corresponding arc
-			   	CircularArc arc = RoadArc.createRoadArc(roads.get(i), roads.get(j));
+				CircularArc arc = roadArc.createRoadArc(roads.get(i), roads.get(j));
 				boolean intersectionTest=true;
 				for(int k=0 ; k<roads.size(); k++) {
 					//Testing if the eventual arc intersect a road. If yes the arc is not conserved	
@@ -297,7 +297,7 @@ public class ArcIntersection {
 					LinearRing ring = geometryFactory.createLinearRing(polygonCoor.toArray(new Coordinate[polygonCoor.size()]));
 					LinearRing holes[] = null;
 					Polygon geom = geometryFactory.createPolygon(ring, holes);
-					if(geom.getArea() <10000) 
+					if(geom.getArea() <1000) 
 						polygons.add(geom);
 
 				}

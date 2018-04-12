@@ -96,7 +96,7 @@ public class DTM {
 			this.cellsize = headerDTM.get("cellsize");
 			
 		} catch (NullPointerException e) {
-			e.printStackTrace();
+			System.out.println("Incomplete DTM; putting default values");
 		}
 		
 		this.createSmoothDTM();
