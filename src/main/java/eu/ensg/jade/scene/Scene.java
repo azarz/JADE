@@ -14,6 +14,7 @@ import eu.ensg.jade.semantic.Hydrography;
 import eu.ensg.jade.semantic.IntersectionColl;
 import eu.ensg.jade.semantic.LineRoad;
 import eu.ensg.jade.semantic.PointVegetation;
+import eu.ensg.jade.semantic.Sidewalk;
 import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.semantic.SurfaceVegetation;
@@ -83,6 +84,11 @@ public class Scene {
 	 * The collection of intersections between roads
 	 */
 	private IntersectionColl collIntersect;
+
+	/**
+	 * List of the sidewalks
+	 */
+	private List<Sidewalk> sidewalks;
 
 
 
@@ -298,6 +304,14 @@ public class Scene {
 	public void setCollIntersect(IntersectionColl collIntersect) {
 		this.collIntersect = collIntersect;
 	}
+	
+	public List<Sidewalk> getSidewalks() {
+		return sidewalks;
+	}
+	
+	public void setSidewalks(List<Sidewalk> sidewalks) {
+		this.sidewalks = sidewalks;
+	}
 
 // ========================== METHODS ==============================
 
@@ -352,4 +366,5 @@ public class Scene {
 	public void addStreetFurniture(StreetFurniture newFurniture){
 		this.streetFurniture.add(newFurniture);
 	}
+
 }

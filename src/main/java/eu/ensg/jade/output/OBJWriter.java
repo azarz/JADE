@@ -126,7 +126,7 @@ public class OBJWriter {
 	 * @param fullRoads The geometry of all the roads
 	 * @param dtm The DTM
 	 */
-	public void exportSidewalks(String filePath, Map<String, LineRoad> roads, double xCentroid, double yCentroid,Geometry fullRoads, DTM dtm) {
+	public void exportSidewalks(String filePath, List<Sidewalk> sidewalks, double xCentroid, double yCentroid) {
 		
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(1);
@@ -148,10 +148,8 @@ public class OBJWriter {
 			
 			out.print("mtllib paris.mtl\n");
 			int i=0;
-			System.out.println("\t\tsidewalks creating...");
-			for (LineRoad road: roads.values()) {
-				System.out.println(100*i/3343. + "%");
-				Sidewalk sidewalk = new Sidewalk(road.getGeom(),road.getWidth(),fullRoads,dtm);
+			System.out.println("sidewalks creating...");
+			for (Sidewalk sidewalk: sidewalks) {
 				out.print(sidewalk.toOBJ(offsets, xCentroid, yCentroid));
 				i++;
 			}

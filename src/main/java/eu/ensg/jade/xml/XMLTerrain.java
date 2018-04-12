@@ -127,7 +127,7 @@ public class XMLTerrain implements IXMLExport {
 		
 		Element smoothing = doc.createElement("smoothing");
 		smoothing.setAttribute("percentage", String.valueOf(0.9));
-		smoothing.setAttribute("radius", String.valueOf(1));
+		smoothing.setAttribute("radius", String.valueOf(10));
 		terrain.appendChild(smoothing);
 		
 		Element lod = doc.createElement("lod");

@@ -65,15 +65,15 @@ public abstract class Road{
 	/**
 	 * Constructor using all fields
 	 * 
-	 * @param width the width of the road
-	 * @param laneNumber the number of lanes of the road
-	 * @param z_ini altitude at the start of the road
-	 * @param z_fin altitude at the end of the road
-	 * @param direction direction of the road
-	 * @param nature the nature of the road
-	 * @param importance the importance of the road
-	 * @param number the number of the road
-	 * @param name the name of the road
+	 * @param width The width of the road
+	 * @param laneNumber The number of lanes of the road
+	 * @param z_ini Altitude at the start of the road
+	 * @param z_fin Altitude at the end of the road
+	 * @param direction Direction of the road
+	 * @param nature The nature of the road
+	 * @param importance The importance of the road
+	 * @param number The number of the road
+	 * @param name The name of the road
 	 */
 	public Road(double width, int laneNumber, double z_ini, double z_fin, String direction,String nature, String importance, String number, String name) {
 		this.width = width;
@@ -181,7 +181,7 @@ public abstract class Road{
 	/**
 	 * Allows to access the road name
 	 * 
-	 * @return the road speed limit
+	 * @return the road name
 	 */
 	public String getName() {
 		return name;
