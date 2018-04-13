@@ -10,12 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.vividsolutions.jts.geom.Geometry;
-
 import eu.ensg.jade.semantic.Building;
-import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.Hydrography;
-import eu.ensg.jade.semantic.LineRoad;
 import eu.ensg.jade.semantic.Sidewalk;
 import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.semantic.SurfaceVegetation;
@@ -145,11 +141,9 @@ public class OBJWriter {
 				PrintWriter out = new PrintWriter(bw)) {
 			
 			out.print("mtllib paris.mtl\n");
-			int i=0;
 			System.out.println("sidewalks creating...");
 			for (Sidewalk sidewalk: sidewalks) {
 				out.print(sidewalk.toOBJ(offsets, xCentroid, yCentroid));
-				i++;
 			}
 			
 		} catch (IOException e) {

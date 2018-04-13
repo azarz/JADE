@@ -33,7 +33,6 @@ import com.jme3.scene.Spatial;
 import com.jme3.scene.Spatial.CullHint;
 
 import eu.opends.main.Simulator;
-import eu.opends.tools.Util;
 
 /**
  * This class is used to further process the elements on the map.
