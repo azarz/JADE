@@ -371,7 +371,7 @@ public class SceneBuilder {
 		xmlWriter.addModel(waterModel);
 		
 		// Add street furniture
-		int k = 0;
+//		int k = 0;
 		for(StreetFurniture sign : scene.getStreetFurniture()) {
 			XMLModel streetFurnitureModel = new XMLModel("StreetFurniture", sign.getPath());
 			streetFurnitureModel.setRotation(new double[] {0, sign.getRotation()*180/Math.PI, 0});
@@ -381,9 +381,9 @@ public class SceneBuilder {
 //			if (++k>1000){ break; }
 		}
 		
-		int g = 0;
+//		int g = 0;
 		for(PointVegetation tree : scene.getVegetation()) {
-			if (tree == null) {System.out.println("nulltree" + g);continue;}
+			if (tree == null) {continue;}
 			XMLModel vegetationModel = new XMLModel("Tree", tree.getNature());
 			vegetationModel.setTranslation(new double[]{tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
 			vegetationModel.setScale(new double[]{1,1,1});

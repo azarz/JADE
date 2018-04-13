@@ -24,9 +24,9 @@ import java.util.Map.Entry;
 
 import com.jme3.audio.AudioNode;
 import com.jme3.audio.AudioRenderer;
+import com.jme3.audio.AudioSource.Status;
 //import com.jme3.audio.Environment;
 import com.jme3.audio.Listener;
-import com.jme3.audio.AudioSource.Status;
 import com.jme3.renderer.Camera;
 
 import eu.opends.main.Simulator;
@@ -42,10 +42,6 @@ public class AudioCenter {
 	private static Listener listener;
 	private static Map<String, AudioNode> audioNodeList;
 	private static Map<String, Float> audioNodeVolumeList;
-	private static AudioNode enduring;
-	private static float previousVolume;
-	private static float previousPitch;
-
 	public static void init(Simulator sim) {
 		AudioCenter.sim = sim;
 		audioRenderer = sim.getAudioRenderer();
