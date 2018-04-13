@@ -63,7 +63,7 @@ public class SceneBuilder {
 	 * 
 	 * Main method
 	 */
-	public static void main(String[] args) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
+	public static void main(String[] args) throws FactoryException, SchemaException, IOException {
 		long begin = System.currentTimeMillis();
 		
 		String buildingLayer = "input/" + place + "/BATI_INDIFFERENCIE.SHP";
