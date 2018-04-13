@@ -21,6 +21,7 @@ import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.utils.JadeUtils;
 
 /**
+ * The class implementing the pedestrian crossing sign rules and the speed limit panel rules
  * 
  * @author JADE
  */
@@ -122,8 +123,9 @@ public class RoadSignsRule implements RuleShape {
 	/**
 	 * Returns an integer associated to each speed limit
 	 * 
-	 * @param speed1 the road speed to test
-	 * @return
+	 * @param speed1 the road speed string to test
+	 * 
+	 * @return The integer version of the speed limit
 	 */
 	private int speedType(String speed1){
 		// They have 2 different speeds

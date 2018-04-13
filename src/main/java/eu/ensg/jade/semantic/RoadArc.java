@@ -38,8 +38,8 @@ public class RoadArc {
     /**
     * Constructor using all fields
     *
-    * @param route1 One of the roads
-    * @param route2 The other road
+    * @param road1 One of the roads
+    * @param road2 The other road
     */  
     public RoadArc(LineRoad road1, LineRoad road2){      
             double speed1 = Integer.parseInt( road1.getSpeed().substring(0, 3).trim());

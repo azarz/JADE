@@ -19,6 +19,7 @@ import eu.ensg.jade.semantic.SurfaceVegetation;
 import eu.ensg.jade.utils.PoissonDiskSampler;
 
 /**
+ * The class implementing the rules for vegetation
  * 
  * @author JADE
  */

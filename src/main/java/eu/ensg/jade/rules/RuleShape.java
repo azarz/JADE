@@ -9,6 +9,7 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;
 import eu.ensg.jade.scene.Scene;
 
 /**
+ * Interface for signs rules
  * 
  * @author JADE
  */
