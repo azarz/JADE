@@ -15,14 +15,28 @@ public class XMLWaypoint implements IXMLExport {
 	
 // ========================== ATTRIBUTES ===========================
 	
+	/**
+	 * The id
+	 */
 	private String id;
 	
+	/**
+	 * The speed
+	 */
 	private double speed;
 	
+	/**
+	 * The translation vector
+	 */
 	private double[] translation;
 	
 // ========================== CONSTRUCTORS =========================
 	
+	/**
+	 * Construction with the id only
+	 * 
+	 * @param id The id
+	 */
 	public XMLWaypoint(String id) {
 		this.id = id;
 		this.speed = 0;
@@ -30,6 +44,12 @@ public class XMLWaypoint implements IXMLExport {
 		Arrays.fill(this.translation, 0);
 	}
 	
+	/**
+	 * Constructor with all fields
+	 * @param id The id
+	 * @param speed The speed
+	 * @param translation The translation
+	 */
 	public XMLWaypoint(String id, double speed, double[] translation) {
 		this.id = id;
 		this.speed = speed;
@@ -38,18 +58,38 @@ public class XMLWaypoint implements IXMLExport {
 	
 // ========================== GETTERS/SETTERS ======================
 	
+	/**
+	 * Allows to access to the id
+	 * 
+	 * @return The id
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * Allows to set the id
+	 * 
+	 * @param id The new id
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 	
+	/**
+	 * Allows to get the speed
+	 * 
+	 * @return The speed
+	 */
 	public double getSpeed() {
 		return speed;
 	}
 
+	/**
+	 * Allows to set the speed
+	 * 
+	 * @param speed The new speed
+	 */
 	public void setSpeed(double speed) {
 		this.speed = speed;
 	}

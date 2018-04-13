@@ -32,11 +32,23 @@ public class StreetFurniture extends PunctualObject {
 	
 // ========================== CONSTRUCTORS =========================			
 
+	/**
+	 * Constructor with the coordinates
+	 * 
+	 * @param coord The coordinates of the new furniture
+	 */
 	public StreetFurniture(Coordinate coord) {
 		super(coord);
 		id++;
 	}
 	
+	/**
+	 * Construction with all fields
+	 * 
+	 * @param path Path to the file for texture and shape
+	 * @param coord The coordinates of the new furniture
+	 * @param rotation The rotation to make the pannel face the right way
+	 */
 	public StreetFurniture(String path, Coordinate coord, double rotation) {
 			super(coord);
 			this.path = path;

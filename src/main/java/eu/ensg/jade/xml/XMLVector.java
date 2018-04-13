@@ -16,12 +16,26 @@ public class XMLVector implements IXMLExport {
 	
 // ========================== ATTRIBUTES ===========================
 	
+	/**
+	 * The scale vector
+	 */
 	protected double[] scale;
+	
+	/**
+	 * The rotation vector
+	 */
 	protected double[] rotation;
+	
+	/**
+	 * The translation vector
+	 */
 	protected double[] translation;
 	
 // ========================== CONSTRUCTORS =========================
 	
+	/**
+	 * Default constructor
+	 */
 	public XMLVector() {
 		this.scale = new double[3];
 		this.rotation = new double[3];
@@ -32,6 +46,13 @@ public class XMLVector implements IXMLExport {
 		Arrays.fill(this.translation, 0);
 	}
 	
+	/**
+	 * Constructor using all fields
+	 * 
+	 * @param scale The scale vector
+	 * @param rotation The rotation vector
+	 * @param translation The translation vector
+	 */
 	public XMLVector(double[] scale, double[] rotation, double[] translation) {
 		this.scale = scale;
 		this.rotation = rotation;
@@ -40,26 +61,55 @@ public class XMLVector implements IXMLExport {
 	
 // ========================== GETTERS/SETTERS ======================
 
+	/**
+	 * Allows to access to the scale vector
+	 * 
+	 * @return The scale vector
+	 */
 	public double[] getScale() {
 		return scale;
 	}
 
+	/**
+	 * Allows to set the scale vector
+	 * 
+	 * @param scale The new scale vector
+	 */
 	public void setScale(double[] scale) {
 		this.scale = scale;
 	}
 
+	/**
+	 * Allows to access to the rotation vector
+	 * 
+	 * @return The rotation vector
+	 */
 	public double[] getRotation() {
 		return rotation;
 	}
-
+	
+	/**
+	 * Allows to set the rotation vector
+	 * 
+	 * @param rotation The new rotation vector
+	 */
 	public void setRotation(double[] rotation) {
 		this.rotation = rotation;
 	}
 
+	/**
+	 * Allows to access to the translation vector
+	 * 
+	 * @return The translation vector
+	 */
 	public double[] getTranslation() {
 		return translation;
 	}
 
+	/**
+	 * Allows to set the translation vector
+	 * @param translation The new translation vector
+	 */
 	public void setTranslation(double[] translation) {
 		this.translation = translation;
 	}

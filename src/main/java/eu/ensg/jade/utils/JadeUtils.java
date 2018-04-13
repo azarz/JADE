@@ -46,6 +46,7 @@ public class JadeUtils {
 	 * @param p1 3D point as double[3]
 	 * @param p2 3D point as double[3]
 	 * @param p3 3D point as double[3]
+	 * 
 	 * @return the normal vector as double[3]
 	 */
 	public static double[] getNormalVector(double[] p1, double[] p2, double[] p3) {
@@ -80,6 +81,7 @@ public class JadeUtils {
 	 * @param p1 3D point as jts Coordinate
 	 * @param p2 3D point as jts Coordinate
 	 * @param p3 3D point as jts Coordinate
+	 * 
 	 * @return the normal vector as double[3]
 	 */
 	public static double[] getNormalVector(Coordinate p1, Coordinate p2, Coordinate p3) {
@@ -162,6 +164,13 @@ public class JadeUtils {
 		return theta; 
 	}
 	
+	/**
+	 * Splits a polygon into triangles (triangulates it)
+	 * 
+	 * @param polygon The polygon to triangulate
+	 * 
+	 * @return The collection of triangles
+	 */
 	public static GeometryCollection triangulate(com.vividsolutions.jts.geom.Polygon polygon){
 		// List of JTS polygons triangle result
 		List<com.vividsolutions.jts.geom.Polygon> resultingList = new ArrayList<com.vividsolutions.jts.geom.Polygon>();
@@ -211,6 +220,7 @@ public class JadeUtils {
 	 * @param a Lower limit
 	 * @param b Upper Limit
 	 * @param x Value to interpolate
+	 * 
 	 * @return The linear interpolation result
 	 */
 	public static double lerp(double a, double b, double x) {

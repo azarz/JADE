@@ -59,6 +59,9 @@ public class LineRoad extends Road{
 		this.listSF = new ArrayList<>();
 	}
 	
+	/**
+	 * Empty constructor
+	 */
 	public LineRoad(){
 		super();
 	}

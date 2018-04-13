@@ -18,7 +18,7 @@ import eu.ensg.jade.scene.Scene;
 
 
 /**
- * 
+ * The class to smooth roads
  *
  * @author JADE
  */

@@ -33,6 +33,11 @@ import eu.ensg.jade.xml.XMLGroundModel;
 import eu.ensg.jade.xml.XMLModel;
 import eu.ensg.jade.xml.XMLTerrain;
 
+/**
+ * SceneBuilder is the class building the scene and exporting it.
+ *
+ * @author JADE
+ */
 public class SceneBuilder {
 	
 // ========================== ATTRIBUTES ===========================
