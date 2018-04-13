@@ -275,13 +275,13 @@ public class SimulatorCam extends CameraFactory
 			{
 				float[] angles = new float[3];
 				carNode.getLocalRotation().toAngles(angles);
-				upDirection = angles[1] + FastMath.PI;
+				//upDirection = angles[1] + FastMath.PI;
 				
 				// allow to place car in lower part of map (instead of center)
 				addLeft = topViewcarOffset * FastMath.sin(upDirection);
 				addRight = topViewcarOffset * FastMath.cos(upDirection);
 			}
-			Quaternion camRot = new Quaternion().fromAngles(FastMath.HALF_PI, upDirection, 0);
+			Quaternion camRot = new Quaternion().fromAngles(FastMath.HALF_PI, FastMath.PI, 0);
 			topViewCamNode.setLocalRotation(camRot);
 			topViewCamNode.detachChildNamed("TopViewMarker");
 
