@@ -286,6 +286,8 @@ public class IntersectionSignsRule implements RuleShape{
 
 // ------ General methods -> roads characteristics
 	/**
+	 * Fills the list of roads attached to the intersection and the list of boolean associated to each road that tells if the road start point is on the intersection
+	 * 
 	 * @param roadsTab the list of roads attached to the intersection
 	 * @param startOnIntersectTab the list of boolean associated to each road that tells if the road start point is on the intersection
 	 * @param intersect the intersection on which to perform the work

@@ -301,7 +301,11 @@ public class SceneBuilder {
 
 	}
 	
-	
+	/**
+	 * Exports the RGE data into a OBJ file
+	 * 
+	 * @param scene The scene where to get the data from
+	 */
 	private void exportRGEData(Scene scene) {
 		System.out.println("Export RGE Data");
 		
@@ -323,7 +327,11 @@ public class SceneBuilder {
 		scene.getDtm().toPNG("assets/RGE/" + place + "/terrain.png");
 	}
 	
-	
+	/**
+	 * Exports the XML data
+	 * 
+	 * @param scene The scene where to get the data from
+	 */
 	private void exportXML(Scene scene) {
 		System.out.println("Export XML");
 		
@@ -392,7 +400,12 @@ public class SceneBuilder {
 		xmlWriter.createAllXml();
 	}
 	
-	
+	/**
+	 * Allows to get the ground model 
+	 * 
+	 * @param scene The scene from where to extract the ground model
+	 * @return The XML gournd model
+	 */
 	private XMLGroundModel getGroundModelFromScene(Scene scene){
 		DTM dtm = scene.getDtm();
 		

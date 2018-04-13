@@ -9,6 +9,7 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;
 import eu.ensg.jade.scene.Scene;
 
 /**
+ * The class handling the signs rules and vegetation rule
  * 
  * @author JADE
  */
@@ -28,7 +29,7 @@ public class RuleShapeMaker {
 	private RuleShape roadSigns;
 	
 	/**
-	 * 
+	 * Vegetation 
 	 */
 	private RuleShape vegetation;
 	
