@@ -179,6 +179,7 @@ public class SurfaceVegetation implements IObjExport {
 	
 	/**
 	 * Transforms the Z coordinates of the geometry according to a DTM parameter
+	 * 
 	 * @param dtm for the road to match
 	 */
 	public void setZfromDTM(DTM dtm) {

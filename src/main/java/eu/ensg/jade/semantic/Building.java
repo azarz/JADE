@@ -130,6 +130,7 @@ public class Building implements IObjExport {
 	
 	/**
 	 * Transforms the Z coordinates of the geometry according to a DTM parameter
+	 * 
 	 * @param dtm for the building to match
 	 */
 	public void setZfromDTM(DTM dtm) {

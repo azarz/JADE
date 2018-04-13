@@ -108,7 +108,6 @@ public class RoadArc {
 	 *
 	 * @return the arc center
 	 */
-
 	private Point computeCenter(LineRoad road1, LineRoad road2){
 		//Getting the intersection of 2 roads
 		Point inter = (Point) (road1.getGeom().intersection(road2.getGeom()).getGeometryN(0));
