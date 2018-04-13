@@ -15,8 +15,15 @@ import org.w3c.dom.Node;
 public class XMLGroundModel extends XMLModel implements IXMLExport {
 	
 // ========================== ATTRIBUTES ===========================
+	
+	/**
+	 * The material path
+	 */
 	private String material;
 	
+	/**
+	 * The terrain geometry
+	 */
 	private XMLTerrain terrain;
 	
 	
@@ -53,18 +60,38 @@ public class XMLGroundModel extends XMLModel implements IXMLExport {
 	
 // ========================== GETTERS/SETTERS ======================
 
+	/**
+	 * Allows to acess to the material of the ground model
+	 * 
+	 * @return The material
+	 */
 	public String getMaterial() {
 		return material;
 	}
-
+	
+	/**
+	 * Allows to set the material
+	 * 
+	 * @param material The new material
+	 */
 	public void setMaterial(String material) {
 		this.material = material;
 	}
 	
+	/**
+	 * Allows to access to the terrain
+	 * 
+	 * @return The terrain
+	 */
 	public XMLTerrain getTerrain() {
 		return terrain;
 	}
-
+	
+	/**
+	 * Allows to set the terrain
+	 * 
+	 * @param terrain The new terrain
+	 */
 	public void setTerrain(XMLTerrain terrain) {
 		this.terrain = terrain;
 	}

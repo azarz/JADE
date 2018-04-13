@@ -323,7 +323,7 @@ public class Scene {
 	/**
 	 * Allows to set the sidewalks list
 	 * 
-	 * @param sidewalks
+	 * @param sidewalks The new list of sidewalks
 	 */
 	public void setSidewalks(List<Sidewalk> sidewalks) {
 		this.sidewalks = sidewalks;
