@@ -32,20 +32,17 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import eu.opends.profiler.BasicProfilerState;
 import com.jme3.app.StatsAppState;
 //import com.jme3.app.state.VideoRecorderAppState;
 import com.jme3.input.Joystick;
-import com.jme3.math.Quaternion;
 import com.jme3.math.Vector3f;
 import com.jme3.niftygui.NiftyJmeDisplay;
-import com.jme3.scene.Spatial;
 import com.jme3.scene.Spatial.CullHint;
 import com.sun.javafx.application.PlatformImpl;
 
 import de.lessvoid.nifty.Nifty;
-import eu.opends.analyzer.DrivingTaskLogger;
 import eu.opends.analyzer.DataWriter;
+import eu.opends.analyzer.DrivingTaskLogger;
 import eu.opends.audio.AudioCenter;
 import eu.opends.basics.InternalMapProcessing;
 import eu.opends.basics.SimulationBasics;
@@ -67,6 +64,7 @@ import eu.opends.knowledgeBase.KnowledgeBase;
 import eu.opends.multiDriver.MultiDriverClient;
 import eu.opends.niftyGui.DrivingTaskSelectionGUIController;
 import eu.opends.oculusRift.OculusRift;
+import eu.opends.profiler.BasicProfilerState;
 import eu.opends.reactionCenter.ReactionCenter;
 import eu.opends.settingsController.SettingsControllerServer;
 import eu.opends.taskDescription.contreTask.SteeringTask;
@@ -86,6 +84,7 @@ import eu.opends.visualization.MoviePlayer;
  * 
  * @author Rafael Math
  */
+@SuppressWarnings("restriction")
 public class Simulator extends SimulationBasics
 {
 	

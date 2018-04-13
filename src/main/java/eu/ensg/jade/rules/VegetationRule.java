@@ -19,6 +19,7 @@ import eu.ensg.jade.semantic.SurfaceVegetation;
 import eu.ensg.jade.utils.PoissonDiskSampler;
 
 /**
+ * The class implementing the rules for vegetation
  * 
  * @author JADE
  */
@@ -79,23 +80,23 @@ public class VegetationRule implements RuleShape {
     		List<double[]> pointList = poissonDisk.compute();
     
             
-            for (double[] point : pointList){
-            	Coordinate vegetCoord = new Coordinate(point[0],point[1],0);
+    		pointList.parallelStream().forEach((point)->{
+    			Coordinate vegetCoord = new Coordinate(point[0],point[1],0);
             	Point pt = factory.createPoint(vegetCoord);
             	
             	// test the coordinates
             	if (vegetGeometry.contains(pt)) {
-//            		vegetCoord.x -= centroid.x;
-//            		vegetCoord.y -= centroid.y;
-//            		pt = factory.createPoint(vegetCoord);
             		if(!roadGeometryUnion.contains(pt)) {
             			// Creation of the tree
+                		vegetCoord.x -= centroid.x;
+                		vegetCoord.y -= centroid.y;
+                		vegetCoord.y *= -1;
             			vegetCoord.z = scene.getDtm().getHeightAtPoint(point[0],point[1]);
             			PointVegetation tree = new PointVegetation(vegetCoord,TREE.DECIDUOUS);
             			scene.addVegetation(tree);
             		}
             	}
-            }
+    		});
         }
 
 		System.out.println("Total trees created: "+scene.getVegetation().size());

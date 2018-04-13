@@ -26,12 +26,10 @@ import java.util.TreeMap;
 
 import javax.xml.xpath.XPathConstants;
 
-import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.jme3.asset.AssetManager;
-import com.jme3.asset.AssetNotFoundException;
 import com.jme3.asset.TextureKey;
 import com.jme3.asset.plugins.FileLocator;
 import com.jme3.audio.AudioNode;
@@ -65,8 +63,6 @@ import eu.opends.basics.SimulationBasics;
 import eu.opends.car.ResetPosition;
 import eu.opends.drivingTask.DrivingTaskDataQuery;
 import eu.opends.drivingTask.DrivingTaskDataQuery.Layer;
-import eu.opends.drivingTask.settings.SettingsLoader.Setting;
-import eu.opends.main.SimulationDefaults;
 import eu.opends.tools.Util;
 import eu.opends.visualization.MovieData;
 

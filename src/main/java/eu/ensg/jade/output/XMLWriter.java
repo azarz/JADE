@@ -61,10 +61,26 @@ public class XMLWriter {
 	 */
 	private Map<String, String> globalConfig;
 	
+	/**
+	 * The List containing the XML models
+	 */
 	private List<XMLModel> modelList;
+	
+	/**
+	 * The List containing the XML Ground Models
+	 */
 	private List<XMLGroundModel> terrainList;
+	
+	
+	/**
+	 * The List containing the Vehicles (XMLVehicle objects)
+	 */
 	private List<XMLVehicle> vehicleList;
 	
+	
+	/**
+	 * The Boolean value to keep a log or not
+	 */
 	public boolean log = false;
 
 
@@ -94,6 +110,11 @@ public class XMLWriter {
 
 // ========================== GETTERS/SETTERS ======================
 	
+	/**
+	 * Allows to set the main directory
+	 * 
+	 * @param directory The new maid directory
+	 */
 	public void setMainDirectory(String directory) {
 		this.mainDirectory = directory;
 		
@@ -102,32 +123,68 @@ public class XMLWriter {
 		}
 	}
 	
+	/**
+	 * Allows to get the main directory
+	 * 
+	 * @return The main directory
+	 */
 	public String getMainDirectory() {
 		return this.mainDirectory;
 	}
 	
-	
+	/**
+	 * Allows to update the configuration with a key and its value
+	 * 
+	 * @param key The key
+	 * @param value The value
+	 */
 	public void updateConfig(String key, String value) {
 		this.globalConfig.put(key, value);
 	}
 	
+	/**
+	 * Allows to get a specific configuration value
+	 * 
+	 * @param key The key of the wanted item
+	 * 
+	 * @return The configuration corresponding to the key
+	 */
 	public String getConfigValue(String key) {
 		return this.globalConfig.get(key);
 	}
 	
+	/**
+	 * Allows to access to the configuration keys
+	 * 
+	 * @return The configuration key set
+	 */
 	public Set<String> getConfigKeys() {
 		return this.globalConfig.keySet();
 	}	
 	
-
+	/**
+	 * Adds a XML model to the list of XDM models
+	 * 
+	 * @param model The XML model to add
+	 */
 	public void addModel(XMLModel model) {
 		modelList.add(model);
 	}
 	
+	/**
+	 * Adds a XML ground model to the corresponding list.
+	 * 
+	 * @param model The XMLGroundModel to add
+	 */
 	public void addTerrain(XMLGroundModel model) {
 		terrainList.add(model);
 	}
 	
+	/**
+	 * Adds a Vehicle to the list of XMLVehicle
+	 * 
+	 * @param vehicle The vehicle to add
+	 */
 	public void addVehicle(XMLVehicle vehicle) {
 		vehicleList.add(vehicle);
 	}
@@ -294,6 +351,7 @@ public class XMLWriter {
 	 * Utility method that loads a XML file and build a Document object with it
 	 * 
 	 * @param filePath
+	 * 
 	 * @return the loaded XML file
 	 */
 	private Document importXml(String filePath) {

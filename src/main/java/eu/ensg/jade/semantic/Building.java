@@ -140,7 +140,7 @@ public class Building implements IObjExport {
 		}
 		
 		for (int i = 0; i < vertices.size(); i++) {	
-			vertices.get(i)[2] = dtm.getHeightAtPoint(vertices.get(i)[0], vertices.get(i)[1]);
+			vertices.get(i)[2] = dtm.getHeightAtPoint(vertices.get(i)[0], vertices.get(i)[1]) - .5;
 		}
 		
 		if (hasHeight) {

@@ -8,7 +8,6 @@ import org.geotools.geometry.jts.CircularArc;
 import org.geotools.geometry.jts.JTSFactoryFinder;
 
 import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
 import com.vividsolutions.jts.geom.LinearRing;
@@ -34,17 +33,15 @@ public class ArcIntersection {
 	 * @param scene the scene where the roads will be smoothed
 	 * @return List of polygons 
 	 */ 
-	public static List<Geometry>  generateSmoothRoad(Scene scene) {
+	public static List<Polygon> generateSmoothRoad(Scene scene) {
 		Map<String, LineRoad> lineRoads = scene.getLineRoads();
 		//		Map<String, SurfaceRoad> surfaceRoads = scene.getSurfaceRoads();
 
-		List<Geometry> result = new ArrayList<Geometry>();
+		ArrayList<Polygon> result = new ArrayList<Polygon>();
 		for (Intersection inter : scene.getCollIntersect().getMapIntersection().values()) {
-
-			String[] roadsId =  inter.getRoadId().keySet().toArray(new String[0]);
 			List<LineRoad> tempRoads = new ArrayList<LineRoad>();
-			for( String roadId : roadsId) {
-				tempRoads.add((LineRoad) lineRoads.get(roadId));
+			for( String roadId :inter.getRoadId().keySet()) {
+				tempRoads.add((LineRoad) scene.getLineRoads().get(roadId));
 			}
 
 
@@ -67,7 +64,7 @@ public class ArcIntersection {
 					for(int k=0 ; k<polygons2.size();k++) {
 						p = polygons2.get(k);
 						if(p.isValid()) result.add(p);
-					}					
+					}
 				}					
 			}
 			// 3+ roads intersecting
@@ -79,6 +76,7 @@ public class ArcIntersection {
 					if(p.isValid()) result.add(p);
 				}
 			}
+			
 		}
 
 		return result;
@@ -101,16 +99,16 @@ public class ArcIntersection {
 		double bigWidth;
 		if(roads.get(0).getWidth()>roads.get(1).getWidth()) { 
 			road=roads.get(1);
-			smallWidth=roads.get(1).getWidth();
-			bigWidth = roads.get(0).getWidth();
+			smallWidth=roads.get(1).getWidth()/2;
+			bigWidth = roads.get(0).getWidth()/2;
 		}
 		else {
-			smallWidth=roads.get(0).getWidth();
+			smallWidth=roads.get(0).getWidth()/2;
 			road=roads.get(0);
-			bigWidth=roads.get(1).getWidth();
+			bigWidth=roads.get(1).getWidth()/2;
 		}
 		Point ptI=new GeometryFactory().createPoint(new Coordinate(inter.getGeometry()));
-		LineString line = (LineString) (ptI.buffer(bigWidth)).intersection(road.getGeom());
+		LineString line = (LineString) (ptI.buffer(2*bigWidth)).intersection(road.getGeom());
 		Point p1=line.getStartPoint();
 		if(p1.equals(pointInter)) p1=line.getEndPoint();
 
@@ -256,17 +254,17 @@ public class ArcIntersection {
 		//We go through the road list, with all couples of roads possible
 		for(int i=0; i<roads.size()-1; i++ ) {
 			for(int j=i+1 ; j<roads.size(); j++) {
-				//We create the road Arc
 				RoadArc roadArc = new RoadArc(roads.get(i), roads.get(j));
 				//We create the corresponding arc
 				CircularArc arc = roadArc.createRoadArc(roads.get(i), roads.get(j));
-				boolean intersectionTest=false;
+				boolean intersectionTest=true;
 				for(int k=0 ; k<roads.size(); k++) {
 					//Testing if the eventual arc intersect a road. If yes the arc is not conserved	
-					if(arc!=null && roadArc.intersectOther(arc, roads.get(k))) intersectionTest=true;
+					if(arc!=null && RoadArc.intersectOther(arc, roads.get(k))) intersectionTest=false;
 				}
+				
 				//Only if there is no intersection
-				if(intersectionTest == false && arc != null) { 
+				if(intersectionTest && arc != null) { 
 					List<Coordinate> polygonCoor = new ArrayList<Coordinate>();
 					GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
 					//We linearize the arc
@@ -280,20 +278,15 @@ public class ArcIntersection {
 					Point extremity1 = new GeometryFactory().createPoint(polygonCoor.get(0));
 					Point extremity2 = new GeometryFactory().createPoint(polygonCoor.get(polygonCoor.size()-1));
 					Point ptI=new GeometryFactory().createPoint(inter.getGeometry());
-					List<Point> listCutting = roadArc.cuttingPoint(extremity1, extremity2, roads.get(i), roads.get(j), ptI);
+					List<Point> listCutting = RoadArc.cuttingPoint(extremity1, extremity2, roads.get(i), roads.get(j), ptI);
 					Coordinate coordCutPoint1 = new Coordinate(listCutting.get(0).getX(),listCutting.get(0).getY());
 					Coordinate coordCutPoint2 = new Coordinate(listCutting.get(1).getX(),listCutting.get(1).getY());
-					Coordinate pointToAdd1 = coordCutPoint1;
-					Coordinate pointToAdd2 = coordCutPoint2;
+					Coordinate pointToAdd1 = coordCutPoint2;
+					Coordinate pointToAdd2 = coordCutPoint1;
 					Coordinate[] tabCoord1= {extremity2.getCoordinate(),pointToAdd1};
 					Coordinate[] tabCoord2= {extremity1.getCoordinate(),pointToAdd2};
 					LineString line1=new GeometryFactory().createLineString(tabCoord1);
 					LineString line2=new GeometryFactory().createLineString(tabCoord2);
-					if(line1.intersects(line2))
-					{
-						pointToAdd1 = coordCutPoint2;
-						pointToAdd2 = coordCutPoint1;
-					}
 					//We add the points
 					polygonCoor.add(pointToAdd1);
 					polygonCoor.add(new Coordinate(ptI.getX(),ptI.getY()));
@@ -303,7 +296,7 @@ public class ArcIntersection {
 					LinearRing ring = geometryFactory.createLinearRing(polygonCoor.toArray(new Coordinate[polygonCoor.size()]));
 					LinearRing holes[] = null;
 					Polygon geom = geometryFactory.createPolygon(ring, holes);
-					if(geom.getArea() <10000) 
+					if(geom.getArea() <1000) 
 						polygons.add(geom);
 
 				}

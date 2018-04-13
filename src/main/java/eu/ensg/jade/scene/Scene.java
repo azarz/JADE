@@ -14,6 +14,7 @@ import eu.ensg.jade.semantic.Hydrography;
 import eu.ensg.jade.semantic.IntersectionColl;
 import eu.ensg.jade.semantic.LineRoad;
 import eu.ensg.jade.semantic.PointVegetation;
+import eu.ensg.jade.semantic.Sidewalk;
 import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.semantic.SurfaceVegetation;
@@ -84,10 +85,17 @@ public class Scene {
 	 */
 	private IntersectionColl collIntersect;
 
+	/**
+	 * List of the sidewalks
+	 */
+	private List<Sidewalk> sidewalks;
+
 
 
 // ========================== CONSTRUCTORS =========================
-
+	/**
+	 * Default constructor
+	 */
 	public Scene() {
 		this.buildings = new ArrayList<Building>();
 		this.lineRoads = new HashMap<String,LineRoad>();
@@ -285,6 +293,8 @@ public class Scene {
 
 
 	/**
+	 * Allows to access to the intersection collection
+	 * 
 	 * @return the collIntersect
 	 */
 	public IntersectionColl getCollIntersect() {
@@ -293,10 +303,30 @@ public class Scene {
 
 
 	/**
+	 * Allows to set the intersection collection
+	 * 
 	 * @param collIntersect the collIntersect to set
 	 */
 	public void setCollIntersect(IntersectionColl collIntersect) {
 		this.collIntersect = collIntersect;
+	}
+	
+	/**
+	 * Allows to get the list of sidewalks
+	 * 
+	 * @return the list of sidewalks
+	 */
+	public List<Sidewalk> getSidewalks() {
+		return sidewalks;
+	}
+	
+	/**
+	 * Allows to set the sidewalks list
+	 * 
+	 * @param sidewalks
+	 */
+	public void setSidewalks(List<Sidewalk> sidewalks) {
+		this.sidewalks = sidewalks;
 	}
 
 // ========================== METHODS ==============================
@@ -339,6 +369,11 @@ public class Scene {
 
 	}
 	
+	/**
+	 * Adds a new tree in the existing list of surface vegetation
+	 * 
+	 * @param newTree the three to be added
+	 */
 	public void addSurfaceVegetation(SurfaceVegetation newTree){
 		this.surfaceVegetation.add(newTree);
 	}
@@ -352,4 +387,5 @@ public class Scene {
 	public void addStreetFurniture(StreetFurniture newFurniture){
 		this.streetFurniture.add(newFurniture);
 	}
+
 }
