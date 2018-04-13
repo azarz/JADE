@@ -23,15 +23,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>0.0</entry>
+<entry>180.0</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>143.7647350671311</entry>
-<entry>0.0</entry>
+<entry>35.0</entry>
+<entry>160.7647350671311</entry>
+<entry>-1000.0</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
