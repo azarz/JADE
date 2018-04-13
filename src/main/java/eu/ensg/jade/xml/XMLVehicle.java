@@ -177,7 +177,7 @@ public class XMLVehicle implements IXMLExport {
 	/**
 	 * Allows to set the deceleration free wheel
 	 * 
-	 * @param decelerationBrake The new deceleration free wheel value
+	 * @param decelerationFreeWheel The new deceleration free wheel value
 	 */
 	public void setDecelerationFreeWheel(double decelerationFreeWheel) {
 		this.decelerationFreeWheel = decelerationFreeWheel;
