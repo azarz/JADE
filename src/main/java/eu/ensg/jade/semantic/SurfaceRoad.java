@@ -107,7 +107,7 @@ public class SurfaceRoad extends Road implements IObjExport{
 		String normalCoords = "";
 		String faces;
 		
-		faces = "usemtl RoadDouble\n";
+		faces = "usemtl Road\n";
 		
 		int numGeometries = geometry.getNumGeometries();
 		

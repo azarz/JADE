@@ -8,6 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -329,6 +330,19 @@ public class SceneBuilder {
 	 */
 	private void exportRGEData(Scene scene) {
 		System.out.println("Export RGE Data");
+		
+		//Copying the materials file and textures
+		try {
+			Files.copy((new File("assets/RGE/materials.mtl")).toPath(), 
+					(new File("assets/RGE/" + place + "/materials.mtl")).toPath(),
+					StandardCopyOption.REPLACE_EXISTING);
+			Files.copy((new File("assets/RGE/window.png")).toPath(), 
+					(new File("assets/RGE/" + place + "/window.png")).toPath(),
+					StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		
 		OBJWriter objWriter = new OBJWriter();
 		
