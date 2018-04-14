@@ -1,11 +1,19 @@
 package eu.ensg.jade.scene;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.WritableRaster;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
 
 import org.geotools.feature.SchemaException;
 import org.opengis.referencing.FactoryException;
@@ -46,7 +54,7 @@ public class SceneBuilder {
 	 */
 	private Scene scene;
 	
-	private static String place = "Nation";
+	private static String place = "Voise";
 	
 // ========================== CONSTRUCTORS =========================	
 	
@@ -71,9 +79,11 @@ public class SceneBuilder {
 		String hydroLayer = "input/" + place + "/SURFACE_EAU.SHP";
 		String treeLayer = "input/" + place + "/ZONE_VEGETATION.shp";
 		String dtmLayer = "input/" + place + "/DTM_1m.asc";
+		String orthoImage = "input/" + place + "/ortho.png";
 		
 		SceneBuilder builder = new SceneBuilder();
 		builder.buildFromFiles(buildingLayer, roadLayer, hydroLayer, treeLayer, dtmLayer);
+		builder.exportOrthoImage(orthoImage);
 		builder.export();
 		long end = System.currentTimeMillis();
 		System.out.println((end-begin)/1000 + " seconds elapsed");
@@ -444,10 +454,84 @@ public class SceneBuilder {
         groundTranslation[2] = yCentroid - dtm.getYllcorner() + ((powerOfTwo/2) - largestDimension)*dtm.getCellsize();
      		
         XMLTerrain terrain = new XMLTerrain("Terrain", "RGE/" + place + "/terrain.png", powerOfTwo);
-		XMLGroundModel ground = new XMLGroundModel("Ground", "Materials/" + place +"/OrthoImage.j3m", terrain, groundScale, groundRotation, groundTranslation);
+		XMLGroundModel ground = new XMLGroundModel("Ground", "Materials/" + place + "/OrthoImage.j3m", terrain, groundScale, groundRotation, groundTranslation);
 	
 		return ground;
 	}
 	
+	/**
+	 * Exports the orthoImage into a texture usable by JMonkey
+	 * @param orthoImagePath the path to the input orthoimage
+	 */
+	private void exportOrthoImage(String orthoImagePath) {
+		
+		// First adding the material in the Materials list
+		File directory = new File("assets/Materials/" + place);
+		if (! directory.exists()){ directory.mkdir(); }
+		
+		String materialPath = "assets/Materials/" + place + "/OrthoImage.j3m";
+		File file = new File(materialPath);
+		try {
+			Files.deleteIfExists(file.toPath());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		try(FileWriter fw = new FileWriter(materialPath, true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			PrintWriter out = new PrintWriter(bw)) {						
+			out.print("Material jME Logo : Common/MatDefs/Misc/Unshaded.j3md {");
+			out.print("MaterialParameters {");
+			out.print("ColorMap : RGE/" + place + "/ortho_50cm.png}}");	
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		// Then doing the image manipulation
+		File orthoimageFile = new File(orthoImagePath);
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(orthoimageFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		// Calculating the smallest power of 2 above the image dimension if it isn't a power of 2 itself using bitwise shift
+		int powerOfTwo = image.getWidth();
+        if (Integer.highestOneBit(powerOfTwo) != Integer.lowestOneBit(powerOfTwo)) {
+        	powerOfTwo = Integer.highestOneBit(powerOfTwo << 1);
+        }
+		
+        //Adding the padding
+		BufferedImage newImage = new BufferedImage(powerOfTwo, powerOfTwo, image.getType());
+		WritableRaster output = newImage.getRaster();
+		
+		int[] blackPixel = new int[] {0,0,0,0};
+		for (int i = 0; i < powerOfTwo; i++) {
+			for (int j = 0; j < powerOfTwo; j++) {
+				output.setPixel(i, j, blackPixel);
+			}
+		}
+		
+		output.setDataElements(0, 0, image.getRaster());
+
+		// Flip the image vertically
+	    for(int row = 0; row < powerOfTwo/2; row++){
+	            for(int col = 0; col < powerOfTwo; col++){
+	                int[] pixel = output.getPixel(col, row, new int[4]);
+	                output.setPixel(col, row, output.getPixel(col,  powerOfTwo - row - 1, new int[4]));
+	                output.setPixel(col,  powerOfTwo - row - 1, pixel);
+	            }
+	        }
+		
+		// Outputing the image
+		File outputfile = new File("assets/RGE/" + place + "/ortho_50cm.png");
+		try {
+			Files.deleteIfExists(outputfile.toPath());
+			ImageIO.write(newImage, "png", outputfile);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	}
 	
 }

@@ -84,7 +84,6 @@ import eu.opends.visualization.MoviePlayer;
  * 
  * @author Rafael Math
  */
-@SuppressWarnings("restriction")
 public class Simulator extends SimulationBasics
 {
 	
