@@ -71,8 +71,13 @@ public class SceneBuilder {
 	 * 
 	 * Main method
 	 */
-	public static void main(String[] args) throws FactoryException, SchemaException, IOException {
+	public static void main(String[] args) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
 		long begin = System.currentTimeMillis();
+		
+		// Reading the arguments
+		if (args.length > 1) {
+			place = args[1];
+		}
 		
 		String buildingLayer = "input/" + place + "/BATI_INDIFFERENCIE.SHP";
 		String roadLayer = "input/" + place + "/ROUTE.SHP";

@@ -44,10 +44,9 @@ sourceSets {
   }
 }
 
-//'Main-Class': 'eu.ensg.jade.scene.SceneBuilder',
 jar {
    manifest {
-      attributes 'Main-Class': 'eu.opends.main.Simulator',
+      attributes 'Main-Class': 'eu.ensg.jade.main.Jade',
       'Implementation-Title': 'Jade', 
       'Implementation-Version': version,
       "Class-Path": configurations.compile.files.collect { "lib/" + it.name }.join(' ')
