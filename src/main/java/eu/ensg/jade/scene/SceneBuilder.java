@@ -88,8 +88,9 @@ public class SceneBuilder {
 		
 		SceneBuilder builder = new SceneBuilder();
 		builder.buildFromFiles(buildingLayer, roadLayer, hydroLayer, treeLayer, dtmLayer);
-		builder.exportOrthoImage(orthoImage);
 		builder.export();
+		builder.exportOrthoImage(orthoImage);
+		
 		long end = System.currentTimeMillis();
 		System.out.println((end-begin)/1000 + " seconds elapsed");
 	}
@@ -354,6 +355,8 @@ public class SceneBuilder {
 	 */
 	private void exportXML(Scene scene) {
 		System.out.println("Export XML");
+		File directory = new File("assets/DrivingTasks/Projects/RGE/" + place);
+		if (! directory.exists()){ directory.mkdir(); }
 		
 		XMLWriter xmlWriter = new XMLWriter();
 		xmlWriter.log = true;
