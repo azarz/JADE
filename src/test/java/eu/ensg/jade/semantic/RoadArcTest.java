@@ -323,7 +323,6 @@ public class RoadArcTest {
 		Coordinate coorA = new Coordinate(12,0);
 		Coordinate coorB = new Coordinate(0,0);
 		Coordinate coorC = new Coordinate(0,12);
-		Coordinate coorD = new Coordinate(0,-12);
 
 		//Road LineString
 		LineString lsAB = geometryFactory.createLineString(new Coordinate[] {coorA,coorB});
@@ -386,15 +385,15 @@ public class RoadArcTest {
 		RoadArc raT8 = new RoadArc(lrAB, tod);
 		RoadArc raT9 = new RoadArc(tod, lrAB);
 		
-		assertNotNull(raT1.createRoadArc(lrAB, lrBC));
-		assertNull(raT2.createRoadArc(lrAB, rpt));
-		assertNull(raT3.createRoadArc(rpt, lrAB));
-		assertNull(raT4.createRoadArc(lrAB, pl));
-		assertNull(raT5.createRoadArc(pl, lrAB));
-		assertNull(raT6.createRoadArc(lrAB, lrAB));
-		assertNull(raT7.createRoadArc(lrAB, lrBD));
-		assertNull(raT8.createRoadArc(lrAB, tod));
-		assertNull(raT9.createRoadArc(tod, lrAB));
+		assertNotNull(raT1.getCircularArc());
+		assertNull(raT2.getCircularArc());
+		assertNull(raT3.getCircularArc());
+		assertNull(raT4.getCircularArc());
+		assertNull(raT5.getCircularArc());
+		assertNull(raT6.getCircularArc());
+		assertNull(raT7.getCircularArc());
+		assertNull(raT8.getCircularArc());
+		assertNull(raT9.getCircularArc());
 
 	}
 }
