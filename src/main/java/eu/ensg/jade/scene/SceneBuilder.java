@@ -72,6 +72,16 @@ public class SceneBuilder {
 	 * 
 	 * Main method
 	 */
+	/**
+	 * Main method for JADE
+	 * 
+	 * @param args Default args argument for JAVA.
+	 * 
+	 * @throws IOException Throws IOException
+	 * @throws SchemaException Throws SchemaException
+	 * @throws NoSuchAuthorityCodeException Throws NoSuchAuthorityCodeException
+	 * @throws FactoryException Throws FactoryException 
+	 */
 	public static void main(String[] args) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
 		long begin = System.currentTimeMillis();
 		
@@ -216,7 +226,9 @@ public class SceneBuilder {
 	 * @param hydroFeature the hydrography shp feature
 	 * @param treeFeature the vegetation shp feature
 	 * @param dtmFeature the DTM png feature
-	 * @return
+	 * 
+	 * @return The new scene
+	 * 
 	 * @throws Exception 
 	 */
 	private Scene loadRGE(
@@ -268,10 +280,11 @@ public class SceneBuilder {
 	 * </ul>
 	 * 
 	 * @param scene The scene to build
-	 * @throws FactoryException 
-	 * @throws NoSuchAuthorityCodeException 
-	 * @throws IOException 
-	 * @throws SchemaException 
+	 * 
+	 * @throws FactoryException Throws FactoryException
+	 * @throws NoSuchAuthorityCodeException Throws NoSuchAuthorityCodeException 
+	 * @throws IOException Throws IOException
+	 * @throws SchemaException Throws SchemaException 
 	 */
 	private void build(Scene scene) throws NoSuchAuthorityCodeException, FactoryException, SchemaException, IOException {
 		// Changing the roads and buildings data so it matches the DTM
@@ -441,6 +454,7 @@ public class SceneBuilder {
 	 * Allows to get the ground model 
 	 * 
 	 * @param scene The scene from where to extract the ground model
+	 * 
 	 * @return The XML gournd model
 	 */
 	private XMLGroundModel getGroundModelFromScene(Scene scene){
@@ -483,6 +497,7 @@ public class SceneBuilder {
 	
 	/**
 	 * Exports the orthoImage into a texture usable by JMonkey
+	 * 
 	 * @param orthoImagePath the path to the input orthoimage
 	 */
 	private void exportOrthoImage(String orthoImagePath) {
