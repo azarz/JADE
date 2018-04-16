@@ -31,14 +31,13 @@ public class Intersection {
 // ========================== CONSTRUCTORS =========================	
 	
 	/**
-	 * Constructor using all fields
+	 * Constructor using geometry field
 	 * 
 	 * @param geometry The geometry of the new object
 	 */
 	public Intersection(Coordinate geometry) {
 		this.geometry = geometry;
 		this.roadId = new HashMap<String, Boolean>();
-		roadId.get(getGeometry());
 	}
 
 	/**
