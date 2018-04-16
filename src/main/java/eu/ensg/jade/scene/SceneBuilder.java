@@ -392,13 +392,27 @@ public class SceneBuilder {
 		xmlWriter.updateConfig("fileMainXML", "MAIN_FILE.xml");
 //		xmlWriter.updateConfig("rainCoefficient", "5");
 		
+		
+		double driverX = scene.getCentroid().x;
+		double driverY = scene.getCentroid().y;
+		boolean startRoad = false;
+		
+		if (startRoad) {
+			LineRoad[] type = new LineRoad[0];
+			LineRoad start = scene.getLineRoads().values().toArray(type)[scene.getLineRoads().values().size()/2];
+			Coordinate startCoord = start.getGeom().getCoordinates()[0];
+			driverX = startCoord.x;
+			driverY = startCoord.y;
+		}
+		
+		double driverZ = scene.getDtm().getHeightAtPoint(driverX, driverY) + 10;
+		
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
 		driver.setMass(1000);
-		driver.setTranslation(new double[]{0, 
-				scene.getDtm().getHeightAtPoint(
-						scene.getCentroid().x, scene.getCentroid().y) + 10,
-				0});
+		driver.setTranslation(new double[]{driverX - scene.getCentroid().x, 
+				driverZ,
+				driverY - scene.getCentroid().y});
 
 		driver.setScale((new double[]{0.8, 0.8, 0.8}));
 		xmlWriter.addModel(driver);
