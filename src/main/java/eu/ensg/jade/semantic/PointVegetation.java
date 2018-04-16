@@ -43,14 +43,6 @@ public class PointVegetation extends PunctualObject {
 		return nature;
 	}
 
-	/**
-	 * 
-	 * @param nature the tree nature path
-	 */
-	public void setNature(String nature) {
-		this.nature = nature;
-	}
-	
 // ========================== METHODS ==============================
 	
 	/**

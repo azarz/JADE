@@ -19,7 +19,6 @@ public class IntersectionColl {
 	 * @param mapIntersection The HashMap of intersections
 	 */
 	public IntersectionColl(HashMap<String, Intersection> mapIntersection) {
-		super();
 		this.mapIntersection = mapIntersection;
 	}
 
@@ -27,7 +26,6 @@ public class IntersectionColl {
 	 * Empty constructor
 	 */
 	public IntersectionColl() {
-		super();
 		this.mapIntersection = new HashMap<String,Intersection>();
 	}
 
