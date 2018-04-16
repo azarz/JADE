@@ -300,14 +300,14 @@ public class RoadArcTest {
 		Mockito.when(lrHI.getGeom()).thenReturn(mlsHI);
 		Mockito.when(lrDJ.getGeom()).thenReturn(mlsDJ);
 
-		assertEquals(RoadArc.calculAngle(lrAB, lrAB),0,1);
-		assertEquals(RoadArc.calculAngle(lrAB, lrAC),90,1);
-		assertEquals(RoadArc.calculAngle(lrAC, lrAB),90,1);
-		assertEquals(RoadArc.calculAngle(lrAB, lrAD),180,1);
-		assertEquals(RoadArc.calculAngle(lrAB, lrAE),90,1);
-		assertEquals(RoadArc.calculAngle(lrAB, lrFG),Double.NaN,1);
-		assertEquals(RoadArc.calculAngle(lrAB, lrHI),Double.NaN,1);
-		assertEquals(RoadArc.calculAngle(lrAB, lrDJ),Double.NaN,1);
+		assertEquals(RoadArc.angleBetweenRoads(lrAB, lrAB),0,1);
+		assertEquals(RoadArc.angleBetweenRoads(lrAB, lrAC),90,1);
+		assertEquals(RoadArc.angleBetweenRoads(lrAC, lrAB),90,1);
+		assertEquals(RoadArc.angleBetweenRoads(lrAB, lrAD),180,1);
+		assertEquals(RoadArc.angleBetweenRoads(lrAB, lrAE),90,1);
+		assertEquals(RoadArc.angleBetweenRoads(lrAB, lrFG),Double.NaN,1);
+		assertEquals(RoadArc.angleBetweenRoads(lrAB, lrHI),Double.NaN,1);
+		assertEquals(RoadArc.angleBetweenRoads(lrAB, lrDJ),Double.NaN,1);
 	}
 
 	/**
