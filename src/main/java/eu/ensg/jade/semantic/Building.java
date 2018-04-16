@@ -180,9 +180,16 @@ public class Building implements IObjExport {
 		String normalCoords = "";
 		
 		String wallChoice = "";
+		double wallRandomNumber = Math.random();
 		// Adding the roof to the building
-		if (Math.random() < 0.5) {
+		if (wallRandomNumber < 0.25) {
 			wallChoice = "2";
+		}
+		else if (wallRandomNumber < 0.5) {
+			wallChoice = "3";			
+		} 
+		else if (wallRandomNumber < 0.75) {
+			wallChoice = "4";
 		}
 		
 		String faces = "usemtl Wall" + wallChoice + "\n";
