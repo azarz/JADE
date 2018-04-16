@@ -51,7 +51,7 @@ public class ArcIntersection {
 						tempRoads.get(0).getWidth()==0 || tempRoads.get(1).getWidth()==0) {
 					continue;
 				}
-				double angle = RoadArc.calculAngle(tempRoads.get(0), tempRoads.get(1));
+				double angle = RoadArc.angleBetweenRoads(tempRoads.get(0), tempRoads.get(1));
 				if(angle < 210 && angle > 150 ) {
 					Polygon p = trapezoid(tempRoads, inter);
 					if(p.isValid()) result.add(p);
