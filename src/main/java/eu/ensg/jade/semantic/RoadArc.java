@@ -315,6 +315,7 @@ public class RoadArc {
 	 * 
 	 * @param road1 One road
 	 * @param road2 Another road
+	 * 
 	 * @return radius
 	 */
 	private double computeRadius(LineRoad road1, LineRoad road2){
@@ -338,8 +339,8 @@ public class RoadArc {
 	 *
 	 * @param multi multiLineString to test
 	 * @param pointInter Intersection point
+	 * 
 	 * @return the lineString forming the intersection 
-	 *
 	 */ 
 	private static LineString lineStringIntersection(MultiLineString multi, Point pointInter) {
 		LineString firstLine = (LineString) multi.getGeometryN(0);
@@ -362,6 +363,7 @@ public class RoadArc {
 	 *
 	 * @param lineroad1 First LineRoad
 	 * @param lineroad2 Second LineRoad
+	 * 
 	 * @return angle between two roads
 	 */
 	public static double angleBetweenRoads(LineRoad lineroad1, LineRoad lineroad2) {
@@ -409,6 +411,7 @@ public class RoadArc {
 	 *
 	 * @param arc the arc
 	 * @param road the road to check for intersection
+	 * 
 	 * @return true if the arc intersects the road
 	 */
 
