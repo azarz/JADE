@@ -41,7 +41,8 @@ public class SidewalkTest {
 	
 		DTM dtm = Mockito.mock(DTM.class);
 		Mockito.when(dtm.getHeightAtPoint(any(double.class), any(double.class))).thenReturn(0d);
-				
+		Mockito.when(dtm.getCellsize()).thenReturn(1d);
+		
 		MultiLineString mLS = geometryFactory.createMultiLineString(new LineString[]{lS});
 		
 		List<Integer> indexOffsets = new ArrayList<Integer>();
@@ -52,7 +53,7 @@ public class SidewalkTest {
 		Sidewalk sidewalk = new Sidewalk(mLS, 1, mLS.buffer(1), dtm);
 		
 		assertNotNull(sidewalk);
-		assertNotNull(sidewalk.toOBJ(indexOffsets, 1, 1));
+		assertNotNull(sidewalk.toOBJ(indexOffsets, 1., 1.));
 		
 	}
 
