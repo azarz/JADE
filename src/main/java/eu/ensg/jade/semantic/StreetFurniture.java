@@ -40,7 +40,7 @@ public class StreetFurniture extends PunctualObject {
 	 */
 	public StreetFurniture(Coordinate coord) {
 		super(coord);
-		this.countId++;
+		StreetFurniture.countId++;
 		this.id=countId;
 	}
 	
@@ -55,7 +55,7 @@ public class StreetFurniture extends PunctualObject {
 			super(coord);
 			this.path = path;
 			this.rotation = rotation;
-			this.countId++;
+			StreetFurniture.countId++;
 			this.id=countId;
 		}
 
