@@ -126,7 +126,7 @@ public class Sidewalk implements IObjExport{
 	/**
 	 * Extracts a polygon's points into a list of vertices
 	 * 
-	 * @param poly The polygon to gets poit from
+	 * @param poly The polygon to gets point from
 	 * 
 	 * @return the list of points
 	 */

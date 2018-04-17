@@ -108,13 +108,12 @@ public class RoadSignsRule implements RuleShape {
 				// If the road is more than 100 m long, we place a speed limit sign at the half of the road
 				else if (roadLength >= 100){
 					double distance = roadLength / 2;
-					
 					int speedType = speedType(lineRoad.getSpeed());
 					addSpeedLimitSigns(lineRoad, roadBool, speedType, scene, intersect, distance);
 					
 				}
 				else{
-					System.out.println("There is no road in this intersection ... ");
+					System.out.println("No road signs to add !");
 					}
 				}
 			}
