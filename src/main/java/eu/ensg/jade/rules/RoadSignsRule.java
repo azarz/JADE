@@ -113,11 +113,11 @@ public class RoadSignsRule implements RuleShape {
 					
 				}
 				else{
-					System.out.println("No road signs to add !");
-					}
+//					System.out.println("No road signs to add !");
 				}
 			}
 		}
+	}
 		
 	/**
 	 * Returns an integer associated to each speed limit
@@ -207,7 +207,7 @@ public class RoadSignsRule implements RuleShape {
 			break;
 		
 		default:
-			System.out.println("Intersection de mauvais type");
+//			System.out.println("Intersection de mauvais type");
 			break;
 		}
 	}

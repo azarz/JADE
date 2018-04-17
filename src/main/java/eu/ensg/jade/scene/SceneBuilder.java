@@ -121,7 +121,7 @@ public class SceneBuilder {
 	 * @throws IOException Throws IOException
 	 * @throws SchemaException Throws SchemaException
 	 */
-	public void buildFromFiles(
+	private void buildFromFiles(
 			String buildingLayer,
 			String roadLayer,
 			String hydroLayer,
@@ -137,7 +137,7 @@ public class SceneBuilder {
 		
 		build(scene);
 	}
-	
+/*	
 	/**
 	 * Builds the scene from a RGE stream
 	 * 
@@ -147,8 +147,8 @@ public class SceneBuilder {
 	 * @param treeLayer The location of the tree layer stream
 	 * @param dtmLayer The location of the dtm layer stream
 	 * @throws Exception Throws some exceptions (to be specified) 
-	 */
-	public void buildFromRGE(
+	 /
+	private void buildFromRGE(
 			String buildingLayer,
 			String roadLayer,
 			String hydroLayer,
@@ -162,12 +162,12 @@ public class SceneBuilder {
 		
 		build(scene);
 	}
-	
+*/	
 	
 	/**
 	 * Public method to export the whole Scene as a driving task, to be used in OpenDS
 	 */
-	public void export() {
+	private void export() {
 		exportRGEData(scene);
 		exportXML(scene);
 	}
