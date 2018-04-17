@@ -141,7 +141,7 @@ public class IntersectionSignsRule implements RuleShape{
 			}
 			
 			else{
-				System.out.println("There is no road in this intersection ... ");
+//				System.out.println("There is no road in this intersection ... ");
 			}
 		}
 	}
@@ -597,7 +597,6 @@ public class IntersectionSignsRule implements RuleShape{
 			
 			StreetFurniture streetFurniture2 = addSigns(lineRoad,startOnIntersect,folder,scene, intersect);
 			addStreetFurniture(streetFurniture2, lineRoad, scene);
-			System.out.println("enter sens interdit "+streetFurniture2);
 		
 		}		
 		
@@ -611,7 +610,6 @@ public class IntersectionSignsRule implements RuleShape{
 		else if (enter == 0){
 			StreetFurniture streetFurniture = addSigns(lineRoad,startOnIntersect,folder,scene,intersect);
 			addStreetFurniture(streetFurniture, lineRoad, scene);
-			System.out.println("enter double sens "+streetFurniture);
 		}
 	}
 
@@ -814,7 +812,7 @@ public class IntersectionSignsRule implements RuleShape{
 			}
 			break;
 		default:
-			System.out.println("Intersection de mauvais type");
+//			System.out.println("Intersection de mauvais type");
 			break;
 		}
 	}
@@ -899,7 +897,6 @@ public class IntersectionSignsRule implements RuleShape{
 			//We add yield signs for all roads not on the round about
 			if (!road.getName().equals("")) {
 				if (!((road.getName().substring(0, 2)).equals("PL") || (road.getName().substring(0, 3)).equals("RPT"))){
-					System.out.println("eh eh !! ====>>>>>>>>>");
 					addSignsByRoad(isEntering(road,startOnIntersectTab[i]), road, startOnIntersectTab[i], this.yield, scene,intersect);
 				}
 			}

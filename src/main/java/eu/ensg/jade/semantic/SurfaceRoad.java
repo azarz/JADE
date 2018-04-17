@@ -199,7 +199,7 @@ public class SurfaceRoad extends Road implements IObjExport{
 			
 			@Override
 			public void filter(CoordinateSequence seq, int i) {
-				seq.setOrdinate(i, 2, dtm.getHeightAtPoint(seq.getX(i), seq.getY(i)) + 0.07);
+				seq.setOrdinate(i, 2, dtm.getHeightAtPoint(seq.getX(i), seq.getY(i)) + 0.075);
 			}
 
 			@Override
