@@ -92,8 +92,11 @@ public class IntersectionSignsRule implements RuleShape{
 //		Map <String,Road> roads = scene.getRoads();
 		IntersectionColl interColl = scene.getCollIntersect();
 		
+		
+		
 		// We go through all the intersections
 		for (Intersection intersect : interColl.getMapIntersection().values()){
+			
 			
 			// We test how many roads are attached to the intersection
 			
@@ -131,8 +134,8 @@ public class IntersectionSignsRule implements RuleShape{
 			// If the node has 5 or more attached nodes
 			else if (intersect.getRoadId().size() >= 5){
 				/* 
-				 *        => Direction test 
-				 *        => Traffic lights placed 
+				 * => Direction test 
+				 * => Traffic lights placed 
 				 */
 				fiveRoadIntersect(intersect, scene);
 			}
@@ -143,7 +146,7 @@ public class IntersectionSignsRule implements RuleShape{
 		}
 	}
 
-// ------ Limit of the interface function
+// ------ Interface function
 	/**
 	 * Creates the signs of intersections with one road
 	 * 
@@ -472,7 +475,7 @@ public class IntersectionSignsRule implements RuleShape{
 		if(left){
 			if (folder.equals(this.yield)){
 				rotation = theta + Math.PI/2;
-				D = D - 2.2;
+				//D = D - 2.2;
 			}
 			else {
 				rotation = theta;
@@ -594,6 +597,7 @@ public class IntersectionSignsRule implements RuleShape{
 			
 			StreetFurniture streetFurniture2 = addSigns(lineRoad,startOnIntersect,folder,scene, intersect);
 			addStreetFurniture(streetFurniture2, lineRoad, scene);
+			System.out.println("enter sens interdit "+streetFurniture2);
 		
 		}		
 		
@@ -607,6 +611,7 @@ public class IntersectionSignsRule implements RuleShape{
 		else if (enter == 0){
 			StreetFurniture streetFurniture = addSigns(lineRoad,startOnIntersect,folder,scene,intersect);
 			addStreetFurniture(streetFurniture, lineRoad, scene);
+			System.out.println("enter double sens "+streetFurniture);
 		}
 	}
 
@@ -894,8 +899,8 @@ public class IntersectionSignsRule implements RuleShape{
 			//We add yield signs for all roads not on the round about
 			if (!road.getName().equals("")) {
 				if (!((road.getName().substring(0, 2)).equals("PL") || (road.getName().substring(0, 3)).equals("RPT"))){
-					StreetFurniture lightRoad = addSigns(road, startOnIntersectTab[i], this.yield, scene,intersect);
-					addStreetFurniture(lightRoad, road, scene);
+					System.out.println("eh eh !! ====>>>>>>>>>");
+					addSignsByRoad(isEntering(road,startOnIntersectTab[i]), road, startOnIntersectTab[i], this.yield, scene,intersect);
 				}
 			}
 		}
