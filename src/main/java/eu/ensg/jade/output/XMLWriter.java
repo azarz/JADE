@@ -221,6 +221,8 @@ public class XMLWriter {
 	public void createMainXml() {
 		try {
 			Document doc = this.importXml("assets/DrivingTasks/Template/main.xml");
+			//String separator = java.io.File.separator; 
+			//Document doc = this.importXml("assets"+separator+"DrivingTasks"+separator+"Template"+separator+"main.xml");
 			
 			NodeList nodeList = doc.getElementsByTagName("entry");
 			Node node;			

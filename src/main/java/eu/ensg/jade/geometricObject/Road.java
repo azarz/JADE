@@ -205,7 +205,7 @@ public abstract class Road{
 			this.speed = "90 km/h";
 		}
 		
-		else if(this.number.indexOf('N')!=-1){
+		else if(this.number.indexOf('N')!=-1 && !(this.number.equals("NC") || this.number.equals("NR"))){
 			this.speed = "110 km/h";
 		}
 		

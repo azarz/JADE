@@ -55,7 +55,7 @@ public class SceneBuilder {
 	 */
 	private Scene scene;
 	
-	private static String place = "Voise";
+	private static String place = "Nation";
 	
 // ========================== CONSTRUCTORS =========================	
 	
