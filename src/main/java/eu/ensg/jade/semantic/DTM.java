@@ -250,7 +250,7 @@ public class DTM {
             else
                 height = southWest + (xFraction)*(southEast-southWest) + (1-yFraction)*(northEast-southEast);
         }
-		return height;
+		return height + 0.03;
 	}
 	
 	/**
@@ -291,9 +291,11 @@ public class DTM {
 		// Copy of tabDTM into smoothDTM
 		if(this.tabDTM == null) return;
 		
-		this.smoothDTM = new double[nrows][];
+		this.smoothDTM = new double[nrows][ncols];
 		for(int i=0; i<nrows; i++){
-			this.smoothDTM[i] = this.tabDTM[i].clone();
+			for(int j=0; j<ncols; j++) {
+				this.smoothDTM[i][j] = (int) this.tabDTM[i][j];
+			}
 		}
 	}
 
