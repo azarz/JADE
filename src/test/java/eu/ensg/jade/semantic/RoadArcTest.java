@@ -244,10 +244,10 @@ public class RoadArcTest {
 	}
 
 	/**
-	 * Test method for calculAngle.
+	 * Test method for angleBetweenRoads.
 	 */
 	@Test
-	public void testCalculAngle(){
+	public void testAngleBetweenRoads(){
 
 		//Geometry factory
 		GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
