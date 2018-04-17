@@ -130,6 +130,7 @@ public class Building implements IObjExport {
 	
 	/**
 	 * Transforms the Z coordinates of the geometry according to a DTM parameter
+	 * 
 	 * @param dtm for the building to match
 	 */
 	public void setZfromDTM(DTM dtm) {
@@ -178,7 +179,20 @@ public class Building implements IObjExport {
 		String uvCoords     = "";
 		String normalCoords = "";
 		
-		String faces = "usemtl Wall\n";
+		String wallChoice = "";
+		double wallRandomNumber = Math.random();
+		// Adding the roof to the building
+		if (wallRandomNumber < 0.25) {
+			wallChoice = "2";
+		}
+		else if (wallRandomNumber < 0.5) {
+			wallChoice = "3";			
+		} 
+		else if (wallRandomNumber < 0.75) {
+			wallChoice = "4";
+		}
+		
+		String faces = "usemtl Wall" + wallChoice + "\n";
 		
 		// Adding the vertex coords as in a obj file
 		for (int i = 0; i < vertices.size(); i++) {
@@ -225,8 +239,12 @@ public class Building implements IObjExport {
 		
 		normalCoords += "vn 0 1 0\n";
 		
+		String roofChoice = "";
 		// Adding the roof to the building
-		faces += "usemtl Roof\n";
+		if (Math.random() < 0.5) {
+			roofChoice = "2";
+		}
+		faces += "usemtl Roof"+ roofChoice +"\n";
 		Coordinate[] roofCoords = new Coordinate[vertices.size()/2 + 1];
 		for (int i = vertices.size()/2; i < vertices.size(); i++) {
 			double[] vertex = vertices.get(i);

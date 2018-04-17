@@ -12,7 +12,7 @@ sudo apt-get update
 sudo apt-get install oracle-java8-installer
 ```
 
-## Comment lancer ?
+## Téléchargement de JADE
 
 Se placer dans un dossier, lancer la commande 
 ```sh
@@ -24,9 +24,22 @@ Une fois le téléchargement terminé lancer
 cd JADE
 git checkout demo
 ```
-puis pour lancer l'application
+pour passer sur une branche stable de développement.
+
+## Lancement du programme
+
+Pour lancer le simulateur de conduite OpenDS, lancer la commande suivante dans un terminal ouvert dans le dossier racine de JADE :
+
 ```sh
-java -jar JADE-0.0.1-SNAPHOT.jar
+java -jar JADE-0.0.1-SNAPSHOT.jar sim
 ```
 
-Puis se diriger dans le dossier RGE pour lancer MAIN_FILE.xml
+Pour lancer la génération de scène OpenDS, utiliser la commande :
+```sh
+java -jar JADE-0.0.1-SNAPSHOT.jar build <NomDossier>
+```
+avec <NomDossier> le nom du sous-dossier du dossier "input" contenant des données exploitables par JADE (voir la partie ["Données en entrée"](#données-en-entrée))
+
+## Données en entrée
+Vous pouvez crééer vos propres scènes à partir de données issues du RGE de l'IGN, pour peu qu'elles correspondent parfaitment aux spécifications suivantes (des exemple de données en entrées sont présentes dans le dossier input) :
+TODO

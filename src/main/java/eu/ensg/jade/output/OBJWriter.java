@@ -61,7 +61,7 @@ public class OBJWriter {
 			BufferedWriter bw = new BufferedWriter(fw);
 			PrintWriter out = new PrintWriter(bw)) {			
 			
-			out.print("mtllib paris.mtl\n");
+			out.print("mtllib materials.mtl\n");
 			for (int i = 0; i < objectList.size(); i++) {
 				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
 			}
@@ -99,7 +99,7 @@ public class OBJWriter {
 				BufferedWriter bw = new BufferedWriter(fw);
 				PrintWriter out = new PrintWriter(bw)) {
 			
-			out.print("mtllib paris.mtl\n");
+			out.print("mtllib materials.mtl\n");
 
 			for (SurfaceRoad road: roads.values()) {
 				out.print(road.toOBJ(offsets, xCentroid, yCentroid));
@@ -140,7 +140,7 @@ public class OBJWriter {
 				BufferedWriter bw = new BufferedWriter(fw);
 				PrintWriter out = new PrintWriter(bw)) {
 			
-			out.print("mtllib paris.mtl\n");
+			out.print("mtllib materials.mtl\n");
 			System.out.println("sidewalks creating...");
 			for (Sidewalk sidewalk: sidewalks) {
 				out.print(sidewalk.toOBJ(offsets, xCentroid, yCentroid));
@@ -180,7 +180,7 @@ public class OBJWriter {
 				BufferedWriter bw = new BufferedWriter(fw);
 				PrintWriter out = new PrintWriter(bw)) {
 			
-			out.print("mtllib paris.mtl\n");
+			out.print("mtllib materials.mtl\n");
 
 			for (int i = 0; i < objectList.size(); i++) {
 				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
@@ -219,7 +219,7 @@ public class OBJWriter {
 				BufferedWriter bw = new BufferedWriter(fw);
 				PrintWriter out = new PrintWriter(bw)) {
 			
-			out.print("mtllib paris.mtl\n");
+			out.print("mtllib materials.mtl\n");
 			
 			for (int i = 0; i < objectList.size(); i++) {
 				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));

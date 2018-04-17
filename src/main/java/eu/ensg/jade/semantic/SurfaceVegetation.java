@@ -2,10 +2,7 @@ package eu.ensg.jade.semantic;
 
 import java.util.List;
 
-import com.vividsolutions.jts.densify.Densifier;
 import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.CoordinateSequence;
-import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
 import com.vividsolutions.jts.geom.GeometryCollection;
 import com.vividsolutions.jts.geom.GeometryFactory;
 import com.vividsolutions.jts.geom.LineString;
@@ -175,12 +172,14 @@ public class SurfaceVegetation implements IObjExport {
 				// Filling the output string
 				String outputString = vertexCoords + uvCoords + normalCoords + faces;
 				return outputString;
-			}	
+			}
 	
+/*	Unused method, commentated (for not deleting)
 	/**
 	 * Transforms the Z coordinates of the geometry according to a DTM parameter
+	 * 
 	 * @param dtm for the road to match
-	 */
+	 /
 	public void setZfromDTM(DTM dtm) {
 		// Densify the geometry so it has a number of vertices corresponding to the DTM
 		if(geometry.getCoordinates().length > 0) {
@@ -217,6 +216,6 @@ public class SurfaceVegetation implements IObjExport {
 		// Applying the filter
 		geometry.apply(filter);
 	}
-	
+*/	
 
 }

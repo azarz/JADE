@@ -84,48 +84,6 @@ public class PoissonDiskSampler {
 // ========================== CONSTRUCTORS =========================
 	
 	/**
-	 * Class constructor specifying each parameters
-	 * 
-	 * @param width The width of the sampled space
-	 * @param height The height of the sampled space
-	 * @param radius The minimum distance between each point
-	 * @param k The number of repetitions to create a point
-	 */
-	public PoissonDiskSampler(double width, double height, double radius, int k) {
-		this.startX = 0;
-		this.startY = 0;
-		this.width = Math.abs(width);
-		this.height = Math.abs(height);
-		this.radius = Math.abs(radius);
-		this.k = k > 0 ? k : 30;
-		
-		this.rng = new Random();
-		
-		this.initGrid();
-	}
-	
-	/**
-	 * Class constructor with only useful parameters
-	 * 
-	 * @param width The width of the sampled space
-	 * @param height The height of the sampled space
-	 * @param radius The minimum distance between each point
-	 */
-	public PoissonDiskSampler(double width, double height, double radius) {
-		this(width, height, radius, 30);
-	}
-	
-	/**
-	 * Class constructor defining only the extent of the sampling
-	 * 
-	 * @param width The width of the sampled space
-	 * @param height The height of the sampled space
-	 */
-	public PoissonDiskSampler(double width, double height) {
-		this(width, height, 10, 30);
-	}
-	
-	/**
 	 * Class constructor based on on start point and end point to define the extent, and all other parameters
 	 * 
 	 * @param startX the upper left X coordinate of the concerned area
@@ -159,19 +117,6 @@ public class PoissonDiskSampler {
 	 */
 	public PoissonDiskSampler(double startX, double startY, double endX, double endY, double radius) {
 		this(startX, startY, endX, endY, radius, 30);
-	}
-	
-	/**
-	 * Class constructor based on on start point and end point to define the extent, and leaving all parameters
-	 * as default
-	 * 
-	 * @param startX the upper left X coordinate of the concerned area
-	 * @param startY the upper left Y coordinate of the concerned area
-	 * @param endX the down right X coordinate of the concerned area
-	 * @param endY the down right Y coordinate of the concerned area
-	 */
-	public PoissonDiskSampler(double startX, double startY, double endX, double endY) {
-		this(startX, startY, endX, endY, 10, 30);
 	}
 	
 // ========================== METHODS ==============================

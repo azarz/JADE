@@ -16,6 +16,9 @@ import org.w3c.dom.Element;
  *
  */
 public interface IXMLExport {
+	
+// ========================== METHODS ==============================
+	
 	/**
 	 * Convert a set of data, stored in class parameters, to an XML Element.
 	 * This method is used to write the content of the class to an XML file with the correct format

@@ -61,8 +61,6 @@ public class DTM {
 	
 	/**
 	 * Empty constructor 
-	 * 
-	 * 
 	 */
 	public DTM() {
 		this.tabDTM = new double[0][0];
@@ -115,6 +113,7 @@ public class DTM {
 	
 	/**
 	 * Gets the number of columns
+	 * 
 	 * @return number of columns
 	 */
 	public int getNcols() {
@@ -123,6 +122,7 @@ public class DTM {
 
 	/**
 	 * Gets the number of rows
+	 * 
 	 * @return number of rows
 	 */
 	public int getNrows() {
@@ -131,6 +131,7 @@ public class DTM {
 
 	/**
 	 * Gets the X coordinate of the leftmost low corner
+	 * 
 	 * @return X coordinate of the leftmost low corner
 	 */
 	public double getXllcorner() {
@@ -147,6 +148,7 @@ public class DTM {
 
 	/**
 	 * Gets the size of a cell in meters
+	 * 
 	 * @return Size of a cell in meters
 	 */
 	public double getCellsize() {
@@ -203,6 +205,14 @@ public class DTM {
 		}
 	}
 	
+	/**
+	 * Gets the height of a point, given its coordinates
+	 * 
+	 * @param x The x coordinate
+	 * @param y The y coordinate
+	 * 
+	 * @return The height
+	 */
 	public double getHeightAtPoint(double x, double y){
 		double xFraction = (x - xllcorner) / cellsize;
 		double yFraction = nrows - ((y - yllcorner) / cellsize);
@@ -243,12 +253,17 @@ public class DTM {
 		return height + 0.03;
 	}
 	
-	
+	/**
+	 * Smooth the DTM
+	 * 
+	 * @param np Smoothing coefficient
+	 * @param radius Radius of smoothing
+	 */
 	public void smooth(double np, int radius) {
 		if(smoothDTM == null) this.createSmoothDTM();
         if (np < 0 || np > 1) np = 0.9;
         if (radius == 0) radius = 10;
-        
+    
         int number = 0;
         double average = 0;
         for (int x = 0; x < ncols; x++) {
@@ -269,13 +284,18 @@ public class DTM {
         }
     }
 	
+	/**
+	 * Creates a clone of the DTM table, to keep the original in memory
+	 */
 	private void createSmoothDTM(){
 		// Copy of tabDTM into smoothDTM
 		if(this.tabDTM == null) return;
 		
-		this.smoothDTM = new double[nrows][];
+		this.smoothDTM = new double[nrows][ncols];
 		for(int i=0; i<nrows; i++){
-			this.smoothDTM[i] = this.tabDTM[i].clone();
+			for(int j=0; j<ncols; j++) {
+				this.smoothDTM[i][j] = (int) this.tabDTM[i][j];
+			}
 		}
 	}
 

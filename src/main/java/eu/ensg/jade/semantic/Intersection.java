@@ -31,14 +31,13 @@ public class Intersection {
 // ========================== CONSTRUCTORS =========================	
 	
 	/**
-	 * Constructor using all fields
+	 * Constructor using geometry field
 	 * 
 	 * @param geometry The geometry of the new object
 	 */
 	public Intersection(Coordinate geometry) {
 		this.geometry = geometry;
 		this.roadId = new HashMap<String, Boolean>();
-		roadId.get(getGeometry());
 	}
 
 	/**
@@ -69,7 +68,13 @@ public class Intersection {
 	}
 	
 // ========================== METHODS ==============================
-
+	
+	/**
+	 * Adds a road to the intersection 
+	 * 
+	 * @param ID The ID of the new Road
+	 * @param init The boolean value if the first point is on the intersection or not
+	 */
 	public void addRoadID(String ID,Boolean init ){
 		this.roadId.put(ID, init);
 	}

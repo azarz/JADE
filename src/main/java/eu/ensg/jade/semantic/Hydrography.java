@@ -95,7 +95,7 @@ public class Hydrography implements IObjExport {
 	 * 
 	 * @param indexOffsets The list of offsets
 	 * @param xOffset The offset for x axis
-	 * @param xOffset The offset for x axis
+	 * @param yOffset The offset for y axis
 	 * 
 	 * @return The string for the OBJ file
 	 */
