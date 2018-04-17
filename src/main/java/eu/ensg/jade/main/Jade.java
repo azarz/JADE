@@ -18,11 +18,13 @@ public class Jade {
 
 	/**
 	 * Main method, launches either the SceneBuilder, the Simulator, or both
-	 * @param args
-	 * @throws IOException 
-	 * @throws SchemaException 
-	 * @throws NoSuchAuthorityCodeException 
-	 * @throws FactoryException 
+	 * 
+	 * @param args Arguments of the main function (default).
+	 * 
+	 * @throws IOException Throws IOException
+	 * @throws SchemaException Throws SchemaException
+	 * @throws NoSuchAuthorityCodeException Throws NoSuchAuthorityCodeException
+	 * @throws FactoryException Throws FactoryException 
 	 */
 	public static void main(String[] args) throws SchemaException, IOException, NoSuchAuthorityCodeException, FactoryException {
 		if (args.length == 0 || args[0].equals("sim")) {

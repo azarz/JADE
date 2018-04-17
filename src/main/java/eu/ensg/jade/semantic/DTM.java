@@ -250,7 +250,7 @@ public class DTM {
             else
                 height = southWest + (xFraction)*(southEast-southWest) + (1-yFraction)*(northEast-southEast);
         }
-		return height + 0.03;
+		return height;
 	}
 	
 	/**
@@ -263,7 +263,7 @@ public class DTM {
 		if(smoothDTM == null) this.createSmoothDTM();
         if (np < 0 || np > 1) np = 0.9;
         if (radius == 0) radius = 10;
-        
+    
         int number = 0;
         double average = 0;
         for (int x = 0; x < ncols; x++) {

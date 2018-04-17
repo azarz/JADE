@@ -152,14 +152,4 @@ public class LineRoad extends Road{
 		
 	}
 	
-	/**
-	 * Smoothes the surfacic road previously created
-	 * 
-	 * @return the surfacic smoothed road
-	 */
-	public SurfaceRoad smooth(){
-//		SurfaceRoad surf = this.enlarge();
-		return null;
-	}
-
 }

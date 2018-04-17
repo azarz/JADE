@@ -31,7 +31,7 @@ public class Intersection {
 // ========================== CONSTRUCTORS =========================	
 	
 	/**
-	 * Constructor using all fields
+	 * Constructor using geometry field
 	 * 
 	 * @param geometry The geometry of the new object
 	 */
