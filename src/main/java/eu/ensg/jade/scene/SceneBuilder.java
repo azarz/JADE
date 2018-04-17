@@ -34,7 +34,6 @@ import eu.ensg.jade.rules.RuleShapeMaker;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
-import eu.ensg.jade.semantic.PointVegetation;
 import eu.ensg.jade.semantic.Sidewalk;
 import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceRoad;
@@ -344,10 +343,13 @@ public class SceneBuilder {
 	private void exportRGEData(Scene scene) {
 		System.out.println("Export RGE Data");
 		
-		//Copying the materials file and textures
+		//Copying the materials file and textures TreeCartoon1_OBJ.mtl
 		try {
 			Files.copy((new File("assets/RGE/materials.mtl")).toPath(), 
 					(new File("assets/RGE/" + place + "/materials.mtl")).toPath(),
+					StandardCopyOption.REPLACE_EXISTING);
+			Files.copy((new File("assets/RGE/TreeCartoon1_OBJ.mtl")).toPath(), 
+					(new File("assets/RGE/" + place + "/TreeCartoon1_OBJ.mtl")).toPath(),
 					StandardCopyOption.REPLACE_EXISTING);
 			Files.copy((new File("assets/RGE/window.png")).toPath(), 
 					(new File("assets/RGE/" + place + "/window.png")).toPath(),
@@ -374,7 +376,9 @@ public class SceneBuilder {
 		Coordinate centroid = scene.getCentroid();
 		objWriter.exportBuilding("assets/RGE/" + place + "/buildings.obj", scene.getBuildings(), centroid.x, centroid.y);
 		
-		objWriter.exportVege2("assets/RGE/" + place + "/vegetation.obj", scene.getVegetation());
+		System.out.println("Merging trees...");
+		objWriter.exportVege2("assets/RGE/" + place + "/vegetation.obj", scene.getVegetation(), centroid.x, centroid.y);
+		System.out.println("Trees merged!");
 		
 		scene.getSurfaceRoads().remove("-1");
 		objWriter.exportRoad("assets/RGE/" + place + "/roads.obj", scene.getSurfaceRoads(), centroid.x, centroid.y);

@@ -78,7 +78,7 @@ public class OBJWriter {
 	 * @param filePath the path to the obj file
 	 * @param objectList the list of PointVegetation
 	 */
-	public void exportVege2(String filePath, List<PointVegetation> objectList) {
+	public void exportVege2(String filePath, List<PointVegetation> objectList, double xCentroid, double yCentroid) {
 		List<Integer> offsets = new ArrayList<Integer>();
 		offsets.add(0);
 		offsets.add(0);
@@ -98,7 +98,7 @@ public class OBJWriter {
 			
 			out.print("mtllib TreeCartoon1_OBJ.mtl\n");
 			for (int i = 0; i < objectList.size(); i++) {
-				out.print(objectList.get(i).toOBJ(offsets));
+				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
 			}
 			
 		} catch (IOException e) {
@@ -176,7 +176,6 @@ public class OBJWriter {
 				PrintWriter out = new PrintWriter(bw)) {
 			
 			out.print("mtllib materials.mtl\n");
-			System.out.println("sidewalks creating...");
 			for (Sidewalk sidewalk: sidewalks) {
 				out.print(sidewalk.toOBJ(offsets, xCentroid, yCentroid));
 			}

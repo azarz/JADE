@@ -12,6 +12,7 @@ import java.util.Locale;
 import com.vividsolutions.jts.geom.Coordinate;
 
 import eu.ensg.jade.geometricObject.PunctualObject;
+import eu.ensg.jade.output.IObjExport;
 import eu.ensg.jade.rules.VegetationRule.TREE;
 
 /**
@@ -20,7 +21,7 @@ import eu.ensg.jade.rules.VegetationRule.TREE;
  * @author JADE
  */
 
-public class PointVegetation extends PunctualObject {
+public class PointVegetation extends PunctualObject implements IObjExport {
 	
 // ========================== ATTRIBUTES ===========================
 
@@ -83,7 +84,7 @@ public class PointVegetation extends PunctualObject {
 	 * in the file
 	 * @return A string corresponding to the .obj description of the tree
 	 */
-	public String toOBJ(List<Integer> indexOffsets) throws IOException{
+	public String toOBJ(List<Integer> indexOffsets, double xOffset, double yOffset) {
 		
 		// Defining a new decimal format in order to have smaller obj files
 		NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
@@ -95,71 +96,75 @@ public class PointVegetation extends PunctualObject {
 		int textureIndexOffset = indexOffsets.get(1);
 		int normalIndexOffset  = indexOffsets.get(2);
 		
+		String outputString = "";
+		
 		// Open the file
-        FileReader fileOBJ = new FileReader("assets/" + this.nature);
-        BufferedReader bufferOBJ = new BufferedReader(fileOBJ);
-        String line = bufferOBJ.readLine();
-        String[] lineDecomp, tuple;
-        
-        String outputString = "";
-        String newX, newY, newZ, newLine, newVertexIndex, newTextureIndex, newNormalIndex;
-        
-		while (line != null) {
-		        	
-            lineDecomp = line.split(" ");
-            
-            switch (lineDecomp[0]) {
-            
-            case "mtllib":				
-				//set by OBJWriter for all the trees
-				break;
-
-			case "v":
-				newX = format.format(Double.parseDouble(lineDecomp[1]) * this.coord.x);
-				newY = format.format(Double.parseDouble(lineDecomp[2]) * this.coord.y);
-				newZ = format.format(Double.parseDouble(lineDecomp[3]) * this.coord.z);
-				
-				newLine = "v" + " " + newX + " " + newY + " " + newZ + "\n";
-				outputString += newLine;
-				vertexIndexOffset++;
-				break;
-				
-			case "vt":				
-				outputString += line + "\n";//no changes here just need to count the number of textures to set offset later
-				textureIndexOffset++;
-				break;
-				
-			case "vn":								
-				outputString += line + "\n";//no changes here just need to count the number of normals to set offset later
-				normalIndexOffset++;
-				break;
-				
-			case "f":
-				newLine = "f";
-				
-				//add offset for each tuple
-				for (int i = 1; i < lineDecomp.length; i++) {
-					tuple = lineDecomp[i].split("/");
-					newVertexIndex = tuple[0] + indexOffsets.get(0);
-					newTextureIndex = tuple[1] + indexOffsets.get(1);
-					newNormalIndex = tuple[2] + indexOffsets.get(2);
-
-					newLine += " " + newVertexIndex + "/" + newTextureIndex + "/" + newNormalIndex;
+        try(FileReader fileOBJ = new FileReader("assets/" + this.nature)){
+	        BufferedReader bufferOBJ = new BufferedReader(fileOBJ);
+	        String line = bufferOBJ.readLine();
+	        String[] lineDecomp, tuple;
+	        
+	        String newX, newY, newZ, newLine, newVertexIndex, newTextureIndex, newNormalIndex;
+	        
+			while (line != null) {
+			        	
+	            lineDecomp = line.split(" ");
+	            
+	            switch (lineDecomp[0]) {
+	            
+	            case "mtllib":				
+					//set by OBJWriter for all the trees
+					break;
+	
+				case "v":
+					newX = format.format(Double.parseDouble(lineDecomp[1]) + this.coord.x);
+					newY = format.format(Double.parseDouble(lineDecomp[2]) + this.coord.z);
+					newZ = format.format(Double.parseDouble(lineDecomp[3]) + this.coord.y);
 					
+					newLine = "v" + " " + newX + " " + newY + " " + newZ + "\n";
+					outputString += newLine;
+					vertexIndexOffset++;
+					break;
+					
+				case "vt":				
+					outputString += line + "\n";//no changes here just need to count the number of textures to set offset later
+					textureIndexOffset++;
+					break;
+					
+				case "vn":								
+					outputString += line + "\n";//no changes here just need to count the number of normals to set offset later
+					normalIndexOffset++;
+					break;
+					
+				case "f":
+					newLine = "f";
+					
+					//add offset for each tuple
+					for (int i = 1; i < lineDecomp.length; i++) {
+						tuple = lineDecomp[i].split("/");
+						newVertexIndex = (Integer.parseInt(tuple[0]) + indexOffsets.get(0)) + "";
+						newTextureIndex = (Integer.parseInt(tuple[1]) + indexOffsets.get(1)) + "";
+						newNormalIndex = (Integer.parseInt(tuple[2]) + indexOffsets.get(2)) + "";
+	
+						newLine += " " + newVertexIndex + "/" + newTextureIndex + "/" + newNormalIndex;
+						
+					}
+					newLine += "\n";
+					
+					outputString += newLine;
+					break;
+	
+				default:
+					outputString += line + "\n"; //no changes here
+					break;
 				}
-				newLine += "\n";
-				
-				outputString += newLine;
-				break;
-
-			default:
-				outputString += line; //no changes here
-				break;
+	            
+	            line = bufferOBJ.readLine();
 			}
-            
-            line = bufferOBJ.readLine();
-		}
-		fileOBJ.close();
+			fileOBJ.close();
+        } catch(IOException e) {
+        	System.out.println("Tree model not found");
+        }
 		
 		// Updating the offsets
 		indexOffsets.set(0, vertexIndexOffset);
