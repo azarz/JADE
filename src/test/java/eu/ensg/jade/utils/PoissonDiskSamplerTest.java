@@ -1,4 +1,4 @@
-package utils;
+package eu.ensg.jade.utils;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;

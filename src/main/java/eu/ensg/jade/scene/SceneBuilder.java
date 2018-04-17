@@ -121,7 +121,7 @@ public class SceneBuilder {
 	 * @throws IOException Throws IOException
 	 * @throws SchemaException Throws SchemaException
 	 */
-	public void buildFromFiles(
+	private void buildFromFiles(
 			String buildingLayer,
 			String roadLayer,
 			String hydroLayer,
@@ -137,7 +137,7 @@ public class SceneBuilder {
 		
 		build(scene);
 	}
-	
+/*	
 	/**
 	 * Builds the scene from a RGE stream
 	 * 
@@ -147,8 +147,8 @@ public class SceneBuilder {
 	 * @param treeLayer The location of the tree layer stream
 	 * @param dtmLayer The location of the dtm layer stream
 	 * @throws Exception Throws some exceptions (to be specified) 
-	 */
-	public void buildFromRGE(
+	 /
+	private void buildFromRGE(
 			String buildingLayer,
 			String roadLayer,
 			String hydroLayer,
@@ -162,12 +162,12 @@ public class SceneBuilder {
 		
 		build(scene);
 	}
-	
+*/	
 	
 	/**
 	 * Public method to export the whole Scene as a driving task, to be used in OpenDS
 	 */
-	public void export() {
+	private void export() {
 		exportRGEData(scene);
 		exportXML(scene);
 	}
@@ -374,6 +374,8 @@ public class SceneBuilder {
 		Coordinate centroid = scene.getCentroid();
 		objWriter.exportBuilding("assets/RGE/" + place + "/buildings.obj", scene.getBuildings(), centroid.x, centroid.y);
 		
+		objWriter.exportVege2("assets/RGE/" + place + "/vegetation.obj", scene.getVegetation());
+		
 		scene.getSurfaceRoads().remove("-1");
 		objWriter.exportRoad("assets/RGE/" + place + "/roads.obj", scene.getSurfaceRoads(), centroid.x, centroid.y);
 		
@@ -424,15 +426,18 @@ public class SceneBuilder {
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
-		XMLModel buildindModel = new XMLModel("Building", "RGE/" + place + "/buildings.obj");
-		xmlWriter.addModel(buildindModel);
+		XMLModel buildingModel = new XMLModel("Building", "RGE/" + place + "/buildings.obj");
+		xmlWriter.addModel(buildingModel);
+		
+		// Add vegetation
+		XMLModel vegetationModel = new XMLModel("Vegetation", "RGE/" + place + "/vegetation.obj");
+		xmlWriter.addModel(vegetationModel);
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/" + place + "/roads.obj");
 		xmlWriter.addModel(roadsModel);
 		
 		// Add sidewalks
-
 		XMLModel sidewalksModel = new XMLModel("Sidewalks", "RGE/" + place + "/sidewalks.obj");
 		xmlWriter.addModel(sidewalksModel);
 		
@@ -452,15 +457,15 @@ public class SceneBuilder {
 		}
 		
 //		int g = 0;
-		for(PointVegetation tree : scene.getVegetation()) {
-			if (tree == null) {continue;}
-			XMLModel vegetationModel = new XMLModel("Tree", tree.getNature());
-			vegetationModel.setTranslation(new double[]{tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
-			vegetationModel.setScale(new double[]{1,1,1});
-			xmlWriter.addModel(vegetationModel);
-			
-//			if (++g>1000){ break; }
-		}
+//		for(PointVegetation tree : scene.getVegetation()) {
+//			if (tree == null) {continue;}
+//			XMLModel vegetationModel = new XMLModel("Tree", tree.getNature());
+//			vegetationModel.setTranslation(new double[]{tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
+//			vegetationModel.setScale(new double[]{1,1,1});
+//			xmlWriter.addModel(vegetationModel);
+//			
+////			if (++g>1000){ break; }
+//		}
 
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);

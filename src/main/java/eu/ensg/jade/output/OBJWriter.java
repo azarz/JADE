@@ -12,6 +12,7 @@ import java.util.Map;
 
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.Hydrography;
+import eu.ensg.jade.semantic.PointVegetation;
 import eu.ensg.jade.semantic.Sidewalk;
 import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.semantic.SurfaceVegetation;
@@ -64,6 +65,40 @@ public class OBJWriter {
 			out.print("mtllib materials.mtl\n");
 			for (int i = 0; i < objectList.size(); i++) {
 				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Exports a list of PointVegetation object as a single <i>.obj</i> file
+	 * 
+	 * @param filePath the path to the obj file
+	 * @param objectList the list of PointVegetation
+	 */
+	public void exportVege2(String filePath, List<PointVegetation> objectList) {
+		List<Integer> offsets = new ArrayList<Integer>();
+		offsets.add(0);
+		offsets.add(0);
+		offsets.add(0);
+		
+		File file = new File(filePath);
+		try {
+			Files.deleteIfExists(file.toPath());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		
+		try(FileWriter fw = new FileWriter(filePath, true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			PrintWriter out = new PrintWriter(bw)) {			
+			
+			out.print("mtllib TreeCartoon1_OBJ.mtl\n");
+			for (int i = 0; i < objectList.size(); i++) {
+				out.print(objectList.get(i).toOBJ(offsets));
 			}
 			
 		} catch (IOException e) {
