@@ -352,6 +352,15 @@ public class SceneBuilder {
 			Files.copy((new File("assets/RGE/window.png")).toPath(), 
 					(new File("assets/RGE/" + place + "/window.png")).toPath(),
 					StandardCopyOption.REPLACE_EXISTING);
+			Files.copy((new File("assets/RGE/window2.png")).toPath(), 
+					(new File("assets/RGE/" + place + "/window2.png")).toPath(),
+					StandardCopyOption.REPLACE_EXISTING);
+			Files.copy((new File("assets/RGE/window3.png")).toPath(), 
+					(new File("assets/RGE/" + place + "/window3.png")).toPath(),
+					StandardCopyOption.REPLACE_EXISTING);
+			Files.copy((new File("assets/RGE/window4.png")).toPath(), 
+					(new File("assets/RGE/" + place + "/window4.png")).toPath(),
+					StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -395,15 +404,12 @@ public class SceneBuilder {
 		
 		double driverX = scene.getCentroid().x;
 		double driverY = scene.getCentroid().y;
-		boolean startRoad = false;
 		
-		if (startRoad) {
-			LineRoad[] type = new LineRoad[0];
-			LineRoad start = scene.getLineRoads().values().toArray(type)[scene.getLineRoads().values().size()/2];
-			Coordinate startCoord = start.getGeom().getCoordinates()[0];
-			driverX = startCoord.x;
-			driverY = startCoord.y;
-		}
+		LineRoad[] type = new LineRoad[0];
+		LineRoad start = scene.getLineRoads().values().toArray(type)[scene.getLineRoads().values().size()/2];
+		Coordinate startCoord = start.getGeom().getCoordinates()[0];
+		driverX = startCoord.x;
+		driverY = startCoord.y;
 		
 		double driverZ = scene.getDtm().getHeightAtPoint(driverX, driverY) + 10;
 		

@@ -190,7 +190,7 @@ public class SurfaceRoad extends Road implements IObjExport{
 	public void setZfromDTM(DTM dtm) {
 		// Densify the geometry so it has a number of vertices corresponding to the DTM
 		if(geometry.getCoordinates().length > 0) {
-			geometry = Densifier.densify(geometry, dtm.getCellsize());
+			geometry = Densifier.densify(geometry, dtm.getCellsize()*2);
 		}
 		
 		// Defining a coordinate filter to set the z according to the DTM
@@ -199,7 +199,7 @@ public class SurfaceRoad extends Road implements IObjExport{
 			
 			@Override
 			public void filter(CoordinateSequence seq, int i) {
-				seq.setOrdinate(i, 2, dtm.getHeightAtPoint(seq.getX(i), seq.getY(i)));
+				seq.setOrdinate(i, 2, dtm.getHeightAtPoint(seq.getX(i), seq.getY(i)) + 0.07);
 			}
 
 			@Override
