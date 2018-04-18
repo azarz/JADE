@@ -35,7 +35,7 @@ public class PoissonDiskSamplerTest {
 	 */
 	@Test
 	public void TestCompute() {
-		PoissonDiskSampler sample = new PoissonDiskSampler(0,0,10,10,10);
+		PoissonDiskSampler sample = new PoissonDiskSampler(0,0,10,10,20);
 		assertNotNull(sample);
 		assertTrue(sample.compute().size()==1);
 		sample = new PoissonDiskSampler(0,0,100,100,1);
