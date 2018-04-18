@@ -57,7 +57,7 @@ public class SceneBuilder {
 	private Scene scene;
 	
 	// Nation / Perros / Voise
-	private static String place = "Voise";
+	private static String place = "Perros";
 	
 // ========================== CONSTRUCTORS =========================	
 	
@@ -91,7 +91,7 @@ public class SceneBuilder {
 		if (args.length > 1) {
 			place = args[1];
 		}
-		System.out.println("Building 3D scence for " + place);
+		System.out.println("Building 3D scene for " + place);
 		
 		String buildingLayer = "input/" + place + "/BATI_INDIFFERENCIE.SHP";
 		String roadLayer = "input/" + place + "/ROUTE.SHP";
