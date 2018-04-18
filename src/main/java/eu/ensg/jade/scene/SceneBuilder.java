@@ -54,7 +54,7 @@ public class SceneBuilder {
 	 */
 	private Scene scene;
 	
-	private static String place = "Nation";
+	private static String place = "Voise";
 	
 // ========================== CONSTRUCTORS =========================	
 	
@@ -88,6 +88,7 @@ public class SceneBuilder {
 		if (args.length > 1) {
 			place = args[1];
 		}
+		System.out.println("Building 3D scence for " + place);
 		
 		String buildingLayer = "input/" + place + "/BATI_INDIFFERENCIE.SHP";
 		String roadLayer = "input/" + place + "/ROUTE.SHP";
@@ -216,7 +217,8 @@ public class SceneBuilder {
 		
 		return scene;
 	}
-	
+
+/*
 	/**
 	 * Instantiate a Scene object, and fill it with data extracted from the features of the RGE
 	 * 
@@ -229,7 +231,7 @@ public class SceneBuilder {
 	 * @return The new scene
 	 * 
 	 * @throws Exception 
-	 */
+	 /
 	private Scene loadRGE(
 			String buildingFeature,
 			String roadFeature,
@@ -238,36 +240,36 @@ public class SceneBuilder {
 			String dtmFeature) throws Exception {
 		Scene scene = new Scene();
 		
-//		ReaderFactory readerFact = new ReaderFactory();
-//		InputRGE rge = new InputRGE();
-//		
-//		FluxConfiguration config = new FluxConfiguration();
-//		
-//		rge = readerFact.createReader(READER_TYPE.BUILDING).loadFromRGE(buildingFeature);
-//		scene.setBuildings(rge.getBuildings());
-//		scene.setBuildingCentroid(rge.getCentroid());
-//		
-//		rge = readerFact.createReader(READER_TYPE.ROAD).loadFromRGE(roadFeature);
-//		scene.setRoads(rge.getRoads());
-//		scene.setCollIntersect(rge.getCollIntersect());
-//		
-//		rge = readerFact.createReader(READER_TYPE.HYDRO).loadFromRGE(hydroFeature);
-//		scene.setHydrography(rge.getHydrography());
-//		
-//		rge = readerFact.createReader(READER_TYPE.VEGETATION).loadFromFile(treeFeature);
-//		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
-//		
-		// TODO: Add the DTM ?
-//		rge = readerFact.createReader(READER_TYPE.VEGETATION).loadFromRGE(treeFeature);
-//		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
-//		
-//		rge = readerFact.createReader(READER_TYPE.DTM).loadFromRGE(dtmFeature);
-//		scene.setDtm(rge.getDTM());
+		ReaderFactory readerFact = new ReaderFactory();
+		InputRGE rge = new InputRGE();
+		
+		FluxConfiguration config = new FluxConfiguration();
+		
+		rge = readerFact.createReader(READER_TYPE.BUILDING).loadFromRGE(buildingFeature);
+		scene.setBuildings(rge.getBuildings());
+		scene.setBuildingCentroid(rge.getCentroid());
+		
+		rge = readerFact.createReader(READER_TYPE.ROAD).loadFromRGE(roadFeature);
+		scene.setRoads(rge.getRoads());
+		scene.setCollIntersect(rge.getCollIntersect());
+		
+		rge = readerFact.createReader(READER_TYPE.HYDRO).loadFromRGE(hydroFeature);
+		scene.setHydrography(rge.getHydrography());
+		
+		rge = readerFact.createReader(READER_TYPE.VEGETATION).loadFromFile(treeFeature);
+		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
+		
+		//TODO: Add the DTM ?
+		rge = readerFact.createReader(READER_TYPE.VEGETATION).loadFromRGE(treeFeature);
+		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
+		
+		rge = readerFact.createReader(READER_TYPE.DTM).loadFromRGE(dtmFeature);
+		scene.setDtm(rge.getDTM());
 
 		
 		return scene;
 	}
-	
+*/
 	
 	/**
 	 * Build the scene with additional data:
@@ -342,6 +344,8 @@ public class SceneBuilder {
 	 */
 	private void exportRGEData(Scene scene) {
 		System.out.println("Export RGE Data");
+		File directory = new File("assets/RGE/" + place);
+		if (! directory.exists()){ directory.mkdir(); }
 		
 		//Copying the materials file and textures TreeCartoon1_OBJ.mtl
 		try {
@@ -369,9 +373,6 @@ public class SceneBuilder {
 		
 		
 		OBJWriter objWriter = new OBJWriter();
-		
-		File directory = new File("assets/RGE/" + place);
-		if (! directory.exists()){ directory.mkdir(); }
 		
 		Coordinate centroid = scene.getCentroid();
 		objWriter.exportBuilding("assets/RGE/" + place + "/buildings.obj", scene.getBuildings(), centroid.x, centroid.y);
