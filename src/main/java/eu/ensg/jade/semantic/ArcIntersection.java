@@ -35,18 +35,15 @@ public class ArcIntersection {
 	 */ 
 	public static Map<String, Polygon> generateSmoothRoad(Scene scene) {
 		Map<String, Polygon> result = new HashMap<>();
-		System.out.println("Intersection number: " + String.valueOf(scene.getCollIntersect().getMapIntersection().size()));
+		System.out.println("\nNumber of intersections: " + String.valueOf(scene.getCollIntersect().getMapIntersection().size()));
 		
 		for (Intersection inter : scene.getCollIntersect().getMapIntersection().values()) {
-			
 			List<LineRoad> tempRoads = new ArrayList<>();
 			List<String> tempIds = new ArrayList<>();
-//			Map<String, LineRoad> tempRoads = new HashMap<>();
 			
 			for(String roadId : inter.getRoadId().keySet()) {
 				tempIds.add(roadId);
 				tempRoads.add(scene.getLineRoads().get(roadId));
-//				tempRoads.put(roadId, scene.getLineRoads().get(roadId));
 			}
 
 			// 2 roads intersecting
@@ -70,33 +67,25 @@ public class ArcIntersection {
 					for(String key : polygons.keySet()) {
 						System.out.println("Adding smoothIntersection");
 						p = polygons.get(key);
-						if(!p.isValid()) System.out.println("Invalid smoothIntersection");
-						else result.put(key, p);						
+						if(!p.isValid()) System.out.println("\tInvalid smoothIntersection");
+						else result.put(key, p);
 					}
 				}					
 			}
 			// 3+ roads intersecting
 			else if (tempRoads.size() > 2) {
-//				List<Polygon> polygons = smoothIntersection(tempRoads, inter);
-//				for(int k=0; k<polygons.size(); k++) {
-//					result.add( polygons.get(k) );
-//				}
 				Map<String, Polygon> polygons = smoothIntersection(tempRoads, tempIds, inter);
 				Polygon p;
 				for(String key : polygons.keySet()) {
 					System.out.println("Adding smoothIntersection");
 					p = polygons.get(key);
-					if(!p.isValid()) System.out.println("Invalid smoothIntersection");
+					if(!p.isValid()) System.out.println("\tInvalid smoothIntersection");
 					else result.put(key, p);
 				}
 				
-			}
-			else {
-				System.out.println("n° of roads incorrect: " + String.valueOf(tempRoads.size()));
-			}
-			
+			}			
 		}
-
+		System.out.println();
 		return result;
 	}
 
@@ -260,14 +249,17 @@ public class ArcIntersection {
 
 	/**
 	 * Creates arc in each intersection in order to smooth roads
-	 *
-	 * @param List of lineroads
-	 * @param Intersection
-	 * @return Polygon 
-	 */ 
+	 * 
+	 * @param roads List of LineRoad that intersect
+	 * @param roadId List of ID corresponding to each road
+	 * @param inter The intersection
+	 * @return a map of Polygon associated to road's ID
+	 */
 	private static Map<String,Polygon> smoothIntersection(List<LineRoad> roads, List<String> roadId, Intersection inter) {
 		GeometryFactory geomFactory = new GeometryFactory();
 		Map<String,Polygon> polygons = new HashMap<>();
+		
+		double zCoord = inter.getGeometry().z;
 		
 		//We go through the road list, with all couples of roads possible
 		for(int i=0; i<roads.size()-1; i++ ) {
@@ -286,33 +278,49 @@ public class ArcIntersection {
 					}
 				}
 				if(intersectOther) continue;
-				
-				List<Coordinate> polygonCoords = new ArrayList<Coordinate>();
 
 				//We create the list of Coordinates for the polygon with the points of the arc
+				List<Coordinate> polygonCoords = new ArrayList<Coordinate>();
 				double[] pointsOfArc = arc.linearize(1);
-				for(int z = 0; z<((pointsOfArc.length)/2)-1; z++) { 
-					Coordinate coord = new Coordinate(pointsOfArc[2*z],pointsOfArc[2*z+1]);
-					polygonCoords.add(coord);
+				for(int z = 0; z<((pointsOfArc.length)/2)-1; z++) {
+					polygonCoords.add( new Coordinate(pointsOfArc[2*z],pointsOfArc[2*z+1], zCoord) );
 				}
 				
 				//We get the projected points from the ends of the arc to the corresponding roads
 				Point extremity1 = geomFactory.createPoint(polygonCoords.get(0));
 				Point extremity2 = geomFactory.createPoint(polygonCoords.get(polygonCoords.size()-1));
 				Point ptI = geomFactory.createPoint(inter.getGeometry());
-				List<Point> listCutting = RoadArc.cuttingPoint(extremity1,extremity2, roads.get(i),roads.get(j), ptI);
 				
-				Coordinate coordCutPoint1 = new Coordinate(listCutting.get(0).getX(),listCutting.get(0).getY());
-				polygonCoords.add(coordCutPoint1);
-				Coordinate coordCutPoint2 = new Coordinate(listCutting.get(1).getX(),listCutting.get(1).getY());
-				polygonCoords.add(coordCutPoint2);
+				List<Point> listCutting = RoadArc.cuttingPoint(extremity1,extremity2, roads.get(i), roads.get(j), ptI);		
+				Coordinate coordCutPoint1 = new Coordinate(listCutting.get(0).getX(),listCutting.get(0).getY(), zCoord);
 				
-				polygonCoords.add(inter.getGeometry());
+				Coordinate coordCutPoint2 = new Coordinate(listCutting.get(1).getX(),listCutting.get(1).getY(), zCoord);
+				
+				double dist1 = coordCutPoint1.distance(polygonCoords.get(polygonCoords.size()-1));
+				double dist2 = coordCutPoint2.distance(polygonCoords.get(polygonCoords.size()-1));
+				if(dist1 < dist2) {
+					polygonCoords.add(coordCutPoint1);
+					polygonCoords.add(inter.getGeometry());
+					polygonCoords.add(coordCutPoint2);
+				}
+				else {
+					polygonCoords.add(coordCutPoint2);
+					polygonCoords.add(inter.getGeometry());
+					polygonCoords.add(coordCutPoint1);
+				}
+				
+				
 				polygonCoords.add(polygonCoords.get(0));
 				
 				//We create the polygon with the list of coordinates and no holes
 				LinearRing ring = geomFactory.createLinearRing(polygonCoords.toArray(new Coordinate[polygonCoords.size()]));
 				Polygon geom = geomFactory.createPolygon(ring, null);
+				
+				if(!geom.isValid()) {
+					for(int k=0; k<polygonCoords.size(); k++) {
+						System.out.println("Coord: "+polygonCoords.get(k).toString());
+					}
+				}
 				
 				if(geom.getArea() < 1000){
 					polygons.put(roadId.get(j), geom);
