@@ -34,16 +34,16 @@ public class ArcIntersection {
 	 * @return List of polygons 
 	 */ 
 	public static Map<String, Polygon> generateSmoothRoad(Scene scene) {
-//		Map<String, LineRoad> sceneLineRoads = scene.getLineRoads();
 		Map<String, Polygon> result = new HashMap<>();
+		System.out.println("Intersection number: " + String.valueOf(scene.getCollIntersect().getMapIntersection().size()));
 		
 		for (Intersection inter : scene.getCollIntersect().getMapIntersection().values()) {
 			
 			List<LineRoad> tempRoads = new ArrayList<>();
-			List<String> tempIds = new ArrayList<String>();
+			List<String> tempIds = new ArrayList<>();
 //			Map<String, LineRoad> tempRoads = new HashMap<>();
 			
-			for( String roadId : inter.getRoadId().keySet()) {
+			for(String roadId : inter.getRoadId().keySet()) {
 				tempIds.add(roadId);
 				tempRoads.add(scene.getLineRoads().get(roadId));
 //				tempRoads.put(roadId, scene.getLineRoads().get(roadId));
@@ -58,14 +58,17 @@ public class ArcIntersection {
 				
 				double angle = RoadArc.angleBetweenRoads(tempRoads.get(0), tempRoads.get(1));
 				if(angle < 210 && angle > 150) {
+					System.out.println("Adding trapezoid");
 					result.put(tempIds.get(0), trapezoid(tempRoads, inter));
 				}
 				else {
+					System.out.println("Adding bufferSmooth");
 					result.put(tempIds.get(0), bufferSmooth(tempRoads, inter));
 
 					Polygon p;
 					Map<String, Polygon> polygons = smoothIntersection(tempRoads, tempIds, inter);
 					for(String key : polygons.keySet()) {
+						System.out.println("Adding smoothIntersection");
 						p = polygons.get(key);
 						if(!p.isValid()) System.out.println("Invalid smoothIntersection");
 						else result.put(key, p);						
@@ -81,11 +84,15 @@ public class ArcIntersection {
 				Map<String, Polygon> polygons = smoothIntersection(tempRoads, tempIds, inter);
 				Polygon p;
 				for(String key : polygons.keySet()) {
+					System.out.println("Adding smoothIntersection");
 					p = polygons.get(key);
 					if(!p.isValid()) System.out.println("Invalid smoothIntersection");
 					else result.put(key, p);
 				}
 				
+			}
+			else {
+				System.out.println("n° of roads incorrect: " + String.valueOf(tempRoads.size()));
 			}
 			
 		}
