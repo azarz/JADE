@@ -276,9 +276,7 @@ public class RoadArc {
 
 	/**
 	 * Create the CircularArc geometry corresponding to this RoadArc
-	 *
-	 * @param road1 first road
-	 * @param road2 second road
+	 * 
 	 * @return circularArc the arc
 	 */ 
 	public CircularArc getCircularArc(){

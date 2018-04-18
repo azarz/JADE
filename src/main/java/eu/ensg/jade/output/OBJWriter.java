@@ -77,6 +77,8 @@ public class OBJWriter {
 	 * 
 	 * @param filePath the path to the obj file
 	 * @param objectList the list of PointVegetation
+	 * @param xCentroid the centroid x coordinate
+	 * @param yCentroid the centroid y coordinate
 	 */
 	public void exportVege2(String filePath, List<PointVegetation> objectList, double xCentroid, double yCentroid) {
 		List<Integer> offsets = new ArrayList<Integer>();
