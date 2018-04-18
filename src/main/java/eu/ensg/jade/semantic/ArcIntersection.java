@@ -1,7 +1,9 @@
 package eu.ensg.jade.semantic;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.geotools.geometry.jts.CircularArc;
 
@@ -31,13 +33,20 @@ public class ArcIntersection {
 	 * @param scene the scene where the roads will be smoothed
 	 * @return List of polygons 
 	 */ 
-	public static List<Polygon> generateSmoothRoad(Scene scene) {
-		ArrayList<Polygon> result = new ArrayList<Polygon>();
+	public static Map<String, Polygon> generateSmoothRoad(Scene scene) {
+//		Map<String, LineRoad> sceneLineRoads = scene.getLineRoads();
+		Map<String, Polygon> result = new HashMap<>();
+		
 		for (Intersection inter : scene.getCollIntersect().getMapIntersection().values()) {
 			
-			List<LineRoad> tempRoads = new ArrayList<LineRoad>();
+			List<LineRoad> tempRoads = new ArrayList<>();
+			List<String> tempIds = new ArrayList<String>();
+//			Map<String, LineRoad> tempRoads = new HashMap<>();
+			
 			for( String roadId : inter.getRoadId().keySet()) {
-				tempRoads.add((LineRoad) scene.getLineRoads().get(roadId));
+				tempIds.add(roadId);
+				tempRoads.add(scene.getLineRoads().get(roadId));
+//				tempRoads.put(roadId, scene.getLineRoads().get(roadId));
 			}
 
 			// 2 roads intersecting
@@ -49,23 +58,34 @@ public class ArcIntersection {
 				
 				double angle = RoadArc.angleBetweenRoads(tempRoads.get(0), tempRoads.get(1));
 				if(angle < 210 && angle > 150) {
-					result.add( trapezoid(tempRoads, inter) );
+					result.put(tempIds.get(0), trapezoid(tempRoads, inter));
 				}
 				else {
-					result.add( bufferSmooth(tempRoads, inter) );
+					result.put(tempIds.get(0), bufferSmooth(tempRoads, inter));
 
-					List<Polygon> polygons = smoothIntersection(tempRoads, inter);
-					for(int k=0; k<polygons.size(); k++) {
-						result.add( polygons.get(k) );
+					Polygon p;
+					Map<String, Polygon> polygons = smoothIntersection(tempRoads, tempIds, inter);
+					for(String key : polygons.keySet()) {
+						p = polygons.get(key);
+						if(!p.isValid()) System.out.println("Invalid smoothIntersection");
+						else result.put(key, p);						
 					}
 				}					
 			}
 			// 3+ roads intersecting
 			else if (tempRoads.size() > 2) {
-				List<Polygon> polygons = smoothIntersection(tempRoads, inter);
-				for(int k=0; k<polygons.size(); k++) {
-					result.add( polygons.get(k) );
+//				List<Polygon> polygons = smoothIntersection(tempRoads, inter);
+//				for(int k=0; k<polygons.size(); k++) {
+//					result.add( polygons.get(k) );
+//				}
+				Map<String, Polygon> polygons = smoothIntersection(tempRoads, tempIds, inter);
+				Polygon p;
+				for(String key : polygons.keySet()) {
+					p = polygons.get(key);
+					if(!p.isValid()) System.out.println("Invalid smoothIntersection");
+					else result.put(key, p);
 				}
+				
 			}
 			
 		}
@@ -238,10 +258,9 @@ public class ArcIntersection {
 	 * @param Intersection
 	 * @return Polygon 
 	 */ 
-	private static List<Polygon> smoothIntersection(List<LineRoad> roads, Intersection inter) {
+	private static Map<String,Polygon> smoothIntersection(List<LineRoad> roads, List<String> roadId, Intersection inter) {
 		GeometryFactory geomFactory = new GeometryFactory();
-//		GeometryFactory geometryFactory = JTSFactoryFinder.getGeometryFactory();
-		List<Polygon> polygons = new ArrayList<Polygon>();
+		Map<String,Polygon> polygons = new HashMap<>();
 		
 		//We go through the road list, with all couples of roads possible
 		for(int i=0; i<roads.size()-1; i++ ) {
@@ -252,14 +271,14 @@ public class ArcIntersection {
 				if(arc == null) continue;
 
 				//Testing if the eventual arc intersect a road. If yes the arc is not conserved	
-				boolean intersectionTest = true;
+				boolean intersectOther = false;
 				for(int k=0 ; k<roads.size(); k++) {
 					if(RoadArc.intersectOther(arc, roads.get(k))){
-						intersectionTest = false;
+						intersectOther = true;
 						break;
 					}
 				}
-				if(!intersectionTest) continue;
+				if(intersectOther) continue;
 				
 				List<Coordinate> polygonCoords = new ArrayList<Coordinate>();
 
@@ -280,6 +299,7 @@ public class ArcIntersection {
 				polygonCoords.add(coordCutPoint1);
 				Coordinate coordCutPoint2 = new Coordinate(listCutting.get(1).getX(),listCutting.get(1).getY());
 				polygonCoords.add(coordCutPoint2);
+				
 				polygonCoords.add(inter.getGeometry());
 				polygonCoords.add(polygonCoords.get(0));
 				
@@ -288,7 +308,7 @@ public class ArcIntersection {
 				Polygon geom = geomFactory.createPolygon(ring, null);
 				
 				if(geom.getArea() < 1000){
-					polygons.add(geom);
+					polygons.put(roadId.get(j), geom);
 				}
 			}
 		}

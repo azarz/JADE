@@ -80,6 +80,9 @@ public class SurfaceRoad extends Road implements IObjExport{
 	
 
 // ========================== METHODS ==============================
+	public void geometryUnion(Polygon other) {
+		this.geometry = this.geometry.union(other);
+	}
 
 	/**
 	 * Converts a SurfaceRoad into a string corresponding to the .obj description of it

@@ -22,6 +22,7 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.Polygon;
 import com.vividsolutions.jts.operation.union.CascadedPolygonUnion;
 
 import eu.ensg.jade.input.InputRGE;
@@ -31,6 +32,7 @@ import eu.ensg.jade.input.ReaderFactory.READER_TYPE;
 import eu.ensg.jade.output.OBJWriter;
 import eu.ensg.jade.output.XMLWriter;
 import eu.ensg.jade.rules.RuleShapeMaker;
+import eu.ensg.jade.semantic.ArcIntersection;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
@@ -54,7 +56,8 @@ public class SceneBuilder {
 	 */
 	private Scene scene;
 	
-	private static String place = "Voise";
+	// Nation / Perros / Voise
+	private static String place = "Perros";
 	
 // ========================== CONSTRUCTORS =========================	
 	
@@ -299,15 +302,21 @@ public class SceneBuilder {
 		}
 	
 		List<Geometry> polygonList = new ArrayList<>();
-//		polygonList = ArcIntersection.generateSmoothRoad(scene);
+		Map<String,Polygon> intersectionPolygon = ArcIntersection.generateSmoothRoad(scene);
+		System.out.println("Smooth roads: " + String.valueOf(intersectionPolygon.size()));
 		
 		// Create the areal roads, and set the correct height
 		Map<String, LineRoad> lineRoads = scene.getLineRoads();
-		Map<String, SurfaceRoad> surfaceRoads = new HashMap<String,SurfaceRoad>();
+		Map<String, SurfaceRoad> surfaceRoads = new HashMap<>();
 		for(String key : lineRoads.keySet()) {
 			SurfaceRoad surfRoad = new SurfaceRoad(lineRoads.get(key));
-			polygonList.add(surfRoad.getGeom());
+			
+			if(intersectionPolygon.containsKey(key)) {
+				surfRoad.geometryUnion(intersectionPolygon.get(key));
+			}
 			surfRoad.setZfromDTM(dtm);
+			
+			polygonList.add(surfRoad.getGeom());
 			surfaceRoads.put(key, surfRoad);
 		}
 		scene.setSurfaceRoads(surfaceRoads);
