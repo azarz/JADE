@@ -15,9 +15,9 @@
 <collisionShape>meshShape</collisionShape>
 <scale>
 <vector jtype="java_lang_Float" size="3">
-<entry>0.8</entry>
-<entry>0.8</entry>
-<entry>0.8</entry>
+<entry>0.7</entry>
+<entry>0.7</entry>
+<entry>0.7</entry>
 </vector>
 </scale>
 <rotation quaternion="false">
@@ -30,8 +30,8 @@
 <translation>
 <vector jtype="java_lang_Float" size="3">
 <entry>103.35914664657321</entry>
-<entry>143.23645827232332</entry>
-<entry>71.79076019767672</entry>
+<entry>134.23645827232332</entry>
+<entry>-71.79076019767672</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -253,9 +253,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>2.0830149124376476</entry>
-<entry>144.09783746520964</entry>
-<entry>249.31262142956257</entry>
+<entry>3.554806597181596</entry>
+<entry>143.9099733140608</entry>
+<entry>242.8061762228608</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -617,9 +617,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-47.87659025308676</entry>
-<entry>145.31181945808441</entry>
-<entry>320.62895155511796</entry>
+<entry>-51.20479143038392</entry>
+<entry>145.61861996199258</entry>
+<entry>327.4240289591253</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -1009,9 +1009,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>1612.5797934246948</entry>
+<entry>1435.979793429724</entry>
 <entry>0.0</entry>
-<entry>1062.5497249057516</entry>
+<entry>928.8497248999774</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -1121,9 +1121,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-43.52353366767056</entry>
-<entry>143.05065648920365</entry>
-<entry>-199.65877730492502</entry>
+<entry>-39.98110475356225</entry>
+<entry>143.04203604165423</entry>
+<entry>-202.60855651460588</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -1233,9 +1233,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>144.96396267286036</entry>
-<entry>0.0</entry>
-<entry>-1256.2757977480069</entry>
+<entry>73.76484814996365</entry>
+<entry>149.02786866120036</entry>
+<entry>-1098.593566373922</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -1345,9 +1345,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-216.40360192232765</entry>
-<entry>148.50290547843082</entry>
-<entry>780.0110787823796</entry>
+<entry>-228.42100637452677</entry>
+<entry>0.0</entry>
+<entry>872.7571406411007</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>

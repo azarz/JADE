@@ -15,9 +15,9 @@
 <collisionShape>meshShape</collisionShape>
 <scale>
 <vector jtype="java_lang_Float" size="3">
-<entry>0.8</entry>
-<entry>0.8</entry>
-<entry>0.8</entry>
+<entry>0.7</entry>
+<entry>0.7</entry>
+<entry>0.7</entry>
 </vector>
 </scale>
 <rotation quaternion="false">
@@ -30,8 +30,8 @@
 <translation>
 <vector jtype="java_lang_Float" size="3">
 <entry>-225.87740631974884</entry>
-<entry>57.01486778042628</entry>
-<entry>124.25982654374093</entry>
+<entry>48.01486778042628</entry>
+<entry>-124.25982654374093</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -149,6 +149,34 @@
 <shadowMode>CastAndReceive</shadowMode>
 </model>
 <model id="Water" key="RGE/Perros/water.obj">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>0.0</entry>
+<entry>0.0</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="PedestrianCrossing" key="RGE/Perros/pedestrianCrossing.obj">
 <mass>0.0</mass>
 <friction>1.0</friction>
 <visible>true</visible>
@@ -309,9 +337,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>460.3704455596162</entry>
-<entry>21.676923287348316</entry>
-<entry>164.28521115984768</entry>
+<entry>455.025923569483</entry>
+<entry>22.726953585172808</entry>
+<entry>157.5075947130099</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -365,9 +393,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-255.21879743834143</entry>
-<entry>47.03154758549996</entry>
-<entry>46.99619974382222</entry>
+<entry>-249.01780983965728</entry>
+<entry>46.99095391059031</entry>
+<entry>53.14418744761497</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -393,9 +421,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-261.1759855237324</entry>
-<entry>47.03454929960601</entry>
-<entry>49.540194656699896</entry>
+<entry>-256.98899389678263</entry>
+<entry>47.03151381497999</entry>
+<entry>58.1261774841696</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -505,9 +533,37 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>787.0377191356674</entry>
-<entry>11.297012825528112</entry>
-<entry>-372.92037438601255</entry>
+<entry>793.3963897753856</entry>
+<entry>12.672624722635138</entry>
+<entry>-369.63140681385994</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="StreetFurniture" key="Models/RoadSigns/otherSigns/Yield/Yield.scene">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>164.99507961918843</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>608.1395000393095</entry>
+<entry>28.048131587034426</entry>
+<entry>-21.522111672908068</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -589,9 +645,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>72.85265122150304</entry>
-<entry>18.56319819717436</entry>
-<entry>481.9969884948805</entry>
+<entry>69.16202640513075</entry>
+<entry>19.341810937299297</entry>
+<entry>477.455040843226</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -785,9 +841,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>516.6226061802008</entry>
-<entry>21.022301776565225</entry>
-<entry>58.26022441033274</entry>
+<entry>513.3948614280962</entry>
+<entry>21.878191010344374</entry>
+<entry>53.69605265464634</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -1093,9 +1149,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-242.62346656463342</entry>
-<entry>45.963408695037174</entry>
-<entry>-93.24821709468961</entry>
+<entry>-238.70515078530298</entry>
+<entry>46.15889480906689</entry>
+<entry>-98.52995936851948</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -1233,9 +1289,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>261.44908409009804</entry>
-<entry>58.525689364391546</entry>
-<entry>-405.9816264277324</entry>
+<entry>265.97613773375633</entry>
+<entry>58.74171357293298</entry>
+<entry>-416.01934455987066</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -1429,9 +1485,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>91.5367176499276</entry>
-<entry>49.03096069728151</entry>
-<entry>-473.2916136831045</entry>
+<entry>88.09470004303148</entry>
+<entry>50.24583438677815</entry>
+<entry>-469.63066916167736</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -1737,9 +1793,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>439.45543072302826</entry>
-<entry>19.882974866543385</entry>
-<entry>234.6471459409222</entry>
+<entry>446.9663536604203</entry>
+<entry>18.54987891351175</entry>
+<entry>229.6635692510754</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -1964,6 +2020,34 @@
 <entry>-314.3220536475419</entry>
 <entry>46.76353501501461</entry>
 <entry>-79.97283377125859</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="StreetFurniture" key="Models/RoadSigns/otherSigns/Stop/Stop.scene">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>226.16913932346438</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>640.4980983413989</entry>
+<entry>31.500778963319554</entry>
+<entry>-29.125028671696782</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -2409,9 +2493,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-240.3169857423345</entry>
-<entry>45.41918051996936</entry>
-<entry>-26.779150958172977</entry>
+<entry>-238.0597297725908</entry>
+<entry>45.13274661432083</entry>
+<entry>-36.02062245924026</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -2577,9 +2661,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>554.9047830414493</entry>
-<entry>26.550866273491312</entry>
-<entry>-13.803537977859378</entry>
+<entry>582.397439403634</entry>
+<entry>26.32025634733399</entry>
+<entry>-14.612145516090095</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -2717,9 +2801,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>15.331696786452085</entry>
-<entry>54.9288650747045</entry>
-<entry>-464.01352025102824</entry>
+<entry>33.78076855884865</entry>
+<entry>55.17205338037226</entry>
+<entry>-466.0461910907179</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -2745,9 +2829,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>101.75923322860035</entry>
-<entry>20.4708265723766</entry>
-<entry>421.93413983192295</entry>
+<entry>74.11175176760298</entry>
+<entry>19.818423118193984</entry>
+<entry>467.7393444366753</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -2773,9 +2857,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>525.8241698181664</entry>
-<entry>22.49156465212539</entry>
-<entry>-352.8669331949204</entry>
+<entry>525.4874687500414</entry>
+<entry>21.679251201267512</entry>
+<entry>-357.8052155263722</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -2997,9 +3081,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-371.27632392253145</entry>
-<entry>48.35474249252858</entry>
-<entry>102.85582172311842</entry>
+<entry>-418.63245938078035</entry>
+<entry>50.09020400466037</entry>
+<entry>106.68288776092231</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -3081,9 +3165,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-248.08991225546924</entry>
-<entry>55.468594851900775</entry>
-<entry>-332.5136347208172</entry>
+<entry>-231.44677616513218</entry>
+<entry>56.5734868792409</entry>
+<entry>-336.120020871982</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -3277,9 +3361,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-205.95969202308333</entry>
-<entry>43.79968446808205</entry>
-<entry>96.15250765252858</entry>
+<entry>-185.8792288940749</entry>
+<entry>42.48800358275171</entry>
+<entry>103.90008795354515</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -3361,9 +3445,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-146.6090261291538</entry>
-<entry>40.03503288385434</entry>
-<entry>111.65846429206431</entry>
+<entry>-138.363794148725</entry>
+<entry>39.544913074736236</entry>
+<entry>118.9568305183202</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -3557,9 +3641,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-608.314914938499</entry>
+<entry>-617.2538677884149</entry>
 <entry>0.0</entry>
-<entry>85.97402978502214</entry>
+<entry>83.40593283437192</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -3641,9 +3725,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-205.39764342669514</entry>
-<entry>43.75962958680122</entry>
-<entry>96.38574460614473</entry>
+<entry>-221.63399652336375</entry>
+<entry>45.05024970545257</entry>
+<entry>83.029815656133</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -3781,9 +3865,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-4.587409352825489</entry>
-<entry>56.29696962692191</entry>
-<entry>-456.07236553914845</entry>
+<entry>-5.577481249434641</entry>
+<entry>56.32649864452425</entry>
+<entry>-455.5529835605994</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>

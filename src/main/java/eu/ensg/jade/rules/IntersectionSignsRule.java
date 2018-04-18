@@ -409,7 +409,7 @@ public class IntersectionSignsRule implements RuleShape{
 		rotation = sfCoord[2];
 		
 		boolean doesIntersect = true;
-		while (doesIntersect && d < 15){
+		while (doesIntersect && D < 15){
 			doesIntersect = false;
 			sfCoord = sfPositionning(left, folder, x, y, d, D, theta);
 			newX = sfCoord[0];
@@ -434,7 +434,7 @@ public class IntersectionSignsRule implements RuleShape{
 				SurfaceRoad surfaceRoad = sceneLineRoad.get(roadId).enlarge();
 				if(surfaceRoad.getGeom().contains(g)){
 					doesIntersect = true;
-					d = d + 0.5;
+					D += 0.5;
 				}
 			}
 		}
@@ -856,8 +856,7 @@ public class IntersectionSignsRule implements RuleShape{
 	 * @param size the number of roads in the considered intersection
 	 */
 	private void addRampSigns(LineRoad[] roadsTab, boolean[] startOnIntersectTab, Intersection intersect, int size){
-		System.out.println("C'est une bretelle");
-		
+//		System.out.println("C'est une bretelle");
 	}
 
 // ------ Methods specifics to roundabout

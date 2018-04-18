@@ -16,6 +16,7 @@ import eu.ensg.jade.scene.Scene;
 import eu.ensg.jade.semantic.Intersection;
 import eu.ensg.jade.semantic.IntersectionColl;
 import eu.ensg.jade.semantic.LineRoad;
+import eu.ensg.jade.semantic.PedestrianCrossing;
 import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.utils.JadeUtils;
@@ -310,7 +311,7 @@ public class RoadSignsRule implements RuleShape {
 		
 		boolean doesIntersect = true;
 		// This part avoid signs to intersect another road than the one it is placed on
-		while (doesIntersect && distance < distance+10){
+		while (doesIntersect && D < 15){
 			doesIntersect = false;
 			sfCoord = sfPositionning(folder, x, y, distance, D, theta);
 			newX = sfCoord[0];
@@ -330,7 +331,7 @@ public class RoadSignsRule implements RuleShape {
 
 				if(surfaceRoad.getGeom().contains(g)){
 					doesIntersect = true;
-					distance = distance + 0.5;
+					D += 0.5;
 				}
 			}
 		}
@@ -340,6 +341,22 @@ public class RoadSignsRule implements RuleShape {
 			double newZ = scene.getDtm().getHeightAtPoint(newX,  newY);
 			Coordinate newCoord = new Coordinate(newX - scene.getCentroid().x, -1*(newY - scene.getCentroid().y), newZ); 
 
+			// Add texturation on the road
+			double[] p1PC = sfPositionning(folder, x, y, distance-2, road.getWidth()/2+0.9, theta);
+			double[] p2PC = sfPositionning(folder, x, y, distance-2, -road.getWidth()/2+0.9, theta);
+			double[] p3PC = sfPositionning(folder, x, y, distance+2, -road.getWidth()/2+0.9, theta);
+			double[] p4PC = sfPositionning(folder, x, y, distance+2, road.getWidth()/2+0.9, theta);
+			double p1PCz = scene.getDtm().getHeightAtPoint(p1PC[0], p1PC[1])+0.09;
+			double p2PCz = scene.getDtm().getHeightAtPoint(p2PC[0], p2PC[1])+0.09;
+			double p3PCz = scene.getDtm().getHeightAtPoint(p3PC[0], p3PC[1])+0.09;
+			double p4PCz = scene.getDtm().getHeightAtPoint(p4PC[0], p4PC[1])+0.09;
+			Coordinate[] verticiesPC = new Coordinate[] {new Coordinate(p1PC[0] - scene.getCentroid().x, -1*(p1PC[1] - scene.getCentroid().y),p1PCz),
+					new Coordinate(p2PC[0] - scene.getCentroid().x, -1*(p2PC[1] - scene.getCentroid().y),p2PCz),
+					new Coordinate(p3PC[0] - scene.getCentroid().x, -1*(p3PC[1] - scene.getCentroid().y),p3PCz),
+					new Coordinate(p4PC[0] - scene.getCentroid().x, -1*(p4PC[1] - scene.getCentroid().y),p4PCz),
+					};
+			scene.addPedestrianCrossing(new PedestrianCrossing(verticiesPC)); 
+			
 			return new StreetFurniture(folder, newCoord, rotation);
 		}
 		return null;

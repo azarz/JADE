@@ -40,6 +40,11 @@ java -jar JADE-0.0.1-SNAPSHOT.jar build <NomDossier>
 ```
 avec <NomDossier> le nom du sous-dossier du dossier "input" contenant des données exploitables par JADE (voir la partie ["Données en entrée"](#données-en-entrée))
 
+Pour lancer la génération puis le simulateur directement après le calcul des données :
+```sh
+java -jar JADE-0.0.1-SNAPSHOT.jar both <NomDossier>
+```
+
 ## Données en entrée
 Vous pouvez crééer vos propres scènes à partir de données issues du RGE de l'IGN, pour peu qu'elles correspondent parfaitment aux spécifications suivantes (des exemple de données en entrées sont présentes dans le dossier input) :
 
@@ -56,3 +61,10 @@ Vous pouvez crééer vos propres scènes à partir de données issues du RGE de 
 	+ ZONE_VEGETATION.DBF, ZONE_VEGETATION.SHP, ZONE_VEGETATION.SHX
 
 	+ (les dénominations correspondent à celles de la BD TOPO)
+
+
+Tous ces fichiers doivent être dans un sous-dossier du dossier input, dont le nom doit être donné en argument lors du lancement du programme.
+Exemple : 
+```sh
+java -jar JADE-0.0.1-SNAPSHOT.jar build Nation
+```
