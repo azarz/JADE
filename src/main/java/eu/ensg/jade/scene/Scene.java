@@ -7,12 +7,14 @@ import java.util.Map;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.MultiPolygon;
+import com.vividsolutions.jts.geom.Polygon;
 
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.Hydrography;
 import eu.ensg.jade.semantic.IntersectionColl;
 import eu.ensg.jade.semantic.LineRoad;
+import eu.ensg.jade.semantic.PedestrianCrossing;
 import eu.ensg.jade.semantic.PointVegetation;
 import eu.ensg.jade.semantic.Sidewalk;
 import eu.ensg.jade.semantic.StreetFurniture;
@@ -90,6 +92,10 @@ public class Scene {
 	 */
 	private List<Sidewalk> sidewalks;
 
+	/**
+	 * List of the pedestrian crossing
+	 */
+	private List<PedestrianCrossing> pedestrianCrossing;
 
 
 // ========================== CONSTRUCTORS =========================
@@ -104,6 +110,7 @@ public class Scene {
 		this.vegetation = new ArrayList<PointVegetation>();
 		this.surfaceVegetation = new ArrayList<SurfaceVegetation>();
 		this.streetFurniture = new ArrayList<StreetFurniture>();
+		this.pedestrianCrossing = new ArrayList<PedestrianCrossing>();
 		
 		this.dtm = new DTM();
 	}
@@ -328,6 +335,24 @@ public class Scene {
 	public void setSidewalks(List<Sidewalk> sidewalks) {
 		this.sidewalks = sidewalks;
 	}
+	
+	/**
+	 * Allows to get the list of pedestrian crossing
+	 * 
+	 * @return the pedestrianCrossing
+	 */
+	public List<PedestrianCrossing> getPedestrianCrossing() {
+		return pedestrianCrossing;
+	}
+
+	/**
+	 * Allows to set the list of pedestrian crossing
+	 * 
+	 * @param pedestrianCrossing the pedestrianCrossing to set
+	 */
+	public void setPedestrianCrossing(List<PedestrianCrossing> pedestrianCrossing) {
+		this.pedestrianCrossing = pedestrianCrossing;
+	}
 
 // ========================== METHODS ==============================
 
@@ -339,6 +364,7 @@ public class Scene {
 //	public void addRoad(String id, Road newRoad){
 //		this.roads.put(id, newRoad);
 //	}
+
 
 	/**
 	 * Adds a new buiding to the existing list of buildings
@@ -386,6 +412,15 @@ public class Scene {
 	 */
 	public void addStreetFurniture(StreetFurniture newFurniture){
 		this.streetFurniture.add(newFurniture);
+	}
+	
+	/**
+	 * Adds a new polygon of pedestrian crossing to the existing list of pedestrian crossing
+	 *
+	 * @param pedestrianPolygon the pedestrian crossing polygon to be added
+	 */
+	public void addPedestrianCrossing(PedestrianCrossing pedestrianPolygon){
+		this.pedestrianCrossing.add(pedestrianPolygon);
 	}
 
 }

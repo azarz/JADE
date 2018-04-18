@@ -55,7 +55,7 @@ public class SceneBuilder {
 	 */
 	private Scene scene;
 	
-	private static String place = "Nation";
+	private static String place = "Perros";
 	
 // ========================== CONSTRUCTORS =========================	
 	
@@ -372,6 +372,8 @@ public class SceneBuilder {
 		
 		objWriter.exportWater("assets/RGE/" + place + "/water.obj", scene.getHydrography(), centroid.x, centroid.y);
 
+		objWriter.exportPedestrianCrossing("assets/RGE/" + place + "/pedestrianCrossing.obj", scene.getPedestrianCrossing(), centroid.x, centroid.y);
+		
 		scene.getDtm().toPNG("assets/RGE/" + place + "/terrain.png");
 	}
 	
@@ -434,6 +436,10 @@ public class SceneBuilder {
 		XMLModel waterModel = new XMLModel("Water", "RGE/" + place + "/water.obj");
 		xmlWriter.addModel(waterModel);
 		
+		// Add pedestrian crossing
+		XMLModel pcModel = new XMLModel("PedestrianCrossing", "RGE/" + place + "/pedestrianCrossing.obj");
+		xmlWriter.addModel(pcModel);
+				
 		// Add street furniture
 //		int k = 0;
 		for(StreetFurniture sign : scene.getStreetFurniture()) {

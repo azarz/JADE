@@ -12,6 +12,7 @@ import java.util.Map;
 
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.Hydrography;
+import eu.ensg.jade.semantic.PedestrianCrossing;
 import eu.ensg.jade.semantic.Sidewalk;
 import eu.ensg.jade.semantic.SurfaceRoad;
 import eu.ensg.jade.semantic.SurfaceVegetation;
@@ -229,5 +230,41 @@ public class OBJWriter {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	/**
+	 * Exports a list of PedestrianCrossing object as a single <i>.obj</i> file
+	 * 
+	 * @param filePath the path to the obj file
+	 * @param objectList the list of pedestrian crossing
+	 * @param xCentroid the centroid x coordinate
+	 * @param yCentroid the centroid y coordinate
+	 */
+	public void exportPedestrianCrossing(String filePath, List<PedestrianCrossing> objectList, double xCentroid, double yCentroid) {
+		List<Integer> offsets = new ArrayList<Integer>();
+		offsets.add(0);
+		offsets.add(0);
+		offsets.add(0);
+		
+		File file = new File(filePath);
+		try {
+			Files.deleteIfExists(file.toPath());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		
+		try(FileWriter fw = new FileWriter(filePath, true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			PrintWriter out = new PrintWriter(bw)) {			
+			
+			out.print("mtllib materials.mtl\n");
+			for (int i = 0; i < objectList.size(); i++) {
+				out.print(objectList.get(i).toOBJ(offsets, xCentroid, yCentroid));
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }
