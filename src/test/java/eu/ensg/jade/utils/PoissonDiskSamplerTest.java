@@ -47,7 +47,7 @@ public class PoissonDiskSamplerTest {
 	 */
 	@Test
 	public void TestNext() {
-		PoissonDiskSampler sample = new PoissonDiskSampler(0,0,10,10,10);
+		PoissonDiskSampler sample = new PoissonDiskSampler(0,0,10,10,20);
 		assertNotNull(sample);
 		double[] next1 = sample.next();
 		double[] next2 = sample.next();
