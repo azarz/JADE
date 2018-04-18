@@ -157,12 +157,12 @@ public class RoadArc {
 		//Getting the intersection of 2 roads
 		Point inter = (Point) (road1.getGeom().intersection(road2.getGeom()).getGeometryN(0));
 		
-		double speed1 = Integer.parseInt( road1.getSpeed().substring(0, 3).trim());
-        double speed2 = Integer.parseInt( road2.getSpeed().substring(0, 3).trim());
+		double speed1 = getRoadSpeed(road1);
+        double speed2 = getRoadSpeed(road2);
         if(speed1>70) speed1=35;
         if(speed2>70) speed2=35;
-        double r1 = 18.6 * Math.sqrt(speed1/(Math.abs(10*(road1.getWidth())+65-speed1)));
-        double r2 = 18.6 * Math.sqrt(speed2/(Math.abs(10*(road2.getWidth())+65-speed2)));
+        double r1 = getRadiusFromRoad(road1.getWidth(), speed1);
+        double r2 = getRadiusFromRoad(road2.getWidth(), speed2);
         radius = Math.min(r1, r2);
         
 		//Calculate the points for middle
@@ -276,9 +276,7 @@ public class RoadArc {
 
 	/**
 	 * Create the CircularArc geometry corresponding to this RoadArc
-	 *
-	 * @param road1 first road
-	 * @param road2 second road
+	 * 
 	 * @return circularArc the arc
 	 */ 
 	public CircularArc getCircularArc(){
@@ -320,11 +318,19 @@ public class RoadArc {
 	 */
 	private double computeRadius(LineRoad road1, LineRoad road2){
 		//Calculates the radius
-		double speed1 = Integer.parseInt( road1.getSpeed().substring(0, 3).trim());
-		double speed2 = Integer.parseInt( road2.getSpeed().substring(0, 3).trim());
-		double r1 = 18.6 * Math.sqrt(speed1/(Math.abs(10*(road1.getWidth())+65-speed1)));
-		double r2 = 18.6 * Math.sqrt(speed2/( Math.abs(10*(road2.getWidth())+65-speed2)));
+		double r1 = getRadiusFromRoad(road1.getWidth(), getRoadSpeed(road1));
+		double r2 = getRadiusFromRoad(road2.getWidth(), getRoadSpeed(road2));
 		return Math.min(r1, r2);
+	}
+	
+	private double getRoadSpeed(LineRoad road) {
+		String strSpeed = road.getSpeed();
+		if(strSpeed.length() == 0)  return 35;
+		return Integer.parseInt(strSpeed.substring(0, 3).trim());
+	}
+	
+	private double getRadiusFromRoad(Double width, Double speed) {
+		return 18.6 * Math.sqrt(speed/(Math.abs(10*(width)+65-speed)));
 	}
 	
 	
@@ -359,7 +365,7 @@ public class RoadArc {
 	}
 
 	/**
-	 * Calculates the angle between two roads
+	 * Calculates the angle between two roads. Used in {@link ArcIntersection#generateSmoothRoad(Scene)}
 	 *
 	 * @param lineroad1 First LineRoad
 	 * @param lineroad2 Second LineRoad

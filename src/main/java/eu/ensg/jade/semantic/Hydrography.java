@@ -53,7 +53,7 @@ public class Hydrography implements IObjExport {
 	 */
 	public Hydrography(String nature,double z_average, MultiPolygon geometry) {
 		this.nature = nature;
-		this.z_average = z_average;
+		this.z_average = (int) z_average;
 		this.geometry = geometry;
 	}
 		
@@ -179,9 +179,9 @@ public class Hydrography implements IObjExport {
 					newVertexOffset += 3;
 				}
 			} catch (RuntimeException  e){
-				System.out.println("unable to create water surface");
+				//System.out.println("unable to create water surface");
 			} catch (StackOverflowError  e){
-				System.out.println("unable to create water surface");
+				//System.out.println("unable to create water surface");
 			}
 		}
 		

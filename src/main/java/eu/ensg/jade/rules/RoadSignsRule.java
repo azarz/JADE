@@ -114,11 +114,11 @@ public class RoadSignsRule implements RuleShape {
 					
 				}
 				else{
-					System.out.println("No road signs to add !");
-					}
+//					System.out.println("No road signs to add !");
 				}
 			}
 		}
+	}
 		
 	/**
 	 * Returns an integer associated to each speed limit
@@ -208,7 +208,7 @@ public class RoadSignsRule implements RuleShape {
 			break;
 		
 		default:
-			System.out.println("Intersection de mauvais type");
+//			System.out.println("Intersection de mauvais type");
 			break;
 		}
 	}
@@ -311,7 +311,7 @@ public class RoadSignsRule implements RuleShape {
 		
 		boolean doesIntersect = true;
 		// This part avoid signs to intersect another road than the one it is placed on
-		while (doesIntersect && distance < distance+10){
+		while (doesIntersect && D < 15){
 			doesIntersect = false;
 			sfCoord = sfPositionning(folder, x, y, distance, D, theta);
 			newX = sfCoord[0];
@@ -331,7 +331,7 @@ public class RoadSignsRule implements RuleShape {
 
 				if(surfaceRoad.getGeom().contains(g)){
 					doesIntersect = true;
-					distance = distance + 0.5;
+					D += 0.5;
 				}
 			}
 		}

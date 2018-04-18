@@ -22,6 +22,7 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.Polygon;
 import com.vividsolutions.jts.operation.union.CascadedPolygonUnion;
 
 import eu.ensg.jade.input.InputRGE;
@@ -31,10 +32,10 @@ import eu.ensg.jade.input.ReaderFactory.READER_TYPE;
 import eu.ensg.jade.output.OBJWriter;
 import eu.ensg.jade.output.XMLWriter;
 import eu.ensg.jade.rules.RuleShapeMaker;
+import eu.ensg.jade.semantic.ArcIntersection;
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;
 import eu.ensg.jade.semantic.LineRoad;
-import eu.ensg.jade.semantic.PointVegetation;
 import eu.ensg.jade.semantic.Sidewalk;
 import eu.ensg.jade.semantic.StreetFurniture;
 import eu.ensg.jade.semantic.SurfaceRoad;
@@ -55,6 +56,7 @@ public class SceneBuilder {
 	 */
 	private Scene scene;
 	
+	// Nation / Perros / Voise
 	private static String place = "Perros";
 	
 // ========================== CONSTRUCTORS =========================	
@@ -89,6 +91,7 @@ public class SceneBuilder {
 		if (args.length > 1) {
 			place = args[1];
 		}
+		System.out.println("Building 3D scene for " + place);
 		
 		String buildingLayer = "input/" + place + "/BATI_INDIFFERENCIE.SHP";
 		String roadLayer = "input/" + place + "/ROUTE.SHP";
@@ -121,7 +124,7 @@ public class SceneBuilder {
 	 * @throws IOException Throws IOException
 	 * @throws SchemaException Throws SchemaException
 	 */
-	public void buildFromFiles(
+	private void buildFromFiles(
 			String buildingLayer,
 			String roadLayer,
 			String hydroLayer,
@@ -137,7 +140,7 @@ public class SceneBuilder {
 		
 		build(scene);
 	}
-	
+/*	
 	/**
 	 * Builds the scene from a RGE stream
 	 * 
@@ -147,8 +150,8 @@ public class SceneBuilder {
 	 * @param treeLayer The location of the tree layer stream
 	 * @param dtmLayer The location of the dtm layer stream
 	 * @throws Exception Throws some exceptions (to be specified) 
-	 */
-	public void buildFromRGE(
+	 /
+	private void buildFromRGE(
 			String buildingLayer,
 			String roadLayer,
 			String hydroLayer,
@@ -162,12 +165,12 @@ public class SceneBuilder {
 		
 		build(scene);
 	}
-	
+*/	
 	
 	/**
 	 * Public method to export the whole Scene as a driving task, to be used in OpenDS
 	 */
-	public void export() {
+	private void export() {
 		exportRGEData(scene);
 		exportXML(scene);
 	}
@@ -217,7 +220,8 @@ public class SceneBuilder {
 		
 		return scene;
 	}
-	
+
+/*
 	/**
 	 * Instantiate a Scene object, and fill it with data extracted from the features of the RGE
 	 * 
@@ -230,7 +234,7 @@ public class SceneBuilder {
 	 * @return The new scene
 	 * 
 	 * @throws Exception 
-	 */
+	 /
 	private Scene loadRGE(
 			String buildingFeature,
 			String roadFeature,
@@ -239,36 +243,36 @@ public class SceneBuilder {
 			String dtmFeature) throws Exception {
 		Scene scene = new Scene();
 		
-//		ReaderFactory readerFact = new ReaderFactory();
-//		InputRGE rge = new InputRGE();
-//		
-//		FluxConfiguration config = new FluxConfiguration();
-//		
-//		rge = readerFact.createReader(READER_TYPE.BUILDING).loadFromRGE(buildingFeature);
-//		scene.setBuildings(rge.getBuildings());
-//		scene.setBuildingCentroid(rge.getCentroid());
-//		
-//		rge = readerFact.createReader(READER_TYPE.ROAD).loadFromRGE(roadFeature);
-//		scene.setRoads(rge.getRoads());
-//		scene.setCollIntersect(rge.getCollIntersect());
-//		
-//		rge = readerFact.createReader(READER_TYPE.HYDRO).loadFromRGE(hydroFeature);
-//		scene.setHydrography(rge.getHydrography());
-//		
-//		rge = readerFact.createReader(READER_TYPE.VEGETATION).loadFromFile(treeFeature);
-//		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
-//		
-		// TODO: Add the DTM ?
-//		rge = readerFact.createReader(READER_TYPE.VEGETATION).loadFromRGE(treeFeature);
-//		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
-//		
-//		rge = readerFact.createReader(READER_TYPE.DTM).loadFromRGE(dtmFeature);
-//		scene.setDtm(rge.getDTM());
+		ReaderFactory readerFact = new ReaderFactory();
+		InputRGE rge = new InputRGE();
+		
+		FluxConfiguration config = new FluxConfiguration();
+		
+		rge = readerFact.createReader(READER_TYPE.BUILDING).loadFromRGE(buildingFeature);
+		scene.setBuildings(rge.getBuildings());
+		scene.setBuildingCentroid(rge.getCentroid());
+		
+		rge = readerFact.createReader(READER_TYPE.ROAD).loadFromRGE(roadFeature);
+		scene.setRoads(rge.getRoads());
+		scene.setCollIntersect(rge.getCollIntersect());
+		
+		rge = readerFact.createReader(READER_TYPE.HYDRO).loadFromRGE(hydroFeature);
+		scene.setHydrography(rge.getHydrography());
+		
+		rge = readerFact.createReader(READER_TYPE.VEGETATION).loadFromFile(treeFeature);
+		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
+		
+		//TODO: Add the DTM ?
+		rge = readerFact.createReader(READER_TYPE.VEGETATION).loadFromRGE(treeFeature);
+		scene.setSurfaceVegetation(rge.getSurfaceVegetation());
+		
+		rge = readerFact.createReader(READER_TYPE.DTM).loadFromRGE(dtmFeature);
+		scene.setDtm(rge.getDTM());
 
 		
 		return scene;
 	}
-	
+*/
 	
 	/**
 	 * Build the scene with additional data:
@@ -298,15 +302,21 @@ public class SceneBuilder {
 		}
 	
 		List<Geometry> polygonList = new ArrayList<>();
-//		polygonList = ArcIntersection.generateSmoothRoad(scene);
+		Map<String,Polygon> intersectionPolygon = ArcIntersection.generateSmoothRoad(scene);
+		System.out.println("Smooth roads: " + String.valueOf(intersectionPolygon.size()));
 		
 		// Create the areal roads, and set the correct height
 		Map<String, LineRoad> lineRoads = scene.getLineRoads();
-		Map<String, SurfaceRoad> surfaceRoads = new HashMap<String,SurfaceRoad>();
+		Map<String, SurfaceRoad> surfaceRoads = new HashMap<>();
 		for(String key : lineRoads.keySet()) {
 			SurfaceRoad surfRoad = new SurfaceRoad(lineRoads.get(key));
-			polygonList.add(surfRoad.getGeom());
+			
+			if(intersectionPolygon.containsKey(key)) {
+				surfRoad.geometryUnion(intersectionPolygon.get(key));
+			}
 			surfRoad.setZfromDTM(dtm);
+			
+			polygonList.add(surfRoad.getGeom());
 			surfaceRoads.put(key, surfRoad);
 		}
 		scene.setSurfaceRoads(surfaceRoads);
@@ -343,14 +353,28 @@ public class SceneBuilder {
 	 */
 	private void exportRGEData(Scene scene) {
 		System.out.println("Export RGE Data");
+		File directory = new File("assets/RGE/" + place);
+		if (! directory.exists()){ directory.mkdir(); }
 		
-		//Copying the materials file and textures
+		//Copying the materials file and textures TreeCartoon1_OBJ.mtl
 		try {
 			Files.copy((new File("assets/RGE/materials.mtl")).toPath(), 
 					(new File("assets/RGE/" + place + "/materials.mtl")).toPath(),
 					StandardCopyOption.REPLACE_EXISTING);
+			Files.copy((new File("assets/RGE/TreeCartoon1_OBJ.mtl")).toPath(), 
+					(new File("assets/RGE/" + place + "/TreeCartoon1_OBJ.mtl")).toPath(),
+					StandardCopyOption.REPLACE_EXISTING);
 			Files.copy((new File("assets/RGE/window.png")).toPath(), 
 					(new File("assets/RGE/" + place + "/window.png")).toPath(),
+					StandardCopyOption.REPLACE_EXISTING);
+			Files.copy((new File("assets/RGE/window2.png")).toPath(), 
+					(new File("assets/RGE/" + place + "/window2.png")).toPath(),
+					StandardCopyOption.REPLACE_EXISTING);
+			Files.copy((new File("assets/RGE/window3.png")).toPath(), 
+					(new File("assets/RGE/" + place + "/window3.png")).toPath(),
+					StandardCopyOption.REPLACE_EXISTING);
+			Files.copy((new File("assets/RGE/window4.png")).toPath(), 
+					(new File("assets/RGE/" + place + "/window4.png")).toPath(),
 					StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -359,11 +383,12 @@ public class SceneBuilder {
 		
 		OBJWriter objWriter = new OBJWriter();
 		
-		File directory = new File("assets/RGE/" + place);
-		if (! directory.exists()){ directory.mkdir(); }
-		
 		Coordinate centroid = scene.getCentroid();
 		objWriter.exportBuilding("assets/RGE/" + place + "/buildings.obj", scene.getBuildings(), centroid.x, centroid.y);
+		
+		System.out.println("Merging trees...");
+		objWriter.exportVege2("assets/RGE/" + place + "/vegetation.obj", scene.getVegetation(), centroid.x, centroid.y);
+		System.out.println("Trees merged!");
 		
 		scene.getSurfaceRoads().remove("-1");
 		objWriter.exportRoad("assets/RGE/" + place + "/roads.obj", scene.getSurfaceRoads(), centroid.x, centroid.y);
@@ -397,38 +422,38 @@ public class SceneBuilder {
 		
 		double driverX = scene.getCentroid().x;
 		double driverY = scene.getCentroid().y;
-		boolean startRoad = false;
 		
-		if (startRoad) {
-			LineRoad[] type = new LineRoad[0];
-			LineRoad start = scene.getLineRoads().values().toArray(type)[scene.getLineRoads().values().size()/2];
-			Coordinate startCoord = start.getGeom().getCoordinates()[0];
-			driverX = startCoord.x;
-			driverY = startCoord.y;
-		}
+		LineRoad[] type = new LineRoad[0];
+		LineRoad start = scene.getLineRoads().values().toArray(type)[scene.getLineRoads().values().size()/2];
+		Coordinate startCoord = start.getGeom().getCoordinates()[0];
+		driverX = startCoord.x;
+		driverY = startCoord.y;
 		
-		double driverZ = scene.getDtm().getHeightAtPoint(driverX, driverY) + 10;
+		double driverZ = scene.getDtm().getHeightAtPoint(driverX, driverY) + 1;
 		
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
 		driver.setMass(1000);
 		driver.setTranslation(new double[]{driverX - scene.getCentroid().x, 
 				driverZ,
-				driverY - scene.getCentroid().y});
+				-1*(driverY - scene.getCentroid().y)});
 
-		driver.setScale((new double[]{0.8, 0.8, 0.8}));
+		driver.setScale((new double[]{0.7, 0.7, 0.7}));
 		xmlWriter.addModel(driver);
 		
 		// Add buildings
-		XMLModel buildindModel = new XMLModel("Building", "RGE/" + place + "/buildings.obj");
-		xmlWriter.addModel(buildindModel);
+		XMLModel buildingModel = new XMLModel("Building", "RGE/" + place + "/buildings.obj");
+		xmlWriter.addModel(buildingModel);
+		
+		// Add vegetation
+		XMLModel vegetationModel = new XMLModel("Vegetation", "RGE/" + place + "/vegetation.obj");
+		xmlWriter.addModel(vegetationModel);
 		
 		// Add roads
 		XMLModel roadsModel = new XMLModel("Roads", "RGE/" + place + "/roads.obj");
 		xmlWriter.addModel(roadsModel);
 		
 		// Add sidewalks
-
 		XMLModel sidewalksModel = new XMLModel("Sidewalks", "RGE/" + place + "/sidewalks.obj");
 		xmlWriter.addModel(sidewalksModel);
 		
@@ -452,15 +477,15 @@ public class SceneBuilder {
 		}
 		
 //		int g = 0;
-		for(PointVegetation tree : scene.getVegetation()) {
-			if (tree == null) {continue;}
-			XMLModel vegetationModel = new XMLModel("Tree", tree.getNature());
-			vegetationModel.setTranslation(new double[]{tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
-			vegetationModel.setScale(new double[]{1,1,1});
-			xmlWriter.addModel(vegetationModel);
-			
-//			if (++g>1000){ break; }
-		}
+//		for(PointVegetation tree : scene.getVegetation()) {
+//			if (tree == null) {continue;}
+//			XMLModel vegetationModel = new XMLModel("Tree", tree.getNature());
+//			vegetationModel.setTranslation(new double[]{tree.getCoord().x,tree.getCoord().z,tree.getCoord().y});
+//			vegetationModel.setScale(new double[]{1,1,1});
+//			xmlWriter.addModel(vegetationModel);
+//			
+////			if (++g>1000){ break; }
+//		}
 
 		// Add DTM
 		XMLGroundModel ground = getGroundModelFromScene(scene);

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import com.vividsolutions.jts.densify.Densifier;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.CoordinateSequence;
 import com.vividsolutions.jts.geom.CoordinateSequenceFilter;
@@ -73,6 +74,7 @@ public class Sidewalk implements IObjExport{
 		Geometry buffer = oldGeometry.buffer(1 + width/2, 0, BufferParameters.CAP_SQUARE);
 		// Defining a coordinate filter to set the z according to the DTM
 		// using bilinear interpolation
+				
 		CoordinateSequenceFilter filter = new CoordinateSequenceFilter() {
 			
 			@Override
@@ -93,6 +95,10 @@ public class Sidewalk implements IObjExport{
 		};
 		
 		Geometry sidewalk = buffer.difference(fullRoads);
+		// Densify the geometry so it has a number of vertices corresponding to the DTM
+		if(sidewalk.getCoordinates().length > 0) {
+			sidewalk = Densifier.densify(sidewalk, dtm.getCellsize()*5);
+		}
 		// Applying the filter
 		sidewalk.apply(filter);
 		return sidewalk;
@@ -120,7 +126,7 @@ public class Sidewalk implements IObjExport{
 	/**
 	 * Extracts a polygon's points into a list of vertices
 	 * 
-	 * @param poly The polygon to gets poit from
+	 * @param poly The polygon to gets point from
 	 * 
 	 * @return the list of points
 	 */

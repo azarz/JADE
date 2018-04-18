@@ -23,8 +23,9 @@ public class StreetFurniture extends PunctualObject {
 	/**
 	 * The furniture id
 	 */
-	private static int id=0;	
+	private int id;	
 	
+	private static int countId=0;
 	/**
 	 * The furniture rotation
 	 */
@@ -39,7 +40,8 @@ public class StreetFurniture extends PunctualObject {
 	 */
 	public StreetFurniture(Coordinate coord) {
 		super(coord);
-		id++;
+		StreetFurniture.countId++;
+		this.id=countId;
 	}
 	
 	/**
@@ -53,7 +55,8 @@ public class StreetFurniture extends PunctualObject {
 			super(coord);
 			this.path = path;
 			this.rotation = rotation;
-			id++;
+			StreetFurniture.countId++;
+			this.id=countId;
 		}
 
 // ========================== GETTERS/SETTERS ======================

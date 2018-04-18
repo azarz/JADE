@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Matchers;
@@ -34,10 +33,6 @@ public class OBJWriterTest {
 	@Mock
 	private SurfaceRoad road;
 	
-	@Before
-	public void setUp() throws Exception {
-		OBJWriter objWriter = new OBJWriter();
-	}
 	
 	@Test
 	public void testBuildingExport() {
