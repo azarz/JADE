@@ -418,16 +418,16 @@ public class SceneBuilder {
 		driverX = startCoord.x;
 		driverY = startCoord.y;
 		
-		double driverZ = scene.getDtm().getHeightAtPoint(driverX, driverY) + 10;
+		double driverZ = scene.getDtm().getHeightAtPoint(driverX, driverY) + 1;
 		
 		// Add driver
 		XMLModel driver = new XMLModel("driverCar", "Models/Cars/drivingCars/CitroenC4/Car.j3o");
 		driver.setMass(1000);
 		driver.setTranslation(new double[]{driverX - scene.getCentroid().x, 
 				driverZ,
-				driverY - scene.getCentroid().y});
+				-1*(driverY - scene.getCentroid().y)});
 
-		driver.setScale((new double[]{0.8, 0.8, 0.8}));
+		driver.setScale((new double[]{0.7, 0.7, 0.7}));
 		xmlWriter.addModel(driver);
 		
 		// Add buildings

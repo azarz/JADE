@@ -310,7 +310,7 @@ public class RoadSignsRule implements RuleShape {
 		
 		boolean doesIntersect = true;
 		// This part avoid signs to intersect another road than the one it is placed on
-		while (doesIntersect && distance < distance+10){
+		while (doesIntersect && D < 15){
 			doesIntersect = false;
 			sfCoord = sfPositionning(folder, x, y, distance, D, theta);
 			newX = sfCoord[0];
@@ -330,7 +330,7 @@ public class RoadSignsRule implements RuleShape {
 
 				if(surfaceRoad.getGeom().contains(g)){
 					doesIntersect = true;
-					distance = distance + 0.5;
+					D += 0.5;
 				}
 			}
 		}
