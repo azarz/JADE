@@ -67,10 +67,10 @@ public class PedestrianCrossing implements IObjExport{
 			vertexIndexOffset++;
 		}
 		
+		uvCoords += "vt 1 0\n";
+		uvCoords += "vt 1 1"  + "\n";
+		uvCoords += "vt 0 1" + "\n";
 		uvCoords += "vt 0 0" + "\n";
-		uvCoords += "vt " + format.format(JadeUtils.getDistance(geometry[0], geometry[1])) + " 0" + "\n";
-		uvCoords += "vt " + format.format(JadeUtils.getDistance(geometry[0], geometry[1])) + " " + format.format(JadeUtils.getDistance(geometry[0], geometry[3])) + "\n";
-		uvCoords += "vt 0 " + format.format(JadeUtils.getDistance(geometry[0], geometry[3])) + "\n";
 		
 		textureIndexOffset += 4;
 		

@@ -342,15 +342,14 @@ public class RoadSignsRule implements RuleShape {
 			Coordinate newCoord = new Coordinate(newX - scene.getCentroid().x, -1*(newY - scene.getCentroid().y), newZ); 
 
 			// Add texturation on the road
-			System.out.println("On met un passage pieton !!!!!!!!!!!!!!!");
-			double[] p1PC = sfPositionning(folder, x, y, distance-1, D-0.7, theta);
-			double[] p2PC = sfPositionning(folder, x, y, distance-1, -D+0.7, theta);
-			double[] p3PC = sfPositionning(folder, x, y, distance+1, -D+0.7, theta);
-			double[] p4PC = sfPositionning(folder, x, y, distance+1, D-0.7, theta);
-			double p1PCz = scene.getDtm().getHeightAtPoint(p1PC[0], p1PC[1])+0.01;
-			double p2PCz = scene.getDtm().getHeightAtPoint(p2PC[0], p2PC[1])+0.01;
-			double p3PCz = scene.getDtm().getHeightAtPoint(p3PC[0], p3PC[1])+0.01;
-			double p4PCz = scene.getDtm().getHeightAtPoint(p4PC[0], p4PC[1])+0.01;
+			double[] p1PC = sfPositionning(folder, x, y, distance-2, road.getWidth()/2+0.9, theta);
+			double[] p2PC = sfPositionning(folder, x, y, distance-2, -road.getWidth()/2+0.9, theta);
+			double[] p3PC = sfPositionning(folder, x, y, distance+2, -road.getWidth()/2+0.9, theta);
+			double[] p4PC = sfPositionning(folder, x, y, distance+2, road.getWidth()/2+0.9, theta);
+			double p1PCz = scene.getDtm().getHeightAtPoint(p1PC[0], p1PC[1])+0.09;
+			double p2PCz = scene.getDtm().getHeightAtPoint(p2PC[0], p2PC[1])+0.09;
+			double p3PCz = scene.getDtm().getHeightAtPoint(p3PC[0], p3PC[1])+0.09;
+			double p4PCz = scene.getDtm().getHeightAtPoint(p4PC[0], p4PC[1])+0.09;
 			Coordinate[] verticiesPC = new Coordinate[] {new Coordinate(p1PC[0] - scene.getCentroid().x, -1*(p1PC[1] - scene.getCentroid().y),p1PCz),
 					new Coordinate(p2PC[0] - scene.getCentroid().x, -1*(p2PC[1] - scene.getCentroid().y),p2PCz),
 					new Coordinate(p3PC[0] - scene.getCentroid().x, -1*(p3PC[1] - scene.getCentroid().y),p3PCz),
