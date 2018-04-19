@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.geotools.geometry.jts.CircularArc;
-import org.jfree.chart.needle.PointerNeedle;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;

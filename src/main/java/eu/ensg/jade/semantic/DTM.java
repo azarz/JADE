@@ -60,6 +60,10 @@ public class DTM {
 	 * Maximum height value in meters
 	 */
 	private double maxvalue;
+	/**
+	 * Maximum height value in meters
+	 */
+	private double minvalue;
 	
 // ========================== CONSTRUCTORS =========================
 	
@@ -74,6 +78,7 @@ public class DTM {
 		this.yllcorner = 0;
 		this.cellsize = 1;
 		this.maxvalue = 255;
+		this.minvalue = 0;
 	}
 
 	/**
@@ -170,6 +175,15 @@ public class DTM {
 	public double getMaxvalue() {
 		return maxvalue;
 	}
+	
+	/**
+	 * Gets the minimum altitude value
+	 * 
+	 * @return Minimuim altitude value in meters
+	 */
+	public double getMinvalue() {
+		return minvalue;
+	}
 
 
 // ========================== METHODS ==============================
@@ -209,7 +223,9 @@ public class DTM {
 	        for(int x = 0; x < ncols ; x++){
 	        	int sampleValue = (int) this.tabDTM[y][x];
 	        	if (maxvalue > 255) {
+	        		sampleValue -= (int) minvalue;
 	        		sampleValue *= 255/maxvalue;
+	        		
 	        	} 
 	        	wr.setSample(x, nrows-1 - y, 0, sampleValue);
 	        }
@@ -272,6 +288,7 @@ public class DTM {
         }
 		if (maxvalue > 255) {
 			height *= maxvalue/255;
+			height -= minvalue;
 		}
 		return height + 0.03;
 	}
