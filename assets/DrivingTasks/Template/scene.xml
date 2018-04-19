@@ -87,6 +87,6 @@
     </directionalLight>
   </lights>
 
-  <skyTexture>Textures/Sky/Dark/darkgloom.dds</skyTexture>
+  <skyTexture>Textures/Sky/Bright/cloudtop.dds</skyTexture>
 
 </scene>

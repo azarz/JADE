@@ -270,6 +270,9 @@ public class DTM {
             else
                 height = southWest + (xFraction)*(southEast-southWest) + (1-yFraction)*(northEast-southEast);
         }
+		if (maxvalue > 255) {
+			height *= maxvalue/255;
+		}
 		return height + 0.03;
 	}
 	
@@ -314,7 +317,11 @@ public class DTM {
 		this.smoothDTM = new double[nrows][ncols];
 		for(int i=0; i<nrows; i++){
 			for(int j=0; j<ncols; j++) {
-				this.smoothDTM[i][j] = (int) this.tabDTM[i][j];
+				int newvalue = (int) this.tabDTM[i][j];
+				if (maxvalue > 255) {
+					newvalue *= 255/maxvalue;
+				}
+				this.smoothDTM[i][j] = newvalue;
 			}
 		}
 	}

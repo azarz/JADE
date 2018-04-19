@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.geotools.geometry.jts.CircularArc;
+import org.jfree.chart.needle.PointerNeedle;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.GeometryFactory;
@@ -180,9 +181,16 @@ public class ArcIntersection {
 		//Normal vector
 		double u = -rBStart.getY()+rBEnd.getY();
 		double v =  rBStart.getX()-rBEnd.getX();
-		//Making it an unit vector (require to translate)
-		double un = u/(Math.sqrt(u*u+v*v));
-		double vn = v/(Math.sqrt(u*u+v*v));
+		double un;
+		double vn;
+		if (u==0 && v == 0) {
+			un = 0;
+			vn = 0;
+		} else {
+			//Making it an unit vector (require to translate)
+			un = u/(Math.sqrt(u*u+v*v));
+			vn = v/(Math.sqrt(u*u+v*v));
+		}
 		//We clone the intersection point
 		Coordinate newPoint = (Coordinate) pointInter.clone();
 		//We translate this point by the unit vector with half the Width as distance
