@@ -302,7 +302,7 @@ public class SceneBuilder {
 		}
 	
 		List<Geometry> polygonList = new ArrayList<>();
-		Map<String,Polygon> intersectionPolygon = ArcIntersection.generateSmoothRoad(scene);
+		Map<String, List<Polygon>> intersectionPolygon = ArcIntersection.generateSmoothRoad(scene);
 		System.out.println("Smooth intersections: " + String.valueOf(intersectionPolygon.size()));
 		
 		// Create the areal roads, and set the correct height
@@ -312,7 +312,10 @@ public class SceneBuilder {
 			SurfaceRoad surfRoad = new SurfaceRoad(lineRoads.get(key));
 			
 			if(intersectionPolygon.containsKey(key)) {
-				surfRoad.geometryUnion(intersectionPolygon.get(key));
+				for(Polygon p : intersectionPolygon.get(key)) {
+					surfRoad.geometryUnion(p);
+				}
+//				surfRoad.geometryUnion(intersectionPolygon.get(key));
 			}
 			surfRoad.setZfromDTM(dtm);
 			

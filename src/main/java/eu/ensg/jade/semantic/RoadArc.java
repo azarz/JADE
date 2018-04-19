@@ -257,21 +257,21 @@ public class RoadArc {
 		Point pt_Intersection = getCenter(road1,road2);
 		if(pt_Intersection == null ) return null;
 		
-		Point p1 = (pt_Intersection.buffer(radius)).intersection(road1.getGeom().buffer(0.5*road1.getWidth()+0.2)).getCentroid();
-       if(p1==null) {
-        	System.out.println("P1 null");
-        	//p1 = createArcLimit(road1, pt_Intersection);
-        }
-        
-        Point p2 = (pt_Intersection.buffer(radius)).intersection(road2.getGeom().buffer(0.5*road2.getWidth()+0.2)).getCentroid();
-       if(p2==null) {
-        	System.out.println("P2 null");
-      // 	p2 = createArcLimit(road1, pt_Intersection);
-        }
-        
-        if( p1 == null || p2 == null ) return null;
+//		Point p1 = (pt_Intersection.buffer(radius)).intersection(road1.getGeom().buffer(0.5*road1.getWidth()+0.2)).getCentroid();
+//       if(p1==null) {
+//        	System.out.println("P1 null");
+//        	p1 = projectionOnRoad(road1, pt_Intersection);
+//        }
+//        
+//        Point p2 = (pt_Intersection.buffer(radius)).intersection(road2.getGeom().buffer(0.5*road2.getWidth()+0.2)).getCentroid();
+//       if(p2==null) {
+//        	System.out.println("P2 null");
+//        	p2 = projectionOnRoad(road1, pt_Intersection);
+//        }
+//        
+//        if( p1 == null || p2 == null ) return null;
 
-	/*	GeometryFactory gf = new GeometryFactory();
+		GeometryFactory gf = new GeometryFactory();
 		double vect[] = new double[2];
 		double length = 0;
 		
@@ -293,8 +293,9 @@ public class RoadArc {
 		
 		vect[0] = pt_Intersection.getX() + (vect[0] / length) * radius;
 		vect[1] = pt_Intersection.getY() + (vect[1] / length) * radius;
-		Point p2 = gf.createPoint(new Coordinate(vect[0], vect[1]));        
-        */
+		Point p2 = gf.createPoint(new Coordinate(vect[0], vect[1]));
+        
+		
         List<Point> resultat = new ArrayList<Point>();
 		resultat.add(p1);
 		resultat.add(p2);
@@ -463,7 +464,6 @@ public class RoadArc {
 		if (ptIntersection.isEmpty()){
 			return Double.NaN;
 		}
-	
 		Point ptStart1 =  linestring1.getStartPoint();
 		Point ptEnd1 = linestring1.getEndPoint();
 		Point ptStart2 = linestring2.getStartPoint();
@@ -490,43 +490,5 @@ public class RoadArc {
 		
 		//Returning the result as degree and not radiant
 		return angle*(180.0/Math.PI);
-	}
-
-	/**
-	 * Checks if the arc intersects a road
-	 *
-	 * @param arc the arc
-	 * @param road the road to check for intersection
-	 * 
-	 * @return true if the arc intersects the road
-	 */
-
-	public static boolean intersectOther(CircularArc arc, LineRoad road){
-		double[] points = arc.linearize(1);
-		boolean result=false;
-		GeometryFactory geomFactory = new GeometryFactory();
-
-		// create a list of connected positions
-		Coordinate firstArcPoint = new Coordinate(points[0],points[1]);
-		Coordinate lastArcPoint = new Coordinate(points[points.length-2],points[points.length-1]);
-        Coordinate midArcPoint = new Coordinate(points[(points.length/2)-1],points[(points.length/2)]);
-
-		LineString arcLine1 = geomFactory.createLineString(new Coordinate[]{firstArcPoint,lastArcPoint});
-		LineString arcLine2 = geomFactory.createLineString(new Coordinate[]{firstArcPoint,midArcPoint});
-		LineString arcLine3 = geomFactory.createLineString(new Coordinate[]{lastArcPoint,midArcPoint});
-
-		int a=road.getGeom().getCoordinates().length;
-		Coordinate[] tab= {road.getGeom().getCoordinates()[0] , road.getGeom().getCoordinates()[a-1]};
-		LineString roadLine = geomFactory.createLineString(tab);
-		//if(roadLine.intersects(arcLine1) || roadLine.intersects(arcLine2) || roadLine.intersects(arcLine3)) {
-		//	result = true;
-		//}
-		//if(road.getGeom().getNumGeometries()>0) {
-			roadLine = (LineString) road.getGeom().getGeometryN((road.getGeom().getNumGeometries())-1);
-			//if(roadLine.intersects(arcLine1) || roadLine.intersects(arcLine2) || roadLine.intersects(arcLine3)) {
-			//	result = true;
-			//}
-		//}
-		return result;
 	}
 }
