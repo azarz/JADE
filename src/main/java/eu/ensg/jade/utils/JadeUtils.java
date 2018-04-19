@@ -180,6 +180,66 @@ public class JadeUtils {
 	}
 	
 	/**
+	 * Calculates the angle considering a road and position
+	 * 
+	 * @param road The road
+	 * @param position The position
+	 * 
+	 * @return The angle of the road
+	 */
+	public static double roadAngle(LineRoad road, int position, boolean start, double tabLen){
+		
+		// We determine the ends of the roads
+		Coordinate ini;
+		Coordinate end;
+		
+		if(start){
+			if (position > tabLen-2) {
+				return -1;
+			}
+			ini = road.getGeom().getCoordinates()[position];
+			end = road.getGeom().getCoordinates()[position+1];
+		}
+		else{	
+			if (position < 1) {
+				return -1;
+			}
+			ini = road.getGeom().getCoordinates()[position];
+			end = road.getGeom().getCoordinates()[position-1];
+		}
+		
+		double theta = 0.0;
+		
+		// We determine the angle from horizontal in trigo order
+	    if (ini.y >= end.y){
+			//Top right
+	        if(ini.x <= end.x){
+	            theta = Math.asin( (end.x - ini.x)/ini.distance(end) );
+
+	        }
+	        //bottom right
+	        else{
+	            theta = 2*Math.PI - Math.asin( (ini.x - end.x)/ini.distance(end) );
+
+	        }
+	    }
+	    else {
+			//top left
+	        if(ini.x <= end.x){
+	           theta = Math.PI - Math.asin( (end.x-ini.x)/ini.distance(end) );
+
+	        }
+	        //bottom left
+	        else{
+	            theta = Math.PI + Math.asin( (ini.x-end.x)/ini.distance(end) );
+
+	        }
+	    }
+		
+		return theta; 
+	}
+	
+	/**
 	 * Splits a polygon into triangles (triangulates it)
 	 * 
 	 * @param polygon The polygon to triangulate
