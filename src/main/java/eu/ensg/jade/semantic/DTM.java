@@ -56,6 +56,10 @@ public class DTM {
 	 */
 	private double cellsize;
 	
+	/**
+	 * Maximum height value in meters
+	 */
+	private double maxvalue;
 	
 // ========================== CONSTRUCTORS =========================
 	
@@ -69,6 +73,7 @@ public class DTM {
 		this.xllcorner = 0;
 		this.yllcorner = 0;
 		this.cellsize = 1;
+		this.maxvalue = 255;
 	}
 
 	/**
@@ -84,6 +89,7 @@ public class DTM {
 		this.xllcorner = 0;
 		this.yllcorner = 0;
 		this.cellsize = 1;
+		this.maxvalue = 255;
 		
 		// Getting all the data from the hashmap and putting default values if they are not in the input map
 		try {
@@ -92,6 +98,7 @@ public class DTM {
 			this.xllcorner = headerDTM.get("xllcorner");
 			this.yllcorner = headerDTM.get("yllcorner");
 			this.cellsize = headerDTM.get("cellsize");
+			this.maxvalue = headerDTM.get("maxvalue");
 			
 		} catch (NullPointerException e) {
 			System.out.println("Incomplete DTM; putting default values");
@@ -154,6 +161,15 @@ public class DTM {
 	public double getCellsize() {
 		return cellsize;
 	}
+	
+	/**
+	 * Gets the maximum altitude value
+	 * 
+	 * @return Maximum altitude value in meters
+	 */
+	public double getMaxvalue() {
+		return maxvalue;
+	}
 
 
 // ========================== METHODS ==============================
@@ -191,7 +207,11 @@ public class DTM {
 		WritableRaster wr = bufferImageDTM.getRaster();
 		for(int y = 0; y < nrows ; y++){
 	        for(int x = 0; x < ncols ; x++){
-	        	wr.setSample(x, nrows-1 - y, 0, (int) this.tabDTM[y][x]);
+	        	int sampleValue = (int) this.tabDTM[y][x];
+	        	if (maxvalue > 255) {
+	        		sampleValue *= 255/maxvalue;
+	        	} 
+	        	wr.setSample(x, nrows-1 - y, 0, sampleValue);
 	        }
 	    }
 		
@@ -250,6 +270,9 @@ public class DTM {
             else
                 height = southWest + (xFraction)*(southEast-southWest) + (1-yFraction)*(northEast-southEast);
         }
+		if (maxvalue > 255) {
+			height *= maxvalue/255;
+		}
 		return height + 0.03;
 	}
 	
@@ -294,7 +317,11 @@ public class DTM {
 		this.smoothDTM = new double[nrows][ncols];
 		for(int i=0; i<nrows; i++){
 			for(int j=0; j<ncols; j++) {
-				this.smoothDTM[i][j] = (int) this.tabDTM[i][j];
+				int newvalue = (int) this.tabDTM[i][j];
+				if (maxvalue > 255) {
+					newvalue *= 255/maxvalue;
+				}
+				this.smoothDTM[i][j] = newvalue;
 			}
 		}
 	}

@@ -161,7 +161,6 @@ public class PointVegetation extends PunctualObject implements IObjExport {
 	            
 	            line = bufferOBJ.readLine();
 			}
-			fileOBJ.close();
         } catch(IOException e) {
         	System.out.println("Tree model not found");
         }

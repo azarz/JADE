@@ -57,7 +57,7 @@ public class SceneBuilder {
 	private Scene scene;
 	
 	// Nation / Perros / Voise
-	private static String place = "Voise";
+	private static String place = "Perros";
 	
 // ========================== CONSTRUCTORS =========================	
 	
@@ -302,8 +302,8 @@ public class SceneBuilder {
 		}
 	
 		List<Geometry> polygonList = new ArrayList<>();
-		Map<String,Polygon> intersectionPolygon = ArcIntersection.generateSmoothRoad(scene);
-		System.out.println("Smooth roads: " + String.valueOf(intersectionPolygon.size()));
+		Map<String, List<Polygon>> intersectionPolygon = ArcIntersection.generateSmoothRoad(scene);
+		System.out.println("Smooth intersections: " + String.valueOf(intersectionPolygon.size()));
 		
 		// Create the areal roads, and set the correct height
 		Map<String, LineRoad> lineRoads = scene.getLineRoads();
@@ -312,7 +312,10 @@ public class SceneBuilder {
 			SurfaceRoad surfRoad = new SurfaceRoad(lineRoads.get(key));
 			
 			if(intersectionPolygon.containsKey(key)) {
-				surfRoad.geometryUnion(intersectionPolygon.get(key));
+				for(Polygon p : intersectionPolygon.get(key)) {
+					surfRoad.geometryUnion(p);
+				}
+//				surfRoad.geometryUnion(intersectionPolygon.get(key));
 			}
 			surfRoad.setZfromDTM(dtm);
 			
@@ -375,6 +378,9 @@ public class SceneBuilder {
 					StandardCopyOption.REPLACE_EXISTING);
 			Files.copy((new File("assets/RGE/window4.png")).toPath(), 
 					(new File("assets/RGE/" + place + "/window4.png")).toPath(),
+					StandardCopyOption.REPLACE_EXISTING);
+			Files.copy((new File("assets/RGE/pedestrianCrossing.png")).toPath(), 
+					(new File("assets/RGE/" + place + "/pedestrianCrossing.png")).toPath(),
 					StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -535,6 +541,9 @@ public class SceneBuilder {
         groundTranslation[2] = yCentroid - dtm.getYllcorner() + ((powerOfTwo/2) - largestDimension)*dtm.getCellsize();
      		
         XMLTerrain terrain = new XMLTerrain("Terrain", "RGE/" + place + "/terrain.png", powerOfTwo);
+        if (dtm.getMaxvalue() > 255) {
+        	terrain.setHeightScale(dtm.getMaxvalue()/255);
+        }
 		XMLGroundModel ground = new XMLGroundModel("Ground", "Materials/" + place + "/OrthoImage.j3m", terrain, groundScale, groundRotation, groundTranslation);
 	
 		return ground;
