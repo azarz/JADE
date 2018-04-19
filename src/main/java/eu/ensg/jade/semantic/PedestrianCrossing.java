@@ -6,12 +6,8 @@ import java.util.List;
 import java.util.Locale;
 
 import com.vividsolutions.jts.geom.Coordinate;
-import com.vividsolutions.jts.geom.Geometry;
-import com.vividsolutions.jts.geom.GeometryFactory;
-import com.vividsolutions.jts.geom.Polygon;
 
 import eu.ensg.jade.output.IObjExport;
-import eu.ensg.jade.utils.JadeUtils;
 
 /**
  * PedestrianCrossing is the class implementing a surfacic PedestrianCossing object

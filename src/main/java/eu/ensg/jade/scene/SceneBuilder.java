@@ -57,7 +57,7 @@ public class SceneBuilder {
 	private Scene scene;
 	
 	// Nation / Perros / Voise
-	private static String place = "Perros";
+	private static String place = "Voise";
 	
 // ========================== CONSTRUCTORS =========================	
 	
@@ -376,6 +376,9 @@ public class SceneBuilder {
 			Files.copy((new File("assets/RGE/window4.png")).toPath(), 
 					(new File("assets/RGE/" + place + "/window4.png")).toPath(),
 					StandardCopyOption.REPLACE_EXISTING);
+			Files.copy((new File("assets/RGE/pedestrianCrossing.png")).toPath(), 
+					(new File("assets/RGE/" + place + "/pedestrianCrossing.png")).toPath(),
+					StandardCopyOption.REPLACE_EXISTING);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -535,6 +538,9 @@ public class SceneBuilder {
         groundTranslation[2] = yCentroid - dtm.getYllcorner() + ((powerOfTwo/2) - largestDimension)*dtm.getCellsize();
      		
         XMLTerrain terrain = new XMLTerrain("Terrain", "RGE/" + place + "/terrain.png", powerOfTwo);
+        if (dtm.getMaxvalue() > 255) {
+        	terrain.setHeightScale(dtm.getMaxvalue()/255);
+        }
 		XMLGroundModel ground = new XMLGroundModel("Ground", "Materials/" + place + "/OrthoImage.j3m", terrain, groundScale, groundRotation, groundTranslation);
 	
 		return ground;
