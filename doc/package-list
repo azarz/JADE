@@ -1,3 +1,12 @@
+eu.ensg.jade.geometricObject
+eu.ensg.jade.input
+eu.ensg.jade.main
+eu.ensg.jade.output
+eu.ensg.jade.rules
+eu.ensg.jade.scene
+eu.ensg.jade.semantic
+eu.ensg.jade.utils
+eu.ensg.jade.xml
 eu.opends.analyzer
 eu.opends.audio
 eu.opends.basics
