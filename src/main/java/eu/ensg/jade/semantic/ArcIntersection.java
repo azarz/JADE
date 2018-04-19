@@ -58,19 +58,19 @@ public class ArcIntersection {
 				
 				double angle = RoadArc.angleBetweenRoads(tempRoads.get(0), tempRoads.get(1));
 				if(angle < 210 && angle > 150) {
-					System.out.println("Adding trapezoid");
+//					System.out.println("Adding trapezoid");
 					addPolygonToResult(trapezoid(tempRoads, inter), tempIds.get(0), result);
 				}
 				else {
-					System.out.println("Adding bufferSmooth");
+//					System.out.println("Adding bufferSmooth");
 					addPolygonToResult(bufferSmooth(tempRoads, inter), tempIds.get(0), result);
 
 					Map<String, Polygon> polygons = smoothIntersection(tempRoads, tempIds, inter);
 					for(String key : polygons.keySet()) {
-						System.out.println("Adding smoothIntersection");
+//						System.out.println("Adding smoothIntersection");
 						poly = polygons.get(key);
 						if(!poly.isValid()){
-							System.out.println("!! Invalid smoothIntersection !!");
+//							System.out.println("!! Invalid smoothIntersection !!");
 						}
 						else{
 							addPolygonToResult(poly, key, result);
@@ -82,13 +82,13 @@ public class ArcIntersection {
 			else if (tempRoads.size() > 2) {
 				Map<String, Polygon> polygons = smoothIntersection(tempRoads, tempIds, inter);
 				for(String key : polygons.keySet()) {
-					System.out.println("Adding smoothIntersection");
+//					System.out.println("Adding smoothIntersection");
 					poly = polygons.get(key);
 					if(!poly.isValid()){
-						System.out.println("\tInvalid smoothIntersection");
+//						System.out.println("\tInvalid smoothIntersection");
 					}
 					else{
-						addPolygonToResult(poly, key, result);
+//						addPolygonToResult(poly, key, result);
 					}
 				}
 			}			
@@ -323,7 +323,7 @@ public class ArcIntersection {
 				
 				if(!geom.isValid()) {
 					for(int k=0; k<polygonCoords.size(); k++) {
-						System.out.println("Coord: "+polygonCoords.get(k).toString());
+//						System.out.println("Coord: "+polygonCoords.get(k).toString());
 					}
 				}
 				

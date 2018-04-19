@@ -39363,155 +39363,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>24.274441134411045</entry>
+<entry>238.78159723571338</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>1110.7190780502278</entry>
-<entry>59.9910179227167</entry>
-<entry>-565.3074371097609</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>250.66519146239293</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1079.173248113715</entry>
-<entry>60.00447106251618</entry>
-<entry>-582.8315926333889</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>79.87532834449229</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1121.6572561372304</entry>
-<entry>57.10993028084549</entry>
-<entry>-588.5650929659605</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit90/speedLimit90.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>162.05059700688255</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1044.9104942491977</entry>
-<entry>0.0</entry>
-<entry>1161.2635283954442</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>349.00522265063444</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>840.1881646421971</entry>
-<entry>51.03316972325105</entry>
-<entry>541.2286632843316</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>179.46949868344055</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1047.748828414362</entry>
-<entry>50.12973242580646</entry>
-<entry>460.5439001014456</entry>
+<entry>1093.632072707056</entry>
+<entry>60.26568599100634</entry>
+<entry>-575.7932818019763</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -39559,62 +39419,6 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>271.10779137696136</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-702.9468070989242</entry>
-<entry>42.029920308441554</entry>
-<entry>-252.54782809969038</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit90/speedLimit90.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>353.81138403646173</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1141.3608369567664</entry>
-<entry>0.0</entry>
-<entry>306.398066483438</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
 <entry>109.34873497330999</entry>
 <entry>0.0</entry>
 </vector>
@@ -39643,15 +39447,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>358.95202335385466</entry>
+<entry>356.91978986344776</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>1119.2970404406078</entry>
-<entry>51.747678614814916</entry>
-<entry>233.64151278045028</entry>
+<entry>1119.464238492772</entry>
+<entry>52.76338744358427</entry>
+<entry>217.38456602953374</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -39755,34 +39559,6 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>22.070609274602973</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-480.27521343692206</entry>
-<entry>50.02280741685796</entry>
-<entry>-723.8440080583096</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
 <entry>352.3448329430156</entry>
 <entry>0.0</entry>
 </vector>
@@ -39792,62 +39568,6 @@
 <entry>537.339008891955</entry>
 <entry>46.036345552731554</entry>
 <entry>255.95041735935956</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>349.9983547235854</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>390.59516320808325</entry>
-<entry>38.61301544896743</entry>
-<entry>1056.877503067255</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>276.8042595614216</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>388.4835303002037</entry>
-<entry>40.125318897173514</entry>
-<entry>945.5150589635596</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -39951,15 +39671,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>92.31372249997136</entry>
+<entry>92.13425876118131</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>793.438228555955</entry>
-<entry>47.62723938114969</entry>
-<entry>835.6628208840266</entry>
+<entry>783.5479058853816</entry>
+<entry>47.851412190760705</entry>
+<entry>836.0940791303292</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -40020,62 +39740,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit90/speedLimit90.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>352.0414809001468</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1144.8991078094114</entry>
-<entry>0.0</entry>
-<entry>370.7727596228942</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>183.31094151478854</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>859.7409734661924</entry>
-<entry>60.90319446021384</entry>
-<entry>-650.7571371532977</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -40119,71 +39783,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>172.1607366679952</entry>
+<entry>211.58764235878323</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-91.326333461795</entry>
-<entry>51.02999823860943</entry>
-<entry>-10.515611299313605</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>344.0546040989627</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-92.8136295049917</entry>
-<entry>51.03000862034676</entry>
-<entry>29.946308590471745</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>210.44642720806843</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-834.4298452507937</entry>
-<entry>37.72959096952212</entry>
-<entry>790.5475188838318</entry>
+<entry>-826.7783260786673</entry>
+<entry>37.97901799479603</entry>
+<entry>803.7525746971369</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -40231,71 +39839,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>295.01689348394245</entry>
+<entry>260.8698235141551</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>172.18166339118034</entry>
-<entry>63.66739061947524</entry>
-<entry>-800.7275544675067</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>207.64597536381288</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1143.86609635083</entry>
-<entry>0.0</entry>
-<entry>-459.6833400474861</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit90/speedLimit90.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>190.33655414593755</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1149.6664546837565</entry>
-<entry>0.0</entry>
-<entry>-612.8781168665737</entry>
+<entry>187.25292020989582</entry>
+<entry>63.16863306005206</entry>
+<entry>-808.1915422445163</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -40315,15 +39867,43 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>29.744881296087087</entry>
+<entry>200.05023687114576</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>7.430570684140548</entry>
-<entry>45.45200550228912</entry>
-<entry>785.993329456076</entry>
+<entry>1199.2799942597048</entry>
+<entry>0.0</entry>
+<entry>-344.6212467039004</entry>
+</vector>
+</translation>
+<shadowMode>CastAndReceive</shadowMode>
+</model>
+<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
+<mass>0.0</mass>
+<friction>1.0</friction>
+<visible>true</visible>
+<collisionShape>meshShape</collisionShape>
+<scale>
+<vector jtype="java_lang_Float" size="3">
+<entry>1.0</entry>
+<entry>1.0</entry>
+<entry>1.0</entry>
+</vector>
+</scale>
+<rotation quaternion="false">
+<vector jtype="java_lang_Float" size="3">
+<entry>0.0</entry>
+<entry>27.69947280779356</entry>
+<entry>0.0</entry>
+</vector>
+</rotation>
+<translation>
+<vector jtype="java_lang_Float" size="3">
+<entry>-1.9060996784828603</entry>
+<entry>50.91031623141896</entry>
+<entry>769.741162695922</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -40371,99 +39951,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>346.1345333122826</entry>
+<entry>325.5126271698425</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>745.677432366414</entry>
-<entry>47.02957970546267</entry>
-<entry>870.8521210290492</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>33.36031128542131</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>217.11441747331992</entry>
-<entry>0.0</entry>
-<entry>1121.4098901376128</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>328.3392489028802</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-102.15932097355835</entry>
-<entry>51.02998718522171</entry>
-<entry>42.89599169418216</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>203.6490197528222</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-243.39645542949438</entry>
-<entry>50.02377286500356</entry>
-<entry>-96.36476538330317</entry>
+<entry>-99.1077209233772</entry>
+<entry>51.03000800144199</entry>
+<entry>36.720966225489974</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -40580,34 +40076,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>29.303964806064787</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>131.0625452522654</entry>
-<entry>65.2348338551156</entry>
-<entry>-912.9086502948776</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -40692,34 +40160,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>205.68364718079656</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-126.09431480930652</entry>
-<entry>50.32004664128375</entry>
-<entry>134.80519117508084</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -40763,43 +40203,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>186.48307369280653</entry>
+<entry>196.22340588266752</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>290.02580485737417</entry>
-<entry>50.86300317938422</entry>
-<entry>-93.54275234695524</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>90.69566478400037</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>353.0833769526798</entry>
-<entry>50.017176556490355</entry>
-<entry>-77.43179109040648</entry>
+<entry>290.9953987724148</entry>
+<entry>50.23205811619533</entry>
+<entry>-79.72382823377848</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -40828,34 +40240,6 @@
 <entry>176.58648688998073</entry>
 <entry>51.03031579027589</entry>
 <entry>-68.69507437199354</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>30.465544918676034</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-833.2378725467715</entry>
-<entry>37.81945531413188</entry>
-<entry>780.6842616442591</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -40916,34 +40300,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>6.370716931530741</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>845.1378416072112</entry>
-<entry>0.0</entry>
-<entry>-958.8497383175418</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit90/speedLimit90.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -40968,34 +40324,6 @@
 <entry>1145.093039195286</entry>
 <entry>0.0</entry>
 <entry>-1190.1996844857931</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit90/speedLimit90.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>353.970887909362</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1121.2147063398734</entry>
-<entry>55.1710955793436</entry>
-<entry>-666.8535004518926</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -41071,43 +40399,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>337.83365417972243</entry>
+<entry>128.33334011185102</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>1109.3224164984422</entry>
-<entry>53.02809342052834</entry>
-<entry>175.3177780872211</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>148.29857032936658</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1115.473046466126</entry>
-<entry>52.964706834536685</entry>
-<entry>133.73127949796617</entry>
+<entry>1108.8289544719737</entry>
+<entry>53.0185056084108</entry>
+<entry>145.26499835774302</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -41211,34 +40511,6 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>32.322653011445496</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-541.2353885599878</entry>
-<entry>45.438957611910716</entry>
-<entry>-175.3287962526083</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
 <entry>212.64403503405924</entry>
 <entry>0.0</entry>
 </vector>
@@ -41295,62 +40567,6 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>1.1573330684900636</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1053.2669426185312</entry>
-<entry>50.222206136437826</entry>
-<entry>479.80942745134234</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>171.02992519458985</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1056.596960729803</entry>
-<entry>51.04179567642369</entry>
-<entry>401.7945018252358</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
 <entry>312.1227371939835</entry>
 <entry>0.0</entry>
 </vector>
@@ -41360,62 +40576,6 @@
 <entry>-360.3829099329887</entry>
 <entry>47.76890859220672</entry>
 <entry>1024.2393525699154</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>169.2157021330577</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>718.4904034034116</entry>
-<entry>44.96106313069291</entry>
-<entry>956.5999382399023</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>348.5890168729001</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>690.3329081935808</entry>
-<entry>0.0</entry>
-<entry>1133.0849525695667</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -41491,15 +40651,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>352.14668669848874</entry>
+<entry>349.2911607736695</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>512.5820173630491</entry>
-<entry>44.01346013976156</entry>
-<entry>423.4909787969664</entry>
+<entry>513.3498267611722</entry>
+<entry>44.00261733548537</entry>
+<entry>414.103660447523</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -41547,43 +40707,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>0.5906572144978164</entry>
+<entry>195.45201064094945</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-83.98047327587847</entry>
-<entry>51.029999495035526</entry>
-<entry>-9.568586100824177</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>182.04540848939703</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-94.54634487372823</entry>
-<entry>51.02995817077012</entry>
-<entry>-49.29792785085738</entry>
+<entry>-93.63161525735632</entry>
+<entry>51.029986202027075</entry>
+<entry>-35.456376334652305</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -41612,34 +40744,6 @@
 <entry>-505.03751340764575</entry>
 <entry>49.00445120321496</entry>
 <entry>359.32336392905563</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>348.4653793464975</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>783.8293734143954</entry>
-<entry>48.221386101913794</entry>
-<entry>784.2096352223307</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -41715,15 +40819,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>336.8014094863518</entry>
+<entry>349.9668794454698</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>1058.2604287683498</entry>
-<entry>60.05622383900652</entry>
-<entry>-654.1310808071867</entry>
+<entry>1063.3439865801483</entry>
+<entry>60.55906041849369</entry>
+<entry>-666.6581911733374</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -41743,15 +40847,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>142.72182580102472</entry>
+<entry>127.52844082234147</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>1062.3524671711493</entry>
-<entry>61.01520962724764</entry>
-<entry>-697.4126632707193</entry>
+<entry>1051.7915049700532</entry>
+<entry>60.83067154099918</entry>
+<entry>-684.944105074741</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -41799,43 +40903,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>169.26110289786962</entry>
+<entry>169.07719528022642</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>460.28127853083424</entry>
-<entry>42.1337170909285</entry>
-<entry>640.8493762752041</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>185.9245819820647</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>816.8344307232182</entry>
-<entry>0.0</entry>
-<entry>-1017.270255385898</entry>
+<entry>459.228856091504</entry>
+<entry>42.08565818885882</entry>
+<entry>646.6414850931615</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -41911,34 +40987,6 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>26.20011484184794</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-694.0405726212775</entry>
-<entry>42.013772167972135</entry>
-<entry>1029.117351654917</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
 <entry>262.6395228681168</entry>
 <entry>0.0</entry>
 </vector>
@@ -41948,34 +40996,6 @@
 <entry>192.76216019317508</entry>
 <entry>48.0697002400222</entry>
 <entry>358.76296241022646</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>201.1661602428047</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-341.87083985179197</entry>
-<entry>49.414408000823954</entry>
-<entry>-344.68466337490827</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -42163,34 +41183,6 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>284.3227199803012</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>973.3847987008048</entry>
-<entry>59.21058149962439</entry>
-<entry>-597.3857915541157</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
 <entry>169.19914425429016</entry>
 <entry>0.0</entry>
 </vector>
@@ -42200,90 +41192,6 @@
 <entry>414.9681448992342</entry>
 <entry>39.74460937505005</entry>
 <entry>889.322685552761</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>321.7661748199833</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1052.6130680296337</entry>
-<entry>51.07841876970097</entry>
-<entry>265.49102491978556</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>350.8821372462736</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1107.1601014605258</entry>
-<entry>43.75755759941392</entry>
-<entry>956.9431886915118</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>285.1729153423839</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1080.268672203645</entry>
-<entry>60.44243159232148</entry>
-<entry>-690.1180078340694</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -42316,62 +41224,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>171.92695250812383</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>526.1845818678848</entry>
-<entry>46.21389599041579</entry>
-<entry>254.38502286188304</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit90/speedLimit90.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>175.77181729507538</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1130.0762135251425</entry>
-<entry>0.0</entry>
-<entry>-1162.2694488316774</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -42387,15 +41239,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>320.46021259274517</entry>
+<entry>348.81120007162673</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>1110.6558160943678</entry>
-<entry>57.36273337008851</entry>
-<entry>-866.0162191037089</entry>
+<entry>1126.6973853976233</entry>
+<entry>0.0</entry>
+<entry>-882.3811662672088</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -42443,15 +41295,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>347.4711922901845</entry>
+<entry>346.29303899671913</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>803.7487248696852</entry>
-<entry>50.87342558185106</entry>
-<entry>613.385960415937</entry>
+<entry>806.1732933628373</entry>
+<entry>51.01617958352488</entry>
+<entry>601.7126408591866</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -42484,34 +41336,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>293.0147544189581</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-131.5615368578583</entry>
-<entry>60.65535510150446</entry>
-<entry>-706.7089299988002</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -42540,34 +41364,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>317.2185817335009</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-78.7578775563743</entry>
-<entry>52.300258252600266</entry>
-<entry>-143.03928305674344</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -42592,34 +41388,6 @@
 <entry>-36.28967711399309</entry>
 <entry>53.029529639757044</entry>
 <entry>-210.18944134935737</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>272.16107948822633</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>845.6133737822529</entry>
-<entry>51.38976200445322</entry>
-<entry>-82.35042928904295</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -42695,43 +41463,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>257.8086635293636</entry>
+<entry>257.9107932264193</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>430.33881228941027</entry>
-<entry>60.141810613290716</entry>
-<entry>-888.227665211074</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>348.80488857420147</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>745.6410552336602</entry>
-<entry>45.00214317067708</entry>
-<entry>963.6163034671918</entry>
+<entry>445.28679311834276</entry>
+<entry>60.038392049947944</entry>
+<entry>-878.8534955456853</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -42760,34 +41500,6 @@
 <entry>263.80726541404147</entry>
 <entry>52.02962408530191</entry>
 <entry>-176.50743864942342</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>166.90810693510556</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1100.4114391179755</entry>
-<entry>57.260037468072355</entry>
-<entry>-792.339885737747</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -42863,15 +41575,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>169.69515353113695</entry>
+<entry>169.27555146249188</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>481.7251206651563</entry>
-<entry>42.51668957467384</entry>
-<entry>527.2604392655194</entry>
+<entry>479.58631510008126</entry>
+<entry>42.96492994525155</entry>
+<entry>539.3396792216226</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -42932,62 +41644,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>153.4349488162519</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>908.094325476326</entry>
-<entry>51.031884495541966</entry>
-<entry>189.4149761768058</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>343.1861970910837</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1162.9742150349775</entry>
-<entry>0.0</entry>
-<entry>335.02808505203575</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -43040,34 +41696,6 @@
 <entry>-133.2332023170311</entry>
 <entry>60.7052177167226</entry>
 <entry>-710.7898764302954</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>350.5376777919744</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>477.2048040914815</entry>
-<entry>42.20820214844905</entry>
-<entry>608.8507949570194</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -43199,43 +41827,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>30.832944476869358</entry>
+<entry>30.724693471396012</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-84.83800202829298</entry>
-<entry>50.12713824825687</entry>
-<entry>624.901231104508</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>289.34873497331</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-273.6003388601821</entry>
-<entry>56.12257367736129</entry>
-<entry>-651.5542371058837</entry>
+<entry>-92.5436665933812</entry>
+<entry>50.033513780852054</entry>
+<entry>612.0100926300511</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -43283,34 +41883,6 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>285.1409838397565</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>698.3960780869238</entry>
-<entry>43.68034378440323</entry>
-<entry>857.5825509093702</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
 <entry>166.20051460366113</entry>
 <entry>0.0</entry>
 </vector>
@@ -43320,34 +41892,6 @@
 <entry>760.3288332737284</entry>
 <entry>48.02888217222201</entry>
 <entry>781.8401682032272</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>14.931417178009813</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-601.3177801319398</entry>
-<entry>0.0</entry>
-<entry>-982.2898842385039</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -43395,15 +41939,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>198.88608737119796</entry>
+<entry>166.60750224395875</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>138.2351390925469</entry>
-<entry>64.11206571646096</entry>
-<entry>-841.9812812190503</entry>
+<entry>143.74542591627687</entry>
+<entry>64.08857748887968</entry>
+<entry>-827.289006122388</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -43432,62 +41976,6 @@
 <entry>-555.819090322475</entry>
 <entry>45.021607333324596</entry>
 <entry>-165.54212591331452</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>32.30184565218139</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-459.97242926899344</entry>
-<entry>46.02814898434235</entry>
-<entry>-38.63902918342501</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>130.07179199017597</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-898.2314032005379</entry>
-<entry>0.0</entry>
-<entry>179.05444090161473</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -43548,62 +42036,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>77.12210675894765</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>204.1749834161019</entry>
-<entry>0.0</entry>
-<entry>-942.1757714189589</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>196.85544293915376</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>241.67826548509765</entry>
-<entry>53.0382451400381</entry>
-<entry>-245.85324245970696</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -43619,15 +42051,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>96.59991698366714</entry>
+<entry>103.2908014113329</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>857.3631998006022</entry>
-<entry>46.675438663310494</entry>
-<entry>829.4905341407284</entry>
+<entry>844.8522678981535</entry>
+<entry>46.82318425327089</entry>
+<entry>830.5428524343297</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -43716,34 +42148,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>169.4481904929279</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>430.68013944348786</entry>
-<entry>41.016178846637246</entry>
-<entry>806.6202487731352</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit90/speedLimit90.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -43815,34 +42219,6 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>108.77803322435881</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>713.002928470727</entry>
-<entry>49.151693762210606</entry>
-<entry>-99.60514500830323</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
 <entry>31.42956561483851</entry>
 <entry>0.0</entry>
 </vector>
@@ -43880,62 +42256,6 @@
 <entry>-139.8682214336004</entry>
 <entry>50.02990224469941</entry>
 <entry>522.8329482367262</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>207.59729586839117</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-220.94504048128147</entry>
-<entry>50.33558260908496</entry>
-<entry>382.2636379227042</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>286.6027461702316</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-586.7353638047352</entry>
-<entry>47.345269227607076</entry>
-<entry>-550.5683001810685</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -44024,34 +42344,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>31.12247019777519</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-399.445373882656</entry>
-<entry>47.80031728426754</entry>
-<entry>64.09202593099326</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -44067,15 +42359,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>295.39930956948655</entry>
+<entry>290.19433424611543</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-165.0017919568345</entry>
-<entry>51.027315652929374</entry>
-<entry>92.34055664390326</entry>
+<entry>-151.61571570287924</entry>
+<entry>51.028966859595805</entry>
+<entry>85.50217354856431</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -44123,20 +42415,20 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>107.76091192336463</entry>
+<entry>101.54252570191666</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-232.17090198141523</entry>
-<entry>50.02230911457162</entry>
-<entry>-141.03269020933658</entry>
+<entry>-244.45163400785532</entry>
+<entry>49.98931760579673</entry>
+<entry>-136.84911227598786</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
+<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
 <visible>true</visible>
@@ -44151,15 +42443,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>201.6444351412948</entry>
+<entry>21.857997891951015</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-285.11286896665115</entry>
-<entry>49.028297682603224</entry>
-<entry>-201.41171118617058</entry>
+<entry>-236.27198119228706</entry>
+<entry>50.02364261176333</entry>
+<entry>-114.86422991007566</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -44291,15 +42583,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>264.47245985171315</entry>
+<entry>271.3322198489123</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-208.79618855321314</entry>
-<entry>50.02977590827175</entry>
-<entry>-135.48029708489776</entry>
+<entry>-191.89535053877626</entry>
+<entry>50.03009014149277</entry>
+<entry>-133.9503834489733</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -44319,15 +42611,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>80.21759296826973</entry>
+<entry>72.79044247951884</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-168.0136532022152</entry>
-<entry>50.2522919933221</entry>
-<entry>-138.97275240905583</entry>
+<entry>-180.28265402733814</entry>
+<entry>50.032600213838954</entry>
+<entry>-140.62672773282975</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -44388,90 +42680,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>134.66197572424036</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-481.6865213473793</entry>
-<entry>0.0</entry>
-<entry>1122.6728806961328</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>184.66576872517297</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>547.9307369648013</entry>
-<entry>54.747948067746904</entry>
-<entry>-414.6093471199274</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>4.001616143548336</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>566.5517572147073</entry>
-<entry>52.03046239928973</entry>
-<entry>-306.3319878121838</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -44487,43 +42695,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>19.203973504621416</entry>
+<entry>37.92107839639796</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>1068.1024077564944</entry>
-<entry>60.021736901203724</entry>
-<entry>-610.935528786853</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit90/speedLimit90.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>8.063246165751742</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1175.2389694345184</entry>
-<entry>0.0</entry>
-<entry>-1193.7714150957763</entry>
+<entry>1060.6593551655533</entry>
+<entry>60.03029078679836</entry>
+<entry>-631.7668458623812</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -44552,34 +42732,6 @@
 <entry>-446.0928256455809</entry>
 <entry>50.99679304442476</entry>
 <entry>-866.5788589539006</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>112.99330762626595</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-377.08011712215375</entry>
-<entry>53.78097141552657</entry>
-<entry>-901.2998166130856</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -44711,15 +42863,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>328.5479389878221</entry>
+<entry>333.0146939178105</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>819.8576822774485</entry>
-<entry>64.80865420114175</entry>
-<entry>-816.0007055690512</entry>
+<entry>826.8253441806883</entry>
+<entry>64.97116784126302</entry>
+<entry>-826.2301019504666</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -44780,34 +42932,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>173.41805534534132</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-89.87124323553871</entry>
-<entry>51.02999649027448</entry>
-<entry>-24.29559014365077</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -44836,34 +42960,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>201.73733819118792</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>429.32521193136927</entry>
-<entry>0.0</entry>
-<entry>-955.3756000138819</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -44879,15 +42975,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>264.18437347248977</entry>
+<entry>257.65241186321447</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>792.6408971749479</entry>
-<entry>63.964851261327006</entry>
-<entry>-805.9801278216764</entry>
+<entry>803.0420570413116</entry>
+<entry>64.11631768080821</entry>
+<entry>-805.4925307789817</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -44948,62 +43044,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>201.8014094862697</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-67.62169016571715</entry>
-<entry>50.01721253139844</entry>
-<entry>255.48786225542426</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>87.95459150922221</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>176.550254448317</entry>
-<entry>51.030317572975335</entry>
-<entry>-68.58415396045893</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -45019,99 +43059,15 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>102.09475707863895</entry>
+<entry>102.17798392317931</entry>
 <entry>0.0</entry>
 </vector>
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>-679.6604384578532</entry>
-<entry>44.88895534679967</entry>
-<entry>-816.7293101679534</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>282.5533665501344</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-770.5027985617053</entry>
-<entry>42.99398885182311</entry>
-<entry>-788.0596673246473</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>101.09751228983684</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-365.9450084064156</entry>
-<entry>48.026973487820904</entry>
-<entry>-268.08365813829005</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>137.21646212011456</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>100.50231863267254</entry>
-<entry>55.61203280914446</entry>
-<entry>-470.3798500550911</entry>
+<entry>-685.5121862868546</entry>
+<entry>44.746192146822885</entry>
+<entry>-815.4961959412321</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -45144,91 +43100,7 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>178.53119928574566</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>894.9581970880972</entry>
-<entry>57.05187651548338</entry>
-<entry>-430.4179862868041</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>24.461644121945273</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-646.3808498161379</entry>
-<entry>43.977425613934805</entry>
-<entry>-326.71841062419116</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>269.5685640315673</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>189.79032164800446</entry>
-<entry>47.18168971450184</entry>
-<entry>948.5546293538064</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
+<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
 <visible>true</visible>
@@ -45249,9 +43121,9 @@
 </rotation>
 <translation>
 <vector jtype="java_lang_Float" size="3">
-<entry>339.615853492287</entry>
-<entry>41.79574289628968</entry>
-<entry>940.9584892718121</entry>
+<entry>291.1986042598728</entry>
+<entry>42.321266462823466</entry>
+<entry>942.3857197491452</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -45299,34 +43171,6 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>167.87290896571875</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>763.5365638388321</entry>
-<entry>47.98289719545477</entry>
-<entry>842.2421027068049</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
 <entry>210.8695201385384</entry>
 <entry>0.0</entry>
 </vector>
@@ -45336,34 +43180,6 @@
 <entry>36.78432867664378</entry>
 <entry>51.22766837953683</entry>
 <entry>847.586610969156</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>349.24903300668814</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>903.7974199661985</entry>
-<entry>51.05565854318053</entry>
-<entry>211.1908815279603</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -45420,34 +43236,6 @@
 <entry>893.8570694167865</entry>
 <entry>57.040005943041194</entry>
 <entry>-415.7615687176585</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>12.002294898411781</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>940.7720565742347</entry>
-<entry>54.668918852197166</entry>
-<entry>-219.81566790677607</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -45536,62 +43324,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit90/speedLimit90.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>159.14554195953482</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1032.3086855900474</entry>
-<entry>0.0</entry>
-<entry>1168.3950252309442</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>113.14578335892368</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-105.4636796900304</entry>
-<entry>59.71633333147761</entry>
-<entry>-662.2877181116492</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -45648,34 +43380,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>169.50852298778636</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1124.4755362162832</entry>
-<entry>0.0</entry>
-<entry>118.33762675430626</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -45700,34 +43404,6 @@
 <entry>724.6583623014158</entry>
 <entry>44.99712767604776</entry>
 <entry>958.0083862245083</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>272.5448043792214</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>690.2557675101561</entry>
-<entry>45.79147889551245</entry>
-<entry>881.2337681446224</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -45788,34 +43464,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>124.72740860994912</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-508.8565791535657</entry>
-<entry>48.990600834617986</entry>
-<entry>353.8828238816932</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit90/speedLimit90.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -45840,34 +43488,6 @@
 <entry>1149.5914430004777</entry>
 <entry>0.0</entry>
 <entry>-1164.3894558688626</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>175.32417908026616</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1104.9272200932028</entry>
-<entry>48.058069736024684</entry>
-<entry>327.344348792918</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -45943,34 +43563,6 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>80.91843527833993</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>989.819176250021</entry>
-<entry>52.03006947047391</entry>
-<entry>131.24939098581672</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
 <entry>16.350869184028987</entry>
 <entry>0.0</entry>
 </vector>
@@ -45980,34 +43572,6 @@
 <entry>215.25511934258975</entry>
 <entry>55.00201881647432</entry>
 <entry>-353.339388506487</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>353.28061071158794</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-228.3871682191966</entry>
-<entry>49.03366583816996</entry>
-<entry>195.70350217912346</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -46040,34 +43604,6 @@
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
 </model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>173.6746401925198</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1131.7678767922334</entry>
-<entry>0.0</entry>
-<entry>706.9488846324384</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
 <model id="StreetFurniture" key="Models/RoadSigns/dangerSigns/PedestrianCrossingAhead/PedestrianCrossingAhead.scene">
 <mass>0.0</mass>
 <friction>1.0</friction>
@@ -46092,34 +43628,6 @@
 <entry>659.9985329128103</entry>
 <entry>57.87631104736651</entry>
 <entry>-851.1575198341161</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>196.35086918402897</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>210.07195152470376</entry>
-<entry>54.97149434858779</entry>
-<entry>-351.8245280003175</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -46279,230 +43787,6 @@
 <rotation quaternion="false">
 <vector jtype="java_lang_Float" size="3">
 <entry>0.0</entry>
-<entry>199.62924063026657</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>-812.6103957418818</entry>
-<entry>41.510343842152366</entry>
-<entry>-700.3550771549344</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>7.177245850660468</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>912.7634221175686</entry>
-<entry>57.03002198877925</entry>
-<entry>-418.3286377200857</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>350.67640822182574</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1096.7105405890616</entry>
-<entry>45.70126072600783</entry>
-<entry>1029.5878575546667</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>7.792078078494119</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>865.9799151929328</entry>
-<entry>64.02161575679293</entry>
-<entry>-795.3279870375991</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>168.92979742090697</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>1145.0065112739103</entry>
-<entry>0.0</entry>
-<entry>13.585820836946368</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>210.5455465908975</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>365.61825553595554</entry>
-<entry>56.766209109866736</entry>
-<entry>-505.4532045740634</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>346.73667125686455</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>874.4780564546818</entry>
-<entry>51.06634621993415</entry>
-<entry>364.0214628111571</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>47.38594403270081</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>748.899863440427</entry>
-<entry>62.080003937213824</entry>
-<entry>-800.0015931744128</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
 <entry>166.6754687383498</entry>
 <entry>0.0</entry>
 </vector>
@@ -46512,34 +43796,6 @@
 <entry>787.3712742564967</entry>
 <entry>50.01442061584059</entry>
 <entry>658.1365201594308</entry>
-</vector>
-</translation>
-<shadowMode>CastAndReceive</shadowMode>
-</model>
-<model id="StreetFurniture" key="Models/RoadSigns/speedLimits/speedLimit50/speedLimit50.scene">
-<mass>0.0</mass>
-<friction>1.0</friction>
-<visible>true</visible>
-<collisionShape>meshShape</collisionShape>
-<scale>
-<vector jtype="java_lang_Float" size="3">
-<entry>1.0</entry>
-<entry>1.0</entry>
-<entry>1.0</entry>
-</vector>
-</scale>
-<rotation quaternion="false">
-<vector jtype="java_lang_Float" size="3">
-<entry>0.0</entry>
-<entry>347.905242923038</entry>
-<entry>0.0</entry>
-</vector>
-</rotation>
-<translation>
-<vector jtype="java_lang_Float" size="3">
-<entry>766.1551425455837</entry>
-<entry>48.029421151451004</entry>
-<entry>783.1795510258526</entry>
 </vector>
 </translation>
 <shadowMode>CastAndReceive</shadowMode>
@@ -46654,6 +43910,6 @@
     </directionalLight>
   </lights>
 
-  <skyTexture>Textures/Sky/Dark/darkgloom.dds</skyTexture>
+  <skyTexture>Textures/Sky/Bright/cloudtop.dds</skyTexture>
 
 </scene>

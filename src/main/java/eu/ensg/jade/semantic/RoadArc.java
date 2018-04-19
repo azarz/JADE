@@ -459,9 +459,13 @@ public class RoadArc {
 
 	public static double angleBetweenRoads(LineString linestring1, LineString linestring2) {
 		//Get the relevent points
-		
-		Point ptIntersection = (Point) linestring1.intersection(linestring1).getInteriorPoint();
-		if (ptIntersection.isEmpty()){
+		Point ptIntersection = null;
+		try {
+			ptIntersection = (Point) linestring1.intersection(linestring1).getInteriorPoint();
+			if (ptIntersection.isEmpty()){
+				return Double.NaN;
+			}
+		} catch (NullPointerException e) {
 			return Double.NaN;
 		}
 		Point ptStart1 =  linestring1.getStartPoint();
