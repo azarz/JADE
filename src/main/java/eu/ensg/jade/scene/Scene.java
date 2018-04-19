@@ -7,7 +7,6 @@ import java.util.Map;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.MultiPolygon;
-import com.vividsolutions.jts.geom.Polygon;
 
 import eu.ensg.jade.semantic.Building;
 import eu.ensg.jade.semantic.DTM;

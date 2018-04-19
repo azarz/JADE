@@ -42,8 +42,10 @@ public class ArcIntersection {
 			List<String> tempIds = new ArrayList<>();
 			
 			for(String roadId : inter.getRoadId().keySet()) {
-				tempIds.add(roadId);
-				tempRoads.add(scene.getLineRoads().get(roadId));
+				if(scene.getLineRoads().get(roadId).getWidth() != 0) {
+					tempIds.add(roadId);
+					tempRoads.add(scene.getLineRoads().get(roadId));
+				}
 			}
 
 			// 2 roads intersecting
