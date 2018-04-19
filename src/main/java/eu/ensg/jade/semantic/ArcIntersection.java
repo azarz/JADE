@@ -322,7 +322,7 @@ public class ArcIntersection {
 					}
 				}
 				
-				if(geom.getArea() < 1000){
+				if(geom.getArea() < 1000 && geom.getArea() < (arc.getRadius()*arc.getRadius()*Math.PI)/3   ){
 					polygons.put(roadId.get(j), geom);
 				}
 			}
