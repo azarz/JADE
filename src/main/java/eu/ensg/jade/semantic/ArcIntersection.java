@@ -42,8 +42,10 @@ public class ArcIntersection {
 			List<String> tempIds = new ArrayList<>();
 			
 			for(String roadId : inter.getRoadId().keySet()) {
-				tempIds.add(roadId);
-				tempRoads.add(scene.getLineRoads().get(roadId));
+				if(scene.getLineRoads().get(roadId).getWidth() != 0) {
+					tempIds.add(roadId);
+					tempRoads.add(scene.getLineRoads().get(roadId));
+				}
 			}
 
 			// 2 roads intersecting
@@ -322,7 +324,7 @@ public class ArcIntersection {
 					}
 				}
 				
-				if(geom.getArea() < 1000){
+				if(geom.getArea() < 1000 && geom.getArea() < (arc.getRadius()*arc.getRadius()*Math.PI)/3   ){
 					polygons.put(roadId.get(j), geom);
 				}
 			}

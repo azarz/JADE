@@ -303,7 +303,7 @@ public class SceneBuilder {
 	
 		List<Geometry> polygonList = new ArrayList<>();
 		Map<String,Polygon> intersectionPolygon = ArcIntersection.generateSmoothRoad(scene);
-		System.out.println("Smooth roads: " + String.valueOf(intersectionPolygon.size()));
+		System.out.println("Smooth intersections: " + String.valueOf(intersectionPolygon.size()));
 		
 		// Create the areal roads, and set the correct height
 		Map<String, LineRoad> lineRoads = scene.getLineRoads();
