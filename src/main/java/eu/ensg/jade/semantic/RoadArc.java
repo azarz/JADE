@@ -463,7 +463,6 @@ public class RoadArc {
 		if (ptIntersection.isEmpty()){
 			return Double.NaN;
 		}
-	
 		Point ptStart1 =  linestring1.getStartPoint();
 		Point ptEnd1 = linestring1.getEndPoint();
 		Point ptStart2 = linestring2.getStartPoint();
@@ -490,43 +489,5 @@ public class RoadArc {
 		
 		//Returning the result as degree and not radiant
 		return angle*(180.0/Math.PI);
-	}
-
-	/**
-	 * Checks if the arc intersects a road
-	 *
-	 * @param arc the arc
-	 * @param road the road to check for intersection
-	 * 
-	 * @return true if the arc intersects the road
-	 */
-
-	public static boolean intersectOther(CircularArc arc, LineRoad road){
-		double[] points = arc.linearize(1);
-		boolean result=false;
-		GeometryFactory geomFactory = new GeometryFactory();
-
-		// create a list of connected positions
-		Coordinate firstArcPoint = new Coordinate(points[0],points[1]);
-		Coordinate lastArcPoint = new Coordinate(points[points.length-2],points[points.length-1]);
-        Coordinate midArcPoint = new Coordinate(points[(points.length/2)-1],points[(points.length/2)]);
-
-		LineString arcLine1 = geomFactory.createLineString(new Coordinate[]{firstArcPoint,lastArcPoint});
-		LineString arcLine2 = geomFactory.createLineString(new Coordinate[]{firstArcPoint,midArcPoint});
-		LineString arcLine3 = geomFactory.createLineString(new Coordinate[]{lastArcPoint,midArcPoint});
-
-		int a=road.getGeom().getCoordinates().length;
-		Coordinate[] tab= {road.getGeom().getCoordinates()[0] , road.getGeom().getCoordinates()[a-1]};
-		LineString roadLine = geomFactory.createLineString(tab);
-		//if(roadLine.intersects(arcLine1) || roadLine.intersects(arcLine2) || roadLine.intersects(arcLine3)) {
-		//	result = true;
-		//}
-		//if(road.getGeom().getNumGeometries()>0) {
-			roadLine = (LineString) road.getGeom().getGeometryN((road.getGeom().getNumGeometries())-1);
-			//if(roadLine.intersects(arcLine1) || roadLine.intersects(arcLine2) || roadLine.intersects(arcLine3)) {
-			//	result = true;
-			//}
-		//}
-		return result;
 	}
 }

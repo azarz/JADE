@@ -271,16 +271,6 @@ public class ArcIntersection {
 				CircularArc arc = roadArc.getCircularArc();
 				if(arc == null) continue;
 
-				//Testing if the eventual arc intersect a road. If yes the arc is not conserved	
-				boolean intersectOther = false;
-				for(int k=0 ; k<roads.size(); k++) {
-					if(RoadArc.intersectOther(arc, roads.get(k))){
-						intersectOther = true;
-						break;
-					}
-				}
-				if(intersectOther) continue;
-
 				//We create the list of Coordinates for the polygon with the points of the arc
 				List<Coordinate> polygonCoords = new ArrayList<Coordinate>();
 				double[] pointsOfArc = arc.linearize(1);
