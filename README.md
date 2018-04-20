@@ -16,15 +16,8 @@ sudo apt-get install oracle-java8-installer
 
 Se placer dans un dossier, lancer la commande 
 ```sh
-git clone https://gitlab.com/azarzelli/JADE.git
+git clone https://github.com/azarz/JADE.git
 ```
-
-Une fois le téléchargement terminé lancer
-```sh
-cd JADE
-git checkout demo
-```
-pour passer sur une branche stable de développement.
 
 ## Lancement du programme
 
@@ -46,7 +39,7 @@ java -jar JADE-0.0.1-SNAPSHOT.jar both <NomDossier>
 ```
 
 ## Données en entrée
-Vous pouvez crééer vos propres scènes à partir de données issues du RGE de l'IGN, pour peu qu'elles correspondent parfaitment aux spécifications suivantes (des exemple de données en entrées sont présentes dans le dossier input) :
+Vous pouvez crééer vos propres scènes à partir de données issues du RGE de l'IGN, pour peu qu'elles correspondent parfaitment aux spécifications suivantes :
 
 + La zone totale à traiter (MNT, orthoimage, shapefiles) doit être un carré, avec un côté d'au maximum 3km², voire 2km² en fonction de la puissance à disposition.
 
