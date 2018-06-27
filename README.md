@@ -1,6 +1,8 @@
 # JADE - JAva Driving Experience
 
-Contributors : Amaury Zarzelli, Antoine Roca, Antoine Moutou, Augustin Gagnon, Eva Chen-Yen-Su, Laure Le Breton, Mariem Moukhlissi
+Contributeurs : Amaury Zarzelli, Antoine Roca, Antoine Moutou, Augustin Gagnon, Eva Chen-Yen-Su, Laure Le Breton, Mariem Moukhlissi
+
+Présentation : https://docs.google.com/presentation/d/10xvvla_IB1JZLCCMmGqoEnwjLShZt0B-8iQdBtzx1ik/
 
 ## Prérequis
 Oracle JDK version 8.
